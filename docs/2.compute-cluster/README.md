@@ -1,0 +1,3 @@
+# What is a compute cluster? 
+
+Compute clusters: nodes, cores, ...
