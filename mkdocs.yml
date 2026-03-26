@@ -1,0 +1,91 @@
+site_name: Using HPC in Bioinformatics
+site_url: https://hpc2n.github.io/bioinformatics-hpc
+site_description: Material for Using HPC in Bioinformatics
+site_dir: site.build
+theme:
+  name: readthedocs
+  locale: en
+  logo: images/logo.png
+    #  static_templates:
+    #- sitemap.html
+  include_sidebar: true
+  font:
+    code: Robot Mono
+  features:
+    - toc.follow
+    - toc.integrate
+    - navigation.top
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  tabs: true
+  language: en
+extra_css:
+  - css/extra.css
+    #extra_javascript:
+    #  - js/popper.min.js
+    #  - js/tippy-bundle.umd.js
+    #  - js/clipboard.js
+
+nav:
+  - Home: index.md
+  - Introduction: intro.md
+  - What is a computer?: 1.computer/computer.md
+  - Intro to compute clusters: 2.compute-cluster/compute-cluster.md
+  - Files and file systems: 
+    - Introduction: 3.files-filesystems/files-filesystems.md
+    - File system terminology: 3.files-filesystems/3b.files-memory-disks/terminology.md 
+  - Introduction to Linux: 4.linux-intro/linux-intro.md
+  - Connection to a cluster (Kebnekaise):
+    - Introduction: : 5.connect-cluster/connect-cluster.md
+    - OpenOnDemand: 5.connect-cluster/5a.OpenOnDemand/openondemand.md
+    - ThinLinc and SSH: 5.connect-cluster/5b.ssh-thinlinc/ssh-thinlinc.md
+  - Introduction to Git: 6.Git/intro-to-git.md 
+  - Accessing software on Kebnekaise: 
+    - Introduction: 7.software-modules-containers/introduction.md
+    - The module system: 7.software-modules-containers/modules.md
+    - Containers: 7.software-modules-containers/containers.md
+  - Software from a Git repo: 8.software-git-install-compile/git-software.md
+  - The batch system (Slurm): 
+    - Introduction: 9.batch-slurm/intro.md
+    - Important commands: 9.batch-slurm/commands.md
+    - Batch scripts: 9.batch-slurm/commands.md
+    - Monitoring your job: 9.batch-slurm/monitoring.md
+    - Batch script examples: 9.batch-slurm/batch-examples.md
+plugins:
+  - search
+  - external-markdown
+  - mkdocstrings
+  - markdown-exec
+  - open-in-new-tab
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - smarty
+  - pymdownx.details
+  - pymdownx.superfences
+  - codehilite
+  - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.tilde
+    #  - pymdownx.blocks.tab
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      separator: "__"
