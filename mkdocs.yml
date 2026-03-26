@@ -61,6 +61,8 @@ nav:
     - Batch scripts: 9.batch-slurm/commands.md
     - Monitoring your job: 9.batch-slurm/monitoring.md
     - Batch script examples: 9.batch-slurm/batch-examples.md
+  - Accessing databases:
+    - Introduction: 10.access-databases/intro.md    
 plugins:
   - search
   - external-markdown
