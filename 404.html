@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="/bioinformatics-hpc/img/favicon.ico" />
+    <title>Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="/bioinformatics-hpc/css/theme.css" />
+    <link rel="stylesheet" href="/bioinformatics-hpc/css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="/bioinformatics-hpc/assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="/bioinformatics-hpc/assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="/bioinformatics-hpc/assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="/bioinformatics-hpc/css/extra.css" rel="stylesheet" />
+    
+    <!--[if lt IE 9]>
+      <script src="/bioinformatics-hpc/js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="/bioinformatics-hpc/.">
+          <img src="/bioinformatics-hpc/images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="/bioinformatics-hpc//search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="/bioinformatics-hpc/.">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/intro.md">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/1.computer/computer.md">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/2.compute-cluster/compute-cluster.md">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/3.files-filesystems/files-filesystems.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/3.files-filesystems/3b.files-memory-disks/terminology.md">File system terminology</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/4.linux-intro/linux-intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/5.connect-cluster/connect-cluster.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/5.connect-cluster/5a.OpenOnDemand/openondemand.md">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/5.connect-cluster/5b.ssh-thinlinc/ssh-thinlinc.md">ThinLinc and SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/6.Git/intro-to-git.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/7.software-modules-containers/introduction.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/7.software-modules-containers/modules.md">The module system</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/9.batch-slurm/intro.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/9.batch-slurm/monitoring.md">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/bioinformatics-hpc/10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="/bioinformatics-hpc/.">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="/bioinformatics-hpc/." class="icon icon-home" aria-label="Docs"></a></li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+
+  <h1 id="404-page-not-found">404</h1>
+
+  <p><strong>Page not found</strong></p>
+
+
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="/bioinformatics-hpc/js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "/bioinformatics-hpc/";</script>
+    <script src="/bioinformatics-hpc/js/theme_extra.js"></script>
+    <script src="/bioinformatics-hpc/js/theme.js"></script>
+      <script src="/bioinformatics-hpc/assets/_markdown_exec_pyodide.js"></script>
+      <script src="/bioinformatics-hpc/search/main.js"></script>
+      <script src="/bioinformatics-hpc/js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
