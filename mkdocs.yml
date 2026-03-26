@@ -40,7 +40,7 @@ nav:
     - File system terminology: 3.files-filesystems/3b.files-memory-disks/terminology.md 
   - Introduction to Linux: 4.linux-intro/linux-intro.md
   - Connection to a cluster (Kebnekaise):
-    - Introduction: : 5.connect-cluster/connect-cluster.md
+    - Introduction: 5.connect-cluster/connect-cluster.md
     - OpenOnDemand: 5.connect-cluster/5a.OpenOnDemand/openondemand.md
     - ThinLinc and SSH: 5.connect-cluster/5b.ssh-thinlinc/ssh-thinlinc.md
   - Introduction to Git: 6.Git/intro-to-git.md 
