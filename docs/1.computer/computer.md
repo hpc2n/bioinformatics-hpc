@@ -45,16 +45,16 @@ A couple memory sticks / RAM
 ### GPU
 
 ![GPU](../../images/GPU.jpg){: style="width: 300px;"}
-A GPU (Nvidia)
+GPU (Nvidia)
 ![GPU chip](../../images/GPU-chip.jpg){: style="width: 200px;"}
-A GPU chip
+GPU chip
 
 ### Cooling 
 
 ![Fan](../../images/fan.jpg){: style="width: 100px;"}
 A fan
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
-Watercooling including heat sink (attached on top of CPU with cooling paste in between 
+Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between) 
 
 ## System software 
 
