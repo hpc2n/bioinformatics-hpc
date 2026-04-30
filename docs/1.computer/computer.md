@@ -33,4 +33,15 @@ A motherboard
 Intel CPU 
 ![AMD CPU](../../images/amd-cpu.jpg){: style="width: 200px;"}
 AMD CPU
+![RAM/memory](../../images/ram.jpeg){: style="width: 200px;"}
+A couple memory sticks / RAM 
+![GPU](../../images/GPU.jpg){: style="width: 200px;"}
+A GPU from Nvidia
+![GPU chip](../../images/GPU-chip.jpg){: style="width: 200px;"}
+A GPU chip
+![Fan](../../images/fan.jpg){: style="width: 200px;"}
+A fan
+![Watercooling](../../images/water-cooler.jpg){: style="width: 200px;"}
+Watercooling including heat sink (attached on top of CPU with cooling paste in between 
+
 
