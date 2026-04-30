@@ -13,9 +13,24 @@ Computers are special types of machines. Most machines only do one thing (cars, 
 
 ## Hardware parts
 
-Let us take a look inside a typical desktop computer. This shows a simple sketch of the inside of case:
+Let us take a look inside a typical desktop computer. This shows a simple sketch of the inside of the case:
 
 ![Computer case, PSU, motherboard](../../images/desktop-case.png){: style="width: 600px;"}
 
+- PSU is the power supply unit. 
+- CD/DVD are getting increasingly rare
+- If you have spinning disk/HDD installed, it sits in a rack along the side and is connected to the motherboard (power cable and data cable)
+- A motherboard is mounted in the case, and has a socket for a CPU as well as slots for RAM/memory, SSDs/M.2 disk, PCIe etc. 
+- How much RAM usually depends on the motherboard, and they should be of the same size (8GB, 16GB, 32GB, etc.) 
+- SSD storage are placed in the suitable slots. Size again depends on the motherboard. New SSDs are typically NVMe/M.2, which has better speed usually 
+- PCIe are expansion slots, often used for graphics cards/GPUs. These can be large and the case size is important when seeing if there is space for many of the modern types of GPUs.
+- The GPU generally has its own cooling, but the CPU needs cooling. Either fans for air cooling or water cooling 
 
+![An example of a motherboard](../../images/motherboard.png){: style="width: 600px;"}
+A motherboard
+
+![Intel CPU](../../images/intel-cpu.jpeg){: style="width: 200px;"}
+Intel CPU 
+![AMD CPU](../../images/amd-cpu.jpg){: style="width: 200px;"}
+AMD CPU
 
