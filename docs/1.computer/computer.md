@@ -15,7 +15,7 @@ Computers are special types of machines. Most machines only do one thing (cars, 
 
 ![Computer build](../../images/setup.png){: style="width: 600px;"}
 
-Let us take a look inside a typical desktop computer. This shows a simple sketch of the inside of the case:
+Let us take a look inside a typical desktop computer. This shows a simplified sketch of the inside of the case: 
 
 ![Computer case, PSU, motherboard](../../images/desktop-case.png){: style="width: 600px;"}
 
