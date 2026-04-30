@@ -51,7 +51,7 @@ A couple memory sticks / RAM
 
 ### SSD storage 
 
-![SSD storage](../../images/ssd.jpeg){: style="width: 200px;"}
+![SSD storage](../../images/ssd.jpg){: style="width: 200px;"}
 2TB of SSD storage 
 
 (Image from 
