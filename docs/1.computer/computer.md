@@ -54,7 +54,7 @@ A couple memory sticks / RAM
 ![SSD storage](../../images/ssd.jpg){: style="width: 200px;"}
 2TB of SSD storage 
 
-(Image from 
+(Image from https://ssd-tester.com/crucial_p310_2tb.html) 
 
 ### GPU
 
@@ -63,12 +63,16 @@ GPU (Nvidia)
 ![GPU chip](../../images/GPU-chip.jpg){: style="width: 200px;"}
 GPU chip
 
+(Images from https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252)
+
 ### Cooling 
 
 ![Fan](../../images/fan.jpg){: style="width: 100px;"}
 A fan
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
 Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between) 
+
+(Image from https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr) 
 
 ## System software 
 
