@@ -5,7 +5,7 @@
     "A computer is a machine that can be programmed to automatically carry out sequences of arithmetic or logical operations (computation)." 
     (Wikipedia) 
 
-In this session we are going to do a short walk-through of what a computer is, both the hardware parts and the logical software. 
+In this session we are going to do a short walk-through of what a computer is, both the hardware parts and the system software. 
 
 Everyone has an idea of what a computer is; usually we are thinking of a screen, a keyboard, and internal components like CPU, GPU, HDD/SSH, and RAM/memory. 
 
@@ -56,4 +56,10 @@ Watercooling including heat sink (attached on top of CPU with cooling paste in b
 
 ### Assembled computer with screen, keyboard, and mouse 
 
+![Desktop](../../images/desktop.png){: style="width: 400px;"}
 
+## System software 
+
+System software is what is required for the computer to run and to let us interact with it. 
+
+This is low-level components 
