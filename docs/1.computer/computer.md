@@ -13,6 +13,8 @@ Computers are special types of machines. Most machines only do one thing (cars, 
 
 ## Hardware parts
 
+![Computer build](../../images/setup.png){: style="width: 600px;"}
+
 Let us take a look inside a typical desktop computer. This shows a simple sketch of the inside of the case:
 
 ![Computer case, PSU, motherboard](../../images/desktop-case.png){: style="width: 600px;"}
@@ -53,10 +55,6 @@ A GPU chip
 A fan
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
 Watercooling including heat sink (attached on top of CPU with cooling paste in between 
-
-### Assembled computer with screen, keyboard, and mouse 
-
-![Desktop](../../images/desktop.png){: style="width: 400px;"}
 
 ## System software 
 
