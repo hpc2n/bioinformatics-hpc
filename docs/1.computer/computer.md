@@ -78,7 +78,6 @@ Watercooling including heat sink (the heat sink will be attached on top of a CPU
 
 System software is what is required for the computer to run and to let us interact with it. 
 
-![System software](../../images/system-software.png){: style="width: 400px;"}
+![System software](../../images/system-software.png){: style="width: 600px;"}
 
-
-This is low-level components 
+This picture shows how the different components talk together. 
