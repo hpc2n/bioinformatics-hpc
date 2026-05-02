@@ -16,7 +16,7 @@ The advantage of computer clusters over single computers, are that they usually
 improves the performance (and availability) greatly, while still being cheaper
 than single computers of comparable speed and size.
 
-![cluster](./images/clusterlayout.svg){: style="width: 800px}
+![cluster](../../images/clusterlayout.svg){: style="width: 800px}
 
 ### What are Nodes, Cores, and CPUs?
 
@@ -28,9 +28,9 @@ always shared between cores on the same CPU, but generally not between the CPUs.
 Computer nodes can also have GPUs (graphical processing units) in addition to
 the CPUs.
 
-![cpu node](./images/cpu-core-schema.svg){: style="width: 400px;float: right"}
+![cpu node](../../images/cpu-core-schema.svg){: style="width: 400px;float: right"}
 
-![gpu node](./images/gpu-core-schema.svg){: style="width: 400px;float: right"}
+![gpu node](../../images/gpu-core-schema.svg){: style="width: 400px;float: right"}
 
 Nodes in computer clusters are usually arranged in racks at a dedicated climate-
 controlled facility, and are connected via a communication network. With few
@@ -182,7 +182,7 @@ Originally, GPUs were used for computer graphics, but now they are also used
 extensively for general-purpose computing (GPGPU computing).
 
 <figure class="inline end" markdown>
-![gpu-vs-cpu](../images/cpu-vs-gpu.png)
+![gpu-vs-cpu](../../images/cpu-vs-gpu.png)
 <figcaption>Image of CPU and GPU components from NVidia. ALU = Arithmetic Logic Unit, and DRAM = Dynamic Random-Access Memory.</figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ problem you are solving.
 
 #### Using GPUs
 
-![gpu](../images/gpu2.png){: style="width: 400px;float: right"}
+![gpu](../../images/gpu2.png){: style="width: 400px;float: right"}
 
 Programs must be written especially for GPUs in order to use them.
 
