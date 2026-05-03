@@ -25,6 +25,10 @@ In addition there are:
 - compressed files (.zip, .gz, .rar, .7z, .bz2, ...)
 - system files (.sys, .dll, .ini, ...) 
 
+!!! warning 
+
+    Configuration files in Linux are often prefaced with a dot - and are often hidden unless you use specific options. 
+
 !!! note 
 
     The word "file" derives from the Latin filum ("a thread, string"). In extended use the English term "file" came to refer to various systems of arranging papers and documents for retrieval. "File" was used in the context of computer storage as early as January 1940.
@@ -33,6 +37,14 @@ In addition there are:
 A file is commonly represented with this picture, which we are going to use in this presentation: 
 
 ![A file](../../images/file.png){: style:"width="200px;"}
+
+If it is important what type of file it is, we will write something like this (a document of type PDF): 
+
+![A PDF file](../../images/pdffile.png){: style:"width="200px;"}
+
+!!! tip
+
+    To list files in Linux, you use the command ``ls``. You need the option ``-a`` to see hidden files. 
 
 ### How to create a file and open a file
 
@@ -93,13 +105,40 @@ If you are not familiar with any of these, a good recommendation would be to use
     5. Save by clicking "Save" in the menu.
     6. The menu on the top right (the three horizontal lines) gives you several other options, including "Find" and "Find and Replace".
 
-    
-
 ### What is a folder?
+
+A folder is a container used to organize files (documents, images, etc.) as well as possibly other folders (subfolders). 
+
+Think of it the same way as a physical file folder that you can put files (or maybe other folders) into in order to keep things organized and easier to locate. 
+
+COmputer folders can contain many files and other subfolders. This forms a hierarchical structure. A folder is also often called a **directory**. 
+
+We will use this (common) picture to represent a folder: 
+
+![A folder](../../images/folder.png){: style:"width="200px;"}
 
 ## What are extensions?
 
+File extensions are the suffix (sometimes) at the end of a filename. In Linux they are generally **not needed**, but often a good idea. 
+
+!!! note "File extension aspects"
+
+    - Identification: They can often be used to identify the file type (e.g., text, image, executable). 
+        - In Linux, files can be made executable with any or no extensions! 
+    - Functionality: They can help the operating system select the correct icon and sometimes also the associated software for handling the file.
+    - Structure: Normally 1-4 characters, usually found after the last dot in a filename.
+    - Modification: Changing the extension (e.g., from .txt to .jpg) does not convert the file format. This can make it unreadable if the operating system expects an image file and tries to open it using an associated software, but in reality it is a text file with a wrong extension. 
+
+Common examples: 
+
+- Executables: .exe (Windows executable), .app (Mac application), .bat (Batch file. NOTE: Linux does not generally use a specific extension for executables. It is handles with **permissions**. 
+- Documents: .docx (Word), .pdf (Portable Document Format), .txt (Plain text), .tex (Latex file). 
+- Images: .jpg / .jpeg (JPEG image), .png (Portable Network Graphic), .gif (Graphics Interchange Format).
+- Audio/Video: .mp3 (Audio), .mp4 (Video), .wav (Audio).
+    
 ## What are permissions?
+
+
 
 ## What is a file system? 
 
