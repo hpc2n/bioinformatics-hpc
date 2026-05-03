@@ -27,6 +27,8 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 - SSD storage are placed in the suitable slots. Size again depends on the motherboard. New SSDs are typically NVMe/M.2, which has better speed usually. Used for long term storage. Do not confuse with memory!  
 - PCIe are expansion slots, often used for graphics cards/GPUs. These can be large and the case size is important when seeing if there is space for many of the modern types of GPUs.
 - The GPU generally has its own cooling, but the CPU needs cooling. Either fans for air cooling or water cooling 
+- Storage is related to "disks" on the computer. A disk is a storage device that stores and retrieves data using magnetic or optical technology. An SSD or a HDD is an example.
+
 
 ### A motherboard
 
