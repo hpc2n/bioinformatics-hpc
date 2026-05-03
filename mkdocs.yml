@@ -39,6 +39,7 @@ nav:
     - Compute clusters: 2.compute-cluster/compute-cluster.md
   - Files and file systems: 
     - Introduction: 3.files-filesystems/files-filesystems.md
+    - File systems: 3.files-filesystems/filesystems.md
       #    - File system terminology: 3.files-filesystems/3b.files-memory-disks/terminology.md 
   - Introduction to Linux: 
     - Introduction: 4.linux-intro/linux-intro.md

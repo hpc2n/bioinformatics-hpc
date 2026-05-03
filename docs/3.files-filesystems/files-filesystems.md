@@ -8,7 +8,7 @@ This presentation will look at the following:
     - folders 
 - What are extensions?
 - What are permissions?
-- What is a file system? 
+- What is a file system? (next slides)  
 
 ## What is a file? 
 
@@ -138,9 +138,83 @@ Common examples:
     
 ## What are permissions?
 
+Permissions can relate to the permissions of various user roles or permissions of files and folders. It is the latter we are going to cover here. 
 
+Files and folders have readable, writable, and executable permission bits that can be set to control what can be done and by who (user, group, others). 
 
-## What is a file system? 
+Permissions can be set to various degrees in Windows, macOS, and Linux/Unix. Here we will focus on how it is done in Linux/Unix. 
+
+In order to see the permissions, you could list the content of a folder, using an option to ``ls``. 
+
+- `ls -l` lists content in long table format (permissions, owners, size in bytes, modification date/time, file/directory name)
+
+```bash
+$ ls -l
+total 36
+-rwxr--r-- 1 bbrydsoe folk   99 jan 16  2025 analysis.sh
+-rw-rw-r-- 1 bbrydsoe folk  188 okt  2  2025 file2.dat
+-rw-r----- 1 bbrydsoe folk  120 jan 16  2025 file.dat
+-rw-r--r-- 1 bbrydsoe folk   54 jan 16  2025 file_filtered.dat
+-rw-r--r-- 1 bbrydsoe folk  128 jan 14  2025 file.txt
+drwxr-xr-x 2 bbrydsoe folh 4096 jan 16  2025 image
+-rwxr-xr-x 1 bbrydsoe folk  153 jan 16  2025 imagefind.sh
+drwxr-xr-- 2 bbrydsoe folk 4096 jan 16  2025 myimages
+-rwxr--r-- 1 bbrydsoe folk    9 jan 16  2025 program.sh
+```
+
+The left-hand side "drwxr-xr-x" and "-rw-r\--r\--" are examples of **permissions**. The prefex "d" means is it a directory. A "-" means no permission for that. Another possibility is "s" for a symbolic link (later). There are three groups: owner, group, and all. Note that “r” is for read, “w” is for write, and “x” is for execute.
+
+!!! note
+
+    The command <code>chmod</code> is used to change permissions for files and directories.
+
+Permissions are needed to, among other things, make a file executable. Another common use is to make a file or folder readable to your coworkers. 
+
+!!! Note "There are three types of permission groups"
+
+    - **owners**: these permissions will only apply to owners and will not affect other groups.
+    - **groups**: you can assign a group of users specific permissions, which will only impact users within the group. The members of your storage directory belongs here.
+    - **all users**: these permissions will apply to all users, so be careful with this.
+
+!!! Note "There are three kinds of file permissions"
+
+    - Read (r): This allows a user or a group to view a file (and so also to copy it).
+    - Write (w): This permits the user to write or modify a file or directory.
+    - Execute (x): A user or a group with execute permissions can execute a file. They can also view a subdirectory.
+
+The permissions for a file, directory, or symbolic link has 10 "bits" and looks similar to this:
+
+![Permissions](../../images/permissions.png){: style="width: 400px}
+
+As shown, the first bit can be "-" (a file), "d" (a directory), or "l" (a link).
+
+The following group of 3 bits are for the owner, then the next 3 for the group, and then the last 3 for all users. Each can have the r(ead), w(rite), and (e)x(ecute) permission set.
+
+!!! Note "To change permissions, here are some examples"
+
+    - owner (user)
+        - **chmod u+rwx FILE/DIR** to add all permissions of a file with name FILE or a directory with name DIR
+        - **chmod u-rwx FILE/DIR** to remove all permissions from a file with name FILE or a directory with name DIR
+        - **chmod u+x FILE** to add executable permissions
+        - **chmod u-wx FILE** to remove write and executable permissions
+    - group
+        - **chmod g+rwx FILE** to add all permissions to FILE
+        - **chmod g-rwx FILE** to remove all permissions to FILE
+        - **chmod g+wx FILE** to give write and execute permissions to FILE
+        - **chmod g-x FILE** to remove execute permissions to FILE
+    - others
+        - **chmod o+rwx FILE** to add all permissions to FILE
+        - **chmod o-rwx FILE** to remove all permissions to FILE
+        - **chmod o+w FILE** to add write permissions to FILE
+        - **chmod o-rwx DIR** to remove all permissions to DIR
+    - all
+        - **chmod ugo+rwx FILE/DIR** to add all permissions for all users (owner, group, others) to file named FILE or directory named DIR
+        - **chmod a=rwx FILE/DIR** same as above
+        - **chmod a=r DIR** give read permissions to all for DIR
+
+!!! Note
+
+    It is also possible to change the ownership of a file or a directory. We are not going to cover this here, but the command is ``chown``. 
 
 
 
