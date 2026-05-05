@@ -19,7 +19,7 @@ The picture on the above right shows typical subdirectories under `/` (note that
 
 Shown with folders, part of it could look like this: 
 
-![Folders of the file system, Linux](../../images/filesystem-folders.png){: style="width: 400px;float: right"}
+![Folders of the file system, Linux](../../images/filesystem-folders.png){: style="width: 400px;"}
 
 !!! Note
 
