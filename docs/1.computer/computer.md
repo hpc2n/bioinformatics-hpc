@@ -137,7 +137,7 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
 
 A fundamental limitation of the Von Neumann architecture is that the CPU and memory share the **same bus** for both instructions and data. 
 Because only one transfer can occur at a time, either fetching an instruction *or* reading/writing data, this creates a traffic bottleneck 
-known as the **Von Neumann bottleneck**. As CPU speeds improved dramatically over the decades while memory speeds lagged behind, this 
+known as the **Von Neumann bottleneck**. As CPU speeds improved dramatically over the decades while memory speeds lagged, this 
 constraint became an increasingly serious barrier to performance.
 
 Modern hardware addresses this problem through several complementary strategies:
@@ -179,7 +179,7 @@ bitwise operations such as AND, OR, and NOT). Every calculation a program perfor
 #### Registers
 
 Registers are the smallest and fastest storage locations in the entire memory hierarchy, sitting directly inside the 
-processor die, they can be accessed in less than one CPU cycle, far outpacing any external memory. Their role is 
+processor die. They can be accessed in less than one CPU cycle, far outpacing any external memory. Their role is 
 to hold the values the CPU is actively working with: operands going into an operation, intermediate results coming 
 out of one, and critical bookkeeping information about the state of execution.
 
@@ -206,7 +206,7 @@ Each instruction contains two essential pieces of information:
 The complete set of instructions a CPU can understand and execute is defined by its **Instruction Set Architecture (ISA)**. 
 The ISA establishes the contract between software and hardware: it specifies not only which operations exist, but also 
 how operands are encoded, how memory is addressed, and how the processor state is managed. Any program compiled for a 
-given ISA will run correctly on any CPU that implements it, regardless of how that CPU is built internally, this separation 
+given ISA will run correctly on any CPU that implements it, regardless of how that CPU is built internally. This separation 
 between the *interface* (ISA) and the *implementation* (microarchitecture) is one of the foundational principles of computer architecture.
 
 ### The Instruction Pipeline
@@ -234,7 +234,7 @@ powering the Fugaku supercomputer uses AArch64 with SVE (Scalable Vector Extensi
 
 **RISC-V** is an open, royalty-free ISA published by UC Berkeley in 2010. Owned by no single 
 company, it is attractive for research, embedded systems, and custom silicon. Its design follows 
-clean RISC principles, with a minimal base integer ISA that can be extended through standardised modules 
+clean RISC principles, with a minimal base integer ISA that can be extended through standardized modules 
 (`M` for multiply/divide, `F`/`D` for floating-point, `V` for vectors). RISC-V is increasingly 
 appearing in HPC accelerators and AI processors.
 
@@ -253,7 +253,7 @@ without sharing execution resources with other cores.
 Modern processors range from a handful of cores in consumer CPUs to dozens or hundreds in server and 
 HPC chips. The two broad categories are:
 
-- A **single-core** CPU processes one instruction stream at a time, all operations are serialised 
+- A **single-core** CPU processes one instruction stream at a time; all operations are serialized 
 through a single execution unit.
 - A **multi-core** CPU (dual-core, quad-core, many-core, etc.) executes multiple instruction 
 streams in parallel, with each core working independently and simultaneously.
@@ -272,7 +272,7 @@ this distinction is essential: raw core count only translates into performance w
 Its purpose is to reduce the time the CPU spends waiting for data from the much slower main 
 memory (RAM), by keeping frequently accessed data as close to the execution units as possible.
 
-Caches are organised in levels, each trading size for speed:
+Caches are organized in levels, each with a trading size for speed:
 
 | Level | Location | Size (typical) | Bandwidth (typical) |
 |-------|----------|----------------|---------------------|
@@ -308,7 +308,8 @@ exist to bridge the speed gap between the two.
 ### Why RAM Matters
 
 - More RAM allows the operating system to keep more programs and data in memory simultaneously.
-- Insufficient RAM forces the OS to use **swap space** (disk-based virtual memory), which is orders of magnitude slower and can make the system feel unresponsive.
+- Insufficient RAM forces the OS to use **swap space** (disk-based virtual memory), which is orders of 
+magnitude slower and can make the system feel unresponsive.
 - RAM speed (measured in MT/s or MHz) and latency also affect how quickly the CPU can fetch data that is not in cache.
 
 
@@ -332,7 +333,7 @@ local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access
 ```
 
 - A core can access its **local** RAM quickly (low latency).
-- Accessing **remote** RAM (on the other socket) is possible but slower — typically 1.5× to 3× more latency.
+- Accessing **remote** RAM (on the other socket) is possible but slower, typically 1.5x to 3x more latency.
 
 In HPC and high-performance workloads, NUMA awareness is critical. Placing data in the same NUMA 
 node as the cores that process it avoids expensive cross-socket traffic. Tools like `numactl`, 
