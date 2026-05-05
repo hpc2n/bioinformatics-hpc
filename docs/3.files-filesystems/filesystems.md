@@ -11,11 +11,13 @@ When we come to the "Introduction to Linux" session, we will look more at comman
 
     Windows, macOS, Linux/Unix, etc. all use file systems. Often they are "hidden" to the user when using a graphical interface, especially as files are commonly found by searching. Many applications save to specific directories and remember where files were last placed, and so can quickly offer the correct file to the user. 
 
-**CHANGES NEEDED IN STUFF BELOW!** 
-
-![Tree of dir structure](images/tree.png){: style="width: 400px;float: right"}
+![Tree of dir structure](../../images/tree.png){: style="width: 400px;float: right"}
 
 The Linux filesystem directory structure starts with the top root directory, which is shown as `/`. Below this are several other standard directories. Of particular interest are `usr/bin`, `home`, `usr/lib`, and `usr/lib64`. A common directory which you will also often find is `usr/local/bin`.
+
+Shown with folders, part of it would look like this: 
+
+![Folders of the file system, Linux](../../images/filesystem-folders.png){: style="width: 400px;float: right"}
 
 The picture on the right shows typical subdirectories under `/` (note that the command `tree` does not work at all HPC centers, though it does work on Tetralith---see the page [tree](../tree) under the "Extras" section for how to install if it is missing). Some of the directories have a **symbolic link** to a different name---this is often done to make it quicker to write, but can also be for compatibility reasons since some software have hardcoded paths.
 
