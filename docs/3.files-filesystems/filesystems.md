@@ -15,11 +15,11 @@ When we come to the "Introduction to Linux" session, we will look more at comman
 
 The Linux filesystem directory structure starts with the top root directory, which is shown as `/`. Below this are several other standard directories. Of particular interest are `usr/bin`, `home`, `usr/lib`, and `usr/lib64`. A common directory which you will also often find is `usr/local/bin`.
 
-Shown with folders, part of it would look like this: 
+The picture on the above right shows typical subdirectories under `/` (note that the command `tree` does not work at all HPC centers, though it does work on Tetralith---see the page [tree](../tree) under the "Extras" section for how to install if it is missing). Some of the directories have a **symbolic link** to a different name---this is often done to make it quicker to write, but can also be for compatibility reasons since some software have hardcoded paths.
+
+Shown with folders, part of it could look like this: 
 
 ![Folders of the file system, Linux](../../images/filesystem-folders.png){: style="width: 400px;float: right"}
-
-The picture on the right shows typical subdirectories under `/` (note that the command `tree` does not work at all HPC centers, though it does work on Tetralith---see the page [tree](../tree) under the "Extras" section for how to install if it is missing). Some of the directories have a **symbolic link** to a different name---this is often done to make it quicker to write, but can also be for compatibility reasons since some software have hardcoded paths.
 
 !!! Note
 
@@ -33,10 +33,6 @@ The picture on the right shows typical subdirectories under `/` (note that the c
 - **/usr/lib64** is the same as **/usr/lib**, just for 64-bit libraries
 
 User installed binaries are often located in **/opt**.
-
-The file system could also be illustrated like this:
-
-![folders of filesystem structure](images/filesystem-folders.png){: style="width: 500px;float: left"}
 
 !!! important "Note about `/`"
 
@@ -53,215 +49,14 @@ The file system could also be illustrated like this:
 
     Running `tree` in `/` on a supercomputing center will probably give a very large/long output!
 
-### Home folders on Tetralith
-
-![home folders file structure](images/homefolders-focus.png){: style="width: 500px;float: left"}
-<br><br style="clear: both;">
-
-The above shows an illustration where the home folders are emphasized.
-
 ## Your home directory
 
 When you login to the computer (as a non root user), you will end up in your home directory. At most HPC centers, your home directory will appear as `~` in the terminal prompt, and can also be used in commands instead of having to type out `/home/YOUR_USERNAME`.
 
 The `path` to your home directory varies somewhat. Here are some examples for me:
 
-- Tetralith: `/home/x_birbr`
 - Kebnekaise: `/home/b/bbrydsoe`
-- Cosmos: `/home/bbrydsoe`
 - My laptop, ncc-1701: `/home/bbrydsoe`
 - My home desktop, defiant: `/home/bbrydsoe`
 
-!!! note
-
-    You can always use the command `pwd` to see the path to your current working directory!
-
-    You can also always return to your home directory by giving the command `cd` and pressing `enter`.
-
-There are is also an "environment variable" that can be used as shortcut for the path: `$HOME`. We will talk more about (environment) variables later.
-
-## pwd
-
-The command `pwd` (**p**rint **w**orking **d**irectory) will print out the full pathname of the working directory to the screen.
-
-You can use this to find out which directory you are in.
-
-### Example, in your home directory 
-
-=== "On Tetralith"
-
-     user ``x_birbr``:
-
-     ```bash
-     [x_birbr@tetralith3 ~]$ pwd
-     /home/x_birbr
-     [x_birbr@tetralith3 ~]$
-     ```
-
-=== "On Dardel"
-
-    user ``bbrydsoe``:
-
-    ```bash
-    bbrydsoe@login1:~> pwd
-    /cfs/klemming/home/b/bbrydsoe
-    bbrydsoe@login1:~>
-    ```
-
-=== "On Alvis"
-
-    user ``brydso``:
-
-    ```bash
-    [brydso@alvis2 ~]$ pwd
-    /cephyr/users/brydso/Alvis
-    [brydso@alvis2 ~]$
-    ```
-
-=== "On Kebnekaise"
-
-     user ``bbrydsoe``:
-
-     ```bash
-     b-an01 [~]$ pwd
-     /home/b/bbrydsoe
-     b-an01 [~]$
-     ```
-
-=== "On Cosmos"
-
-     user ``bbrydsoe``:
-
-     ```bash
-     [bbrydsoe@cosmos1 ~]$ pwd
-     /home/bbrydsoe
-     [bbrydsoe@cosmos1 ~]$
-     ```
-
-### Example, in a directory named `testdir`
-
-On Tetralith, user ``x_birbr``:
-
-```bash
-[x_birbr@tetralith3 testdir]$ pwd
-/home/x_birbr/testdir
-[x_birbr@tetralith3 testdir]$
-```
-
-### Example, in subdirectory `mydir` under directory `testdir`
-
-On Tetralith, user ``x_birbr``:
-
-```bash
-[x_birbr@tetralith3 mydir]$ pwd
-/home/x_birbr/testdir/mydir
-[x_birbr@tetralith3 mydir]$
-```
-
-## ls - listing files/directories
-
-The `ls` command is used to list files and/or directories. If you just give the command `ls` with no flags, it will list all files and subdirectories in the current directory except for hidden files.
-
-<div>
-```bash
-ls [flags] [directory]
-```
-</div>
-
-This way you can to list files/subdirectories for any directory, but the default one is the one you are currently standing in.
-
-Some examples:
-
-- `ls /` lists contents of the root directory
-- `ls ..` lists the contents of the parent directory of the current
-- `ls ~` lists the contents of your user home directory
-- `ls *` lists contents of current directory and subdirectories
-
-!!! Note "Commonly used flags"
-
-    - `-a` lists content including hidden files and directories
-    - `-l` lists content in long table format (permissions, owners, size in bytes, modification date/time, file/directory name)
-    - `-lh` adds an extra column to above representing size of each file/directory
-    - `-t` lists content sorted by last modified date in descending order
-    - `-tr` lists content sorted by last modified date in ascending order
-    - `-s` list files with their sizes
-
-To get more flags, type `ls --help` or `man ls` in the terminal to see the manual.
-
-!!! tip
-
-    You can often get more info on flags/options and usage for a Linux command with
-
-    - `COMMAND --help`
-    - `man COMMAND`
-
-    where COMMAND is the Linux command you want information about, like `ls`, `mkdir`, etc.
-
-!!! Example "The output for a few of the flags, for a directory with two subdirectories and some files"
-
-    ```bash
-    [x_birbr@tetralith1 mytestdir]$ ls
-    myfile.txt  myotherfile.txt  testdir1  testdir2
-
-    [x_birbr@tetralith1 mytestdir]$ ls -a
-    ./  ../  myfile.txt  myotherfile.dat  testdir1/  testdir2/
-
-    [x_birbr@tetralith1 mytestdir]$ ls -l
-    total 3
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:40 testdir1
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:39 testdir2
-
-    [x_birbr@tetralith1 mytestdir]$ ls -la
-    total 5
-    drwxrwxr-x 4 x_birbr x_birbr 4096 Sep 11 11:43 .
-    drwx------ 3 x_birbr x_birbr 4096 Sep 11 11:43 ..
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:40 testdir1
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:39 testdir2
-
-    [x_birbr@tetralith1 mytestdir]$ ls -lah
-    total 5.0K
-    drwxrwxr-x 4 x_birbr x_birbr 4.0K Sep 11 11:43 .
-    drwx------ 3 x_birbr x_birbr 4.0K Sep 11 11:43 ..
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwxrwxr-x 2 x_birbr x_birbr 4.0K Sep 11 11:40 testdir1
-    drwxrwxr-x 2 x_birbr x_birbr 4.0K Sep 11 11:39 testdir2
-
-    [x_birbr@tetralith1 mytestdir]$ ls -latr
-    total 5
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:39 testdir2
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:40 testdir1
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwx------ 3 x_birbr x_birbr 4096 Sep 11 11:43 ..
-    drwxrwxr-x 4 x_birbr x_birbr 4096 Sep 11 11:43 .
-
-    [x_birbr@tetralith1 mytestdir]$ ls *
-    myfile.txt  myotherfile.dat
-
-    testdir1:
-    file1.txt  file2.sh  file3.c  file4.dat
-
-    testdir2:
-    file1.txt  file2.txt  file3.c
-
-    [x_birbr@tetralith1 mytestdir]$ cd testdir1
-    b-an01 [~/mytestdir/testdir1]$ ls -l
-    total 2
-    -rw-rw-r-- 1 x_birbr x_birbr 31 Sep 11 11:47 file1.txt
-    -rw-rw-r-- 1 x_birbr x_birbr 16 Sep 11 11:49 file2.sh
-    -rw-rw-r-- 1 x_birbr x_birbr 74 Sep 11 11:49 file3.c
-    -rw-rw-r-- 1 x_birbr x_birbr 25 Sep 11 11:50 file4.dat
-
-    [x_birbr@tetralith1 mytestdir]$ ls -ls
-    total 2
-    1 -rw-rw-r-- 1 x_birbr x_birbr 31 Sep 11 11:47 file1.txt
-    1 -rw-rw-r-- 1 x_birbr x_birbr 16 Sep 11 11:49 file2.sh
-    1 -rw-rw-r-- 1 x_birbr x_birbr 74 Sep 11 11:49 file3.c
-    1 -rw-rw-r-- 1 x_birbr x_birbr 25 Sep 11 11:50 file4.dat
-    ```
-
+We will look more at file systems and how to navigate them in the session "Introduction to Linux". 
