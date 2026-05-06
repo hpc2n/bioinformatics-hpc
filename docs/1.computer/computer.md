@@ -87,7 +87,7 @@ This picture shows how the different components talk together.
 A computer is a machine that can be programmed to automatically carry out sequences of 
 arithmetic or logical operations (computation). (Wikipedia) 
 
-## Basic Functions of a Computer
+# Basic Functions of a Computer
 
 Computers are built around four fundamental operations:
 
