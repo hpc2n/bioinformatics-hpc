@@ -116,7 +116,7 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
 - **Input/Output (I/O)** — the mechanisms through which the computer exchanges information with the outside world, receiving input and delivering output.
 - **Bus** — the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.
 
-![CPU](../../images/CPU.png){: style="width: 600px;"}
+![CPU](../../images/CPU.png){: style="width: 200px;"}
 
 ### The Von Neumann Bottleneck
 
