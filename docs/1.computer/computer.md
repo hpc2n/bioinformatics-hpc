@@ -303,19 +303,8 @@ magnitude slower and can make the system feel unresponsive.
 Modern servers and workstations often contain multiple CPU **sockets**, each with its own cores and a 
 local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access)**.
 
-```
-  Socket 0                        Socket 1
-┌──────────────────┐           ┌──────────────────┐
-│  Core 0 … Core N │           │  Core 0 … Core N │
-│  L1 / L2 / L3    │           │  L1 / L2 / L3    │
-│  Local RAM       │◄─────────►  Local RAM        │
-└──────────────────┘  Inter-   └──────────────────┘
-                     connect
-                    (e.g. AMD
-                    Infinity
-                    Fabric or
-                    Intel UPI)
-```
+
+![CPU caches](../../images/caches.png){: style="width: 200px;"}
 
 - A core can access its **local** RAM quickly (low latency).
 - Accessing **remote** RAM (on the other socket) is possible but slower, typically 1.5x to 3x more latency.
@@ -326,28 +315,6 @@ node as the cores that process it avoids expensive cross-socket traffic. Tools l
 
 
 ## How Everything Works Together
-
-```
-  Input Devices
-  (keyboard, sensor)
-        │
-        ▼
-  ┌─────────────────────────────────────────┐
-  │                   CPU                   │
-  │  ┌──────┐  ┌──────┐  ┌───────────────┐  │
-  │  │  CU  │  │ ALU  │  │  Registers    │  │
-  │  └──┬───┘  └──┬───┘  └───────────────┘  │
-  │     └────┬────┘                         │
-  │          │   ◄──── L1 / L2 cache        │
-  └──────────┼──────────────────────────────┘
-             │   ◄──── L3 cache (shared)
-             ▼
-           RAM
-             │
-             ▼
-     Storage / Output
-  (SSD, monitor, network)
-```
 
 
 1. **Instructions and data** are loaded from persistent storage into RAM, where the CPU can reach them.
