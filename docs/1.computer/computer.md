@@ -116,7 +116,11 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
 - **Input/Output (I/O)** — the mechanisms through which the computer exchanges information with the outside world, receiving input and delivering output.
 - **Bus** — the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.
 
-![CPU](../../images/CPU.png){: style="width: 200px;"}
+<figure>
+  <img src="../../images/CPU.png" style="width: 200px;" alt="CPU">
+  <figcaption> CPU components.</figcaption>
+</figure>
+
 
 ### The Von Neumann Bottleneck
 
@@ -304,11 +308,10 @@ Modern servers and workstations often contain multiple CPU **sockets**, each wit
 local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access)**.
 
 
-![CPU caches](../../images/caches.png){: style="width: 500px;"}
 
 <figure>
   <img src="../../images/caches.png" style="width: 500px;" alt="CPU caches">
-  <figcaption> CPU cache hierarchy — L1, L2, and L3 levels relative to cores and RAM in a single node.</figcaption>
+  <figcaption> CPU cache hierarchy — L1, L2, and L3 levels relative to cores and main memory in a single node.</figcaption>
 </figure>
 
 - A core can access its **local** RAM quickly (low latency).
