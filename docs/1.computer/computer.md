@@ -304,7 +304,12 @@ Modern servers and workstations often contain multiple CPU **sockets**, each wit
 local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access)**.
 
 
-![CPU caches](../../images/caches.png){: style="width: 200px;"}
+![CPU caches](../../images/caches.png){: style="width: 500px;"}
+
+<figure>
+  <img src="../../images/caches.png" style="width: 500px;" alt="CPU caches">
+  <figcaption> CPU cache hierarchy — L1, L2, and L3 levels relative to cores and RAM in a single node.</figcaption>
+</figure>
 
 - A core can access its **local** RAM quickly (low latency).
 - Accessing **remote** RAM (on the other socket) is possible but slower, typically 1.5x to 3x more latency.
