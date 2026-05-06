@@ -115,23 +115,8 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
 - **Memory Unit** — a single, unified address space holding both the program instructions and the data those instructions operate on.
 - **Input/Output (I/O)** — the mechanisms through which the computer exchanges information with the outside world, receiving input and delivering output.
 - **Bus** — the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.
-```
-           ┌─────────────────────────────┐
-           │            CPU              │
-           │  ┌──────────┐  ┌─────────┐  │
-           │  │   ALU    │  │   CU    │  │
-           │  └──────────┘  └─────────┘  │
-           │       Registers             │
-           └─────────────┬───────────────┘
-                         │  System Bus
-           ┌─────────────┼──────────────┐
-           │             │              │
-     ┌─────┴──────┐  ┌───┴──────┐  ┌────┴─────┐
-     │   Memory   │  │  Input   │  │  Output  │
-     │ (programs  │  │ devices  │  │ devices  │
-     │  + data)   │  └──────────┘  └──────────┘
-     └────────────┘
-```
+
+![CPU](../../images/CPU.png){: style="width: 600px;"}
 
 ### The Von Neumann Bottleneck
 
