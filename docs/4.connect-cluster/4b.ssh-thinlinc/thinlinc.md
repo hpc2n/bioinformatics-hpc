@@ -62,28 +62,18 @@ To start a terminal window, go to the menu at the top. Click “Applications” 
 
 ### Disconnect or logout from the ThinLinc desktop
 
-When you want to shutdown the ThinLinc connection, this can be done in two ways, either Disconnect or Logout.
+When you want to logout from the ThinLinc connection, do the following:
 
-- **Disconnect**
-    - Keeps your thinlinc session running on the login node, making it possible for you to return to the same spot when you reconnect.
-         - Only use this when you are actively working in e.g. Matlab over a few days, otherwise use "Logout". Doing this keeps the login node quick and fast for active users.
-    - **Note!** Always save your work before leaving since the login nodes will reboot now and then due to OS and security updates.
-    - The following two ways are equivalent, both uses the top menu bar. Use one of them
-         - "Applications” → “HPC2N” → “Disconnect ThinLinc Session”
-         - "The blueish HPC2N icon to the right" → “Disconnect ThinLinc Session”
-    - In the Web Access version, there is a button in the Toolbar to disconnect the session
-- **Logout**
-    - Will terminate your ThinLinc session on the login node.
-    - **Note!** This does not affect any jobs in the batch queue or jobs running on the cluster, and any finished jobs will be available when you login again.
-    - The following two ways are equivalent, both uses the top menu bar. Use one of them
-     - "Applications” → “HPC2N” → “Logout ThinLinc Session”
-         - "The blueish HPC2N icon to the right" → “Logout ThinLinc Session”
+- **Note!** This does not affect any jobs in the batch queue or jobs running on the cluster, and any finished jobs will be available when you login again.
+- The following two ways are equivalent, both uses the top menu bar. Use one of them
+    - "Applications” → “HPC2N” → “Log Out”
+    - "The blueish HPC2N icon to the right of System menu point" → “Log Out”
 
 ### Reconnecting to an older ThinLinc session
 
-If you have a running ThinLinc session (that you disconnected from) and there is a problem with the ThinLinc session when you connect again. The best way to solve this is to:
+If you have a running ThinLinc session and there is a problem with the ThinLinc session when you connect again. The best way to solve this is to:
 
-- Logout from the current ThinLinc session
+- Logout from the current ThinLinc session (if still logged in)
 - Open the client or the Web Access desktop again, but this time specify "End existing session" in the dialog or through the command options.
     - Do the final step and login
 
