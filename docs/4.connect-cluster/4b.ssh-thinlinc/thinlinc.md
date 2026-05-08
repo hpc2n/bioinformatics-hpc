@@ -58,7 +58,7 @@ Here, you can type the username and password for HPC2N. This web browser version
 
 To start a terminal window, go to the menu at the top. Click “Applications” → “System Tools” → “MATE Terminal”.
 
-![thinlinc-terminal](../../../images/thinlinc-terminal.png){: style="width: 70px;float: right"}
+![thinlinc-terminal](../../../images/thinlinc-terminal.png){: style="width: 570px;float: right"}
 
 ### Disconnect or logout from the ThinLinc desktop
 
