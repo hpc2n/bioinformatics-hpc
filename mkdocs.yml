@@ -44,7 +44,8 @@ nav:
   - Connection to a cluster (Kebnekaise):
     - Introduction: 4.connect-cluster/connect-cluster.md
     - OpenOnDemand: 4.connect-cluster/4a.OpenOnDemand/openondemand.md
-    - ThinLinc and SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh-thinlinc.md
+    - ThinLinc: 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
+    - SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh.md
   - Introduction to Linux:
     - Introduction: 5.linux-intro/linux-intro.md
   - Introduction to Git: 
