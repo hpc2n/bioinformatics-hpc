@@ -142,6 +142,21 @@ of time, hiding memory latency before it stalls execution.
 Despite these improvements, the memory wall remains a major challenge in modern computer architecture, especially 
 in HPC systems, where data movement often dominates execution time.
 
+### Neuromorphic computing
+
+Neuromorphic computing is a computing paradigm inspired by the organization and behavior of biological neural networks, 
+such as the human brain. 
+Unlike the Von Neumann architecture, where processing and memory are separated and data must constantly move between 
+them, neuromorphic systems integrate computation and memory within large networks of artificial neurons and synapses. 
+This design reduces the Von Neumann bottleneck and enables highly energy-efficient, event-driven operation: artificial 
+neurons activate only when relevant signals arrive instead of continuously executing instructions on a fixed clock cycle.
+
+Examples of neuromorphic hardware include Intel Loihi and IBM TrueNorth. Traditional von Neumann systems remain superior 
+for general-purpose and sequential computing, supported by mature software ecosystems. However, neuromorphic architectures 
+are especially promising for low-power tasks such as sensory processing, pattern recognition, and real-time edge inference, 
+where conventional clock-driven computing is often inefficient.
+
+
 ## What Is a CPU?
 
 The Central Processing Unit (CPU) is the component of a computer that executes programs. Instructions are fetched
