@@ -135,7 +135,7 @@ You can find all the active sessions under "My Interactive Sessions" and you can
 
     === "Run a small python script on the cores"
 
-        I will run this Python script as a test: <a href="../mmmult.py" target="_blank">mmmult.py</a>.
+        I will run this Python script as a test: <a href="../../mmmult.py" target="_blank">mmmult.py</a>.
 
         First I load some modules:
 
@@ -200,7 +200,7 @@ You can find all the active sessions under "My Interactive Sessions" and you can
         b-cn1517 [~]$ module load Tkinter/3.11.3
         ```
 
-        Now let us start Python and plot something, using this dataset (<a href="../scottish_hills.csv" target="_blank">scottish_hills.csv</a>:
+        Now let us start Python and plot something, using this dataset (<a href="../../scottish_hills.csv" target="_blank">scottish_hills.csv</a>:
 
         ```bash
         import pandas as pd
