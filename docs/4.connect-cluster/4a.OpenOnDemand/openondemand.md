@@ -360,7 +360,7 @@ You can tick the box “I would like to receive an email when the session starts
     ![My Jupyter Environment](../../images/jupyter-env-ood.png){: style="width:95%; float:left;"} <br>
     5. Now start a new Jupyter Notebook session in Open OnDemand, choosing your own environment:<br>
     ![My Jupyter launch](../../images/myjupyter.jpg){: style="width:50%;"}
-    6. When it is ready, connect to Jupyter. Remember: you may get an error message about "Error Starting Kernel" if you have previously run Jupyter notebook [started through a batch job](../../software/jupyter).
+    6. When it is ready, connect to Jupyter. Remember: you may get an error message about "Error Starting Kernel" if you have previously run Jupyter notebook [started through a batch job](https://docs.hpc2n.umu.se/software/jupyter/).
         - If so, then just click OK and then pick the correct kernel from the pop-up box "Select Kernel".
         - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
         - Pick that and click "Select".
