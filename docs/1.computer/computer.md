@@ -46,8 +46,10 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 ### Memory
 
+<figure class="inline end" markdown>
 ![RAM/memory](../../images/ram.jpeg){: style="width: 200px;"}
-A couple memory sticks / RAM 
+<figcaption>A couple memory sticks / RAM </figcaption>
+</figure>
 
 (Image from https://medium.com/@sunnybabacom10/ram-a-deep-dive-into-its-importance-types-and-functionality-c042a095ef95)
 
@@ -69,12 +71,14 @@ GPU chip
 
 ### Cooling 
 
+<figure class="inline end" markdown>
 ![Fan](../../images/fan.jpg){: style="width: 100px;"}
-A fan
+<figcaption>A fan</figcaption>
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
-Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between) 
+<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between) </figcaption>
+</figure>
 
-(Image from https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr) 
+(Images from https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr) 
 
 ## System software 
 
