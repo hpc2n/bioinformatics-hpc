@@ -62,11 +62,12 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 ### GPU
 
+<figure class="inline end" markdown>
 ![GPU](../../images/GPU.jpg){: style="width: 300px;"}
-GPU (Nvidia)
+<figcaption>GPU (Nvidia)</figcaption>
 ![GPU chip](../../images/GPU-chip.jpg){: style="width: 200px;"}
-GPU chip
-
+<figcaption>GPU chip</figcaption>
+</figure>
 (Images from https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252)
 
 ### Cooling 
