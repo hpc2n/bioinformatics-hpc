@@ -290,7 +290,7 @@ If you choose "Interactive Apps" -> "Jupyter Notebook", you will get an app that
 
     Very useful if you want to work interactively.
 
-    NOTE: another way to start [Jupyter at Kebnekaise is through a batch job inside ThinLinc](../../software/jupyter).
+    NOTE: another way to start [Jupyter at Kebnekaise is through a batch job inside ThinLinc](https://docs.hpc2n.umu.se/software/jupyter/).
 
 Let us look at the options for launching this, one by one:
 
@@ -332,7 +332,7 @@ In this example we start a Jupyter Notebook for 1 hour, and with 4 cores.
 
     After connecting, you will have a Jupyter notebook to work in.
 
-    **NOTE**: you may get an error message about "Error Starting Kernel" if you have previously run Jupyter notebook [started through a batch job](../../software/jupyter).
+    **NOTE**: you may get an error message about "Error Starting Kernel" if you have previously run Jupyter notebook [started through a batch job](https://docs.hpc2n.umu.se/software/jupyter/).
     - If so, then just click OK and then pick the correct kernel from the pop-up box "Select Kernel".
     - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
     - Pick that and click "Select".
