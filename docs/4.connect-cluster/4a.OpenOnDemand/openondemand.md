@@ -276,7 +276,7 @@ You can find all the active sessions under "My Interactive Sessions" and you can
 
     ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-started.png){: style="width: 90%;"}
 
-### Interactive Apps - Jupyter Notebook
+## Interactive Apps - Jupyter Notebook
 
 If you choose "Interactive Apps" -> "Jupyter Notebook", you will get an app that can launch a Jupyter Notebook server on one or more nodes.
 
@@ -304,21 +304,21 @@ r "Node type". You can pick 1-28 cores.
 
 You can tick the box “I would like to receive an email when the session starts” if you want that. Depending on your choices (mainly number of hours and number of cores), it can take longer or shorter to launch your job.
 
-#### Simple example 
+!!! note "Simple example"
 
-In this example we start a Jupyter Notebook for 1 hour, and with 4 cores.
+    In this example we start a Jupyter Notebook for 1 hour, and with 4 cores.
 
-!!! note "Filling options"
+    **Filling options**
 
     This is how it could look, for 1 hour, 4 cores. Using the system runtime environment and chosing a project storage directory of mine.
 
-    ![Open OnDemand Jupyter Notebook](../images/open-ondemand-jupyter-options.png){: style="width: 90%;"}
+    ![Open OnDemand Jupyter Notebook](../../images/open-ondemand-jupyter-options.png){: style="width: 90%;"}
 
-!!! note "Waiting to launch"
+    **Waiting to launch**
 
     Then, this is how it looks while it is waiting to start/sitting in queue
 
-    ![Open OnDemand Jupyter Notebook](../images/open-ondemand-jupyter-starting.png){: style="width: 90%;"}
+    ![Open OnDemand Jupyter Notebook](../../images/open-ondemand-jupyter-starting.png){: style="width: 90%;"}
 
 !!! note "Ready"
 
