@@ -67,7 +67,9 @@ Let us look at the options for launching this, one by one:
 
 You can tick the box "I would like to receive an email when the session starts" if you want that. Depending on your choices (mainly number of hours and number of cores), it can take longer or shorter to launch your job.
 
-**Note** that you cannot choose type of CPU or type of GPU here.
+!!! warning "Note" 
+
+    You cannot choose type of CPU or type of GPU here.
 
 After you have made the choices, click "Launch".
 
@@ -76,7 +78,7 @@ You can find all the active sessions under "My Interactive Sessions" and you can
 
     In this example we start a desktop for 1 hour, and with 4 cores. We then start a terminal inside it. 
 
-!!! note "Filling options"
+    **Filling options**
 
     This is how it could look, for 1 hour, 4 cores
 

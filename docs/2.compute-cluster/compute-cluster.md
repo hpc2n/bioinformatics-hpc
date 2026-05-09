@@ -218,7 +218,7 @@ As for the GPU architecture, a GPU card of type Ada Lovelace (like the L40s) loo
    On the diagram, each green dot represents a CUDA core (single precision), while the yellow are RT cores and the blue Tensor cores. The cores are arranged in the slots called SMs in the figure. Cores in the same SM share some local and fast cache memory.
 
 <figure class="inline end" markdown>
-![gpu raster engine](../../../images/GPC-with-raster-engine.png)
+![gpu raster engine](../../images/GPC-with-raster-engine.png)
 <figcaption>The GPC is the dominant high-level hardware block. Each GPC includes a dedicated Raster Engine, two Raster Operations (ROPs) partitions, with each partition containing eight individual ROP units, and six TPCs. Each TPC includes one PolyMorph Engine and two SMs.
    Each SM contain 128 CUDA Cores, one Ada Third-Generation RT Core, four Ada Fourth-Generation Tensor Cores, four Texture Units, a 256 KB Register File, and 128 KB of L1/Shared Memory, which can be configured for different memory sizes depending on the needs of the graphics or compute workload.
 </figcaption>
@@ -231,7 +231,7 @@ In a typical cluster, some GPUs are attached to a single node resulting in a CPU
     One possible layout (Kebnekaise, AMD Zen4 node with L40s GPU) is as follows:
 
     <figure class="inline end" markdown>
-    ![Kebnekaise Zen4 nodes with L40s GPU](.././images/AMD-Zen4-GPU-1605.png)
+    ![Kebnekaise Zen4 nodes with L40s GPU](../../images/AMD-Zen4-GPU-1605.png)
     <figcaption>Schematics of a hybrid CPU-GPU architecture. A GPU L40s card is attached to a NUMA island which in turn contains 24 cores (AMD Zen4 CPU node with 48 cores total). The NUMA island and the GPUs are connected through a PCI-E interconnect which makes the data transfer between both components rather slow.</figcaption>
 
 We can characterize the CPU and GPU performance with two quantities: the **latency** and the **throughput**.
