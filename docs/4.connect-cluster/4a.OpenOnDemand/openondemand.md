@@ -320,15 +320,15 @@ You can tick the box “I would like to receive an email when the session starts
 
     ![Open OnDemand Jupyter Notebook](../../images/open-ondemand-jupyter-starting.png){: style="width: 90%;"}
 
-!!! note "Ready"
+    **Ready**
 
     Then, when the resources have been allocated and you can go to the Jupyter notebook. As you can see, a host node is assigned.
 
-    ![Open OnDemand Jupyter Notebook](../images/open-ondemand-jupyter-ready.png){: style="width: 90%;"}
+    ![Open OnDemand Jupyter Notebook](../../images/open-ondemand-jupyter-ready.png){: style="width: 90%;"}
 
     Click "Connect to Jupyter" to go to the notebook.
 
-!!! note "Go to Jupyter notebook"
+    **Go to Jupyter notebook**
 
     After connecting, you will have a Jupyter notebook to work in.
 
@@ -337,7 +337,7 @@ You can tick the box “I would like to receive an email when the session starts
     - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
     - Pick that and click "Select".
 
-    ![Open OnDemand Jupyter Notebook](../images/open-ondemand-jupyter-running.png){: style="width: 90%;"}
+    ![Open OnDemand Jupyter Notebook](../../images/open-ondemand-jupyter-running.png){: style="width: 90%;"}
 
 !!! note "Shutting down Jupyter"
 
@@ -347,25 +347,25 @@ You can tick the box “I would like to receive an email when the session starts
 
     If you just close the window, then the sessions can be found under "My Interactive Sessions" for as long as you asked for when you started it, and you can re-enter the notebook by just clicking "Connect to Jupyter" again.
 
-#### Example - Jupyter with extra modules 
+!!! note "Example - Jupyter with extra modules" 
 
-For this example we will create a Jupyter environment with some modules we need, and then use that when we start Jupyter.
+    For this example we will create a Jupyter environment with some modules we need, and then use that when we start Jupyter.
 
-1. Login to Kebnekaise (either of SSH, ThinLinc, Kebnekaise desktop through Open OnDemand)
-2. Open a terminal if you did not login with SSH.
-3. Copy ``/pfs/data/portal/jupyter/jupyter-base.sh`` to $HOME/portal/jupyter (and rename it to something easy to remember): ``mkdir -p $HOME/portal/jupyter;cp /pfs/data/portal/jupyter/jupyter-base.sh $HOME/portal/jupyter/myjupenv.sh``
-4. Edit it (with nano for instance) to contain the modules you need. **Note** a specific Jupyter notebook compatible with Python/3.11.5 is loaded! Do not specify versions here! I will add these:
-    - SciPy-bundle
-    - matplotlib
-![My Jupyter Environment](../images/jupyter-env-ood.png){: style="width:95%; float:left;"} <br>
-5. Now start a new Jupyter Notebook session in Open OnDemand, choosing your own environment:<br>
-![My Jupyter launch](../images/myjupyter.jpg){: style="width:50%;"}
-6. When it is ready, connect to Jupyter. Remember: you may get an error message about "Error Starting Kernel" if you have previously run Jupyter notebook [started through a batch job](../../software/jupyter).
-    - If so, then just click OK and then pick the correct kernel from the pop-up box "Select Kernel".
-    - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
-    - Pick that and click "Select".
-7. You can now run something which requires, say, pandas and matplotlib.
-8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="../pandas-example.ipynb" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="../exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
+    1. Login to Kebnekaise (either of SSH, ThinLinc, Kebnekaise desktop through Open OnDemand)
+    2. Open a terminal if you did not login with SSH.
+    3. Copy ``/pfs/data/portal/jupyter/jupyter-base.sh`` to $HOME/portal/jupyter (and rename it to something easy to remember): ``mkdir -p $HOME/portal/jupyter;cp /pfs/data/portal/jupyter/jupyter-base.sh $HOME/portal/jupyter/myjupenv.sh``
+    4. Edit it (with nano for instance) to contain the modules you need. **Note** a specific Jupyter notebook compatible with Python/3.11.5 is loaded! Do not specify versions here! I will add these:
+        - SciPy-bundle
+        - matplotlib
+    ![My Jupyter Environment](../../images/jupyter-env-ood.png){: style="width:95%; float:left;"} <br>
+    5. Now start a new Jupyter Notebook session in Open OnDemand, choosing your own environment:<br>
+    ![My Jupyter launch](../../images/myjupyter.jpg){: style="width:50%;"}
+    6. When it is ready, connect to Jupyter. Remember: you may get an error message about "Error Starting Kernel" if you have previously run Jupyter notebook [started through a batch job](../../software/jupyter).
+        - If so, then just click OK and then pick the correct kernel from the pop-up box "Select Kernel".
+        - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
+        - Pick that and click "Select".
+    7. You can now run something which requires, say, pandas and matplotlib.
+    8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="../exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
 
 ## References
 
