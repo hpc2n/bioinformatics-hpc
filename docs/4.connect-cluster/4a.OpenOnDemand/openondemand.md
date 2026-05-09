@@ -365,8 +365,8 @@ You can tick the box “I would like to receive an email when the session starts
         - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
         - Pick that and click "Select".
     7. You can now run something which requires, say, pandas and matplotlib.
-    8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="../exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
+    8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/pandas-example.ipynb" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
 
 ## References
 
-- More examples here: https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand
+- More examples on using the Kebnekaise interactive apps here: <a href="https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand</a>
