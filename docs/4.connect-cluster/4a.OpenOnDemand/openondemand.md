@@ -82,44 +82,44 @@ You can find all the active sessions under "My Interactive Sessions" and you can
 
     This is how it could look, for 1 hour, 4 cores
 
-    ![Open OnDemand Kebnekaise desktop](../images/open-ondemand-desktop-options.png){: style="width: 90%;"}
+    ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-options.png){: style="width: 90%;"}
 
-!!! note "Waiting to launch"
+    **Waiting to launch**
 
     Then, this is how it looks while it is waiting to start/sitting in queue
 
-    ![Open OnDemand Kebnekaise desktop](../images/open-ondemand-desktop-starting.png){: style="width: 90%;"}
+    ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-starting.png){: style="width: 90%;"}
 
-!!! note "Ready"
+    **Ready**
 
     Then, when the resources have been allocated and you can go to the desktop
 
-    ![Open OnDemand Kebnekaise desktop](../images/open-ondemand-desktop-started.png){: style="width: 90%;"}
+    ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-started.png){: style="width: 90%;"}
 
-!!! note "Desktop - mate"
+    **Desktop - mate**
 
     This is how the desktop could look, running "mate" desktop environment
 
-    ![Open OnDemand Kebnekaise desktop](../images/open-ondemand-desktop-mate.png){: style="width: 90%;"}
+    ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-mate.png){: style="width: 90%;"}
 
-When you have a desktop open on the allocated resources, you have the option to run
+    When you have a desktop open on the allocated resources, you have the option to run
 
-- one of the applications that can be launched from the menu
-    - Libreoffice
-    - Firefox
-    - editors
-    - a terminal/shell to load modules and start programs
-- a terminal/shell where you can
-    - run your own code
-    - load modules and run installed software
+    - one of the applications that can be launched from the menu
+        - Libreoffice
+        - Firefox
+        - editors
+        - a terminal/shell to load modules and start programs
+    - a terminal/shell where you can
+        - run your own code
+        - load modules and run installed software
 
-!!! note "Start a terminal to run something"
+    **Start a terminal to run something**
 
     You can now work as normal, from a desktop on the resources you allocated. Anything you run there will run on those resources, and they are available for the time you asked for.
 
     To start a terminal, for instance, you find "MATE terminal" in the menu:     
 
-    ![Open OnDemand Kebnekaise desktop](../images/open-ondemand-desktop-terminal.png){: style="width: 90%;"}
+    ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-terminal.png){: style="width: 90%;"}
 
     Since we have 4 cores allocated, let us try run something on them.
 
@@ -216,7 +216,7 @@ When you have a desktop open on the allocated resources, you have the option to 
 
         Which looks like this:
 
-        ![Open OnDemand Kebnekaise desktop plotting from matplotlib](../images/pandas-plot.png){: style="width: 90%;"}
+        ![Open OnDemand Kebnekaise desktop plotting from matplotlib](../../images/pandas-plot.png){: style="width: 90%;"}
 
     === "Run a small python script on 1 core"
 
@@ -265,7 +265,7 @@ When you have a desktop open on the allocated resources, you have the option to 
         b-cn1420 [~]$
         ```
 
-!!! note "Ending the session"
+    **Ending the session**
 
     The session is active for as long as you allocated it for (number of hours), or you can end it earlier if you do not need it longer.
 
@@ -274,15 +274,13 @@ When you have a desktop open on the allocated resources, you have the option to 
 
     - Or you can shut it down by clicking "Delete"
 
-    ![Open OnDemand Kebnekaise desktop](../images/open-ondemand-desktop-started.png){: style="width: 90%;"}
-
-
+    ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-started.png){: style="width: 90%;"}
 
 ### Interactive Apps - Jupyter Notebook
 
 If you choose "Interactive Apps" -> "Jupyter Notebook", you will get an app that can launch a Jupyter Notebook server on one or more nodes.
 
-![Open OnDemand Jupyter Notebook](../images/open-ondemand-jupyter.png){: style="width: 90%;"}
+![Open OnDemand Jupyter Notebook](../../images/open-ondemand-jupyter.png){: style="width: 90%;"}
 
 !!! note
 
