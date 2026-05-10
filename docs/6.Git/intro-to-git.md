@@ -26,10 +26,11 @@ Git helps make that possible by offering:
 * **Safe experimentation** — new ideas can be tested independently without affecting the main codebase.
 * **Easy recovery** — bugs or deleted files can be restored quickly.
 
+
 ```mermaid
 graph LR
-    A@{ shape: stadium, label: "Monday updates"} --> B@{ shape: stadium, label: "Tuesday updates"}
-    B --> C@{ shape: stadium, label: "Wednesday updates"}
+    A["Monday updates"] --> B["Tuesday updates"]
+    B --> C["Wednesday updates"]
 ```
 
 ## How Git Organizes Your Project
@@ -37,7 +38,7 @@ graph LR
 Git views your files through four main areas:
 
 <figure>
-  <img src="../images/git-folders2.png" style="width: 500px;" alt="Git workflow structure">
+  <img src="../../images/git-folders2.png" style="width: 500px;" alt="Git workflow structure">
   <figcaption>Overview of the main areas Git uses to manage project files.</figcaption>
 </figure>
 
