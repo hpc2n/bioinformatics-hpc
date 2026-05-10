@@ -49,6 +49,7 @@ nav:
   - Introduction to Linux:
     - Introduction: 5.linux-intro/linux-intro.md
     - Command Line Interface (CLI): 5.linux-intro/cli.md
+    - The Linux File System: 5.linux-intro/filesystem.md 
   - Introduction to Git: 
     - Introduction: 6.Git/intro-to-git.md 
   - Accessing software on Kebnekaise: 
