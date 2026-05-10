@@ -162,29 +162,29 @@ are especially promising for low-power tasks such as sensory processing, pattern
 where conventional clock-driven computing is often inefficient.
 
 
-## What Is a CPU?
+# What Is a CPU?
 
 The Central Processing Unit (CPU) is the component of a computer that executes programs. Instructions are fetched
 from memory, interpreted in machine language, and then executed. These operations occur rapidly, many millions of
 times per second.
 
-### Main Components of a CPU
+## Main Components of a CPU
 
-#### Control Unit (CU)
+### Control Unit (CU)
 
 The Control Unit, as its name suggests, manages the operation of the entire processor. It fetches each instruction from 
 memory in sequence, interprets the required operation, and issues the control signals needed to coordinate the ALU, 
 registers, and other components accordingly.
 
 
-#### Arithmetic Logic Unit (ALU)
+### Arithmetic Logic Unit (ALU)
 
 The ALU is the part of the CPU that performs computational tasks. This includes arithmetic operations (addition, subtraction, 
 multiplication, and division) and logical operations (comparisons such as equality or greater than, and bitwise operations 
 such as AND, OR, and NOT). 
 
 
-#### Registers
+### Registers
 
 Registers are the closest storage locations in the memory hierarchy to the processor. They are small, extremely fast, and can 
 be accessed in less than one CPU cycle, far faster than external memory. Their role is to hold the values the CPU is actively 
@@ -295,8 +295,7 @@ Cache performance strongly affects overall execution speed. Algorithms that acce
 sequential patterns make efficient use of the cache and can run much faster than those that frequently 
 cause cache misses and force the CPU to wait for data from RAM.
 
-
-## What Is RAM?
+# What Is RAM?
 
 **Random Access Memory (RAM)** is the computer’s main working memory, where the operating system, 
 applications, and active data are stored while programs run. Unlike CPU cache, which keeps only 
@@ -308,7 +307,7 @@ are lost when power is turned off. Cache hierarchies help reduce the performance
 and RAM.
 
 
-### Why RAM Matters
+## Why RAM Matters
 
 - More RAM allows the operating system to keep a larger number of programs and active data in memory 
 at the same time.
@@ -351,7 +350,7 @@ than accessing memory attached to another socket.
 This fetch-decode-execute-write-back cycle runs continuously and billions of times per second while a program is executing.
 
 
-## Summary
+# Summary
 
 | Component              | Role                                                                                  |
 | ---------------------- | ------------------------------------------------------------------------------------- |
