@@ -1,6 +1,6 @@
 # Navigating the File System
 
-This section will be a basic overview of the Linux filesystem concepts, not an in-depth description of filesystem types. 
+This section will focus on the file system commands as the file system itself was covered in the session [File systems](https://hpc2n.github.io/bioinformatics-hpc/3.files-filesystems/filesystems/).  
 
 !!! Note "Learning objectives" 
 
@@ -12,50 +12,18 @@ This section will be a basic overview of the Linux filesystem concepts, not an i
     **Learning objectives** 
 
     - Learn how to navigate the Linux file system
-    - Learn about files and directories
     - Learn about paths 
     - Learn about options (flags) and arguments to shell commands 
     - Learn about the **tab completion**
      
-![Tree of dir structure](images/tree.png){: style="width: 400px;float: right"}
-
-The Linux filesystem directory structure starts with the top root directory, which is shown as `/`. Below this are several other standard directories. Of particular interest are `usr/bin`, `home`, `usr/lib`, and `usr/lib64`. A common directory which you will also often find is `usr/local/bin`. 
-
-The picture on the right shows typical subdirectories under `/` (note that the command `tree` does not work at all HPC centers, though it does work on Tetralith---see the page [tree](../tree) under the "Extras" section for how to install if it is missing). Some of the directories have a **symbolic link** to a different name---this is often done to make it quicker to write, but can also be for compatibility reasons since some software have hardcoded paths.
-
-!!! Note
-
-    The `path` or `pathname` is the representation of the location of a file or folder/directory on a computer file system.
-
-- **/** is the root of the directory structure on a Linux filesystem 
-- **/usr/bin** contains (most) of the system-specific binaries
-- **/usr/local/bin** holds non-system binaries. often locally compiled/maintained packages
-- **/home** is where the home directories of the users of the system are located
-- **/usr/lib** holds kernel modules and shared library images needed to boot the system and run commands in the root filesystem
-- **/usr/lib64** is the same as **/usr/lib**, just for 64-bit libraries 
-
-User installed binaries are often located in **/opt**. 
-
-The file system could also be illustrated like this: 
-
-![folders of filesystem structure](images/filesystem-folders.png){: style="width: 500px;float: left"}
-
-!!! important "Note about `/`"
+!!! important "Reminder about `/`"
 
     The character `/` can be 
 
     1. the root directory, if it appears alone or at the front of a file or directory name 
     2. a separator if it appears in other positions within the path.
 
-!!! note
-
-    If you are on a local cluster, on an HPC center, etc. where you are not root, you will be in your home directory by default when you login. You can use `cd ..` a couple times to go to the root of the system and do `tree` there if you want, or do `tree` in your home directory (you can always return there with just `cd`).
-
-!!! caution
-
-    Running `tree` in `/` on a supercomputing center will probably give a very large/long output! 
-
-### Home folders on Tetralith
+## Home folders on Tetralith
 
 ![home folders file structure](images/homefolders-focus.png){: style="width: 500px;float: left"}   
 <br><br style="clear: both;">

@@ -13,7 +13,7 @@
     - You will learn about the shell and the CLI.
     - You will learn why and when you should use a CLI instead of a Graphical User Interface (GUI). 
     
-![Terminal](../../images/terminal_kebnekaise.png){: style="width: 400px;float: right;padding: 3px;}
+![Terminal](../../images/terminal-kebnekaise.png){: style="width: 400px;float: right;padding: 3px;}
 
 The picture above shows a terminal window where a user is logged into HPC2N's Kebnekaise system. The prompt shows the node name of the login node (b-cn1613). Inside the terminal there is a **shell** running. One can see the **prompt** waiting for user input.  
 
