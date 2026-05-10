@@ -1,0 +1,198 @@
+# Introduction to "Running jobs on HPC systems"
+
+- Welcome page and syllabus: <a href="https://uppmax.github.io/NAISS_Slurm/index.html">https://uppmax.github.io/NAISS_Slurm/index.html</a>
+    - Link also in the House symbol at the top of the page.
+
+!!! note "Learning outcomes"
+
+    - Cluster architecture
+        - Login/compute nodes
+        - Cores, nodes, GPUs
+        - Memory
+        - Node local storage
+        - Global storage system
+    - Concepts of a job scheduler
+        - why it is needed
+        - basic priniples how it works
+    - sbatch with options for CPU job scripts
+    - sample job scripts
+        - Basic jobs
+        - I/O intensive jobs
+        - OpenMP and MPI jobs
+        - Job arrays
+        - Simple example for task farming
+        - increasing the memory per task / memory hungry jobs
+        - running on GPUs
+    - job monitoring, job efficiency
+    - how to find optimal sbatch options
+
+## Login info, project number, project directory
+
+### Project number and project directory
+
+!!! warning 
+
+    This part is only relevant for people attending the course, and indeed only for those who needed access to Tetralith or Dardel through the course project. It should be ignored if you are doing it as self-study later. 
+
+<!-- markdownlint-disable MD036 -->
+=== "Tetralith" 
+   
+    **Tetralith at NSC**
+
+    - Project ID: ``naiss2026-4-66``
+    - Project storage: ``/proj/spring-courses-naiss/users``    
+
+=== "Dardel"
+
+    **Dardel at PDC**
+
+    - Project ID: ``naiss2026-4-66``
+    - Project storage: ``/cfs/klemming/projects/supr/spring-courses-naiss``
+
+=== "Alvis"
+
+    **Alvis at C3SE**
+
+    - Project ID: ``naiss2026-4-66``
+    - Project storage: ``/mimer/NOBACKUP/groups/spring-courses-naiss`` 
+
+=== "Kebnekaise" 
+
+    **Kebnekaise at HPC2N**
+
+    - Project ID: 
+    - Project storage: 
+
+=== "Cosmos" 
+
+    **Cosmos at LUNARC**
+
+    - Project ID: 
+
+=== "Pelle" 
+
+    **Pelle at UPPMAX**
+
+    - Project ID: 
+    - Project storage:
+    
+<!-- markdownlint-restore -->
+
+!!! hint 
+
+    Most of you are not part of the course project and will use your own access and project. 
+
+    If you do not know what your project id is, you can use the command
+    `projinfo` which works at most clusters.
+
+    ??? hint "If no `projinfo`"
+        From the terminal, you can manually ask Slurm for project IDs currently
+        associated with your user with this command:
+        ```
+        sacctmgr list assoc where user="$USER" format=Account -P --noheader
+        ```
+
+    You can also find the project id in SUPR, if you are a member of a project. See the page for <a href="https://supr.naiss.se/project/" target="_blank">Active Projects You Belong To</a>.   
+
+### Login info 
+
+- You will not need a graphical user interface for this course.
+- Even so, if you do not have a preferred SSH client, we recommend using
+  <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a>.
+
+!!! important "Connection info" 
+
+    - Login to the system you are using (Tetralith/Dardel, other Swedish HPC system)
+    - Connection info for some Swedish HPC systems - use the one you have access to: 
+
+    === "Tetralith"
+
+        - SSH: ``ssh <user>@tetralith.nsc.liu.se``
+        - ThinLinc:
+            - Server: ``tetralith.nsc.liu.se``
+            - Username: ``<your-nsc-username>``
+            - Password: ``<your-nsc-password>``
+        - Note that you need to setup <a href="https://www.nsc.liu.se/support/2fa/" target="_blank">TFA</a> to use NSC!
+
+    === "Dardel"
+
+        - SSH: ``ssh <user>@dardel.pdc.kth.se``
+        - ThinLinc:
+            - Server: ``dardel-vnc.pdc.kth.se``
+            - Username: ``<your-pdc-username>``
+            - Password: ``<your-pdc-password>``
+        - Note that you need to setup <a href="https://support.pdc.kth.se/doc/login/ssh_login/" target="_blank">SSH keys</a> or kerberos in order to login to PDC!
+
+    === "Alvis"
+
+        - SSH: ``ssh <user>@alvis1.c3se.chalmers.se``
+               or
+               ``ssh <user>@alvis2.c3se.chalmers.se``
+        - Remote Desktop Protocol (RDP):
+            - Server: ``alvis1.c3se.chalmers.se``
+                      or
+                      ``alvis2.c3se.chalmers.se``
+            - Username: ``<your-c3se-username>``
+            - Password: ``<your-c3se-username>``
+        - OpenOndemand portal:
+            - Put ``https://alvis.c3se.chalmers.se`` in browser address bar
+            - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box
+        - Note that Alvis is accessible via SUNET networks (i.e. most Swedish university networks). If you are not on one of those networks you need to use a VPN - preferrably your own Swedish university VPN. If this is not possible, contact ``support@chalmers.se`` and ask to be added to the Chalmers's eduVPN.
+
+    === "Kebnekaise"
+
+        - SSH: ``ssh <user>@kebnekaise.hpc2n.umu.se``
+        - ThinLinc:
+            - Server: ``kebnekaise-tl.hpc2n.umu.se``
+            - Username: ``<your-hpc2n-username>``
+            - Password: ``<yout-hpc2n-password>``
+        - ThinLinc Webaccess:
+            - Put ``https://kebnekaise-tl.hpc2n.umu.se:300/`` in browser address bar
+            - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in th e login box that opens and click ``Login``
+        - Open OnDemand: ``https://portal.hpc2n.umu.se`` 
+
+    === "Pelle"
+
+        - SSH: ``ssh <user>@pelle.uppmax.uu.se``
+        - ThinLinc:
+            - Server: ``pelle-gui.uppmax.uu.se``
+            - Username: ``<your-uppmax-username>``
+            - Password: ``<your-uppmax-password>``
+        - Note that you have to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">2FA for Uppmax</a>.
+
+    === "Cosmos"
+
+        - SSH: ``ssh <user>@cosmos.lunarc.lu.se``
+        - ThinLinc:
+            - Server: ``cosmos-dt.lunarc.lu.se``
+            - Username: ``<your-lunarc-username>``
+            - Password: ``<your-lunarc-password>``
+        - Note that you need to setup <a href="https://lunarc-documentation.readthedocs.io/en/latest/getting_started/login_howto/" target="_blank">TFA (PocketPass)</a> to use LUNARC's systems!
+
+## Schedule
+
+| Time | Topic | Activity | Teacher | 
+| ---- | ----- | -------- | ------- |
+| 13:00 - 13:05 | Intro to course | Lecture | Sahar |
+| 13:05 - 13:25 | Intro to clusters | Lecture | Sahar | 
+| 13:25 - 13:40 | Batch system concepts / job scheduling | Lecture | Joachim |  
+| 13:40 - 14:20 | Intro to Slurm (sbatch, squeue, scontrol, …) | Lecture+type along | Birgitte |
+| 14:20 - 14:22 | Interactive jobs - mainly meant as self-study | Lecture | 
+| 14:22 - 14:35 | BREAK | | |
+| 14:35 - 15:45 | Additional sample scripts, including job arrays, task farms??? | | Joachim, Diana |
+| 15:45 - 15:47 | Job monitoring and efficiency - mainly meant as Self-reading material | Diana |
+| 15:47 - 16:00 | Summary | | Diana |
+
+## Prepare the exercise environment 
+
+It is now time to login and download the exercises. 
+
+1. Login to your cluster. You find login info for several <a href="https://uppmax.github.io/NAISS_Slurm/intro/#login__info" target="_blank">Swedish HPC clusters here</a>. 
+2. Create a directory to work in: ``mkdir cluster-intro``
+3. Fetch the exercises tarball: ``wget https://github.com/UPPMAX/NAISS_Slurm/raw/refs/heads/main/exercises.tar.gz``
+4. Unpack the tarball: ``tar zxvf exercises.tar.gz``
+5. You will get a directory ``exercises``. Go into it: ``cd exercises``
+6. You will find some sub directories for most of the Swedish HPC centres. 
+7. Change to the directory of your cluster. If it is not listed, pick "other". 
+8. There should be various batch script examples (and some .py, .f90 and .c files for the test scripts). 
+
