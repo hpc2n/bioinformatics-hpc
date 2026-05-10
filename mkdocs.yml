@@ -48,6 +48,7 @@ nav:
     - SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh.md
   - Introduction to Linux:
     - Introduction: 5.linux-intro/linux-intro.md
+    - Command Line Interface (CLI): 5.linux-intro/cli.md
   - Introduction to Git: 
     - Introduction: 6.Git/intro-to-git.md 
   - Accessing software on Kebnekaise: 
