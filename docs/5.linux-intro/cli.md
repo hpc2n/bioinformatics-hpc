@@ -85,7 +85,7 @@ Short answer:
         - Log in with your USERNAME (ThinLinc) and this server:
         ```bash
         kebnekaise-tl.hpc2n.umu.se
-        ´´´
+        ```
         ![ThinLinc logging in to Kebnekaise](../../images/thinlinc-login-kebnekaise.png)
         - If you logged in with ThinLinc, open a terminal.
     2. Open a terminal on any other HPC system where you have an account.
