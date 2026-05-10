@@ -142,47 +142,47 @@ To get more flags, type `ls --help` or `man ls` in the terminal to see the manua
 !!! Example "The output for a few of the flags, for a directory with two subdirectories and some files" 
 
     ```bash
-    [x_birbr@tetralith1 mytestdir]$ ls
+    b-cn1613 [~/mytestdir]$ ls
     myfile.txt  myotherfile.txt  testdir1  testdir2
     
-    [x_birbr@tetralith1 mytestdir]$ ls -a
+    b-cn1613 [~/mytestdir]$ ls -a
     ./  ../  myfile.txt  myotherfile.dat  testdir1/  testdir2/
 
-    [x_birbr@tetralith1 mytestdir]$ ls -l
+    b-cn1613 [~/mytestdir]$ ls -l
     total 3
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:40 testdir1
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:39 testdir2
+    -rw-rw-r-- 1 bbrydsoe folk   27 Sep 11 11:43 myfile.txt
+    -rw-rw-r-- 1 bbrydsoe folk   33 Sep 11 11:43 myotherfile.txt
+    drwxrwxr-x 2 bbrydsoe folk 4096 Sep 11 11:40 testdir1
+    drwxrwxr-x 2 bbrydsoe folk 4096 Sep 11 11:39 testdir2
 
-    [x_birbr@tetralith1 mytestdir]$ ls -la
+    b-cn1613 [~/mytestdir]$ ls -la
     total 5
-    drwxrwxr-x 4 x_birbr x_birbr 4096 Sep 11 11:43 .
-    drwx------ 3 x_birbr x_birbr 4096 Sep 11 11:43 ..
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:40 testdir1
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:39 testdir2
+    drwxrwxr-x 4 bbrydsoe folk 4096 Sep 11 11:43 .
+    drwx------ 3 bbrydsoe folk 4096 Sep 11 11:43 ..
+    -rw-rw-r-- 1 bbrydsoe folk   27 Sep 11 11:43 myfile.txt
+    -rw-rw-r-- 1 bbrydsoe folk   33 Sep 11 11:43 myotherfile.txt
+    drwxrwxr-x 2 bbrydsoe folk 4096 Sep 11 11:40 testdir1
+    drwxrwxr-x 2 bbrydsoe folk 4096 Sep 11 11:39 testdir2
 
-    [x_birbr@tetralith1 mytestdir]$ ls -lah
+    b-cn1613 [~/mytestdir]$ ls -lah
     total 5.0K
-    drwxrwxr-x 4 x_birbr x_birbr 4.0K Sep 11 11:43 .
-    drwx------ 3 x_birbr x_birbr 4.0K Sep 11 11:43 ..
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwxrwxr-x 2 x_birbr x_birbr 4.0K Sep 11 11:40 testdir1
-    drwxrwxr-x 2 x_birbr x_birbr 4.0K Sep 11 11:39 testdir2
+    drwxrwxr-x 4 bbrydsoe folk 4.0K Sep 11 11:43 .
+    drwx------ 3 bbrydsoe folk 4.0K Sep 11 11:43 ..
+    -rw-rw-r-- 1 bbrydsoe folk   27 Sep 11 11:43 myfile.txt
+    -rw-rw-r-- 1 bbrydsoe folk   33 Sep 11 11:43 myotherfile.txt
+    drwxrwxr-x 2 bbrydsoe folk 4.0K Sep 11 11:40 testdir1
+    drwxrwxr-x 2 bbrydsoe folk 4.0K Sep 11 11:39 testdir2
 
-    [x_birbr@tetralith1 mytestdir]$ ls -latr
+    b-cn1613 [~/mytestdir]$ ls -latr
     total 5
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:39 testdir2
-    drwxrwxr-x 2 x_birbr x_birbr 4096 Sep 11 11:40 testdir1
-    -rw-rw-r-- 1 x_birbr x_birbr   27 Sep 11 11:43 myfile.txt
-    -rw-rw-r-- 1 x_birbr x_birbr   33 Sep 11 11:43 myotherfile.txt
-    drwx------ 3 x_birbr x_birbr 4096 Sep 11 11:43 ..
-    drwxrwxr-x 4 x_birbr x_birbr 4096 Sep 11 11:43 .
+    drwxrwxr-x 2 bbrydsoe folk 4096 Sep 11 11:39 testdir2
+    drwxrwxr-x 2 bbrydsoe folk 4096 Sep 11 11:40 testdir1
+    -rw-rw-r-- 1 bbrydsoe folk   27 Sep 11 11:43 myfile.txt
+    -rw-rw-r-- 1 bbrydsoe folk   33 Sep 11 11:43 myotherfile.txt
+    drwx------ 3 bbrydsoe folk 4096 Sep 11 11:43 ..
+    drwxrwxr-x 4 bbrydsoe folk 4096 Sep 11 11:43 .
 
-    [x_birbr@tetralith1 mytestdir]$ ls *
+    b-cn1613 [~/mytestdir]$ ls *
     myfile.txt  myotherfile.dat
 
     testdir1:
@@ -191,25 +191,25 @@ To get more flags, type `ls --help` or `man ls` in the terminal to see the manua
     testdir2:
     file1.txt  file2.txt  file3.c
 
-    [x_birbr@tetralith1 mytestdir]$ cd testdir1
-    b-an01 [~/mytestdir/testdir1]$ ls -l
+    b-cn1613 [~/mytestdir]$ cd testdir1
+    b-cn1613 [~/mytestdir/testdir1]$ ls -l
     total 2
-    -rw-rw-r-- 1 x_birbr x_birbr 31 Sep 11 11:47 file1.txt
-    -rw-rw-r-- 1 x_birbr x_birbr 16 Sep 11 11:49 file2.sh
-    -rw-rw-r-- 1 x_birbr x_birbr 74 Sep 11 11:49 file3.c
-    -rw-rw-r-- 1 x_birbr x_birbr 25 Sep 11 11:50 file4.dat
+    -rw-rw-r-- 1 bbrydsoe folk 31 Sep 11 11:47 file1.txt
+    -rw-rw-r-- 1 bbrydsoe folk 16 Sep 11 11:49 file2.sh
+    -rw-rw-r-- 1 bbrydsoe folk 74 Sep 11 11:49 file3.c
+    -rw-rw-r-- 1 bbrydsoe folk 25 Sep 11 11:50 file4.dat
 
-    [x_birbr@tetralith1 mytestdir]$ ls -ls
+    b-cn1613 [~/mytestdir/testdir]$ ls -ls
     total 2
-    1 -rw-rw-r-- 1 x_birbr x_birbr 31 Sep 11 11:47 file1.txt
-    1 -rw-rw-r-- 1 x_birbr x_birbr 16 Sep 11 11:49 file2.sh
-    1 -rw-rw-r-- 1 x_birbr x_birbr 74 Sep 11 11:49 file3.c
-    1 -rw-rw-r-- 1 x_birbr x_birbr 25 Sep 11 11:50 file4.dat
+    1 -rw-rw-r-- 1 bbrydsoe folk 31 Sep 11 11:47 file1.txt
+    1 -rw-rw-r-- 1 bbrydsoe folk 16 Sep 11 11:49 file2.sh
+    1 -rw-rw-r-- 1 bbrydsoe folk 74 Sep 11 11:49 file3.c
+    1 -rw-rw-r-- 1 bbrydsoe folk 25 Sep 11 11:50 file4.dat
     ```
 
-    The "drwxr-xr-x" and "-rw-r\--r\--" are examples of **permissions**. The prefex d means is it a directory. A "-" means no permission for that. There are three groups: owner, group, and all. Note that “r” is for read, “w” is for write, and “x” is for execute.  
+    The "drwxr-xr-x" and "-rw-r\--r\--" are examples of **permissions**, as mentioned in the earlier session on file systems. The prefex d means is it a directory. A "-" means no permission for that. There are three groups: owner, group, and all. Note that “r” is for read, “w” is for write, and “x” is for execute.  
 
-    We will talk a bit more about permissions and how to change them when we come to the section on **scripting**. 
+    We will talk a little bit more about permissions and how to change them when we come to the section on **scripting**. 
 
 ## Wild cards
 
@@ -305,12 +305,12 @@ The command `cd` is used to change directory.
 
     This is the structure of the exercises directory that you got after extracting the tarball: 
 
-    ![folders of exercises directory structure](images/exercises-folders.png){: style="width: 500px;float: left"}
+    ![folders of exercises directory structure](../../images/exercises-folders.png){: style="width: 500px;float: left"}
     <br><br style="clear: both;">
 
     Remember, `$HOME` is an *environment variable* which gives a shortcut to your home directory.
 
-    **NOTE** if you are on Tetralith and placed the exercises under `/proj/spring-courses-naiss/users/USERNAME` then `$HOME` would be replaced by that path. 
+    **NOTE** if you are on Kebnekaise and placed the exercises under `/proj/nobackup/bioinfo-course/YOURDIR` then `$HOME` would be replaced by that path. 
 
     To change to the directory `exercises` when you are in your home directory, you do
     ```bash
