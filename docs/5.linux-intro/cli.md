@@ -13,7 +13,7 @@
     - You will learn about the shell and the CLI.
     - You will learn why and when you should use a CLI instead of a Graphical User Interface (GUI). 
     
-![Terminal](images/terminal_tetralith.png){: style="width: 400px;float: right;padding: 3px;}
+![Terminal](../../images/terminal_tetralith.png){: style="width: 400px;float: right;padding: 3px;}
 
 The picture above shows a terminal window where a user is logged into NAISS's Tetralith system.  Inside the terminal there is a **shell** running. One can see the **prompt** waiting for user input.  
 
