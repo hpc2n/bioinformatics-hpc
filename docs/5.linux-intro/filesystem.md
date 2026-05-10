@@ -23,16 +23,16 @@ This section will focus on the file system commands as the file system itself wa
     1. the root directory, if it appears alone or at the front of a file or directory name 
     2. a separator if it appears in other positions within the path.
 
-## Home folders on Tetralith
+## Home folders on Kebnekaise
 
-![home folders file structure](images/homefolders-focus.png){: style="width: 500px;float: left"}   
+![home folders file structure](../../images/homefolders-focus-kebnekaise.png){: style="width: 500px;float: left"}   
 <br><br style="clear: both;">
 
 The above shows an illustration where the home folders are emphasized. 
 
 ## Your home directory
 
-When you login to the computer (as a non root user), you will end up in your home directory. At most HPC centers, your home directory will appear as `~` in the terminal prompt, and can also be used in commands instead of having to type out `/home/YOUR_USERNAME`.
+When you login to the computer (as a non root user), you will end up in your home directory. At most HPC centers, your home directory will appear as `~` in the terminal prompt, and can also be used in commands instead of having to type out `/home/YOUR_USERNAME` or on Kebnekaise. ``/home/first-letter-of-username/YOUR-USERNAME``.
 
 The `path` to your home directory varies somewhat. Here are some examples for me: 
 
@@ -40,7 +40,7 @@ The `path` to your home directory varies somewhat. Here are some examples for me
 - Kebnekaise: `/home/b/bbrydsoe`
 - Cosmos: `/home/bbrydsoe`
 - My laptop, ncc-1701: `/home/bbrydsoe`
-- My home desktop, defiant: `/home/bbrydsoe`
+- My home desktop, enterprise: `/home/bbrydsoe`
 
 !!! note 
 
@@ -58,75 +58,47 @@ You can use this to find out which directory you are in.
 
 ### Example, in your home directory 
 
-=== "On Tetralith"
-
-     user ``x_birbr``: 
-
-     ```bash
-     [x_birbr@tetralith3 ~]$ pwd
-     /home/x_birbr
-     [x_birbr@tetralith3 ~]$ 
-     ```
-
-=== "On Dardel" 
-
-    user ``bbrydsoe``: 
-
-    ```bash
-    bbrydsoe@login1:~> pwd
-    /cfs/klemming/home/b/bbrydsoe
-    bbrydsoe@login1:~> 
-    ```
-
-=== "On Alvis" 
-
-    user ``brydso``:
-
-    ```bash
-    [brydso@alvis2 ~]$ pwd
-    /cephyr/users/brydso/Alvis
-    [brydso@alvis2 ~]$
-    ```
-
 === "On Kebnekaise"
 
      user ``bbrydsoe``: 
 
      ```bash
-     b-an01 [~]$ pwd
+     b-cn1613 [~]$ pwd
      /home/b/bbrydsoe
-     b-an01 [~]$ 
+     b-cn1613 [~]$ 
      ```
 
-=== "On Cosmos"
+=== "On my desktop ``enterprise``"
 
      user ``bbrydsoe``: 
 
      ```bash
-     [bbrydsoe@cosmos1 ~]$ pwd
+     [bbrydsoe@enterprise ~]$ pwd
      /home/bbrydsoe
-     [bbrydsoe@cosmos1 ~]$ 
+     [bbrydsoe@enterprise ~]$ 
      ```
 
-### Example, in a directory named `testdir`
+### Example, in a directory named `testdir` on Kebnekaise
 
-On Tetralith, user ``x_birbr``:
+User ``bbrydsoe``:
 
 ```bash
-[x_birbr@tetralith3 testdir]$ pwd
-/home/x_birbr/testdir
-[x_birbr@tetralith3 testdir]$
+b-cn1613 [~/testdir]$ pwd
+/home/b/bbrydsoe/testdir
+b-cn1613 [~/testdir]$
 ```
 
 ### Example, in subdirectory `mydir` under directory `testdir`
 
-On Tetralith, user ``x_birbr``: 
+On Kebnekaise, user ``bbrydsoe``: 
 
 ```bash
-[x_birbr@tetralith3 mydir]$ pwd
-/home/x_birbr/testdir/mydir
-[x_birbr@tetralith3 mydir]$ 
+b-cn1613 [~/testdir/mydir]$ pwd
+/home/b/bbrydsoe/testdir/mydir
+b-cn1613 [~/testdir/mydir]$ 
 ```
+
+So the full path is in the prompt. That is not the case at all centers. Advantages and disadvantages: long prompt perhaps, but you can easily see where you are. 
 
 ## ls - listing files/directories
 
