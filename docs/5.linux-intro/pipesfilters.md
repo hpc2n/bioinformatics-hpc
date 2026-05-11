@@ -409,7 +409,7 @@ The variables can both be used in scripts and on the command line. Usually you r
         setenv VARIABLE value
         ```
 
-You can create your own variables to use, for instance in scripts. More about that under the section [scripting](../patterns#scripting). 
+You can create your own variables to use, for instance in scripts. More about that under the section scripting. 
 
 
 **Some examples:** 
