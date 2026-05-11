@@ -70,28 +70,25 @@ Of these, <code>vi/vim</code> as well as <code>emacs</code> are probably the mos
 
 ## GUI editors 
 
-If you are connecting with <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a>, you will be presented with a graphical user interface (GUI). (For Tetralith, the server is ``tetralith.nsc.liu.se``). From within Thinlinc you can either open a terminal window/shell or you can choose editors from the menu. 
+If you are connecting with <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a>, you will be presented with a graphical user interface (GUI). (For Kebnekaise, the server is ``kebnekaise-tl.hpc2n.umu.se``). From within Thinlinc you can either open a terminal window/shell or you can choose editors from the menu. 
 
-It differs a bit how Thinlinc looks depending on the centre, and it also differs which desktop environment they are running. For instance, NSC's Tetralith has the Xfce environment while HPC2N's Kebnekaise has MATE. 
+It differs a bit how Thinlinc looks depending on the centre, and it also differs which desktop environment they are running. For instance, HPC2N's Kebnekaise has MATE and Xfce. 
 
-Examples to open terminal: 
+Examples to open terminal under MATE: 
 
 - HPC2N: "Applications" -> "System Tools" -> "MATE Terminal" 
-- NSC: "Applications" -> "System" -> "Xfce Terminal"
 
 To choose editors from the menu: 
 
 - HPC2N: "Applications -> Accessories". 
-- NSC: "Applications" -> Accessories" and "Applications" -> "Development". 
 
 Regardless, this gives several editor options, of which these have a graphical interface:  
 
-- HPC2N/NSC: <a href="https://help.gnome.org/users/gedit/stable/" target="_blank">Text Editor (gedit)</a>
-- HPC2N: <a href="https://en.wikipedia.org/wiki/Pluma_(text_editor)" target="_blank">Pluma</a> - the default editor on the MATE desktop environments (that Thinlinc runs)
-- HPC2N: <a href="https://en.wikipedia.org/wiki/Atom_(text_editor)" target="_blank">Atom</a> - no
-t just an editor, but an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" target="_blank">IDE</a>
-- HPC2N/NSC: <a href="https://www.gnu.org/software/emacs/" target="_blank">Emacs (GUI)</a>
-- HPC2N/NSC (under "Applications" -> "Development"): <a href="https://en.wikipedia.org/wiki/NEdit" target="_blank">NEdit "Nirvana Text Editor"</a>
+- <a href="https://help.gnome.org/users/gedit/stable/" target="_blank">Text Editor (gedit)</a>
+- <a href="https://en.wikipedia.org/wiki/Pluma_(text_editor)" target="_blank">Pluma</a> - the default editor on the MATE desktop environments (that Thinlinc runs)
+- <a href="https://en.wikipedia.org/wiki/Atom_(text_editor)" target="_blank">Atom</a> - not just an editor, but an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" target="_blank">IDE</a>
+- <a href="https://www.gnu.org/software/emacs/" target="_blank">Emacs (GUI)</a>
+- (under "Applications" -> "Development"): <a href="https://en.wikipedia.org/wiki/NEdit" target="_blank">NEdit "Nirvana Text Editor"</a>
 
 If you are not familiar with any of these, a good recommendation would be to use <code>Text Editor/gedit</code>. 
 
