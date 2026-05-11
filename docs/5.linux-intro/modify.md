@@ -98,58 +98,50 @@ You can remove files with ``rm``. You can use the flag/option ``-i`` to prompt b
     Create and remove directories:
     
     ```bash
-    [x_rebpi@tetralith1 ~]$ mkdir mytestdir
-    [x_rebpi@tetralith1 ~]$ cd mytestdir/
-    [x_rebpi@tetralith1 mytestdir]$ mkdir testdir1
-    [x_rebpi@tetralith1 mytestdir]$ mkdir testdir2
-    [x_rebpi@tetralith1 mytestdir]$ mkdir testdir3
-    [x_rebpi@tetralith1 mytestdir]$ ls
+    b-cn1613 [~]$ mkdir mytestdir
+    b-cn1613 [~]$ cd mytestdir/
+    b-cn1613 [~/mytestdir]$ mkdir testdir1
+    b-cn1613 [~/mytestdir]$ mkdir testdir2
+    b-cn1613 [~/mytestdir]$ mkdir testdir3
+    b-cn1613 [~/mytestdir]$ ls
     testdir1  testdir2  testdir3
-    [x_rebpi@tetralith1 mytestdir]$ rm -rf testdir3
-    [x_rebpi@tetralith1 mytestdir]$ ls
+    b-cn1613 [~/mytestdir]$ rm -rf testdir3
+    b-cn1613 [~/mytestdir]$ ls
     testdir1  testdir2
     ```
 
     Create and remove files:
     
     ```bash    
-    [x_rebpi@tetralith1 mytestdir]$ cd testdir1
-    [x_rebpi@tetralith1 testdir1]$ touch file1.txt
-    [x_rebpi@tetralith1 testdir1]$ touch file2.sh
-    [x_rebpi@tetralith1 testdir1]$ touch file3.c
-    [x_rebpi@tetralith1 testdir1]$ touch file4.dat
-    [x_rebpi@tetralith1 testdir1]$ rm file4.dat
-    [x_rebpi@tetralith3 testdir1]$ rm -i file3.c
+    b-cn1613 [~/mytestdir]$ cd testdir1
+    b-cn1613 [~/mytestdir/testdir1]$ touch file1.txt
+    b-cn1613 [~/mytestdir/testdir1]$ touch file2.sh
+    b-cn1613 [~/mytestdir/testdir1]$ touch file3.c
+    b-cn1613 [~/mytestdir/testdir1]$ touch file4.dat
+    b-cn1613 [~/mytestdir/testdir1]$ rm file4.dat
+    b-cn1613 [~/mytestdir/testdir1]$ rm -i file3.c
     rm: remove regular empty file 'file3.c'? y
-    [x_rebpi@tetralith3 testdir1]$ ls
+    b-cn1613 [~/mytestdir/testdir1]$ ls
     file1.txt  file2.sh
     ```
 
     Removing files by glob pattern (or why to always test a glob pattern with `ls` before using it with `rm`):
     
     ```bash
-    [x_rebpi@tetralith1 testdir1]$ cd ../testdir2
-    [x_rebpi@tetralith1 testdir2]$ touch meow.txt
-    [x_rebpi@tetralith1 testdir2]$ touch catsmeow1.dat
-    [x_rebpi@tetralith1 testdir2]$ touch homeowners_assoc.odt
-    [x_rebpi@tetralith1 testdir2]$ ls *meow*
+    b-cn1613 [~/mytestdir/testdir1]$ cd ../testdir2
+    b-cn1613 [~/mytestdir/testdir2]$ touch meow.txt
+    b-cn1613 [~/mytestdir/testdir2]$ touch catsmeow1.dat
+    b-cn1613 [~/mytestdir/testdir2]$ touch homeowners_assoc.odt
+    b-cn1613 [~/mytestdir/testdir2]$ ls *meow*
     catsmeow1.dat  homeowners_assoc.odt  meow.txt
-    [x_rebpi@tetralith1 testdir2]$ rm -r *meow{,1}.??t
-    [x_rebpi@tetralith1 testdir2]$ ls
+    b-cn1613 [~/mytestdir/testdir2]$ rm -r *meow{,1}.??t
+    b-cn1613 [~/mytestdir/testdir2]$ ls
     homeowners_assoc.odt
     ```
 
 !!! Note
 
-    This was done on Tetralith. You will notice that only the current (subdir) is shown in the prompt. At some other centres **all** the (sub)dirs would be shown.
-
-    Example: HPC2N
-
-    ```bash
-    b-an01 [~]$ cd mytestdir
-    b-an01 [~/mytestdir]$ cd testdir1
-    b-an01 [~/mytestdir/testdir1]$
-    ```
+    You will notice that all the (sub)dirs are shown in the prompt. At some other centres only the current (subdir) is shown in the prompt. 
 
 ## cp - copy files/directories
 
@@ -169,7 +161,7 @@ This command is used to copy files or directories.
 
     Go to the directory ``mytestdir`` under ``exercises`` directory that you got from the downloaded tarball. This is how the structure looks:
 
-    ![folders of exercises directory structure](images/exercises-folders.png){: style="width: 500px;float: left"}
+    ![folders of exercises directory structure](../../images/exercises-folders.png){: style="width: 500px;float: left"}
     <br><br style="clear: both;">
 
     1. Change to the subdirectory:
@@ -300,19 +292,19 @@ ln -s real-file-or-lib link-name
 ```
 </div>
 
-!!! example "Example (on Tetralith)"
+!!! example "Example (on Kebnekaise)"
 
     ```bash
-    ln -s /proj/spring-courses-naiss/users/MYUSERNAME $HOME/myproj
+    ln -s /proj/nobackup/bioinf-course/MYUSERNAME $HOME/myproj
     ```
 
-    This creates a symbolic link named "myproj" in your home directory, pointing to the location /proj/spring-courses-naiss/users/MYUSERNAME. The directory "spring-courses-naiss" is the project storage directory for this course project. For user ``x_rebpi``, it would look like this:
+    This creates a symbolic link named "myproj" in your home directory, pointing to the location /proj/nobackup/bioinf-course/MYUSERNAME. The directory "bio-inf-course" is the project storage directory for this course project. For user ``bbrydsoe``, it would look like this:
 
     ```bash
-    [x_rebpi@tetralith1 ~]$ ls -l
+    b-cn1613 [~]$ ls -l
     total 2
-    lrwxrwxrwx 1 x_rebpi x_rebpi   31 Sep 11 12:01 myproj -> /proj/spring-courses-naiss/users/x_rebpi
-    drwxrwxr-x 4 x_rebpi x_rebpi 4096 Sep 11 11:43 mytestdir
+    lrwxrwxrwx 1 bbrydsoe folk   31 Sep 11 12:01 myproj -> /proj/nobackup/bioinf-course/bbeydsoe
+    drwxrwxr-x 4 bbrydsoe folk 4096 Sep 11 11:43 mytestdir
     ```
 
 !!! summary
