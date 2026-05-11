@@ -303,7 +303,7 @@ ln -s real-file-or-lib link-name
     ```bash
     b-cn1613 [~]$ ls -l
     total 2
-    lrwxrwxrwx 1 bbrydsoe folk   31 Sep 11 12:01 myproj -> /proj/nobackup/bioinf-course/bbeydsoe
+    lrwxrwxrwx 1 bbrydsoe folk   31 Sep 11 12:01 myproj -> /proj/nobackup/bioinf-course/bbrydsoe
     drwxrwxr-x 4 bbrydsoe folk 4096 Sep 11 11:43 mytestdir
     ```
 
