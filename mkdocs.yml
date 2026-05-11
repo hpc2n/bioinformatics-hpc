@@ -52,7 +52,8 @@ nav:
     - The Linux File System: 5.linux-intro/filesystem.md
     - Modifying the file tree: 5.linux-intro/modify.md
     - Editors on Linux: 5.linux-intro/editors.md
-    - Pipes and filters: 5.linux-intro/pipesfilters.md 
+    - Pipes and filters: 5.linux-intro/pipesfilters.md
+    - Finding patterns: 5.linux-intro/patterns.md 
   - Introduction to Git: 
     - Introduction: 6.Git/intro-to-git.md 
   - Accessing software on Kebnekaise: 
