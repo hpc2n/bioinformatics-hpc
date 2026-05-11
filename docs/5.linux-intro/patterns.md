@@ -21,7 +21,7 @@ Here you will find descptions on how to search for files with specific patterns.
 
     Try out / code along for some of these examples. 
 
-    You can use the contents of the directory ``/exercises/patterns`` that you got from the downloaded tarball (<a href="https://github.com/hpc2n/intro-linux/raw/refs/heads/main/exercises.tar.gz">exercises.tar.gz</a>) to play with. If you have not done so already, right-click and save to download, or right-click and copy the url, then do ``wget THE-URL-YOU-COPIED`` in a terminal window to download it there. Then do <code>tar -zxvf patterns.tar.gz</code> to unpack.  
+    You can use the contents of the directory ``/exercises/patterns`` that you got from the downloaded tarball to play with. If you have not done so already, go to the git repo and right-click and save to download, or right-click and copy the url, then do ``wget THE-URL-YOU-COPIED`` in a terminal window to download it there. Then do <code>tar -zxvf patterns.tar.gz</code> to unpack.  
 
 ## grep 
 
