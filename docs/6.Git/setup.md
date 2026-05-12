@@ -14,7 +14,7 @@ Graphical tools exists for Git, see below list for a few. All entries on the lis
 
     If you have a problem getting this to work on your own computer, then you can use Kebnekaise instead.
 
-    We have some documentation for you for using Git from Kebnekaise: [Using Kebnekaise for Git](../kebnekaise.md)
+    We have some documentation for you for using Git from Kebnekaise: [Using Kebnekaise for Git](../kebnekaise)
 
 These are the steps we will go through - if you have already installed Git and set it up, you should not do this again. 
 
@@ -237,7 +237,7 @@ $ ssh-add ~/.ssh/id_ed25519
 2. Choose "SSH and GPG keys"
 3. Click the green button labeled "New SSH key"
 4. Add a descriptive label for the key in the "Title" field. In the key field you paste the content of the key (~/.ssh/id_rsa.pub)
-![](https://i.imgur.com/DzOFZTd.png =500x)
+![](../../github.png =500x)
 5. Click "Add SSH key"
 6. Confirm your GitHub password if you are prompted for it. 
 
@@ -255,17 +255,13 @@ Hi bbrydsoe! You've successfully authenticated, but GitHub does not provide shel
 ```
 4. Verify that the resulting message contains your username.
 
----
-
-## More on editors
-
----
+## More on editors for Git
 
 ### Linux
 
 **Vim**
 
-* You may need to install it first. (`sudo apt-get install vim`)
+* You may need to install it first, on your own computer. (`sudo apt-get install vim`). Not on Kebnekaise - it is already installed! 
 * Start with `vim <filename>` to open a file for editing. The file will be created if it does not exist before. 
 * Type `i` to enter 'insert' mode to be able to write in the editor. 
 * Use `ESC` to go to 'command' mode and then `:wq` to save and exit the editor.
@@ -274,11 +270,9 @@ Hi bbrydsoe! You've successfully authenticated, but GitHub does not provide shel
 
 **Nano**
 
-* You may need to install it first. (`sudo apt-get install nano`)
+* You may need to install it first, on your own computer. (`sudo apt-get install nano`). Not on Kebnekaise - it is already installed! 
 * Start with `nano <filename>` to open a file for editing. The file will be created if it does not exist before.
 * Ctrl-x will exit the editor, asking first if you want to save the file. If you started with just `nano` and did not give a filename, it will ask you for a name. 
-
----
 
 ### Windows
 
@@ -290,15 +284,11 @@ Hi bbrydsoe! You've successfully authenticated, but GitHub does not provide shel
         * `git config --global core-editor "C:\Program Files (x86)\Notepad++\notepad++.exe"`
 * Using vim: this is easy as it can be installed during the Git install and then setting it with `git config --global core.editor vim`
 
----
-
 ### Various OS 
 
 GitHub has a page for setting some editors for various OS'es: 
 
 - <a href="https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git" target="_blank">https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git</a>. 
-
----
 
 ## GitHub CLI
 
