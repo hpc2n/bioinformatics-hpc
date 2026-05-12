@@ -1,21 +1,6 @@
----
-title: "Lecture 0: Setup"
-tags: Lecture, Birgitte, day 1
-description: "Git installation etc"
----
+# Installing and setting up Git
 
-# Lecture 0: Setup
-
-<!-- Lecture material made by Birgitte Brydsö for the version of the course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. 
-Minor modifications done for the fall 2021, 2022, 2023, and 2024 versions of the course. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course. -->
-
-<!-- Slides: https://hackmd.io/@git-fall-2024/L0-setup -->
-
----
-
-## Installing and setting up Git
-
-We will use Git from the command line in this course. This is normally how you will use it on the various HPC centers, and this way it will also be easier to understand what is going on while you are learning to use Git. On Windows, this means you will be using Git Bash. 
+We will use Git from the command line in this course. This is normally how you will use it on Kebnekaise and other HPC centers, and this way it will also be easier to understand what is going on while you are learning to use Git. On Windows, this means you will be using Git Bash. 
 
 Graphical tools exists for Git, see below list for a few. All entries on the list are free and unless otherwise mentioned, available for Windows, macOS, and Linux: 
 
@@ -25,7 +10,13 @@ Graphical tools exists for Git, see below list for a few. All entries on the lis
 * Sourcetree (https://www.sourcetreeapp.com/) Windows and macOS only
 * TortoiseGit (https://tortoisegit.org/) Windows only
 
----
+!!! hint "NOTE!"
+
+    If you have a problem getting this to work on your own computer, then you can use Kebnekaise instead.
+
+    We have some documentation for you for using Git from Kebnekaise: [Using Kebnekaise for Git](../kebnekaise.md)
+
+These are the steps we will go through - if you have already installed Git and set it up, you should not do this again. 
 
 * Install Git, if you have not already
 * Create a repository with `git init`
@@ -35,20 +26,9 @@ Graphical tools exists for Git, see below list for a few. All entries on the lis
 * Then commiting the file with `git commit`
 * Check with `git log` that all looks well. 
 
-When this is done, you will clone the course materials.
+When this is done, you will clone the course materials for the Git session.
 
----
-
-**NOTE**: if you have a problem getting this to work on your own computer, and you have an account at Tetralith or any other HPC system, then you can use that instead. 
-
-We have some documentation for you for Tetralith: [Using Tetralith for the Git course](../tetralith.md)
- 
-
-As mentioned, you may also use any other HPC system you have an account at, of course. The above documentation would need only minor adjustements. 
-
----
-
-### Git install - Windows
+## Git install - Windows
 
 * Go to the Git-scm website (<a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>) and click "Windows" to download the Windows version. It should automatically start download of the .exe file.
 * The downloaded file can be installed by double-clicking and choosing "Run". 
@@ -57,9 +37,7 @@ As mentioned, you may also use any other HPC system you have an account at, of c
 * You will be using Git Bash for this course 
 * NOTE: when it comes to choosing the default editor, we recommend using either notepad or vim, unless you have a preferred editor. See the section on "Configure git" as well as the section on editors at the end of this document for some help. 
 
----
-
-### Git install - macOS
+## Git install - macOS
 
 If you have installed XCode (or its Command Line Tools), Git may already be installed. To find out, open a terminal and enter `git --version`.
 
@@ -69,9 +47,7 @@ If Git is not installed, you have several installation options. Apple maintains 
 * Git-scm.com: <a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>
 * If you have Homebrew: `brew install git`
 
----
-
-### Git install - Linux
+## Git install - Linux
 
 Git is usually already installed on Linux, but if not, this is how you install it. 
 
@@ -80,8 +56,6 @@ Installing Git on Linux depends on which distro you are running.
 * `sudo apt-get install git` (Ubuntu, Debian)
 * `sudo dnf install git` (RHEL, CentOS)
 * <a href="https://git-scm.com/download/linux" target="_blank">https://git-scm.com/download/linux</a> (other)
-
----
 
 ## Git install - primary branch
 
@@ -93,8 +67,6 @@ Installing Git on Linux depends on which distro you are running.
     * Pick "Settings" -> "General"
     * Change the name in "Default branch"
 * Instructions how to rename the primary branch in a repo from "master" to "main" on the command line: <a href="https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab" target="_blank">https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab</a>
-
----
 
 ## Configure git (all OS)
 
@@ -139,8 +111,6 @@ GitHub has some documentation on choosing and setting editors for various OS:
 
 See more about configuring and using editors with Git at the end of this document. 
 
----
-
 ## Test your Git installation
 
 Create an example folder and change to that, then create a file test.txt. On Linux you would do this: 
@@ -168,8 +138,6 @@ $ git commit test.txt
  create mode 100644 test.txt
 ```
 
----
-
 Now let us look at the log:
 
 ```bash
@@ -183,19 +151,17 @@ Date:   Thu Sep 17 13:53:59 2020 +0200
 
 When you do `git log`, you should see something like the above, but with name, email, date, and commit message different. If that is the case, your Git should be configured correctly. 
 
----
+## Download the materials for the Git part 
 
-## Download the course materials
+For the individual hands-on part we have created some materials which you will download from the course GitHub repo: <a href="https://github.com/hpc2n/bioinformatics-hpc/" target="_blank">https://github.com/hpc2n/bioinformatics-hpc/</a>. 
 
-For the individual hands-on part of the course, we have created some course materials which you will download from the course GitHub repo: <a href="https://github.com/hpc2n/course-intro-git" target="_blank">https://github.com/hpc2n/course-intro-git</a> (normally you click the green "Code" button to get the link to clone or download)
+You can either just wget the exercises tarball or git clone the entire repository (normally you click the green "Code" button to get the link to clone or download).
 
 * Please go to the terminal window where you have downloaded and set up Git.
 * Change the directory to wherever you wish to have the course material.
 * *Do one of*: 
-    1. `git clone https://github.com/hpc2n/course-intro-git.git`
-    2. Download the zipfile (directly with `wget https://github.com/hpc2n/course-intro-git/archive/refs/heads/main.zip` or elsewhere then transfer) and unzip. You can also get the link from the course GitHub repo: <a href="https://github.com/hpc2n/course-intro-git" target="_blank">https://github.com/hpc2n/course-intro-git</a>. 
-
----
+    1. `git clone https://github.com/hpc2n/bioinformatics-hpc.git`
+    2. Download the zipfile (directly with `wget FIX THIS` or elsewhere then transfer) and unzip. You can also get the link from the course GitHub repo: <a href="https://github.com/hpc2n/bioinformatics-hpc/" target="_blank">https://github.com/hpc2n/bioinformatics-hpc/</a>. 
 
 ## Web based Git repositories
 
@@ -216,11 +182,7 @@ Please go to
 
 and sign up for an account, if you do not already have one. You will need to setup 2FA also. 
 
----
-
 ## Create a new SSH key for GitHub 
-
----
 
 ### Linux and macOS
 
@@ -245,7 +207,6 @@ $ ssh-add ~/.ssh/id_ed25519
 ```
 5. Switch to the `.ssh` folder, open the file `id_ed25519.pub` with some editor and copy it (`id_rsa` for legacy systems). Do NOT add any newlines or whitespace! 
 
----
 
 ### Windows
 
@@ -270,8 +231,6 @@ $ ssh-add ~/.ssh/id_ed25519
 ```
 5. Switch to the `.ssh` folder, with some editor, open the file `id_ed25519.pub` (or `id_rsa.pub` for the legacy systems) and copy it. Do NOT add any newlines or whitespace! 
 
----
-
 ## Adding the SSH key to GitHub
 
 1. On GitHub, click your avatar in the top right corner and pick "Settings".
@@ -281,10 +240,6 @@ $ ssh-add ~/.ssh/id_ed25519
 ![](https://i.imgur.com/DzOFZTd.png =500x)
 5. Click "Add SSH key"
 6. Confirm your GitHub password if you are prompted for it. 
-
----
-
-## Testing the SSH keys
 
 1. Open a terminal / the Git bash 
 2. `$ ssh -T git@github.com`
