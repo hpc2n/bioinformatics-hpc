@@ -58,7 +58,8 @@ nav:
     - Scripting: 5.linux-intro/scripting.md
     - Hints and tricks: 5.linux-intro/hints.md 
   - Introduction to Git: 
-    - Introduction: 6.Git/intro-to-git.md 
+    - Introduction: 6.Git/intro-to-git.md
+    - Setup: 6.Git/setup.md 
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - The module system: 7.software-modules-containers/modules.md
