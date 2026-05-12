@@ -23,7 +23,7 @@ The most common reason for making a script is probably to avoid writing the same
 
     Try out or code along for some of these examples. 
 
-    You can use the contents of the directory ``/exercises/script`` that you got from the downloaded tarball (<a href="https://github.com/hpc2n/linux-command-line-101/raw/refs/heads/main/exercises.tar.gz">exercises.tar.gz</a>) to play with. If you have not done so already, right-click and save to download, or right-click and copy the url, then do ``wget THE-URL-YOU-COPIED`` in a terminal window to download it there. Then do <code>tar -zxvf patterns.tar.gz</code> to unpack.  
+    You can use the contents of the directory ``/exercises/script`` that you got from the downloaded tarball "exercises.tar.gz" to play with. If you have not done so already, go to the repo (https://github.com/hpc2n/bioinformatics-hpc/) and click on it among the files listed, then right-click on "Raw" and copy the url, then do ``wget THE-URL-YOU-COPIED`` in a terminal window to download it there. Then do <code>tar -zxvf patterns.tar.gz</code> to unpack.  
 
 ## Starting with a motivational example
 We start scripting with a simple example.  The task at hand is to check how many lines of the file ``file.dat`` contain the string 'ABCD'.  This time we want to do this with a script.  
@@ -136,7 +136,7 @@ The following group of 3 bits are for the owner, then the next 3 for the group, 
 
 !!! Note
 
-    It is also possible to change the ownership of a file or a directory. We are not going to cover this here, but you can read about the command <code>chown</code> and how to use it in the "[More commands](../more-commands)" section under EXTRAS.
+    It is also possible to change the ownership of a file or a directory. We are not going to cover this here, but you can read about the command <code>chown</code> and how to use it in the "More Linux commands" section under EXTRAS in the left-side menu.
 
 ## More scripting 
 
@@ -144,7 +144,7 @@ Scripting is used to perform complex or repetitive tasks without user interventi
 
 !!! NOTE
 
-    If it is just a one-line command you want to do again and again, then ['alias'](../more-commands#alias) is more suited for this. 
+    If it is just a one-line command you want to do again and again, then 'alias' is more suited for this. More about that command soon. 
 
 We go back to our example script ``my_first.sh``.  There is a second file named ``file2.dat`` which also needs to be processed by the script.   We could open an editor, change the contents of ``my_first.sh`` and re-run it.   This is not really convenient.  To create an improved script copy your script
 

@@ -52,9 +52,11 @@ nav:
     - The Linux File System: 5.linux-intro/filesystem.md
     - Modifying the file tree: 5.linux-intro/modify.md
     - Editors on Linux: 5.linux-intro/editors.md
+    - Data handling: 5.linux-intro/data.md
     - Pipes and filters: 5.linux-intro/pipesfilters.md
     - Finding patterns: 5.linux-intro/patterns.md
-    - Scripting: 5.linux-intro/scripting.md 
+    - Scripting: 5.linux-intro/scripting.md
+    - Hints and tricks: 5.linux-intro/hints.md 
   - Introduction to Git: 
     - Introduction: 6.Git/intro-to-git.md 
   - Accessing software on Kebnekaise: 
@@ -74,6 +76,9 @@ nav:
     - Introduction: 10.access-databases/intro.md   
   - Extras:
     - Install tree: tree.md
+    - Linux terminology: 5.linux-intro/linux-terminology.md
+    - More Linux commands: 5.linux-intro/more-commands.md
+    - Linux cheat sheet: 5.linux-intro/cheat.md
 
 plugins:
   - search
