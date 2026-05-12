@@ -59,7 +59,9 @@ nav:
     - Hints and tricks: 5.linux-intro/hints.md 
   - Introduction to Git: 
     - Introduction: 6.Git/intro-to-git.md
-    - Setup: 6.Git/setup.md 
+    - Setup: 6.Git/setup.md
+    - Why use version management?: 6.Git/motivation.md
+    - Basic commands: 6.Git/basic-commands.md 
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - The module system: 7.software-modules-containers/modules.md

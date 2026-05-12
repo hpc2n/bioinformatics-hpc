@@ -1,22 +1,12 @@
----
-title: "Lecture B: Using Kebnekaise for the Git course"
-tags: Lecture, Birgitte, day 1
-description: "Git installation, use of Kebnekaise, etc"
----
+# Using Kebnekaise for Git
 
-<!-- Lecture material made by Birgitte Brydsö for the version of the course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. 
-Minor modifications done for the fall 2021 and 2022 versions of the course. -->
+Here first follows a brief recap of how to connect. This is followed by a short walk-through of using Git on Kebnekaise. 
 
-<!-- Minor updates done for the fall 2025 version of the course -->
-<!-- Slides: https://hackmd.io/@git-fall-2022/LB-kebnekaise#/ --> 
+## Connecting
 
----
+We will be using the command line only, but connecting through ThinLinc or OpenOndemand works well also - depending on what you prefer. 
 
-# Connecting to Kebnekaise
-
-## ThinLinc
-
-For this course we recommend using ThinLinc, but if you have your own installation of another SSH client that you prefer, you are welcome to use that. We will be using the command line only. 
+### ThinLinc
 
 * Download the client from https://www.cendio.com/thinlinc/download and install it.
 * Start the client. Enter the name of the server: kebnekaise-tl.hpc2n.umu.se and then enter your own username.
@@ -26,10 +16,7 @@ For this course we recommend using ThinLinc, but if you have your own installati
 
 More information here: <a href="https://docs.hpc2n.umu.se/tutorials/connections/#thinlinc" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#thinlinc</a>. 
 
-
----
-
-## SSH 
+### SSH 
 
 If you prefer to login with a regular SSH client (i.e. PuTTY, Terminal, Linux terminal, etc.) then use the following as server: 
 
@@ -49,9 +36,7 @@ More information here:
 - <a href="https://docs.hpc2n.umu.se/tutorials/connections/#connecting__from__windows" target="_blank">Connecting from Windows</a>
 - <a href="https://docs.hpc2n.umu.se/tutorials/connections/#connecting__from__macos" target="_blank">Connecting from macOS</a>
 
----
-
-## Open OnDemand 
+### Open OnDemand 
 
 If you prefer to use HPC2N's OpenOnDemand web service, then:
 
@@ -63,9 +48,7 @@ If you prefer to use HPC2N's OpenOnDemand web service, then:
 
 More information here: <a href="https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand</a>
 
----
-
-## Setting up Git
+## Setting up Git on Kebnekaise
 
 Git is already installed on Kebnekaise, but you need to set your name and email globals *unless you have already done this at some earlier time*. 
 
@@ -76,8 +59,6 @@ Git is already installed on Kebnekaise, but you need to set your name and email 
 You may also want to set your editor. We recommend vim, but other options are nano and emacs. 
 
 * `$ git config --global core.editor vim`
-
----
 
 ## Testing your configuration 
 
@@ -102,10 +83,6 @@ Now *commit* the change. The editor which you configured earlier should open. Ad
 $ git commit test.txt 
 ```
 
----
-
-## Testing your configuration - continued
-
 Now let us look at the log:
 
 ```bash
@@ -126,27 +103,24 @@ but with name, email and commit message different.
 
 If that is the case, your Git should be configured correctly. 
 
----
+## Download the exercise materials
 
-## Download the course materials
+For the individual hands-on part, we have created some exercise materials which you will download from the course repository on GitHub. 
 
-For the individual hands-on part of the course, we have created some course materials which you will download from either the course website, the course GitHub, or the "important information" page. 
-
-* Course website: <a href="https://www.hpc2n.umu.se/events/courses/2025/git" target="_blank">https://www.hpc2n.umu.se/events/courses/2025/git</a>
-* Course GitHub: <a href="https://github.com/hpc2n/course-intro-git" target="_blank">https://github.com/hpc2n/course-intro-git</a>
+* Course GitHub: <a href="hhttps://github.com/hpc2n/bioinformatics-hpc" target="_blank">https://github.com/hpc2n/bioinformatics-hpc</a>
     - Click the green button labeled "Code" to get links to clone or download the materials. 
 * Download the material, then please go to the terminal window where you have downloaded and set up Git.
 * Change the directory to wherever you wish to have the course material.
 * Copy/transfer the tarball there (or download there directly with `wget <url-to-tarball>`)
 * Unpack with `tar zxvf <tarball>`
 
----
+!!! note
+
+    You will get the entire course material, not just for the Git sessions! The exercises are located under "exercises" and then "6.Git". 
 
 ## GitHub and SSH keys
 
 * You need to create an account on GitHub for the course
 * You also need to create SSH keys on Kebnekaise and install these on GitHub
 * We will go through this in a general way which should work regardless of system you are using
-    * We will go through it before the Teamwork session. The material for creating and setting up SSH keys are here: <a href="https://hpc2n.github.io/course-intro-git/setup/#create__a__new__ssh__key__for__github" target="_blank">https://hpc2n.github.io/course-intro-git/setup/#create__a__new__ssh__key__for__github</a>
-
-
+    * We will go through it before the Teamwork session. The material for creating and setting up SSH keys are here: FIX THIS LINK!!!! 
