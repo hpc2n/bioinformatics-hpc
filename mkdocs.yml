@@ -82,6 +82,7 @@ nav:
     - Linux terminology: 5.linux-intro/linux-terminology.md
     - More Linux commands: 5.linux-intro/more-commands.md
     - Linux cheat sheet: 5.linux-intro/cheat.md
+    - Git setup on Kebnekaise: 6.Git/kebnekaise.md
 
 plugins:
   - search
