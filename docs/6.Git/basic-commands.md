@@ -1,18 +1,6 @@
----
-title: "Lecture 2: Basic commands"
-tags: Lecture, Pedro, day 1
-description: "Basic Git commands"
----
+# Basic commands
 
-<!-- Lecture material made by Pedro Ojeda-May for the version of the course that was given in fall 2020. Lecture was first given by Pedro Ojeda-May in fall 2020. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course.-->
-
-<!-- Slides: https://hackmd.io/@git-fall-2024/L2-commands --> 
-
----
-
-# Lecture 2: Basic commands
-
----
+This section will focus on some of the basic commands of Git and how to use them. 
 
 ## Getting help
 
@@ -37,8 +25,6 @@ SYNOPSIS
 DESCRIPTION
 ```
 
----
-
 ## Creating a repository from scratch
 
 In case you want to start a project from scratch called **myproject**:
@@ -53,8 +39,6 @@ Initialized empty Git repository in .../myproject/.git/
 
 this will create a folder called *.git* in the current folder which contains the Git-related files. 
 
----
-
 We can now ask about the status of the repository:
 
 ```bash
@@ -67,8 +51,6 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
----
-
 ## Creating a repository by cloning an existing repository
 
 Use the command:
@@ -80,8 +62,6 @@ $ git clone repository_location path_where_it_will_be
 
 <span style="color:red">*repository_location* </span> is the path of the Git repository (if it is in your local machine) or a URL if it is on the internet. <span style="color:red">*path_where_it_will_be* </span> is the path for the cloned repository.
 
-
----
 
 ```console
 $ git clone https://github.com/aliceuser2020/my-first-project.git  ./my-project  
@@ -99,15 +79,11 @@ Your branch is up-to-date with 'origin/master'.
 nothing to commit, working directory clean
 ```
 
----
-
 ## Stages of files
 
 
-![Git folders](images/git-folders2.png){: style="width: 700px;}
+![Git folders](../../images/git-folders2.png){: style="width: 700px";}
 
-
----
 
 ## Monitoring the differences in files
 
@@ -119,7 +95,6 @@ $ git diff
 
 This command supports different options.
 
----
 
 ## Adding files' modifications
 
@@ -130,8 +105,6 @@ $ echo "This is my first file" > first.txt
 ```
 
 If we ask about the status of the repository we will see the following message,
-
----
 
 ```console
 $ git status 
@@ -146,11 +119,7 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
----
-
-![](images/git-folders-changes-wd.png)
-
----
+![](../../images/git-folders-changes-wd.png)
 
 We can now add the <span style="color:brown">*first.txt* </span> file to the staging area:
 
@@ -171,12 +140,8 @@ Changes to be committed:
 	new file:   first.txt
 ```
 
----
+![](../../images/git-folders-changes-sa.png)
 
-![](images/git-folders-changes-sa.png)
-
-
----
 
 ## Unstaging files' modifications part I
 
@@ -188,8 +153,6 @@ $ git rm --cached first.txt
 
 Notice that Git suggests this command because the repository is brand-new and nothing has been committed yet. 
 
----
-
 ## Committing changes
 
 Once the changes are staged, they can be commited with the command
@@ -200,8 +163,6 @@ $ git commit
 
 this will open a window of the default text editor in your system (in this case **Vim**)
 
-
----
 
 ```console
 First commit in myproject
@@ -220,7 +181,6 @@ First commit in myproject
 
 write a commit message and upon saving the file the changes will be committed.
 
----
 
 ```console
 $ git commit
@@ -238,8 +198,6 @@ nothing to commit, working tree clean
 ```
 
 
----
-
 Fast (lazy?) commit option:
 
 
@@ -249,12 +207,8 @@ $ git commit -a -m "Commit message"
 
 this command will add all files that were modified (and tracked) and commit them with the quoted message.
 
----
+![](../../images/git-folders-changes-lb.png)
 
-![](images/git-folders-changes-lb.png)
-
-
----
 
 
 ## Unstaging files' modifications part II
@@ -268,8 +222,6 @@ Changes to be committed:
 	modified:   first.txt
 ```
 
----
-
 For versions before 2.23 the status would look like:
 
 ```console
@@ -280,18 +232,12 @@ Changes to be committed:
 	modified:   first.txt
 ```
 
----
-
 Git suggests a different way to unstage the file as we saw before, because now there is a <span style="color:brown">HEAD </span> pointer. 
-
----
 
 ```console
 $ git restore --staged filename
 ```
 unstages the changes made to *filename*. From the website https://git-scm.com/docs/git-restore: THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
-
----
 
 ```console
 $ git reset HEAD filename
@@ -303,7 +249,6 @@ $ git rm --cached filename
 ```
 with this command Git will untrack *filename* (staging for removal) leaving the file in the working directory
 
----
 
 ## Content of a commit message
 
@@ -315,8 +260,6 @@ with this command Git will untrack *filename* (staging for removal) leaving the 
 
 **Important:** check that the code works before commiting. Here, test cases are very handy. Git kurz & gut, O'Reillys, Nina Siessegger.  
 
----
-
 ## Reverting to the previous commit
 
 If you made a commit and you regret it later, you can revert the changes to the previous
@@ -325,8 +268,6 @@ commit with the command:
 ```console
 $ git revert HEAD
 ```
-
----
 
 ## Adding multiple files 
 
@@ -338,8 +279,6 @@ $ git add file[1-3].txt
 $ git add *.txt
 ```
 
----
-
 If we want to add all the files for staging we can do:
 
 ```console
@@ -347,8 +286,6 @@ $ git add -A        (all files including those in the parent folder)
 $ git add .         (all files in the sub-folders)
 ```
 
-
----
 
 ## Renaming files/folders
 
@@ -358,8 +295,6 @@ Imagine that you want to change the name of the file <span style="color:brown"> 
 $ git mv oldfilename newfilename
 $ git mv first.txt Readme.txt
 ```
-
----
 
 Although there is not feedback from the command the status of the file has now changed
 
@@ -372,8 +307,6 @@ Changes to be committed:
 ```
 
 you can now commit the changes. Renaming files, instead of creating new ones, can help you to keep a consistent history of the files.
-
----
 
 ## Moving files
 
@@ -389,8 +322,6 @@ Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
         renamed:    first.txt -> src/first.txt
 ```
-
----
 
 ## Removing files
 
@@ -409,13 +340,9 @@ Changes to be committed:
 
 Sometimes it is more convenient to rename files instead of deleting them to keep the history more consistent.
 
----
-
 ## Ignoring files
 
 If you want to ignore some files in your repository, for instance, temporary (.tmp) or binary (.bin) files. One way to accomplish this is by creating a file called **.gitignore** in the repository with some rules with a Linux-type wild cards syntax
-
----
 
 ```shell
 $ cat .gitignore
@@ -424,8 +351,6 @@ $ cat .gitignore
 ```
 
 then, you will have to commit the **.gitignore** file as usual.
-
----
 
 One caveat of using a **.gitignore** file is that it will be shared with all the collaborators. One can instead use the local exclude file in <span style="color:blue">*.git/info/exclude*</span> to define the rules. This file won't be shared. 
 
@@ -442,8 +367,6 @@ One caveat of using a **.gitignore** file is that it will be shared with all the
 ```
 
 
----
-
 ## Generating aliases 
 
 The following command shows a graph of the commits' tree in an organized way:
@@ -459,8 +382,6 @@ $ git config --global alias.shortcut <git command>
 
 $ git config --global alias.graph "log --all --graph --decorate --oneline"
 ```
-
----
 
 In this way, you can use a customized **git graph** command:
 
@@ -481,11 +402,7 @@ alias graph="git log --all --decorate --oneline --graph"
 
 which will make the command <span style="color:blue"> *graph*</span> available on the command line.
 
----
-
 ## Intermediate/ Advanced commands
-
----
 
 ### Adding files' modifications interactively
 
@@ -507,8 +424,6 @@ This is my first file
 * Summary
 ```
 
----
-
 The status command tells us that we did some modifications to the file:
 
 ```console
@@ -521,11 +436,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
----
-
 Let's suppose that the new text (5 lines) refer to different topics: *TODO list* and *Summary*. Then, it would be better to have them in different commits. We can add the modifications interactively:
-
----
 
 ```console
 $ git add -p first.txt
@@ -547,8 +458,6 @@ index e69de29..96dd9a2 100644
 
 choose the **e** edit option to enter the editing mode.
 
----
-
 ```console
 # Manual hunk edit mode -- see bottom for a quick guide.
 @@ -0,0 +1,5 @@
@@ -566,8 +475,6 @@ choose the **e** edit option to enter the editing mode.
 Because we don't want *Summary* in the first commit, we delete that line and save the file.
 
 
----
-
 You can now take a look at the status of the file
 
 ```console
@@ -584,13 +491,11 @@ Changes not staged for commit:
 
 ```
 
----
-
 Notice that the file <span style="color:brown">first.txt </span> has been partially staged. 
 
-![](images/git-folders-changes.png)
+![](../../images/git-folders-changes.png)
 
----
+
 
 The difference between staged changes and the unstaged ones can be seen with:
 
@@ -605,7 +510,7 @@ $ git diff --staged
 $ git diff --cached
 ```
 
----
+
 
 and the difference between the unstaged changes and the previous commit with:
 
@@ -615,7 +520,7 @@ $ git diff HEAD
 
 At this point, you can commit the staged changes and later on stage and commit the remaining changes.
 
----
+
 
 ### Amending commits
 
@@ -628,7 +533,7 @@ $ git commit --amend
 the flag *-m* will allow you to write a short message and *- -no-edit* will keep the message from the previous commit.
 <span style="color:red">Note: use this command in commits that haven't been pushed on public branches. This command modifies the history.</span>
 
----
+
 
 ### Simplifying commits
 
@@ -646,7 +551,7 @@ $ git graph
 
 in this case, the three last commits are related and can be squashed into a single commit.
 
----
+
 
 ```java
 $ git rebase -i HEAD~3
@@ -682,7 +587,7 @@ pick 39ecba2 Fourth commit
 # Note that empty commits are commented out
 ```
 
----
+
 
 choose the option **s** (squash)
 
@@ -718,7 +623,7 @@ s 39ecba2 Fourth commit
 # Note that empty commits are commented out
 ```
 
----
+
 
 a text editor message will appear where you can type the message for the squashed commit:
 
@@ -754,7 +659,7 @@ Summary of three commits
 #
 ```
 
----
+
 
 Finally, we check the log file and see that we have now only two commits with the new commit message:
 
@@ -768,11 +673,11 @@ $ git graph
 
 <span style="color:red">Note: use this command in commits that haven't been pushed on public branches. This command modifies the history.</span>
 
----
+
 
 ## Advanced
 
----
+
 
 ### Git blame (Advanced)
 
