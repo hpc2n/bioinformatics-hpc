@@ -24,8 +24,6 @@ graph LR
     B --> C@{ shape: stadium, label: "Wednesday's improvements"}
 ```
 
----
-
 In the real world, things develop non-linearly: 
 
 - A new version can be anything between 
@@ -43,8 +41,6 @@ graph LR
   Tue --> Wed
 ```
 
----
-
 ### Going back to an earlier version
 
 Sometimes, it is easier to simply backtrack to an *earlier version*...
@@ -58,8 +54,6 @@ graph LR
   Mon --> Wed
 ```
 
----
-
 #### Where is this *earlier version*?
 
  - CTRL + Z <!-- .element: class="fragment" -->
@@ -69,8 +63,6 @@ graph LR
      - 2020-08-13/
      - ...
  - Daily home directory backup <!-- .element: class="fragment" -->
-
----
 
 #### Challenges and obstacles
 
@@ -82,8 +74,6 @@ graph LR
      - What is the difference between different versions? <!-- .element: class="fragment" -->
 
 *Overall, difficult to manage!* <!-- .element: class="fragment" -->
-
----
 
 #### What about the granularity?
 
@@ -119,19 +109,15 @@ graph LR
 
 *This compounds the problems!*
 
----
+!!! note "How does VCS solve this?"
 
-#### How does VCS solve this?
-
- - Stores the history using snapshots (commits) <!-- .element: class="fragment" -->
-     - Each snapshot represents the project at a given point in time <!-- .element: class="fragment" -->
- - Manages snapshots and associated metadata <!-- .element: class="fragment" -->
-     - Naming (tags), comments, dates, authors, etc <!-- .element: class="fragment" -->
- - Easy to move between different snapshots <!-- .element: class="fragment" -->
- - Can handle different degrees of granularity <!-- .element: class="fragment" -->
- - Can handle multiple development paths (branches) <!-- .element: class="fragment" -->
-
----
+    - Stores the history using snapshots (commits) <!-- .element: class="fragment" -->
+        - Each snapshot represents the project at a given point in time <!-- .element: class="fragment" -->
+    - Manages snapshots and associated metadata <!-- .element: class="fragment" -->
+        - Naming (tags), comments, dates, authors, etc <!-- .element: class="fragment" -->
+    - Easy to move between different snapshots <!-- .element: class="fragment" -->
+    - Can handle different degrees of granularity <!-- .element: class="fragment" -->
+    - Can handle multiple development paths (branches) <!-- .element: class="fragment" -->
 
 ### Comparing and joining
 
@@ -143,8 +129,6 @@ graph LR
  - VCS also allows the joining (merging) of different snapshots  <!-- .element: class="fragment" -->
      - Easy to experiment with ideas <!-- .element: class="fragment" -->
 
----
-
 ### Collaboration
 
  - One of the primary functions of VCS is to allow collaboration <!-- .element: class="fragment" -->
@@ -154,16 +138,12 @@ graph LR
  - Safer since mistakes can be easily remedied <!-- .element: class="fragment" -->
  - The contributions of several people can be merged <!-- .element: class="fragment" -->
 
----
-
 ### Backup
 
  - VCS functions as a backup <!-- .element: class="fragment" -->
  - Locally, the system maintains a copy of each file <!-- .element: class="fragment" -->
      - Usually only the changes or the files that have changed are stored <!-- .element: class="fragment" -->
  - Globally, lost files can be recovered from the server <!-- .element: class="fragment" -->
-
----
 
 ### Integration
 
@@ -172,24 +152,18 @@ graph LR
  - Services such as GitHub can do almost everything for you <!-- .element: class="fragment" -->
      - Store history, distribute, testing / continuous integration, bug reports, milestones, website, ... <!-- .element: class="fragment" -->
 
----
+!!! note "Summing up"
 
-### Summing up
+    Version control systems
 
-Version control systems
-
-- keeps track of your files and other output
-- tracks what is created and modified
-- tracks who made the modifications
-- tracks why the modifications were made (if you make good commit comments)
-
----
+    - keeps track of your files and other output
+    - tracks what is created and modified
+    - tracks who made the modifications
+    - tracks why the modifications were made (if you make good commit comments)
 
 ## Practical use cases
 
 What are the practical use cases for VCS?
-
----
 
 ### Source code
 
@@ -200,8 +174,6 @@ What are the practical use cases for VCS?
  - Bug hunting <!-- .element: class="fragment" -->
  - But also for: writers, artists, composers... <!-- .element: class="fragment" -->
 
----
-
 ### Latex files
 
  - Track which version of a manuscript has been <!-- .element: class="fragment" -->
@@ -210,8 +182,6 @@ What are the practical use cases for VCS?
      - accepted
  - Collaboration between several authors <!-- .element: class="fragment" -->
 
----
-
 ### HPC: batch files and data
 
  - Track different versions of your batch scripts <!-- .element: class="fragment" -->
@@ -219,19 +189,13 @@ What are the practical use cases for VCS?
  - Track input and output files <!-- .element: class="fragment" -->
      - Limited to smallish files
 
----
+!!! note "Examples of VCS"
 
-### Examples of VCS
-
-<!-- .slide: style="font-size: 24px;" -->
-
-- SCCS: The first VCS. Created in 1972 at Bell Labs. Was available only for UNIX and worked with Source Code files only.
-- RCS (Revision Control System): First release July 1985. Usually superseded by other systems such as CVS, which began as a wrapper on top of RCS. 
-- CVS (centralized version control system): First release July 1986; based on RCS. Expands on RCS by adding support for repository-level change tracking, and a client-server model. 
-- Apache Subversion (SVN): First release in 2004 by CVS developers with the goal of replacing CVS. 
-- BitKeeper: Initial release May 2000. Distributed version control. Was shortly used for developing the Linux kernel. Proprietary. No longer maintained.
-- **Git**: Started by Linus Torvalds in April 2005, originally for developing the Linux kernel. Distributed version control. Open source. 
-- ...
-
----
+    - SCCS: The first VCS. Created in 1972 at Bell Labs. Was available only for UNIX and worked with Source Code files only.
+    - RCS (Revision Control System): First release July 1985. Usually superseded by other systems such as CVS, which began as a wrapper on top of RCS. 
+    - CVS (centralized version control system): First release July 1986; based on RCS. Expands on RCS by adding support for repository-level change tracking, and a client-server model. 
+    - Apache Subversion (SVN): First release in 2004 by CVS developers with the goal of replacing CVS. 
+    - BitKeeper: Initial release May 2000. Distributed version control. Was shortly used for developing the Linux kernel. Proprietary. No longer maintained.
+    - **Git**: Started by Linus Torvalds in April 2005, originally for developing the Linux kernel. Distributed version control. Open source. 
+    - ...
 
