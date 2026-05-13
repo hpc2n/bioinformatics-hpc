@@ -119,7 +119,7 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-![](../../images/git-folders-changes-wd.png)
+![Git folders with change](../../images/git-folders-changes-wd.png){: style="width: 700px";}
 
 We can now add the <span style="color:brown">*first.txt* </span> file to the staging area:
 
