@@ -237,7 +237,7 @@ $ ssh-add ~/.ssh/id_ed25519
 2. Choose "SSH and GPG keys"
 3. Click the green button labeled "New SSH key"
 4. Add a descriptive label for the key in the "Title" field. In the key field you paste the content of the key (~/.ssh/id_rsa.pub)
-![](../../github.png =500x)
+![](../../images/github.png =500x)
 5. Click "Add SSH key"
 6. Confirm your GitHub password if you are prompted for it. 
 
