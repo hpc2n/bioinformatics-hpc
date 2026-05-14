@@ -4,6 +4,9 @@ In order to do these exercises, you need to download the exercises zip file (if 
 
 You can do that either by cloning the repository or by just getting the zip file with `wget`.
 
+** FIX THIS **
+
+
 - Do ONE of the following:
     - **git clone**
         1. ``git clone https://github.com/hpc2n/course-intro-git.git``

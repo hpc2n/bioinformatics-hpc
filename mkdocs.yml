@@ -68,6 +68,8 @@ nav:
     - Traversing the commit tree: 6.Git/commits.md
     - Traversing the commit tree exercises: 6.Git/commits-exercises.md
     - Branches, merges, and conflicts: 6.Git/branches.md
+    - Branches, merges, and conflicts exercises: 6.Git/branches-exercises.md
+    - Working with remotes: 6.Git/remotes.md
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - The module system: 7.software-modules-containers/modules.md
