@@ -840,7 +840,6 @@ M       file.txt
 
  - `git reset` defaults to `git reset --mixed` => the **state of the working tree is kept**.
 
----
 
  - If we are lucky, we can still recover the commit:
 
@@ -854,8 +853,6 @@ $ git reset f0d7298983
 $ git reset --hard HEAD~
 HEAD is now at d3c6c63 This is the second commit
 ```
-
----
 
 ### Changing the last commit
 
@@ -886,8 +883,6 @@ graph LR
 ```
 
 Forgotten file, incorrect commit message, etc
-
----
 
 The problem can be fixed easily in two steps:
 
@@ -931,15 +926,11 @@ graph LR
   C -.-> file2
 ```
 
----
-
 - Step #2 is to replace the current `HEAD` with a corrected commit:
 
 ```shell
 $ git commit --amend
 ```
-
----
 
  - The **amend** command first removes the HEAD commit from the commit tree and combines it with the current index:
 
@@ -983,8 +974,6 @@ graph LR
   C -.-> file2
 ```
 
----
-
 - `git commit --amend` is equivalent to:
 
 ```shell
@@ -998,8 +987,6 @@ Changes to be committed:
 $ git commit -c ORIG_HEAD
 ```
 
-
----
 
 ### `git revert`
 
@@ -1023,8 +1010,6 @@ $ git log --oneline --graph --all
 * 23b3ed5 (tag: first) This is the first commit
 ```
 
----
-
 We later discover that the commit was a mistake and revert it:
 
 ```shell
@@ -1045,8 +1030,6 @@ $ git log --oneline --graph --all
 * 23b3ed5 (tag: first) This is the first commit
 ```
 
----
-
 We can see that the revert commit simply removes the changes made in the first commit and restores changes make in the preceding commit:
 
 ```shell
@@ -1065,11 +1048,7 @@ Date:   Tue Sep 29 19:56:19 2020 +0200
 +Different content
 ```
 
----
-
 ## Exercises
-
----
 
 |    Exercise    | Description                            |
 |----------------|----------------------------------------|
