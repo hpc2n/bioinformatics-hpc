@@ -1,20 +1,6 @@
----
-title: "Lecture 4: Commits"
-tags: Lecture, Diana, day 2, 3
-description: "Commits and commit trees"
----
-
-# Lecture 4: Commits
-
-<!-- Lecture material made by Mirko Myllykoski for the version of the course that was given in fall~~~~~~~~ 2020. Lecture was first given by Mirko Myllykoski in fall 2020. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course. -->
-
-<!-- Slides: https://hackmd.io/@git-fall-2024/L4-commits --> 
-
----
+# Traversing the commit tree
 
 ## Investigating history
-
----
 
 The **history** can be investigated with the `git log` command:
 
@@ -35,8 +21,6 @@ Date:   Wed Sep 2 12:06:07 2020 +0200
 commit ....
 ```
 
----
-
  - Actually, `git log <ref>` lists commits that are **reachable** from `<ref>`
      - `<ref>` defaults to `HEAD`
  - For example:
@@ -56,8 +40,6 @@ Date:   Tue Aug 25 09:55:17 2020 +0200
     This is the third most recent commit
 ```
 
----
-
 **More about listing commits** 
 
  - `git log -n <n> <ref> ` lists only `<n>` most recent commits
@@ -74,8 +56,6 @@ d9290ba This is the second most recent commit
  - `git log --format=oneline <ref>`
      - The formats include, but are not limited to, `oneline`, `short`, `medium`, `full`, `fuller`, `email`, and `raw`
 
----
-
 ### Matching **regular expressions**
 
  - `git log --grep=<regexp> <ref>` displays commits that match a regular expression `<regexp>`:
@@ -88,8 +68,6 @@ Date:   Fri Jul 17 14:17:14 2020 +0200
 
     Fix a bug that caused my Saturday headaches 
 ```
-
----
 
 ### Changes before/after date
 
@@ -107,8 +85,6 @@ commit add51b56dd0a985b8625e77e8b2b4dbfab2133b8
 Author: Mirko Myllykoski <mirkom@cs.umu.se>
 Date:   Wed Jun 3 12:08:56 2020 +0200
 ```
-
----
 
 ### List changed files
 
@@ -129,8 +105,6 @@ D       mistake.txt
  - `git log --stat <ref>` displays more information
  - `git log -p <ref>` displays even more information (diffs)
 
----
-
 ### Visualizing the tree 
 
  - When working with multible branches, 
@@ -147,8 +121,6 @@ $ git log --graph --all --oneline
 * 23b3ed5 (tag: first) This is the first commit
 ```
 
----
-
 ### Reflog
 
  - The `git log` command displays **only changes that affect the commit tree**
@@ -156,8 +128,6 @@ $ git log --graph --all --oneline
      - Gets updated when the tips of branches and other references are modified
      - Accessed with the `git reflog` command
      - Some of the information can be merged with a regular log (`git log -g <ref>`)
-
----
 
 #### Discarding a commit
 
@@ -188,8 +158,6 @@ $ git log --oneline
 23b3ed5 (HEAD -> master) This is the first commit
 ```
 
----
-
  - However, the commit (`2f529ae`) still exists in the reference log:
 
 ``` shell
@@ -203,11 +171,7 @@ the first commit
  - At this point, we could attempt to recover the commit.
      - Note that Git is allowed to delete any orphan commits.
 
----
-
 ## Comparing commits
-
----
 
 We can compare commits with `git diff`:
 
@@ -232,8 +196,6 @@ index 09c78e6..3b23ff0 100644
 +More content
 ```
 
----
-
 ### Investigate a file 
 
  - We can also investigate an individual file:
@@ -248,8 +210,6 @@ index 09c78e6..3b23ff0 100644
  This file is very interesting
 +More content
 ```
-
----
 
 ### List changes in the working tree / working directory / workspace
 
@@ -271,19 +231,15 @@ $ git diff
 $ git diff --cached
 ```
 
----
-
 ## Navigating the commit tree
 
----
+!!! note
 
- - In order to use the commits stored by Git, we must be able to navigate the commit tree
- - This happens with the `git checkout` and `git reset` commands
- - The commands behave slightly differently!
+    - In order to use the commits stored by Git, we must be able to navigate the commit tree
+    - This happens with the `git checkout` and `git reset` commands
+    - The commands behave slightly differently!
 
----
-
- - Let's investigate the commit tree. We are currently at `master`:
+- Let's investigate the commit tree. We are currently at `master`:
 
 ```shell
 $ git log --graph --oneline
@@ -307,8 +263,6 @@ $ git log --graph --oneline
 * 23b3ed5 (tag: first) This is the first commit
 ```
 
----
-
  - `git checkout` **moves only the `HEAD`**, the tip of the branch is not modified:
 
 ```shell
@@ -322,8 +276,6 @@ $ git log --graph --oneline master
 ```
 
  - `git checkout` attempts to keep local modifications to the files in the working tree
-
----
 
 ### Detached `HEAD`
 
@@ -358,8 +310,6 @@ by switching back to a branch.
 ....
 ```
 
----
-
 - This simply means that the `HEAD` no longer points to the tip of the branch:
 
 ```mermaid
@@ -383,8 +333,6 @@ graph LR
 $ git config --global advice.detachedHead false
 ```
 
----
-
  - If we are currently on the tip of a branch, then:
 
 ```shell
@@ -407,8 +355,6 @@ $ cat .git/HEAD
 d3c6c635fb44c7084797d47050bff7961853c19b
 ```
 
----
-
  - The tip of the branch can be **recovered** with `git checkout <tip_ref>`:
 
 ```shell
@@ -416,8 +362,6 @@ $ git checkout master
 Previous HEAD position was 23b3ed5 This is the first commit
 Switched to branch 'master'
 ```
-
----
 
 ### Git reset
 
@@ -435,8 +379,6 @@ $ git reset <option> <ref>
 |`--mixed` |      |   X   |  X   | Default        |
 |`--hard`  |  X   |   X   |  X   |                |
 
-
----
 
  - The command can be **dangerous**!
  - If you are in the detached `HEAD` mode, then only the `HEAD` gets moved:
@@ -485,8 +427,6 @@ graph LR
   linkStyle 5 stroke:#aeaeae,stroke-width:1px,stroke-dasharray:3;
 ```
 
----
-
  - Applying `git checkout` to a file **discards all unstaged changes** made to the file:
 
 ```shell
@@ -498,8 +438,6 @@ $ git checkout <filename>
 $ git reset <filename>
 ```
 
-
----
 
 An example:
 
@@ -526,8 +464,6 @@ $ git diff
 $
 ```
 
----
-
 ### `git restore`
 
  - from git version 2.23, under development
@@ -543,11 +479,7 @@ $ git restore --staged <filename>
 ```
  - advantage: does not change the HEAD
 
----
-
 ## Tagging
-
----
 
  - We can give a commit a special name (tag).
  - All existing tags can be listed with:
@@ -568,8 +500,6 @@ v0.1-beta.2
 ....
 ```
 
----
-
  - In the simplest case, we can create a **lightweight** tag:
 
 ```shell
@@ -585,18 +515,12 @@ $ git tag -a <tag_name> -m <comment>
 
  - An annotated tag stores extra information such as the tag's creator, the creation time and a comment.
 
----
-
 ## Referring to commits
-
----
 
  - We can refer to commits in many different ways:
      - Hash (commit id): d3c6c635fb44c7....
      - References, branches, tags: `HEAD`, `master`, `first`, etc
      - Long names: `refs/heads/master`, `refs/tags/first`
-
----
 
 We can also refer to the ancestors of a commit:
 
@@ -625,16 +549,12 @@ $ git rev-parse --short HEAD~~
 23b3ed5
 ```
 
----
-
  - `ref~n` returns the `n`'th ancestor of `ref`.
      - `ref = ref~0`
      - `ref~ = ref~1`
      - `ref~~ = ref~2`
      - ...
  - Always follows the **first** parent
-
----
 
 We can also refer to the parents of a commit:
 
@@ -658,8 +578,6 @@ $ git rev-parse --short HEAD^2
 a118ae8
 ```
 
----
-
  - `ref^n` returns the `n`'th parent of `ref`.
      - `ref = ref^0`
      - `ref^ = ref^1`
@@ -673,11 +591,7 @@ graph LR
   refhat(["ref^"]) --> refhathat(["ref^^"])
 ```
 
----
-
 ## Cleaning the working tree
-
----
 
 ### Cleaning tracked files (recap)
 
@@ -703,8 +617,6 @@ $ git restore --staged <filename>
 |`--mixed` |      |   X   |  X   | Default        |
 |`--hard`  |  X   |   X   |  X   |                |
 
----
-
 #### Untracked files, clearing
 
 Untracked files are cleared with
@@ -722,8 +634,6 @@ $ git clean <options> <path>
 | `-x`        | clean also ignored files     |
 | `-X`        | clean only ignored files     |
 
----
-
  - Usually we first check what is going to be cleaned:
 
 ```shell
@@ -736,20 +646,16 @@ $ git clean --dry-run -dfx
 $ git clean -dfx
 ```
 
----
-
 ## Stashing changes
 
----
+!!! note 
 
- - We sometimes find ourselves in a situation where we want to temporarily store the changes of the working tree.
- - This might happen, for example, when we are attempting to move the `HEAD`.
-     - Git cannot always restore the working tree.
- - We can store these changes to the **stash**.
+    - We sometimes find ourselves in a situation where we want to temporarily store the changes of the working tree.
+    - This might happen, for example, when we are attempting to move the `HEAD`.
+         - Git cannot always restore the working tree.
+    - We can store these changes to the **stash**.
 
----
-
- - Let's try to move the `HEAD` to `1cb12030`:
+- Let's try to move the `HEAD` to `1cb12030`:
 
 ```shell
 $ git checkout 1cb12030
@@ -775,8 +681,6 @@ $ git checkout 1cb12030
 HEAD is now at 1cb1203 Use LANGUAGES argument in project
 ```
 
----
-
  - We can display the content of the entire stash:
 
 ```shell
@@ -788,15 +692,15 @@ stash@{3}: WIP on v0.1-devel: 70d21d8 Add shift_origin
 parameter
 ```
 
- - The entries are numbered. Each row contains:
-     - the stash id,
-     - the name of the corresponding branch,
-     - the commit hash, and
-     - the matching commit message.
+- The entries are numbered. Each row contains:
+    - the stash id,
+    - the name of the corresponding branch,
+    - the commit hash, and
+    - the matching commit message.
 
----
+!!! note
 
- - We can also display the content of an individual stash entry:
+    - We can also display the content of an individual stash entry:
 
 ```shell
 $ git stash show 0
@@ -817,12 +721,10 @@ index 942e9f4..8dbf1f6 100644
 ....
 ```
 
----
-
 ### Apply previous entry from stack 
 
  - We can **pop** the previous entry from the stash and apply it to the working tree:
-
+ 
 ```shell
 $ git stash pop
 On branch master
@@ -841,8 +743,6 @@ Dropped refs/stash@{0} (a3dd9b60b18c2....)
 
  - The stashed changes are applied to the working tree and the entry is dropped
 
----
-
 ### Apply any entry from the stack 
 
  - We can also apply any entry from the stash (does not drop the entry):
@@ -854,15 +754,13 @@ $ git stash apply <stash_id>
  - By default, `git stash push` stashes files that are **already added to the index**. 
      - This behaviour can be overwritten with the `--keep-index` option. 
 
----
-
 ### Multiple commits from a single set of edits
 
- - Imagine the following situation: *You have spent 3 days coding and are finally ready to commit your changes. You wish to divide the changes into several self-contained commits.*
- - Each commit should both compile and function correctly
- - How would you do this?
+!!! note
 
----
+    - Imagine the following situation: *You have spent 3 days coding and are finally ready to commit your changes. You wish to divide the changes into several self-contained commits.*
+    - Each commit should both compile and function correctly
+    - How would you do this?
 
  - Do the following for each commit you want to create:
      1. Stage changes that should go to the commit.
@@ -871,21 +769,15 @@ $ git stash apply <stash_id>
          4a. If your code functions as intended, commit, pop stash and move to the next commit. 
          4b. Otherwise, pop the stash and continue from step #1.
 
----
-
 ## Making changes to the commit tree
 
----
+!!! warning "Remark"
 
-### Remark
+    The following techniques should be used with caution!
 
-The following techniques should be used with caution!
+    It is generally a **bad idea** to modify the commit tree if the changes have been pushed to a remote.
 
-It is generally a **bad idea** to modify the commit tree if the changes have been pushed to a remote.
-
-We will return to this during Lecture 6.
-
----
+    We will return to this during Lecture 6.
 
 ### Reminder
 
@@ -935,8 +827,6 @@ graph LR
   old_master -.-> C
   linkStyle 5 stroke:#aeaeae,stroke-width:1px,stroke-dasharray:3;
 ```
-
----
 
 ### Discarding the last commit
 

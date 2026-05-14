@@ -1,25 +1,11 @@
----
-title: "Lecture 3: Basic concepts"
-tags: Lecture, Birgitte, day 2
-description: "What are the basic concepts of Git?"
----
+# Basic concepts 
 
-<!-- Lecture material made by Mirko Myllykoski for the version of the course that was given in fall 2020. Lecture was first given by Mirko Myllykoski in fall 2020. Various small changes done by Birgitte Brydsö for the fall 2023 and fall 2024 versions of the course. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course. -->
+!!! note "Remark"
 
-<!-- Slides: https://hackmd.io/@git-fall-2024/L3-concepts -->
-
-# Lecture 3: Basic concepts 
-
----
-
-## Remark
-
-- You are **not** intended to memorize any commands or low-level details. 
-- The goal is to learn the *basic concepts*: 
-    - hash sums, blobs, trees, commits, references, branches, ...
-- Understanding these concepts helps to understand what the commands actually do!
-
----
+    - You are **not** intended to memorize any commands or low-level details. 
+    - The goal is to learn the *basic concepts*: 
+        - hash sums, blobs, trees, commits, references, branches, ...
+    - Understanding these concepts helps to understand what the commands actually do!
 
 ## What is Git?
 
@@ -29,8 +15,6 @@ description: "What are the basic concepts of Git?"
         - Complete history, metadata, etc.
     - People can work completely independently. 
     - An (optional) server is used only to distribute changes. 
-
----
 
 ### Why use Git?
 
@@ -43,11 +27,7 @@ description: "What are the basic concepts of Git?"
 - Fast, simple and flexible.
 - Free and open-source.
 
----
-
 ## How does Git store the history?
-
----
 
 ### What is inside a repository?
 
@@ -78,8 +58,6 @@ graph TD
   
 ```
 
----
-
 Most directories are empty and the files are not that interesting:
 
 ```shell
@@ -95,8 +73,6 @@ $ cat .git/description
 Unnamed repository; edit this file 'description' to name the
 repository.
 ```
-
----
 
 Let's add some content:
 
@@ -175,8 +151,6 @@ graph TD
   T --> Y
 ```
 
----
-
 ### Working tree
 
 - Everything inside `repository/` is a part of the *working tree* (or the *workspace*).
@@ -186,8 +160,6 @@ graph TD
 - The `git add` and `git commit` commands tell Git to care about `file.txt`.
     - More on that later...
 
----
-
 ### Objects
 
 - Git stores files etc as **objects**:
@@ -196,8 +168,6 @@ graph TD
     - A *hash sum* is computed from the **content** of the object.
     - The hash "uniquely" identifies the object.
     - Two objects with identical contents have the same hash and are stored only once.
-
----
 
 - We can compute the hash manually:
 
@@ -224,8 +194,6 @@ $ git hash-object file.txt file2.txt
 09c78e6e971ce9e3d69e75bcb3ffd5de05b0d59a
 ```
 
----
-
 - Note that we do not have to use the entire hash:
 
 ```shell
@@ -237,8 +205,6 @@ This file is very interesting
     - 7-8 is enough in most cases.
     - 12 in larger projects.
 - If more characters is required, an error message is printed.
-
----
 
 - Objects cannot (and should not) be accessed directly:
 
@@ -259,8 +225,6 @@ $ git cat-file -p 09c78e6e
 This file is very interesting
 ```
 
----
-
 - It is also important to realize that the object stays even when the file is removed:
 
 ```shell
@@ -280,8 +244,6 @@ $ git restore file.txt
 $ cat file.txt 
 This file is very interesting
 ```
-
----
 
 Let's take a second look at the repository:
 
@@ -343,8 +305,6 @@ graph TD
 
 *What are these two other objects?*
 
----
-
 ### Trees
 
 - Let's investigate one of the remaining objects:
@@ -362,8 +322,6 @@ $ git cat-file -p 1a098a06
         - other trees,
     - Trees are used to represent directory structures.
 
----
-
 In this case, the tree has one level and one blob:
 
 ```mermaid
@@ -372,8 +330,6 @@ graph TD
 
   tree(["tree 1a098a06b...<br>blob 09c78e6e.... file.txt"]) --> first_blob
 ```
-
----
 
 Let's take a third look at the repository:
 
@@ -434,8 +390,6 @@ graph TD
 
 *Just one object remains...*
 
----
-
 ### Commits
 
 - Let's investigate the last object:
@@ -456,11 +410,7 @@ This is the first commit
     - an author and a committer (+time), and 
     - a commit message 
 
----
-
 A commit stores the state of the project in a given point of time.
-
----
 
 In this case, the commit points to a tree that has one level and one blob:
 
@@ -473,8 +423,6 @@ graph TD
   
   metadata(["metadata"]) --> repo(["repository/"]) --> file
 ```
-
----
 
 In a more general case, the associated tree can contain **several** levels and **multiple** blobs:
 
@@ -505,11 +453,7 @@ graph TD
   dir --> file4
 ```
 
----
-
 ## Working with Git
-
----
 
 Let's see what else we can find...
 
@@ -571,8 +515,6 @@ graph TD
   T --> Y
 ```
 
----
-
 ### HEAD and other references
 
 - `HEAD` points (indirectly) to `23b3ed5b1`:
@@ -597,16 +539,12 @@ graph LR
   head --> master --> commit(["commit<br>23b3ed5b1..."]) --> tree(["tree<br>1a098a06b..."]) --> first_blob
 ```
 
----
-
 - `HEAD` and `master` are **references**.
     - A reference points to commits and another reference.
 - `HEAD` determines "most recent" commit.
     - Many commands **act on the current `HEAD`**. 
     - More on this later
 - `master` is the current branch (more later). 
-
----
 
 - You can create a reference yourself: 
 
@@ -690,8 +628,6 @@ graph LR
   first --> commit(["commit<br>23b3ed5b1..."]) --> tree(["tree<br>1a098a06b..."]) --> first_blob
 ```
 
----
-
 ### Index (staging area)
 
 Let's repeat some of the earlier steps:
@@ -771,15 +707,11 @@ This file is very interesting
 More content
 ```
 
----
-
 - The `git add` command creates a blob that correspond to the update `file.txt` file.
     - No other object are created yet.
 - The command also adds the file to the **index**.
 - The index will become the **next commit**.
     - Contains a representation of the tree object.
-
----
 
 The index is a binary file:
 
@@ -843,8 +775,6 @@ graph TD
   T --> Y
   U --> Z
 ```
-
----
 
 We can now turn the index to the next commit:
 
@@ -927,8 +857,6 @@ graph TD
   U --> Z
 ```
 
----
-
  - Just as before, we have a tree object that describes the directory structure:
 
 ```shell
@@ -947,8 +875,6 @@ committer Mirko Myllykoski <mirko....> 1601228824 +0200
 
 This is the second commit
 ```
-
----
 
 ### Parent
 
@@ -972,8 +898,6 @@ graph LR
   tree1 --> secondblob
 ```
 
----
-
 ### Commit tree
 
 - Usually, we have a complete tree of commits (**commit tree**):
@@ -991,8 +915,6 @@ graph LR
 
 - Each commit represents the state of the repository at a given point of time.
 
----
-
 - Each commit is allowed to have **multiple** parents:
 
 ```mermaid
@@ -1004,8 +926,6 @@ graph LR
 
 - These parents appear when two (or more) *branches* are **merged**.
     - More on this later...
-
----
 
 ### HEAD and other references (again)
 
@@ -1034,8 +954,6 @@ graph LR
 ```
 
 - Remember, many Git commands act on the current `HEAD`.
-
----
 
 - We can change the `HEAD` to something else:
 
@@ -1066,8 +984,6 @@ graph LR
   end
 ```
 
----
-
 ### Branches
 
 - We can modify the working tree and create a new commit:
@@ -1091,8 +1007,6 @@ committer Mirko Myllykoski <mirko....> 1601286412 +0200
 This is the third commit
 ```
 
----
-
 - First, the `parent` points to the **first commit**:
 
 ```mermaid
@@ -1100,8 +1014,6 @@ graph LR
   
   third_commit(["commit a118ae8c...<br>parent 23b3ed5b1...<br>This is the third commit"]) --> first_commit(["commit 23b3ed5b1...<br>This is the first commit"]) 
 ```
-
----
 
 - Second, the commit tree now has **two** branches: 
 
@@ -1128,8 +1040,6 @@ graph LR
     cluster_file["file.txt<br><br>This file is very interesting<br>Different content"]
   end
 ```
-
----
 
 We can give the second branch a **name**:
 
@@ -1173,8 +1083,6 @@ graph LR
   end
 ```
 
----
-
 ### Merging
 
 We can **merge** the two branches together:
@@ -1197,8 +1105,6 @@ $ git merge --continue
 [master f0d7298] Merge branch 'second_branch'
 ```
 
----
-
 The created commit has **two** parents:
 
 ```shell
@@ -1211,8 +1117,6 @@ committer Mirko Myllykoski <mirko....> 1601288485 +0200
 
 Merge branch 'second_branch'
 ```
-
----
 
 Finally, the tree looks like follows:
 
@@ -1258,8 +1162,6 @@ graph LR
   master --> fourth_commit
   second_branch --> third_commit
 ```
-
----
 
 ### Switching to a specific commit
 
@@ -1313,8 +1215,6 @@ graph LR
   master --> fourth_commit
   second_branch --> third_commit
 ```
-
----
 
 The end.
 
