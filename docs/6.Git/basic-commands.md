@@ -1,5 +1,7 @@
 # Basic commands
 
+<!-- Lecture material made by Pedro Ojeda-May for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Pedro Ojeda-May in fall 2020. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course.-->
+
 This section will focus on some of the basic commands of Git and how to use them. 
 
 ## Getting help

@@ -1,5 +1,9 @@
 # Motivation
 
+<!-- Lecture material made by Mirko Myllykoski for the version of the course "Introduction to Git" that was given in the fall 2020. The lecture was first given by Mirko Myllykoski in fall 2020.
+Very minor modifications have been made by Birgitte Brydsö for the fall 2021, fall 2022, fall 2023, and fall 2024 versions of the course. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course. -->
+
+
 !!! note "What is version control?"
 
     In software engineering, version control (also known as revision control, source control, or source code management) is a class of systems responsible for __managing changes__ to computer programs, documents, large web sites, or other collections of information.
@@ -56,24 +60,24 @@ graph LR
 
 #### Where is this *earlier version*?
 
- - CTRL + Z <!-- .element: class="fragment" -->
- - my_file.txt, my_file.txt.old, ... <!-- .element: class="fragment" -->
- - My project/ <!-- .element: class="fragment" -->
+ - CTRL + Z 
+ - my_file.txt, my_file.txt.old, ... 
+ - My project/ 
      - 2020-08-12/
      - 2020-08-13/
      - ...
- - Daily home directory backup <!-- .element: class="fragment" -->
+ - Daily home directory backup 
 
 #### Challenges and obstacles
 
- - Prone to mistakes <!-- .element: class="fragment" -->
-     - CTRL + Z has limits, overwritten/deleted files, human/hardware error <!-- .element: class="fragment" -->
- - How much to save? <!-- .element: class="fragment" -->
-     - Individual files? Everything? How much space is required? <!-- .element: class="fragment" -->
- - How to organize versions? <!-- .element: class="fragment" -->
-     - What is the difference between different versions? <!-- .element: class="fragment" -->
+ - Prone to mistakes 
+     - CTRL + Z has limits, overwritten/deleted files, human/hardware error 
+ - How much to save? 
+     - Individual files? Everything? How much space is required? 
+ - How to organize versions? 
+     - What is the difference between different versions? 
 
-*Overall, difficult to manage!* <!-- .element: class="fragment" -->
+*Overall, difficult to manage!* 
 
 #### What about the granularity?
 
@@ -111,46 +115,46 @@ graph LR
 
 !!! note "How does VCS solve this?"
 
-    - Stores the history using snapshots (commits) <!-- .element: class="fragment" -->
-        - Each snapshot represents the project at a given point in time <!-- .element: class="fragment" -->
-    - Manages snapshots and associated metadata <!-- .element: class="fragment" -->
-        - Naming (tags), comments, dates, authors, etc <!-- .element: class="fragment" -->
-    - Easy to move between different snapshots <!-- .element: class="fragment" -->
-    - Can handle different degrees of granularity <!-- .element: class="fragment" -->
-    - Can handle multiple development paths (branches) <!-- .element: class="fragment" -->
+    - Stores the history using snapshots (commits) 
+        - Each snapshot represents the project at a given point in time 
+    - Manages snapshots and associated metadata 
+        - Naming (tags), comments, dates, authors, etc 
+    - Easy to move between different snapshots 
+    - Can handle different degrees of granularity 
+    - Can handle multiple development paths (branches) 
 
 ### Comparing and joining
 
- - VCS makes it easy to compare different snapshots <!-- .element: class="fragment" -->
-     - Named revisions, comments, time information, author information <!-- .element: class="fragment" -->
-     - Diff tools <!-- .element: class="fragment" -->
-     - Search tools <!-- .element: class="fragment" -->
-     - Bisection search <!-- .element: class="fragment" -->
- - VCS also allows the joining (merging) of different snapshots  <!-- .element: class="fragment" -->
-     - Easy to experiment with ideas <!-- .element: class="fragment" -->
+ - VCS makes it easy to compare different snapshots 
+     - Named revisions, comments, time information, author information 
+     - Diff tools 
+     - Search tools 
+     - Bisection search 
+ - VCS also allows the joining (merging) of different snapshots  
+     - Easy to experiment with ideas 
 
 ### Collaboration
 
- - One of the primary functions of VCS is to allow collaboration <!-- .element: class="fragment" -->
- - Usual setup: server (remote) + multiple clients <!-- .element: class="fragment" -->
-     - People work locally and send (push) the changes to the server <!-- .element: class="fragment" -->
-     - VCS keeps track of what has been done and by whom <!-- .element: class="fragment" -->
- - Safer since mistakes can be easily remedied <!-- .element: class="fragment" -->
- - The contributions of several people can be merged <!-- .element: class="fragment" -->
+ - One of the primary functions of VCS is to allow collaboration 
+ - Usual setup: server (remote) + multiple clients 
+     - People work locally and send (push) the changes to the server 
+     - VCS keeps track of what has been done and by whom 
+ - Safer since mistakes can be easily remedied 
+ - The contributions of several people can be merged 
 
 ### Backup
 
- - VCS functions as a backup <!-- .element: class="fragment" -->
- - Locally, the system maintains a copy of each file <!-- .element: class="fragment" -->
-     - Usually only the changes or the files that have changed are stored <!-- .element: class="fragment" -->
- - Globally, lost files can be recovered from the server <!-- .element: class="fragment" -->
+ - VCS functions as a backup 
+ - Locally, the system maintains a copy of each file 
+     - Usually only the changes or the files that have changed are stored 
+ - Globally, lost files can be recovered from the server 
 
 ### Integration
 
- - VCSs such as Git have been integrated with several services <!-- .element: class="fragment" -->
+ - VCSs such as Git have been integrated with several services 
      - HackMD, Overleaf, ...
- - Services such as GitHub can do almost everything for you <!-- .element: class="fragment" -->
-     - Store history, distribute, testing / continuous integration, bug reports, milestones, website, ... <!-- .element: class="fragment" -->
+ - Services such as GitHub can do almost everything for you 
+     - Store history, distribute, testing / continuous integration, bug reports, milestones, website, ... 
 
 !!! note "Summing up"
 
@@ -167,26 +171,26 @@ What are the practical use cases for VCS?
 
 ### Source code
 
- - Many VCSs are designed for managing source code <!-- .element: class="fragment" -->
- - Manage deployment (production, development, testing, etc) <!-- .element: class="fragment" -->
- - Manage published versions (v0.1 etc) <!-- .element: class="fragment" -->
- - Manage (experimental) features <!-- .element: class="fragment" -->
- - Bug hunting <!-- .element: class="fragment" -->
- - But also for: writers, artists, composers... <!-- .element: class="fragment" -->
+ - Many VCSs are designed for managing source code 
+ - Manage deployment (production, development, testing, etc) 
+ - Manage published versions (v0.1 etc) 
+ - Manage (experimental) features 
+ - Bug hunting 
+ - But also for: writers, artists, composers... 
 
 ### Latex files
 
- - Track which version of a manuscript has been <!-- .element: class="fragment" -->
+ - Track which version of a manuscript has been 
      - submitted, 
      - revised and/or 
      - accepted
- - Collaboration between several authors <!-- .element: class="fragment" -->
+ - Collaboration between several authors 
 
 ### HPC: batch files and data
 
- - Track different versions of your batch scripts <!-- .element: class="fragment" -->
+ - Track different versions of your batch scripts 
      - Easy to check the used configuration afterwards
- - Track input and output files <!-- .element: class="fragment" -->
+ - Track input and output files 
      - Limited to smallish files
 
 !!! note "Examples of VCS"

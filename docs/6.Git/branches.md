@@ -1,35 +1,23 @@
----
-title: "Lecture 5: Branches"
-tags: Lecture, Diana, day 3, 4
-description: "Branches, merges and conflicts"
----
+# Branches
 
-<!-- Lecture material made by Birgitte Brydsö for the version of the course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. 
+<!-- Lecture material made by Birgitte Brydsö for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. 
 Minor modifications done for the fall 2021/2022/2023/2024 versions of the course. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course. -->
 
-<!-- Slides: https://hackmd.io/@git-fall-2024/L5-branches --> 
+!!! note "Objectives"
 
-# Lecture 5: Branches
+    - Get some more hands-on working with branches
+        - creation
+        - switching
+        - merging
+        - deletion
+        - handling uncommitted changes
+            - stashing
+            - discarding
+            - checkout with merge
+        - merging and merge conflicts
+        - rebasing: combining a sequence of commits to a new base commit.
+        - cherry-picking
 
----
-
-## Objectives
-
-- Get some more hands-on working with branches
-    - creation
-    - switching
-    - merging
-    - deletion
-    - handling uncommitted changes
-        - stashing
-        - discarding
-        - checkout with merge
-    - merging and merge conflicts
-    - rebasing: combining a sequence of commits to a new base commit.
-    - cherry-picking
-
-
----
 
 ## What is a Git branch?
 
@@ -39,8 +27,6 @@ Minor modifications done for the fall 2021/2022/2023/2024 versions of the course
 * If HEAD is a symbolic ref for an existing branch, then you are “on” that branch. 
 * If HEAD is a simple ref directly naming a commit by its SHA-1 ID, you are  not “on” any branch - you are in “detached HEAD” mode, which happens when you check  out some earlier commit to examine. 
 
----
-
 ## Why use branches?
 
 There are many uses for branches:
@@ -49,27 +35,21 @@ There are many uses for branches:
 - Several projects members would like to work on their own copy of the code
 - Bug fixes that are not yet tested, but will later be merged into the main version
 
----
-
 ## What is a Git branch?
 
 Until now, we have worked with a repository that only have one branch, with the commits done one at a time: 
 
-![Git branch](../images/git-branch.png)
+![Git branch](../../images/git-branch.png)
 
 In the above picture, the master branch points to a commit. The current position is HEAD. (Time goes rightwards)
-
----
 
 ### What is a Git branch - basic concepts
 
 Now we want to look at repositories with several branches: 
 
-![Git several branches](../images/git-several-branches.png)
+![Git several branches](../../images/git-several-branches.png)
 
 Branches are used to create another line of development.  They are "individual projects" within a git repository.
-
----
 
 * The branch is the commit and all its parent commits, not just the one we are currently pointing at. 
 * The main line of development is usually called the "master" branch.
@@ -77,14 +57,10 @@ Branches are used to create another line of development.  They are "individual p
   * completely different files and folders
   * almost everything the same except for a few lines of code in a file
 
----
-
 Usually, a branch is created to work on a new feature. Once the feature is completed, it is merged back with the master branch.
 
 
-![Git several branches and new features](../images/git-several-branches-new-feature.png)
-
----
+![Git several branches and new features](../../images/git-several-branches-new-feature.png)
 
 ## Branches: Creation
 
@@ -97,8 +73,6 @@ To create a new branch (called cool-feature in the following):
 ```shell
 $ git branch cool-feature
 ```
-
----
 
 To move to another branch (switch): 
 
@@ -117,8 +91,6 @@ To see which branch you are on:
 ```shell
 $ git branch
 ```
-
----
 
 ## Branches: merging, deletion
 
@@ -139,260 +111,251 @@ $ git merge cool-feature
 $ git branch -d cool-feature
 ```
 
----
+!!! example "Example - Type along if you wish"
 
-### Example - Type along if you wish
+    * Create a directory. Initialize a repository
+    * Create a file, stage it, and commit it
 
-* Create a directory. Initialize a repository
-* Create a file, stage it, and commit it
+    ```shell
+    $ mkdir my-project; cd my-project/
+    $ git init
+    Initialized empty Git repository in /home/bbrydsoe/my-project/.git/
+    $ touch file.txt
+    $ git add file.txt 
+    $ git commit -m "Committing the first file"
+    [master (root-commit) 1006b51] Committing the first file
+     1 file changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 file.txt
+    ```
 
-```shell
-$ mkdir my-project; cd my-project/
-$ git init
-Initialized empty Git repository in /home/bbrydsoe/my-project/.git/
-$ touch file.txt
-$ git add file.txt 
-$ git commit -m "Committing the first file"
-[master (root-commit) 1006b51] Committing the first file
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 file.txt
-```
+    * Create a new branch, then switch to that branch
+    * Make some changes - add files and text ( > overwrites or are suitable for new file)
+    * Stage the file and commit it
 
----
+    ```shell
+    $ git branch cool-feature
+    $ git checkout cool-feature 
+    Switched to branch 'cool-feature'
+    $ echo "This is a text" > file.txt 
+    $ git add file.txt 
+    $ git commit -m "Added text to the first file" 
+    [cool-feature 5bad966] Added text to the first file
+     1 file changed, 1 insertion(+)
+    ```
 
-* Create a new branch, then switch to that branch
-* Make some changes - add files and text ( > overwrites or are suitable for new file)
-* Stage the file and commit it
-```shell
-$ git branch cool-feature
-$ git checkout cool-feature 
-Switched to branch 'cool-feature'
-$ echo "This is a text" > file.txt 
-$ git add file.txt 
-$ git commit -m "Added text to the first file" 
-[cool-feature 5bad966] Added text to the first file
- 1 file changed, 1 insertion(+)
-```
+    - Switch back to the master branch, make some changes 
 
----
+    ```shell
+    $ git checkout master
+    Switched to branch 'master'
+    $ echo "Text to the second file" > second-file.txt 
+    $ git add second-file.txt 
+    $ git commit -m "Added a second file"
+    [master bdec2cf] Added a second file
+     1 file changed, 1 insertion(+)
+     create mode 100644 second-file.txt
+    ```
 
-- Switch back to the master branch, make some changes 
-```shell
-$ git checkout master
-Switched to branch 'master'
-$ echo "Text to the second file" > second-file.txt 
-$ git add second-file.txt 
-$ git commit -m "Added a second file"
-[master bdec2cf] Added a second file
- 1 file changed, 1 insertion(+)
- create mode 100644 second-file.txt
-```
-- We should check the effect of the changes. I will use this command: 
-```shell
-$ git log --graph --oneline --decorate --all
-``` 
-- or, if you made an alias before.
-```shell
-$ git graph
-```
-- Otherwise make the alias:
-```shell
-$ git config --global alias.graph "log --all --graph --decorate --oneline"
-```
+    - We should check the effect of the changes. I will use this command: 
+ 
+    ```shell
+    $ git log --graph --oneline --decorate --all
+    ``` 
 
----
+    - or, if you made an alias before.
+    ```shell
+    $ git graph
+    ```
 
-This is on the master branch 
+    - Otherwise make the alias:
+   
+    ```shell
+    $ git config --global alias.graph "log --all --graph --decorate --oneline"
+    ```
 
-```shell
-$ git graph
-* bdec2cf (HEAD -> master) Added a second file
-| * 5bad966 (cool-feature) Added text to the first file
-|/  
-* 1006b51 Committing the first file
-```
+    This is on the master branch 
 
-We now merge the branches and check again 
+    ```shell
+    $ git graph
+    * bdec2cf (HEAD -> master) Added a second file
+    | * 5bad966 (cool-feature) Added text to the first file
+    |/  
+    * 1006b51 Committing the first file
+    ```
 
-```shell
-$ git merge cool-feature 
-Merge made by the 'recursive' strategy.
- file.txt | 1 +
- 1 file changed, 1 insertion(+)
-```
+    We now merge the branches and check again 
 
-- Note that in recent git versions (>=2.33) the default "recursive" strategy is replaced by the "ort" strategy.
-```shell
-$ git graph
-*   cf3e6b7 (HEAD -> master) Merge branch 'cool-feature'
-|\  
-| * 5bad966 (cool-feature) Added text to the first file
-* | bdec2cf Added a second file
-|/ 
-* 1006b51 Committing the first file
-```
+    ```shell
+    $ git merge cool-feature 
+    Merge made by the 'recursive' strategy.
+     file.txt | 1 +
+     1 file changed, 1 insertion(+)
+    ```
 
+    - Note that in recent git versions (>=2.33) the default "recursive" strategy is replaced by the "ort" strategy.
 
----
+    ```shell
+    $ git graph
+    *   cf3e6b7 (HEAD -> master) Merge branch 'cool-feature'
+    |\  
+    | * 5bad966 (cool-feature) Added text to the first file
+    * | bdec2cf Added a second file
+    |/ 
+    * 1006b51 Committing the first file
+    ```
 
-Now we can delete the reference to the new branch we had created, since all the content is now in the master branch. 
+    Now we can delete the reference to the new branch we had created, since all the content is now in the master branch. 
 
-```shell
-$ git branch -d cool-feature 
-Deleted branch cool-feature (was 5bad966).
-```
+    ```shell
+    $ git branch -d cool-feature 
+    Deleted branch cool-feature (was 5bad966).
+    ```
 
----
+    In a somewhat nicer format, it looks like this: 
 
-In a somewhat nicer format, it looks like this: 
+    We commit stuff to both branches
 
-We commit stuff to both branches
+    ```mermaid
+    graph LR
 
-```mermaid
-graph LR
+      master["master"]
+      style master fill:#ffffff,stroke:#ffffff
+      cool-feature["cool-feature"]
+      style cool-feature fill:#ffffff,stroke:#ffffff
 
-  master["master"]
-  style master fill:#ffffff,stroke:#ffffff
-  cool-feature["cool-feature"]
-  style cool-feature fill:#ffffff,stroke:#ffffff
+      commitX(["commitX"])
+      commit1(["commit1"])
+      commit2(["commit2"])
+      commitY(["commitY"])
+      commit3(["commit3"])
 
-  commitX(["commitX"])
-  commit1(["commit1"])
-  commit2(["commit2"])
-  commitY(["commitY"])
-  commit3(["commit3"])
+      master -.-> commit3
+      commit3 --> commit2
+      commit2 --> commit1
+      cool-feature -.-> commitY 
+      commitY --> commitX
+      commitX --> commit1
 
-  master -.-> commit3
-  commit3 --> commit2
-  commit2 --> commit1
-  cool-feature -.-> commitY 
-  commitY --> commitX
-  commitX --> commit1
+    ```
 
-```
+    (Time goes leftwards)
 
-(Time goes leftwards)
+    Merge 'cool-feature' to 'master' (3-way merge)
 
----
+    3-way merges use a dedicated commit for connecting the two merge histories. The name comes from the fact that Git uses three commits to generate the merge commit: the two branch tips and their common ancestor.
 
-Merge 'cool-feature' to 'master' (3-way merge)
+    ```mermaid
+    graph LR
 
-3-way merges use a dedicated commit for connecting the two merge histories. The name comes from the fact that Git uses three commits to generate the merge commit: the two branch tips and their common ancestor.
+      commit4Y(["New merge commit"])
+      master["master"]
+      style master fill:#ffffff,stroke:#ffffff
+      cool-feature["cool-feature"]
+      style cool-feature fill:#ffffff,stroke:#ffffff
 
-```mermaid
-graph LR
+      commitX(["commitX"])
+      commit1(["commit1"])
+      commit2(["commit2"])
+      commitY(["commitY"])
+      commit3(["commit3"])
+      commit4(["commit4"])
 
-  commit4Y(["New merge commit"])
-  master["master"]
-  style master fill:#ffffff,stroke:#ffffff
-  cool-feature["cool-feature"]
-  style cool-feature fill:#ffffff,stroke:#ffffff
+      master -.-> commit4Y
+      commit4 --> commit3
+      commit4Y --> commit4
+      cool-feature -.-> commitY
+      commit3 --> commit2
+      commit2 --> commit1
+      commitY --> commitX
+      commit4Y --> commitY
+      commitX --> commit1
+    ```
 
-  commitX(["commitX"])
-  commit1(["commit1"])
-  commit2(["commit2"])
-  commitY(["commitY"])
-  commit3(["commit3"])
-  commit4(["commit4"])
+    Delete 'cool-feature'
 
-  master -.-> commit4Y
-  commit4 --> commit3
-  commit4Y --> commit4
-  cool-feature -.-> commitY
-  commit3 --> commit2
-  commit2 --> commit1
-  commitY --> commitX
-  commit4Y --> commitY
-  commitX --> commit1
-```
+    ```mermaid
+    graph LR
 
-Delete 'cool-feature'
+      commit4Y(["New merge commit"])
+      master["master"]
+      style master fill:#ffffff,stroke:#ffffff
 
-```mermaid
-graph LR
+      commitX(["commitX"])
+      commit1(["commit1"])
+      commit2(["commit2"])
+      commitY(["commitY"])
+      commit3(["commit3"])
+      commit4(["commit4"])
 
-  commit4Y(["New merge commit"])
-  master["master"]
-  style master fill:#ffffff,stroke:#ffffff
+      master -.-> commit4Y
+      commit4 --> commit3
+      commit4Y --> commit4
+      commit3 --> commit2
+      commit2 --> commit1
+      commitY --> commitX
+      commit4Y --> commitY
+      commitX --> commit1
+    ```
 
-  commitX(["commitX"])
-  commit1(["commit1"])
-  commit2(["commit2"])
-  commitY(["commitY"])
-  commit3(["commit3"])
-  commit4(["commit4"])
+    (Time goes leftwards)
 
-  master -.-> commit4Y
-  commit4 --> commit3
-  commit4Y --> commit4
-  commit3 --> commit2
-  commit2 --> commit1
-  commitY --> commitX
-  commit4Y --> commitY
-  commitX --> commit1
-```
+!!! example "Example, fast-forward merging" 
 
-(Time goes leftwards)
+    If there is a linear path from the current branch tip and to the target branch, then it is possible to do a fast-forward merge. Git is not really merging the branches, just integrating the histories, i.e. it moves “fast forward” the current branch tip up to the target branch tip.
 
----
+    When doing so the commit histories are combined and all commit histories can be reached from the current tip. An example would be to do a fast-forward merge of a feature into master/main.
 
-### Example, fast-forward merging
+    A fast-forward merge is not possible if the branches have diverged, like in the previous example. This means that there is no linear path to the target branch and Git has to combine them via a 3-way merge.
 
-If there is a linear path from the current branch tip and to the target branch, then it is possible to do a fast-forward merge. Git is not really merging the branches, just integrating the histories, i.e. it moves “fast forward” the current branch tip up to the target branch tip.
+    This shows an example where a fast-forward merge would work.
 
-When doing so the commit histories are combined and all commit histories can be reached from the current tip. An example would be to do a fast-forward merge of a feature into master/main.
+    Before FF merge: 
 
-A fast-forward merge is not possible if the branches have diverged, like in the previous example. This means that there is no linear path to the target branch and Git has to combine them via a 3-way merge.
+    ```mermaid
+    graph LR
 
-This shows an example where a fast-forward merge would work.
+      master["master"]
+      style master fill:#ffffff,stroke:#ffffff
+      nice-feature["nice-feature"]
+      style nice-feature fill:#ffffff,stroke:#ffffff
 
-Before FF merge: 
+      commit1(["commit1"])
+      commit2(["commit2"])
+      commit3(["commit3"])
+      commitX(["commitX"])
+      commitY(["commitY"])
 
-```mermaid
-graph LR
+      master -.-> commit3
+      nice-feature -.-> commitY
+      commit1 --> commit2
+      commit2 --> commit3
+      commit3 --> commitX
+      commitX --> commitY
+    ```
 
-  master["master"]
-  style master fill:#ffffff,stroke:#ffffff
-  nice-feature["nice-feature"]
-  style nice-feature fill:#ffffff,stroke:#ffffff
+    After FF merge:
 
-  commit1(["commit1"])
-  commit2(["commit2"])
-  commit3(["commit3"])
-  commitX(["commitX"])
-  commitY(["commitY"])
+    ```mermaid
+    graph LR
 
-  master -.-> commit3
-  nice-feature -.-> commitY
-  commit1 --> commit2
-  commit2 --> commit3
-  commit3 --> commitX
-  commitX --> commitY
-```
+      master["master"]
+      style master fill:#ffffff,stroke:#ffffff
+      nice-feature["nice-feature"]
+      style nice-feature fill:#ffffff,stroke:#ffffff
 
-After FF merge:
+      commit1(["commit1"])
+      commit2(["commit2"])
+      commit3(["commit3"])
+      commitX(["commitX"])
+      commitY(["commitY"])
 
-```mermaid
-graph LR
-
-  master["master"]
-  style master fill:#ffffff,stroke:#ffffff
-  nice-feature["nice-feature"]
-  style nice-feature fill:#ffffff,stroke:#ffffff
-
-  commit1(["commit1"])
-  commit2(["commit2"])
-  commit3(["commit3"])
-  commitX(["commitX"])
-  commitY(["commitY"])
-
-  master -.-> commitY
-  nice-feature -.-> commitY
-  commit1 --> commit2
-  commit2 --> commit3
-  commit3 --> commitX
-  commitX --> commitY
-```
+      master -.-> commitY
+      nice-feature -.-> commitY
+      commit1 --> commit2
+      commit2 --> commit3
+      commit3 --> commitX
+      commitX --> commitY
+    ```
 
 ## Switching with uncommitted changes
 
@@ -412,85 +375,78 @@ What if there is a conflict?
 - You will **not** be allowed to switch to the other branch.
 - You must commit or stash any conflicting changes before switching branches.
 
----
+!!! example "Example - new file"
 
-### Example - new file
+    Here we create a new branch, switch to it, then add a new file. Then we switch back to the master branch without committing the changes: 
 
-Here we create a new branch, switch to it, then add a new file. Then we switch back to the master branch without committing the changes: 
+    ```shell
+    $ git checkout -b cool-feature 
+    Switched to a new branch 'cool-feature'
+    $ touch newfile.txt
+    $ git add newfile.txt 
+    $ git checkout master
+    A   newfile.txt
+    Switched to branch 'master'
+    ```
 
-```shell
-$ git checkout -b cool-feature 
-Switched to a new branch 'cool-feature'
-$ touch newfile.txt
-$ git add newfile.txt 
-$ git checkout master
-A	newfile.txt
-Switched to branch 'master'
-```
+    Git warns that there is a file added (`A`) in one branch but not the other, but the switch is allowed. 
 
-Git warns that there is a file added (`A`) in one branch but not the other, but the switch is allowed. 
+!!! example "Example - modified file"
 
----
+    **We continue in the same repository!**
 
-### Example - modified file 
+    First commit the `newfile.txt` in the cool-feature branch to clean the environment.
+    If we make changes to the file in one of the branches (go back to `cool-feature`) but not on the other and do not commit it, then git will again warn: 
 
-**We continue in the same repository!**
-First commit the `newfile.txt` in the cool-feature branch to clean the environment.
-If we make changes to the file in one of the branches (go back to `cool-feature`) but not on the other and do not commit it, then git will again warn: 
+    ```shell
+    $ git switch cool-feature
+    $ git commit -m "newfile.txt"
+    $ echo "Adding some text" >> second-file.txt
+    $ git add second-file.txt 
+    $ git checkout master
+    M	second-file.txt
+    Switched to branch 'master'
+    ```
 
-```shell
-$ git switch cool-feature
-$ git commit -m "newfile.txt"
-$ echo "Adding some text" >> second-file.txt
-$ git add second-file.txt 
-$ git checkout master
-M	second-file.txt
-Switched to branch 'master'
-```
+    Git warns that there is a file that is modified (`M`) in one branch but not the other, but the switch is allowed. 
 
-Git warns that there is a file that is modified (`M`) in one branch but not the other, but the switch is allowed. 
+!!! example "Example - uncommitted, conflicting change"
 
----
+    **We continue in the same repository!**
 
-### Example - uncommitted, conflicting changes
+    Assume two branches, "cool-feature" and "morefeatures"
 
-**We continue in the same repository!**
-Assume two branches, "cool-feature" and "morefeatures"
+    Create the branch "morefeatures" without switching to it
+    Switch to branch "cool-feature", add some text to a file, stage the file and commit it: 
 
-Create the branch "morefeatures" without switching to it
-Switch to branch "cool-feature", add some text to a file, stage the file and commit it: 
+    ```shell
+    $ git branch morefeatures
+    $ git checkout cool-feature 
+    Switched to branch 'cool-feature'
+    $ git commit -m "second-file.txt"
+    $ echo "add text" >> morefiles.txt 
+    $ git add morefiles.txt 
+    $ git commit -m "Some text"
+    [cool-feature 469542b] Some text
+     1 file changed, 1 insertion(+)
+     create mode 100644 morefiles.txt
+    ```
 
-```shell
-$ git branch morefeatures
-$ git checkout cool-feature 
-Switched to branch 'cool-feature'
-$ git commit -m "second-file.txt"
-$ echo "add text" >> morefiles.txt 
-$ git add morefiles.txt 
-$ git commit -m "Some text"
-[cool-feature 469542b] Some text
- 1 file changed, 1 insertion(+)
- create mode 100644 morefiles.txt
-```
+    Switch to branch "morefeatures". Modify the same file, stage the file and commit it. Then try and switch back to the "cool-features" branch: 
 
----
+    ```shell
+    $ git checkout morefeatures 
+    Switched to branch 'morefeatures'
+    $ echo "Adding yet some more text" >> morefiles.txt
+    $ git add morefiles.txt 
+    $ git checkout cool-feature 
+    error: Your local changes to the following files would be overwritten by checkout:
+    	morefiles.txt
+    Please commit your changes or stash them before you switch branches.
+    Aborting
+    ```
 
-Switch to branch "morefeatures". Modify the same file, stage the file and commit it. Then try and switch back to the "cool-features" branch: 
-
-```shell
-$ git checkout morefeatures 
-Switched to branch 'morefeatures'
-$ echo "Adding yet some more text" >> morefiles.txt
-$ git add morefiles.txt 
-$ git checkout cool-feature 
-error: Your local changes to the following files would be overwritten by checkout:
-	morefiles.txt
-Please commit your changes or stash them before you switch branches.
-Aborting
-```
-Now Git complains and do not allow the switch. 
-
----
+    Now Git complains and do not allow the switch. 
 
 
 ## Handling uncommitted changes
@@ -502,7 +458,6 @@ So, what can we do if there is a conflict?
 * Discard the uncommitted changes
 * Checkout with Merge
 
----
 
 ## Stashing
 
@@ -511,8 +466,6 @@ The command "stash" can be described as a **drawer** where you store uncommitted
 After stashing your uncommitted changes you can continue **working on other things**.
 
 The uncommitted changes that are stored in the stash **can be taken out and applied to any branch, including the original branch.**
-
----
 
 ### Stashing, example (no type-along this time)
 
@@ -529,8 +482,6 @@ Changes to be committed:
 ```
 
 You can see the dirty status. 
-
----
 
 To fix it, let us use `git stash`:
 
@@ -550,8 +501,6 @@ nothing to commit, working tree clean
 You can now switch branches and work on something else. 
 
 
----
-
 ## Working with stashes (repetition)
 
 You can have several stashes stored. To see them, use 
@@ -569,8 +518,6 @@ stash@{1}: WIP on morefeatures: 4922606 Some text
 stash@{2}: WIP on morefeatures: 4922606 Some text
 ```
 
----
-
 ### Working with stashes - continued (repetition)
 
 When you have done what you needed before committing the stashed changes you can reapply a stash (select branch first), using 
@@ -587,8 +534,6 @@ Example:
 $ git stash apply stash@{0}
 ```
 
----
-
 ## Discarding uncommitted changes 
 
 If you do not want to stash your changes, but just **get rid** of them, you can use `git clean`.
@@ -601,8 +546,6 @@ You can safely test which files will be removed by running:
 $ git clean --dry-run
 ```
 
-
----
 
 ## Handling uncommitted changes - merging
 
@@ -617,8 +560,6 @@ $ git checkout --merge <branch>
 - NOTE: As with any merge, **conflicts may result** and you will then have to resolve those. 
 
 
----
-
 ## Merging and merge conflicts
 
 - Merge conflicts will happen now and then when you are working with more than one branch and try to merge them. 
@@ -629,10 +570,10 @@ error: Entry '<fileName>' would be overwritten by merge.
 Cannot merge. (Changes in staging area)
 ```
 
-- NOTE: Always check that you are on the right branch before merging! You check the branch with `git branch`.
+!!! warning "NOTE"
 
+    Always check that you are on the right branch before merging! You check the branch with `git branch`.
 
----
 
 Git can automatically try to merge when you give the command: 
 
@@ -641,8 +582,6 @@ $ git merge <branch-to-merge-into-present-branch>
 ```
 
 while standing on the branch you want to merge to. 
-
----
 
 ### Merge strategies
 
@@ -660,7 +599,6 @@ The most commonly used
   * This is the default merge strategy when pulling or merging one branch. 
   * Results in fewer merge conflicts without causing mismerges 
 
----
 
 ### Merge conflicts, example
 
@@ -683,8 +621,6 @@ $ echo "Working on a really cool feature" >> myfile.txt
 $ git commit -a -m "start work on a cool feature" 
 ```
 
----
-
 We now have two branches, **master** and **feature_1**:
 
 ```shell
@@ -696,6 +632,7 @@ $ git log --all --graph --decorate --oneline
 ```
 
 What are the contents of **myfile.txt** in the two branches?
+
 ```shell
 $ git diff master feature_1 -- myfile.txt
 diff --git a/myfile.txt b/myfile.txt
@@ -707,7 +644,9 @@ index b14ae98..5390ea7 100644
 -Working on a really cool feature
 +Feature 1 is a good implementation
 ```
+
 Or use the **git show <ref>:<path>** command:
+
 ```
 $ git show master:myfile.txt
 Initial content
@@ -717,8 +656,6 @@ Initial content
 Feature 1 is a good implementation
 ```
 
-
----
 
 Let's try to merge the **feature_1** branch on to the **master** branch:
     
@@ -730,8 +667,6 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 
 The merge failed due to a conflict. In this case, the conflict arises because there are changes in the same line on both branches.
-
----
 
 We can get some more information with the **git status** command: 
 
@@ -773,23 +708,16 @@ Or one may try to solve the conflict..
 $ git merge --continue
 ```
 
+!!! tip "Helpful commands"
 
-    
-
-Helpful commands:
-- identify conflicting files: `git status`
-
-- list the conflicting commits among the branches: `git log --merge`
-
-- find differences between the commits involved in the merge: `git diff` 
-
-- reset conflicted files to a known good state: `git reset` 
+    - identify conflicting files: `git status`
+    - list the conflicting commits among the branches: `git log --merge`
+    - find differences between the commits involved in the merge: `git diff` 
+    - reset conflicted files to a known good state: `git reset` 
 
 
 If you made a mistake when you resolved a conflict and have completed the merge before realizing, you can roll back to the commit before the merge was done with the command `git reset --hard`. 
 
-
----
 
 ## Workflow - merge goes well
 
@@ -797,13 +725,12 @@ If you made a mistake when you resolved a conflict and have completed the merge 
 - Stage files
 - Commit files
 - Then do
+
 ```shell
 $ git merge <branch>
 ``` 
 
 Success!
-
----
 
 ## Workflow - merge goes badly 
 
@@ -811,27 +738,28 @@ Success!
 - Stage files
 - Commit files
 - Then do
+
 ```shell
 $ git merge <branch>
 ```
+
 - CONFLICT!
 - Fix problems
 - Stage files
 - Attempt the merge again:
+
 ```shell
 $ git merge --continue
 ```
+
 Success!
 
----
 
 ## Rebasing
 
 - Rebasing is the process of moving or combining a sequence of commits to a new base commit. 
 - It solves the same problem as git merge. The commands are both used to integrate changes from one branch into another branch, however the way they do it is very different.
 - When you do a rebase, all the changes will be compressed together in a single "patch" which is then "applied" - rebasing creates new commits on the other branch for each commit in the original branch. 
-
----
 
 ### Rebasing - illustration 
 
@@ -894,10 +822,6 @@ graph LR
   commit2 --> commit1
 ```
 
----
-
-### Rebasing - continued
-
 Assume a master branch and the branch "cool-features" and that you want to rebase the branch "cool-features" onto the master branch: 
 
 ```shell
@@ -913,8 +837,6 @@ This works by
 * resetting the current branch to the same commit as the branch you are rebasing onto
 * apply each change in turn
 
----
-
 ## Cherry-picking
 
 Basically, cherry-picking in Git means that you choose a commit from one branch that you apply to another. 
@@ -926,12 +848,12 @@ Then make sure you are on the right branch that you want to apply the commit to:
 ```shell
 $ git checkout <branch>
 ```
+
 Now you execute the cherry-picking: 
+
 ```shell
 $ git cherry-pick <hash>
 ```
-
----
 
 ### Cherry-picking — illustration
 
@@ -995,8 +917,6 @@ graph LR
   commit2 --> commit1
 ```
 
----
-
 ## Take aways
 
 - create or parse branch - `git branch`
@@ -1006,20 +926,21 @@ graph LR
 
 
 **Conflict?**
+
 - `commit` or `stash` or discard (`clean`) the changes before switching branch or do a ``checkout --merge`` .
 
 **Workflow merge**
+
 - Work on files 
 - Stage and commit files 
 - Then do: `git merge <branch>`
 
-Conflict?
-  - Fix problems 
-  - Stage modifications 
-  - Then do: `git merge --continue`
+**Conflict?**
 
+ - Fix problems 
+ - Stage modifications 
+ - Then do: `git merge --continue`
 
----
 
 ## Exercises
 
@@ -1029,14 +950,10 @@ Each of the exercises has a README.md file with explanations and descriptions of
 
 2. Recursive/ORT Merge (OK): In this exercise you will see an example where git can automatically merge two branches. This time git will use the recursive merge. The exercise can be found in the subdirectory "2.merge-ok-recursive" 
 
----
-
-### Exercises
-
 3. Merge (BAD): This exercise gives an example of a merge that cannot be done automatically with the merge command. The exercise can be found in the subdirectory "3.merge-bad" 
 
 4. Rebasing (OK): In this exercise you will try the command rebase and see that it succeeds. The exercise can be found in the subdirectory "4.rebase-ok"  
 
 5. Rebasing (BAD): This exercise again gives an example of rebasing two branches, but in this case the rebase fails. The exercise can be found in the subdirectory "5.rebase-bad" 
 
----
+
