@@ -12,13 +12,10 @@ In addition to this, a remote is a way to backup your repository.
 ![Remote participants](../../images/remote-participants.png)
 
 
----
-
 ## Updated scheme for file stages
 
-![Git folders](../images/git-folders2.png)
+![Git folders](../../images/git-folders2.png)
 
----
 
 ## Concepts cont.
 The command 
@@ -33,7 +30,6 @@ origin  git@bitbucket.org:arm2011/gitcourse.git (push)
 displays the remotes that are already set up where you can *fetch* and *pull* changes. In this case there is only a single remoted called **origin** because I cloned the repository from the remote repository *arm2011/gitcourse.git*. If you created your repository from
 scratch (**git init**), you will not see any output from *git remote*. 
 
----
 
 In a repository containing an *origin* remote, one can see the following output with the 
 *git graph* command (an alias that we created in the **Basic Commands** session):
@@ -46,7 +42,6 @@ $ git graph
 * 3ff9f8f Adding some of the lectures
 ```
 
----
 
 ## Adding remotes
 
@@ -67,7 +62,6 @@ origin	git@github.com:pojeda/my-first-project.git (push)
 
 where the location of the remote can be an URL or the path if that is in your local machine.
 
----
 
 Protocols:
 
@@ -77,7 +71,6 @@ Protocols:
 - Git
 
 
----
 
 ## Working with remotes
 One can push or fetch/pull to or from remotes:
@@ -88,7 +81,6 @@ $ git fetch remote_name branch_name
 $ git pull  remote_name branch_name 
 ```
 
----
 
 In case you obtained the repository by cloning an existing one you will have the **origin** remote. You can do push/fetch/pull for this remote with
 
@@ -98,7 +90,6 @@ $ git fetch origin master
 $ git pull  origin master
 ```
 
----
 
 or 
 
@@ -110,7 +101,6 @@ $ git pull
 
 because the remote *origin* and the *master* branch are configured for pushing and pulling by default upon cloning.
 
----
 
 The command: 
 ```shell
@@ -122,7 +112,6 @@ brings all the changes (branches) that are in the remote and tries to merge them
   fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
----
 
 In fact, *git pull* is a combination of two commands:
 ```shell
@@ -137,7 +126,6 @@ $ git fetch
 $ git merge
 ```
 
----
 
 The command
 ```shell
@@ -145,7 +133,6 @@ $ git push
 ```
 will send the changes in the current branch to the remote by default.
 
----
 
 ## Advanced
 
