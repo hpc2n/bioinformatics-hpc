@@ -76,8 +76,13 @@ nav:
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - What are modules?: 7.software-modules-containers/what-modules.md
-    - The module system: 7.software-modules-containers/modules.md
+    - Module system commands: 7.software-modules-containers/commands.md
+    - Compiler toolchains: 7.software-modules-containers/toolchains.md
+    - Software module examples: 7.software-modules-containers/programs-md
+    - Modules in batch scripts: 7.software-modules-containers/batch.md
     - Containers: 7.software-modules-containers/containers.md
+    - Containers on Kebnekaise: 7.software-modules-containers/kebnekaise-containers.md
+    - Creating containers on your local computer: 7.software-modules-containers/create-containers.md
   - Software from a Git repo: 
     - Introduction: 8.software-git-install-compile/git-software.md
     - Installing: 8.software-git-install-compile/git-install.md
