@@ -145,7 +145,6 @@ This can be changed by applying:
 git config --global push.default matching(default), current, ...
 ```
 
----
 
 If you have a brand-new branch called **new**, you can push it the first time with the command:
 
@@ -160,11 +159,9 @@ git push origin new
 git branch --set-upstream new origin/new
 ```
 
----
 
 then, you will be able to push/pull the changes in the branch by simply typing **git push/pull**
 
----
 
 ### Displaying remote information
 
@@ -190,7 +187,6 @@ $ git remote show origin
     nested-feature pushes to nested-feature (up to date)
 ```
 
----
 
 ### Renaming remotes
 
@@ -205,17 +201,15 @@ $ git remote remove remote_name
 ```
 
 
----
 
 ## Bare repositories
 
-![Git bare repositories](../images/git-folders-bare.png)
+![Git bare repositories](../../images/git-folders-bare.png)
 
 
 
 A bare repository is a repository with no working directory.
 
----
 
 ### Creating a bare repository
 
@@ -230,43 +224,36 @@ $ git init --bare
 $ git clone --bare location
 ```
 
----
 
 ## Using GitHub
 
-![Using GitHub](../images/github-remote.jpg)
+![Using GitHub](../../images/github-remote.jpg)
 
 
----
 
 Upon login into your GitHub account you will see the following option to create a new repository
 
-![GitHub account](../images/github-account.jpg)
+![GitHub account](../../images/github-account.jpg)
 
----
 
 Here, you can choose the type of repository that is appropriate to your needs (public/private), if you want to add *README* and *.gitignore* files and also the type of license for your project,
 
-![GitHub type repo](../images/github-type-repo.jpeg)
+![GitHub type repo](../../images/github-type-repo.jpeg)
 
----
 
 GitHub will suggest some steps that you can take for your brand-new repository:
 
-![GitHub new repo](../images/github-new-repo.jpg)
-
----
-
-![GitHub create new repo](../images/github-import.jpg)
+![GitHub new repo](../../images/github-new-repo.jpg)
 
 
----
+![GitHub create new repo](../../images/github-import.jpg)
+
+
 
 ## Network visualization
-![Git network visualization](../images/git-network.jpg)
+![Git network visualization](../../images/git-network.jpg)
 
 
----
 
 ## Working with other's repos
 In the following scenario, a developer, Bob, has its repo on GitHub. Another developer, Alice, finds it useful. Alice can clone it but she cannot push changes unless Bob allows it:
@@ -285,7 +272,6 @@ graph LR
     linkStyle 3 stroke:#D50000,fill:none
 ```
 
----
 
 A better approach is to *fork* Bob's repository: 
 
@@ -315,23 +301,20 @@ graph LR
 ```
 In this way, Alice can push changes to her repository and eventually make Bob aware of them as well.
 
----
 
 ## Forking a repository
 
 To fork a repository, Alice go to the URL of the target repository and use the option *Fork* in Bob's repository: 
 
-![forking](../images/git-fork.jpg)
+![forking](../../images/git-fork.jpg)
 
----
 
 ## Forking a repository
 
 Then, Alice will see the forked repository on her user space:
 
-![forked](../images/alice-fork.jpg)
+![forked](../../images/alice-fork.jpg)
 
----
 
 Alice can then add the forked repository where she can *push* push changes:
 
@@ -356,7 +339,6 @@ upstream	git@github.com:bobuser2020/my-first-project.git (fetch)
 upstream	git@github.com:bobuser2020/my-first-project.git (push)
 ```
 
----
 
 
 
@@ -373,59 +355,54 @@ Alice can used the forked repository as the *origin* where she can put her chang
 will help her to be updated with the latest changes from Bob (Github will show messages) but she won't be 
 able to commit changes to Bob's repo (without permissions).
 
----
 
 ## Synchronizing remotes
 
 After doing some changes, Alice push them to her forked repository but she wants Bob become aware of them (1 commit in this case, click on this commit)
 
-![push repo](../images/alice-commit.png)
+![push repo](../../images/alice-commit.png)
 
 
----
 
 ## Pull request
 
 A **pull request** will be suggested: 
 
-![pull request](../images/pull-request.png)
+![pull request](../../images/pull-request.png)
 
----
 
 You can then create a the PR:
 
-![Create a pull request](../images/create-pr.png)
+![Create a pull request](../../images/create-pr.png)
 
 
----
 
 Another way to create PR is with "Pull request" option:
 
-![Another way to create a pull request](../images/also-pr.jpg)
 
----
+![Another pull request](../../images/also-pr.jpg)
 
 Then, Bob receives an email with the pull request information about Alice modifications. On the GitHub site he sees the request:
 
-![Get pull request](../images/get-pr.jpeg)
+![Get pull request](../../images/get-pr.jpeg)
 
----
+
 
 Because Bob find the changes from Alice useful and there are no conflicts he can merge them, 
 
-![Pull request is OK - merge](../images/pr-ok.jpg)
+![Pull request is OK - merge](../../images/pr-ok.jpg)
 
----
+
 
 ## Issues
 
 If you find some issues in the files/code you can open an "Issue" on GitHub
 
-![GitHub issue](../images/GH-issue.jpg)
+![GitHub issue](../../images/GH-issue.jpg)
 
----
 
-![GitHub issue - continued](../images/GH-issue-cont.jpg)
+
+![GitHub issue - continued](../../images/GH-issue-cont.jpg)
 
 ---
 
@@ -433,7 +410,7 @@ You may also assign people to the issues that are more related to that topic.
 
 In future commits you may refer to this issue by using the issue number, <span style="color:blue">#2</span> in this case. This will allow you to track the evolution of the issue on GitHub.
 
----
+
 
 ## Best practices
 
