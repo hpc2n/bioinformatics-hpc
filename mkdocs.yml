@@ -71,8 +71,8 @@ nav:
     - Branches, merges, and conflicts exercises: 6.Git/branches-exercises.md
     - Working with remotes: 6.Git/remotes.md
     - Working with remotes exercises: 6.Git/remotes-exercises.md
-    - Teamwork: teamwork.md
-    - Teamwork exercises: teamwork-exercises.md
+    - Teamwork: 6.Git/teamwork.md
+    - Teamwork exercises: 6.Git/teamwork-exercises.md
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - What are modules?: 7.software-modules-containers/what-modules.md
