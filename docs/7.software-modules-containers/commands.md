@@ -586,15 +586,15 @@ This command shows commands in the module file (MODULE) and can be used to list 
 
 This command prints the list of possible commands and can also be used to get the help message from module(s). 
 
-- at centres with a "flat" structure this can be used on all modules since there are no prerequisites: UPPMAX, NSC
-- at centres with a "hierarchial" structure this can only be used on the modules that are currently available to load (and can be seen with ``module avail``): HPC2N, LUNARC, C3SE, PDC
+- for modules not having prerequisites you can use ``module help`` without loading anything
+- for modules with prerequisites this command can only be used on the modules that are currently available to load (and can be seen with ``module avail``)
 
-**Example, HPC2N** 
+**Example** 
 
-Let us look at CUDA:
+Let us look at CUDA again:
 
 ```bash
-b-an01 [~]$ module help CUDA/12.6.0
+b-cn1613 [~]$ module help CUDA/12.6.0
 
 ----------------------------------------- Module Specific Help for "CUDA/12.6.0" -----------------------------------------
 
@@ -627,56 +627,49 @@ module save MYMODULES
 
 **Example** 
 
-Assuming we need pandas and matplotlib at HPC2N (very similar to LUNARC): 
+Assuming we need pandas and matplotlib at HPC2N: 
 
 1. Load the modules
 ```bash
-b-an01 [~]$ module load GCC/12.3.0 
-b-an01 [~]$ module load Python/3.11.3 
-b-an01 [~]$ module load OpenMPI/4.1.5 
-b-an01 [~]$ module load SciPy-bundle/2023.07 
-b-an01 [~]$ module load matplotlib/3.7.2 
+b-cn1613 [~]$ module load GCC/12.3.0 
+b-cn1613 [~]$ module load Python/3.11.3 
+b-cn1613 [~]$ module load OpenMPI/4.1.5 
+b-cn1613 [~]$ module load SciPy-bundle/2023.07 
+b-cn1613 [~]$ module load matplotlib/3.7.2 
 ```
 2. Save to a collection (here, "mypython")
 ```bash
-b-an01 [~]$ module save mypython
+b-cn1613 [~]$ module save mypython
 Saved current collection of modules to: "mypython"
 
-b-an01 [~]$ 
+b-cn1613 [~]$ 
 ```
 
 - Then, maybe later you find you also need ``mpi4py`` so you load it and add it to the collection: 
 ```bash
-b-an01 [~]$ ml mpi4py/3.1.4 
-b-an01 [~]$ module save mypython
+b-cn1613 [~]$ ml mpi4py/3.1.4 
+b-cn1613 [~]$ module save mypython
 Saved current collection of modules to: "mypython"
 
-b-an01 [~]$ 
+b-cn1613 [~]$ 
 ```
 
 - After you have been logged out and in again, or maybe unloaded/purged the modules, you can then restore it again: 
 ```bash 
-b-an01 [~]$ module restore mypython
+b-cn1613 [~]$ module restore mypython
 Restoring modules from user's mypython
-b-an01 [~]$ 
+b-cn1613 [~]$ 
 ```
 
 - You can get a listing of all your module collections by typing:
 ```bash
-b-an01 [~]$ module savelist
+b-cn1613 [~]$ module savelist
 ```
 
 - To query the contents of a module collection use
 ```bash
-b-an01 [~]$ module describe mypython
+b-cn1613 [~]$ module describe mypython
 ```
-
-!!! warning 
-
-    If you are working on PDC's cluster Dardel, and are used to the command ``module purge`` then this is a good way of restoring the system-modules: 
-
-    - Immediately after logging in (before loading or unloading anything) create a collection: ``module save pdcsystem`` (name as you want)
-    - Then, after you have done ``module purge``, just do ``module restore pdcsystem`` and you are back to the correct system setup. 
 
 ### Workflow - module collections 
 
@@ -688,7 +681,7 @@ b-an01 [~]$ module describe mypython
 - Each time you have logged out and are logging in again, you can easily restore the modules you need
     - Much safer than having it in your ``.bashrc`` since that is something easily forgotten about and then when you suddenly need to work with different modules or different versions, maybe months later, you are wondering why it is not working as it should and the reason is that you have auto-loaded things in your ``.bashrc``! 
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise" 
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise" 
 
     - Try loading some modules
     - create a module collection
@@ -704,23 +697,17 @@ b-an01 [~]$ module describe mypython
 
     How would you find, for instance, installed Python package modules for a specific Python version?  
 
-!!! warning "Important"
-
-    At centres with prerequisites, you need to load, say, GCC instead of GCCcore in order to be able to access, for instance, SciPy-bundle!!! You also need to load a compatible OpenMPI in order to be sure to get all available installed Python package modules. 
-
-**Example, HPC2N**
-
-(Very similar to LUNARC)  
+**Example**
 
 1. First load the Python module and prerequisites, and OpenMPI  
   ```bash
-  b-an01 [~]$ module load GCC/12.3.0
-  b-an01 [~]$ module load Python/3.11.3
-  b-an01 [~]$ module load OpenMPI/4.1.5
+  b-cn1613 [~]$ module load GCC/12.3.0
+  b-cn1613 [~]$ module load Python/3.11.3
+  b-cn1613 [~]$ module load OpenMPI/4.1.5
   ```
 2. Then you can check what Python package modules are installed (scroll down a bit):  
    ```bash 
-   b-an01 [~]$ module avail
+   b-cn1613 [~]$ module avail
    ...
    ----------------------- This is a list of module extensions "module --nx avail ..." to not show. ------------------------
                                                   (E)     fontBitstreamVera                         (E)
@@ -749,12 +736,12 @@ b-an01 [~]$ module describe mypython
 4. If you keep going further down on the list you got with "module avail" then you see that "mpi4py" is available and that "pandas" is available. Let us see how to load these. 
 5. Doing
 ```bash
-b-an01 [~]$ module avail mpi4py
+b-cn1613 [~]$ module avail mpi4py
 ```
 tells us it can be loaded directly
 6. Doing
 ```bash
-b-an01 [~]$ module avail pandas
+b-cn1613 [~]$ module avail pandas
 ```
 gives some conflicting answer, so we try with ``module spider pandas`` and then ``module spider pandas/version`` to learn that it is part of SciPy-bundle. 
 7. We can then load SciPy-bundle directly and get "pandas" available. 
