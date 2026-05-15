@@ -47,7 +47,7 @@ So how do you find out which versions are available for a specific software?
     ml spider MODULE
     ``` 
 
-### List toolchains With ``module avail`` 
+### List toolchains with ``module avail`` 
 
 !!! note
 
@@ -113,8 +113,7 @@ module spider Python
 
     ----------------------------------------------------------------------------
       For detailed information about a specific "Python" package (including how to load the modules) use the module's full name.
-      Note that names that have a trailing (E) are extensions provided by other modu
-les.
+      Note that names that have a trailing (E) are extensions provided by other modules.
       For example:
 
          $ module spider Python/3.13.5
@@ -528,8 +527,7 @@ This command shows commands in the module file (MODULE) and can be used to list 
 - for modules that has a “flat” structure (no prerequisites) this can be used
 - for modules that has a “hierarchial” structure (has prerequisites) this cannot be used until the prerequisites have been loaded. 
 
-!!! note "Example: Let us look at CUDA" 
-
+!!! note "Example: Let us look at CUDA"
 
     ```bash 
     b-cn1613 [~]$ ml show CUDA/12.6.0
