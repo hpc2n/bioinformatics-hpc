@@ -12,7 +12,6 @@ In addition we will look at how to use containers on Kebnekaise.
          - paths
          - environment variables
          - more?
-     - some talk about EasyBuild?
      - Useful commands
      - Load examples
      - Compiler toolchains
@@ -36,7 +35,9 @@ In order to type along and do the exercises, please prepare your course environm
     - You will not need a graphical user interface for this course.
     - Even so, if you do not have a favourite SSH client, we recomment using <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a>
     - OpenOnDemand works as well. 
+2) Download the exercises 
 
+    ** FIX THIS **  
 
 ## References
 

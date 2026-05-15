@@ -8,37 +8,30 @@
          - a specific version of software
     - Unload software modules, including specific versions 
     - Unload all software modules with ``module purge``
-        - This should never be done at PDC! 
-        - You can do this at Bianca (UPPMAX), but load the ``uppmax`` module afterwards.
     - List the loaded modules 
     - Get some information about a module (``module show`` and ``module help``)  
     - Learn about module collections to load/unload a bunch of modules (``module save <collection>`` and ``module restore <collection>``)
 
-In the previous section we saw how to find out which modules are available at a centre, including looking for a specific software module.    
+In the previous section we saw how to find out which modules are available, including looking for a specific software module.    
 
 Now it is time to learn more useful module commands! 
 
 ## Finding software versions 
 
-If you just load a module without specifying the version, you will (depending on centre) get the default version or an error. 
+If you just load a module without specifying the version, you will get the default version or an error. 
 
 There are good reasons not to just load the default version, even when it is possible: 
 
 - The default version is often the newest one installed, which means the default changes the next time an even newer version is installed. This could break your code or at least give a different result, which is bad for resproducibility. 
 - Sometimes you actually need a specific version, which could differ from the one the centre has decided on as default. 
 
+!!! note
+
+    However, when you have loaded the prerequisites, usually GCC/intel/foss you can generally safely load the rest of the modules without giving the version as it is now locked in by your choice of prerequisite. This also means it is easier to find compatible modules. 
+
 So how do you find out which versions are available for a specific software? 
 
-!!! note 
-
-    This is done differently, depending on the center you are at: 
-
-    - HPC2N, LUNARC, C3SE, PDC: ``module spider MODULE`` or ``ml spider MODULE``
-    - UPPMAX, NSC, /C3SE): ``module avail MODULE`` or ``ml avail MODULE`` 
-
-### With ``module spider`` 
-
-Recommended at HPC2N, LUNARC, C3SE, and PDC. 
+### Reminder ``module spider`` 
 
 !!! note
 
@@ -54,13 +47,11 @@ Recommended at HPC2N, LUNARC, C3SE, and PDC.
     ml spider MODULE
     ``` 
 
-### With ``module avail`` 
-
-Recommended at UPPMAX and NSC. 
+### List toolchains With ``module avail`` 
 
 !!! note
 
-    The command to find the available version for a software module named MODULE is: 
+    The command to find the available version for a toolchain or software module without prerequisites, named MODULE is: 
 
     ```bash 
     module avail MODULE
@@ -82,380 +73,56 @@ Finding available versions of Python.
 
 **module spider**
 
-=== "HPC2N" 
+```bash
+module spider Python
+```
+
+??? note "Click to show" 
 
     ```bash
-    module spider Python
+    b-an01 [~]$ module spider Python
+
+    --------------------------------------------------------------------------------------------------------------------
+      Python:
+    --------------------------------------------------------------------------------------------------------------------
+        Description:
+          Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+
+         Versions:
+            Python/2.7.18-bare
+            Python/2.7.18
+            Python/3.8.6
+            Python/3.9.6-bare
+            Python/3.9.6
+            Python/3.10.4-bare
+            Python/3.10.4
+            Python/3.10.8-bare
+            Python/3.10.8
+            Python/3.11.3
+            Python/3.11.5
+            Python/3.12.3
+            Python/3.13.1
+            Python/3.13.5
+         Other possible modules matches:
+            Biopython  Boost.Python  Brotli-python  CUDA-Python  GitPython  ...
+
+    ----------------------------------------------------------------------------
+      To find other possible module matches execute:
+
+          $ module -r spider '.*Python.*'
+
+    ----------------------------------------------------------------------------
+      For detailed information about a specific "Python" package (including how to l
+oad the modules) use the module's full name.
+      Note that names that have a trailing (E) are extensions provided by other modu
+les.
+      For example:
+
+         $ module spider Python/3.13.5
+    ----------------------------------------------------------------------------
     ```
 
-    ??? note "Click to show" 
-
-        ```bash
-        b-an01 [~]$ module spider Python
-
-        --------------------------------------------------------------------------------------------------------------------
-          Python:
-        --------------------------------------------------------------------------------------------------------------------
-            Description:
-              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
-
-             Versions:
-                Python/2.7.15
-                Python/2.7.16
-                Python/2.7.18-bare
-                Python/2.7.18
-                Python/3.7.2
-                Python/3.7.4
-                Python/3.8.2
-                Python/3.8.6
-                Python/3.9.5-bare
-                Python/3.9.5
-                Python/3.9.6-bare
-                Python/3.9.6
-                Python/3.10.4-bare
-                Python/3.10.4
-                Python/3.10.8-bare
-                Python/3.10.8
-                Python/3.11.3
-                Python/3.11.5
-                Python/3.12.3
-             Other possible modules matches:
-                Biopython  Boost.Python  Brotli-python  GitPython  IPython  Python-bundle-PyPI  bx-python  flatbuffers-python  ...
-
-        --------------------------------------------------------------------------------------------------------------------
-          To find other possible module matches execute:
-
-              $ module -r spider '.*Python.*'
-
-        --------------------------------------------------------------------------------------------------------------------
-          For detailed information about a specific "Python" package (including how to load the modules) use the module's full name.
-          Note that names that have a trailing (E) are extensions provided by other modules.
-          For example:
-
-             $ module spider Python/3.12.3
-        --------------------------------------------------------------------------------------------------------------------
-        ```
-
-=== "LUNARC"
-
-    ```bash
-    module spider Python
-    ```
-
-    ??? note "Click to show"
-
-        ```bash
-        [bbrydsoe@cosmos3 ~]$ module spider Python
-
-        ----------------------------------------------------------------------------------------------------------------------------
-          Python:
-        ----------------------------------------------------------------------------------------------------------------------------
-            Description:
-              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
-
-             Versions:
-                Python/2.7.18-bare
-                Python/2.7.18
-                Python/3.8.6
-                Python/3.9.5-bare
-                Python/3.9.5
-                Python/3.9.6-bare
-                Python/3.9.6
-                Python/3.10.4-bare
-                Python/3.10.4
-                Python/3.10.8-bare
-                Python/3.10.8
-                Python/3.11.3
-                Python/3.11.5
-                Python/3.12.3
-             Other possible modules matches:
-                Biopython  GitPython  IPython  Python-bundle  Python-bundle-PyPI  bx-python  flatbuffers-python  graphviz-python  ...
-
-        ----------------------------------------------------------------------------------------------------------------------------
-          To find other possible module matches execute:
-
-              $ module -r spider '.*Python.*'
-
-        ----------------------------------------------------------------------------------------------------------------------------
-          For detailed information about a specific "Python" package (including how to load the modules) use the module's full name.
-          Note that names that have a trailing (E) are extensions provided by other modules.
-          For example:
-
-             $ module spider Python/3.12.3
-         ----------------------------------------------------------------------------------------------------------------------------
-        ```
-
-=== "C3SE" 
-
-    ```bash
-    module spider Python
-    ```
-
-    ??? note "Click to show"
-
-        ```bash
-        [brydso@alvis1 ~]$ module spider Python
-
-        -----------------------------------------------------------------------------------------------------------------------------
-          Python:
-        -----------------------------------------------------------------------------------------------------------------------------
-            Description:
-              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
-
-             Versions:
-                Python/2.7.18-GCCcore-11.2.0-bare
-                Python/2.7.18-GCCcore-11.3.0-bare
-                Python/2.7.18-GCCcore-12.2.0-bare
-                Python/3.9.5-GCCcore-10.3.0-bare
-                Python/3.9.5-GCCcore-10.3.0
-                Python/3.9.6-GCCcore-11.2.0-bare
-                Python/3.9.6-GCCcore-11.2.0
-                Python/3.10.4-GCCcore-11.3.0-bare
-                Python/3.10.4-GCCcore-11.3.0
-                Python/3.10.8-GCCcore-12.2.0-bare
-                Python/3.10.8-GCCcore-12.2.0
-                Python/3.11.3-GCCcore-12.3.0
-                Python/3.11.5-GCCcore-13.2.0
-                Python/3.12.3-GCCcore-13.3.0
-             Other possible modules matches:
-                Biopython  Boost.Python  CUDA-Python  GitPython  IPython  Python-bundle-PyPI  flatbuffers-python  meson-python  ...
-
-        -----------------------------------------------------------------------------------------------------------------------------
-          To find other possible module matches execute:
-
-              $ module -r spider '.*Python.*'
-
-        -----------------------------------------------------------------------------------------------------------------------------
-          For detailed information about a specific "Python" package (including how to load the modules) use the module's full name.
-          Note that names that have a trailing (E) are extensions provided by other modules.
-          For example:
-
-             $ module spider Python/3.12.3-GCCcore-13.3.0
-        -----------------------------------------------------------------------------------------------------------------------------
-        ```
-
-**module spider, mostly**
-    
-=== "PDC"
-
-    ```bash
-    module spider python
-    ```
-
-    ??? note "Click to show - python"
-
-        ```bash
-        bbrydsoe@login1:~> ml spider python
-        -----------------------------------------------------------------------------------------------------------------------------
-          python:
-        -----------------------------------------------------------------------------------------------------------------------------
-             Versions:
-                python/2.7.6
-                python/2.7.9
-                python/2.7.11
-                python/2.7.15
-                python/3.3
-                python/3.3.1
-                python/3.4.3
-                python/3.5.0
-                python/3.6.0
-                python/3.6.8
-                python/3.7.2
-                python/3.8.7
-                python/3.9.5
-                python/3.9.6
-                python/3.10.8
-                python/3.11.4
-                python/3.11.6-gcc-oc3
-                python/3.11.6-gcc-qyw
-                python/3.11.6-gcc-spv
-                python/3.11.8
-                python/3.11.9-gcc-epm
-                python/3.12.1
-                python/3.12.3
-                python/3.13.0-gcc-cgo
-             Other possible modules matches:
-                biopython  cray-python  dbus-python  pdc-python  py-meson-python  py-python-dateutil  python-2.7.18-gcc-11.2.0-namldiz  python-3.8.12-gcc-11.2.0-nwj732o  python-3.8.12-gcc-11.2.0-vhhulma  ...
-
-        -----------------------------------------------------------------------------------------------------------------------------
-          To find other possible module matches execute:
-
-              $ module -r spider '.*python.*'
-
-        -----------------------------------------------------------------------------------------------------------------------------
-          For detailed information about a specific "python" package (including how to load the modules) use the module's full name.
-          Note that names that have a trailing (E) are extensions provided by other modules.
-          For example:
-
-             $ module spider python/3.13.0-gcc-cgo
-        -----------------------------------------------------------------------------------------------------------------------------
-        ```
-
-    ??? note "Click to show - cray-python"
-
-        ```bash 
-        bbrydsoe@login1:~> module avail cray-python
-
-        ------------------------------------ /opt/cray/pe/lmod/modulefiles/core -------------------------------------
-           cray-python/3.10.10    cray-python/3.11.5 (D)    cray-python/3.11.7
-
-          Where:
-           D:  Default Module
-
-        If the avail list is too long consider trying:
-
-        "module --default avail" or "ml -d av" to just list the default modules.
-        "module overview" or "ml ov" to display the number of modules for each name.
-
-        Use "module spider" to find all possible modules and extensions.
-        Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
-        ```
-
-**module avail** 
-
-=== "UPPMAX" 
-
-    ```bash 
-    module avail python
-    ``` 
-
-    ??? note "Click to show for Pelle" 
-
-        ```bash
-
-        [bjornc@pelle3-ae ~]$ ml av python
-        
-        -------------------------------------------------- /sw/arch/eb/modules/all --------------------------------------------------
-           Biopython/1.76-foss-2024a-Python-2.7.18              SciPy-bundle/2024.06-foss-2024a-Python-2.7.18
-           Biopython/1.84-foss-2024a                            Seaborn/0.9.1-foss-2024a-Python-2.7.18
-           Biopython/1.84-gfbf-2024a                            SeqAn/2.4.0-GCCcore-13.3.0-Python-2.7.18
-           Biopython/1.86-gfbf-2025b                     (D)    Tkinter/2.7.18-GCCcore-12.3.0-Python-2.7.18
-           Bowtie2/2.5.4-GCC-13.3.0-Python-2.7.18               Tkinter/2.7.18-GCCcore-13.3.0-Python-2.7.18
-           CONCOCT/1.1.0-foss-2024a-Python-2.7.18               TopHat/2.1.2-GCC-13.3.0-Python-2.7.18
-           CheckM/1.0.18-foss-2024a-Python-2.7.18               Trim_Galore/0.6.10-GCCcore-13.3.0-Python-2.7.18
-           Cython/0.27.3-GCCcore-12.3.0-Python-2.7.18           bx-python/0.13.0-gfbf-2024a
-           Cython/0.29.37-GCCcore-13.3.0-Python-2.7.18          cutadapt/1.18-GCCcore-13.3.0-Python-2.7.18
-           Cython/3.0.10-GCCcore-13.3.0-Python-3.8.6            fastStructure/1.0-foss-2023a-Python-2.7.18
-           DendroPy/4.5.2-GCCcore-13.3.0-Python-2.7.18          flatbuffers-python/24.3.25-GCCcore-13.3.0
-           IPython/8.28.0-GCCcore-13.3.0                        flit/3.5.1-GCCcore-13.3.0-Python-3.8.6
-           IPython/9.4.0-GCCcore-14.3.0                  (D)    hypothesis/4.57.1-GCCcore-12.3.0-Python-2.7.18
-           MEGAHIT/1.2.9-GCCcore-13.3.0-Python-2.7.18           hypothesis/4.57.1-GCCcore-13.3.0-Python-2.7.18
-           MaxBin/2.2.7-gompi-2024a-Python-2.7.18               hypothesis/4.57.1-GCCcore-13.3.0-Python-3.8.6
-           Pysam/0.20.0-GCC-13.3.0-Python-2.7.18                matplotlib/2.2.5-foss-2023a-Python-2.7.18
-           Python-bundle-PyPI/2023.06-GCCcore-12.3.0            matplotlib/2.2.5-foss-2024a-Python-2.7.18
-           Python-bundle-PyPI/2023.10-GCCcore-13.2.0            meson-python/0.13.2-GCCcore-12.3.0
-           Python-bundle-PyPI/2023.10-GCCcore-13.3.0            meson-python/0.15.0-GCCcore-13.2.0
-           Python-bundle-PyPI/2024.06-GCCcore-13.3.0            meson-python/0.16.0-GCCcore-13.3.0
-           Python-bundle-PyPI/2025.04-GCCcore-14.2.0            meson-python/0.18.0-GCCcore-14.3.0              (D)
-           Python-bundle-PyPI/2025.07-GCCcore-14.3.0     (D)    metaWRAP/1.4-20230728-foss-2024a-Python-2.7.18
-           Python/2.7.18-GCCcore-12.3.0                         numpy/1.16.6-foss-2023a-Python-2.7.18
-           Python/2.7.18-GCCcore-13.3.0                         numpy/1.16.6-foss-2024a-Python-2.7.18
-           Python/3.8.6-GCCcore-13.3.0                          numpy/1.16.6-foss-2024a-Python-3.8.6            (D)
-           Python/3.10.4-GCCcore-11.3.0-bare                    pkgconfig/1.5.5-GCCcore-13.3.0-python
-           Python/3.10.4-GCCcore-11.3.0                         protobuf-python/4.24.0-GCCcore-12.3.0
-           Python/3.10.8-GCCcore-12.2.0-bare                    protobuf-python/5.28.0-GCCcore-13.3.0           (D)
-
-        --More--
-
-        ```
-            
-    ??? note "Click to show for Bianca" 
-
-        ```bash
-        [bjornc@sens2025560-bianca ~]$ module avail python
-
-        --------------------------------- /sw/mf/bianca/applications ----------------------------------
-           python_GIS_packages/3.10.8      python_ML_packages/3.9.5-gpu         wrf-python/1.3.1
-           python_ML_packages/3.9.5-cpu    python_ML_packages/3.11.8-cpu (D)
-
-        ----------------------------------- /sw/mf/bianca/compilers -----------------------------------
-           python/2.7.6     python/3.4.3    python/3.9.5         python3/3.6.0     python3/3.11.4
-           python/2.7.9     python/3.5.0    python/3.10.8        python3/3.6.8     python3/3.11.8
-           python/2.7.11    python/3.6.0    python/3.11.4        python3/3.7.2     python3/3.12.1
-           python/2.7.15    python/3.6.8    python/3.11.8        python3/3.8.7     python3/3.12.7 (D)
-           python/3.3       python/3.7.2    python/3.12.1        python3/3.9.5
-           python/3.3.1     python/3.8.7    python/3.12.7 (D)    python3/3.10.8
-
-          Where:
-           D:  Default Module
-
-        Use "module spider" to find all possible modules and extensions.
-        Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
-        ```
-
-        Ignore the comment about using ``module spider``! 
-
-=== "NSC"
-
-    ```bash 
-    module avail python 
-    ``` 
-
-    ??? note "Click to show" 
-
-        ```bash 
-        [x_birbr@tetralith3 ~]$ module avail python
-
-        --------------------- /software/sse2/tetralith_el9/modules ---------------------
-           ASE/3.22.1-hpc1-python
-           ASE/3.23.0-hpc1-python
-           GaussSum/3.0.2-Python-3.7.8-hpc1
-           NCL/6.6.2-hpc2-Python
-           Pylint/3.2.5-hpc1-Python-3.11.5
-           Python/recommendation                (D)
-           Python/2.7.18-bare-hpc1-gcc-2022a-eb
-           Python/3.10.4-bare-hpc1-gcc-2022a-eb
-           Python/3.10.4-env-hpc1-gcc-2022a-eb
-           Python/3.10.4-env-hpc2-gcc-2022a-eb
-           Python/3.11.5-bare-hpc1-gcc-2023b-eb
-           Python/3.11.5-env-hpc1-gcc-2023b-eb
-
-          Where:
-           D:  Default Module
-        ```
-
-=== "C3SE" 
-
-    ```bash 
-    module avail Python
-    ``` 
-
-    ??? note "Click to show"
-
-        You will get output that includes what you look for, but also a lot of other output - and only if you use "Python" instead of "python" 
-
-        ```bash 
-        [brydso@alvis1 ~]$ module avail Python
-
-        ------------------------------------------------------------------ /apps/Arch/fmodules/all ------------------------------------------------------------------
-           Biopython/1.79-foss-2021a                              Python/2.7.18-GCCcore-12.2.0-bare                meson-python/0.18.0-GCCcore-14.2.0    (D)
-           Biopython/1.79-foss-2021b                              Python/3.9.5-GCCcore-10.3.0-bare                 netcdf4-python/1.6.4-foss-2023a
-           Biopython/1.79-foss-2022a                              Python/3.9.5-GCCcore-10.3.0                      netcdf4-python/1.6.5-foss-2023b
-           Biopython/1.83-foss-2023a                       (D)    Python/3.9.6-GCCcore-11.2.0-bare                 netcdf4-python/1.7.1.post2-foss-2024a (D)
-           Boost.Python/1.82.0-GCC-12.3.0                         Python/3.9.6-GCCcore-11.2.0                      openslide-python/1.1.2-GCCcore-10.3.0
-           CUDA-Python/12.1.0-gfbf-2023a-CUDA-12.1.1              Python/3.10.4-GCCcore-11.3.0-bare                openslide-python/1.1.2-GCCcore-11.2.0 (D)
-           CUDA-Python/12.6.2.post1-gfbf-2024a-CUDA-12.6.0 (D)    Python/3.10.4-GCCcore-11.3.0                     pkgconfig/1.5.4-GCCcore-10.3.0-python
-           GitPython/3.1.27-GCCcore-11.3.0                        Python/3.10.8-GCCcore-12.2.0-bare                pkgconfig/1.5.5-GCCcore-11.2.0-python
-           GitPython/3.1.40-GCCcore-12.3.0                 (D)    Python/3.10.8-GCCcore-12.2.0                     pkgconfig/1.5.5-GCCcore-11.3.0-python
-           IPython/7.25.0-GCCcore-10.3.0                          Python/3.11.3-GCCcore-12.3.0                     pkgconfig/1.5.5-GCCcore-12.2.0-python
-           IPython/7.26.0-GCCcore-11.2.0                          Python/3.11.5-GCCcore-13.2.0                     pkgconfig/1.5.5-GCCcore-12.3.0-python (D)
-           IPython/8.5.0-GCCcore-11.3.0                           Python/3.12.3-GCCcore-13.3.0                     protobuf-python/3.17.3-GCCcore-10.3.0
-           IPython/8.14.0-GCCcore-12.2.0                          Python/3.13.1-GCCcore-14.2.0                     protobuf-python/3.17.3-GCCcore-11.2.0
-           IPython/8.14.0-GCCcore-12.3.0                          Python/3.13.5-GCCcore-14.3.0              (D)    protobuf-python/3.19.4-GCCcore-11.3.0
-           IPython/8.17.2-GCCcore-13.2.0                          Z3/4.12.2-GCCcore-12.3.0-Python-3.11.3           protobuf-python/4.23.0-GCCcore-12.2.0
-           IPython/8.28.0-GCCcore-13.3.0                          flatbuffers-python/2.0-GCCcore-10.3.0            protobuf-python/4.24.0-GCCcore-12.3.0
-           IPython/9.3.0-GCCcore-14.2.0                    (D)    flatbuffers-python/2.0-GCCcore-11.2.0            protobuf-python/5.28.0-GCCcore-13.3.0 (D)
-           Python-bundle-PyPI/2023.06-GCCcore-12.3.0              flatbuffers-python/2.0-GCCcore-11.3.0            python-mujoco/2.2.2-foss-2022a
-           Python-bundle-PyPI/2023.10-GCCcore-13.2.0              flatbuffers-python/23.1.4-GCCcore-12.2.0         python-mujoco/3.1.4-foss-2023a        (D)
-           Python-bundle-PyPI/2024.06-GCCcore-13.3.0              flatbuffers-python/23.5.26-GCCcore-12.3.0 (D)    python-xxhash/3.4.1-GCCcore-12.3.0
-           Python-bundle-PyPI/2025.04-GCCcore-14.2.0       (D)    meson-python/0.13.2-GCCcore-12.3.0               spglib-python/1.16.1-foss-2021a
-           Python/2.7.18-GCCcore-11.2.0-bare                      meson-python/0.15.0-GCCcore-13.2.0               spglib-python/2.0.0-foss-2022a
-           Python/2.7.18-GCCcore-11.3.0-bare                      meson-python/0.16.0-GCCcore-13.3.0               spglib-python/2.1.0-gfbf-2023a        (D)
-
-        ...
-        ```
-
-!!! note "<img src="../images/shell-logo_small.png"> Exercise" 
+!!! note "<img src="../../images/shell-logo_small.png"> Exercise" 
 
     1. At your chosen centre, check the different output for ``module avail Python`` and ``module spider Python``
     2. Do you get the same output for "Python" and "python"? 
