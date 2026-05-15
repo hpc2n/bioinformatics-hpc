@@ -1,8 +1,6 @@
-# 7: Teamwork
+# Teamwork
 
 <!-- Lecture material made by Birgitte Brydsö for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. Several changes done to the material in 2021 and 2022, mainly due to GitHub no longer allowing for password authentication. Minor changes and updates done for the 2023 and 2024 version. -->
-
-## Teamwork
 
 Git is very useful for teamwork. 
 You will often have three types of branches for a project/specific release:
@@ -233,241 +231,226 @@ Fast-forward
  create mode 100644 newfile.txt
 ```
 
----
+!!! example "Example: creating a new branch, pushing changes"
 
-## Example: creating a new branch, pushing changes
+    Here we create a new branch on a remote repository and add a file to it, then push: 
 
-Here we create a new branch on a remote repository and add a file to it, then push: 
+    Create the branch
 
-Create the branch
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git branch mynewbranch
-bbrydsoe@enterprise-a:~/mytestrepo$
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git branch mynewbranch
+    bbrydsoe@enterprise-a:~/mytestrepo$
+    ```
 
-Switch to it
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git checkout mynewbranch
-Switched to branch 'mynewbranch'
-bbrydsoe@enterprise-a:~/mytestrepo$
-```
+    Switch to it
 
-I then create a file on my new branch. After this, check the status and log
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git checkout mynewbranch
+    Switched to branch 'mynewbranch'
+    bbrydsoe@enterprise-a:~/mytestrepo$
+    ```
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git status
-On branch mynewbranch
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   myfile.txt
+    I then create a file on my new branch. After this, check the status and log
 
-no changes added to commit (use "git add" and/or "git commit -a")
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git status
+    On branch mynewbranch
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+    	modified:   myfile.txt
 
----
+    no changes added to commit (use "git add" and/or "git commit -a")
+    ```
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git log --graph --oneline --decorate --all
-* accef46 (HEAD -> mynewbranch, main) Updating the file funny.txt
-* 43110f8 (origin/main, origin/HEAD) Update funny.txt
-* af9e1cb Create Weird.txt
-* db2e945 Create funny.txt
-* c74b74c Adding the file file4.txt
-* 805d9b3 Create newfile.txt
-* c8e5214 Adding some files to play with for the exercise.
-* 1c8156d (origin/mytestbranch, mytestbranch) Adding testfile.txt to mytestbranch
-*   333d5e5 Merge pull request #2 from bbrydsoe/birgittesbranch
-|\  
-| * 92901fa (origin/birgittesbranch, birgittesbranch) Adding my new file to my new branch.
-* |   e7741d8 Merge pull request #1 from bbrydsoe/spocksbranch
-|\ \  
-| |/  
-|/|   
-| * 6814eb4 (origin/spocksbranch) Added a file by user spock
-|/  
-* d4a666e Adding my new file to the repository.
-* 303bf63 Create README.md
-bbrydsoe@enterprise-a:~/mytestrepo$
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git log --graph --oneline --decorate --all
+    * accef46 (HEAD -> mynewbranch, main) Updating the file funny.txt
+    * 43110f8 (origin/main, origin/HEAD) Update funny.txt
+    * af9e1cb Create Weird.txt
+    * db2e945 Create funny.txt
+    * c74b74c Adding the file file4.txt
+    * 805d9b3 Create newfile.txt
+    * c8e5214 Adding some files to play with for the exercise.
+    * 1c8156d (origin/mytestbranch, mytestbranch) Adding testfile.txt to mytestbranch
+    *   333d5e5 Merge pull request #2 from bbrydsoe/birgittesbranch
+    |\  
+    | * 92901fa (origin/birgittesbranch, birgittesbranch) Adding my new file to my new branch.
+    * |   e7741d8 Merge pull request #1 from bbrydsoe/spocksbranch
+    |\ \  
+    | |/  
+    |/|   
+    | * 6814eb4 (origin/spocksbranch) Added a file by user spock
+    |/  
+    * d4a666e Adding my new file to the repository.
+    * 303bf63 Create README.md
+    bbrydsoe@enterprise-a:~/mytestrepo$
+    ```
 
-Note: when you do this it should be coloured for easier readability 
+    Note: when you do this it should be coloured for easier readability 
 
----
+    I stage and commit the file. 
 
-I stage and commit the file. 
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git add myfile.txt 
+    bbrydsoe@enterprise-a:~/mytestrepo$ git commit -m " Adding a file to my new branch"
+    [mynewbranch c997da0]  Adding a file to my new branch
+     1 file changed, 1 insertion(+)
+    ```
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git add myfile.txt 
-bbrydsoe@enterprise-a:~/mytestrepo$ git commit -m " Adding a file to my new branch"
-[mynewbranch c997da0]  Adding a file to my new branch
- 1 file changed, 1 insertion(+)
-```
+    I will check to confirm I am on the right branch: 
 
-I will check to confirm I am on the right branch: 
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git branch
+      birgittesbranch
+      main
+    * mynewbranch
+      mytestbranch
+    bbrydsoe@enterprise-a:~/mytestrepo$ 
+    ```
+    
+    Let us again check with `git status` and `git log ...`
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git branch
-  birgittesbranch
-  main
-* mynewbranch
-  mytestbranch
-bbrydsoe@enterprise-a:~/mytestrepo$ 
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git status
+    On branch mynewbranch
+    nothing to commit, working tree clean
+    bbrydsoe@enterprise-a:~/mytestrepo$ 
+    ```
 
----
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git log --graph --oneline --decorate --all
+    * c997da0 (HEAD -> mynewbranch)  Adding a file to my new branch
+    * accef46 (main) Updating the file funny.txt
+    * 43110f8 (origin/main, origin/HEAD) Update funny.txt
+    * af9e1cb Create Weird.txt
+    * db2e945 Create funny.txt
+    * c74b74c Adding the file file4.txt
+    * 805d9b3 Create newfile.txt
+    * c8e5214 Adding some files to play with for the exercise.
+    * 1c8156d (origin/mytestbranch, mytestbranch) Adding testfile.txt to mytestbranch
+    *   333d5e5 Merge pull request #2 from bbrydsoe/birgittesbranch
+    |\  
+    | * 92901fa (origin/birgittesbranch, birgittesbranch) Adding my new file to my new branch.
+    * |   e7741d8 Merge pull request #1 from bbrydsoe/spocksbranch
+    |\ \  
+    | |/  
+    |/|   
+    | * 6814eb4 (origin/spocksbranch) Added a file by user spock
+    |/  
+    * d4a666e Adding my new file to the repository.
+    * 303bf63 Create README.md
+    bbrydsoe@enterprise-a:~/mytestrepo$
+    ```
 
-Let us again check with `git status` and `git log ...`
+    Push your changes with `git push origin -u yourbranchname` (or with `git push -u origin HEAD`)
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git status
-On branch mynewbranch
-nothing to commit, working tree clean
-bbrydsoe@enterprise-a:~/mytestrepo$ 
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git push -u origin HEAD
+    Enter passphrase for key '/home/bbrydsoe/.ssh/id_rsa': 
+    Enumerating objects: 9, done.
+    Counting objects: 100% (9/9), done.
+    Delta compression using up to 4 threads
+    Compressing objects: 100% (5/5), done.
+    Writing objects: 100% (6/6), 619 bytes | 619.00 KiB/s, done.
+    Total 6 (delta 2), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+    remote: 
+    remote: Create a pull request for 'mynewbranch' on GitHub by visiting:
+    remote:      https://github.com/bbrydsoe/mytestrepo/pull/new/mynewbranch
+    remote: 
+    To github.com:bbrydsoe/mytestrepo.git
+     * [new branch]      HEAD -> mynewbranch
+    Branch 'mynewbranch' set up to track remote branch 'mynewbranch' from 'origin'.
+    bbrydsoe@enterprise-a:~/mytestrepo$ 
+    ```
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git log --graph --oneline --decorate --all
-* c997da0 (HEAD -> mynewbranch)  Adding a file to my new branch
-* accef46 (main) Updating the file funny.txt
-* 43110f8 (origin/main, origin/HEAD) Update funny.txt
-* af9e1cb Create Weird.txt
-* db2e945 Create funny.txt
-* c74b74c Adding the file file4.txt
-* 805d9b3 Create newfile.txt
-* c8e5214 Adding some files to play with for the exercise.
-* 1c8156d (origin/mytestbranch, mytestbranch) Adding testfile.txt to mytestbranch
-*   333d5e5 Merge pull request #2 from bbrydsoe/birgittesbranch
-|\  
-| * 92901fa (origin/birgittesbranch, birgittesbranch) Adding my new file to my new branch.
-* |   e7741d8 Merge pull request #1 from bbrydsoe/spocksbranch
-|\ \  
-| |/  
-|/|   
-| * 6814eb4 (origin/spocksbranch) Added a file by user spock
-|/  
-* d4a666e Adding my new file to the repository.
-* 303bf63 Create README.md
-bbrydsoe@enterprise-a:~/mytestrepo$
-```
+    Let us check the status
 
----
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git status
+    On branch mynewbranch
+    Your branch is up-to-date with 'origin/mynewbranch'.
 
-Push your changes with `git push origin -u yourbranchname` (or with `git push -u origin HEAD`)
+    nothing to commit, working tree clean
+    bbrydsoe@enterprise-a:~/mytestrepo$ 
+    ```
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git push -u origin HEAD
-Enter passphrase for key '/home/bbrydsoe/.ssh/id_rsa': 
-Enumerating objects: 9, done.
-Counting objects: 100% (9/9), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (5/5), done.
-Writing objects: 100% (6/6), 619 bytes | 619.00 KiB/s, done.
-Total 6 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 1 local object.
-remote: 
-remote: Create a pull request for 'mynewbranch' on GitHub by visiting:
-remote:      https://github.com/bbrydsoe/mytestrepo/pull/new/mynewbranch
-remote: 
-To github.com:bbrydsoe/mytestrepo.git
- * [new branch]      HEAD -> mynewbranch
-Branch 'mynewbranch' set up to track remote branch 'mynewbranch' from 'origin'.
-bbrydsoe@enterprise-a:~/mytestrepo$ 
-```
+!!! example "Example: Merging branches" 
 
-Let us check the status
+    We will merge the branches from the command line. Let us first see which branches exist in my repo - in this case I will check for both local and remote branches
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git status
-On branch mynewbranch
-Your branch is up-to-date with 'origin/mynewbranch'.
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git branch --all
+      birgittesbranch
+      main
+    * mynewbranch
+      mytestbranch
+      remotes/origin/HEAD -> origin/main
+      remotes/origin/birgittesbranch
+      remotes/origin/main
+      remotes/origin/mynewbranch
+      remotes/origin/mytestbranch
+      remotes/origin/spocksbranch
+    ```
 
-nothing to commit, working tree clean
-bbrydsoe@enterprise-a:~/mytestrepo$ 
-```
+    I have a bunch of branches (created previously by me and another user, for testing). As you can see, I am on my newest branch "mynewbranch"
+ 
+    Switch to the branch we are merging to (main)
 
----
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git checkout main
+    Switched to branch 'main'
+    Your branch is up-to-date with 'origin/main'.
+    bbrydsoe@enterprise-a:~/mytestrepo$ 
+    ```
 
-## Example: Merging branches
+    Do the merge (it will also open an editor where you should write a commit message for why the merge should happen)
 
-We will merge the branches from the command line. Let us first see which branches exist in my repo - in this case I will check for both local and remote branches
+    ```shell
+    git merge mynewbranch 
+    Merge made by the 'recursive' strategy.
+     myfile.txt | 1 +
+     1 file changed, 1 insertion(+)
+    ```
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git branch --all
-  birgittesbranch
-  main
-* mynewbranch
-  mytestbranch
-  remotes/origin/HEAD -> origin/main
-  remotes/origin/birgittesbranch
-  remotes/origin/main
-  remotes/origin/mynewbranch
-  remotes/origin/mytestbranch
-  remotes/origin/spocksbranch
-```
+    Let us do a status check
 
-I have a bunch of branches (created previously by me and another user, for testing). As you can see, I am on my newest branch "mynewbranch"
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git status
+    On branch main
+    Your branch is ahead of 'origin/main' by 2 commits.
+      (use "git push" to publish your local commits)
 
----
+    nothing to commit, working tree clean
+    ```
 
-Switch to the branch we are merging to (main)
+    Pushing
 
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git checkout main
-Switched to branch 'main'
-Your branch is up-to-date with 'origin/main'.
-bbrydsoe@enterprise-a:~/mytestrepo$ 
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git push
+    Enter passphrase for key '/home/bbrydsoe/.ssh/id_rsa': 
+    Enumerating objects: 4, done.
+    Counting objects: 100% (4/4), done.
+    Delta compression using up to 4 threads
+    Compressing objects: 100% (2/2), done.
+    Writing objects: 100% (2/2), 303 bytes | 303.00 KiB/s, done.
+    Total 2 (delta 1), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+    To github.com:bbrydsoe/mytestrepo.git
+       5fd2960..2032676  main -> main
+    ```
 
-Do the merge (it will also open an editor where you should write a commit message for why the merge should happen)
+    Checking status again
 
-```shell
-git merge mynewbranch 
-Merge made by the 'recursive' strategy.
- myfile.txt | 1 +
- 1 file changed, 1 insertion(+)
-```
+    ```shell
+    bbrydsoe@enterprise-a:~/mytestrepo$ git status
+    On branch main
+    Your branch is up-to-date with 'origin/main'.
 
----
+    nothing to commit, working tree clean
+    ```
 
-Let us do a status check
-
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git status
-On branch main
-Your branch is ahead of 'origin/main' by 2 commits.
-  (use "git push" to publish your local commits)
-
-nothing to commit, working tree clean
-```
-
-Pushing
-
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git push
-Enter passphrase for key '/home/bbrydsoe/.ssh/id_rsa': 
-Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (2/2), 303 bytes | 303.00 KiB/s, done.
-Total 2 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To github.com:bbrydsoe/mytestrepo.git
-   5fd2960..2032676  main -> main
-```
-
-Checking status again
-
-```shell
-bbrydsoe@enterprise-a:~/mytestrepo$ git status
-On branch main
-Your branch is up-to-date with 'origin/main'.
-
-nothing to commit, working tree clean
-```
-
----
 
 ## First exercise - GitHub (if not setup already)
 
@@ -483,7 +466,6 @@ nothing to commit, working tree clean
 10. If you put a file "README.md" in a subdirectory then it will be shown as a "description" for the directory
 11. When you have made some commits, try click "commits" above the files in the repo and see a list of your commits. 
 
----
 
 ## Second exercise, SSH keys (if you have not set up already)
 
@@ -511,7 +493,6 @@ $ ssh-add ~/.ssh/id_rsa
 ```
 5. Switch to the `.ssh` folder, open the file `id_rsa.pub` and copy it. Do NOT add any newlines or whitespace! 
 
----
 
 **Adding the SSH key to GitHub**
 
@@ -519,11 +500,10 @@ $ ssh-add ~/.ssh/id_rsa
 2. Choose "SSH and GPG keys"
 3. Click "Add new SSH key"
 4. Add a descriptive label for the key in the "Title" field. In the key field you paste the content of the key (~/.ssh/id_rsa.pub)
-![Add new SSH key to GithHub](../images/key-add-new.png)
+![Add new SSH key to GithHub](../../images/key-add-new.png)
 5. Click "Add SSH key"
 6. Confirm your GitHub password if you are prompted for it. 
 
----
 
 **Testing the SSH keys**
 
@@ -541,8 +521,6 @@ Hi bbrydsoe! You've successfully authenticated, but GitHub does not provide shel
 ```
 4. Verify that the resulting message contains your username. 
 
----
-
 ## Third exercise, clone, push, pull
 
 We now have SSH keys set up. Time to test it from your own machine: 
@@ -554,7 +532,6 @@ We now have SSH keys set up. Time to test it from your own machine:
 5. Push the file. Again it will ask for the key passphrase. Success! 
 6. NOTE: Optionally, you could run `ssh-add` to add the key. Then you will only be asked for the passphrase once per session. This is relatively safe on Linux and macOS, but **not** on Windows where it usually saves the key passphrase permanently.
 
----
 
 ## Fourth exercise, teamwork, clone, push, pull 
 
@@ -568,8 +545,6 @@ One of you should create a repository on GitHub and invite their team. Remember,
 6. NOTE: You will be asked for the key passphrase each time you do a push 
 
 
----
-
 ## Fifth exercise, teamwork, branches and merging 
 
 1. Each person creates a branch in the repo you created in the previous exercise. You can use `git branch yourbranchname` where you put any name you want for the new branch. 
@@ -581,7 +556,6 @@ One of you should create a repository on GitHub and invite their team. Remember,
 7. When everyone has done this, all do a `git pull`
 8. Use `git status`, `git branch`, and `git log` to see what has happened. 
 
----
 
 ## Sixth exercise, teamwork, branches and merging, pull requests
 
@@ -592,7 +566,6 @@ One of you should create a repository on GitHub and invite their team. Remember,
 
 **Note**: It is possible to make the main branch "protected" so it is not changed without a review from the owner. Try doing this (on GitHub). 
 
----
 
 ## Seventh exercise, teamwork and branches
 
@@ -608,7 +581,6 @@ One of you should create a repository on GitHub and invite their team. Remember,
 10. After doing this, everyone should again do a `git pull` (on the command line)
 11. Use `git status`, `git branch`, and `git log` to see what has happened. If you want a "prettier" and sometimes easier to read view, use `git log --graph --oneline --decorate --all` 
 
----
 
 ## Eighth exercise, deleting branches
 
@@ -619,7 +591,6 @@ One of you should create a repository on GitHub and invite their team. Remember,
 5. Do a `git status`, `git log` and `git branch` to see what has happened
 6. The branch you deleted locally is still on the repo. Get another copy of it (`git pull` and `git fetch`, possibly with suitable flags will get it back for you)
 
----
 
 ## Ninth exercise, merge conflicts
 
@@ -635,5 +606,5 @@ Merge conflicts generally happen when two (or more) teammembers edit the same fi
 6. Did you get a conflict? Use `git status`, `git branch`, and `git log` to see what has happened. Try to resolve the conflict. 
 7. Now again all will work on one file. One or more edit it and one deletes it (`git rm file`). What happens when you push your work? You should get a conflict. Try and resolve the conflict. Should the file be kept or deleted? 
 
---- 
+
 

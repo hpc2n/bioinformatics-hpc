@@ -80,7 +80,7 @@ $ ssh-add ~/.ssh/id_rsa
 <br>
 4. Add a descriptive label for the key in the "Title" field. In the key field you paste the content of the key (~/.ssh/id_rsa.pub)
 <br>
-![Add new SSH key](../images/new-key.png)
+![Add new SSH key](../../images/new-key.png)
 <br>
 5. Click "Add SSH key"
 <br>
