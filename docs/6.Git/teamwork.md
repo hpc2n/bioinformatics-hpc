@@ -1,16 +1,6 @@
----
-title: "Lecture 7: Teamwork"
-tags: Lecture, Birgitte, Day 5
-description: "Teamwork. Will be done on GitHub"
----
+# 7: Teamwork
 
-# Lecture 7: Teamwork
-
-<!-- Lecture material made by Birgitte Brydsö for the version of the course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. Several changes done to the material in 2021 and 2022, mainly due to GitHub no longer allowing for password authentication. Minor changes and updates done for the 2023 and 2024 version. -->
-
-<!-- Slides: https://hackmd.io/@git-fall-2024/L7-teamwork -->
-
----
+<!-- Lecture material made by Birgitte Brydsö for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. Several changes done to the material in 2021 and 2022, mainly due to GitHub no longer allowing for password authentication. Minor changes and updates done for the 2023 and 2024 version. -->
 
 ## Teamwork
 
@@ -27,9 +17,11 @@ You will often have three types of branches for a project/specific release:
     - later merged to development/staging branch
 
 
-NOTE: GitHub previously used "master", but is now using "main" as the name for the first/default branch in a repo. This can be changed under the repo's settings. 
+!!! NOTE
 
----
+    GitHub previously used "master", but is now using "main" as the name for the first/default branch in a repo. 
+
+    This can be changed under the repo's settings. Useful if you have another repo that you are transferring / uploading which has "master". 
 
 * In this session you will be working in small groups of 2-4 people. 
 * Each group will go to a Zoom break-out room and work together there. 
@@ -39,8 +31,6 @@ NOTE: GitHub previously used "master", but is now using "main" as the name for t
 * The rest of the exercises will be about working together on a small project, and will be done from the command line with GitHub as the remote repository. 
 * There will be nine exercises in total in this part.
 
----
-
 ## Concepts and commands
 
 In these exercises we will use only a few commands. These have all been mentioned before in this course, but as a refresher I will briefly discuss a couple commands here, namely: 
@@ -49,8 +39,6 @@ In these exercises we will use only a few commands. These have all been mentione
     - example: your teammate has created a new feature branch which they have pushed to the remote repository, but which you do not yet have in your local repository
 - `git push`: This is essentially the same as running `git merge main` from inside the remote repository. It is mostly used to upload local changes to a remote repository. 
 - `git pull`: This will fetch the latest changes from the current branch from a remote, then apply the changes to your local copy of the branch. It is similar to doing a fetch and a merge.
-
----
 
 ## Git push
 
@@ -65,8 +53,6 @@ $ git push
 ```
 
 where the default behaviour is pushing to repository "origin" and the same branch as the local. 
-
----
 
 Before pushing: 
 
@@ -114,8 +100,6 @@ graph LR
   main -.-> D
 ```
 
----
-
 Pushing a staged and committed file: 
 
 ```shell
@@ -138,8 +122,6 @@ Date:   Sun Nov 13 15:43:05 2022 +0100
     Adding a file
 ```
 
----
-
 ## Git pull 
 
 Fetch the given remote's copy of the current branch and merge to the local copy: 
@@ -153,8 +135,6 @@ or often just
 $ git pull
 ```
 
----
-
 ## Hint
 
 If you have forgotten to pull before staging and committing new stuff, and your colleague has added something to the remote repository in between, this is a handy command: 
@@ -164,8 +144,6 @@ $ git pull --rebase <remote>
 ```
 
 It fetches the remote content but does not create a new merge commit.
-
----
 
 Assume this situation:
 
@@ -234,8 +212,6 @@ graph LR
   c --- h
   g --- h
 ```
-
----
 
 ## Pull from remote repo, new file
 
