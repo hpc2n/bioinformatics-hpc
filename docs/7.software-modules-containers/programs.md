@@ -7,15 +7,13 @@
     - Be able to find out if **Python packages** are installed as their own modules
     - Learn how to find bundles of **R packages** installed as modules 
 
-In the previous section we looked at toolchains, which are often used to install or build your own software. In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed at many of the Swedish HPC centres. 
+In the previous section we looked at toolchains, which are often used to install or build your own software. In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed. 
 
 Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. The procedure is usually some variation on the following:
 
-1. Use `ml spider <package>` to see **whether a module is installed**, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
+1. Use `ml spider <package>` to see **whether a module is installed**, and if so, view the available versions. 
 2. Use `ml spider <package>/<version>` to **view prerequisites** for a specific version of the module, if any.
 3. **Load** the modules with `ml <prerequisite>/<version> <package>/<version>`.
-
-Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.
 
 ### Outline
 
