@@ -538,15 +538,11 @@ This command shows commands in the module file (MODULE) and can be used to list 
     Description
     ===========
     CUDA (formerly Compute Unified Device Architecture) is a parallel computing platform and programming model created by NVIDIA and implemented by the graphics processing units (GPUs) that they produce. CUDA gives developers access to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs.
-    ```
 
-!!! note "test"
-
-    ```bash
     More information
     ================
      - Homepage: https://developer.nvidia.com/cuda-toolkit
-]])
+    ]])
     whatis("Description: CUDA (formerly Compute Unified Device Architecture) is a parallel computing platform and programming model created by NVIDIA and implemented by the graphics processing units (GPUs) that they produce. CUDA gives developers access to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs.")
     whatis("Homepage: https://developer.nvidia.com/cuda-toolkit")
     whatis("URL: https://developer.nvidia.com/cuda-toolkit")
