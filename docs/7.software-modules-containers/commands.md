@@ -112,8 +112,7 @@ module spider Python
           $ module -r spider '.*Python.*'
 
     ----------------------------------------------------------------------------
-      For detailed information about a specific "Python" package (including how to l
-oad the modules) use the module's full name.
+      For detailed information about a specific "Python" package (including how to load the modules) use the module's full name.
       Note that names that have a trailing (E) are extensions provided by other modu
 les.
       For example:
