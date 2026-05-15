@@ -15,23 +15,18 @@ Modules are:
 - allows having multiple versions of a program or package available by just loading the proper module
 - are installed in a hierarchial layout. This means that some modules are only available after loading a specific compiler and/or MPI version, etc. 
     - that is, the modules have *prerequisites* that needs to be loaded before they can be loaded. 
-    - Whether or not modules have prerequisites vary by center. More on this later! 
+    - Whether or not modules have prerequisites vary by center. On Kebnekaise, modules generally **has** prerequisites! 
 
-Many of the centres in Sweden are using the <a href="https://lmod.readthedocs.io/en/latest/" target="_blank">Lmod</a> module system. It is an environment module system that is Lua based. 
+Kebnekaise is using the <a href="https://lmod.readthedocs.io/en/latest/" target="_blank">Lmod</a> module system. It is an environment module system that is Lua based. 
 
-Many, but not all, of the centres in Sweden are using the <a href="https://docs.easybuild.io/" target="_blank">EasyBuild</a> framework for building and installing software modules.   
-
-PDC also provides some software as containers, found in  ``/pdc/software/sing_hub`` (or ``$PDC_SHUB``). ``singularity exec -B /cfs/klemming <sandbox folder> <myexe>``
-
-LUMI has no modules and uses containers 
-
+It is also using the <a href="https://docs.easybuild.io/" target="_blank">EasyBuild</a> framework for building and installing software modules.   
 
 !!! warning "Important" 
 
     - Take care not to use any system-installed versions of ``gcc``, ``python``, etc. Always use the module instead, when available! 
     - Always check if there is a module instead of just building the software/package yourself! 
         - Remember to check with different capitalization! 
-        - If the center you are at have modules installed in a hierarchical fashion (LUNARC, HPC2N, PDC) you must use ``module spider`` to check if a software is installed, since ``module avail`` only lists what is available with what is currently loaded
+        - If the center you are at have modules installed in a hierarchical fashion, like HPC2N you must use ``module spider`` to check if a software is installed, since ``module avail`` only lists what is available with what is currently loaded
     - If there is a software missing that you need, then ask if it can be installed. 
 
 ## Useful commands 
@@ -40,11 +35,8 @@ This is a list of some of the most useful commands for the module system. In the
 
 - See which modules exists: ``module spider or ml spider``
 - See which versions exist of a specific module: ``module spider MODULE`` or ``ml spider MODULE``
-    - This way is only recommended at HPC2N, LUNARC, (C3SE), and PDC 
 - See prerequisites and how to load a specfic version of a module: ``module spider MODULE/VERSION`` or ``ml spider MODULE/VERSION``
 - List modules depending only on what is currently loaded: ``module avail`` or ``ml av``
-    - At UPPMAX and NSC (and C3SE) this will list all available modules!
-    - On Bianca, bioinfo tools are seen after loading ``bioinfo-tools``
 - See which modules are currently loaded: ``module list`` or ``ml``
 - Loading a module: ``module load MODULE`` or ``ml MODULE``
 - Loading a specific version of a module: ``module load MODULE/VERSION`` or ``ml MODULE/VERSION``
@@ -58,26 +50,18 @@ This is a list of some of the most useful commands for the module system. In the
 
 !!! warning 
 
-    This differs somewhat between centres. Some centres recommend using ``module avail`` while at others it is better to use ``module spider``! 
+    This differs somewhat between centres. on Kebnekaise it is best to use ``module spider``! 
 
     This is mainly to do with whether or not modules in general have prerequisite modules that needs loading before, or not. 
 
-    - ``module spider``: HPC2N, LUNARC, (C3SE), PDC  
-    - ``module avail``: UPPMAX, NSC, C3SE 
-
-### With ``module spider``
-
-This is the recommended way to find existing software modules at **HPC2N**, **LUNARC**, (**C3SE**), and **PDC**. 
-
-??? note "Why is `ml spider` slow at the UPPMAX clusters?"
-
-    The reason is the large software stack at UPPMAX (1000s of modules, inclusing different versions). It takes time to go through everything!
+    - ``module spider``: when there are prerequisites for most modules
+    - ``module avail``: when there generally are no prereqiuisites. On Kebnekaise this can be used to see what can be loaded given what is **currently** loaded. 
 
 !!! hint 
 
     ``module spider`` can be written in short form as ``ml spider``
 
-??? note "Example, HPC2N" 
+??? note "Example - all software" 
 
     ```bash
     b-an01 [~]$ module spider
@@ -124,7 +108,7 @@ This is the recommended way to find existing software modules at **HPC2N**, **LU
 
     You can check if a specific software module is installed by trying ``module spider <SOFTWARE>``
 
-    Example, GROMACS at HPC2N (it works the same at LUNARC, C3SE, and PDC): 
+    Example, GROMACS: 
 
     ```bash
     b-an01 [~]$ module spider GROMACS
@@ -174,119 +158,13 @@ This is the recommended way to find existing software modules at **HPC2N**, **LU
  
     **NOTE**: Beware that you may have to try with different capitalization to find the software! 
 
-### With ``module avail`` 
-
-This is the recommended way to find existing software modules at **UPPMAX** and **NSC**. It also works at **C3SE**.  
-
-!!! hint
-
-    ``module avail`` can be written in short form as ``ml av`` 
-
-
-??? note "Example, Pelle (NSC works the same)" 
-
-    ```bash
-
-    [bjornc@pelle3-ae ~]$ ml av
-
-    -------------------------------------------------- /sw/arch/local/modules ---------------------------------------------------
-       BLAST_databases/latest                 MMseqs2_data/20240202      NONMEM/7.6.0                  (D)    dds-cli/latest
-       GaussView/5.0.8                        NCBI_taxonomy/latest       PsN/5.3.1                            matlab/R2019a
-       Gaussian/g09.d01                       NONMEM/7.4.3-GCC-13.3.0    RStudio/2025.09.0-387                nf-core/latest
-       Kraken2_data/latest                    NONMEM/7.4.3               SMC++/1.15.5.dev14+g6779faec7        pixi-tools/latest
-       KrakenUniq_data/latest                 NONMEM/7.4.4-GCC-13.3.0    VASP/6.5.0                           pixy/2.0.0.beta14
-       KrakenUniq_data/20230619-104733 (D)    NONMEM/7.5.1-GCC-13.3.0    bioinfo-tools/latest                 uv-tools/latest
-    
-    -------------------------------------------------- /sw/arch/eb/modules/all --------------------------------------------------
-       A5-miseq/20160825-GCCcore-13.3.0
-       ABySS/2.3.10-foss-2024a
-       ACTC/1.1-GCCcore-13.3.0
-       ADMIXTURE/1.3.0
-       AGAT/1.4.1-GCCcore-13.3.0
-       AGE/0.4-GCCcore-13.3.0
-       ANIcalculator/1.0-GCCcore-13.3.0
-       ANNOVAR/20250302-GCCcore-13.3.0
-       ANTLR/2.7.7-GCCcore-13.3.0
-       AOCL-BLAS/5.0-GCC-13.3.0
-       AOCL-BLAS/5.0-GCC-14.2.0
-       AOCL-BLAS/5.1-GCC-14.3.0                                        (D)
-       ATK/2.38.0-GCCcore-13.3.0
-           ATSAS/3.2.1-1
-       AUGUSTUS/3.5.0-foss-2024a
-       Abseil/20230125.3-GCCcore-12.3.0
-       Abseil/20240722.0-GCCcore-13.3.0                                (D)
-       AdapterRemoval/2.3.4-GCCcore-13.3.0
-       Amber/24.3-foss-2023a-AmberTools-24.10-CUDA-12.1.1-PLUMED-2.9.0
-       Amber/24.3-foss-2023a-AmberTools-24.10-CUDA-12.1.1
-
-    --More--
-
-    ```
-
-??? note "Example, Bianca (NSC works the same)" 
-
-    ```bash
-    [bjornc@sens2025560-bianca ~]$ module avail
-
-    --------------------------------- /sw/mf/bianca/applications ----------------------------------
-      ABINIT/8.10.3                          comsol/6.1
-      ALPS/2.3.0                             comsol/6.2                       (D)
-      Amber/20                               comsol/6.3
-      Ansys/19.1                             conda/latest
-      Ansys/19.5                             coreutils/8.27
-      Ansys/2020R1                    (D)    coreutils/9.1                    (D)
-      BLAKE2/20230212-ed1974e                cowsay/3.03
-      CDO/1.9.5                              cp2k/4.1-gcc
-      CDO/1.9.7.1-intel18.3                  cp2k/6.1-gcc
-      CDO/1.9.7.1                     (D)    cp2k/8.1-gcc                     (D)
-      COIN-OR-OptimizationSuite/1.8.0        darsync/20240208-7ff09d9
-      CPLEXOptimizationStudio/12.9.0         desmond/2022-2
-      CPLEXOptimizationStudio/20.10   (D)    doxygen/1.8.11
-      CST_Studio/2023.0                      doxygen/1.9.6                    (D)
-      Cromwell/71                            eLSA/20160907-febe2d7a57c8
-      Cromwell/86                     (D)    emacs/25.2
-      DBdeployer/latest                      emacs/27.2
-      DOCK/3.7                               emacs/28.2                       (D)
-      FFmpeg/4.4                             freesurfer/6.0.0
-      FFmpeg/5.1.2                    (D)    freesurfer/7.4.1                 (D)
-      GDAL/2.1.0                             gamess/20170930
-      GDAL/3.1.0                             gaussian/g09.d01
-      GDAL/3.6.2                             gaussview/5.0.8
-      GDAL/3.7.2                      (D)    gawk/4.1.4
-      GOTM/5.3-221-gac7ec88d                 gdl/1.0.0-rc.1
-      GhostPDL/9.53.3                        gnuplot/system
-      GoogleCloudSDK/217.0.0                 gnuplot/5.0.7
-      GoogleCloudSDK/447.0.0                 gnuplot/5.2.7                    (D)
-    ...
-    ```
-
-!!! hint 
-
-    You can check if a specific software module is installed by trying ``module avail <SOFTWARE>``
-
-    Example, GROMACS at NSC: 
-
-    ```bash 
-    [x_birbr@tetralith3 ~]$ module avail GROMACS
-
-    --------------------- /software/sse2/tetralith_el9/modules ---------------------
-       GROMACS/recommendation                    (D)
-       GROMACS/2021.3-PLUMED-nsc1-gcc-9.3.0-bare
-       GROMACS/2022.2-nsc1-gcc-9.3.0-bare
-       GROMACS/2023.4-gpu-hpc1-g9
-       GROMACS/2023.4-mpi+omp-hpc1-g9
-       GROMACS/2024.2-mpi+omp-hpc1-g11
-       GROMACS/2024.4-mpi+omp+double-cp2k-g11
-
-      Where:
-       D:  Default Module
-    ```
-
 !!! warning
 
-    If you do ``module avail`` at one of the centres that recommend ``module spider`` you will not get a full list of software, only those are available to load with **no other prerequisites than are currently loaded**. This *is* however, a good way to find **compiler toolchains** (more about that later).  
+    If you do ``module avail`` you will not get a full list of software, only those are available to load with **no other prerequisites than are currently loaded**. This *is* however, a good way to find **compiler toolchains** (more about that later).  
 
-??? note "Example, HPC2N" 
+You can write ``module avail`` in short form as ``ml av``. 
+
+??? note "Example, module avail" 
 
     Here you only get what is available without loading anything else. Most modules have **prerequisistes** so this is not the way to find all modules! 
 
@@ -330,15 +208,15 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
     ...
     ``` 
 
-!!! note "<img src="../images/shell-logo_small.png"> Exercise" 
+!!! note "<img src="../../images/shell-logo_small.png"> Exercise" 
 
-    1. Try listing the available modules. Use either ``module spider`` or ``module avail``, depending on your centre. 
+    1. Try listing the available modules. See what happens differently for ``module spider`` and ``module avail``. 
     2. Try checking for a specific software module to see if it is installed: 
         - GROMACS
         - Python
         - OpenFOAM
         - R 
-    3. What happens if you change the capitalization when you search for a module? Do you still find it? (Centre-dependent!) 
+    3. What happens if you change the capitalization when you search for a module? Do you still find it? 
 
 
 ## Summary 
@@ -346,7 +224,7 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
 !!! note 
 
     - We learned about some of the most useful commands
-    - We saw how to find which modules are available at a centre
+    - We saw how to find which modules are available
         - Using ``module spider``
         - Using ``module avail`` 
  
