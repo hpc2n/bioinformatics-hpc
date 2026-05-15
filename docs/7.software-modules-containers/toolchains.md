@@ -53,60 +53,60 @@ Use `ml spider <toolchain>` to determine which versions are available and what m
 The above toolchain choices can be a bit overwhelming, especially for new users. 
 Good choices for general use are the toolchains:
 
-    * **foss**, to use the GCC compiler suite
-    * **intel**, to use the Intel compiler suite
-    * **gomkl**, to use the GCC compiler suite with Intel's Math Kernel Library (MKL)
+* **foss**, to use the GCC compiler suite
+* **intel**, to use the Intel compiler suite
+* **gomkl**, to use the GCC compiler suite with Intel's Math Kernel Library (MKL)
 
-    **Example:** To check the foss versions available, use
+**Example:** To check the foss versions available, use
 
-    ```bash
-     module avail foss
-    ```
+```bash
+module avail foss
+```
 
-    and you will get an output similar to this example:
+and you will get an output similar to this example:
 
-    ```bash
-    ------------------------------------- /hpc2n/eb/modules/all/Core --------------------------------------
-       foss/2021b    foss/2022b    foss/2023b    foss/2025a        foss/2025b
-       foss/2022a    foss/2023a    foss/2024a    foss/2025b (D)
+```bash
+------------------------------------- /hpc2n/eb/modules/all/Core --------------------------------------
+   foss/2021b    foss/2022b    foss/2023b    foss/2025a        foss/2025b
+   foss/2022a    foss/2023a    foss/2024a    foss/2025b (D)
 
-     Where:
-      D:  Default Module
+ Where:
+  D:  Default Module
 
-    If the avail list is too long consider trying:
+If the avail list is too long consider trying:
 
-    "module --default avail" or "ml -d av" to just list the default modules.
-    "module overview" or "ml ov" to display the number of modules for each name.
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
 
-    Use "module spider" to find all possible modules and extensions.
-    Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
-    ```
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+```
 
-    The version numbers indicate roughly when each version was released. Version 2023a was released at the beginning of 2023, 2023b in the middle of 2023, and  2024a at the start of 2024. If you load e.g. the `foss/2024a` module as shown below,
+The version numbers indicate roughly when each version was released. Version 2023a was released at the beginning of 2023, 2023b in the middle of 2023, and  2024a at the start of 2024. If you load e.g. the `foss/2024a` module as shown below,
 
-    ```bash
-    module load foss/2024a
-    ```
+```bash
+module load foss/2024a
+```
 
-    It will load several modules for you, including the compiler, libraries, and
-    other utilities. The command `module list`, or `ml` for short, can then show you
-    what modules are now loaded and available for use. Below is the output of `ml`
-    after loading `foss/2024a`:
+It will load several modules for you, including the compiler, libraries, and
+other utilities. The command `module list`, or `ml` for short, can then show you
+what modules are now loaded and available for use. Below is the output of `ml`
+after loading `foss/2024a`:
 
-    ```bash
-    Currently Loaded Modules:
-      1) snicenvironment (S)   9) libxml2/2.12.7       17) UCC/1.3.0
-      2) systemdefault   (S)  10) libpciaccess/0.18.1  18) OpenMPI/5.0.3
-      3) GCCcore/13.3.0       11) hwloc/2.10.0         19) OpenBLAS/0.3.27
-      4) zlib/1.3.1           12) OpenSSL/3            20) FlexiBLAS/3.4.4
-      5) binutils/2.42        13) libevent/2.1.12      21) FFTW/3.3.10
-      6) GCC/13.3.0           14) UCX/1.16.0           22) FFTW.MPI/3.3.10
-      7) numactl/2.0.18       15) PMIx/5.0.2           23) ScaLAPACK/2.2.0-fb
-      8) XZ/5.4.5             16) PRRTE/3.0.5          24) foss/2024a
+```bash
+Currently Loaded Modules:
+  1) snicenvironment (S)   9) libxml2/2.12.7       17) UCC/1.3.0
+  2) systemdefault   (S)  10) libpciaccess/0.18.1  18) OpenMPI/5.0.3
+  3) GCCcore/13.3.0       11) hwloc/2.10.0         19) OpenBLAS/0.3.27
+  4) zlib/1.3.1           12) OpenSSL/3            20) FlexiBLAS/3.4.4
+  5) binutils/2.42        13) libevent/2.1.12      21) FFTW/3.3.10
+  6) GCC/13.3.0           14) UCX/1.16.0           22) FFTW.MPI/3.3.10
+  7) numactl/2.0.18       15) PMIx/5.0.2           23) ScaLAPACK/2.2.0-fb
+  8) XZ/5.4.5             16) PRRTE/3.0.5          24) foss/2024a
 
-      Where:
-       S:  Module is Sticky, requires --force to unload or purge
-    ```
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+```
 
 After loading a toolchain, many new modules become available, each reliant on
 the specific versions of the modules included in the toolchain. Use `ml avail`
