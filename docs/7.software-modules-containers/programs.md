@@ -294,7 +294,7 @@ ml <module name>
 
     [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
 
-??? note "MATLAB Add-Ons and Toolboxes 
+??? note "MATLAB Add-Ons and Toolboxes" 
 
     These should be available through the Matlab GUI.
 
