@@ -396,13 +396,13 @@ Nextflow/25.10.0
 
 ### Python
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Find python documentation for Kebnekaise/HPC2N"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 1: Find python documentation for Kebnekaise/HPC2N"
 
     ??? note "HPC2N documentation of Python"
 
         - [HPC2N](https://docs.hpc2n.umu.se/software/apps/#python__modules)
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find out if there is a `matplotlib` package in a module"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 2: Find out if there is a `matplotlib` package in a module"
 
     ??? note "Tip"
 
@@ -412,7 +412,7 @@ Nextflow/25.10.0
 
         If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib`, pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell"
 
     ??? note "Tip"
 
@@ -616,7 +616,7 @@ Nextflow/25.10.0
 
         If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 4: Check if the python package XX is available in the present environment"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 4: Check if the python package XX is available in the present environment"
 
     Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with `ml avail`, `ml spider`, or `ml show <module>`, you should also check `pip list` and `grep` for the package after loading the rest of your modules. 
 
@@ -636,19 +636,19 @@ Nextflow/25.10.0
 
 ### R
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Find R documentation of Jebnekaise"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 1: Find R documentation of Jebnekaise"
 
     ??? note "Tip"
     
         - [HPC2N](https://www.hpc2n.umu.se/resources/software/r)
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Load R and start it!"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 2: Load R and start it!"
 
     ??? note "Answer"
 
         Course page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell"
 
 
     ??? note "Example"
@@ -737,7 +737,7 @@ Nextflow/25.10.0
 
 ### Other tools you will be using 
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Try to find documentation of the program on your HPC2N"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 1: Try to find documentation of the program on your HPC2N"
 
     ??? note "Documentation for MATLAB"
     
@@ -747,7 +747,7 @@ Nextflow/25.10.0
 
         - HPC2N: [Plink docs](https://docs.hpc2n.umu.se/software/apps/plink/) 
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find versions of it. Is it installed?? Look for other tools you are interested in. Are they installed? 
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 2: Find versions of it. Is it installed?? Look for other tools you are interested in. Are they installed? 
 
 ??? note "Output from ``ml avail matlab``"
 
@@ -783,7 +783,7 @@ Nextflow/25.10.0
         This module can be loaded directly: module load MATLAB/2024b
     ```
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 3. Load and start it"
+!!! note " <img src="../../images/shell-logo_small.png"> Exercise 3. Load and start it"
 
    Matlab and a few other tools can be loaded directly, but most has a prerequisite. Capitalisation and other naming conventions vary.        
 
