@@ -18,14 +18,14 @@ Loading modules works the same whether the modules are toolchains or standalone 
 ### Outline
 
 - Principles of making Python and R **packages** available to scripts and interactive analysis.
-- Start **popular tools** like MATLAB and OpenFOAM and notes about licensed software
+- Find, load, and start **popular tools** like Plink, Biopython, Nextflow, and MATLAB -  and a few notes about licensed software
 - **Exercise**: Dig deeper into **your favorite tools**
 
 ## Packages
 
 !!! important
 
-    Both R and Python packages often include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules) that are installed, but cannot be found with `ml spider` or `ml avail`.
+    Both R and Python packages often include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules) that are installed, but cannot easily be found with `ml spider` or `ml avail`.
     
     In these cases, if you have loaded at least the prerequisites of a standalone package containing the extension, you can use `ml show <package>` on the standalone package to view the Lua module file, which usually has a section on included extensions near the top.
     
@@ -33,18 +33,13 @@ Loading modules works the same whether the modules are toolchains or standalone 
 
 ## Python-based packages
 
-We already learned how to load Python module of a specific version.
+We already learned how to load a Python module of a specific version.
 
-It varies between clusters how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequisites are required (most centres apart from PDC are the same), and the available version numbers. 
+It varies somewhat between older and newer versions how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequisites are required, and the available version numbers. 
 
-??? note "Packages at the clusters"
+??? note "Packages"
 
-    - **HPC2N** and **C3SE:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
-    - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but other modules loaded alongside it are typically not recognised. Additional modules must be installed in a custom environment.
-    - **NSC:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.X.X-hpc<version>` that must be loaded before anything else.  
-    - **UPPMAX-Pelle:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, Python-bundle-PyPi, Jupyter-lab, ...). No Prerequisites are needed! 
-    - **UPPMAX-Bianca:** Very many packages are installed with the Python module.  
-    - **PDC:** most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
+    - Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
     
 ### Bundles
 
@@ -70,7 +65,7 @@ It varies between clusters how many packages are installed with the base Python 
 !!! warning
 
     - Make sure to use bundles that are compatible with each-other and with needed Python version.
-    - Otherwise it is better to create isolated environments with Conda or virtual environments, see [Virtual environments in Python](python_virtual_environments.md).
+    - Otherwise, if none compatible are available, it is better to create isolated environments with virtual environments, see [Virtual environments in Python](../virtenv.md) or HPC2N's documentation about [installing Python packages to virtual environments(https://docs.hpc2n.umu.se/software/userinstalls/#python__packages).
 
 ??? note "Some well-known bundles"
 
@@ -94,8 +89,6 @@ It varies between clusters how many packages are installed with the base Python 
         - TensorFlow
     - Bundle of useful packages
         - Python-bundle-PyPI
-
-[See also about Python bundles at Pelle](https://docs.uppmax.uu.se/software/python_bundles/)
 
 ### Principles
 
@@ -145,12 +138,9 @@ import matplotlib
 
 !!! note "Isolated environments"
 
-    - The course Python in an HPC environment: [isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
-
-??? warning "Using Bianca?"
-
-    - There are no bundle modules on Bianca
-    - But, the Python modules have very many packages installed already.
+    - The course "Python in an HPC environment": [isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
+    - The extra section [Virtual environments in Python](../virtenv.md)
+    - HPC2N's documentation about [installing Python packages to virtual environments](https://docs.hpc2n.umu.se/software/userinstalls/#python__packages)
 
 !!! tip
     
@@ -158,8 +148,8 @@ import matplotlib
 
 ??? note "Missing a package?"
 
-    - Install by conda, pip or other tool or contact support
-    - [Install packages](https://uppmax.github.io/HPC-python/day2/install_packages.html)
+    - Install by pip or other tool or **contact support** (Conda is **not** recommended at HPC2N)
+    - [Install packages yourself](https://uppmax.github.io/HPC-python/day2/install_packages.html)
     - [Use isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
     
 ### Python IDEs
@@ -170,7 +160,7 @@ import matplotlib
 ??? note "Python IDEs"
 
     - Jupyter
-    - Spyder
+    - Spyder (need to be self-installed at HPC2N)
     - Visual Studio Code
     - HPC-python course
         - [Starting from command line](https://uppmax.github.io/HPC-python/day2/IDEs_cmd.html)
@@ -180,9 +170,9 @@ import matplotlib
 
 !!! important
 
-    Most facilities have only built a handful of R releases, so many of the dependent modules are adapted for multiple versions. The version of such any dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.
+    Mostly only a handful of R releases are built, so many of the dependent modules are adapted for multiple versions. The version of such a dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.
 
-Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
+Kebnekaise has prerequisites for R. Always check the prerequisites with `ml spider`.
 
 ### Principles
 
@@ -196,22 +186,7 @@ R
 
 ### R-based packages
 
-At most HPC centres, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like the general `R-bundle-CRAN` and bundle for genomic tools `R-bundle-Bioconductor`. Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
-
-??? note "Cluster-specific approaches"
-
-    - **NSC (Tetralith):** R can be loaded directly, but **contains few installed packages, and there are no bundles** to provide more. Users are typically expected to install their own extension libraries. **RStudio is included in the base R module, however**.
-    - **PDC (Dardel):** Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
-    - **C3SE (Alvis):** R can be loaded directly, but has few installed packages. RStudio can only be reached from an OnDemand session.
-    - **UPPMAX (Bianca)**: R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
-    - **LUNARC:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
-    - **UPPMAX (Pelle):** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module.
-    - **HPC2N:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
-
-??? note "About packages on HPC systems"
-
-    Course module on [R packages](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/)
-
+Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc (were it should be used sparingly) and through OpenOnDemand were you work on compute nodes.
 
 Many R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
 
@@ -257,23 +232,23 @@ R
 ??? note "Missing a package?"
 
     - Install by yourself or contact support
-    - [Course material](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/#installing-your-own-packages)
+    - [Install packages with R](../Rpack.md)
+    - HPC2N documentation material about [installing R packages](https://docs.hpc2n.umu.se/software/userinstalls/#rcran)
+    - [Course material from "Running R, Matlab, and Julia in HPC"](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/#installing-your-own-packages)
 
 ### RStudio
 
-Many clusters have RStudio as a module but for Alvis and Dardel RStudio can only be reached from OnDemand.
-
-??? note "RStudio from course"
-
-    [RStudio](https://uppmax.github.io/R-matlab-julia-HPC/r/rstudio/)
+Rstudio is best accessed from OpenOnDemand. This is HPC2N's documentation on [using Rstudio through OpenOnDemand](https://docs.hpc2n.umu.se/tutorials/connections/#interactive__apps__-__rstudio__server). 
 
 ## Popular tools
 
-There are of course many popular tools among cluster users. Many of them can be found in every cluster, but some clusters are more niched and may lack some of these common tools.
+There are of course many popular tools among HPC2N's users. Here we will look at a few of them. You can see a longer list (not exhaustive) on [HPC2N's application list](https://docs.hpc2n.umu.se/software/apps/). The best way to find them are to login to Kebnekaise and look with ``module spider``. 
 
-Capitalisation and other naming conventions may vary between HPC centres.
+!!! warning
 
-!!! note
+    Capitalisation often matter!
+
+!!! hint
 
     Are you lacking a tool? Ask the support to install it!
 
@@ -287,28 +262,8 @@ Capitalisation and other naming conventions may vary between HPC centres.
 ml <module name>
 ```
 
-- Start the tool by following documentation of the tool or the local cluster documentation.
+- Start the tool by following documentation of the tool or the local documentation.
 - Usually it is the tool name with lower case or with the first letter capitalised. Or, like for OpenFOAM, commands starting with ``foam``.
-
-You may try out one or several tools in Exercise 3.
-
-- There we also give a bit more detailed info about
-    - MATLAB
-    - OpenFOAM 
-
-??? note "MATLAB in HPC course"
-
-    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
-
-??? note "MATLAB Add-Ons and Toolboxes 
-
-    These should be available through the Matlab GUI.
-
-!!! important
-
-    - The Matlab GUI and many other graphical tools is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. 
-    - In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. 
-    - For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
 
 ## Specialised Applications
 
@@ -321,42 +276,133 @@ You may try out one or several tools in Exercise 3.
 
 !!! important "Licenses"
 
-    - Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the **licensed** user group. 
-    - If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. 
+    - Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the **licensed** user group.
+    - If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required.
     - It is up to users to determine the licensing requirements of specialised software packages.
 
-## Exercises (Stop recording)
+## Some specific examples 
+
+- Let us take a look at a few other programs, as examples
+    - Matlab
+    - Plink
+    - Biopython
+    - Nextflow 
+
+### Matlab 
+
+??? note "MATLAB in HPC course Running R, Matlab, and Julia in HPC"
+
+    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
+
+??? note "MATLAB Add-Ons and Toolboxes 
+
+    These should be available through the Matlab GUI.
+
+!!! important
+
+    - The Matlab GUI and many other graphical tools are prone to hogging resources if not launched carefully, which makes it risky to run on a login node. 
+    - In general, the GUI should only be run via either Desktop On Demand or as a batch job (often from inside Matlab).  
+    - For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
+
+### Plink
+
+PLINK is a free, open-source whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner. 
+
+Doing ``module spider Plink`` tells us which versions are available: 
+
+```bash
+PLINK/1.9b5
+PLINK/2.0.0-a.6.9
+```
+
+and ``module spider PLINK/2.0.0-a.6.9`` tells us that it has prerequisites, namely ``GCC/13.2.0``
+
+So to load this version of Plink, you do: 
+
+```bash
+module load GCC/13.2.0
+module load PLINK/2.0.0-a.6.9
+```
+
+or 
+
+```bash
+module load GCC/13.2.0 PLINK/2.0.0-a.6.9
+```
+
+You have now access to executables ``plink`` and ``plink2``. 
+
+!!! note
+
+    You should run plink through a batch job. See next session as well as more info on [HPC2N's Plink page](https://docs.hpc2n.umu.se/software/apps/plink/). 
+
+### Biopython
+
+Biopython is a set of freely available tools for biological computation written in Python by an international team of developers. 
+
+```bash
+ml spider Biopython
+```
+
+tells us that these versions are installed: 
+
+```bash 
+Biopython/1.76-Python-2.7.18
+Biopython/1.79
+Biopython/1.81
+Biopython/1.83
+Biopython/1.84
+Biopython/1.85
+Biopython/1.86
+```
+
+!!! exercise "Exercise"
+
+    - Check if Biopython has any prerequisites
+    - Pick one of the versions and load it (first loading any prerequisites)
+    - Check what else is loaded
+
+    Biopython has a quickstart guide here: https://biopython.org/docs/latest/Tutorial/chapter_quick_start.html 
+
+    Longer examples should be run as a batch job! 
+    
+### Nextflow 
+
+Nextflow is a reactive workflow framework and a programming DSL that eases writing computational pipelines with complex data 
+
+Nextflow is installed on Kebnekaise. Doing ``module spider Nextflow`` gives us these versions: 
+
+```bash
+Nextflow/23.04.2
+Nextflow/24.04.2
+Nextflow/25.10.0
+```
+
+!!! exercise "Exercise"
+
+    - Pick one of the versions. Check if it has prerequisites.
+    - Load it. 
+    - Check what else got loaded. 
+
+## Exercises
 
 - Choose 1 or possibly 2 
 
 - Python bundles
-- R bundles (Tip, do not choose if using Tetralith, Alvis or Dardel)
-- Matlab and other favorite tool
-    - (Tip, try several, if you don't find one on your cluster)
+- R bundles 
+- Matlab and/or other favorite tool
+    - (Tip, try several)
     - Let us know if you miss something.
-
-Break-out rooms according to interest and/or cluster
 
 ### Python
 
-!!! warning "These clusters do NOT have Python bundles"
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Find python documentation for Kebnekaise/HPC2N"
 
-    - Dardel
-    - Tetralith
-    - Alvis
+    ??? note "HPC2N documentation of Python"
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Find python documentation of your cluster"
-
-    ??? note "Cluster documentation of Python"
-
-        - [UPPMAX](https://docs.uppmax.uu.se/software/python/)
         - [HPC2N](https://docs.hpc2n.umu.se/software/apps/#python__modules)
-        - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Python/)
-        - [NSC](https://www.nsc.liu.se/support/)
-        - [PDC](https://support.pdc.kth.se/doc/applications/python/)
-        - [C3SE](https://www.c3se.chalmers.se/documentation/module_system/python/)  
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find if there is a `matplotlib` package in a module"
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find out if there is a `matplotlib` package in a module"
 
     ??? note "Tip"
 
@@ -364,9 +410,7 @@ Break-out rooms according to interest and/or cluster
 
     ??? note "Matplotlib across centres"
 
-        Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day3/new-matplotlib-intro.html#load-and-run)). 
-
-        If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
+        If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib`, pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell"
 
@@ -376,8 +420,6 @@ Break-out rooms according to interest and/or cluster
 
 
     ??? note "Example workflow"
-
-        All of the following code blocks in this example are taken from Cosmos.
 
         ```bash
         $ ml spider matplotlib
@@ -430,13 +472,13 @@ Break-out rooms according to interest and/or cluster
               GCC/13.2.0
         ```
 
-        This means that, on Cosmos at least, only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. At most facilities, that means SciPy-bundle is required.
+        This means that only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. That means SciPy-bundle is required.
 
         Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. If `GCC` is loaded, then you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load.
 
         The more typical scenario is that you want to move code developed on a personal laptop to the cluster. Then you will mainly be constrained to a range of Python versions `Python/X.Y.Z`, in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or two versions, and Z is usually not that important. In a bash terminal, you can check your Python version with `python --version`.
 
-        Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to select subsets of `ml spider` or `ml avail` outputs, so one must view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
+        Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to select subsets of `ml spider` or `ml avail` outputs, so one must view the full list with `ml spider Python`:
 
         ```bash
         $ ml spider Python
@@ -503,9 +545,9 @@ Break-out rooms according to interest and/or cluster
               scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
         ```
 
-        On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module apart from the bare Python itself requires GCC, so you may as well use GCC every time.
+        The base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module apart from the bare Python itself requires GCC, so you may as well use GCC every time.
 
-        On some facilities, each version of Matplotlib and SciPy-bundle is only be associated with one Python version, so you can load them all at once, using the GCC version to select for everything else, like this:
+        Generally, each version of Matplotlib and SciPy-bundle is only be associated with one Python version, so you can load them all at once, using the GCC version to select for everything else, like this:
 
         ```bash
         ml GCC/13.2.0 Python matplotlib SciPy-bundle
@@ -592,30 +634,13 @@ Break-out rooms according to interest and/or cluster
     
         The `pip list | grep` approach is also helpful if you want to see the version of a package without having to open a Python interpreter.
 
-    !!! note "Tip"
-
-        The same list (and grep) approach works for Anaconda3. The only difference is that you should use `conda list` instead of `pip list` (although `pip list` usually still works). The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
-
 ### R
 
-!!! warning "These clusters do NOT have R bundle"
-
-    - Bianca has R_packages that contains CRAN and Bioconductor packages
-        - You can load that instead of a bundle in the below exercises.
-    - Dardel
-    - Tetralith
-    - Alvis
-
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Find R documentation of your cluster"
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Find R documentation of Jebnekaise"
 
     ??? note "Tip"
     
-        - [C3SE](https://www.c3se.chalmers.se/documentation/software/development/r/)
         - [HPC2N](https://www.hpc2n.umu.se/resources/software/r)
-        - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Rscript/)
-        - [NSC](https://ipv4.www.nsc.liu.se/software/catalogue/tetralith/modules/r.html)
-        - [PDC](https://support.pdc.kth.se/doc/contact/contact_support/)
-        - [UPPMAX](https://docs.uppmax.uu.se/software/r.md)
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Load R and start it!"
 
@@ -626,7 +651,7 @@ Break-out rooms according to interest and/or cluster
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell"
 
 
-    ??? note "Example at Cosmos"
+    ??? note "Example"
 
         ```bash
         $ ml spider bioconductor
@@ -708,143 +733,61 @@ Break-out rooms according to interest and/or cluster
         $ ml GCC/12.3.0  OpenMPI/4.1.5  R-bundle-Bioconductor/3.18-R-4.4.1
         ```
 
-        In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centres, so pay attention to the prerequisites.
+        In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). 
 
-### Matlab and another tool you will be using 
+### Other tools you will be using 
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Try to find documentation of the program on your cluster"
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Try to find documentation of the program on your HPC2N"
 
     ??? note "Documentation for MATLAB"
     
-        - Documentation at the HPC centres UPPMAX, HPC2N, LUNARC, NSC, and PDC
-        - [UPPMAX Matlab docs](http://docs.uppmax.uu.se/software/matlab/)
-        - HPC2N: [Matlab docs](https://www.hpc2n.umu.se/resources/software/matlab) and [parallel Matlab docs](https://www.hpc2n.umu.se/documentation/guides/parallel-matlab)
-        - [LUNARC Matlab docs](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/MATLAB/)
-        - NSC: click [here for general instructions](https://www.nsc.liu.se/software/docs/matlab/) and [here for installations on Tetralith](https://www.nsc.liu.se/software/catalogue/tetralith/modules/matlab.html) specifically
-        - [PDC Matlab docs](https://support.pdc.kth.se/doc/applications/?sub=matlab/)
+        - HPC2N: [Matlab docs](https://docs.hpc2n.umu.se/software/apps/MATLAB/)
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed"
+    ??? note "Documentation for Plink"
+
+        - HPC2N: [Plink docs](https://docs.hpc2n.umu.se/software/apps/plink/) 
+
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find versions of it. Is it installed?? Look for other tools you are interested in. Are they installed? 
 
 ??? note "Output from ``ml avail matlab``"
 
     ```bash
     $ ml avail matlab
     
-    --------------------- /software/sse2/tetralith_el9/modules ---------------------
-       MATLAB/recommendation (D)    MATLAB/2024a-hpc1-bdist
-       MATLAB/2023a-bdist           MATLAB/2025a-hpc1-bdist
-       MATLAB/2023b-bdist
-    
+    --------------------- hpc2n/eb/modules/all/Core ---------------------
+       MATLAB-parallel-support/2022    MATLAB/2023a.Update4    MATLAB/2025b-r2 (D)
+       MATLAB/2023a.Update4-build2     MATLAB/2024b
+
       Where:
        D:  Default Module
+
+    If the avail list is too long consider trying:
+
+    "module --default avail" or "ml -d av" to just list the default modules.
+    "module overview" or "ml ov" to display the number of modules for each name.
+
+    Use "module spider" to find all possible modules and extensions.
+    Use "module keyword key1 key2 ..." to search for all possible modules matching
+    any of the "keys".
     ```
 
     Once you have chosen a specific version, use `ml spider` to check if there are prerequisites, like so:
 
     ```bash
-    $ ml spider MATLAB/2024a-hpc1-bdist
+    $ ml spider MATLAB/2024b
     ```
 
     The full output is too verbose to reprint in full here, but the one important line reads: 
 
     ```bash
-        This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
+        This module can be loaded directly: module load MATLAB/2024b
     ```
-
-    The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:
-    
-    ```bash
-    $ ml MATLAB/2024a-hpc1-bdist
-    ```
-    
-??? note "Example OpenFOAM at Cosmos"
-
-    As usual, we start by checking the versions available with, eg. `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
-
-
-    ```bash
-    $ ml spider OpenFOAM
-
-    --------------------------------------------------------------------------------------
-      OpenFOAM:
-    --------------------------------------------------------------------------------------
-        Description:
-          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
-          range of features to solve anything from complex fluid flows involving chemical
-          reactions, turbulence and heat transfer, to solid dynamics and
-          electromagnetics.
-
-         Versions:
-            OpenFOAM/v2112
-            OpenFOAM/v2206
-            OpenFOAM/v2306
-            OpenFOAM/v2406
-            OpenFOAM/7-20200508
-            OpenFOAM/9
-            OpenFOAM/10
-            OpenFOAM/11
-
-    --------------------------------------------------------------------------------------
-      For detailed information about a specific "OpenFOAM" package (including how to load the 
-    modules) use the module's full name.
-      Note that names that have a trailing (E) are extensions provided by other modules.
-      For example:
-
-         $ module spider OpenFOAM/11
-    --------------------------------------------------------------------------------------
-    ```
-
-    Let us look at a recent version:
-
-    ```bash
-    $ ml spider OpenFOAM/11
-    --------------------------------------------------------------------------------------
-      OpenFOAM: OpenFOAM/11
-    --------------------------------------------------------------------------------------
-        Description:
-          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
-          range of features to solve anything from complex fluid flows involving chemical
-          reactions, turbulence and heat transfer, to solid dynamics and
-          electromagnetics.
-
-
-        You will need to load all module(s) on any one of the lines below before the "OpenFOAM
-    /11" module is available to load.
-
-          GCC/11.3.0  OpenMPI/4.1.4
-
-        Help:
-          Description
-          ===========
-          OpenFOAM is a free, open source CFD software package.
-           OpenFOAM has an extensive range of features to solve
-           anything from complex fluid flows involving chemical
-           reactions, turbulence and heat transfer, to solid dynamics
-           and electromagnetics.
-
-
-          More information
-          ================
-           - Homepage: https://www.openfoam.org/
-    ```
-
-    On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
-
-    Now we can load everything all at once like so:
-
-    ```bash
-    $ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
-    ```
-
-    or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 3. Load and start it"
 
-    At most HPC centres, Matlab and other tools can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
+   Matlab and a few other tools can be loaded directly, but most has a prerequisite. Capitalisation and other naming conventions vary.        
 
-
-
-## Wrap-up with questions (No recording)
+## Wrap-up with questions 
 
 - Did it work out?
 - Would you like a tool installed?

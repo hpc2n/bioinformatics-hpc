@@ -101,6 +101,8 @@ nav:
     - Linux cheat sheet: 5.linux-intro/cheat.md
     - Git setup on Kebnekaise: 6.Git/kebnekaise.md
     - Advanced module commands: 7.software-modules-containers/advanced_module.md
+    - Virtual environments and Python: 7.software-modules-containers/virtenv.md
+    - Installing R packages yourself: 7.software-modules-containers/Rpack.md 
 
 plugins:
   - search
