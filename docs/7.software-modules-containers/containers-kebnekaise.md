@@ -81,7 +81,7 @@ This section will describe how to use Apptainer at HPC2N, and how it might diffe
 
 !!! example "MPI example" 
 
-This example uses [this created example image](../create-containers/#example__openfoam__image__with__mpi).
+    This example uses [this created example image](../create-containers/#example__openfoam__image__with__mpi).
 
     ```bash
     #!/bin/bash
