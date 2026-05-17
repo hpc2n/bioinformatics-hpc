@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/4a.OpenOnDemand/openondemand/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>OpenOnDemand - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OpenOnDemand";
+        var mkdocs_page_input_path = "4.connect-cluster/4a.OpenOnDemand/openondemand.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/4.connect-cluster/4a.OpenOnDemand/openondemand/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">OpenOnDemand</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#interactive__apps__-__kebnekaise__desktop">Interactive Apps - Kebnekaise desktop</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interactive__apps__-__jupyter__notebook">Interactive Apps - Jupyter Notebook</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Connection to a cluster (Kebnekaise)</li>
+      <li class="breadcrumb-item active">OpenOnDemand</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="openondemand">OpenOnDemand<a class="headerlink" href="#openondemand" title="Permanent link">&para;</a></h1>
+<p>Open OnDemand is a web service that allows HPC users to schedule jobs, run notebooks and work interactively on a remote cluster from any device that supports a modern browser. The Open OnDemand project was funded by NSF and is currently maintained by the <a href="https://www.osc.edu/" target="_blank">Ohio SuperComputing Centre</a>. Read more about <a href="https://openondemand.org/" target="_blank">OpenOndemand.org</a>.</p>
+<p>There is a YouTube video covering parts of this documentation as well. You can find it here: <a href="https://youtu.be/-nx3iXmOhPI?si=NS7B8UuGfxjQEZrn" target="_blank">How to use OpenOnDemand to connect to HPC2N&rsquo;s Kebnekaise cluster</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">NOTE</p>
+<p>Anything you run through OpenOnDemand is already running as a batch job, and will be running on the compute nodes you got allocated. </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Access</p>
+<ol>
+<li>In order to access the HPC2N OnDemand Web Portal, point your browser to
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://portal.hpc2n.umu.se
+</span></code></pre></div>
+The page will look something like this
+<img alt="Open OnDemand Portal for HPC2N" src="../../../images/open-ondemand-portal.png" style="width: 90%;" /></li>
+<li>Click the blue button labeled &ldquo;Login to HPC2N OnDemand&rdquo;</li>
+<li>You are sent to the login window. Put your HPC2N username and password, then click &ldquo;Sign In&rdquo;</li>
+<li>You will now be on the HPC2N Open OnDemand dashboard. The top of it looks like this:
+<img alt="Open OnDemand Dashboard" src="../../../images/open-ondemand-dashboard.png" style="width: 90%;" /></li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Overview - dashboard</p>
+<p>Looking at the top of the HPC2N Open OnDemand dashboard
+<img alt="Open OnDemand Dashboard" src="../../../images/open-ondemand-dashboard.png" style="width: 90%;" />
+<br>you find several menu points:</p>
+<ul>
+<li><strong>Files</strong>: Links to a file browser that starts in either your home directory or in (one of) your project storage directories</li>
+<li><strong>Jobs</strong>: Links to a list of your &ldquo;Active Jobs&rdquo; and to a &ldquo;Job Composer&rdquo; to create new jobs</li>
+<li><strong>Clusters</strong>: the submenu is for shell access (does not currently work)</li>
+<li><strong>Interactive Apps</strong>: a list of apps that can be started directly from the dashboard (currently Jupyter, MATLAB, RStudio, VSCode)
+<img alt="Open OnDemand Apps" src="../images/open-ondemand-apps.png" style="width: 90%;" /></li>
+<li><strong>My Interactive Sessions</strong>: here you find your <strong>active</strong> interactive sessions, for instance Jupyter, MATLAB, etc. You can enter them again as long as they are active, and you can delete them. It could look like this if you have active sessions of MATLAB, the Kebnekaise desktop, and Jupyter notebook:
+<img alt="Open OnDemand Dashboard" src="../../../images/open-ondemand-sessions.png" style="width: 90%;" /></li>
+<li>as well as a logout button to the right in the menu.</li>
+</ul>
+</div>
+<p>Now let us look a little closer at how to use the various Interactive Apps in the Open OnDemand desktop. Right now there are: Kebnekaise desktop, Jupyter notebook, MATLAB, RStudio, and VS Code, but that may change in the future.</p>
+<p>Generally, they are started in the same way, with minor differences. As examples we will look at &ldquo;Kebnekaise desktop&rdquo; and &ldquo;Jupyter Notebook&rdquo;. </p>
+<h2 id="interactive__apps__-__kebnekaise__desktop">Interactive Apps - Kebnekaise desktop<a class="headerlink" href="#interactive__apps__-__kebnekaise__desktop" title="Permanent link">&para;</a></h2>
+<p>This is the first submenu point, under &ldquo;Interactive Apps&rdquo; -&gt; &ldquo;Desktops&rdquo;.
+After clicking it, you will after a few moments get this:</p>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop.png" style="width: 90%;" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is used to start a desktop on one of the compute nodes after you have allocated resources.</p>
+<p>This means you will be able to work as if on that node. That means that anything you run from the desktop immediately runs on the allocated resources, without you having to start (another) job.</p>
+<p>Very useful if you want to work interactively with one of the installed pieces of software or your own code.</p>
+<p>In addition to starting programs from the terminal, there are various applications available directly from the menu, like Libreoffice and Firefox.</p>
+</div>
+<p>Let us look at the options for launching this, one by one:</p>
+<ul>
+<li><strong>Desktop Environment</strong>: Here you can choose either &ldquo;mate&rdquo; (resembles Gnome 2/classic) or &ldquo;xfce&rdquo; (lightweight and fast). Personal preferrence.</li>
+<li><strong>Compute Project</strong>: Dropdown menu where you can choose (one of) your compute projects to launch with.</li>
+<li><strong>Number of hours</strong>: How long you want the job available for. Here you can choose 1-12 hours, but beware that it is a bad idea to pick longer than you need. Not only will it take longer to start, but it will also use up your allocation even if you are not actively doing anything on the desktop. Pick as long as you need to do your job.</li>
+<li><strong>Number of cores</strong>: How many cores you want access to. You can choose 1-28 and they each have 4GB memory. This is only a valid field to choose if you pick &ldquo;any&rdquo; or &ldquo;Large memory&rdquo; for the &ldquo;Node type&rdquo; selection.</li>
+<li><strong>Node type</strong>: Here you can choose &ldquo;any&rdquo;, &ldquo;any GPU&rdquo;, or &ldquo;Large memory&rdquo;. If you pick &ldquo;any GPU&rdquo; you will not pick anything for &ldquo;Number of cores&rdquo;.</li>
+</ul>
+<p>You can tick the box &ldquo;I would like to receive an email when the session starts&rdquo; if you want that. Depending on your choices (mainly number of hours and number of cores), it can take longer or shorter to launch your job.</p>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p>You cannot choose type of CPU or type of GPU here.</p>
+</div>
+<p>After you have made the choices, click &ldquo;Launch&rdquo;.</p>
+<p>You can find all the active sessions under &ldquo;My Interactive Sessions&rdquo; and you can shut one down with &ldquo;Delete&rdquo;. You can also shut it down from inside the desktop. </p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>In this example we start a desktop for 1 hour, and with 4 cores. We then start a terminal inside it. </p>
+<p><strong>Filling options</strong></p>
+<p>This is how it could look, for 1 hour, 4 cores</p>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop-options.png" style="width: 90%;" /></p>
+<p><strong>Waiting to launch</strong></p>
+<p>Then, this is how it looks while it is waiting to start/sitting in queue</p>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop-starting.png" style="width: 90%;" /></p>
+<p><strong>Ready</strong></p>
+<p>Then, when the resources have been allocated and you can go to the desktop</p>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop-started.png" style="width: 90%;" /></p>
+<p><strong>Desktop - mate</strong></p>
+<p>This is how the desktop could look, running &ldquo;mate&rdquo; desktop environment</p>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop-mate.png" style="width: 90%;" /></p>
+<p>When you have a desktop open on the allocated resources, you have the option to run</p>
+<ul>
+<li>one of the applications that can be launched from the menu<ul>
+<li>Libreoffice</li>
+<li>Firefox</li>
+<li>editors</li>
+<li>a terminal/shell to load modules and start programs</li>
+</ul>
+</li>
+<li>a terminal/shell where you can<ul>
+<li>run your own code</li>
+<li>load modules and run installed software</li>
+</ul>
+</li>
+</ul>
+<p><strong>Start a terminal to run something</strong></p>
+<p>You can now work as normal, from a desktop on the resources you allocated. Anything you run there will run on those resources, and they are available for the time you asked for.</p>
+<p>To start a terminal, for instance, you find &ldquo;MATE terminal&rdquo; in the menu:     </p>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop-terminal.png" style="width: 90%;" /></p>
+<p>Since we have 4 cores allocated, let us try run something on them.</p>
+<p>Let us first see that we did get the four cores:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>srun<span class="w"> </span>/bin/hostname
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>b-cn1517.hpc2n.umu.se
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>b-cn1517.hpc2n.umu.se
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>b-cn1517.hpc2n.umu.se
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>b-cn1517.hpc2n.umu.se
+</span></code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Run a small python script on the cores</label><label for="__tabbed_1_2">Graphics</label><label for="__tabbed_1_3">Run a small python script on 1 core</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>I will run this Python script as a test: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/mmmult.py" target="_blank">mmmult.py</a>.</p>
+<p>First I load some modules:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>SciPy-bundle/2023.07
+</span></code></pre></div>
+<p>Now let us run <code>mmmult.py</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>python<span class="w"> </span>mmmult.py
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>This<span class="w"> </span>is<span class="w"> </span>matrix<span class="w"> </span>A:
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="m">2318</span><span class="w">  </span><span class="m">1636</span><span class="w"> </span>-2882<span class="w"> </span>...<span class="w">  </span>-227<span class="w"> </span>-3924<span class="w">  </span><span class="m">1979</span><span class="o">]</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">3069</span><span class="w">   </span><span class="m">435</span><span class="w">  </span><span class="m">3025</span><span class="w"> </span>...<span class="w">   </span><span class="m">728</span><span class="w">  </span><span class="m">3257</span><span class="w"> </span>-2446<span class="o">]</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1890</span><span class="w"> </span>-2961<span class="w">  </span><span class="m">3835</span><span class="w"> </span>...<span class="w"> </span>-3071<span class="w"> </span>-2949<span class="w">  </span>-214<span class="o">]</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w"> </span>...
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">3227</span><span class="w"> </span>-3088<span class="w">  </span><span class="m">3030</span><span class="w"> </span>...<span class="w">  </span><span class="m">3213</span><span class="w">  </span><span class="m">1721</span><span class="w"> </span>-1234<span class="o">]</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w"> </span><span class="o">[</span>-3966<span class="w"> </span>-1899<span class="w">  </span><span class="m">3627</span><span class="w"> </span>...<span class="w">  </span><span class="m">2835</span><span class="w">  </span>-526<span class="w">  </span><span class="m">3421</span><span class="o">]</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span>-805<span class="w">  </span><span class="m">1987</span><span class="w"> </span>-3289<span class="w"> </span>...<span class="w">  </span><span class="m">2178</span><span class="w"> </span>-3185<span class="w">  </span>-765<span class="o">]]</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>The<span class="w"> </span>shape<span class="w"> </span>of<span class="w"> </span>matrix<span class="w"> </span>A<span class="w"> </span>is<span class="w">  </span><span class="o">(</span><span class="m">1024</span>,<span class="w"> </span><span class="m">512</span><span class="o">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>This<span class="w"> </span>is<span class="w"> </span>matrix<span class="w"> </span>B:
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w"> </span><span class="o">[[</span>-2136<span class="w">  </span>-595<span class="w"> </span>-3375<span class="w"> </span>...<span class="w">  </span>-655<span class="w">  </span>-509<span class="w">  </span><span class="m">3732</span><span class="o">]</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1491</span><span class="w">  </span><span class="m">1187</span><span class="w">   </span><span class="m">835</span><span class="w"> </span>...<span class="w">  </span><span class="m">2665</span><span class="w">  </span>-306<span class="w">  </span>-807<span class="o">]</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span>-416<span class="w">   </span><span class="m">258</span><span class="w">  </span>-990<span class="w"> </span>...<span class="w">  </span>-600<span class="w">  </span><span class="m">1960</span><span class="w">  </span><span class="m">2774</span><span class="o">]</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w"> </span>...
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w"> </span><span class="o">[</span>-1003<span class="w">  </span><span class="m">3205</span><span class="w">  </span><span class="m">2598</span><span class="w"> </span>...<span class="w"> </span>-1636<span class="w">    </span><span class="m">19</span><span class="w"> </span>-2998<span class="o">]</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w"> </span><span class="o">[</span>-3700<span class="w"> </span>-2150<span class="w"> </span>-1159<span class="w"> </span>...<span class="w"> </span>-2486<span class="w">  </span><span class="m">3687</span><span class="w">  </span><span class="m">2903</span><span class="o">]</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w"> </span><span class="o">[</span>-3218<span class="w"> </span>-2997<span class="w">  </span><span class="m">2757</span><span class="w"> </span>...<span class="w"> </span>-3529<span class="w">   </span><span class="m">313</span><span class="w">  </span><span class="m">2796</span><span class="o">]]</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>The<span class="w"> </span>shape<span class="w"> </span>of<span class="w"> </span>matrix<span class="w"> </span>B<span class="w"> </span>is<span class="w">  </span><span class="o">(</span><span class="m">512</span>,<span class="w"> </span><span class="m">512</span><span class="o">)</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>Doing<span class="w"> </span>matrix-matrix<span class="w"> </span>multiplication...
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>The<span class="w"> </span>product<span class="w"> </span>of<span class="w"> </span>matrices<span class="w"> </span>A<span class="w"> </span>and<span class="w"> </span>B<span class="w"> </span>is:
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w"> </span><span class="o">[[</span><span class="w">  </span><span class="m">49486980</span><span class="w">  </span><span class="m">103461814</span><span class="w"> </span>-117631503<span class="w"> </span>...<span class="w"> </span>-108846834<span class="w">   </span><span class="m">41010684</span><span class="w"> </span>-139620836<span class="o">]</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span>-96734464<span class="w">  </span><span class="m">161139192</span><span class="w">  </span><span class="m">134600312</span><span class="w"> </span>...<span class="w">   </span><span class="m">99850009</span><span class="w">   </span><span class="m">21346359</span><span class="w">   </span><span class="m">41858142</span><span class="o">]</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">11259501</span><span class="w">  </span><span class="m">168047528</span><span class="w">  </span>-32237508<span class="w"> </span>...<span class="w"> </span>-110635619<span class="w">  </span><span class="m">129483079</span><span class="w"> </span>-303047294<span class="o">]</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w"> </span>...
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w"> </span><span class="o">[</span>-168782795<span class="w"> </span>-187369405<span class="w">   </span><span class="m">80437659</span><span class="w"> </span>...<span class="w">   </span><span class="m">55378363</span><span class="w">   </span><span class="m">50071222</span><span class="w">  </span>-81638625<span class="o">]</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">289552718</span><span class="w">  </span>-20697142<span class="w">  </span>-28517135<span class="w"> </span>...<span class="w">  </span><span class="m">113819387</span><span class="w">  </span><span class="m">148940233</span><span class="w">  </span><span class="m">151167784</span><span class="o">]</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w"> </span><span class="o">[</span><span class="w"> </span>-23002353<span class="w">  </span>-27489963<span class="w">  </span>-96396293<span class="w"> </span>...<span class="w"> </span>-182708952<span class="w"> </span>-198664534<span class="w">  </span><span class="m">146521479</span><span class="o">]]</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>The<span class="w"> </span>shape<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>resulting<span class="w"> </span>matrix<span class="w"> </span>is<span class="w">  </span><span class="o">(</span><span class="m">1024</span>,<span class="w"> </span><span class="m">512</span><span class="o">)</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>Time<span class="w"> </span>elapsed<span class="w"> </span><span class="k">for</span><span class="w"> </span>generating<span class="w"> </span>matrices<span class="w"> </span>and<span class="w"> </span>multiplying<span class="w"> </span>them<span class="w"> </span>is<span class="w">  </span><span class="m">0</span>.8399104890413582
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>For this example I need some modules:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>SciPy-bundle/2023.07
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>SciPy-bundle/2023.07
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>matplotlib/3.7.2
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>b-cn1517<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Tkinter/3.11.3
+</span></code></pre></div>
+<p>Now let us start Python and plot something, using this dataset (<a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/scottish_hills.csv" target="_blank">scottish_hills.csv</a>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>import<span class="w"> </span>pandas<span class="w"> </span>as<span class="w"> </span>pd
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>import<span class="w"> </span>matplotlib
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>import<span class="w"> </span>matplotlib.pyplot<span class="w"> </span>as<span class="w"> </span>plt
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>matplotlib.use<span class="o">(</span><span class="s1">&#39;TkAgg&#39;</span><span class="o">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nv">dataframe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pd.read_csv<span class="o">(</span><span class="s2">&quot;scottish_hills.csv&quot;</span><span class="o">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>dataframe.Height
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>dataframe.Latitude
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>plt.scatter<span class="o">(</span>x,<span class="w"> </span>y<span class="o">)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>plt.show<span class="o">()</span>
+</span></code></pre></div>
+<p>Which looks like this:</p>
+<p><img alt="Open OnDemand Kebnekaise desktop plotting from matplotlib" src="../../images/pandas-plot.png" style="width: 90%;" /></p>
+</div>
+<div class="tabbed-block">
+<p>To compare, I started a job and asked for 1 core. I then ran the same Python script, after loading modules and checking I got 1 core (the type of node is the same in both cases: Intel Skylake):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>b-cn1420 [~]$ module load GCC/12.3.0
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>b-cn1420 [~]$ module load Python/3.11.3
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>b-cn1420 [~]$ module load SciPy-bundle/2023.07
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>b-cn1420 [~]$ srun /bin/hostname
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>b-cn1420.hpc2n.umu.se
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>b-cn1420.hpc2n.umu.se
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>b-cn1420 [~]$ python mmmult.py
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>This is matrix A:
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a> [[ 2318  1636 -2882 ...  -227 -3924  1979]
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a> [ 3069   435  3025 ...   728  3257 -2446]
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a> [ 1890 -2961  3835 ... -3071 -2949  -214]
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a> ...
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a> [ 3227 -3088  3030 ...  3213  1721 -1234]
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a> [-3966 -1899  3627 ...  2835  -526  3421]
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a> [ -805  1987 -3289 ...  2178 -3185  -765]]
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>The shape of matrix A is  (1024, 512)
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>This is matrix B:
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a> [[-2136  -595 -3375 ...  -655  -509  3732]
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a> [ 1491  1187   835 ...  2665  -306  -807]
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a> [ -416   258  -990 ...  -600  1960  2774]
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a> ...
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a> [-1003  3205  2598 ... -1636    19 -2998]
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a> [-3700 -2150 -1159 ... -2486  3687  2903]
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a> [-3218 -2997  2757 ... -3529   313  2796]]
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>The shape of matrix B is  (512, 512)
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>Doing matrix-matrix multiplication...
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>The product of matrices A and B is:
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a> [[  49486980  103461814 -117631503 ... -108846834   41010684 -139620836]
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a> [ -96734464  161139192  134600312 ...   99850009   21346359   41858142]         [  11259501  168047528  -32237508 ... -110635619  129483079 -303047294]
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a> ...
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a> [-168782795 -187369405   80437659 ...   55378363   50071222  -81638625]
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a> [ 289552718  -20697142  -28517135 ...  113819387  148940233  151167784]
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a> [ -23002353  -27489963  -96396293 ... -182708952 -198664534  146521479]]
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>The shape of the resulting matrix is  (1024, 512)
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>
+</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>Time elapsed for generating matrices and multiplying them is  0.8590587209910154
+</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>b-cn1420 [~]$
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ending the session</strong></p>
+<p>The session is active for as long as you allocated it for (number of hours), or you can end it earlier if you do not need it longer.</p>
+<ul>
+<li>From the desktop, you can exit it by clicking &ldquo;System&rdquo; -&gt; &ldquo;Log Out <user>&rdquo; </li>
+<li>
+<p>If you left the desktop running, you can enter it again with &ldquo;Launch Kebnekaise desktop&rdquo; from the &ldquo;My Interactive Sessions&rdquo; menu point.</p>
+</li>
+<li>
+<p>Or you can shut it down by clicking &ldquo;Delete&rdquo;</p>
+</li>
+</ul>
+<p><img alt="Open OnDemand Kebnekaise desktop" src="../../../images/open-ondemand-desktop-started.png" style="width: 90%;" /></p>
+</div>
+<h2 id="interactive__apps__-__jupyter__notebook">Interactive Apps - Jupyter Notebook<a class="headerlink" href="#interactive__apps__-__jupyter__notebook" title="Permanent link">&para;</a></h2>
+<p>If you choose &ldquo;Interactive Apps&rdquo; -&gt; &ldquo;Jupyter Notebook&rdquo;, you will get an app that can launch a Jupyter Notebook server on one or more nodes.</p>
+<p><img alt="Open OnDemand Jupyter Notebook" src="../../../images/open-ondemand-jupyter.png" style="width: 90%;" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is used to start a Jupyter Notebook on one (or more) of the compute nodes after you have allocated resources.</p>
+<p>This means you will be able to work as if on those resources. That means that anything you run from inside the Jupyter notebook immediately runs on the allocated resources, without you having to start (another) job.</p>
+<p>Very useful if you want to work interactively.</p>
+<p>NOTE: another way to start <a href="https://docs.hpc2n.umu.se/software/jupyter/">Jupyter at Kebnekaise is through a batch job inside ThinLinc</a>.</p>
+</div>
+<p>Let us look at the options for launching this, one by one:</p>
+<ul>
+<li><strong>Compute Project</strong>: Dropdown menu where you can choose (one of) your compute projects to launch with.</li>
+<li><strong>Number of hours</strong>: How long you want the job available for. Here you can choose 1-12 hours, but beware that it is a bad idea to pick longer than you need. Not only will it take longer to start, but it will also use up your allocation even if you are not actively doing anything in Jupyter. Pick as long as you need to do your job.</li>
+<li><strong>Node type</strong>: &ldquo;any&rdquo;, &ldquo;any GPU&rdquo;, or &ldquo;Large memory&rdquo;. If you pick &ldquo;any GPU&rdquo; you cannot also chose &ldquo;Number of cores&rdquo;. The other options (for any CPU or for large memory nodes) means you also pick number of cores. Possibe to pick between 1-28.</li>
+<li><strong>Number of cores</strong>: This is only shown if you pick &ldquo;any&rdquo; or &ldquo;Large memory&rdquo; fo
+r &ldquo;Node type&rdquo;. You can pick 1-28 cores.</li>
+<li><strong>Runtime environment</strong>: Here you can pick &ldquo;System provided&rdquo;, &ldquo;Project provided&rdquo;, or &ldquo;User provided&rdquo;. If you or your project do not have a custom Jupyter environment (for instance with specific Python packages or such), then just go with the &ldquo;System provided&rdquo;. See examples in the directory at the path <code>/pfs/data/portal/jupyter/</code> for how to create your own.</li>
+<li><strong>Working Directory</strong>: Pick the working directory to start in. This will be <code>$HOME</code> unless you pick something else (for instance, maybe you prefer to start in your project storage directory). You can either type in the path or you can click the button &ldquo;Select Path&rdquo; and choose from the directory tree.</li>
+</ul>
+<p>You can tick the box “I would like to receive an email when the session starts” if you want that. Depending on your choices (mainly number of hours and number of cores), it can take longer or shorter to launch your job.</p>
+<div class="admonition note">
+<p class="admonition-title">Simple example</p>
+<p>In this example we start a Jupyter Notebook for 1 hour, and with 4 cores.</p>
+<p><strong>Filling options</strong></p>
+<p>This is how it could look, for 1 hour, 4 cores. Using the system runtime environment and chosing a project storage directory of mine.</p>
+<p><img alt="Open OnDemand Jupyter Notebook" src="../../../images/open-ondemand-jupyter-options.png" style="width: 90%;" /></p>
+<p><strong>Waiting to launch</strong></p>
+<p>Then, this is how it looks while it is waiting to start/sitting in queue</p>
+<p><img alt="Open OnDemand Jupyter Notebook" src="../../../images/open-ondemand-jupyter-starting.png" style="width: 90%;" /></p>
+<p><strong>Ready</strong></p>
+<p>Then, when the resources have been allocated and you can go to the Jupyter notebook. As you can see, a host node is assigned.</p>
+<p><img alt="Open OnDemand Jupyter Notebook" src="../../../images/open-ondemand-jupyter-ready.png" style="width: 90%;" /></p>
+<p>Click &ldquo;Connect to Jupyter&rdquo; to go to the notebook.</p>
+<p><strong>Go to Jupyter notebook</strong></p>
+<p>After connecting, you will have a Jupyter notebook to work in.</p>
+<p><strong>NOTE</strong>: you may get an error message about &ldquo;Error Starting Kernel&rdquo; if you have previously run Jupyter notebook <a href="https://docs.hpc2n.umu.se/software/jupyter/">started through a batch job</a>.
+- If so, then just click OK and then pick the correct kernel from the pop-up box &ldquo;Select Kernel&rdquo;.
+- Most likely the one you want is &ldquo;Start Other Kernel&rdquo; -&gt; &ldquo;Python 3 (ipykernel)&rdquo;.
+- Pick that and click &ldquo;Select&rdquo;.</p>
+<p><img alt="Open OnDemand Jupyter Notebook" src="../../../images/open-ondemand-jupyter-running.png" style="width: 90%;" /></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Shutting down Jupyter</p>
+<p>You will at most keep the connection for as long as you asked for when you launched it.</p>
+<p>However, if you want to shut down Jupyter notebook before that, you can choose &ldquo;File&rdquo; -&gt; &ldquo;Shut Down&rdquo; from the menu.</p>
+<p>If you just close the window, then the sessions can be found under &ldquo;My Interactive Sessions&rdquo; for as long as you asked for when you started it, and you can re-enter the notebook by just clicking &ldquo;Connect to Jupyter&rdquo; again.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example - Jupyter with extra modules</p>
+<p>For this example we will create a Jupyter environment with some modules we need, and then use that when we start Jupyter.</p>
+<ol>
+<li>Login to Kebnekaise (either of SSH, ThinLinc, Kebnekaise desktop through Open OnDemand)</li>
+<li>Open a terminal if you did not login with SSH.</li>
+<li>Copy <code>/pfs/data/portal/jupyter/jupyter-base.sh</code> to $HOME/portal/jupyter (and rename it to something easy to remember): <code>mkdir -p $HOME/portal/jupyter;cp /pfs/data/portal/jupyter/jupyter-base.sh $HOME/portal/jupyter/myjupenv.sh</code></li>
+<li>Edit it (with nano for instance) to contain the modules you need. <strong>Note</strong> a specific Jupyter notebook compatible with Python/3.11.5 is loaded! Do not specify versions here! I will add these:<ul>
+<li>SciPy-bundle</li>
+<li>matplotlib
+<img alt="My Jupyter Environment" src="../../../images/jupyter-env-ood.png" style="width:95%; float:left;" /> <br></li>
+</ul>
+</li>
+<li>Now start a new Jupyter Notebook session in Open OnDemand, choosing your own environment:<br>
+<img alt="My Jupyter launch" src="../../../images/myjupyter.jpg" style="width:50%;" /></li>
+<li>When it is ready, connect to Jupyter. Remember: you may get an error message about &ldquo;Error Starting Kernel&rdquo; if you have previously run Jupyter notebook <a href="https://docs.hpc2n.umu.se/software/jupyter/">started through a batch job</a>.<ul>
+<li>If so, then just click OK and then pick the correct kernel from the pop-up box &ldquo;Select Kernel&rdquo;.</li>
+<li>Most likely the one you want is &ldquo;Start Other Kernel&rdquo; -&gt; &ldquo;Python 3 (ipykernel)&rdquo;.</li>
+<li>Pick that and click &ldquo;Select&rdquo;.</li>
+</ul>
+</li>
+<li>You can now run something which requires, say, pandas and matplotlib.</li>
+<li>You can find an example to try (from the &ldquo;Intro to Pandas&rdquo; part of the course &ldquo;Using Python in an HPC environment) here: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/pandas-example.ipynb" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.</li>
+</ol>
+</div>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>More examples on using the Kebnekaise interactive apps here: <a href="https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../connect-cluster/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../4b.ssh-thinlinc/thinlinc/" class="btn btn-neutral float-right" title="ThinLinc">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../connect-cluster/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../4b.ssh-thinlinc/thinlinc/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

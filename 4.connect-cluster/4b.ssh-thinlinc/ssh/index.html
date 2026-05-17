@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/4b.ssh-thinlinc/ssh/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>SSH - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SSH";
+        var mkdocs_page_input_path = "4.connect-cluster/4b.ssh-thinlinc/ssh.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/4.connect-cluster/4b.ssh-thinlinc/ssh/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">SSH</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#connecting__from__windows">Connecting from Windows</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ssh__clients__and__x11__servers">SSH clients and X11 servers</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#putty">PuTTY</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#xming__x__server">Xming X server</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mobaxterm">MobaXterm</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file__transfers">File transfers</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#winscp">WinSCP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cyberduck">Cyberduck</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#filezilla">FileZilla</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connecting__from__macos">Connecting from macOS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ssh__clients">SSH clients</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ssh_1">ssh</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#iterm2">iTerm2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file__transfers_1">File transfers</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#cyberduck_1">Cyberduck</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#filezilla_1">FileZilla</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connecting__from__linuxunix">Connecting from Linux/Unix</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ssh__clients_1">SSH clients</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ssh_2">ssh</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#putty_1">PuTTY</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file__transfers_2">File transfers</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#scpsftp">scp/sftp</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#filezilla_2">FileZilla</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Connection to a cluster (Kebnekaise)</li>
+      <li class="breadcrumb-item active">SSH</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h1>
+<p>The SSH protocol uses encryption to secure the connection between a client and a server. All user authentication, commands, output, and file transfers are encrypted to protect against attacks in the network. </p>
+<p>More information here: <a href="https://www.ssh.com/academy/ssh" target="_blank">SSH Academy</a></p>
+<p>An SSH connection can be through a terminal, via an SSH client or through something like ThinLinc (which includes an SSH client as well as a graphical interface). </p>
+<p>If you are using a stand-alone SSH client (for instance through a terminal), then you must also install an X11 server if you are working with something (like Matlab perhaps) that you would like to use a graphical interface for. This is usually slower than through ThinLinc or OpenOnDemand, so doing that is recommended if this is your use case.</p>
+<p>In this chapter, however, we are looking at connecting through a stand-alone SSH client. </p>
+<h2 id="connecting__from__windows">Connecting from Windows<a class="headerlink" href="#connecting__from__windows" title="Permanent link">&para;</a></h2>
+<p>If you are connecting to HPC2N from a Windows system, you need to install an ssh client to connect. In some cases using just a terminal window is preferred, and this section looks at SSH clients for that. Several exists, both commercial and free. Here are some of the more common ones:</p>
+<ul>
+<li><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank">PuTTY</a> (free)</li>
+<li><a href="https://www.cygwin.com/" target="_blank">Cygwin</a> (free)</li>
+<li><a href="http://mobaxterm.mobatek.net/" target="_blank">MobaXterm</a> (Commercial, but basic feature version is free)</li>
+</ul>
+<p>If you want to be able to open graphical displays (say for opening the Matlab graphical interface), you need an X11 server. These are commonly used:</p>
+<ul>
+<li><a href="https://sourceforge.net/projects/xming/" target="_blank">Xming</a> (free)</li>
+<li><a href="https://www.cygwin.com/" target="_blank">Cygwin</a> (free)</li>
+<li><a href="http://mobaxterm.mobatek.net/" target="_blank">MobaXterm</a> (Commercial, but basic feature version is free)</li>
+</ul>
+<p>Perhaps you also need to transfer files between your own home computer and HPC2N&rsquo;s systems. You need to use a secure protocol, so either sftp or scp will work, but not standard ftp.</p>
+<ul>
+<li><a href="https://winscp.net/eng/index.php" target="_blank">WinSCP</a> (Commercial)</li>
+<li><a href="https://filezilla-project.org/" target="_blank">FileZilla</a> (only sftp) (free)</li>
+<li><a href="http://www.nber.org/pscp.html" target="_blank">PSCP</a><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">/PSFTP</a> (free)</li>
+<li><a href="https://cyberduck.io/?l=en" target="_blank">Cyberduck</a> (free)</li>
+<li><a href="http://mobaxterm.mobatek.net/" target="_blank">MobaXterm</a> (Commercial. The free version has limits to the file transfers)</li>
+</ul>
+<p>In this section we will give brief examples for Cyberduck, WinSCP, MobaXterm, PuTTy, and Xming.</p>
+<p>In all cases, we strongly advice <strong>against</strong> saving passwords.</p>
+<p>The simplest way to connect to HPC2N is to use either PuTTy together with Xming, or to use MobaXterm, unless you need a Linux-like environment on your Windows machine (Windows Subsystem for Linux (WSL)).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that the accounts at HPC2N and SUPR are separate.</p>
+<p>In the welcome mail you got when your HPC2N account was created, there was a link to create <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset" target="_blank">a first, temporary password</a>. When you have logged in using that, <a href="https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change">please change the password</a>.</p>
+</div>
+<h3 id="ssh__clients__and__x11__servers">SSH clients and X11 servers<a class="headerlink" href="#ssh__clients__and__x11__servers" title="Permanent link">&para;</a></h3>
+<h4 id="putty">PuTTY<a class="headerlink" href="#putty" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download PuTTY from <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">here</a>.
+<img alt="putty-login" src="../../../images/putty-login.png" style="width: 350px;float: right" /></li>
+<li>Get the Zip file which contains all of PuTTY, PSCP, and PSFTP.</li>
+<li>Unzip the downloaded zip-file, then run &ldquo;putty.exe&rdquo;.</li>
+<li>In the window that opens, under &lsquo;Session&rsquo; enter the host name.<ul>
+<li>In the picture, it is entered for Kebnekaise (kebnekaise.hpc2n.umu.se).</li>
+</ul>
+</li>
+<li>When you click &lsquo;Open&rsquo; you will be prompted for your HPC2N username and password.<ul>
+<li>In the picture below, you can see how it can look when logged in.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="putty-loggedin" src="../../../images/putty-loggedin.png" style="width: 600px; float: left" /></p>
+<p><br><br style="clear: both;"></p>
+<h5 id="putty__and__x11__forwarding">PuTTy and X11 forwarding<a class="headerlink" href="#putty__and__x11__forwarding" title="Permanent link">&para;</a></h5>
+<p>If you need to open graphical interfaces from the remote system on your home computer then you need to enable X11 forwarding.</p>
+<p><strong>Example for Xming</strong></p>
+<ul>
+<li>Download and install an X server (for instance <a href="#xming__x__server">Xming</a>)<ul>
+<li>Start PuTTy</li>
+<li>On the left side, scroll down to &lsquo;Connection&rsquo; and click to open the tree if it is not opened already</li>
+<li>Click to open the &lsquo;SSH&rsquo; subcategory, and then click on &lsquo;X11&rsquo;.</li>
+<li>Make sure &lsquo;Enable X11 forwarding&rsquo; is checked. Note that this needs to be done for each saved session.</li>
+<li>Some older versions of PuTTY does not work correctly with X11 forwarding from our systems. Try upgrading to <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank">version 0.69</a> (known to work) or newer.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="putty_x11" src="../../../images/putty_x11.png" style="width: 456px;" /></p>
+<p><br><br style="clear:both;"></p>
+<h4 id="xming__x__server">Xming X server<a class="headerlink" href="#xming__x__server" title="Permanent link">&para;</a></h4>
+<p>In order to use X11 forwarding in PuTTy (or similar), you need to run Xming before starting PuTTy.</p>
+<ul>
+<li>Download from <a href="http://www.straightrunning.com/XmingNotes" target="_blank">the Xming page</a> or <a href="https://sourceforge.net/projects/xming/" target="_blank">directly from Sourceforge</a><ul>
+<li>Install (default options should work)</li>
+<li>Launch Xming</li>
+</ul>
+</li>
+</ul>
+<p>You can now launch (for instance) PuTTY SSH client and enable X11 forwarding <a href="#putty__and__x11__forwarding">as shown earlier</a> on this page.</p>
+<h4 id="mobaxterm">MobaXterm<a class="headerlink" href="#mobaxterm" title="Permanent link">&para;</a></h4>
+<p>This program has both a freeware and a paid version. The freeware version works well for most users. It combines SSH client, X11 server, and SFTP file browser. <strong>NOTE</strong> that the free version has a number of limits, such as a time-limit on the filebrowser. You may therefore wish to use either FileZilla or WinScp for file transfers instead because of that.</p>
+<p>It exists both as an installable version and as a single executable that can be run from an USB stick.</p>
+<ul>
+<li>Download from <a href="http://mobaxterm.mobatek.net/" target="_blank">here</a>.<ul>
+<li>Get the Free / Home edition</li>
+<li>Extract it</li>
+</ul>
+</li>
+</ul>
+<p>There is a demo on their homepage, but here are the basic steps to connect to HPC2N&rsquo;s systems.</p>
+<ul>
+<li>Start the MobaXterm program <br>
+<img alt="mobaxterm-start" src="../../../images/mobaxterm-start.png" style="width: 350px;float: left" />
+<br><br style="clear: both;"></li>
+<li>Click &lsquo;Session&rsquo; and then click &lsquo;SSH&rsquo; in the new window that opens. Fill in the name of the remote host (kebnekaise.hpc2n.umu.se). Check &lsquo;Specify username&rsquo; and fill in your own username (otherwise it will ask for your username when you connect to the system). Click &lsquo;OK&rsquo;. (Your settings will be saved and you can login again by clicking on the host name under &lsquo;Saved sessions&rsquo; on the start up window).<br>
+<img alt="mobaxterm-ssh" src="../../../images/mobaxterm-ssh.png" style="width: 600px;float: left" />
+<br><br style="clear: both;"></li>
+<li>A new window will open, asking for your HPC2N password.<br />
+<img alt="mobaxterm-password" src="../../../images/mobaxterm-password.png" style="width: 600px; float: left" />
+<br><br style="clear: both;"></li>
+<li>When you have entered that, you will be logged on to the system (Kebnekaise). Note that there is a file browser on the left with your files on the HPC2N system.<br>
+<img alt="mobaxterm-login" src="../../../images/mobaxterm-login.png" style="width: 600px; float: left" />
+<br><br style="clear: both;"></li>
+<li>Since an X11 server is running and the display is sat automatically, you can now open new windows/displays/graphical interfaces from the host you are logged in to, on your own local screen. - You can also transfer files between your local system and the remote system (HPC2N) by using the file browser. Choosing download/upload or just drag-drop works. You can also do things like editing files on the remote system by double-clicking on a file in the file browser or right-clicking and choosing what to do. <strong>NOTE </strong>that there is a time-limit on the file browser in the free version, and you can not expect to do anything but minor edits through it this way.<br />
+<img alt="mobaxterm-openfile" src="../../../images/mobaxterm-openfile.png" style="width: 600px; float: left" />
+<br><br style="clear: both;"></li>
+</ul>
+<h3 id="file__transfers">File transfers<a class="headerlink" href="#file__transfers" title="Permanent link">&para;</a></h3>
+<p>There are many options, some free, some commercial. Some of the more common ones are:</p>
+<ul>
+<li><a href="#winscp">WinSCP</a></li>
+<li><a href="#cyberduck">Cyberduck</a></li>
+<li><a href="#filezilla">FileZilla</a></li>
+</ul>
+<h4 id="winscp">WinSCP<a class="headerlink" href="#winscp" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download from <a href="https://winscp.net/eng/download.php" target="_blank">here</a>. Pick &lsquo;Installation package&rsquo;.</li>
+<li>Install. During the setup you will be asked to choose between &lsquo;Commander&rsquo; and &lsquo;Explorer&rsquo;. &lsquo;Commander&rsquo; is probably the best for most people, but it is your choice.<br>
+<img alt="winscp-setup" src="../../../images/winscp-setup.png" style="width: 400px; float: left;" />
+<br><br style="clear: both;"></li>
+<li>When the program has installed, start it. Click &lsquo;New Session&rsquo;. Enter the name of the remote host (kebnekaise.hpc2n.umu.se or abisko.hpc2n.umu.se). Put in your username and password. You can save the session settings so you do not have to enter it next time, but can just click it in the list that will be on the left, but we strongly recommend that you in that case do <strong>not<em> </em></strong>save the password.<br>
+<img alt="winscp-kebnekaise" src="../../../images/winscp-kebnekaise.png" style="width: 600px; float: left" />
+<br><br style="clear: both;"></li>
+<li>When you log on to a remote host for the first time you will be asked if you want to continue connecting to an unknown server and add its host key to a cache. Say &lsquo;Yes&rsquo;. You will now be logged in to HPC2N, to your home directory. You can change directories by clicking, and you can upload/download files with drag-drop.<br />
+<img alt="winscp-loggedin" src="../../../images/winscp-loggedin.png" style="width: 600px; float: left" /></li>
+</ul>
+<h4 id="cyberduck">Cyberduck<a class="headerlink" href="#cyberduck" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download from <a href="https://cyberduck.io/?l=en" target="_blank">here</a>. Pick the &ldquo;Cyberduck for Windows&rdquo; even if you have Windows 10</li>
+<li>Install</li>
+<li>Start the program<br />
+<img alt="cyberduck-start" src="../../../images/cyberduck-start.png" style="width: 600px; float: left;" />
+<br><br style="clear: both;"></li>
+<li>Click &lsquo;Open Connection&rsquo; and enter the name of the remote host (kebnekaise.hpc2n.umu.se), Change the drop-down from &lsquo;FTP&rsquo; to &lsquo;SFTP&rsquo;. Enter your username and password for HPC2N. We strongly recommend that you do NOT save the password.<br />
+<img alt="cyberduck-login" src="../../../images/cyberduck-login.png" style="width: 600px; float: left;" />
+<br><br style="clear: both;"></li>
+<li>When you connect the first time to a remote host, you will be asked if you want to &ldquo;Allow&rdquo; or &ldquo;Deny&rdquo; an unknown fingerprint. Allow it.</li>
+<li>You are now logged in. You will end up in your home directory. You can change directories and you can upload/download files with drag-drop.<br />
+<img alt="cyberduck-filebrowser" src="../../../images/cyberduck-filebrowser.png" style="width: 600px; float: left;" />
+<br><br style="clear: both;"></li>
+</ul>
+<h4 id="filezilla">FileZilla<a class="headerlink" href="#filezilla" title="Permanent link">&para;</a></h4>
+<p><a href="https://filezilla-project.org/" target="_blank">The FileZilla Client</a> is free and supports FTP, FTP over TLS (FTPS) and SFTP. It is open source software distributed free of charge under the terms of the GNU General Public License. To connect to HPC2N, you need to use SFTP.</p>
+<ul>
+<li>Go to <a href="https://filezilla-project.org/" target="_blank">the FileZilla homepage</a> and pick &ldquo;Download FileZilla Client&rdquo;.</li>
+<li>You will get to a page where you can pick &ldquo;Download FileZilla Client&rdquo; for your OS.</li>
+<li>Download and install.</li>
+</ul>
+<h2 id="connecting__from__macos">Connecting from macOS<a class="headerlink" href="#connecting__from__macos" title="Permanent link">&para;</a></h2>
+<p>If you are connecting to HPC2N from a Mac, you have a number of options, aside from the built in SSH client &ldquo;Terminal&rdquo;. Several exists, both commercial and free. Here are some of the more common ones:</p>
+<ul>
+<li><code>ssh</code> (built-in in &ldquo;Terminal&rdquo;)</li>
+<li><a href="http://www.iterm2.com/" target="_blank"><code>iTerm2</code></a> (free)</li>
+</ul>
+<p>If you want to be able to open graphical displays (say for opening the Matlab graphical interface), you need an X11 server. It may or may not be installed as standard on Mac, depending on your version, but you can get it by installing <a href="https://www.xquartz.org/" target="_blank">XQuartz</a>.</p>
+<p>Another option would be to use <a href="#thinlinc">ThinLinc</a> which exists for all OS and gives you a desktop on Kebnekaise.</p>
+<p>You also need to transfer files between your own home computer and HPC2N&rsquo;s systems. You need to use a secure protocol, so either <code>sftp</code> or <code>scp</code> will work, but not standard <code>ftp</code>. These are some of the options:</p>
+<ul>
+<li><code>scp</code>, <code>sftp</code> (built-in in &ldquo;Terminal&rdquo;)</li>
+<li><code><a href="https://cyberduck.io/?l=en" target="_blank">Cyberduck</a></code> (free)</li>
+<li><code><a href="https://filezilla-project.org/" target="_blank">FileZilla</a></code> (free)</li>
+</ul>
+<p>On this page we will give brief examples for ssh, Cyberduck and iTerm2, and also tell you how to get FileZilla.</p>
+<p>In all cases, we strongly advice <strong>against</strong> saving passwords.</p>
+<p>The simplest way to connect to HPC2N is to use the built-in <code>ssh</code> from &ldquo;Terminal&rdquo;.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that the accounts at HPC2N and SUPR are separate. In the welcome mail you got when your HPC2N account was created was a link to create <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset" target="_blank">a first, temporary password</a>. When you have logged in using that, <a href="https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change">please change the password</a>.</p>
+</div>
+<h3 id="ssh__clients">SSH clients<a class="headerlink" href="#ssh__clients" title="Permanent link">&para;</a></h3>
+<h4 id="ssh_1">ssh<a class="headerlink" href="#ssh_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Launch &ldquo;Terminal&rdquo;</li>
+<li>Connect to Kebnekaise by doing: <br>
+<code>ssh -l username kebnekaise.hpc2n.umu.se </code> <br>
+where username is your username at HPC2N.</li>
+<li>If you need to open displays from the remote host on your local machine (say, for graphical interfaces to some software), you need to make sure <a href="https://www.xquartz.org/" target="_blank">XQuartz</a> is installed and running. It should be set up automatically during install.</li>
+</ul>
+<h4 id="iterm2">iTerm2<a class="headerlink" href="#iterm2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download <a href="http://www.iterm2.com/index.html" target="_blank">iTerm2 </a></li>
+<li>Install and launch</li>
+<li>Connect to Kebnekaise by doing: <br>
+<code>ssh -l username kebnekaise.hpc2n.umu.se </code> <br>
+where username is your username at HPC2N.</li>
+<li>You now have access to a number of nice features, like split panes, search, paste history, etc. Read more about that <a href="http://www.iterm2.com/features.html" target="_blank">here</a>.</li>
+</ul>
+<h3 id="file__transfers_1">File transfers<a class="headerlink" href="#file__transfers_1" title="Permanent link">&para;</a></h3>
+<h4 id="cyberduck_1">Cyberduck<a class="headerlink" href="#cyberduck_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download from <a href="https://cyberduck.io/?l=en" target="_blank">here</a> or from the Mac App Store</li>
+<li>Install</li>
+<li>Launch the program</li>
+<li>In the <b>Open Connection</b> dialog:<ul>
+<li>Select <b>SFTP </b>as protocol</li>
+<li>Enter Server: <b>kebnekaise.hpc2n.umu.se</b></li>
+<li>Leave Port at default: <b>22</b></li>
+<li>Enter your <strong>Username</strong> and <strong>Password </strong>at HPC2N</li>
+<li>Click <b>Connect </b><br />
+<img alt="cyberduck-login-mac" src="../../../images/cyberduck-login-mac.png" style="width: 600px; float: left;" />
+<br><br style="clear: both;"></li>
+</ul>
+</li>
+<li>When you connect the first time to a remote host, you will be asked if you want to &ldquo;Allow&rdquo; or &ldquo;Deny&rdquo; an unknown fingerprint. Allow it.</li>
+<li>You are now logged in. You will end up in your home directory. You can change directories and you can upload/download files with drag-drop. If you want, you can pick <strong>Bookmark -&gt; New Bookmark</strong> from the top menu to save the connection settings for next time.<br />
+<img alt="cyberduck-filebrowser-mac" src="../../../images/cyberduck-filebrowser-mac.png" style="width: 600px; float: left;" />
+<br><br style="clear: both;"></li>
+</ul>
+<h4 id="filezilla_1">FileZilla<a class="headerlink" href="#filezilla_1" title="Permanent link">&para;</a></h4>
+<p><a href="https://filezilla-project.org/" target="_blank">The FileZilla Client</a> is free and supports FTP, FTP over TLS (FTPS) and SFTP. It is open source software distributed free of charge under the terms of the GNU General Public License. To connect to HPC2N, you need to use SFTP.</p>
+<ul>
+<li>Go to <a href="https://filezilla-project.org/" target="_blank">the FileZilla homepage</a> and
+pick &ldquo;Download FileZilla Client&rdquo;.</li>
+<li>You will get to a page where you can pick &ldquo;Download FileZilla Client&rdquo; for your OS.</li>
+<li>Download and install.</li>
+</ul>
+<h2 id="connecting__from__linuxunix">Connecting from Linux/Unix<a class="headerlink" href="#connecting__from__linuxunix" title="Permanent link">&para;</a></h2>
+<p>If you are connecting to HPC2N from a computer running Linux or Unix, you have a number of options. The most obvious and commonly used one is probably the built-in SSH client SSH. Several others exist, here are some of the more common ones:</p>
+<ul>
+<li><code>ssh</code> (built-in in Linux terminal)</li>
+<li><code><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank">PuTTY</a></code> (free)</li>
+</ul>
+<p>If you want to be able to open graphical displays (say for opening the Matlab graphical interface), you need an X11 server. It is installed per default on Linux/Unix systems.</p>
+<p>Another option would be to use ThinLinc which exists for all OS and gives you a desktop on Kebnekaise.</p>
+<p>You also need to transfer files between your own home computer and HPC2N&rsquo;s systems. You need to use a secure protocol, so either sftp or scp will work, but not standard ftp. These are some of the options:</p>
+<ul>
+<li><code>scp</code>, <code>sftp</code> (built-in in Linux terminal)</li>
+<li><a href="https://curl.haxx.se/" target="_blank"><code>cURL</code></a> (free)</li>
+<li><a href="https://filezilla-project.org/" target="_blank"><code>FileZilla</code></a> (free)</li>
+<li><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank"><code>PSFTP</code></a> (Part of PuTTY. Free)</li>
+</ul>
+<p>On this page we will give brief examples for <code>ssh</code>, <code>scp</code>/<code>sftp</code>, <code>PuTTY</code>, and <code>FileZilla</code>.</p></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find more examples for file transfers in the <a href="https://docs.hpc2n.umu.se/documentation/filesystems/#file__transfer">File transfer section on HPC2N&rsquo;s documentation pages</a></p>
+</div>
+<p>In all cases, we strongly advice <strong>against</strong> saving passwords.</p>
+<p>The simplest way to connect to HPC2N is to use the built-in ssh from the terminal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that the accounts at HPC2N and SUPR are separate. In the welcome mail you got when your HPC2N account was created was a link to create <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset">a first, temporary password</a>. When you have logged in using that, <a href="https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change">please change the password</a>.</p>
+</div>
+<h3 id="ssh__clients_1">SSH clients<a class="headerlink" href="#ssh__clients_1" title="Permanent link">&para;</a></h3>
+<h4 id="ssh_2">ssh<a class="headerlink" href="#ssh_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Launch a terminal</li>
+<li>Connect to Kebnekaise by doing:<br>
+<code>ssh username@kebnekaise.hpc2n.umu.se </code> <br>
+where username is your username at HPC2N.</li>
+<li>If you need to open displays from the remote host on your local machine (say, for graphical interfaces to some software), you must use the flag <code>-X</code> (or <code>-Y</code> in some cases, if you need to type something in the display, like in MATLAB): <br>
+<code>ssh -X username@kebnekaise.hpc2n.umu.se</code></li>
+</ul>
+<h4 id="putty_1">PuTTY<a class="headerlink" href="#putty_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank">PuTTY</a></li>
+<li>Unpack the tarball (For version 0.81 - adjust to fit: <code>tar zxvf putty-0.81.tar.gz</code>)<ul>
+<li><code>cd</code> into the directory created by the above command (adjust to fit the version: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>unix/putty-0.81
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>./configure
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>make
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>It should build without problems. If you need the graphical utilities instead of just using it from the command line, you need Gtk+-1.2, Gtk+-2.0, or Gtk+-3.0 installed. More information can be found in the file README in the top putty directory.<ul>
+<li>Launch the graphical interface with
+  <code>./putty</code>
+  from the unix directory under the PuTTY directory. </li>
+<li>Enter kebnekaise.hpc2n.umu.se as the host: <br>
+<img alt="putty-linux-kebnekaise" src="../../../images/putty-linux-kebnekaise.png" style="width: 566px; float: left;" /> 
+<br><br style="clear: both;"></li>
+<li>The first time you connect you will be asked to accept the host key. Do so. Then login with your HPC2N username and password.</li>
+<li>In order to use remote graphical interfaces, you need to enable X11 forwarding: <ul>
+<li>Scroll down in the left side of the PuTTY window to SSH. </li>
+<li>Click the small arrow to get to the sub-options. </li>
+<li>Click X11. </li>
+<li>Check &ldquo;Enable X11 forwarding&rdquo;: <br> 
+<img alt="putty-linux.x11" src="../../../images/putty-linux.x11.png" style="width: 566px; float: left;" /> 
+<br><br style="clear: both;"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="file__transfers_2">File transfers<a class="headerlink" href="#file__transfers_2" title="Permanent link">&para;</a></h3>
+<h4 id="scpsftp">scp/sftp<a class="headerlink" href="#scpsftp" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>scp</code> and <code>sftp</code> should already be installed on your Linux installation</li>
+</ul>
+<h5 id="scp">scp<a class="headerlink" href="#scp" title="Permanent link">&para;</a></h5>
+<p><code>scp</code> - secure copy - copies files between hosts on a network. It uses <code>ssh</code> for data transfer.</p>
+<div class="admonition example">
+<p class="admonition-title">scp examples</p>
+<ul>
+<li><strong>Copy file from remote host to local host</strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>scp<span class="w"> </span>username@remotehost:file<span class="w"> </span>local-directory
+</span></code></pre></div></li>
+<li><strong>Copy file from local host to remote host </strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>scp<span class="w"> </span>file<span class="w"> </span>username@remotehost:remote-directory
+</span></code></pre></div></li>
+<li><strong>Copy directory from local host to remote host (and renaming directory to new-directory) </strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>local-directory<span class="w"> </span>username@remotehost:remote-directory/new-directory
+</span></code></pre></div></li>
+<li><strong>Copy multiple files from local host to your home directory on remote host </strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>scp<span class="w"> </span>file1<span class="w"> </span>file2<span class="w"> </span>username@remotehost:~
+</span></code></pre></div></li>
+<li><strong>Copy multiple files from remote host to current directory on local host </strong>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>scp<span class="w"> </span>username@remotehost:/remote-directory/<span class="se">\{</span>file1,file2,file3<span class="se">\}</span><span class="w"> </span>.
+</span></code></pre></div></li>
+</ul>
+</div>
+<p>For more info about <code>scp</code>, type: <code>man scp</code> on the command line. </p>
+<h5 id="sftp">sftp<a class="headerlink" href="#sftp" title="Permanent link">&para;</a></h5>
+<p><code>sftp</code> - secure file transfer program. Similar to FTP, but with many of the features of SSH included.</p>
+<div class="admonition example">
+<p class="admonition-title">sftp examples</p>
+<p><strong>Interactive</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sftp<span class="w"> </span>username@remotehost
+</span></code></pre></div></p>
+<p><strong>Retrieve files without interaction </strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sftp<span class="w"> </span>username@remotehost:file<span class="w"> </span>...
+</span></code></pre></div></p>
+</div>
+<p>For more info about <code>sftp</code>, type: <code>man sftp</code> on the command line. </p>
+<h4 id="filezilla_2">FileZilla<a class="headerlink" href="#filezilla_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Ubuntu: download and install with package manager (<code>apt-get install filezilla</code>)</li>
+<li>You can also download from <a href="https://filezilla-project.org/" target="_blank">FileZilla homepage</a> if you are not using Ubuntu. Pick the one for &ldquo;All platforms&rdquo;. There is one for Debian (the executable is in the bin subdiretory and is called filezilla). If you are not using Debian or Ubuntu, you will probably have to compile from source.</li>
+<li>When building from source (You also need to download and install <a href="https://lib.filezilla-project.org/download.php" target="_blank">libfilezilla</a> in much the same way):<ul>
+<li>uncompress the tarball (<code>tar zxvf FILENAME</code>), enter the directory created</li>
+<li><code>mkdir compile</code></li>
+<li><code>cd compile</code></li>
+<li><code>../configure</code></li>
+<li><code>make</code></li>
+<li><code>make install</code></li>
+</ul>
+</li>
+<li>This is how it looks when FileZilla has started up: <br> 
+<img alt="filezilla-linux" src="../../../images/filezilla-linux.png" style="width: 900px; float: left;" /> 
+<br><br style="clear: both;"></li>
+<li>Connect by entering <code>kebnekaise.hpc2n.umu.se</code> in the &ldquo;Host&rdquo; field, then put in your HPC2N username under &ldquo;Username&rdquo;. We strongly recommend <strong>not</strong> saving your password.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../thinlinc/" class="btn btn-neutral float-left" title="ThinLinc"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../5.linux-intro/linux-intro/" class="btn btn-neutral float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../thinlinc/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../5.linux-intro/linux-intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/what-modules/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>What are modules? - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "What are modules?";
+        var mkdocs_page_input_path = "7.software-modules-containers/what-modules.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/what-modules/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">What are modules?</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#useful__commands">Useful commands</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finding__existing__modules">Finding existing modules</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Accessing software on Kebnekaise</li>
+      <li class="breadcrumb-item active">What are modules?</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduction__to__the__module__system">Introduction to the module system<a class="headerlink" href="#introduction__to__the__module__system" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Learn the basics of the module system which is used to access most of the software at the majority of the HPC centres in Sweden </li>
+<li>Learn about some of the most used commands for the module system</li>
+<li>Find existing modules  </li>
+</ul>
+</div>
+<p>Most programs are accessed by first loading them as a ‘module’. Thus, knowing about modules is <em>necessary</em> for you to be able to access the majority of the installed software at a centre! </p>
+<p>Modules are:</p>
+<ul>
+<li>used to set up your environment (paths to executables, libraries, etc.) for using a particular (set of) software package(s)</li>
+<li>a tool to help users manage their Unix/Linux shell environment, allowing groups of related environment-variable settings to be made or removed dynamically</li>
+<li>allows having multiple versions of a program or package available by just loading the proper module</li>
+<li>are installed in a hierarchial layout. This means that some modules are only available after loading a specific compiler and/or MPI version, etc. <ul>
+<li>that is, the modules have <em>prerequisites</em> that needs to be loaded before they can be loaded. </li>
+<li>Whether or not modules have prerequisites vary by center. On Kebnekaise, modules generally <strong>has</strong> prerequisites! </li>
+</ul>
+</li>
+</ul>
+<p>Kebnekaise is using the <a href="https://lmod.readthedocs.io/en/latest/" target="_blank">Lmod</a> module system. It is an environment module system that is Lua based. </p>
+<p>It is also using the <a href="https://docs.easybuild.io/" target="_blank">EasyBuild</a> framework for building and installing software modules.   </p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<ul>
+<li>Take care not to use any system-installed versions of <code>gcc</code>, <code>python</code>, etc. Always use the module instead, when available! </li>
+<li>Always check if there is a module instead of just building the software/package yourself! <ul>
+<li>Remember to check with different capitalization! </li>
+<li>If the center you are at have modules installed in a hierarchical fashion, like HPC2N you must use <code>module spider</code> to check if a software is installed, since <code>module avail</code> only lists what is available with what is currently loaded</li>
+</ul>
+</li>
+<li>If there is a software missing that you need, then ask if it can be installed. </li>
+</ul>
+</div>
+<h2 id="useful__commands">Useful commands<a class="headerlink" href="#useful__commands" title="Permanent link">&para;</a></h2>
+<p>This is a list of some of the most useful commands for the module system. In the list below, <code>MODULE</code> is used as a stand-in for any software module. </p>
+<ul>
+<li>See which modules exists: <code>module spider or ml spider</code></li>
+<li>See which versions exist of a specific module: <code>module spider MODULE</code> or <code>ml spider MODULE</code></li>
+<li>See prerequisites and how to load a specfic version of a module: <code>module spider MODULE/VERSION</code> or <code>ml spider MODULE/VERSION</code></li>
+<li>List modules depending only on what is currently loaded: <code>module avail</code> or <code>ml av</code></li>
+<li>See which modules are currently loaded: <code>module list</code> or <code>ml</code></li>
+<li>Loading a module: <code>module load MODULE</code> or <code>ml MODULE</code></li>
+<li>Loading a specific version of a module: <code>module load MODULE/VERSION</code> or <code>ml MODULE/VERSION</code></li>
+<li>Unload a module: <code>module unload MODULE</code> or <code>ml -MODULE</code></li>
+<li>Get more information about the paths etc. of a module: <code>ml show MODULE</code> or <code>module show MODULE</code></li>
+<li>Get information about what is in a module: <code>module help MODULE</code> or <code>ml help MODULE</code> </li>
+<li>Unload all modules except the ‘sticky’ modules: <code>module purge or ml purge</code></li>
+<li>Module collections to load/unload a bunch of modules: <code>module save &lt;collection&gt;</code> and <code>module restore &lt;collection&gt;</code></li>
+</ul>
+<h2 id="finding__existing__modules">Finding existing modules<a class="headerlink" href="#finding__existing__modules" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This differs somewhat between centres. on Kebnekaise it is best to use <code>module spider</code>! </p>
+<p>This is mainly to do with whether or not modules in general have prerequisite modules that needs loading before, or not. </p>
+<ul>
+<li><code>module spider</code>: when there are prerequisites for most modules</li>
+<li><code>module avail</code>: when there generally are no prereqiuisites. On Kebnekaise this can be used to see what can be loaded given what is <strong>currently</strong> loaded. </li>
+</ul>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><code>module spider</code> can be written in short form as <code>ml spider</code></p>
+</div>
+<details class="note">
+<summary>Example - all software</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>--------------------------------------------------------------------------------------------------------------
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>The<span class="w"> </span>following<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions<span class="w"> </span>currently<span class="w"> </span>available:
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>--------------------------------------------------------------------------------------------------------------
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>:<span class="w">  </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span>ABRicate:<span class="w"> </span>ABRicate/1.0.0
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span>Mass<span class="w"> </span>screening<span class="w"> </span>of<span class="w"> </span>contigs<span class="w"> </span><span class="k">for</span><span class="w"> </span>antimicrobial<span class="w"> </span>and<span class="w"> </span>virulence<span class="w"> </span>genes
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span>ABySS:<span class="w"> </span>ABySS/2.2.5
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span>Assembly<span class="w"> </span>By<span class="w"> </span>Short<span class="w"> </span>Sequences<span class="w"> </span>-<span class="w"> </span>a<span class="w"> </span>de<span class="w"> </span>novo,<span class="w"> </span>parallel,<span class="w"> </span>paired-end<span class="w"> </span>sequence<span class="w"> </span>assembler
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span>ACTC:<span class="w"> </span>ACTC/1.1
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span>ACTC<span class="w"> </span>converts<span class="w"> </span>independent<span class="w"> </span>triangles<span class="w"> </span>into<span class="w"> </span>triangle<span class="w"> </span>strips<span class="w"> </span>or<span class="w"> </span>fans.
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span>ADGofTest:<span class="w"> </span>ADGofTest/0.3<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span>AICcmodavg:<span class="w"> </span>AICcmodavg/2.3-0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>AICcmodavg/2.3-1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>...
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span>ALDEx2:<span class="w"> </span>ALDEx2/1.20.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>ALDEx2/1.26.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>ALDEx2/1.28.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>...
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span>ALL:<span class="w"> </span>ALL/1.30.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>ALL/1.36.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>ALL/1.38.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>...
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span>AMAPVox:<span class="w"> </span>AMAPVox/0.12.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>AMAPVox/1.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>AMAPVox/1.0.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>...
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span>AMGX:<span class="w"> </span>AMGX/2.2.0-CUDA-11.3.1
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span>Distributed<span class="w"> </span>multigrid<span class="w"> </span>linear<span class="w"> </span>solver<span class="w"> </span>library<span class="w"> </span>on<span class="w"> </span>GPU
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span>AMOS:<span class="w"> </span>AMOS/3.1.0
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span>The<span class="w"> </span>AMOS<span class="w"> </span>consortium<span class="w"> </span>is<span class="w"> </span>committed<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>development<span class="w"> </span>of<span class="w"> </span>open-source<span class="w"> </span>whole<span class="w"> </span>genome<span class="w"> </span>assembly<span class="w"> </span>software
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span>AMPtorch:<span class="w"> </span>AMPtorch/0.1
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span>AMPtorch<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>PyTorch<span class="w"> </span>implementation<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Atomistic<span class="w"> </span>Machine-learning<span class="w"> </span>Package<span class="w"> </span><span class="o">(</span>AMP<span class="o">)</span><span class="w"> </span>code<span class="w"> </span>that<span class="w"> </span>seeks<span class="w"> </span>to<span class="w"> </span>provide<span class="w"> </span>users<span class="w"> </span>with<span class="w"> </span>improved<span class="w"> </span>performance<span class="w"> </span>and<span class="w"> </span>flexibility<span class="w"> </span>as<span class="w"> </span>compared<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>original<span class="w"> </span>code.<span class="w"> </span>The<span class="w"> </span>implementation<span class="w"> </span>does<span class="w"> </span>so<span class="w"> </span>by<span class="w"> </span>benefiting<span class="w"> </span>from<span class="w"> </span>state-of-the-art<span class="w"> </span>machine<span class="w"> </span>learning<span class="w"> </span>methods<span class="w"> </span>and<span class="w"> </span>techniques<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>optimized<span class="w"> </span><span class="k">in</span><span class="w"> </span>conjunction<span class="w"> </span>with<span class="w"> </span>high-throughput<span class="w"> </span>supercomputers.
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span>ANCOMBC:<span class="w"> </span>ANCOMBC/1.6.4<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>ANCOMBC/2.4.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>ANCOMBC/2.6.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>...
+</span></code></pre></div>
+</details>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can check if a specific software module is installed by trying <code>module spider &lt;SOFTWARE&gt;</code></p>
+<p>Example, GROMACS: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>GROMACS
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>GROMACS:
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span>Description:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span>GROMACS<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>versatile<span class="w"> </span>package<span class="w"> </span>to<span class="w"> </span>perform<span class="w"> </span>molecular<span class="w"> </span>dynamics,<span class="w"> </span>i.e.<span class="w"> </span>simulate<span class="w"> </span>the<span class="w"> </span>Newtonian<span class="w"> </span>equations<span class="w"> </span>of<span class="w"> </span>motion<span class="w"> </span><span class="k">for</span><span class="w"> </span>systems<span class="w"> </span>with<span class="w"> </span>hundreds<span class="w"> </span>to<span class="w"> </span>millions<span class="w"> </span>of<span class="w"> </span>particles.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">     </span>Versions:
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span>GROMACS/3.3.3-cphmd-1.3
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span>GROMACS/3.3.3-cphmd-1.3-1lpernode
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span>GROMACS/3.3.3-cphmd-1.4
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span>GROMACS/4.0.7-ionstr
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span>GROMACS/5.1.4
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span>GROMACS/2016.x-drude-20180214-g3f7439a
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span>GROMACS/2016.x-drude-20220117-g78fe3d1e
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span>GROMACS/2016.x-drude-20220120-ge35ae4e2
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">        </span>GROMACS/2016.4
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span>GROMACS/2018.8
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span>GROMACS/2019
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span>GROMACS/2019.4-PLUMED-2.5.4
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span>GROMACS/2021
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span>GROMACS/2022.4
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">        </span>GROMACS/2023.1-CUDA-11.7.0
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span>GROMACS/2023.1
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span>GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span>GROMACS/2024.1
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">        </span>GROMACS/2024.3-CUDA-12.4.0
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">        </span>GROMACS-LS
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">  </span>To<span class="w"> </span>find<span class="w"> </span>other<span class="w"> </span>possible<span class="w"> </span>module<span class="w"> </span>matches<span class="w"> </span>execute:
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">      </span>$<span class="w"> </span>module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s1">&#39;.*GROMACS.*&#39;</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;GROMACS&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>GROMACS/2024.3-CUDA-12.4.0
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>--------------------------------------------------------------------------------------------------------------------
+</span></code></pre></div>
+<p><strong>NOTE</strong>: Beware that you may have to try with different capitalization to find the software! </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you do <code>module avail</code> you will not get a full list of software, only those are available to load with <strong>no other prerequisites than are currently loaded</strong>. This <em>is</em> however, a good way to find <strong>compiler toolchains</strong> (more about that later).  </p>
+</div>
+<p>You can write <code>module avail</code> in short form as <code>ml av</code>. </p>
+<details class="note">
+<summary>Example, module avail</summary>
+<p>Here you only get what is available without loading anything else. Most modules have <strong>prerequisistes</strong> so this is not the way to find all modules! </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>-------------------------------------------<span class="w"> </span>/hpc2n/eb/modules/all/Core<span class="w"> </span>-------------------------------------------
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>ATSAS/3.2.1-1_amd64<span class="w">                                </span>binutils/2.34
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>Advisor/2023.2.0<span class="w">                                   </span>binutils/2.35
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>BLAST/2.11.0-Linux_x86_64<span class="w">                          </span>binutils/2.36.1
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>Bison/3.0.4<span class="w">                                        </span>binutils/2.37
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>Bison/3.0.5<span class="w">                                        </span>binutils/2.38
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>Bison/3.3.2<span class="w">                                        </span>binutils/2.39
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>Bison/3.5.3<span class="w">                                        </span>binutils/2.40
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>Bison/3.7.1<span class="w">                                        </span>binutils/2.42<span class="w">                  </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>Bison/3.7.6<span class="w">                                        </span>biosoup/0.11.0
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span>Bison/3.8.2<span class="w">                              </span><span class="o">(</span>D<span class="o">)</span><span class="w">       </span>code-server/4.97.2
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span>CMake/3.18.4<span class="w">                                       </span>cuDNN/8.0.4.30-CUDA-11.1.1
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span>COMSOL/5.4.0.225<span class="w">                                   </span>cuDNN/8.2.1.32-CUDA-11.3.1
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span>COMSOL/5.6.0.401<span class="w">                                   </span>cuDNN/8.2.2.26-CUDA-11.4.1
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span>COMSOL/6.0.0.354<span class="w">                         </span><span class="o">(</span>D<span class="o">)</span><span class="w">       </span>cuDNN/8.4.1.50-CUDA-11.7.0
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span>CUDA/8.0.61<span class="w">                                        </span>cuDNN/8.9.2.26-CUDA-12.1.1
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span>CUDA/10.1.105<span class="w">                                      </span>cuDNN/9.1.1.17-CUDA-12.4.0
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span>CUDA/10.1.243<span class="w">                                      </span>cuDNN/9.2.0.82-CUDA-12.4.0
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">  </span>CUDA/11.3.1<span class="w">                                        </span>cuDNN/9.5.0.50-CUDA-12.6.0<span class="w">     </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span>CUDA/11.4.1<span class="w">                                        </span>cuSPARSELt/0.6.0.6-CUDA-12.1.1
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">  </span>CUDA/11.5.0<span class="w">                                        </span>cuTENSOR/1.2.2.5-CUDA-11.1.1
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">  </span>CUDA/11.6.0<span class="w">                                        </span>cuTENSOR/2.0.1.2-CUDA-12.1.1<span class="w">   </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">  </span>CUDA/11.7.0<span class="w">                                        </span>ffnvcodec/11.1.5.2
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">  </span>CUDA/12.0.0<span class="w">                                        </span>ffnvcodec/12.0.16.0
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">  </span>CUDA/12.1.1<span class="w">                                        </span>ffnvcodec/12.1.14.0
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">  </span>CUDA/12.4.0<span class="w">                                        </span>ffnvcodec/12.2.72.0<span class="w">            </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">  </span>CUDA/12.5.0<span class="w">                                        </span>flex/2.6.3
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">  </span>CUDA/12.6.0<span class="w">                              </span><span class="o">(</span>D<span class="o">)</span><span class="w">       </span>flex/2.6.4<span class="w">                     </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">  </span>CUDAcore/11.0.2<span class="w">                                    </span>foss/2019a
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">  </span>CUDAcore/11.1.1<span class="w">                          </span><span class="o">(</span>D<span class="o">)</span><span class="w">       </span>foss/2019b
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">  </span>Catch2/2.13.9<span class="w">                                      </span>foss/2020a
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">  </span>Cereal/1.3.2<span class="w">                                       </span>foss/2020b
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">  </span>CheckM-Database/2015_01_16<span class="w">                         </span>foss/2021a
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">  </span>ChimeraX/1.1<span class="w">                                       </span>foss/2021b
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>...
+</span></code></pre></div>
+</details>
+<div class="admonition note">
+<p class="admonition-title"><img src="../../images/shell-logo_small.png"> Exercise</p>
+<ol>
+<li>Try listing the available modules. See what happens differently for <code>module spider</code> and <code>module avail</code>. </li>
+<li>Try checking for a specific software module to see if it is installed: <ul>
+<li>GROMACS</li>
+<li>Python</li>
+<li>OpenFOAM</li>
+<li>R </li>
+</ul>
+</li>
+<li>What happens if you change the capitalization when you search for a module? Do you still find it? </li>
+</ol>
+</div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>We learned about some of the most useful commands</li>
+<li>We saw how to find which modules are available<ul>
+<li>Using <code>module spider</code></li>
+<li>Using <code>module avail</code> </li>
+</ul>
+</li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../introduction/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../commands/" class="btn btn-neutral float-right" title="Module system commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../introduction/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../commands/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

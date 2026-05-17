@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/advanced_module/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Advanced module commands - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Advanced module commands";
+        var mkdocs_page_input_path = "7.software-modules-containers/advanced_module.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/advanced_module/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Advanced module commands</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#buildenv__-__build__environment">buildenv - build environment</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Extras</li>
+      <li class="breadcrumb-item active">Advanced module commands</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="advanced__section__-__modules">Advanced section - modules<a class="headerlink" href="#advanced__section__-__modules" title="Permanent link">&para;</a></h1>
+<h2 id="buildenv__-__build__environment">buildenv - build environment<a class="headerlink" href="#buildenv__-__build__environment" title="Permanent link">&para;</a></h2>
+<p>Using a compiler toolchain by itself is possible but can require some manual work, figuring out which paths to add to -I or -L for including files and libraries, and similar.</p>
+<p>To make life as a software builder easier there is a special module available, <code>buildenv</code>. This is handled somewhat differently by different centres, with some including the buildenv module when you load a compiler toolchain and others requiring you to load it yourself after the toolchain. </p>
+<p>This module defines a large number of environment variables with the relevant settings for the used toolchain. Among other things it sets CC, CXX, F90, FC, MPICC, MPICXX, MPIF90, CFLAGS, FFLAGS, and much more.</p>
+<p>To see all of them, after loading a toolchain do:</p>
+<ul>
+<li><code>ml show buildenv</code></li>
+</ul>
+<p>To use the environment variables, load buildenv (if it is not included at your centre):</p>
+<ul>
+<li><code>ml buildenv</code></li>
+</ul>
+<p>Using the environment variable (prefaced with $) for linking is highly recommended!</p>
+<div class="admonition example">
+<p class="admonition-title">Example: Linking with LAPACK (gcc, C program)</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gcc<span class="w"> </span>-o<span class="w"> </span>PROGRAM<span class="w"> </span>PROGRAM.c<span class="w"> </span>-lflexiblas<span class="w"> </span>-lgfortran
+</span></code></pre></div>
+<p>OR use the environment variable <code>$LIBLAPACK</code> (recommended, as it does not change with version and toolchain):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcc<span class="w"> </span>-o<span class="w"> </span>PROGRAM<span class="w"> </span>PROGRAM.c<span class="w"> </span><span class="nv">$LIBLAPACK</span>
+</span></code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example: Loading buildenv after a toolchain (GCC) and using it</p>
+<p>In this example at HPC2N, we load buildenv for GCC/13.3.0 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ml<span class="w"> </span>GCC/13.3.0<span class="w"> </span>OpenMPI/5.0.3
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ml<span class="w"> </span>buildenv/default-CUDA-12.6.0
+</span></code></pre></div>
+<p>Buildenv also load many of the same things as foss. This is what is now loaded: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libxml2/2.12.7<span class="w">       </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>UCC/1.3.0<span class="w">           </span><span class="m">25</span><span class="o">)</span><span class="w"> </span>GDRCopy/2.4.1
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">  </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>libpciaccess/0.18.1<span class="w">  </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>OpenMPI/5.0.3<span class="w">       </span><span class="m">26</span><span class="o">)</span><span class="w"> </span>UCX-CUDA/1.16.0-CUDA-12.6.0
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/13.3.0<span class="w">       </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>hwloc/2.10.0<span class="w">         </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>OpenBLAS/0.3.27<span class="w">     </span><span class="m">27</span><span class="o">)</span><span class="w"> </span>NCCL/2.22.3-CUDA-12.6.0
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1<span class="w">           </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>OpenSSL/3<span class="w">            </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>FlexiBLAS/3.4.4<span class="w">     </span><span class="m">28</span><span class="o">)</span><span class="w"> </span>UCC-CUDA/1.3.0-CUDA-12.6.0
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.42<span class="w">        </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libevent/2.1.12<span class="w">      </span><span class="m">21</span><span class="o">)</span><span class="w"> </span>FFTW/3.3.10<span class="w">         </span><span class="m">29</span><span class="o">)</span><span class="w"> </span>buildenv/default-CUDA-12.6.0
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/13.3.0<span class="w">           </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>UCX/1.16.0<span class="w">           </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>FFTW.MPI/3.3.10
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>numactl/2.0.18<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>PMIx/5.0.2<span class="w">           </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>ScaLAPACK/2.2.0-fb
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>XZ/5.4.5<span class="w">             </span><span class="m">16</span><span class="o">)</span><span class="w"> </span>PRRTE/3.0.5<span class="w">          </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>CUDA/12.6.0
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span>Where:
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>You can now do <code>ml show buildenv</code> to get a list of the various available environment variables. In the below I have coloured some of the environment variables for LAPACK, ScaLAPACK, BLAS, FFTW. </p>
+<p><img src="../images/buildenv-coloured.png"> </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example: Loading buildenv after a toolchain (foss)</p>
+<p>Since GCC and OpenMPI are part of foss, you can also just load foss before buildenv: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ml<span class="w"> </span>foss/2024a
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ml<span class="w"> </span>buildenv/default
+</span></code></pre></div>
+<p>you can also just load foss before buildenv: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ml<span class="w"> </span>foss/2024a
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ml<span class="w"> </span>buildenv/default
+</span></code></pre></div>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../6.Git/kebnekaise/" class="btn btn-neutral float-left" title="Git setup on Kebnekaise"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../virtenv/" class="btn btn-neutral float-right" title="Virtual environments and Python">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../6.Git/kebnekaise/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../virtenv/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

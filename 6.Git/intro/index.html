@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/6.Git/intro/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lecture A: Course info - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lecture A: Course info";
+        var mkdocs_page_input_path = "6.Git/intro.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/6.Git/intro/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lecture A: Course info</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- Lecture material made by Birgitte Brydsö for the version of the course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. 
+Minor modifications done for the fall 2021, 2022, 2023, and 2024 versions of the course. Moved to GitHub and some tweaks (mainly to graphs) done to work on GitHub pages for the 2025 version of the course. -->
+
+<!-- Slides: https://hackmd.io/@git-fall-2024/LA-intro -->
+
+<h1 id="introduction__to__git">Introduction to Git<a class="headerlink" href="#introduction__to__git" title="Permanent link">&para;</a></h1>
+<p>This course will be an introduction to version control, with a strong focus on Git.</p>
+<p>Instructors: </p>
+<!--* Mirko Myllykoski (CS and HPC2N)-->
+<ul>
+<li>Pedro Ojeda-May (HPC2N)</li>
+<li>Birgitte Brydsö (HPC2N)</li>
+<li>Diana Iusan (UPPMAX)</li>
+</ul>
+<!--* Björn Claremar (UPPMAX)-->
+
+<p>The course will have a mixture of lectures and hands-ons, and will be split into modules. It will consist of five half-days. </p>
+<hr />
+<ul>
+<li>The lectures will be done in the main Zoom room. </li>
+<li>Most modules will have hands-ons. These are done in the main Zoom room, but with the possibility to go to break-out rooms for help. There will also be a silent room for those who prefer to work undisturbed. </li>
+<li>Some hands-ons will be done locally on your own computer and some will be done using GitHub. </li>
+<li>If there is a problem using your own computer, the backup solution is logging in to Tetralith and using that (if you have an account). </li>
+<li>The hands-ons for the module named &ldquo;Teamwork&rdquo; will be done in small groups, using GitHub. </li>
+</ul>
+<hr />
+<ul>
+<li>During the hands-ons you can just ask the instructors if there is anything you need help with. </li>
+<li>You can ask in the chat, but the recommended option is using the Questions and Answers page (Q&amp;A page). The link can be found on the &ldquo;Important information&rdquo; page. </li>
+<li>Please write any questions you have during the lectures etc. to the Q&amp;A page. The instructors will try to answer as quickly as possible. </li>
+<li>Scroll down on a slide page to get to access the slides in a text form (small pen icon)</li>
+</ul>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><strong>1. day</strong></p>
+<ul>
+<li>Optional installation help (Git)</li>
+<li>Course info</li>
+<li>
+<ol>
+<li>Introduction and setup</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Motivation - Why use version management?</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Basics commands, part 1</li>
+<li>Creating &amp; cloning repositories, Adding files, Committing, etc.</li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Basics commands, part 2</li>
+<li>Creating &amp; cloning repositories, Adding files, Committing, etc.</li>
+<li>Hands-on</li>
+</ol>
+</li>
+</ul>
+<hr />
+<p><strong>2. day</strong></p>
+<ul>
+<li>
+<ol>
+<li>Basic concepts, part 1</li>
+<li>Blobs, Trees, Commits, References, etc. </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Basic concepts, part 2</li>
+<li>Blobs, Trees, Commits, References, etc. </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Traversing the commit tree, part 1</li>
+<li>History, Tags, HEAD, Diffs, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+</ul>
+<hr />
+<p><strong>3. day</strong></p>
+<ul>
+<li>
+<ol>
+<li>Traversing the commit tree, part 2</li>
+<li>History, Tags, HEAD, Diffs, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Traversing the commit tree, part 3</li>
+<li>History, Tags, HEAD, Diffs, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Branches, merges, and conflicts, part 1</li>
+<li>Basics concepts, Creation, deletion, Conflicts, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+</ul>
+<hr />
+<p><strong>4. day</strong></p>
+<ul>
+<li>
+<ol>
+<li>Branches, merges, and conflicts, part 2</li>
+<li>Basics concepts, Creation, deletion, Conflicts, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>C. Brief intro to SSH-keys and using GitHub</li>
+<li>
+<ol>
+<li>Working with remotes, part 1</li>
+<li>Basics concepts, Pull, push, fetch, GitHub, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Working with remotes, part 2</li>
+<li>Basics concepts, Pull, push, fetch, GitHub, etc. </li>
+<li>Hands-on</li>
+</ol>
+</li>
+</ul>
+<hr />
+<p><strong>5. day</strong></p>
+<ul>
+<li>
+<ol>
+<li>Teamwork, part 1</li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Teamwork, part 2</li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Teamwork, part 3</li>
+<li>Hands-on</li>
+</ol>
+</li>
+<li>Catch-up from previous days</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

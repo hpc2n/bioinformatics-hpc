@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/3.files-filesystems/files-filesystems/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Introduction - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Introduction";
+        var mkdocs_page_input_path = "3.files-filesystems/files-filesystems.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/3.files-filesystems/files-filesystems/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what__is__a__file">What is a file?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how__to__create__a__file__and__open__a__file">How to create a file and open a file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#editors">Editors</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#command__line">Command line</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gui">GUI</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what__is__a__folder">What is a folder?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what__are__extensions">What are extensions?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what__are__permissions">What are permissions?</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Files and file systems</li>
+      <li class="breadcrumb-item active">Introduction</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduction__to__files__and__filesystems">Introduction to files and filesystems<a class="headerlink" href="#introduction__to__files__and__filesystems" title="Permanent link">&para;</a></h1>
+<p>This presentation will look at the following: </p>
+<ul>
+<li>What is a file?<ul>
+<li>how to open, create, a file</li>
+<li>editors</li>
+<li>folders </li>
+</ul>
+</li>
+<li>What are extensions?</li>
+<li>What are permissions?</li>
+<li>What is a file system? (next slides)  </li>
+</ul>
+<h2 id="what__is__a__file">What is a file?<a class="headerlink" href="#what__is__a__file" title="Permanent link">&para;</a></h2>
+<p>Files are containers for data. There are several types. Common ones are: </p>
+<ul>
+<li>document/text (.txt, .pdf, .xlsx, .docx, .tex, .pptx, &hellip;)</li>
+<li>image (.jpg/.jpeg, .png, .gif, .svg, .tiff, &hellip;)</li>
+<li>video (.mp4, .mkv, .mov, .avi, &hellip;)</li>
+<li>audio (.mp3, .wav, .ogg, .m4a, .flac, &hellip;)</li>
+</ul>
+<p>In addition there are: </p>
+<ul>
+<li>executable files (.exe, .app, .bat, .bin, &hellip;)</li>
+<li>compressed files (.zip, .gz, .rar, .7z, .bz2, &hellip;)</li>
+<li>system files (.sys, .dll, .ini, &hellip;) </li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Configuration files in Linux are often prefaced with a dot - and are often hidden unless you use specific options. </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The word &ldquo;file&rdquo; derives from the Latin filum (&ldquo;a thread, string&rdquo;). In extended use the English term &ldquo;file&rdquo; came to refer to various systems of arranging papers and documents for retrieval. &ldquo;File&rdquo; was used in the context of computer storage as early as January 1940.
+- Wikipedia</p>
+</div>
+<p>A file is commonly represented with this picture, which we are going to use in this presentation: </p>
+<p><img alt="A file" src="../../images/file.png" style:_width="200px;" /></p>
+<p>If it is important what type of file it is, we will write something like this (a document of type PDF): </p>
+<p><img alt="A PDF file" src="../../images/pdffile.png" style:_width="200px;" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To list files in Linux, you use the command <code>ls</code>. You need the option <code>-a</code> to see hidden files. </p>
+</div>
+<h3 id="how__to__create__a__file__and__open__a__file">How to create a file and open a file<a class="headerlink" href="#how__to__create__a__file__and__open__a__file" title="Permanent link">&para;</a></h3>
+<p>Files are generally accessed either directly through an editor, or from a program. They are also generally created this way. </p>
+<div class="admonition note">
+<p class="admonition-title">Editors on Linux</p>
+<p>Linux editors falls in two categories; graphical and non-graphical. If you are using Linux on your own computer, or connecting to say, Kebnekaise through either ThinLinc or OpenOnDemand, you can use an editor with a graphical user interface GUI). If you are connecting with SSH through a terminal, you are generally restricted to the non-graphical editors (unless you are connecting with X11 forwarding or remote desktop, or something like that - more about this later in the course). </p>
+</div>
+<h3 id="editors">Editors<a class="headerlink" href="#editors" title="Permanent link">&para;</a></h3>
+<p>Some editors are more suited for a GUI environment and some are more suited for a command line environment.</p>
+<h4 id="command__line">Command line<a class="headerlink" href="#command__line" title="Permanent link">&para;</a></h4>
+<p>These are all good editors for using on the command line:</p>
+<ul>
+<li><a href="https://www.nano-editor.org/" target="_blank">nano</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Vi" target="_blank">vi</a>, <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)" target="_blank">vim</a></li>
+<li><a href="https://www.gnu.org/software/emacs/" target="_blank">emacs</a></li>
+</ul>
+<p>They are all installed on Kebnekaise.</p>
+<p>Of these, <code>vi/vim</code> as well as <code>emacs</code> are probably the most powerful, though the latter is better in a GUI environment. The easiest editor to use if you are not familiar with any of them is <code>nano</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Nano</p>
+<ol>
+<li>Starting &ldquo;nano&rdquo;: Type <code>nano</code> FILENAME on the command line and press <code>Enter</code>. FILENAME is whatever you want to call your file.</li>
+<li>If FILENAME is a file that already exists, <code>nano</code> will open the file. If it dows not exist, it will be created.</li>
+<li>You now get an editor that looks like this: <br>
+<img alt="nano editor" src="../../images/nano.png" style="width: 400px" /></li>
+<li>First thing to notice is that many of the commands are listed at the bottom.</li>
+<li>The <strong>^</strong> before the letter-commands means you should press CTRL and then the letter (while keeping CTRL down).</li>
+<li>Your prompt is in the editor window itself, and you can just type (or copy and paste) the content you want in your file.</li>
+<li>When you want to exit (and possibly save), you press CTRL and then x while holding CTRL down (this is written CTRL-x or ^x). <code>nano</code> will ask you if you want to save the content of the buffer to the file. After that it will exit.</li>
+</ol>
+<p>There is a <a href="https://www.nano-editor.org/dist/latest/nano.html" target="_blank">manual for <code>nano</code> here</a>.</p>
+</div>
+<h4 id="gui">GUI<a class="headerlink" href="#gui" title="Permanent link">&para;</a></h4>
+<p>If you are connecting with <a href="https://docs.hpc2n.umu.se/tutorials/connections/#ThinLinc">ThinLinc</a>, you will be presented with a graphical user interface (GUI). From there you can either open a terminal window/shell (Applications -&gt; System Tools -&gt; MATE Terminal) or you can choose editors from the menu by going to Applications -&gt; Accessories. This gives several editor options, of which these have a graphical interface:</p>
+<ul>
+<li><a href="https://help.gnome.org/users/gedit/stable/" target="_blank">Text Editor (gedit)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Pluma_(text_editor)" target="_blank">Pluma</a> - the default editor on the MATE desktop environments (that Thinlinc runs)</li>
+<li><a href="https://en.wikipedia.org/wiki/Atom_(text_editor)" target="_blank">Atom</a> - not just an editor, but an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" target="_blank">IDE</a></li>
+<li><a href="https://www.gnu.org/software/emacs/" target="_blank">Emacs (GUI)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/NEdit" target="_blank">NEdit &ldquo;Nirvana Text Editor&rdquo;</a></li>
+</ul>
+<p>If you are not familiar with any of these, a good recommendation would be to use <code>Text Editor/gedit</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Text Editor/gedit</p>
+<ol>
+<li>Starting &ldquo;gedit&rdquo;: From the menu, choose Applications -&gt; Accessories -&gt; Text Editor.</li>
+<li>You then get a window that looks like this: <br>
+<img alt="gedit editor" src="../../images/gedit.png" style="width: 400px" /></li>
+<li>You can open files by clicking &ldquo;Open&rdquo; in the top menu.</li>
+<li>Clicking the small green file icon with a green plus will create a new document.</li>
+<li>Save by clicking &ldquo;Save&rdquo; in the menu.</li>
+<li>The menu on the top right (the three horizontal lines) gives you several other options, including &ldquo;Find&rdquo; and &ldquo;Find and Replace&rdquo;.</li>
+</ol>
+</div>
+<h3 id="what__is__a__folder">What is a folder?<a class="headerlink" href="#what__is__a__folder" title="Permanent link">&para;</a></h3>
+<p>A folder is a container used to organize files (documents, images, etc.) as well as possibly other folders (subfolders). </p>
+<p>Think of it the same way as a physical file folder that you can put files (or maybe other folders) into in order to keep things organized and easier to locate. </p>
+<p>COmputer folders can contain many files and other subfolders. This forms a hierarchical structure. A folder is also often called a <strong>directory</strong>. </p>
+<p>We will use this (common) picture to represent a folder: </p>
+<p><img alt="A folder" src="../../images/folder.png" style:_width="200px;" /></p>
+<h2 id="what__are__extensions">What are extensions?<a class="headerlink" href="#what__are__extensions" title="Permanent link">&para;</a></h2>
+<p>File extensions are the suffix (sometimes) at the end of a filename. In Linux they are generally <strong>not needed</strong>, but often a good idea. </p>
+<div class="admonition note">
+<p class="admonition-title">File extension aspects</p>
+<ul>
+<li>Identification: They can often be used to identify the file type (e.g., text, image, executable). <ul>
+<li>In Linux, files can be made executable with any or no extensions! </li>
+</ul>
+</li>
+<li>Functionality: They can help the operating system select the correct icon and sometimes also the associated software for handling the file.</li>
+<li>Structure: Normally 1-4 characters, usually found after the last dot in a filename.</li>
+<li>Modification: Changing the extension (e.g., from .txt to .jpg) does not convert the file format. This can make it unreadable if the operating system expects an image file and tries to open it using an associated software, but in reality it is a text file with a wrong extension. </li>
+</ul>
+</div>
+<p>Common examples: </p>
+<ul>
+<li>Executables: .exe (Windows executable), .app (Mac application), .bat (Batch file. NOTE: Linux does not generally use a specific extension for executables. It is handles with <strong>permissions</strong>. </li>
+<li>Documents: .docx (Word), .pdf (Portable Document Format), .txt (Plain text), .tex (Latex file). </li>
+<li>Images: .jpg / .jpeg (JPEG image), .png (Portable Network Graphic), .gif (Graphics Interchange Format).</li>
+<li>Audio/Video: .mp3 (Audio), .mp4 (Video), .wav (Audio).</li>
+</ul>
+<h2 id="what__are__permissions">What are permissions?<a class="headerlink" href="#what__are__permissions" title="Permanent link">&para;</a></h2>
+<p>Permissions can relate to the permissions of various user roles or permissions of files and folders. It is the latter we are going to cover here. </p>
+<p>Files and folders have readable, writable, and executable permission bits that can be set to control what can be done and by who (user, group, others). </p>
+<p>Permissions can be set to various degrees in Windows, macOS, and Linux/Unix. Here we will focus on how it is done in Linux/Unix. </p>
+<p>In order to see the permissions, you could list the content of a folder, using an option to <code>ls</code>. </p>
+<ul>
+<li><code>ls -l</code> lists content in long table format (permissions, owners, size in bytes, modification date/time, file/directory name)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>ls<span class="w"> </span>-l
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>total<span class="w"> </span><span class="m">36</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>-rwxr--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">   </span><span class="m">99</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>analysis.sh
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>-rw-rw-r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">  </span><span class="m">188</span><span class="w"> </span>okt<span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>file2.dat
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">  </span><span class="m">120</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>file.dat
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">   </span><span class="m">54</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>file_filtered.dat
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">  </span><span class="m">128</span><span class="w"> </span>jan<span class="w"> </span><span class="m">14</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>file.txt
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folh<span class="w"> </span><span class="m">4096</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>image
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>-rwxr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">  </span><span class="m">153</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>imagefind.sh
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>drwxr-xr--<span class="w"> </span><span class="m">2</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w"> </span><span class="m">4096</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>myimages
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>-rwxr--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>bbrydsoe<span class="w"> </span>folk<span class="w">    </span><span class="m">9</span><span class="w"> </span>jan<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2025</span><span class="w"> </span>program.sh
+</span></code></pre></div>
+<p>The left-hand side &ldquo;drwxr-xr-x&rdquo; and &ldquo;-rw-r--r--&rdquo; are examples of <strong>permissions</strong>. The prefex &ldquo;d&rdquo; means is it a directory. A &ldquo;-&rdquo; means no permission for that. Another possibility is &ldquo;s&rdquo; for a symbolic link (later). There are three groups: owner, group, and all. Note that “r” is for read, “w” is for write, and “x” is for execute.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <code>chmod</code> is used to change permissions for files and directories.</p>
+</div>
+<p>Permissions are needed to, among other things, make a file executable. Another common use is to make a file or folder readable to your coworkers. </p>
+<div class="admonition note">
+<p class="admonition-title">There are three types of permission groups</p>
+<ul>
+<li><strong>owners</strong>: these permissions will only apply to owners and will not affect other groups.</li>
+<li><strong>groups</strong>: you can assign a group of users specific permissions, which will only impact users within the group. The members of your storage directory belongs here.</li>
+<li><strong>all users</strong>: these permissions will apply to all users, so be careful with this.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">There are three kinds of file permissions</p>
+<ul>
+<li>Read (r): This allows a user or a group to view a file (and so also to copy it).</li>
+<li>Write (w): This permits the user to write or modify a file or directory.</li>
+<li>Execute (x): A user or a group with execute permissions can execute a file. They can also view a subdirectory.</li>
+</ul>
+</div>
+<p>The permissions for a file, directory, or symbolic link has 10 &ldquo;bits&rdquo; and looks similar to this:</p>
+<p><img 400px="400px" alt="Permissions" src="../../images/permissions.png" style="&quot;width:" /></p>
+<p>As shown, the first bit can be &ldquo;-&rdquo; (a file), &ldquo;d&rdquo; (a directory), or &ldquo;l&rdquo; (a link).</p>
+<p>The following group of 3 bits are for the owner, then the next 3 for the group, and then the last 3 for all users. Each can have the r(ead), w(rite), and (e)x(ecute) permission set.</p>
+<div class="admonition note">
+<p class="admonition-title">To change permissions, here are some examples</p>
+<ul>
+<li>owner (user)<ul>
+<li><strong>chmod u+rwx FILE/DIR</strong> to add all permissions of a file with name FILE or a directory with name DIR</li>
+<li><strong>chmod u-rwx FILE/DIR</strong> to remove all permissions from a file with name FILE or a directory with name DIR</li>
+<li><strong>chmod u+x FILE</strong> to add executable permissions</li>
+<li><strong>chmod u-wx FILE</strong> to remove write and executable permissions</li>
+</ul>
+</li>
+<li>group<ul>
+<li><strong>chmod g+rwx FILE</strong> to add all permissions to FILE</li>
+<li><strong>chmod g-rwx FILE</strong> to remove all permissions to FILE</li>
+<li><strong>chmod g+wx FILE</strong> to give write and execute permissions to FILE</li>
+<li><strong>chmod g-x FILE</strong> to remove execute permissions to FILE</li>
+</ul>
+</li>
+<li>others<ul>
+<li><strong>chmod o+rwx FILE</strong> to add all permissions to FILE</li>
+<li><strong>chmod o-rwx FILE</strong> to remove all permissions to FILE</li>
+<li><strong>chmod o+w FILE</strong> to add write permissions to FILE</li>
+<li><strong>chmod o-rwx DIR</strong> to remove all permissions to DIR</li>
+</ul>
+</li>
+<li>all<ul>
+<li><strong>chmod ugo+rwx FILE/DIR</strong> to add all permissions for all users (owner, group, others) to file named FILE or directory named DIR</li>
+<li><strong>chmod a=rwx FILE/DIR</strong> same as above</li>
+<li><strong>chmod a=r DIR</strong> give read permissions to all for DIR</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is also possible to change the ownership of a file or a directory. We are not going to cover this here, but the command is <code>chown</code>. </p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../2.compute-cluster/compute-cluster/" class="btn btn-neutral float-left" title="Compute clusters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../filesystems/" class="btn btn-neutral float-right" title="File systems">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../2.compute-cluster/compute-cluster/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../filesystems/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/6.Git/kebnekaise/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Git setup on Kebnekaise - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Git setup on Kebnekaise";
+        var mkdocs_page_input_path = "6.Git/kebnekaise.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/6.Git/kebnekaise/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Git setup on Kebnekaise</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#connecting">Connecting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#thinlinc">ThinLinc</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ssh">SSH</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#open__ondemand">Open OnDemand</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting__up__git__on__kebnekaise">Setting up Git on Kebnekaise</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing__your__configuration">Testing your configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#download__the__exercise__materials">Download the exercise materials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github__and__ssh__keys">GitHub and SSH keys</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Extras</li>
+      <li class="breadcrumb-item active">Git setup on Kebnekaise</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="using__kebnekaise__for__git">Using Kebnekaise for Git<a class="headerlink" href="#using__kebnekaise__for__git" title="Permanent link">&para;</a></h1>
+<p>Here first follows a brief recap of how to connect. This is followed by a short walk-through of using Git on Kebnekaise. </p>
+<h2 id="connecting">Connecting<a class="headerlink" href="#connecting" title="Permanent link">&para;</a></h2>
+<p>We will be using the command line only, but connecting through ThinLinc or OpenOndemand works well also - depending on what you prefer. </p>
+<h3 id="thinlinc">ThinLinc<a class="headerlink" href="#thinlinc" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Download the client from https://www.cendio.com/thinlinc/download and install it.</li>
+<li>Start the client. Enter the name of the server: kebnekaise-tl.hpc2n.umu.se and then enter your own username.</li>
+<li>Go to &ldquo;Options&rdquo; -&gt; &ldquo;Security&rdquo;. Check that authentication method is set to password.</li>
+<li>Go to &ldquo;Options&rdquo; -&gt; &ldquo;Screen&rdquo; and uncheck &ldquo;Full screen mode&rdquo;.</li>
+<li>Enter your HPC2N password. Click &ldquo;Connect&rdquo;.</li>
+</ul>
+<p>More information here: <a href="https://docs.hpc2n.umu.se/tutorials/connections/#thinlinc" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#thinlinc</a>. </p>
+<h3 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h3>
+<p>If you prefer to login with a regular SSH client (i.e. PuTTY, Terminal, Linux terminal, etc.) then use the following as server: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kebnekaise.hpc2n.umu.se
+</span></code></pre></div>
+<p>Example: logging in from a terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>&lt;HPC2N<span class="w"> </span>username&gt;@kebnekaise.hpc2n.umu.se
+</span></code></pre></div>
+<p>More information here: </p>
+<ul>
+<li><a href="https://docs.hpc2n.umu.se/tutorials/connections/#login__nodes" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#login__nodes</a></li>
+<li><a href="https://docs.hpc2n.umu.se/tutorials/connections/#connecting__from__windows" target="_blank">Connecting from Windows</a></li>
+<li><a href="https://docs.hpc2n.umu.se/tutorials/connections/#connecting__from__macos" target="_blank">Connecting from macOS</a></li>
+</ul>
+<h3 id="open__ondemand">Open OnDemand<a class="headerlink" href="#open__ondemand" title="Permanent link">&para;</a></h3>
+<p>If you prefer to use HPC2N&rsquo;s OpenOnDemand web service, then:</p>
+<ul>
+<li>Go to <a href="https://portal.hpc2n.umu.se" target="_blank">https://portal.hpc2n.umu.se</a></li>
+<li>Login with your HPC2N username and password</li>
+<li>Pick &ldquo;Interactive Apps&rdquo; -&gt; &ldquo;Kebnekaise desktop&rdquo;</li>
+<li>Fill in the information. Pick 1 regular core and however many hours you expect to use on the course. Launch </li>
+<li>After you have logged in, start a terminal: &ldquo;Applications&rdquo; -&gt; &ldquo;System Tools&rdquo; -&gt; &ldquo;MATE Terminal&rdquo; </li>
+</ul>
+<p>More information here: <a href="https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand" target="_blank">https://docs.hpc2n.umu.se/tutorials/connections/#open__ondemand</a></p>
+<h2 id="setting__up__git__on__kebnekaise">Setting up Git on Kebnekaise<a class="headerlink" href="#setting__up__git__on__kebnekaise" title="Permanent link">&para;</a></h2>
+<p>Git is already installed on Kebnekaise, but you need to set your name and email globals <em>unless you have already done this at some earlier time</em>. </p>
+<ul>
+<li>Open a terminal. In ThinLinc: Go to the menu at the top. Click “Applications” → “System Tools” → “MATE Terminal”.</li>
+<li>Set your global name: <code>$ git config --global user.name "Your Name"</code></li>
+<li>Set your global email: <code>$ git config --global user.email "yourname@example.com"</code> </li>
+</ul>
+<p>You may also want to set your editor. We recommend vim, but other options are nano and emacs. </p>
+<ul>
+<li><code>$ git config --global core.editor vim</code></li>
+</ul>
+<h2 id="testing__your__configuration">Testing your configuration<a class="headerlink" href="#testing__your__configuration" title="Permanent link">&para;</a></h2>
+<p>Create an example folder and cd into that, then create a file test.txt: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>mkdir<span class="w"> </span>&lt;mydir&gt;<span class="w"> </span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;mydir&gt;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>$<span class="w"> </span>touch<span class="w"> </span>test.txt
+</span></code></pre></div>
+<p>Now initialize a repository and add the new file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>git<span class="w"> </span>init
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>test.txt
+</span></code></pre></div>
+<p>Now <em>commit</em> the change. The editor which you configured earlier should open. Add an example commit message:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>test.txt<span class="w"> </span>
+</span></code></pre></div>
+<p>Now let us look at the log:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>git<span class="w"> </span>log
+</span></code></pre></div>
+<p>When you do <code>git log</code>, you should see something like: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>commit<span class="w"> </span>ff8b6f699d98c72d5cffc64d65a1c618b976b45a<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>master<span class="o">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Author:<span class="w"> </span>Birgitte<span class="w"> </span>Brydsö<span class="w"> </span>&lt;bbrydsoe@cs.umu.se&gt;
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Date:<span class="w">   </span>Thu<span class="w"> </span>Sep<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">13</span>:53:59<span class="w"> </span><span class="m">2020</span><span class="w"> </span>+0200
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>Test<span class="w"> </span>of<span class="w"> </span>git
+</span></code></pre></div>
+<p>but with name, email and commit message different.</p>
+<p>If that is the case, your Git should be configured correctly. </p>
+<h2 id="download__the__exercise__materials">Download the exercise materials<a class="headerlink" href="#download__the__exercise__materials" title="Permanent link">&para;</a></h2>
+<p>For the individual hands-on part, we have created some exercise materials which you will download from the course repository on GitHub. </p>
+<ul>
+<li>Course GitHub: <a href="hhttps://github.com/hpc2n/bioinformatics-hpc" target="_blank">https://github.com/hpc2n/bioinformatics-hpc</a><ul>
+<li>Click the green button labeled &ldquo;Code&rdquo; to get links to clone or download the materials. </li>
+</ul>
+</li>
+<li>Download the material, then please go to the terminal window where you have downloaded and set up Git.</li>
+<li>Change the directory to wherever you wish to have the course material.</li>
+<li>Copy/transfer the tarball there (or download there directly with <code>wget &lt;url-to-tarball&gt;</code>)</li>
+<li>Unpack with <code>tar zxvf &lt;tarball&gt;</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will get the entire course material, not just for the Git sessions! The exercises are located under &ldquo;exercises&rdquo; and then &ldquo;6.Git&rdquo;. </p>
+</div>
+<h2 id="github__and__ssh__keys">GitHub and SSH keys<a class="headerlink" href="#github__and__ssh__keys" title="Permanent link">&para;</a></h2>
+<ul>
+<li>You need to create an account on GitHub for the course</li>
+<li>You also need to create SSH keys on Kebnekaise and install these on GitHub</li>
+<li>We will go through this in a general way which should work regardless of system you are using<ul>
+<li>We will go through it before the Teamwork session. The material for creating and setting up SSH keys are here: FIX THIS LINK!!!! </li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../5.linux-intro/cheat/" class="btn btn-neutral float-left" title="Linux cheat sheet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../7.software-modules-containers/advanced_module/" class="btn btn-neutral float-right" title="Advanced module commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../5.linux-intro/cheat/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../7.software-modules-containers/advanced_module/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

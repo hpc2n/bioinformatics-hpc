@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/Rpack/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Installing R packages yourself - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installing R packages yourself";
+        var mkdocs_page_input_path = "7.software-modules-containers/Rpack.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/Rpack/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Installing R packages yourself</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#preparations">Preparations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing__r__add-ons">Installing R add-ons</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#automatic__download__and__install">Automatic download and install</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#manual__download__and__install">Manual download and install</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using__your__package">Using your package</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#more__information">More information</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Extras</li>
+      <li class="breadcrumb-item active">Installing R packages yourself</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installing__r__packages__yourself">Installing R packages yourself.<a class="headerlink" href="#installing__r__packages__yourself" title="Permanent link">&para;</a></h1>
+<p>This page is about installing R/CRAN add-ons in your user account</p>
+<p>R is a free software environment for statistical computing and graphics. There exists a large number of R add-on packages. The <code>R</code> modules and bundles like <code>R-bundle-bioconductor</code>, <code>R-bundle-CRAN</code>, and <code>R-bundle-CRAN-extra</code> has most of the packages available from CRAN. If you need more than those, the quickest and sometimes best solution is to install those add-ons on your own account. Otherwise ask support to have them installed (and usually then added to the R-bundle-CRAN-extra module). </p>
+<h3 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h3>
+<p>We need to create a place for the add-ons to be and tell R where to find them. The initial setup only needs to be done once, but separate package directories need to be created for each R version used:</p>
+<ul>
+<li>R reads the <code>$HOME/.Renviron</code> file to setup its environment. It should be created by R on first run, or you can create it with the command: <kbd>touch $HOME/.Renviron</kbd></li>
+<li><strong>NOTE: </strong>In this example we are going to assume you have chosen to place the R packages in a directory under your home directory. You will need separate ones for each R version.</li>
+<li>Since the environment file probably is empty now, tell R where your chosen add-on directory is with the command line:<br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">R_LIBS_USER</span><span class="o">=</span><span class="se">\&quot;</span><span class="nv">$HOME</span>/R-packages-%V<span class="se">\&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>~/.Renviron
+</span></code></pre></div></li>
+<li>However if it is <strong>not</strong> empty, you can edit <code>$HOME/.Renviron</code> with your favorite editor so that <code>R_LIBS</code> contain the path to your chosen add-on directory. It should look something like this when you are done:<br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">R_LIBS_USER</span><span class="o">=</span><span class="s2">&quot;/home/u/user/R-packages-%V&quot;</span>
+</span></code></pre></div><ul>
+<li><strong>NOTE:</strong> Replace &ldquo;<code>/home/u/user</code>&rdquo; with the value of <code>$HOME</code>. Run &lsquo;<code>echo $HOME</code>&rsquo; to see its value.</li>
+<li><strong>NOTE:</strong> The <code>%V</code> should be written as-is, it is substituted at runtime with the active R version.</li>
+</ul>
+</li>
+<li>For each version of R you are using, create a directory matching the pattern used in <code>.Renviron</code> to store your packages in. This example is shown for R version 3.6.0:<br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/R-packages-3.6.0
+</span></code></pre></div></li>
+</ul>
+<h3 id="installing__r__add-ons">Installing R add-ons<a class="headerlink" href="#installing__r__add-ons" title="Permanent link">&para;</a></h3>
+<p>There are two ways to install an R add-on from <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, which is not installed on our system. You can either choose the one that automatically downloads the add-on and handles all the dependencies, or one that is somewhat simpler and does not handle dependencies.</p>
+<h4 id="automatic__download__and__install">Automatic download and install<a class="headerlink" href="#automatic__download__and__install" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>In this example we use the <a href="http://cran.r-project.org/web/packages/plyr/index.html" target="_blank">plyr</a> add-on, mostly because it has a dependency (<a href="http://cran.r-project.org/web/packages/Rcpp/index.html" target="_blank">Rcpp</a>).</p>
+<ul>
+<li>Load the R module first. This example loads the R version 3.5.1: <br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ml<span class="w"> </span>GCC/7.3.0-2.30<span class="w">  </span>OpenMPI/3.1.1<span class="w"> </span>R/3.5.1
+</span></code></pre></div></li>
+<li>Tell R to install the plyr add-on from the CRAN repo in Sweden (chosen from <a href="http://cran.r-project.org/mirrors.html" target="_blank">CRAN mirror list</a>). We ask R to be quiet and don&rsquo;t bother saving and restoring the environment.<br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>R<span class="w"> </span>--quiet<span class="w"> </span>--no-save<span class="w"> </span>--no-restore<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;install.packages(&#39;plyr&#39;, repos=&#39;http://ftp.acc.umu.se/mirror/CRAN/&#39;)&quot;</span>
+</span></code></pre></div>
+You get a warning about &lsquo;lib&rsquo; being unspecified. You can safely ignore that.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the package has dependencies that come from more than one repo it will not work. You either run the &ldquo;install.packages&rdquo; interactively in R or use the manual method.</p>
+</div>
+<h4 id="manual__download__and__install">Manual download and install<a class="headerlink" href="#manual__download__and__install" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download the add-on of interest from <a href="http://cran.r-project.org/" target="_blank">the CRAN Package site</a>. </li>
+<li>Install from inside R with <code>R CMD INSTALL -l <package></code></li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<ol>
+<li>In this case we download <a href="http://cran.r-project.org/src/contrib/ash_1.0-9.tar.gz" title="http://cran.r-project.org/src/contrib/ash_1.0-9.tar.gz" target="_blank">http://cran.r-project.org/src/contrib/ash_1.0-9.tar.gz</a> (it has no dependencies):<br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>wget<span class="w"> </span>http://cran.r-project.org/src/contrib/ash_1.0-9.tar.gz
+</span></code></pre></div></li>
+<li>Load the R module. Here we use R version 3.5.1: <br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ml<span class="w"> </span>GCC/7.3.0-2.30<span class="w"> </span>OpenMPI/3.1.1<span class="w"> </span>R/3.5.1
+</span></code></pre></div></li>
+<li>Tell R to install it into your chosen add-on directory:<br>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>R<span class="w"> </span>CMD<span class="w"> </span>INSTALL<span class="w"> </span>-l<span class="w"> </span><span class="nv">$HOME</span>/R-packages-3.5.1<span class="w"> </span>ash.tar.gz
+</span></code></pre></div></li>
+</ol>
+</div>
+<h3 id="using__your__package">Using your package<a class="headerlink" href="#using__your__package" title="Permanent link">&para;</a></h3>
+<p>To use your installed add-ons, start R and just use the following R expression to load the plyr add-on (replacing &ldquo;plyr&rdquo; with your add-on):</p>
+<div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>library<span class="o">(</span><span class="s2">&quot;plyr&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+</div>
+
+<h3 id="more__information">More information<a class="headerlink" href="#more__information" title="Permanent link">&para;</a></h3>
+<p>For more information about installing and using your own packages see the offical <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html" target="_blank">FAQ</a> (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html" target="_blank">http://cran.r-project.org/doc/FAQ/R-FAQ.html</a>), particularly <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#How-can-add_002don-packages-be-installed_003f" target="_blank">How can add-on packages be installed</a> and <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#How-can-add_002don-packages-be-used_003f" target="_blank">How can add-on packages be used?</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../virtenv/" class="btn btn-neutral float-left" title="Virtual environments and Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../virtenv/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

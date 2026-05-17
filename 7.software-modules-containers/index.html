@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Welcome to the course: Selecting software modules - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Welcome to the course: Selecting software modules";
+        var mkdocs_page_input_path = "7.software-modules-containers/index.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Welcome to the course: Selecting software modules</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="welcome__to__the__course__selecting__software__modules">Welcome to the course: Selecting software modules<a class="headerlink" href="#welcome__to__the__course__selecting__software__modules" title="Permanent link">&para;</a></h1>
+<p>This NAISS course is given under under NAISS, by staff working at the branches located at UPPMAX, LUNARC, HPC2N, and Chalmers, and will cover clusters at those facilities as well as at NSC (Tetralith) and PDC (Dardel).</p>
+<div class="admonition note">
+<p class="admonition-title">This material</p>
+<p>Here you will find the content of the workshop &ldquo;Login and selecting software modules&rdquo; </p>
+<ul>
+<li>Documentation about selecting modules at some of the Swedish HPC centres <ul>
+<li>HPC2N: <a href="https://docs.hpc2n.umu.se/software/modules/" target="_blank">https://docs.hpc2n.umu.se/software/modules/</a> </li>
+<li>UPPMAX (Pelle): <a href="https://docs.uppmax.uu.se/cluster_guides/pelle_modules/" target="_blank">https://docs.uppmax.uu.se/cluster_guides/pelle_modules/</a>  </li>
+<li>UPPMAX (Bianca): <a href="https://docs.uppmax.uu.se/cluster_guides/modules/" target="_blank">https://docs.uppmax.uu.se/cluster_guides/modules/</a>  </li>
+<li>LUNARC: <a href="https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/" target="_blank">https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/</a>  </li>
+<li>PDC: <a href="https://support.pdc.kth.se/doc/basics/quickstart/#the-lmod-module-system" target="_blank">https://support.pdc.kth.se/doc/basics/quickstart/#the-lmod-module-system</a>   </li>
+<li>NSC: <a href="https://www.nsc.liu.se/software/modules/" target="_blank">https://www.nsc.liu.se/software/modules/</a>  </li>
+<li>C3SE: <a href="https://www.c3se.chalmers.se/documentation/module_system/" target="_blank">https://www.c3se.chalmers.se/documentation/module_system/</a> </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Prerequisites</p>
+<ul>
+<li>Basic Linux </li>
+</ul>
+<p>If you lack Linux experience, please follow a tutorial before the course. </p>
+<p>This is from a recent NAISS course about basic Linux: </p>
+<ul>
+<li>Material: <a href="https://hpc2n.github.io/linux-command-line-101/" target="_blank">https://hpc2n.github.io/linux-command-line-101/</a></li>
+<li>Recordings from the course, on YouTube: <a href="https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq" target="_blank">https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq</a> </li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Learning outcome</p>
+<ul>
+<li>What is the module system?</li>
+<li>Why do I want to use the module system? </li>
+<li>What happens when I load/unload modules? <ul>
+<li>paths</li>
+<li>environment variables</li>
+<li>more?</li>
+</ul>
+</li>
+<li>some talk about EasyBuild?</li>
+<li>Useful commands</li>
+<li>Load examples</li>
+<li>Compiler toolchains </li>
+</ul>
+</div>
+<div class="admonition admonition">
+<p class="admonition-title">Cluster-specific approaches</p>
+<p>The course will show you how to find and load modules. While the modules may be somewhat differently named and have somewhat different versions depending on the system, the procedure and commands are the same. </p>
+<p>We will use Tetralith or Dardel for those who do not have other access to a Swedish HPC system, and some examples will be shown for other centres. You should be able to code-along - with minor adjustments - regardless of which center you are at. </p>
+</div>
+<h2 id="important__info">Important info<a class="headerlink" href="#important__info" title="Permanent link">&para;</a></h2>
+<ul>
+<li>There is an &ldquo;important info&rdquo; page for this course, containing info on the course project, login info for Tetralith, etc. <ul>
+<li>It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQCIuKfFeZ0LQaYcbBxLDbJuAXjnS1L2alDFAuVZeZ5x5q4" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQCIuKfFeZ0LQaYcbBxLDbJuAXjnS1L2alDFAuVZeZ5x5q4</a> </li>
+</ul>
+</li>
+<li>There is a Q/A page for use during the lectures. Since the lectures are recorded, you may get recorded if you ask questions in the Zoom, but you can always write questions on the Q/A and get answers there. It also has the advantage that you can go back and look at the answers later. <ul>
+<li>The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQDq6IoVBUkRSb20kEV-jyY3AfzZn0crN5hUQisNRDA6H8I" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQDq6IoVBUkRSb20kEV-jyY3AfzZn0crN5hUQisNRDA6H8I</a>   </li>
+</ul>
+</li>
+</ul>
+<h2 id="evaluation__survey">Evaluation survey<a class="headerlink" href="#evaluation__survey" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Please help us making this course better by filling an evaluation survey after the course: <a href="https://forms.office.com/e/32FBAC6dJW" target="_blank">https://forms.office.com/e/32FBAC6dJW</a> </li>
+</ul>
+<h2 id="preliminary__schedule">Preliminary schedule<a class="headerlink" href="#preliminary__schedule" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Topic</th>
+<th>Activity</th>
+<th>Teacher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:00</td>
+<td>Welcome+Syllabus</td>
+<td>Lecture</td>
+<td>All</td>
+</tr>
+<tr>
+<td>09:10</td>
+<td>Module system: overview</td>
+<td>Lecture+exercise</td>
+<td>BB</td>
+</tr>
+<tr>
+<td>09:20</td>
+<td>Module system: versions, loading, unloading, listing</td>
+<td>Lecture+type along+exercise</td>
+<td>BB</td>
+</tr>
+<tr>
+<td>09:50</td>
+<td>Break</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10:05</td>
+<td>Compiler toolchains</td>
+<td>Lecture+type along</td>
+<td>JH</td>
+</tr>
+<tr>
+<td>10:25</td>
+<td>Software modules</td>
+<td>Lecture+type along+exercise</td>
+<td>BC</td>
+</tr>
+<tr>
+<td>11:05</td>
+<td>Break</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11:10</td>
+<td>Modules in batch scripts</td>
+<td>Lecture</td>
+<td>BB</td>
+</tr>
+<tr>
+<td>11:25</td>
+<td>Summary</td>
+<td></td>
+<td>All</td>
+</tr>
+<tr>
+<td>11:30</td>
+<td>END</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="preparations">Preparations<a class="headerlink" href="#preparations" title="Permanent link">&para;</a></h2>
+<p>In order to type along and do the exercises, please prepare your course environment now:</p>
+<div class="admonition note">
+<p class="admonition-title">1. Login</p>
+<p>Login to the system you are using (Tetralith/Dardel, other Swedish HPC system)</p>
+<ul>
+<li>You will not need a graphical user interface for this course. </li>
+<li>Even so, if you do not have a favourite SSH client, we recomment using <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a></li>
+</ul>
+<p>Connection info for some Swedish HPC systems - use the one you have access to: </p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Tetralith</label><label for="__tabbed_1_2">Kebnekaise</label><label for="__tabbed_1_3">Pelle</label><label for="__tabbed_1_4">Bianca</label><label for="__tabbed_1_5">Cosmos</label><label for="__tabbed_1_6">Dardel</label><label for="__tabbed_1_7">Alvis</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>SSH: <code>ssh &lt;user&gt;@tetralith.nsc.liu.se</code></li>
+<li>ThinLinc:<ul>
+<li>Server: <code>tetralith.nsc.liu.se</code></li>
+<li>Username: <code>&lt;your-nsc-username&gt;</code></li>
+<li>Password: <code>&lt;your-nsc-password&gt;</code></li>
+<li>Note that you need to setup <a href="https://www.nsc.liu.se/support/2fa/" target="_blank">TFA</a> to use NSC!</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SSH: <code>ssh &lt;user&gt;@kebnekaise.hpc2n.umu.se</code> </li>
+<li>ThinLinc: <ul>
+<li>Server: <code>kebnekaise-tl.hpc2n.umu.se</code></li>
+<li>Username: <code>&lt;your-hpc2n-username&gt;</code></li>
+<li>Password: <code>&lt;yout-hpc2n-password&gt;</code></li>
+</ul>
+</li>
+<li>ThinLinc Webaccess: <ul>
+<li>Put <code>https://kebnekaise-tl.hpc2n.umu.se:300/</code> in browser address bar </li>
+<li>Put <code>&lt;your-hpc2n-username&gt;</code> and <code>&lt;your-hpc2n-password&gt;</code> in the login box that opens and click <code>Login</code> </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SSH: <code>ssh &lt;user&gt;@pelle.uppmax.uu.se</code></li>
+<li>ThinLinc: <ul>
+<li>Server: <code>pelle-gui.uppmax.uu.se</code> </li>
+<li>Username: <code>&lt;your-uppmax-username&gt;</code> </li>
+<li>Password: <code>&lt;your-uppmax-password&gt;</code> </li>
+</ul>
+</li>
+<li>ThinLinc Webaccess: <ul>
+<li>Put <code>https://pelle-gui.uppmax.uu.se</code> in browser address bar </li>
+<li>Put <code>&lt;your-uppmax-username&gt;</code> and <code>&lt;your-uppmax-password&gt;</code> in the login box that opens and click <code>Login</code> </li>
+<li>Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SSH: <code>ssh &lt;user&gt;@bianca.uppmax.uu.se</code></li>
+<li>ThinLinc Webaccess: <ul>
+<li>Put <code>https://bianca.uppmax.uu.se</code> in browser address bar </li>
+<li>Follow the instructions!</li>
+<li>Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SSH: <code>ssh &lt;user&gt;@cosmos.lunarc.lu.se</code></li>
+<li>ThinLinc: <ul>
+<li>Server: <code>cosmos-dt.lunarc.lu.se</code></li>
+<li>Username: <code>&lt;your-lunarc-username&gt;</code></li>
+<li>Password: <code>&lt;your-lunarc-password&gt;</code></li>
+<li>Note that you need to setup <a href="https://lunarc-documentation.readthedocs.io/en/latest/getting_started/login_howto/" target="_blank">TFA (PocketPass)</a> to use LUNARC! </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SSH: <code>ssh &lt;user&gt;@dardel.pdc.kth.se</code> </li>
+<li>ThinLinc: <ul>
+<li>Server: <code>dardel-vnc.pdc.kth.se</code> </li>
+<li>Username: <code>&lt;your-pdc-username&gt;</code></li>
+<li>Password: <code>&lt;your-pdc-password&gt;</code> </li>
+<li>Note that you need to setup <a href="https://support.pdc.kth.se/doc/login/ssh_login/" target="_blank">SSH keys</a> or kerberos in order to login to PDC!    </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SSH: <ul>
+<li><code>ssh &lt;user&gt;@alvis1.c3se.chalmers.se</code> or </li>
+<li><code>ssh &lt;user&gt;@alvis2.c3se.chalmers.se</code></li>
+</ul>
+</li>
+<li>OpenOndemand portal: <ul>
+<li>Put <code>https://alvis.c3se.chalmers.se</code> in browser address bar </li>
+<li>Put <code>&lt;your-c3se-username&gt;</code> and <code>&lt;your-c3se-password&gt;</code> in the login box </li>
+<li>Note that Alvis is accessible via SUNET networks (i.e. most Swedish university networks). If you are not on one of those networks you need to use a VPN (preferrably your own Swedish university VPN). If this is not possible, contact <code>support@chalmers.se</code> and ask to be added to the Chalmers&rsquo;s eduVPN. </li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">2. Setup a working directory</p>
+<p>You will not need a lot of space for the exercises, so you can create the directory under your home directory. </p>
+<ul>
+<li>Create a directory to work in (<code>mkdir $HOME/selecting-modules</code>) </li>
+<li>and then switch to it (<code>cd $HOME/selecting-modules</code>)</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">3. Download the exercises</p>
+<ul>
+<li><code>wget https://github.com/hpc2n/selecting-modules/raw/refs/heads/main/exercises.tar.gz</code></li>
+</ul>
+<details class="question">
+<summary>Bianca user</summary>
+<ul>
+<li>Stay in the created folder (<code>cd $HOME/selecting-modules</code>)</li>
+<li>
+<p>Copy the tar ball from the project&rsquo;s folder to your created folder: </p>
+<ul>
+<li><code>cp /proj/sens2025560/selecting_modules/exercises.tar.gz .</code></li>
+</ul>
+</li>
+<li>
+<p>Let the teacher know if it is missing.</p>
+</li>
+</ul>
+</details>
+</div>
+<div class="admonition note">
+<p class="admonition-title">4. Extract the exercises</p>
+<ul>
+<li><code>tar zxvf exercises.tar.gz</code></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">5. Enter the directory that was created</p>
+<ul>
+<li><code>cd exercises</code></li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/4b.ssh-thinlinc/thinlinc/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>ThinLinc - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ThinLinc";
+        var mkdocs_page_input_path = "4.connect-cluster/4b.ssh-thinlinc/thinlinc.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/4.connect-cluster/4b.ssh-thinlinc/thinlinc/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">ThinLinc</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#thinlinc__standalone__client">ThinLinc standalone client</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#login__to__cluster__login__node">Login to cluster login node</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#web__access__desktop">Web Access desktop</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#general__thinlinc__usage__both__versions">General ThinLinc usage (both versions)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#opening__a__linux__terminal__in__the__thinlinc__desktop">Opening a Linux terminal in the ThinLinc desktop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#disconnect__or__logout__from__the__thinlinc__desktop">Disconnect or logout from the ThinLinc desktop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reconnecting__to__an__older__thinlinc__session">Reconnecting to an older ThinLinc session</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Connection to a cluster (Kebnekaise)</li>
+      <li class="breadcrumb-item active">ThinLinc</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="thinlinc">ThinLinc<a class="headerlink" href="#thinlinc" title="Permanent link">&para;</a></h1>
+<p><a href="http://www.cendio.com/thinlinc/what-is-thinlinc" target="_blank">ThinLinc</a> is a cross-platform remote desktop server developed by Cendio AB. You can access Kebnekaise through ThinLinc.</p>
+<p>ThinLinc is especially useful when you need to use software with a graphical interface, like INTEL VTune or MATLAB. Look at <a href="https://docs.hpc2n.umu.se/documentation/software/matlab">our MATLAB page</a> for information about running MATLAB.</p>
+<p>ThinLinc can be used as a standalone application and also through a browser with the Web Access desktop.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you are logged in through ThinLinc you are logged into the <strong>Kebnekaise ThinLinc login node</strong> which is shared, just like the regular login node. Anything you run directly in an application is run there, unless you start a regular batch job or for instance start a batch job from inside MATLAB. </p>
+<p>Thus; start a batch job if you are doing anything longer/heavy inside ThinLinc, just as you would from the regular Login node. </p>
+</div>
+<h2 id="thinlinc__standalone__client">ThinLinc standalone client<a class="headerlink" href="#thinlinc__standalone__client" title="Permanent link">&para;</a></h2>
+<p>The full capabilities of ThinLinc can be obtained with the standalone version. Here, you need to follow the next steps for installing ThinLinc.</p>
+<p><strong>Download and Install instructions</strong></p>
+<p>Download the ThinLinc client from <a href="https://www.cendio.com/thinlinc/download" target="_blank">https://www.cendio.com/thinlinc/download</a>to your own workstation/laptop and install it.</p>
+<h4 id="login__to__cluster__login__node">Login to cluster login node<a class="headerlink" href="#login__to__cluster__login__node" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Start the ThinLinc client (ThinLinc client, tlclient depending on your platform)</li>
+<li>Enter the name of the server: <strong>kebnekaise-tl.hpc2n.umu.se</strong> and then enter your own username at HPC2N under &ldquo;Username&rdquo;:
+<img alt="ThinLinc-startup" src="../../../images/thinlinc-startup.png" style="width: 420px;float: right" /><ul>
+<li>If you don&rsquo;t see the Options button, click on Advanced</li>
+<li>Go to &ldquo;Options&rdquo; -&gt; &ldquo;Security&rdquo; and check that authentication method is set to &ldquo;password&rdquo;.</li>
+<li>Go to &ldquo;Options&rdquo; -&gt; &ldquo;Display&rdquo; and mark &ldquo;Windowed&rdquo;</li>
+<li>Go to &ldquo;Options&rdquo; -&gt; &ldquo;Local Devices&rdquo; and uncheck Sound, Serial ports, Drives, Printer, Smart card readers</li>
+<li>Enter your HPC2N password.</li>
+<li>Click &ldquo;Connect&rdquo;</li>
+<li>Click &ldquo;Continue&rdquo; when you are being told that &ldquo;the server&rsquo;s host key is not in the registry&rdquo;.</li>
+<li>After a short time, the ThinLinc desktop opens, running Mate. It is fairly similar to the Gnome desktop.</li>
+<li>All your files on HPC2N should now be available.</li>
+</ul>
+</li>
+</ul>
+<h2 id="web__access__desktop">Web Access desktop<a class="headerlink" href="#web__access__desktop" title="Permanent link">&para;</a></h2>
+<p>On your local web browser, enter <a href="https://kebnekaise-tl.hpc2n.umu.se:300/">https://kebnekaise-tl.hpc2n.umu.se:300/</a> in the address bar. This will display the login box:</p></p>
+<p><img alt="ThinLinc-browser" src="../../../images/thinlinc-browser.png" style="width: 320px;float: right" /></p>
+<p>Here, you can type the username and password for HPC2N. This web browser version can be handy to get started with ThinLinc or if you do not want to install another software in your machine. Also, if you are working mainly with a tablet.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some things you need to keep in mind with this version:
+<img alt="thinlinc-bar" src="../../../images/thinlinc-bar.png" style="width: 70px;float: right" /></p>
+<ul>
+<li>direct copy and paste does not work. One can use the clipboard at the bottom (enclosed in a red square) of the Toolbar that appear on a side of the browser session (see picture)<br></li>
+<li>features like multiple sessions are not fully supported</li>
+<li>In addition to this, some key bindings are not supported. Workarounds for this and more information on the ThinLinc Web Access can be found in the ThinLinc documentation: <a href="https://www.cendio.com/resources/docs/tag/tlwebaccess_usage.html" target="_blank">https://www.cendio.com/resources/docs/tag/tlwebaccess_usage.html</a></li>
+</ul>
+</div>
+<h2 id="general__thinlinc__usage__both__versions">General ThinLinc usage (both versions)<a class="headerlink" href="#general__thinlinc__usage__both__versions" title="Permanent link">&para;</a></h2>
+<h3 id="opening__a__linux__terminal__in__the__thinlinc__desktop">Opening a Linux terminal in the ThinLinc desktop<a class="headerlink" href="#opening__a__linux__terminal__in__the__thinlinc__desktop" title="Permanent link">&para;</a></h3>
+<p>To start a terminal window, go to the menu at the top. Click “Applications” → “System Tools” → “MATE Terminal”.</p>
+<p><img alt="thinlinc-terminal" src="../../../images/thinlinc-terminal.png" style="width: 570px;float: right" /></p>
+<h3 id="disconnect__or__logout__from__the__thinlinc__desktop">Disconnect or logout from the ThinLinc desktop<a class="headerlink" href="#disconnect__or__logout__from__the__thinlinc__desktop" title="Permanent link">&para;</a></h3>
+<p>When you want to logout from the ThinLinc connection, do the following:</p>
+<ul>
+<li><strong>Note!</strong> This does not affect any jobs in the batch queue or jobs running on the cluster, and any finished jobs will be available when you login again.</li>
+<li>The following two ways are equivalent, both uses the top menu bar. Use one of them<ul>
+<li>&ldquo;Applications” → “HPC2N” → “Log Out”</li>
+<li>&ldquo;The blueish HPC2N icon to the right of System menu point&rdquo; → “Log Out”</li>
+</ul>
+</li>
+</ul>
+<h3 id="reconnecting__to__an__older__thinlinc__session">Reconnecting to an older ThinLinc session<a class="headerlink" href="#reconnecting__to__an__older__thinlinc__session" title="Permanent link">&para;</a></h3>
+<p>If you have a running ThinLinc session and there is a problem with the ThinLinc session when you connect again. The best way to solve this is to:</p>
+<ul>
+<li>Logout from the current ThinLinc session (if still logged in)</li>
+<li>Open the client or the Web Access desktop again, but this time specify &ldquo;End existing session&rdquo; in the dialog or through the command options.<ul>
+<li>Do the final step and login</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../4a.OpenOnDemand/openondemand/" class="btn btn-neutral float-left" title="OpenOnDemand"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ssh/" class="btn btn-neutral float-right" title="SSH">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../4a.OpenOnDemand/openondemand/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ssh/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/commands/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Module system commands - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Module system commands";
+        var mkdocs_page_input_path = "7.software-modules-containers/commands.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/commands/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Module system commands</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#finding__software__versions">Finding software versions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reminder__module__spider">Reminder module spider</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list__toolchains__with__module__avail">List toolchains with module avail</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list__loaded__modules">List loaded modules</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#load__software__module">Load software module</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loading">Loading</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loading__several__modules">Loading several modules</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unload__software__modules">Unload software modules</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unloading__examples">Unloading examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#no__prerequisites">No prerequisites</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#prerequisites_1">Prerequisites</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#module__purge">module purge</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module__show">module show</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module__help">module help</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module__saverestore">module save/restore</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating__a__module__collection">Creating a module collection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workflow__-__module__collections">Workflow - module collections</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hints">Hints</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Accessing software on Kebnekaise</li>
+      <li class="breadcrumb-item active">Module system commands</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="module__system__commands">Module system commands<a class="headerlink" href="#module__system__commands" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Find software module versions</li>
+<li>Load a module (with potential prerequisites):<ul>
+<li>default (often not recommended!)</li>
+<li>a specific version of software</li>
+</ul>
+</li>
+<li>Unload software modules, including specific versions </li>
+<li>Unload all software modules with <code>module purge</code></li>
+<li>List the loaded modules </li>
+<li>Get some information about a module (<code>module show</code> and <code>module help</code>)  </li>
+<li>Learn about module collections to load/unload a bunch of modules (<code>module save &lt;collection&gt;</code> and <code>module restore &lt;collection&gt;</code>)</li>
+</ul>
+</div>
+<p>In the previous section we saw how to find out which modules are available, including looking for a specific software module.    </p>
+<p>Now it is time to learn more useful module commands! </p>
+<h2 id="finding__software__versions">Finding software versions<a class="headerlink" href="#finding__software__versions" title="Permanent link">&para;</a></h2>
+<p>If you just load a module without specifying the version, you will get the default version or an error. </p>
+<p>There are good reasons not to just load the default version, even when it is possible: </p>
+<ul>
+<li>The default version is often the newest one installed, which means the default changes the next time an even newer version is installed. This could break your code or at least give a different result, which is bad for resproducibility. </li>
+<li>Sometimes you actually need a specific version, which could differ from the one the centre has decided on as default. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>However, when you have loaded the prerequisites, usually GCC/intel/foss you can generally safely load the rest of the modules without giving the version as it is now locked in by your choice of prerequisite. This also means it is easier to find compatible modules. </p>
+</div>
+<p>So how do you find out which versions are available for a specific software? </p>
+<h3 id="reminder__module__spider">Reminder <code>module spider</code><a class="headerlink" href="#reminder__module__spider" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command to find the available versions for a software module named MODULE is: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>spider<span class="w"> </span>MODULE
+</span></code></pre></div>
+<p>or, in short form </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ml<span class="w"> </span>spider<span class="w"> </span>MODULE
+</span></code></pre></div>
+</div>
+<h3 id="list__toolchains__with__module__avail">List toolchains with <code>module avail</code><a class="headerlink" href="#list__toolchains__with__module__avail" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command to find the available version for a toolchain or software module without prerequisites, named MODULE is: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>avail<span class="w"> </span>MODULE
+</span></code></pre></div>
+<p>or, in short form </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ml<span class="w"> </span>av<span class="w"> </span>MODULE
+</span></code></pre></div>
+</div>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Finding available versions of Python. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Type along!</p>
+</div>
+<p><strong>module spider</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>Python:
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>Description:
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">     </span>Versions:
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span>Python/2.7.18-bare
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span>Python/2.7.18
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span>Python/3.8.6
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span>Python/3.9.6-bare
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span>Python/3.9.6
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span>Python/3.10.4-bare
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span>Python/3.10.4
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span>Python/3.10.8-bare
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span>Python/3.10.8
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span>Python/3.11.3
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span>Python/3.11.5
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span>Python/3.12.3
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">        </span>Python/3.13.1
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">        </span>Python/3.13.5
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span>Biopython<span class="w">  </span>Boost.Python<span class="w">  </span>Brotli-python<span class="w">  </span>CUDA-Python<span class="w">  </span>GitPython<span class="w">  </span>...
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>----------------------------------------------------------------------------
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">  </span>To<span class="w"> </span>find<span class="w"> </span>other<span class="w"> </span>possible<span class="w"> </span>module<span class="w"> </span>matches<span class="w"> </span>execute:
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">      </span>$<span class="w"> </span>module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s1">&#39;.*Python.*&#39;</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>----------------------------------------------------------------------------
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python/3.13.5
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>----------------------------------------------------------------------------
+</span></code></pre></div>
+</details>
+<div class="admonition note">
+<p class="admonition-title"><img src="../../images/shell-logo_small.png"> Exercise</p>
+<ol>
+<li>Check the different output for <code>module avail Python</code> and <code>module spider Python</code></li>
+<li>Do you get the same output for &ldquo;Python&rdquo; and &ldquo;python&rdquo;? </li>
+</ol>
+</div>
+<h2 id="list__loaded__modules">List loaded modules<a class="headerlink" href="#list__loaded__modules" title="Permanent link">&para;</a></h2>
+<p>There is a very useful command to list which modules you have loaded. </p>
+<p>It is </p>
+<p><code>module list</code></p>
+<p>or, in short form </p>
+<p><code>ml</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Try it now! </p>
+</div>
+<p>With nothing loaded, only the &ldquo;sticky&rdquo; modules are listed. They are modules that are needed for the environment to function correctly, so do not remove them! </p>
+<h2 id="load__software__module">Load software module<a class="headerlink" href="#load__software__module" title="Permanent link">&para;</a></h2>
+<p>In order to load modules, we need to know <em>how</em>. This differs by center only inasmuch as some centers have prerequisites (usually <strong>compiler toolchains</strong>) for most of the software modules. As mentioned, HPC2N do.  </p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This is done with <code>module spider &lt;module&gt;/&lt;version&gt;</code> </li>
+<li>Sometimes you will be told that the module can be loaded directly (MATLAB, &hellip;). </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Example, finding out how to load Python, version 3.12.3</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python/3.12.3
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>Python:<span class="w"> </span>Python/3.12.3
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>Description:
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;Python/3.12.3&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span>GCCcore/13.3.0
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>provides<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>extensions:
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">       </span>flit_core/3.9.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>packaging/24.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>pip/24.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>setuptools/70.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>setuptools_scm/8.1.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tomli/2.0.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>typing_extensions/4.11.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>wheel/0.43.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span>Help:
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">      </span><span class="nv">Description</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">      </span><span class="o">===========</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">      </span>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">      </span><span class="o">================</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">       </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://python.org/
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">      </span>Included<span class="w"> </span><span class="nv">extensions</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">      </span><span class="o">===================</span>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="w">      </span>flit_core-3.9.0,<span class="w"> </span>packaging-24.0,<span class="w"> </span>pip-24.0,<span class="w"> </span>setuptools-70.0.0,<span class="w"> </span>setuptools_scm-8.1.0,<span class="w"> </span>tomli-2.0.1,<span class="w"> </span>typing_extensions-4.11.0,<span class="w"> </span>wheel-0.43.0
+</span></code></pre></div>
+<p>There are some things to pay attention to here: </p>
+<ul>
+<li>You are told the prerequisites are &ldquo;GCCcore/13.3.0&rdquo; (if you need OpenMPI or modules requiring it, it is better to load &ldquo;GCC/13.3.0&rdquo; as GCCcore is part of it) </li>
+<li>After loading that, you can load the module itself, &ldquo;Python/3.12.3&rdquo; </li>
+<li>You are told about the extensions that are included. Here, this would be the Python packages that are included, which is not very many. HPC2N and some of the other centres use separate modules or <em>module bundles</em> (SciPy-bundle for instance) for any extensions/packages that you might need. </li>
+</ul>
+</div>
+<h3 id="loading">Loading<a class="headerlink" href="#loading" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To load a software module, do: </p>
+<ul>
+<li>(if needed) <code>module load &lt;prerequisite&gt;/&lt;suitable version&gt;</code></li>
+<li><code>module load &lt;module&gt;/&lt;compatible version&gt;</code></li>
+</ul>
+<p>with the versions you got from <code>module spider</code>. </p>
+<p>Again, <code>ml load &lt;module&gt;/&lt;version&gt;</code> can be used as a short form. </p>
+</div>
+<p>When you have loaded the module, you can see that your list of loaded modules has changed. This is done with <code>module list</code> or <code>ml</code>. </p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Type along!  </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>Loading Python 3.12.3 and prerequisites, and checking before and after which modules are loaded.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>module<span class="w"> </span>list
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>Where:
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</details>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>module<span class="w"> </span>load<span class="w"> </span>GCCcore/13.3.0<span class="w"> </span>Python/3.12.3
+</span></code></pre></div>
+<p>or load them on separate lines </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>module<span class="w"> </span>load<span class="w"> </span>GCCcore/13.3.0
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>module<span class="w"> </span>load<span class="w"> </span>Python/3.12.3
+</span></code></pre></div>
+<p>What is the advantage to loading them one at a time? You can then easier find compatible modules that depend on that version, using <code>module avail</code>. </p>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCCcore/13.3.0<span class="w"> </span>Python/3.12.3
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$
+</span></code></pre></div>
+</details>
+<p>And now do <code>module list</code> again! </p>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1<span class="w">      </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>ncurses/6.5<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>SQLite/3.45.3<span class="w">  </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>OpenSSL/3
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.42<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>XZ/5.4.5<span class="w">       </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>Python/3.12.3
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/13.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">     </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.14<span class="w">       </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>libffi/3.4.5
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span>Where:
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</details>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<ul>
+<li>You can do several <code>module load</code> on the same line. Or you can do them one at a time, as you want.<ul>
+<li>The modules have to be loaded in order! You cannot list the prerequisite after the module that needs it!</li>
+</ul>
+</li>
+<li>One advantage to loading modules one at a time is that you can then find compatible modules that depend on that version easily.<ul>
+<li>Example: you have loaded GCC/13.2.0 and Python/3.11.5 at HPC2N. You can now do <code>ml av</code> or <code>module avail</code> to see which versions of other modules you want to load, say <code>SciPy-bundle</code>, are compatible. </li>
+<li>If you know the name of the module you want, you can even start writing <code>module load SciPy-bundle/</code> (for instance) and press TAB - the system will then autocomplete to the compatible one(s). </li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="loading__several__modules">Loading several modules<a class="headerlink" href="#loading__several__modules" title="Permanent link">&para;</a></h3>
+<p>There are situations where you need to load several modules, even at centres where there are no prerequisites. </p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>You need some Python packages not included in the base Python you loaded, for instance PyTorch, or TensorFlow, or maybe AlphaFold. </p>
+<p>You now need to load a version of that module which is compatible with the Python you want. </p>
+<p>Tensorflow needs Python and SciPy-bundle. SciPy-bundle also needs OpenMPI. TensorFlow <em>loads</em> Python and SciPy-bundle itself, but you need their prerequisites: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>TensorFlow/2.15.1-CUDA-12.1.1
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>TensorFlow:<span class="w"> </span>TensorFlow/2.15.1-CUDA-12.1.1
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span>Description:
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">      </span>An<span class="w"> </span>open-source<span class="w"> </span>software<span class="w"> </span>library<span class="w"> </span><span class="k">for</span><span class="w"> </span>Machine<span class="w"> </span>Intelligence
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;TensorFlow/2.15.1-CUDA-12.1.1&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">      </span>GCC/12.3.0<span class="w">  </span>OpenMPI/4.1.5
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>provides<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>extensions:
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">       </span>absl-py/2.1.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>astor/0.8.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>astunparse/1.6.3<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>cachetools/5.3.3<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>google-auth-oauthlib/1.2.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>google-auth/2.29.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>google-pasta/0.2.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>gviz-api/1.10.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>keras/2.15.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>Markdown/3.6<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>oauthlib/3.2.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>pyasn1-modules/0.4.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>requests-oauthlib/2.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>rsa/4.9<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tblib/3.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorboard-data-server/0.7.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorboard-plugin-profile/2.15.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorboard/2.15.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorflow-estimator/2.15.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>TensorFlow/2.15.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>termcolor/2.3.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>Werkzeug/3.0.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>wrapt/1.14.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0<span class="w"> </span>OpenMPI/4.1.5
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>TensorFlow/2.15.1-CUDA-12.1.1
+</span></code></pre></div>
+</div>
+<h2 id="unload__software__modules">Unload software modules<a class="headerlink" href="#unload__software__modules" title="Permanent link">&para;</a></h2>
+<p>Aside from <code>module unload</code> this section will also cover <code>module purge</code>! </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Why would you want to unload a module?</p>
+<ul>
+<li>If you want to use a different version of a module, you need to unload the current one first </li>
+<li>If you need a different version of a dependent module, but it is not compatible with the current prerequisite you have loaded </li>
+</ul>
+</div>
+<p>Modules can be unloaded with: </p>
+<ul>
+<li><code>module unload &lt;MODULE&gt;</code> <strong>may or may not work</strong></li>
+<li><code>module unload &lt;MODULE&gt;/&lt;version&gt;</code></li>
+<li><code>ml unload &lt;MODULE&gt;/&lt;version&gt;</code> <strong>short form of the above</strong></li>
+<li><code>module -&lt;MODULE&gt;/&lt;version&gt;</code> </li>
+<li><code>ml -&lt;MODULE&gt;/&lt;version&gt;</code> <strong>short form of the above</strong> </li>
+<li><code>ml -&lt;MODULE&gt;/&lt;version&gt;</code> <strong>short form of the above</strong></li>
+</ul>
+<p>Unloading a module <strong>will not unload the prerequisites</strong>. </p>
+<p>This is not a problem if there are no prerequisites, but can be annoying when there is. However, there the easy solution is <code>module purge</code>. </p>
+<p>The command <code>module purge</code> removes all the loaded modules, except the &ldquo;sticky&rdquo; modules. It is recommended at HPC2N. </p>
+<h3 id="unloading__examples">Unloading examples<a class="headerlink" href="#unloading__examples" title="Permanent link">&para;</a></h3>
+<h4 id="no__prerequisites">No prerequisites<a class="headerlink" href="#no__prerequisites" title="Permanent link">&para;</a></h4>
+<p>Unloading one module, with no prerequisites (for clarity, we also do <code>module list</code> before and after to show what is happening. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Type along!</p>
+<p>First load a suitable module (with no prerequisites). Suggestion: </p>
+<ul>
+<li>GCC/12.3.0</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Check which modules are loaded (after loading GCC/12.3.0 earlier)</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">      </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span>Where:
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+<p>Unload GCC/12.3.0 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+<p>Check which modules are loaded </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span>Where:
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</div>
+<h4 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h4>
+<p>Here we look at what happens when you unload something that has a prerequisite. </p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>Loading Python and prerequisites</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3<span class="w"> </span>
+</span></code></pre></div>
+<p>Check loaded modules</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">     </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span>Where:
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>Unload Python/3.11.3</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>unload<span class="w"> </span>Python/3.11.3
+</span></code></pre></div>
+<p>Check loaded modules </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">      </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">  </span>Where:
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>Unload GCC/12.3.0</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>-GCC/12.3.0
+</span></code></pre></div>
+<p>Check loaded modules</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">  </span>Where:
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</div>
+<p>What happens if you try and unload the prerequisite?</p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">     </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">  </span>Where:
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>-GCC/12.3.0
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>Inactive<span class="w"> </span>Modules:
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1<span class="w">       </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">     </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">        </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Python/3.11.3<span class="w">     </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">     </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libreadline/8.2
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>Due<span class="w"> </span>to<span class="w"> </span>MODULEPATH<span class="w"> </span>changes,<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>reloaded:
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">     </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">     </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13
+</span></code></pre></div>
+</div>
+<h3 id="module__purge"><code>module purge</code><a class="headerlink" href="#module__purge" title="Permanent link">&para;</a></h3>
+<p>What about <code>module purge</code>? </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">     </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">  </span>Where:
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">&quot;module --force purge&quot;</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>
+</span><span id="__span-25-24"><a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="w">  </span>Where:
+</span><span id="__span-25-25"><a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>All good! </p>
+<div class="admonition note">
+<p class="admonition-title"><img src="../../images/shell-logo_small.png"> Exercise</p>
+<ol>
+<li>Check how to load R. Pick a version.</li>
+<li>Does it have prerequisites?</li>
+<li>Load R for a specific version (but first load prerequisites if there are any).</li>
+<li>Run <code>module list</code> to see what modules got loaded. Was it more than you expected?</li>
+<li>Unload R (and prerequisites if there are any). See what happens.</li>
+<li>Do <code>module list</code> again.</li>
+</ol>
+</div>
+<h2 id="module__show">module show<a class="headerlink" href="#module__show" title="Permanent link">&para;</a></h2>
+<p>This command shows commands in the module file (MODULE) and can be used to list information about modules.</p>
+<ul>
+<li>for modules that has a “flat” structure (no prerequisites) this can be used</li>
+<li>for modules that has a “hierarchial” structure (has prerequisites) this cannot be used until the prerequisites have been loaded. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Example: Let us look at CUDA</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>show<span class="w"> </span>CUDA/12.6.0
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>----------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">   </span>/hpc2n/eb/modules/all/Core/CUDA/12.6.0.lua:
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>----------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>help<span class="o">([[</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="nv">Description</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="o">===========</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>CUDA<span class="w"> </span><span class="o">(</span>formerly<span class="w"> </span>Compute<span class="w"> </span>Unified<span class="w"> </span>Device<span class="w"> </span>Architecture<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>parallel<span class="w"> </span>computing<span class="w"> </span>platform<span class="w"> </span>and<span class="w"> </span>programming<span class="w"> </span>model<span class="w"> </span>created<span class="w"> </span>by<span class="w"> </span>NVIDIA<span class="w"> </span>and<span class="w"> </span>implemented<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>graphics<span class="w"> </span>processing<span class="w"> </span>units<span class="w"> </span><span class="o">(</span>GPUs<span class="o">)</span><span class="w"> </span>that<span class="w"> </span>they<span class="w"> </span>produce.<span class="w"> </span>CUDA<span class="w"> </span>gives<span class="w"> </span>developers<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>virtual<span class="w"> </span>instruction<span class="w"> </span><span class="nb">set</span><span class="w"> </span>and<span class="w"> </span>memory<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>parallel<span class="w"> </span>computational<span class="w"> </span>elements<span class="w"> </span><span class="k">in</span><span class="w"> </span>CUDA<span class="w"> </span>GPUs.
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="o">================</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w"> </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://developer.nvidia.com/cuda-toolkit
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="o">]])</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>whatis<span class="o">(</span><span class="s2">&quot;Description: CUDA (formerly Compute Unified Device Architecture) is a parallel computing platform and programming model created by NVIDIA and implemented by the graphics processing units (GPUs) that they produce. CUDA gives developers access to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs.&quot;</span><span class="o">)</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>whatis<span class="o">(</span><span class="s2">&quot;Homepage: https://developer.nvidia.com/cuda-toolkit&quot;</span><span class="o">)</span>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>whatis<span class="o">(</span><span class="s2">&quot;URL: https://developer.nvidia.com/cuda-toolkit&quot;</span><span class="o">)</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>conflict<span class="o">(</span><span class="s2">&quot;CUDA&quot;</span><span class="o">)</span>
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>prepend_path<span class="o">(</span><span class="s2">&quot;CMAKE_PREFIX_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0&quot;</span><span class="o">)</span>
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a>prepend_path<span class="o">(</span><span class="s2">&quot;CPATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/include&quot;</span><span class="o">)</span>
+</span><span id="__span-26-20"><a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a>prepend_path<span class="o">(</span><span class="s2">&quot;CPATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/extras/CUPTI/include&quot;</span><span class="o">)</span>
+</span><span id="__span-26-21"><a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a>prepend_path<span class="o">(</span><span class="s2">&quot;CPATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/nvvm/include&quot;</span><span class="o">)</span>
+</span><span id="__span-26-22"><a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LD_LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/lib&quot;</span><span class="o">)</span>
+</span><span id="__span-26-23"><a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LD_LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/extras/CUPTI/lib64&quot;</span><span class="o">)</span>
+</span><span id="__span-26-24"><a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LD_LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/nvvm/lib64&quot;</span><span class="o">)</span>
+</span><span id="__span-26-25"><a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/lib&quot;</span><span class="o">)</span>
+</span><span id="__span-26-26"><a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/extras/CUPTI/lib64&quot;</span><span class="o">)</span>
+</span><span id="__span-26-27"><a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/nvvm/lib64&quot;</span><span class="o">)</span>
+</span><span id="__span-26-28"><a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a>prepend_path<span class="o">(</span><span class="s2">&quot;LIBRARY_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/stubs/lib64&quot;</span><span class="o">)</span>
+</span><span id="__span-26-29"><a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a>prepend_path<span class="o">(</span><span class="s2">&quot;PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/bin&quot;</span><span class="o">)</span>
+</span><span id="__span-26-30"><a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a>prepend_path<span class="o">(</span><span class="s2">&quot;PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/nvvm/bin&quot;</span><span class="o">)</span>
+</span><span id="__span-26-31"><a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a>prepend_path<span class="o">(</span><span class="s2">&quot;PKG_CONFIG_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/pkgconfig&quot;</span><span class="o">)</span>
+</span><span id="__span-26-32"><a id="__codelineno-26-32" name="__codelineno-26-32" href="#__codelineno-26-32"></a>prepend_path<span class="o">(</span><span class="s2">&quot;XDG_DATA_DIRS&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/share&quot;</span><span class="o">)</span>
+</span><span id="__span-26-33"><a id="__codelineno-26-33" name="__codelineno-26-33" href="#__codelineno-26-33"></a>setenv<span class="o">(</span><span class="s2">&quot;EBROOTCUDA&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0&quot;</span><span class="o">)</span>
+</span><span id="__span-26-34"><a id="__codelineno-26-34" name="__codelineno-26-34" href="#__codelineno-26-34"></a>setenv<span class="o">(</span><span class="s2">&quot;EBVERSIONCUDA&quot;</span>,<span class="s2">&quot;12.6.0&quot;</span><span class="o">)</span>
+</span><span id="__span-26-35"><a id="__codelineno-26-35" name="__codelineno-26-35" href="#__codelineno-26-35"></a>setenv<span class="o">(</span><span class="s2">&quot;EBDEVELCUDA&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0/easybuild/Core-CUDA-12.6.0-easybuild-devel&quot;</span><span class="o">)</span>
+</span><span id="__span-26-36"><a id="__codelineno-26-36" name="__codelineno-26-36" href="#__codelineno-26-36"></a>setenv<span class="o">(</span><span class="s2">&quot;CUDA_HOME&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0&quot;</span><span class="o">)</span>
+</span><span id="__span-26-37"><a id="__codelineno-26-37" name="__codelineno-26-37" href="#__codelineno-26-37"></a>setenv<span class="o">(</span><span class="s2">&quot;CUDA_ROOT&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0&quot;</span><span class="o">)</span>
+</span><span id="__span-26-38"><a id="__codelineno-26-38" name="__codelineno-26-38" href="#__codelineno-26-38"></a>setenv<span class="o">(</span><span class="s2">&quot;CUDA_PATH&quot;</span>,<span class="s2">&quot;/hpc2n/eb/software/CUDA/12.6.0&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">buildenv</p>
+<p>The most useful usage of <code>module show</code> is with the <code>buildenv</code> module. If you load a &ldquo;compiler toolchain&rdquo; (see next section) and then the &ldquo;buildenv&rdquo; module, you can do </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>module<span class="w"> </span>show<span class="w"> </span>buildenv
+</span></code></pre></div>
+<p>to see all the various useful environment variables that can now be accessed for linking with when you are building something. </p>
+<p>If you want to read more about this, you can check the <a href="../advanced_module/#buildenv__-__build__environment">buildenv - build environment</a> section under &ldquo;EXTRA&rdquo; -&gt; &ldquo;Advanced module commands&rdquo;.  </p>
+</div>
+<h2 id="module__help">module help<a class="headerlink" href="#module__help" title="Permanent link">&para;</a></h2>
+<p>This command prints the list of possible commands and can also be used to get the help message from module(s). </p>
+<ul>
+<li>for modules not having prerequisites you can use <code>module help</code> without loading anything</li>
+<li>for modules with prerequisites this command can only be used on the modules that are currently available to load (and can be seen with <code>module avail</code>)</li>
+</ul>
+<p><strong>Example</strong> </p>
+<p>Let us look at CUDA again:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span><span class="nb">help</span><span class="w"> </span>CUDA/12.6.0
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>-----------------------------------------<span class="w"> </span>Module<span class="w"> </span>Specific<span class="w"> </span>Help<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s2">&quot;CUDA/12.6.0&quot;</span><span class="w"> </span>-----------------------------------------
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nv">Description</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="o">===========</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>CUDA<span class="w"> </span><span class="o">(</span>formerly<span class="w"> </span>Compute<span class="w"> </span>Unified<span class="w"> </span>Device<span class="w"> </span>Architecture<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>parallel
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w"> </span>computing<span class="w"> </span>platform<span class="w"> </span>and<span class="w"> </span>programming<span class="w"> </span>model<span class="w"> </span>created<span class="w"> </span>by<span class="w"> </span>NVIDIA<span class="w"> </span>and<span class="w"> </span>implemented<span class="w"> </span>by<span class="w"> </span>the
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w"> </span>graphics<span class="w"> </span>processing<span class="w"> </span>units<span class="w"> </span><span class="o">(</span>GPUs<span class="o">)</span><span class="w"> </span>that<span class="w"> </span>they<span class="w"> </span>produce.<span class="w"> </span>CUDA<span class="w"> </span>gives<span class="w"> </span>developers<span class="w"> </span>access
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>virtual<span class="w"> </span>instruction<span class="w"> </span><span class="nb">set</span><span class="w"> </span>and<span class="w"> </span>memory<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>parallel<span class="w"> </span>computational<span class="w"> </span>elements<span class="w"> </span><span class="k">in</span><span class="w"> </span>CUDA<span class="w"> </span>GPUs.
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="o">================</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w"> </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://developer.nvidia.com/cuda-toolkit
+</span></code></pre></div>
+<h2 id="module__saverestore">module save/restore<a class="headerlink" href="#module__saverestore" title="Permanent link">&para;</a></h2>
+<p>Module collections are used to load/unload a bunch of modules: <code>module save &lt;collection&gt;</code> and <code>module restore &lt;collection&gt;</code>. </p>
+<p>This can be useful if you often need to load the same several modules in specific versions, for instance. </p>
+<h3 id="creating__a__module__collection">Creating a module collection<a class="headerlink" href="#creating__a__module__collection" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Load the modules you need.</li>
+<li>Save the collection (you can name it as you want, here MYMODULES):
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>module<span class="w"> </span>save<span class="w"> </span>MYMODULES
+</span></code></pre></div></li>
+</ol>
+<p><strong>Example</strong> </p>
+<p>Assuming we need pandas and matplotlib at HPC2N: </p>
+<ol>
+<li>Load the modules
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0<span class="w"> </span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3<span class="w"> </span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>OpenMPI/4.1.5<span class="w"> </span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>SciPy-bundle/2023.07<span class="w"> </span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>matplotlib/3.7.2<span class="w"> </span>
+</span></code></pre></div></li>
+<li>
+<p>Save to a collection (here, &ldquo;mypython&rdquo;)
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>save<span class="w"> </span>mypython
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Saved<span class="w"> </span>current<span class="w"> </span>collection<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span>to:<span class="w"> </span><span class="s2">&quot;mypython&quot;</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Then, maybe later you find you also need <code>mpi4py</code> so you load it and add it to the collection: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>mpi4py/3.1.4<span class="w"> </span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>save<span class="w"> </span>mypython
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>Saved<span class="w"> </span>current<span class="w"> </span>collection<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span>to:<span class="w"> </span><span class="s2">&quot;mypython&quot;</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>After you have been logged out and in again, or maybe unloaded/purged the modules, you can then restore it again: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>restore<span class="w"> </span>mypython
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Restoring<span class="w"> </span>modules<span class="w"> </span>from<span class="w"> </span>user<span class="err">&#39;</span>s<span class="w"> </span>mypython
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>You can get a listing of all your module collections by typing:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>savelist
+</span></code></pre></div></p>
+</li>
+<li>
+<p>To query the contents of a module collection use
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>describe<span class="w"> </span>mypython
+</span></code></pre></div></p>
+</li>
+</ol>
+<h3 id="workflow__-__module__collections">Workflow - module collections<a class="headerlink" href="#workflow__-__module__collections" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create a module collection</li>
+<li>Work with it </li>
+<li>Possibly unload all modules and load different ones to work with</li>
+<li>Then later restore the module collection again and keep working</li>
+<li>Possibly add more modules and save them to the collection </li>
+<li>Each time you have logged out and are logging in again, you can easily restore the modules you need<ul>
+<li>Much safer than having it in your <code>.bashrc</code> since that is something easily forgotten about and then when you suddenly need to work with different modules or different versions, maybe months later, you are wondering why it is not working as it should and the reason is that you have auto-loaded things in your <code>.bashrc</code>! </li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title"> <img src="../../images/shell-logo_small.png"> Exercise</p>
+<ul>
+<li>Try loading some modules</li>
+<li>create a module collection</li>
+<li>do <code>module list</code> to see what you have</li>
+<li>unload the modules</li>
+<li>check with <code>module list</code> </li>
+<li>restore the module collection</li>
+<li>check with <code>module list</code> </li>
+</ul>
+</div>
+<h2 id="hints">Hints<a class="headerlink" href="#hints" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>How would you find, for instance, installed Python package modules for a specific Python version?  </p>
+</div>
+<p><strong>Example</strong></p>
+<ol>
+<li>First load the Python module and prerequisites, and OpenMPI<br />
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>OpenMPI/4.1.5
+</span></code></pre></div></li>
+<li>Then you can check what Python package modules are installed (scroll down a bit):<br />
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>...
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>-----------------------<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>module<span class="w"> </span>extensions<span class="w"> </span><span class="s2">&quot;module --nx avail ...&quot;</span><span class="w"> </span>to<span class="w"> </span>not<span class="w"> </span>show.<span class="w"> </span>------------------------
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">                                               </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fontBitstreamVera<span class="w">                         </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w"> </span>ADGofTest<span class="w">                                     </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fontLiberation<span class="w">                            </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w"> </span>AICcmodavg<span class="w">                                    </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fontawesome<span class="w">                               </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w"> </span>ALDEx2<span class="w">                                        </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fontquiver<span class="w">                                </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w"> </span>ALL<span class="w">                                           </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fonttools<span class="w">                                 </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="w"> </span>AMAPVox<span class="w">                                       </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>forcats<span class="w">                                   </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="w"> </span>ANCOMBC<span class="w">                                       </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>foreach<span class="w">                                   </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="w"> </span>ATACseqQC<span class="w">                                     </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>forecast<span class="w">                                  </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w"> </span>AUC<span class="w">                                           </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>foreign<span class="w">                                   </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="w"> </span>AUCell<span class="w">                                        </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>formatR<span class="w">                                   </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="w"> </span>Aerial-Gym-Simulator<span class="w">                          </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>formula.tools<span class="w">                             </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="w"> </span>AgiMicroRna<span class="w">                                   </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>formulaic<span class="w">                                 </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-16"><a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="w"> </span>AlgDesign<span class="w">                                     </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fossil<span class="w">                                    </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-17"><a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a><span class="w"> </span>Algorithm::Dependency<span class="w">                         </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fpc<span class="w">                                       </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-18"><a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="w"> </span>Algorithm::Diff<span class="w">                               </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fpp<span class="w">                                       </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-19"><a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="w"> </span>Alien::Base<span class="w">                                   </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fracdiff<span class="w">                                  </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-20"><a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a><span class="w"> </span>Alien::Build::Plugin::Download::GitLab<span class="w">        </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fresh<span class="w">                                     </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-21"><a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="w"> </span>Alien::Libxml2<span class="w">                                </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>frozenlist<span class="w">                                </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-22"><a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a><span class="w"> </span>AlphaFold<span class="w">                                     </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fs<span class="w">                                        </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-23"><a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a><span class="w"> </span>AlphaPulldown<span class="w">                                 </span><span class="o">(</span>E<span class="o">)</span><span class="w">     </span>fsc.export<span class="w">                                </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-37-24"><a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a><span class="w"> </span>...<span class="w"> </span>
+</span></code></pre></div></li>
+<li>The &ldquo;module extensions&rdquo; are things that are available as part of a modules. Sometimes several for each module. You can see for instance &ldquo;foreach&rdquo; R package is available (the list has everything available, not just Python packages). You can then do <code>module spider foreach</code> to see versions and then <code>module spider foreach/1.5.2</code> to see where you find that extension. </li>
+<li>If you keep going further down on the list you got with &ldquo;module avail&rdquo; then you see that &ldquo;mpi4py&rdquo; is available and that &ldquo;pandas&rdquo; is available. Let us see how to load these. </li>
+<li>Doing
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>mpi4py
+</span></code></pre></div>
+tells us it can be loaded directly</li>
+<li>Doing
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>b-cn1613<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>pandas
+</span></code></pre></div>
+gives some conflicting answer, so we try with <code>module spider pandas</code> and then <code>module spider pandas/version</code> to learn that it is part of SciPy-bundle. </li>
+<li>We can then load SciPy-bundle directly and get &ldquo;pandas&rdquo; available. </li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Of course, you can always try doing <code>module spider &lt;software or package&gt;</code> and <code>module avail &lt;software or package&gt;</code> directly to see if you are lucky and get the name it is called. </p>
+</div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>We learned about the following commands: <ul>
+<li>load</li>
+<li>unload </li>
+<li>purge</li>
+<li>show</li>
+<li>help</li>
+<li>save/restore </li>
+</ul>
+</li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../what-modules/" class="btn btn-neutral float-left" title="What are modules?"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../toolchains/" class="btn btn-neutral float-right" title="Compiler toolchains">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../what-modules/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../toolchains/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

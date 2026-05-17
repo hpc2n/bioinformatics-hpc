@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/toolchains/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Compiler toolchains - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Compiler toolchains";
+        var mkdocs_page_input_path = "7.software-modules-containers/toolchains.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/toolchains/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Compiler toolchains</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#available__toolchains">Available Toolchains</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#toolchains__for__regular__cpu__nodes">Toolchains for regular CPU nodes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cuda__based__toolchains__for__gpu__nodes">CUDA based toolchains for GPU nodes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#selecting__a__toolchain">Selecting a toolchain</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compiling__serial__code__using__a__toolchain">Compiling serial code using a toolchain</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#toolchains__using__mpi">Toolchains using MPI</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Accessing software on Kebnekaise</li>
+      <li class="breadcrumb-item active">Compiler toolchains</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="compiler__toolchains">Compiler toolchains<a class="headerlink" href="#compiler__toolchains" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Learn what compiler toolchains are and why they are used</li>
+<li>Be able to find which compiler toolchains are installed</li>
+<li>Be able load the compiler toolchain you want</li>
+</ul>
+</div>
+<p>At HPC2N software is built using the EasyBuild deployment framework. Under this framework, software is built around &ldquo;<strong>toolchains</strong>&rdquo;: compatible groups of C and Fortran compilers, MPI libraries, linear algebra libraries, and other fundamental programs used internally by more familiar packages that users work with directly (e.g., Python, R, GROMACS, etc.).</p>
+<p>HPC2N, like most HPC centers recommend using toolchains to build and compile software, whether
+you use EasyBuild not.  </p>
+<p>Toolchains:</p>
+<ul>
+<li>keep software consitent, everything is build using the same compiler and the same underlying libraries</li>
+<li>provides access to modern versions of the compiler, offering recent language standards and optimisation techniques.   <ul>
+<li>System compilers are often old -  <strong>Don&rsquo;t use for compiling production software</strong></li>
+</ul>
+</li>
+<li>integrates with the module system - makes linking libraries easy</li>
+</ul>
+<h2 id="available__toolchains">Available Toolchains<a class="headerlink" href="#available__toolchains" title="Permanent link">&para;</a></h2>
+<h3 id="toolchains__for__regular__cpu__nodes">Toolchains for regular CPU nodes<a class="headerlink" href="#toolchains__for__regular__cpu__nodes" title="Permanent link">&para;</a></h3>
+<p>For most of the following toolchains, multiple versions are available. 
+Use <code>ml spider &lt;toolchain&gt;</code> to determine which versions are available and what modules are required as prerequisites to load them, if any.</p>
+<div class="language-text highlight"><pre><span></span><code>**GCC Compiler Toolchains**
+
+   * **GCC**: GCC compiler only
+   * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+   * **gompi**: GCC, OpenMPI
+   * **gomkl**: GCC, OpenMPI, MKL
+   * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
+
+**Intel Compiler Toolchains**
+
+   * **intel**: icc, ifort, Intel MPI, MKL
+   * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
+   * **iimpi**: icc, ifort, Intel MPI
+</code></pre></div>
+<h3 id="cuda__based__toolchains__for__gpu__nodes">CUDA based toolchains for GPU nodes<a class="headerlink" href="#cuda__based__toolchains__for__gpu__nodes" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code>- As of recently you load GCC and CUDA separately.
+- New tools are typically build with the latest versions of both.
+
+* foss, GCC, CUDA
+* intel, CUDA
+</code></pre></div>
+<h2 id="selecting__a__toolchain">Selecting a toolchain<a class="headerlink" href="#selecting__a__toolchain" title="Permanent link">&para;</a></h2>
+<p>The above toolchain choices can be a bit overwhelming, especially for new users. 
+Good choices for general use are the toolchains:</p>
+<ul>
+<li><strong>foss</strong>, to use the GCC compiler suite</li>
+<li><strong>intel</strong>, to use the Intel compiler suite</li>
+<li><strong>gomkl</strong>, to use the GCC compiler suite with Intel&rsquo;s Math Kernel Library (MKL)</li>
+</ul>
+<p><strong>Example:</strong> To check the foss versions available, use</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>avail<span class="w"> </span>foss
+</span></code></pre></div>
+<p>and you will get an output similar to this example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>-------------------------------------<span class="w"> </span>/hpc2n/eb/modules/all/Core<span class="w"> </span>--------------------------------------
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">   </span>foss/2021b<span class="w">    </span>foss/2022b<span class="w">    </span>foss/2023b<span class="w">    </span>foss/2025a<span class="w">        </span>foss/2025b
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">   </span>foss/2022a<span class="w">    </span>foss/2023a<span class="w">    </span>foss/2024a<span class="w">    </span>foss/2025b<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w"> </span>Where:
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>If<span class="w"> </span>the<span class="w"> </span>avail<span class="w"> </span>list<span class="w"> </span>is<span class="w"> </span>too<span class="w"> </span>long<span class="w"> </span>consider<span class="w"> </span>trying:
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s2">&quot;module --default avail&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;ml -d av&quot;</span><span class="w"> </span>to<span class="w"> </span>just<span class="w"> </span>list<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>modules.
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="s2">&quot;module overview&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;ml ov&quot;</span><span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>name.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+</span></code></pre></div>
+<p>The version numbers indicate roughly when each version was released. Version 2023a was released at the beginning of 2023, 2023b in the middle of 2023, and  2024a at the start of 2024. If you load e.g. the <code>foss/2024a</code> module as shown below,</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>foss/2024a
+</span></code></pre></div>
+<p>It will load several modules for you, including the compiler, libraries, and
+other utilities. The command <code>module list</code>, or <code>ml</code> for short, can then show you
+what modules are now loaded and available for use. Below is the output of <code>ml</code>
+after loading <code>foss/2024a</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libxml2/2.12.7<span class="w">       </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>UCC/1.3.0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">  </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>libpciaccess/0.18.1<span class="w">  </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>OpenMPI/5.0.3
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/13.3.0<span class="w">       </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>hwloc/2.10.0<span class="w">         </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>OpenBLAS/0.3.27
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1<span class="w">           </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>OpenSSL/3<span class="w">            </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>FlexiBLAS/3.4.4
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.42<span class="w">        </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libevent/2.1.12<span class="w">      </span><span class="m">21</span><span class="o">)</span><span class="w"> </span>FFTW/3.3.10
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/13.3.0<span class="w">           </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>UCX/1.16.0<span class="w">           </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>FFTW.MPI/3.3.10
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>numactl/2.0.18<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>PMIx/5.0.2<span class="w">           </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>ScaLAPACK/2.2.0-fb
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>XZ/5.4.5<span class="w">             </span><span class="m">16</span><span class="o">)</span><span class="w"> </span>PRRTE/3.0.5<span class="w">          </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>foss/2024a
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span>Where:
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>After loading a toolchain, many new modules become available, each reliant on
+the specific versions of the modules included in the toolchain. Use <code>ml avail</code>
+to see what modules you can load given the toolchain you&rsquo;ve loaded.</p>
+<p>For some packages with very long or very short release intervals, there may be
+multiple versions of a software package available for your chosen toolchain.
+The version that loads by default if no version number is given will have a
+<code>(D)</code> to the right of it when listed using <code>ml avail</code>. This default version is
+subject to change, so it is recommended to always provide version numbers.</p>
+<p>Not all modules have a version associated with your choice of toolchain. If you
+switch toolchains, keep the following in mind:</p>
+<ul>
+<li>The module system will attempt to upgrade or downgrade any previously
+loaded modules to match the new choice of toolchain.</li>
+<li>If one or more modules loaded with the previous choice of toolchain do
+not have a version installed that is compatible with the new toolchain,
+then the module system will raise an error.</li>
+<li>For some packages (e.g., Python, Perl, etc.) there is a system version
+built into the operating system that runs without loading any module or
+toolchain. These should be avoided since they are subject to change.</li>
+</ul>
+<h2 id="compiling__serial__code__using__a__toolchain">Compiling serial code using a toolchain<a class="headerlink" href="#compiling__serial__code__using__a__toolchain" title="Permanent link">&para;</a></h2>
+<p>If you have loaded a toolchain, choose your compiler from the following table
+based on your coding language and toolchain choice. Note that there are 2 Intel
+versions per language; versions ending with x are newer OneAPI versions supported
+from 2023 onward. The version without x are deprecated in older available versions and not 
+supported from intel/2024a and forward. </p>
+<div class="language-text highlight"><pre><span></span><code>| Coding Language | If GCC Toolchain | If Intel Toolchain |
+| :-------------- | :--------------- | :----------------- |
+| C               | gcc              | icc, icx           |
+| C++             | g++              | icpc, icpx         |
+| Fortran         | gfortran         | ifort, ifx         |
+
+For some open-source toolchains, there may be no difference between compiling
+serial code with a toolchain and using a built-in compiler. The differences are
+more visible when using an Intel toolchain or when using MPI.
+</code></pre></div>
+<h3 id="toolchains__using__mpi">Toolchains using MPI<a class="headerlink" href="#toolchains__using__mpi" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code>The table below shows which MPI compiler to use given your choices of toolchain
+and coding language:
+
+| Coding Language | If Toolchain with OpenMPI | If Intel Toolchain |
+| :-------------- | :------------------------ | :----------------- |
+| C               | mpicc                     | mpiicc             |
+| C++             | mpicxx                    | mpiicpc            |
+| Fortran         | mpifort                   | mpiifort           |
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../commands/" class="btn btn-neutral float-left" title="Module system commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../programs/" class="btn btn-neutral float-right" title="Software module examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../commands/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../programs/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

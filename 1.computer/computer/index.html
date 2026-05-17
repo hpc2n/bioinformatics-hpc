@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/1.computer/computer/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Overview - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overview";
+        var mkdocs_page_input_path = "1.computer/computer.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/1.computer/computer/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Overview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#hardware__parts">Hardware parts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#a__motherboard">A motherboard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#intel__cpu__and__amd__cpu">Intel CPU and AMD CPU</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memory">Memory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ssd__storage">SSD storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gpu">GPU</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cooling">Cooling</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#system__software">System software</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../7.software-modules-containers/create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">What is a computer?</li>
+      <li class="breadcrumb-item active">Overview</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="what__is__a__computer">What is a computer?<a class="headerlink" href="#what__is__a__computer" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>&ldquo;A computer is a machine that can be programmed to automatically carry out sequences of arithmetic or logical operations (computation).&rdquo; 
+(Wikipedia) </p>
+</div>
+<p>In this session we are going to do a short walk-through of what a computer is, both the hardware parts and the system software. </p>
+<p>Everyone has an idea of what a computer is; usually we are thinking of a screen, a keyboard, and internal components like CPU, GPU, HDD/SSH, and RAM/memory. </p>
+<p>Computers are special types of machines. Most machines only do one thing (cars, ovens, sewing machines, coffee machines), but computers are what is called &ldquo;universal machines&rdquo;. They run programs that means they can do many different tasks. </p>
+<h2 id="hardware__parts">Hardware parts<a class="headerlink" href="#hardware__parts" title="Permanent link">&para;</a></h2>
+<p><img alt="Computer build" src="../../images/setup.png" style="width: 600px;" /></p>
+<p>Let us take a look inside a typical desktop computer. This shows a simplified sketch of the inside of the case: </p>
+<p><img alt="Computer case, PSU, motherboard" src="../../images/desktop-case.png" style="width: 600px;" /></p>
+<ul>
+<li>PSU is the power supply unit. </li>
+<li>CD/DVD are getting increasingly rare</li>
+<li>If you have spinning disk/HDD installed, it sits in a rack along the side and is connected to the motherboard (power cable and data cable). Used for long term storage. Do not confuse with memory!</li>
+<li>A motherboard is mounted in the case, and has a socket for a CPU as well as slots for RAM/memory, SSDs/M.2 disk, PCIe etc. </li>
+<li>How much RAM usually depends on the motherboard, and they should be of the same size (8GB, 16GB, 32GB, etc.) DRAM (Dynamic Random-Access Memory). Memory is a physical device that can be used to store information temporarily - when the computer is shut down the data disappears from the memory. Do NOT confuse with storage space!</li>
+<li>SSD storage are placed in the suitable slots. Size again depends on the motherboard. New SSDs are typically NVMe/M.2, which has better speed usually. Used for long term storage. Do not confuse with memory!  </li>
+<li>PCIe are expansion slots, often used for graphics cards/GPUs. These can be large and the case size is important when seeing if there is space for many of the modern types of GPUs.</li>
+<li>The GPU generally has its own cooling, but the CPU needs cooling. Either fans for air cooling or water cooling </li>
+<li>Storage is related to &ldquo;disks&rdquo; on the computer. A disk is a storage device that stores and retrieves data using magnetic or optical technology. An SSD or a HDD is an example.</li>
+</ul>
+<h3 id="a__motherboard">A motherboard<a class="headerlink" href="#a__motherboard" title="Permanent link">&para;</a></h3>
+<p><img alt="An example of a motherboard" src="../../images/motherboard.png" style="width: 600px;" /></p>
+<p>(MSI PRO B850-VC EVO WIFI6E motherboard. Image from https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E)</p>
+<h3 id="intel__cpu__and__amd__cpu">Intel CPU and AMD CPU<a class="headerlink" href="#intel__cpu__and__amd__cpu" title="Permanent link">&para;</a></h3>
+<p><img alt="Intel CPU" src="../../images/intel-cpu.jpeg" style="width: 200px;" />
+<img alt="AMD CPU" src="../../images/amd-cpu.jpg" style="width: 200px;" /></p>
+<p>(Images from https://news.softpedia.com/news/Latest-Core-i7-Extreme-Ivy-Bridge-E-Intel-CPU-Delayed-335790.shtml and https://hothardware.com/reviews/amd-ryzen-9-9950x3d-cpu-review)</p>
+<h3 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h3>
+<figure class="inline end">
+<p><img alt="RAM/memory" src="../../images/ram.jpeg" style="width: 200px;" /></p>
+<figcaption>A couple memory sticks / RAM </figcaption>
+</figure>
+<p>(Image from https://medium.com/@sunnybabacom10/ram-a-deep-dive-into-its-importance-types-and-functionality-c042a095ef95)</p>
+<h3 id="ssd__storage">SSD storage<a class="headerlink" href="#ssd__storage" title="Permanent link">&para;</a></h3>
+<p><img alt="SSD storage" src="../../images/ssd.jpg" style="width: 200px;" />
+2TB of SSD storage </p>
+<p>(Image from https://ssd-tester.com/crucial_p310_2tb.html) </p>
+<h3 id="gpu">GPU<a class="headerlink" href="#gpu" title="Permanent link">&para;</a></h3>
+<figure class="inline end">
+<p><img alt="GPU" src="../../images/GPU.jpg" style="width: 300px;" /></p>
+<figcaption>GPU (Nvidia)</figcaption>
+<p><img alt="GPU chip" src="../../images/GPU-chip.jpg" style="width: 200px;" /></p>
+<figcaption>GPU chip</figcaption>
+</figure>
+<p>(Images from https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252)</p>
+<h3 id="cooling">Cooling<a class="headerlink" href="#cooling" title="Permanent link">&para;</a></h3>
+<figure class="inline end">
+<p><img alt="Fan" src="../../images/fan.jpg" style="width: 100px;" /></p>
+<figcaption>A fan</figcaption>
+<p><img alt="Watercooling" src="../../images/water-cooler.jpg" style="width: 300px;" /></p>
+<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between) </figcaption>
+</figure>
+<p>(Images from https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr) </p>
+<h2 id="system__software">System software<a class="headerlink" href="#system__software" title="Permanent link">&para;</a></h2>
+<p>System software is what is required for the computer to run and to let us interact with it. </p>
+<p><img alt="System software" src="../../images/system-software.png" style="width: 600px;" /></p>
+<h1 id="this__picture__shows__how__the__different__components__talk__together">This picture shows how the different components talk together.<a class="headerlink" href="#this__picture__shows__how__the__different__components__talk__together" title="Permanent link">&para;</a></h1>
+<p>A computer is a machine that can be programmed to automatically carry out sequences of 
+arithmetic or logical operations (computation). (Wikipedia) </p>
+<h1 id="basic__functions__of__a__computer">Basic Functions of a Computer<a class="headerlink" href="#basic__functions__of__a__computer" title="Permanent link">&para;</a></h1>
+<p>Computers are built around four fundamental operations:</p>
+<ol>
+<li><strong>Input</strong> – Acquiring data from the outside world (e.g., keyboard, mouse, sensors)</li>
+<li><strong>Processing</strong> – Transforming that data through calculations and logical operations</li>
+<li><strong>Storage</strong> – Retaining data and instructions for immediate or future use</li>
+<li><strong>Output</strong> – Delivering results to the user or to other systems (e.g., monitor, printer)</li>
+</ol>
+<h2 id="the__von__neumann__architecture">The Von Neumann Architecture<a class="headerlink" href="#the__von__neumann__architecture" title="Permanent link">&para;</a></h2>
+<p>John von Neumann proposed a model for a computer architecture <strong>Von Neumann architecture</strong> (see 
+<em>Von Neumann Report</em> in the references) where the program and data were loaded to the machine
+without the need of modifying the hardware. In this case, the same machine could be used to execute any
+program compatible with the instructions of the machine.</p>
+<p>The Von Neumann model organizes a computer into four main components, all communicating over a shared <strong>bus</strong>:</p>
+<ul>
+<li><strong>Central Processing Unit (CPU)</strong> — the active core of the machine; fetches instructions from memory, decodes 
+them, and carries out their execution. Internally, it contains the ALU, the Control Unit, and a set of registers 
+(each described in detail below).</li>
+<li><strong>Memory Unit</strong> — a single, unified address space holding both the program instructions and the data those instructions operate on.</li>
+<li><strong>Input/Output (I/O)</strong> — the mechanisms through which the computer exchanges information with the outside world, receiving input and delivering output.</li>
+<li><strong>Bus</strong> — the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.</li>
+</ul>
+<figure>
+  <img src="../../images/CPU.png" style="width: 200px;" alt="CPU">
+  <figcaption> CPU components.</figcaption>
+</figure>
+
+<h3 id="the__von__neumann__bottleneck">The Von Neumann Bottleneck<a class="headerlink" href="#the__von__neumann__bottleneck" title="Permanent link">&para;</a></h3>
+<p>In the Von Neumann architecture, the transfer of instructions between the CPU and memory and the transfer 
+of data occur through the same bus, and these operations take place one at a time. This creates the so-called 
+Von Neumann bottleneck. Early computers masked this bottleneck because CPU and memory speeds were similar. 
+However, in modern computers, CPU speeds greatly outperform memory transfer rates, making the bottleneck 
+significant, especially in high-performance computing clusters where massive computations are performed.</p>
+<p>Modern hardware addresses this problem through several complementary strategies:</p>
+<ul>
+<li><strong>Cache hierarchies (L1/L2/L3)</strong> — multiple levels of small, fast memory placed close to the CPU reduce how often the processor needs to 
+reach out to main memory over the bus.</li>
+<li><strong>Harvard-style L1 caches</strong> — the first cache level is split into separate instruction and data caches, allowing
+both to be accessed simultaneously and eliminating a key source of contention.</li>
+<li><strong>Wide memory buses, DDR channels, and HBM (High Bandwidth Memory)</strong> — these increase the raw throughput of data
+transfers between memory and the CPU, attacking the bottleneck at its source.</li>
+<li><strong>Hardware prefetching</strong> — dedicated units predict which data the CPU will need next and load it into cache ahead 
+of time, hiding memory latency before it stalls execution.</li>
+</ul>
+<p>Despite these improvements, the memory wall remains a major challenge in modern computer architecture, especially 
+in HPC systems, where data movement often dominates execution time.</p>
+<h3 id="neuromorphic__computing">Neuromorphic computing<a class="headerlink" href="#neuromorphic__computing" title="Permanent link">&para;</a></h3>
+<p>Neuromorphic computing is a computing paradigm inspired by the organization and behavior of biological neural networks, 
+such as the human brain. 
+Unlike the Von Neumann architecture, where processing and memory are separated and data must constantly move between 
+them, neuromorphic systems integrate computation and memory within large networks of artificial neurons and synapses. 
+This design reduces the Von Neumann bottleneck and enables highly energy-efficient, event-driven operation: artificial 
+neurons activate only when relevant signals arrive instead of continuously executing instructions on a fixed clock cycle.</p>
+<p>Examples of neuromorphic hardware include Intel Loihi and IBM TrueNorth. Traditional von Neumann systems remain superior 
+for general-purpose and sequential computing, supported by mature software ecosystems. However, neuromorphic architectures 
+are especially promising for low-power tasks such as sensory processing, pattern recognition, and real-time edge inference, 
+where conventional clock-driven computing is often inefficient.</p>
+<h1 id="what__is__a__cpu">What Is a CPU?<a class="headerlink" href="#what__is__a__cpu" title="Permanent link">&para;</a></h1>
+<p>The Central Processing Unit (CPU) is the component of a computer that executes programs. Instructions are fetched
+from memory, interpreted in machine language, and then executed. These operations occur rapidly, many millions of
+times per second.</p>
+<h2 id="main__components__of__a__cpu">Main Components of a CPU<a class="headerlink" href="#main__components__of__a__cpu" title="Permanent link">&para;</a></h2>
+<h3 id="control__unit__cu">Control Unit (CU)<a class="headerlink" href="#control__unit__cu" title="Permanent link">&para;</a></h3>
+<p>The Control Unit, as its name suggests, manages the operation of the entire processor. It fetches each instruction from 
+memory in sequence, interprets the required operation, and issues the control signals needed to coordinate the ALU, 
+registers, and other components accordingly.</p>
+<h3 id="arithmetic__logic__unit__alu">Arithmetic Logic Unit (ALU)<a class="headerlink" href="#arithmetic__logic__unit__alu" title="Permanent link">&para;</a></h3>
+<p>The ALU is the part of the CPU that performs computational tasks. This includes arithmetic operations (addition, subtraction, 
+multiplication, and division) and logical operations (comparisons such as equality or greater than, and bitwise operations 
+such as AND, OR, and NOT). </p>
+<h3 id="registers">Registers<a class="headerlink" href="#registers" title="Permanent link">&para;</a></h3>
+<p>Registers are the closest storage locations in the memory hierarchy to the processor. They are small, extremely fast, and can 
+be accessed in less than one CPU cycle, far faster than external memory. Their role is to hold the values the CPU is actively 
+using: operands for operations, intermediate results, and critical information about the state of execution.</p>
+<p>Common register types include:</p>
+<ul>
+<li><strong>General-purpose registers</strong>, hold operands and results for arithmetic and logical operations (e.g., <code>rax</code>, <code>rbx</code> on x86-64)</li>
+<li><strong>Program Counter (PC)</strong>, holds the memory address of the next instruction to be fetched; it advances automatically after each fetch</li>
+<li><strong>Stack Pointer (SP)</strong>, tracks the current top of the call stack, used to manage function calls, local variables, and return addresses</li>
+<li><strong>Flags / Status register</strong>, records condition codes produced by the last operation (such as zero, carry, sign, and 
+overflow), which are then used by conditional branch instructions to control program flow</li>
+</ul>
+<h2 id="what__is__an__instruction">What Is an Instruction?<a class="headerlink" href="#what__is__an__instruction" title="Permanent link">&para;</a></h2>
+<p>An <strong>instruction</strong> is the most basic unit of work a CPU can perform. At the lowest level, a program is nothing more than a 
+sequence of such instructions encoded in <strong>machine code</strong>, binary patterns that the hardware can fetch, decode, and act on directly.</p>
+<p>Each instruction contains two essential pieces of information:</p>
+<ul>
+<li>An <strong>opcode</strong> — a numeric code specifying which operation to perform (e.g., ADD, LOAD, or BRANCH)</li>
+<li><strong>Operands</strong> — the inputs to that operation: the registers, memory addresses, or immediate values it should act on</li>
+</ul>
+<h3 id="the__instruction__set__architecture__isa">The Instruction Set Architecture (ISA)<a class="headerlink" href="#the__instruction__set__architecture__isa" title="Permanent link">&para;</a></h3>
+<p>The ISA defines the complete set of instructions a CPU can execute and serves as the interface between software and hardware. It 
+specifies operations, operand encoding, memory addressing, and processor state management. Any program compiled for a given ISA can 
+run on any CPU that implements it, regardless of its internal design. This distinction between the ISA and the processor’s 
+microarchitecture is a fundamental principle of computer architecture.</p>
+<h3 id="the__instruction__pipeline">The Instruction Pipeline<a class="headerlink" href="#the__instruction__pipeline" title="Permanent link">&para;</a></h3>
+<p>Modern CPUs do not execute instructions one at a time from start to finish. Instead, they use an instruction pipeline, 
+where execution is divided into stages such as fetch, decode, execute, and write-back. Multiple instructions can then be 
+processed simultaneously at different stages, increasing throughput without making individual stages faster.</p>
+<h3 id="common__isas">Common ISAs<a class="headerlink" href="#common__isas" title="Permanent link">&para;</a></h3>
+<p><strong>x86-64</strong> (also called AMD64 or Intel 64) is the dominant ISA for desktops, laptops, and servers. It 
+evolved from Intel’s 8086 through 32-bit x86 before AMD introduced the 64-bit extension in 2003. 
+As a CISC architecture, it uses complex instructions that modern CPUs internally translate into 
+simpler micro-operations for efficient pipelined execution.</p>
+<p><strong>AArch64 (ARM64)</strong> is the 64-bit ARM ISA introduced with ARMv8 in 2011. ARM follows a RISC design, 
+using a smaller and more uniform instruction set that improves pipelining and power efficiency. This 
+made it dominant in mobile and embedded systems, and it is now expanding into laptops, cloud servers, and 
+HPC systems such as the Fugaku supercomputer.</p>
+<p><strong>RISC-V</strong> is an open, royalty-free ISA introduced at University of California, Berkeley in 2010. 
+Based on RISC principles, it uses a small base ISA that can be extended with standardized modules for 
+features such as floating-point and vector operations. Its openness and flexibility have made it increasingly 
+popular in research, embedded systems, AI processors, and HPC accelerators.</p>
+<p><strong>Other notable ISAs</strong> include <strong>POWER</strong> (IBM&rsquo;s architecture, used in high-end servers and HPC systems 
+like Summit), <strong>SPARC</strong> (historically significant in scientific workstations, now largely retired), and 
+<strong>IA-64/Itanium</strong> (Intel&rsquo;s discontinued VLIW architecture). GPU ISAs form a separate category: NVIDIA uses 
+PTX/SASS for CUDA workloads, while AMD uses RDNA/CDNA for its GPU lines.</p>
+<h2 id="what__are__cpu__cores">What Are CPU Cores?<a class="headerlink" href="#what__are__cpu__cores" title="Permanent link">&para;</a></h2>
+<p>A <strong>core</strong> is a complete, independent processing unit within the CPU. Each core contains its own ALU, 
+Control Unit, registers, and private L1/L2 cache, and is capable of executing an instruction stream 
+without sharing execution resources with other cores.</p>
+<p>Today, processors range from a few cores in consumer CPUs to dozens or even hundreds of cores in server 
+and HPC processors. The two main categories are:</p>
+<ul>
+<li>A <strong>single-core</strong> CPU executes one instruction stream at a time, processing operations sequentially 
+through a single execution unit.</li>
+<li>A <strong>multi-core</strong> CPU (dual-core, quad-core, many-core, etc.) can execute multiple instruction streams 
+simultaneously, with each core operating independently.</li>
+</ul>
+<p>Additional cores can greatly improve throughput, but only if the workload is parallelized. A purely sequential 
+program will use just one core while the others remain idle. To benefit from multi-core systems, tasks must 
+be divided into parallel workloads using programming models such as OpenMP for shared-memory systems or 
+MPI for distributed computing. In HPC, performance depends not only on hardware, but also on software designed 
+to use parallelism effectively.</p>
+<h2 id="what__is__cache__memory">What Is Cache Memory?<a class="headerlink" href="#what__is__cache__memory" title="Permanent link">&para;</a></h2>
+<p><strong>CPU cache</strong> is a small, high-speed memory located on or near the processor. It stores frequently 
+used data and instructions so the CPU can access them much faster than from main memory (RAM), 
+reducing delays caused by memory access.</p>
+<p>Caches are organized in levels, each with a trading size for speed:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Location</th>
+<th>Size (typical)</th>
+<th>Bandwidth (typical)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L1</strong></td>
+<td>Inside each core</td>
+<td>32 – 128 KB</td>
+<td>~1,000 – 3,000 GB/s</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>Inside each core (or nearby)</td>
+<td>256 KB – 4 MB</td>
+<td>~400 – 1,000 GB/s</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>Shared across all cores</td>
+<td>8 – 64 MB</td>
+<td>~100 – 400 GB/s</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>On the motherboard</td>
+<td>8 – 512 GB</td>
+<td>~50 – 100 GB/s (DDR5) / up to ~3,000 GB/s (HBM)</td>
+</tr>
+</tbody>
+</table>
+<p>When the CPU requests data, it searches the cache hierarchy in sequence: first L1, then L2, then L3. 
+Only if the data is missing from all cache levels does it access RAM, which is known as a <strong>cache miss</strong>. 
+This design is effective because programs often reuse the same data and instructions and frequently access 
+nearby memory locations, a behavior called locality of reference.</p>
+<p>Cache performance strongly affects overall execution speed. Algorithms that access memory in regular, 
+sequential patterns make efficient use of the cache and can run much faster than those that frequently 
+cause cache misses and force the CPU to wait for data from RAM.</p>
+<h1 id="what__is__ram">What Is RAM?<a class="headerlink" href="#what__is__ram" title="Permanent link">&para;</a></h1>
+<p><strong>Random Access Memory (RAM)</strong> is the computer’s main working memory, where the operating system, 
+applications, and active data are stored while programs run. Unlike CPU cache, which keeps only 
+immediately needed data close to the processor, RAM contains the larger working set of a program, 
+including its code and data structures.</p>
+<p>RAM is much faster than disk storage but slower than cache, and it is volatile, meaning its contents 
+are lost when power is turned off. Cache hierarchies help reduce the performance gap between the CPU 
+and RAM.</p>
+<h2 id="why__ram__matters">Why RAM Matters<a class="headerlink" href="#why__ram__matters" title="Permanent link">&para;</a></h2>
+<ul>
+<li>More RAM allows the operating system to keep a larger number of programs and active data in memory 
+at the same time.</li>
+<li>When RAM is insufficient, the operating system relies on <strong>swap space</strong> (disk-based virtual memory), 
+which is much slower and can significantly reduce system responsiveness.</li>
+<li>RAM performance also depends on memory speed (measured in MT/s or MHz) and latency (the delay between 
+requesting data and receiving it), both of which affect how quickly the CPU can access data that is not already in cache.</li>
+</ul>
+<h2 id="numa__non-uniform__memory__access">NUMA — Non-Uniform Memory Access<a class="headerlink" href="#numa__non-uniform__memory__access" title="Permanent link">&para;</a></h2>
+<p>Modern servers and workstations often contain multiple CPU <strong>sockets</strong>, each with its own cores and a 
+local bank of RAM. This architecture is called <strong>NUMA (Non-Uniform Memory Access)</strong>.</p>
+<figure>
+  <img src="../../images/caches.png" style="width: 500px;" alt="CPU caches">
+  <figcaption> CPU cache hierarchy — L1, L2, and L3 levels relative to cores and main memory in a single node.</figcaption>
+</figure>
+
+<ul>
+<li>A core can access its <strong>local</strong> RAM quickly (low latency).</li>
+<li>Accessing <strong>remote</strong> RAM (on the other socket) is possible but slower, typically 1.5x to 3x more latency.</li>
+</ul>
+<p>In HPC and high-performance workloads, NUMA awareness is critical. Placing data in the same NUMA 
+node as the cores that process it avoids expensive cross-socket traffic. Tools like <code>numactl</code>, 
+<code>hwloc</code>, and SLURM&rsquo;s <code>--mem-bind</code> option help manage NUMA placement on Linux clusters.</p>
+<h2 id="how__everything__works__together">How Everything Works Together<a class="headerlink" href="#how__everything__works__together" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Programs and data</strong> are first loaded from persistent storage into RAM, making them accessible to the CPU.</li>
+<li>The <strong>CPU</strong> fetches instructions from RAM or cache, decodes them, and executes them using the ALU and registers.</li>
+<li>The <strong>cache hierarchy</strong> keeps recently used data close to the processor cores, minimizing delays caused by slower 
+RAM accesses.</li>
+<li>In multi-socket systems, the <strong>NUMA topology</strong> affects memory access time: accessing local memory is faster 
+than accessing memory attached to another socket.</li>
+<li><strong>Results</strong> are then stored back in RAM, written to persistent storage, or sent to output devices.</li>
+</ol>
+<p>This fetch-decode-execute-write-back cycle runs continuously and billions of times per second while a program is executing.</p>
+<h1 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong></td>
+<td>Executes program instructions and controls the overall operation of the computer</td>
+</tr>
+<tr>
+<td><strong>Cores</strong></td>
+<td>Individual processing units inside a CPU that allow multiple tasks to run in parallel</td>
+</tr>
+<tr>
+<td><strong>Registers</strong></td>
+<td>Very small, extremely fast memory locations within each core used for active data</td>
+</tr>
+<tr>
+<td><strong>Instructions / ISA</strong></td>
+<td>The set of operations the CPU can understand and execute</td>
+</tr>
+<tr>
+<td><strong>Cache (L1/L2/L3)</strong></td>
+<td>High-speed memory near the CPU that reduces access to slower RAM</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>Main volatile memory that stores running programs and active data</td>
+</tr>
+<tr>
+<td><strong>NUMA</strong></td>
+<td>Multi-socket memory architecture where access speed depends on memory locality</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">References</p>
+<ul>
+<li><a href="https://johny4u.com/igcse_theory_2023/07)%20Computer%20Architecture.php" target="_blank">Computer Architecture</a></li>
+<li><a href="https://en.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC" target="_blank">Von Neumann Report</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-organization-architecture/computer-organization-von-neumann-architecture/" target="_blank">Computer organization</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-organization-architecture/introduction-of-control-unit-and-its-design/" target="_blank">Instruction control units</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-organization-architecture/essential-registers-for-instruction-execution/" target="_blank">Registers for instruction</a></li>
+<li><a href="https://daemons.net/hardware/processors/x86.html" target="_blank">x86 instruction set</a></li>
+<li><a href="https://en.wikipedia.org/wiki/X86-64" target="_blank">x86-64 instruction set</a></li>
+<li><a href="https://en.wikipedia.org/wiki/AArch64" target="_blank">AArch64</a></li>
+<li><a href="https://jasonblog.github.io/note/arm/introduction_to_armv8_64-bit_architecture.html" target="_blank">ARM64</a></li>
+<li><a href="https://dl.acm.org/doi/10.1145/3757348.3757367" target="_blank">RISC-V instruction set</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-science-fundamentals/central-processing-unit-cpu/" target="_blank">Central Processing Unit</a></li>
+<li><a href="https://en.wikipedia.org/wiki/CPU_cache" target="_blank">Central Processing Unit cache</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-science-fundamentals/cache-memory/" target="_blank">Cache memory</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-organization-architecture/cache-memory-performance/" target="_blank">Cache memory performance</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-science-fundamentals/random-access-memory-ram/" target="_blank">Random Access Memory</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-organization-architecture/difference-between-uniform-memory-access-uma-and-non-uniform-memory-access-numa/" target="_blank">Non Uniform Access Memory</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Non-uniform_memory_access" target="_blank">NUMA</a></li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../intro/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../2.compute-cluster/compute-cluster/" class="btn btn-neutral float-right" title="Compute clusters">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../2.compute-cluster/compute-cluster/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

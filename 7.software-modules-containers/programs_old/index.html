@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/programs_old/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Examples - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Examples";
+        var mkdocs_page_input_path = "7.software-modules-containers/programs_old.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/programs_old/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Be able to find some typical software modules that are installed </li>
+<li>Learn how to load those software modules (and any prerequisites)</li>
+<li>Be able to find out if Python packages are installed as their own modules</li>
+<li>Learn how to find bundles of R packages installed as modules </li>
+</ul>
+</div>
+<p>In the previous section we looked at toolchains, which are often used to install or build your own software. In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed at many of the Swedish HPC centres. </p>
+<p>Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. The procedure is usually some variation on the following:</p>
+<ol>
+<li>Use <code>ml spider &lt;package&gt;</code> to see whether a module is installed, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, <code>module avail &lt;package&gt;</code> may be preferred.)</li>
+<li>Use <code>ml spider &lt;package&gt;/&lt;version&gt;</code> to view prerequisites for a specific version of the module, if any.</li>
+<li>Load the modules with <code>ml &lt;prerequisite&gt;/&lt;version&gt; &lt;package&gt;/&lt;version&gt;</code>.</li>
+</ol>
+<p>Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Both R and Python packages often include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules) that are installed, but cannot be found with <code>ml spider</code> or <code>ml avail</code>.</p>
+<p>In these cases, if you have loaded at least the prerequisites of a standalone package containing the extension, you can use <code>ml show &lt;package&gt;</code> on the standalone package to view the Lua module file, which usually has a section on included extensions near the top.</p>
+<p>For example, NumPy, SciPy, and Pandas, among other packages, are all are included in <code>SciPy-bundle</code>. If you have at least loaded a GCC version, you can use <code>ml show SciPy-bundle</code> to view all of the included extensions (Python modules) in the compatible SciPy-bundle.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>grep</code> does not work directly on the outputs of module commands like <code>ml show &lt;module&gt;</code>. To search for an extension in a very long Lua module file, copy the full path of the .lua file from the <code>ml show</code> output, and use <code>less /path/to/module.lua | grep &lt;extension&gt;</code>. If there is no output, the extension is not present.</p>
+</div>
+<h2 id="python-based__packages">Python-based packages<a class="headerlink" href="#python-based__packages" title="Permanent link">&para;</a></h2>
+<p>It varies between centres how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequsites are required (most centres apart from PDC are the same), and the available version numbers. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><strong>HPC2N</strong> and <strong>C3SE:</strong> Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, &hellip;)</li>
+<li><strong>LUNARC:</strong> Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, &hellip;). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but other modules loaded alongside it are typically not recognised. Additional modules must be installed in a custom environment.</li>
+<li><strong>NSC:</strong> Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, &hellip;). Most programs on Tetralith also have an extra prerequisite, <code>buildtool-easybuild/4.X.X-hpc&lt;version&gt;</code> that must be loaded before anything else.  </li>
+<li><strong>UPPMAX-Pelle:</strong> Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, Python-bundle-PyPi, Jupyter-lab, &hellip;). No Prerequisites are needed! </li>
+<li><strong>UPPMAX-Bianca:</strong> Very many packages are installed with the Python module.  </li>
+<li><strong>PDC:</strong> most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in <code>cray-python</code> modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the <code>cray-</code> prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, <code>PDC/XX.XX</code> or <code>PDCOLD/XX.XX</code> that must be loaded before anything else.</li>
+</ul>
+</div>
+<h3 id="example__1__matplotlib">Example 1: Matplotlib<a class="headerlink" href="#example__1__matplotlib" title="Permanent link">&para;</a></h3>
+<p>Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module (<a href="https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run">more info on how to find Matplotlib at different HPC centres here</a>). </p>
+<p>If you only want to see what Matplotlib depends on, a good starting point is to view the output of <code>ml spider matplotlib</code> (or <code>ml avail matplotlib</code> on NSC), pick an arbitrary version, and view <code>ml spider matplotlib/&lt;version&gt;</code>.</p>
+<p>All of the following code blocks in this example are taken from Cosmos.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>matplotlib
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>----------------------------------------------------------------------------
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>matplotlib:
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>----------------------------------------------------------------------------
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span>Description:
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span>matplotlib<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>python<span class="w"> </span>2D<span class="w"> </span>plotting<span class="w"> </span>library<span class="w"> </span>which<span class="w"> </span>produces<span class="w"> </span>publication
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span>quality<span class="w"> </span>figures<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>variety<span class="w"> </span>of<span class="w"> </span>hardcopy<span class="w"> </span>formats<span class="w"> </span>and<span class="w"> </span>interactive
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span>environments<span class="w"> </span>across<span class="w"> </span>platforms.<span class="w"> </span>matplotlib<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span><span class="k">in</span><span class="w"> </span>python
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span>scripts,<span class="w"> </span>the<span class="w"> </span>python<span class="w"> </span>and<span class="w"> </span>ipython<span class="w"> </span>shell,<span class="w"> </span>web<span class="w"> </span>application<span class="w"> </span>servers,<span class="w"> </span>and
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span>six<span class="w"> </span>graphical<span class="w"> </span>user<span class="w"> </span>interface<span class="w"> </span>toolkits.
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">     </span>Versions:
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span>matplotlib/2.2.5-Python-2.7.18
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span>matplotlib/3.3.3
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span>matplotlib/3.4.2
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span>matplotlib/3.4.3
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span>matplotlib/3.5.2
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span>matplotlib/3.7.0
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span>matplotlib/3.7.2
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span>matplotlib/3.8.2
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span>matplotlib/3.9.2
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>----------------------------------------------------------------------------
+</span></code></pre></div>
+<p>If you try the above command at your local HPC centre and get a &ldquo;not found&rdquo; error, that probably means Matplotlib is an extension of another module (e.g. on Bianca, there are versions that are part of the base Python module and versions that are part of <code>python_ML_packages</code>).</p>
+<p>Let us look at <code>matplotlib/3.8.2</code>, for example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>matplotlib/3.8.2
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>---------------------------------------------------------------------------------
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>matplotlib:<span class="w"> </span>matplotlib/3.8.2
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>---------------------------------------------------------------------------------
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span>Description:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span>matplotlib<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>python<span class="w"> </span>2D<span class="w"> </span>plotting<span class="w"> </span>library<span class="w"> </span>which<span class="w"> </span>produces<span class="w"> </span>publication
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span>quality<span class="w"> </span>figures<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>variety<span class="w"> </span>of<span class="w"> </span>hardcopy<span class="w"> </span>formats<span class="w"> </span>and<span class="w"> </span>interactive
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span>environments<span class="w"> </span>across<span class="w"> </span>platforms.<span class="w"> </span>matplotlib<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span><span class="k">in</span><span class="w"> </span>python<span class="w"> </span>scripts,
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span>the<span class="w"> </span>python<span class="w"> </span>and<span class="w"> </span>ipython<span class="w"> </span>shell,<span class="w"> </span>web<span class="w"> </span>application<span class="w"> </span>servers,<span class="w"> </span>and<span class="w"> </span>six<span class="w"> </span>graphical
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span>user<span class="w"> </span>interface<span class="w"> </span>toolkits.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;mat</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s2">plotlib/3.8.2&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span>GCC/13.2.0
+</span></code></pre></div>
+<p>This means that, on Cosmos at least, only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. At most facilities, that means SciPy-bundle is required.</p>
+<p>Note that <code>ml show matplotlib/&lt;version&gt;</code> does <strong>not</strong> show which Python version is associated with that version of Matplotlib. If <code>GCC</code> is loaded, then you can use <code>ml avail</code> with <code>Python</code>, <code>matplotlib</code>, and/or <code>SciPy-bundle</code> to see which versions of these are available to load.</p>
+<p>The more typical scenario is that you want to move code developed on a personal laptop to the cluster. Then you will mainly be constrained to a range of Python versions <code>Python/X.Y.Z</code>, in which X absolutely <em>must</em> match what you used, Y <em>should</em> match but may be flexible by one or two versions, and Z is usually not that important. In a bash terminal, you can check your Python version with <code>python --version</code>.</p>
+<p>Let&rsquo;s say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to select subsets of <code>ml spider</code> or <code>ml avail</code> outputs, so one must view the full list with <code>ml spider Python</code> (<code>ml spider cray-python</code> on Dardel). Here is the output on Cosmos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>Python
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>---------------------------------------------------------------------------------
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>Python:
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>---------------------------------------------------------------------------------
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>Description:
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">     </span>Versions:
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span>Python/2.7.18-bare
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span>Python/2.7.18
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span>Python/3.8.6
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span>Python/3.9.5-bare
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span>Python/3.9.5
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span>Python/3.9.6-bare
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span>Python/3.9.6
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span>Python/3.10.4-bare
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span>Python/3.10.4
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span>Python/3.10.8-bare
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span>Python/3.10.8
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span>Python/3.11.3
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span>Python/3.11.5
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span>Python/3.12.3
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">        </span>Biopython<span class="w">  </span>GitPython<span class="w">  </span>IPython<span class="w">  </span>Python-bundle<span class="w">  </span>Python-bundle-PyPI
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">        </span>bx-python<span class="w">  </span>flatbuffers-python<span class="w">  </span>graphviz-python<span class="w">  </span>meson-python<span class="w">  </span>...
+</span></code></pre></div>
+<p>The closest result is <code>Python/3.11.5</code> (though probably anything from 3.10.x to 3.12.x would work). Let&rsquo;s check what that requires:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>Python/3.11.5
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>---------------------------------------------------------------------------------
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>Python:<span class="w"> </span>Python/3.11.5
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>---------------------------------------------------------------------------------
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>Description:
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="s2">&quot;Python/3.11.5&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span>GCCcore/13.2.0
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span>Help:
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="nv">Description</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">      </span><span class="o">===========</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">      </span>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">      </span><span class="o">================</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">       </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://python.org/
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">      </span>Included<span class="w"> </span><span class="nv">extensions</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">      </span><span class="o">===================</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">      </span>flit_core-3.9.0,<span class="w"> </span>packaging-23.2,<span class="w"> </span>pip-23.2.1,<span class="w"> </span>setuptools-68.2.2,<span class="w"> </span>setuptools-
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">      </span>scm-8.0.4,<span class="w"> </span>tomli-2.0.1,<span class="w"> </span>typing_extensions-4.8.0,<span class="w"> </span>wheel-0.41.2
+</span></code></pre></div>
+<p>On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module apart from the bare Python itself requires GCC, so you may as well use GCC every time.</p>
+<p>On some facilities, each version of Matplotlib and SciPy-bundle is only be associated with one Python version, so you can load them all at once, using the GCC version to select for everything else, like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ml<span class="w"> </span>GCC/13.2.0<span class="w"> </span>Python<span class="w"> </span>matplotlib<span class="w"> </span>SciPy-bundle
+</span></code></pre></div>
+<p>However, this is considered bad practice since sometimes additional versions are installed later. We should instead check <code>ml avail</code> to see what versions of Matplotlib and Scipy-bundle we can load:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>ml<span class="w"> </span>avail<span class="w"> </span>Scipy-bundle
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>-----------------------------<span class="w"> </span>/sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0<span class="w"> </span>-----------------------------
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">   </span>SciPy-bundle/2023.11
+</span></code></pre></div>
+<p>(Note: some output omitted for brevity)</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>ml<span class="w"> </span>avail<span class="w"> </span>Matplotlib
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>-----------------------------<span class="w"> </span>/sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0<span class="w"> </span>-----------------------------
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">   </span>matplotlib/3.8.2
+</span></code></pre></div>
+<p>Then the one-line loading command should look like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ml<span class="w"> </span>GCC/13.2.0<span class="w"> </span>Python/3.11.5<span class="w"> </span>matplotlib/3.8.2<span class="w"> </span>SciPy-bundle/2023.11
+</span></code></pre></div>
+<p>If we check what was loaded with <code>ml</code> or <code>module list</code>, the output looks like this: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>ml
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SoftwareTree/Milan<span class="w">         </span><span class="o">(</span>S<span class="o">)</span><span class="w">  </span><span class="m">26</span><span class="o">)</span><span class="w"> </span>expat/2.5.0
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>GCCcore/13.2.0<span class="w">                  </span><span class="m">27</span><span class="o">)</span><span class="w"> </span>util-linux/2.39
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">                     </span><span class="m">28</span><span class="o">)</span><span class="w"> </span>fontconfig/2.14.2
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">                   </span><span class="m">29</span><span class="o">)</span><span class="w"> </span>xorg-macros/1.20.0
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>GCC/13.2.0<span class="w">                      </span><span class="m">30</span><span class="o">)</span><span class="w"> </span>libpciaccess/0.17
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">                     </span><span class="m">31</span><span class="o">)</span><span class="w"> </span>X11/20231019
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">                     </span><span class="m">32</span><span class="o">)</span><span class="w"> </span>Tk/8.6.13
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">                 </span><span class="m">33</span><span class="o">)</span><span class="w"> </span>Tkinter/3.11.5
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">                      </span><span class="m">34</span><span class="o">)</span><span class="w"> </span>NASM/2.16.01
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>SQLite/3.43.1<span class="w">                   </span><span class="m">35</span><span class="o">)</span><span class="w"> </span>libjpeg-turbo/3.0.1
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w"> </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>XZ/5.4.4<span class="w">                        </span><span class="m">36</span><span class="o">)</span><span class="w"> </span>jbigkit/2.1
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w"> </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4<span class="w">                    </span><span class="m">37</span><span class="o">)</span><span class="w"> </span>gzip/1.13
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w"> </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1<span class="w">                     </span><span class="m">38</span><span class="o">)</span><span class="w"> </span>lz4/1.9.4
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w"> </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>Python/3.11.5<span class="w">                   </span><span class="m">39</span><span class="o">)</span><span class="w"> </span>zstd/1.5.5
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w"> </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>OpenBLAS/0.3.24<span class="w">                 </span><span class="m">40</span><span class="o">)</span><span class="w"> </span>libdeflate/1.19
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w"> </span><span class="m">16</span><span class="o">)</span><span class="w"> </span>FlexiBLAS/3.3.1<span class="w">                 </span><span class="m">41</span><span class="o">)</span><span class="w"> </span>LibTIFF/4.6.0
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w"> </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>FFTW/3.3.10<span class="w">                     </span><span class="m">42</span><span class="o">)</span><span class="w"> </span>giflib/5.2.1
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w"> </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>cffi/1.15.1<span class="w">                     </span><span class="m">43</span><span class="o">)</span><span class="w"> </span>libwebp/1.3.2
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w"> </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>cryptography/41.0.5<span class="w">             </span><span class="m">44</span><span class="o">)</span><span class="w"> </span>OpenJPEG/2.5.0
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w"> </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>virtualenv/20.24.6<span class="w">              </span><span class="m">45</span><span class="o">)</span><span class="w"> </span>LittleCMS/2.15
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w"> </span><span class="m">21</span><span class="o">)</span><span class="w"> </span>Python-bundle-PyPI/2023.10<span class="w">      </span><span class="m">46</span><span class="o">)</span><span class="w"> </span>Pillow/10.2.0
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w"> </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>pybind11/2.11.1<span class="w">                 </span><span class="m">47</span><span class="o">)</span><span class="w"> </span>Qhull/2020.2
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w"> </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>libpng/1.6.40<span class="w">                   </span><span class="m">48</span><span class="o">)</span><span class="w"> </span>matplotlib/3.8.2
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w"> </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>Brotli/1.1.0<span class="w">                    </span><span class="m">49</span><span class="o">)</span><span class="w"> </span>SciPy-bundle/2023.11
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w"> </span><span class="m">25</span><span class="o">)</span><span class="w"> </span>freetype/2.13.2
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">  </span>Where:
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to <a href="https://uppmax.github.io/HPC-python/day2/IDEs.html">this documentation from the Python for HPC course</a>.</p>
+<h3 id="example__2__check__if__a__python__extension__is__loaded">Example 2: Check if a Python extension is loaded<a class="headerlink" href="#example__2__check__if__a__python__extension__is__loaded" title="Permanent link">&para;</a></h3>
+<p>Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with <code>ml avail</code>, <code>ml spider</code>, or <code>ml show &lt;module&gt;</code>, you should also check <code>pip list</code> and <code>grep</code> for the package after loading the rest of your modules. </p>
+<p>For example, <code>psutil</code> is part of Python-bundle-PyPI, which is silently loaded with any SciPy-bundle. Here is the easiest way to find <code>psutil</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>psutil
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>psutil<span class="w">                            </span><span class="m">5</span>.9.5
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span>A<span class="w"> </span>new<span class="w"> </span>release<span class="w"> </span>of<span class="w"> </span>pip<span class="w"> </span>is<span class="w"> </span>available:<span class="w"> </span><span class="m">23</span>.1.2<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">25</span>.1.1
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span>To<span class="w"> </span>update,<span class="w"> </span>run:<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</span></code></pre></div>
+<p>The <code>pip list | grep</code> approach is also helpful if you want to see the version of a package without having to open a Python interpreter.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The same list (and grep) approach works for Anaconda3. The only difference is that you should use <code>conda list</code> instead of <code>pip list</code> (although <code>pip list</code> usually still works). The Anaconda3 module file does <strong>not</strong> list the included extensions, so <code>conda list | grep &lt;package&gt;</code> is also the <em>only</em> way to see if a package is included without starting up a Python command line interface.</p>
+</div>
+<h2 id="r-based__packages">R-based packages<a class="headerlink" href="#r-based__packages" title="Permanent link">&para;</a></h2>
+<p>At most HPC centres, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like <code>R-bundle-CRAN</code> and <code>R-bundle-Bioconductor</code>. Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with <code>ml spider</code> or <code>ml avail</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><strong>HPC2N:</strong> Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.</li>
+<li><strong>LUNARC:</strong> Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.</li>
+<li><strong>UPPMAX (Pelle):</strong> Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module.</li>
+<li><strong>UPPMAX (Bianca) and C3SE (Alvis):</strong> R can be loaded directly, but has few installed packages. More common modules are available as extensions with the <code>R_packages</code> module. RStudio is also a separate module.</li>
+<li><strong>NSC (Tetralith):</strong> R can be loaded directly, but <strong>contains few installed packages, and there are no bundles</strong> to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.</li>
+<li><strong>PDC (Dardel):</strong> Like most programs on Dardel, R also has the prerequisite <code>PDC/XX.XX</code> or <code>PDCOLD/XX.XX</code>, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. </li>
+</ul>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Most facilities have only built a handful of R releases, so many of the dependent modules are adapted for multiple versions. The version of such any dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.</p>
+</div>
+<h3 id="example__1__bioconductor">Example 1: Bioconductor<a class="headerlink" href="#example__1__bioconductor" title="Permanent link">&para;</a></h3>
+<p>Many R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>bioconductor
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>---------------------------------------------------------------------------------
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>R-bundle-Bioconductor:
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>---------------------------------------------------------------------------------
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span>Description:
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span>Bioconductor<span class="w"> </span>provides<span class="w"> </span>tools<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>analysis<span class="w"> </span>and<span class="w"> </span>coprehension<span class="w"> </span>of
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">      </span>high-throughput<span class="w"> </span>genomic<span class="w"> </span>data.
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">     </span>Versions:
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span>R-bundle-Bioconductor/3.15-R-4.2.1
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span>R-bundle-Bioconductor/3.18-R-4.3.2
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span>R-bundle-Bioconductor/3.18-R-4.4.1
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span>R-bundle-Bioconductor/3.19-R-4.4.1
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>---------------------------------------------------------------------------------
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;R-bundle-Bioconductor&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>includin
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>g<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>R-bundle-Bioconductor/3.19-R-4.4.1
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>---------------------------------------------------------------------------------
+</span></code></pre></div>
+<p>Notice that in this case, there are 2 versions of the Bioconductor bundle associated with <code>R/4.4.1</code>, and that there are 2 versions of R associated with <code>R-bundle-Bioconductor/3.18</code>. Do not rely on the prerequisites to set which version of <code>R-bundle-Bioconductor</code> gets loaded.</p>
+<p>To check the prerequisites with <code>ml spider</code>, the specific version number must be included anyway, for all software.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>R-bundle-Bioconductor/3.18-R-4.4.1
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>---------------------------------------------------------------------------------
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>R-bundle-Bioconductor:<span class="w"> </span>R-bundle-Bioconductor/3.18-R-4.4.1
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>---------------------------------------------------------------------------------
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span>Description:
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">      </span>Bioconductor<span class="w"> </span>provides<span class="w"> </span>tools<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>analysis<span class="w"> </span>and<span class="w"> </span>coprehension<span class="w"> </span>of
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">      </span>high-throughput<span class="w"> </span>genomic<span class="w"> </span>data.
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;R-b</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="s2">undle-Bioconductor/3.18-R-4.4.1&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">      </span>GCC/12.3.0<span class="w">  </span>OpenMPI/4.1.5
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span>Help:
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">      </span><span class="nv">Description</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">      </span><span class="o">===========</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">      </span>Bioconductor<span class="w"> </span>provides<span class="w"> </span>tools<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>analysis<span class="w"> </span>and<span class="w"> </span>coprehension
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">       </span>of<span class="w"> </span>high-throughput<span class="w"> </span>genomic<span class="w"> </span>data.
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">      </span>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">      </span><span class="o">================</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">       </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://bioconductor.org
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">      </span>Included<span class="w"> </span><span class="nv">extensions</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">      </span><span class="o">===================</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">      </span>affxparser-1.74.0,<span class="w"> </span>affy-1.80.0,<span class="w"> </span>affycoretools-1.74.0,<span class="w"> </span>affyio-1.72.0,
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">      </span>AgiMicroRna-2.52.0,<span class="w"> </span>agricolae-1.3-7,<span class="w"> </span>ALDEx2-1.34.0,<span class="w"> </span>ALL-1.44.0,<span class="w"> </span>ANCOMBC-2.4.0,
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">      </span>annaffy-1.74.0,<span class="w"> </span>annotate-1.80.0,<span class="w"> </span>AnnotationDbi-1.64.1,
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">      </span>AnnotationFilter-1.26.0,<span class="w"> </span>AnnotationForge-1.44.0,<span class="w"> </span>AnnotationHub-3.10.0,
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">      </span>anytime-0.3.9,<span class="w"> </span>aroma.affymetrix-3.2.1,<span class="w"> </span>aroma.apd-0.7.0,<span class="w"> </span>aroma.core-3.3.0,
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">      </span>aroma.light-3.32.0,<span class="w"> </span>ash-1.0-15,<span class="w"> </span>ATACseqQC-1.26.0,<span class="w"> </span>AUCell-1.24.0,
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="w">      </span>aws.s3-0.3.21,<span class="w"> </span>aws.signature-0.6.0,<span class="w"> </span>babelgene-22.9,<span class="w"> </span>ballgown-2.34.0,
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">      </span>basilisk-1.14.2,<span class="w"> </span>basilisk.utils-1.14.1,<span class="w"> </span>batchelor-1.18.1,<span class="w"> </span>baySeq-2.36.0,
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">      </span>beachmat-2.18.0,<span class="w"> </span>BH-1.84.0-0,<span class="w"> </span>Biobase-2.62.0,<span class="w"> </span>BiocBaseUtils-1.4.0,<span class="w"> </span>...
+</span></code></pre></div>
+<p>The list of extensions is too long to copy here, but some popular extensions included in this module are: DeSeq2, GenomeInfoDb, MStats, Seurat, Rsamtools, and more.</p>
+<p>The above prerequisites and the main package can be loaded either one at a time or all at once with,</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w">  </span>OpenMPI/4.1.5<span class="w">  </span>R-bundle-Bioconductor/3.18-R-4.4.1
+</span></code></pre></div>
+<p>In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centres, so pay attention to the prerequisites.</p>
+<h2 id="matlab">Matlab<a class="headerlink" href="#matlab" title="Permanent link">&para;</a></h2>
+<p>At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite <code>PDC/XX.XX</code> or <code>PDCOLD/XX.XX</code>. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to <a href="https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions">this section of the R, Matlab, and Julia for HPC course</a>.</p>
+<p><strong>All Add-Ons and Toolboxes should be available through the Matlab GUI.</strong></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The Matlab GUI is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with <code>salloc</code> or <code>interactive</code>. For more particulars on <em>running</em> Matlab, see the <a href="https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html">relevant page of the R, Matlab, and Julia for HPC course materials</a>.</p>
+</div>
+<h3 id="example__matlab__on__tetralith__nsc">Example: Matlab on Tetralith (NSC)<a class="headerlink" href="#example__matlab__on__tetralith__nsc" title="Permanent link">&para;</a></h3>
+<p>At most centres, where modules are hidden if prerequisites are not loaded, it is better to use <code>ml spider</code> to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use <code>ml avail</code> to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$<span class="w"> </span>ml<span class="w"> </span>avail<span class="w"> </span>matlab
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>---------------------<span class="w"> </span>/software/sse2/tetralith_el9/modules<span class="w"> </span>---------------------
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">   </span>MATLAB/recommendation<span class="w"> </span><span class="o">(</span>D<span class="o">)</span><span class="w">    </span>MATLAB/2024a-hpc1-bdist
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">   </span>MATLAB/2023a-bdist<span class="w">           </span>MATLAB/2025a-hpc1-bdist
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">   </span>MATLAB/2023b-bdist
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span>Where:
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</span></code></pre></div>
+<p>Once you have chosen a specific version, use <code>ml spider</code> to check if there are prerequisites, like so:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>MATLAB/2024a-hpc1-bdist
+</span></code></pre></div>
+<p>The full output is too verbose to reprint in full here, but the one important line reads: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>loaded<span class="w"> </span>directly:<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>MATLAB/2024a-hpc1-bdist
+</span></code></pre></div>
+<p>The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$<span class="w"> </span>ml<span class="w"> </span>MATLAB/2024a-hpc1-bdist
+</span></code></pre></div>
+<h2 id="specialised__applications">Specialised Applications<a class="headerlink" href="#specialised__applications" title="Permanent link">&para;</a></h2>
+<p>For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, <code>ml spider</code> will tell you whether it is installed or not. If the full name of a module includes <code>CUDA</code>, then the relevant <code>CUDA</code> version will typically be loaded automatically, without the need to choose a CUDA-containing toolchain.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the licensed user group. If you run <code>ml spider</code> on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is up to users to determine the licensing requirements of specialised software packages.</p>
+</div>
+<h3 id="example__openfoam">Example: OpenFOAM<a class="headerlink" href="#example__openfoam" title="Permanent link">&para;</a></h3>
+<p>As usual, we start by checking the versions available with <code>ml spider OpenFOAM</code> (or <code>ml avail OpenFOAM</code> at a facility like NSC where all modules are visible regardless of the presence of prerequisites). </p>
+<p>An example output might look like this (from Cosmos):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>OpenFOAM
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>--------------------------------------------------------------------------------------
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>OpenFOAM:
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>--------------------------------------------------------------------------------------
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span>Description:
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">      </span>OpenFOAM<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>free,<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>CFD<span class="w"> </span>software<span class="w"> </span>package.<span class="w"> </span>OpenFOAM<span class="w"> </span>has<span class="w"> </span>an<span class="w"> </span>extensive
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">      </span>range<span class="w"> </span>of<span class="w"> </span>features<span class="w"> </span>to<span class="w"> </span>solve<span class="w"> </span>anything<span class="w"> </span>from<span class="w"> </span>complex<span class="w"> </span>fluid<span class="w"> </span>flows<span class="w"> </span>involving<span class="w"> </span>chemical
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">      </span>reactions,<span class="w"> </span>turbulence<span class="w"> </span>and<span class="w"> </span>heat<span class="w"> </span>transfer,<span class="w"> </span>to<span class="w"> </span>solid<span class="w"> </span>dynamics<span class="w"> </span>and
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">      </span>electromagnetics.
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">     </span>Versions:
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">        </span>OpenFOAM/v2112
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">        </span>OpenFOAM/v2206
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">        </span>OpenFOAM/v2306
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">        </span>OpenFOAM/v2406
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">        </span>OpenFOAM/7-20200508
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">        </span>OpenFOAM/9
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">        </span>OpenFOAM/10
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">        </span>OpenFOAM/11
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>--------------------------------------------------------------------------------------
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;OpenFOAM&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>OpenFOAM/11
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>--------------------------------------------------------------------------------------
+</span></code></pre></div>
+<p>Let us look at a recent version:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>OpenFOAM/11
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>--------------------------------------------------------------------------------------
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>OpenFOAM:<span class="w"> </span>OpenFOAM/11
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>--------------------------------------------------------------------------------------
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span>Description:
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">      </span>OpenFOAM<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>free,<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>CFD<span class="w"> </span>software<span class="w"> </span>package.<span class="w"> </span>OpenFOAM<span class="w"> </span>has<span class="w"> </span>an<span class="w"> </span>extensive
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">      </span>range<span class="w"> </span>of<span class="w"> </span>features<span class="w"> </span>to<span class="w"> </span>solve<span class="w"> </span>anything<span class="w"> </span>from<span class="w"> </span>complex<span class="w"> </span>fluid<span class="w"> </span>flows<span class="w"> </span>involving<span class="w"> </span>chemical
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">      </span>reactions,<span class="w"> </span>turbulence<span class="w"> </span>and<span class="w"> </span>heat<span class="w"> </span>transfer,<span class="w"> </span>to<span class="w"> </span>solid<span class="w"> </span>dynamics<span class="w"> </span>and
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">      </span>electromagnetics.
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;OpenFOAM</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="s2">/11&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">      </span>GCC/11.3.0<span class="w">  </span>OpenMPI/4.1.4
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span>Help:
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">      </span><span class="nv">Description</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">      </span><span class="o">===========</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">      </span>OpenFOAM<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>free,<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>CFD<span class="w"> </span>software<span class="w"> </span>package.
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">       </span>OpenFOAM<span class="w"> </span>has<span class="w"> </span>an<span class="w"> </span>extensive<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>features<span class="w"> </span>to<span class="w"> </span>solve
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">       </span>anything<span class="w"> </span>from<span class="w"> </span>complex<span class="w"> </span>fluid<span class="w"> </span>flows<span class="w"> </span>involving<span class="w"> </span>chemical
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="w">       </span>reactions,<span class="w"> </span>turbulence<span class="w"> </span>and<span class="w"> </span>heat<span class="w"> </span>transfer,<span class="w"> </span>to<span class="w"> </span>solid<span class="w"> </span>dynamics
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="w">       </span>and<span class="w"> </span>electromagnetics.
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a><span class="w">      </span>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a><span class="w">      </span><span class="o">================</span>
+</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="w">       </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://www.openfoam.org/
+</span></code></pre></div>
+<p>On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.</p>
+<p>Now we can load everything all at once like so:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>ml<span class="w"> </span>GCC/11.3.0<span class="w">  </span>OpenMPI/4.1.4<span class="w"> </span>OpenFOAM/11
+</span></code></pre></div>
+<p>or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering <code>ml</code>.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

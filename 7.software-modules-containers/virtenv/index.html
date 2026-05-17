@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/virtenv/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Virtual environments and Python - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Virtual environments and Python";
+        var mkdocs_page_input_path = "7.software-modules-containers/virtenv.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/virtenv/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">What is a computer?</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../containers.md">Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kebnekaise-containers.md">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../create-containers.md">Creating containers on your local computer</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-software.md">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../8.software-git-install-compile/git-install.md">Installing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Important commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/commands.md">Batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring your job</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../9.batch-slurm/batch-examples.md">Batch script examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../10.access-databases/intro.md">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Virtual environments and Python</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#venv">Venv</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#working__with__venv">Working with venv</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#virtualenv">Virtualenv</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#working__with__virtualenv">Working with Virtualenv</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing__with__setuppy">Installing with setup.py</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#general__example">General example</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Extras</li>
+      <li class="breadcrumb-item active">Virtual environments and Python</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="virtual__environments__and__python">Virtual environments and Python<a class="headerlink" href="#virtual__environments__and__python" title="Permanent link">&para;</a></h1>
+<p>While Python packages can usually be installed through python, with the tool &lsquo;python setup.py&rsquo;, we strongly recommend installing in a stand-alone environment. <br> <br>
+<img alt="Workflow-virtual-env" src="../../images/virtenv.png" style="width: 100px; float: left;" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>HPC2N strongly recommends <strong>against</strong> using conda, anaconda, miniconda, etc. on Kebnekaise.</p>
+<p>Read more about this here, including why you should not use conda etc.: <a href="https://docs.hpc2n.umu.se/software/anaconda/" target="_blank">https://docs.hpc2n.umu.se/software/anaconda/</a></p>
+</div>
+<p>We suggest using Venv or Virtualenv. <br><br></p>
+<p>Whatever environment manager you use, this is the workflow:<br>
+- You find and load any relevant modules already installed on the system. <br>
+- You create the isolated environment <br>
+- You activate the environment <br>
+- You work in the isolated environment. Here you install (or update) the environment with the packages you need (only install once) <br>
+- You deactivate the environment after use <br>
+<br><br style="clear: both;"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Virtual environments are a great way to make sure you are using the same packages and versions each time you run something in your project; just activate and deactivate the virtual environment in question. You can have as many virtual environments as you want, with different versions and different packages, but only one virtual environment can be active at a time. </p>
+</div>
+<p>Venv and Virtualenv are almost completely interchangeable. The difference being that virtualenv supports older python versions and has a few more minor unique features, while venv is in the standard library.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Always check first if a package is already site-installed as part of a module. If that is the case, load that first before installing the rest of your packages.</p>
+</div>
+<p>In order to check which packages are available, there are some options:</p>
+<ul>
+<li>Type this on the command line: <code class="language-bash highlight">module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s2">&quot;.*Python.*&quot;</span></code><ul>
+<li>And this, to get packages with all spellings of Python: <code class="language-bash highlight">module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s2">&quot;.*python.*&quot;</span></code></li>
+</ul>
+</li>
+<li>Other option is to load a Python module and its prerequisites, then do <code>pip list</code>. This is also gives you the version, which can be useful if you are trying to determine if the Python package you want to install is compatible with the Python modules already installed. </li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Load Python 3.11.3 and checking for packages</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>pip<span class="w"> </span>list
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Package<span class="w">           </span>Version
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>-----------------<span class="w"> </span>-------
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>flit_core<span class="w">         </span><span class="m">3</span>.9.0
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>packaging<span class="w">         </span><span class="m">23</span>.1
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>pip<span class="w">               </span><span class="m">23</span>.1.2
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>setuptools<span class="w">        </span><span class="m">67</span>.7.2
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>setuptools-scm<span class="w">    </span><span class="m">7</span>.1.0
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>tomli<span class="w">             </span><span class="m">2</span>.0.1
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>typing_extensions<span class="w"> </span><span class="m">4</span>.6.3
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>wheel<span class="w">             </span><span class="m">0</span>.40.0
+</span></code></pre></div>
+</div>
+<p>As you can see, there is very little installed with the base Python module, but there are several other Python packages installed as modules. These are some of the more common ones: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ASE
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Biopython
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Flask
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Horovod
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>IPython
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>JupyterLab
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Keras
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>PyTorch
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Python-bundle-PyPI
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>SciPy-bundle<span class="w"> </span><span class="o">(</span>Bottleneck,<span class="w"> </span>deap,<span class="w"> </span>mpi4py,<span class="w"> </span>mpmath,<span class="w"> </span>numexpr,<span class="w"> </span>numpy,<span class="w"> </span>pandas,<span class="w"> </span>scipy,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>TensorFlow
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Theano
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>dask
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>geopandas
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>matplotlib
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>pip
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>scikit-learn
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>scikit-image
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>scipy
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>sympy
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>Cython
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is NOT and exhaustive list and they are also not all installed for all versions of Python (send us a mail on support@hpc2n.umu.se if a package is missing for a specific version - we will often install it.)</p>
+</div>
+<details class="admonition">
+<summary>Example: Checking which packages are available when Python 3.11.3 and a compatible SciPy-bundle are loaded</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>SciPy-bundle/2023.07
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>pip<span class="w"> </span>list
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Package<span class="w">                           </span>Version
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>---------------------------------<span class="w"> </span>-----------
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>alabaster<span class="w">                         </span><span class="m">0</span>.7.13
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>appdirs<span class="w">                           </span><span class="m">1</span>.4.4
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>asn1crypto<span class="w">                        </span><span class="m">1</span>.5.1
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>atomicwrites<span class="w">                      </span><span class="m">1</span>.4.1
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>attrs<span class="w">                             </span><span class="m">23</span>.1.0
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>Babel<span class="w">                             </span><span class="m">2</span>.12.1
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>backports.entry-points-selectable<span class="w"> </span><span class="m">1</span>.2.0
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>backports.functools-lru-cache<span class="w">     </span><span class="m">1</span>.6.5
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>beniget<span class="w">                           </span><span class="m">0</span>.4.1
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>bitstring<span class="w">                         </span><span class="m">4</span>.0.2
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>blist<span class="w">                             </span><span class="m">1</span>.3.6
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>Bottleneck<span class="w">                        </span><span class="m">1</span>.3.7
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>CacheControl<span class="w">                      </span><span class="m">0</span>.12.14
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>cachy<span class="w">                             </span><span class="m">0</span>.3.0
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>certifi<span class="w">                           </span><span class="m">2023</span>.5.7
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>cffi<span class="w">                              </span><span class="m">1</span>.15.1
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>chardet<span class="w">                           </span><span class="m">5</span>.1.0
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>charset-normalizer<span class="w">                </span><span class="m">3</span>.1.0
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>cleo<span class="w">                              </span><span class="m">2</span>.0.1
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>click<span class="w">                             </span><span class="m">8</span>.1.3
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>cloudpickle<span class="w">                       </span><span class="m">2</span>.2.1
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>colorama<span class="w">                          </span><span class="m">0</span>.4.6
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>commonmark<span class="w">                        </span><span class="m">0</span>.9.1
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>crashtest<span class="w">                         </span><span class="m">0</span>.4.1
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>cryptography<span class="w">                      </span><span class="m">41</span>.0.1
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>Cython<span class="w">                            </span><span class="m">0</span>.29.35
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>deap<span class="w">                              </span><span class="m">1</span>.4.0
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>decorator<span class="w">                         </span><span class="m">5</span>.1.1
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>distlib<span class="w">                           </span><span class="m">0</span>.3.6
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>distro<span class="w">                            </span><span class="m">1</span>.8.0
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>docopt<span class="w">                            </span><span class="m">0</span>.6.2
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>docutils<span class="w">                          </span><span class="m">0</span>.20.1
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>doit<span class="w">                              </span><span class="m">0</span>.36.0
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>dulwich<span class="w">                           </span><span class="m">0</span>.21.5
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>ecdsa<span class="w">                             </span><span class="m">0</span>.18.0
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>editables<span class="w">                         </span><span class="m">0</span>.3
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>exceptiongroup<span class="w">                    </span><span class="m">1</span>.1.1
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>execnet<span class="w">                           </span><span class="m">1</span>.9.0
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>filelock<span class="w">                          </span><span class="m">3</span>.12.2
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>flit_core<span class="w">                         </span><span class="m">3</span>.9.0
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>fsspec<span class="w">                            </span><span class="m">2023</span>.6.0
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>future<span class="w">                            </span><span class="m">0</span>.18.3
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>gast<span class="w">                              </span><span class="m">0</span>.5.4
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>glob2<span class="w">                             </span><span class="m">0</span>.7
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>html5lib<span class="w">                          </span><span class="m">1</span>.1
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>idna<span class="w">                              </span><span class="m">3</span>.4
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>imagesize<span class="w">                         </span><span class="m">1</span>.4.1
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>importlib-metadata<span class="w">                </span><span class="m">6</span>.7.0
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>importlib-resources<span class="w">               </span><span class="m">5</span>.12.0
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>iniconfig<span class="w">                         </span><span class="m">2</span>.0.0
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>intervaltree<span class="w">                      </span><span class="m">3</span>.1.0
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>intreehooks<span class="w">                       </span><span class="m">1</span>.0
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>ipaddress<span class="w">                         </span><span class="m">1</span>.0.23
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>jaraco.classes<span class="w">                    </span><span class="m">3</span>.2.3
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>jeepney<span class="w">                           </span><span class="m">0</span>.8.0
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>Jinja2<span class="w">                            </span><span class="m">3</span>.1.2
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>joblib<span class="w">                            </span><span class="m">1</span>.2.0
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>jsonschema<span class="w">                        </span><span class="m">4</span>.17.3
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>keyring<span class="w">                           </span><span class="m">23</span>.13.1
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>keyrings.alt<span class="w">                      </span><span class="m">4</span>.2.0
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>liac-arff<span class="w">                         </span><span class="m">2</span>.5.0
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>lockfile<span class="w">                          </span><span class="m">0</span>.12.2
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>markdown-it-py<span class="w">                    </span><span class="m">3</span>.0.0
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>MarkupSafe<span class="w">                        </span><span class="m">2</span>.1.3
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>mdurl<span class="w">                             </span><span class="m">0</span>.1.2
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>mock<span class="w">                              </span><span class="m">5</span>.0.2
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>more-itertools<span class="w">                    </span><span class="m">9</span>.1.0
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>mpmath<span class="w">                            </span><span class="m">1</span>.3.0
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>msgpack<span class="w">                           </span><span class="m">1</span>.0.5
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>netaddr<span class="w">                           </span><span class="m">0</span>.8.0
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>netifaces<span class="w">                         </span><span class="m">0</span>.11.0
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>numexpr<span class="w">                           </span><span class="m">2</span>.8.4
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>numpy<span class="w">                             </span><span class="m">1</span>.25.1
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>packaging<span class="w">                         </span><span class="m">23</span>.1
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>pandas<span class="w">                            </span><span class="m">2</span>.0.3
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>pastel<span class="w">                            </span><span class="m">0</span>.2.1
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>pathlib2<span class="w">                          </span><span class="m">2</span>.3.7.post1
+</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>pathspec<span class="w">                          </span><span class="m">0</span>.11.1
+</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>pbr<span class="w">                               </span><span class="m">5</span>.11.1
+</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>pexpect<span class="w">                           </span><span class="m">4</span>.8.0
+</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>pip<span class="w">                               </span><span class="m">23</span>.1.2
+</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>pkginfo<span class="w">                           </span><span class="m">1</span>.9.6
+</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>platformdirs<span class="w">                      </span><span class="m">3</span>.8.0
+</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>pluggy<span class="w">                            </span><span class="m">1</span>.2.0
+</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>ply<span class="w">                               </span><span class="m">3</span>.11
+</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>pooch<span class="w">                             </span><span class="m">1</span>.7.0
+</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>psutil<span class="w">                            </span><span class="m">5</span>.9.5
+</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>ptyprocess<span class="w">                        </span><span class="m">0</span>.7.0
+</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>py<span class="w">                                </span><span class="m">1</span>.11.0
+</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>py-expression-eval<span class="w">                </span><span class="m">0</span>.3.14
+</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>pyasn1<span class="w">                            </span><span class="m">0</span>.5.0
+</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>pybind11<span class="w">                          </span><span class="m">2</span>.11.1
+</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>pycparser<span class="w">                         </span><span class="m">2</span>.21
+</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>pycryptodome<span class="w">                      </span><span class="m">3</span>.18.0
+</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>pydevtool<span class="w">                         </span><span class="m">0</span>.3.0
+</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>Pygments<span class="w">                          </span><span class="m">2</span>.15.1
+</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>pylev<span class="w">                             </span><span class="m">1</span>.4.0
+</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a>PyNaCl<span class="w">                            </span><span class="m">1</span>.5.0
+</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>pyparsing<span class="w">                         </span><span class="m">3</span>.1.0
+</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>pyrsistent<span class="w">                        </span><span class="m">0</span>.19.3
+</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>pytest<span class="w">                            </span><span class="m">7</span>.4.0
+</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>pytest-xdist<span class="w">                      </span><span class="m">3</span>.3.1
+</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>python-dateutil<span class="w">                   </span><span class="m">2</span>.8.2
+</span><span id="__span-2-109"><a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a>pythran<span class="w">                           </span><span class="m">0</span>.13.1
+</span><span id="__span-2-110"><a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>pytoml<span class="w">                            </span><span class="m">0</span>.1.21
+</span><span id="__span-2-111"><a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a>pytz<span class="w">                              </span><span class="m">2023</span>.3
+</span><span id="__span-2-112"><a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a>rapidfuzz<span class="w">                         </span><span class="m">2</span>.15.1
+</span><span id="__span-2-113"><a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a>regex<span class="w">                             </span><span class="m">2023</span>.6.3
+</span><span id="__span-2-114"><a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a>requests<span class="w">                          </span><span class="m">2</span>.31.0
+</span><span id="__span-2-115"><a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a>requests-toolbelt<span class="w">                 </span><span class="m">1</span>.0.0
+</span><span id="__span-2-116"><a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a>rich<span class="w">                              </span><span class="m">13</span>.4.2
+</span><span id="__span-2-117"><a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a>rich-click<span class="w">                        </span><span class="m">1</span>.6.1
+</span><span id="__span-2-118"><a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a>scandir<span class="w">                           </span><span class="m">1</span>.10.0
+</span><span id="__span-2-119"><a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a>scipy<span class="w">                             </span><span class="m">1</span>.11.1
+</span><span id="__span-2-120"><a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a>SecretStorage<span class="w">                     </span><span class="m">3</span>.3.3
+</span><span id="__span-2-121"><a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a>semantic-version<span class="w">                  </span><span class="m">2</span>.10.0
+</span><span id="__span-2-122"><a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a>setuptools<span class="w">                        </span><span class="m">67</span>.7.2
+</span><span id="__span-2-123"><a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a>setuptools-scm<span class="w">                    </span><span class="m">7</span>.1.0
+</span><span id="__span-2-124"><a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a>shellingham<span class="w">                       </span><span class="m">1</span>.5.0.post1
+</span><span id="__span-2-125"><a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a>simplegeneric<span class="w">                     </span><span class="m">0</span>.8.1
+</span><span id="__span-2-126"><a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>simplejson<span class="w">                        </span><span class="m">3</span>.19.1
+</span><span id="__span-2-127"><a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a>six<span class="w">                               </span><span class="m">1</span>.16.0
+</span><span id="__span-2-128"><a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a>snowballstemmer<span class="w">                   </span><span class="m">2</span>.2.0
+</span><span id="__span-2-129"><a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a>sortedcontainers<span class="w">                  </span><span class="m">2</span>.4.0
+</span><span id="__span-2-130"><a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a>Sphinx<span class="w">                            </span><span class="m">7</span>.0.1
+</span><span id="__span-2-131"><a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a>sphinx-bootstrap-theme<span class="w">            </span><span class="m">0</span>.8.1
+</span><span id="__span-2-132"><a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a>sphinxcontrib-applehelp<span class="w">           </span><span class="m">1</span>.0.4
+</span><span id="__span-2-133"><a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a>sphinxcontrib-devhelp<span class="w">             </span><span class="m">1</span>.0.2
+</span><span id="__span-2-134"><a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a>sphinxcontrib-htmlhelp<span class="w">            </span><span class="m">2</span>.0.1
+</span><span id="__span-2-135"><a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a>sphinxcontrib-jsmath<span class="w">              </span><span class="m">1</span>.0.1
+</span><span id="__span-2-136"><a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a>sphinxcontrib-qthelp<span class="w">              </span><span class="m">1</span>.0.3
+</span><span id="__span-2-137"><a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a>sphinxcontrib-serializinghtml<span class="w">     </span><span class="m">1</span>.1.5
+</span><span id="__span-2-138"><a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a>sphinxcontrib-websupport<span class="w">          </span><span class="m">1</span>.2.4
+</span><span id="__span-2-139"><a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a>tabulate<span class="w">                          </span><span class="m">0</span>.9.0
+</span><span id="__span-2-140"><a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a>threadpoolctl<span class="w">                     </span><span class="m">3</span>.1.0
+</span><span id="__span-2-141"><a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a>toml<span class="w">                              </span><span class="m">0</span>.10.2
+</span><span id="__span-2-142"><a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a>tomli<span class="w">                             </span><span class="m">2</span>.0.1
+</span><span id="__span-2-143"><a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a>tomli_w<span class="w">                           </span><span class="m">1</span>.0.0
+</span><span id="__span-2-144"><a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a>tomlkit<span class="w">                           </span><span class="m">0</span>.11.8
+</span><span id="__span-2-145"><a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a>typing_extensions<span class="w">                 </span><span class="m">4</span>.6.3
+</span><span id="__span-2-146"><a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a>tzdata<span class="w">                            </span><span class="m">2023</span>.3
+</span><span id="__span-2-147"><a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a>ujson<span class="w">                             </span><span class="m">5</span>.8.0
+</span><span id="__span-2-148"><a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>urllib3<span class="w">                           </span><span class="m">1</span>.26.16
+</span><span id="__span-2-149"><a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a>versioneer<span class="w">                        </span><span class="m">0</span>.29
+</span><span id="__span-2-150"><a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a>virtualenv<span class="w">                        </span><span class="m">20</span>.23.1
+</span><span id="__span-2-151"><a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a>wcwidth<span class="w">                           </span><span class="m">0</span>.2.6
+</span><span id="__span-2-152"><a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a>webencodings<span class="w">                      </span><span class="m">0</span>.5.1
+</span><span id="__span-2-153"><a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a>wheel<span class="w">                             </span><span class="m">0</span>.40.0
+</span><span id="__span-2-154"><a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a>xlrd<span class="w">                              </span><span class="m">2</span>.0.1
+</span><span id="__span-2-155"><a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a>zipfile36<span class="w">                         </span><span class="m">0</span>.1.3
+</span><span id="__span-2-156"><a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a>zipp<span class="w">                              </span><span class="m">3</span>.15.0
+</span></code></pre></div>
+</details>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To make it easier for your colleagues to copy/use the same environment as you, it is a good idea to use <code>pip freeze</code> to save a copy of which python packages you are using/have installed. You can either make a list of all of them (including site-packages), or just the ones you have installed yourself. </p>
+<ul>
+<li>
+<p>Create a file named &ldquo;requirements.txt&rdquo; containing ALL the Python packages you have in your virtual environment: <code>pip freeze &gt; requirements.txt</code>. </p>
+</li>
+<li>
+<p>Create a file named &ldquo;requirements.txt&rdquo; containing ONLY the Python packages you have installed yourself in your virtual environment: <code class="language-bash highlight">pip<span class="w"> </span>freeze<span class="w"> </span>--local<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt</code>. </p>
+</li>
+</ul>
+</div>
+<h3 id="venv">Venv<a class="headerlink" href="#venv" title="Permanent link">&para;</a></h3>
+<p>Most newer versions of Python has <code>venv</code> in the standard library. </p>
+<p>This is how you would use <code>venv</code> with HPC2N&rsquo;s Python modules. </p>
+<h4 id="working__with__venv">Working with venv<a class="headerlink" href="#working__with__venv" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Load the Python module (and prerequisites) containing the version you want to use.</li>
+<li>Create a <code>venv</code> with: <code class="language-bash highlight">python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>MYVENV</code>, where MYVENV is the name you give your virtual environment. <ul>
+<li>If you are creating the venv in another directory, give the full path in front of the name of the virtual environment. </li>
+</ul>
+</li>
+<li>Activate the virtual environment with: <code>source PATH-TO/MYVENV/bin/activate</code>.</li>
+<li>Install Python packages with <code>pip</code>. We recommend using <code class="language-bash highlight">pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--no-build-isolation<span class="w"> </span>MYPACKAGE</code> in order to reuse site-installations etc.  </li>
+<li>Deactivate the virtual environment with <code>deactivate</code></li>
+</ul>
+<p>Then, when you want to use the virtual environment again (or install more packages to it), just load the same modules and then activate it. </p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<ul>
+<li>In this example, we:<ul>
+<li>load Python 3.11.3 and the compatible SciPy-bundle and matplotlib. </li>
+<li>create a virtual environment, named &ldquo;myvenv&rdquo;</li>
+<li>activate the virtual environment (notice that the prompt now changes to include the name of the virtual environment) </li>
+<li>install a package (lightgbm) to it</li>
+<li>check that the newly installed package can be loaded (with <code>pip list</code> or from import inside Python)</li>
+<li>deactivate the virtual environment </li>
+</ul>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>SciPy-bundle/2023.07
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>matplotlib/3.7.2<span class="w"> </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>myvenv
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>myvenv/bin/activate
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="o">(</span>myvenv<span class="o">)</span><span class="w"> </span>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">(</span>myvenv<span class="o">)</span><span class="w"> </span>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--no-build-isolation<span class="w"> </span>lightgbm
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Collecting<span class="w"> </span>lightgbm
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span>Downloading<span class="w"> </span>lightgbm-4.3.0-py3-none-manylinux_2_28_x86_64.whl<span class="w"> </span><span class="o">(</span><span class="m">3</span>.1<span class="w"> </span>MB<span class="o">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">     </span>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<span class="w"> </span><span class="m">3</span>.1/3.1<span class="w"> </span>MB<span class="w"> </span><span class="m">54</span>.7<span class="w"> </span>MB/s<span class="w"> </span>eta<span class="w"> </span><span class="m">0</span>:00:00
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>Requirement<span class="w"> </span>already<span class="w"> </span>satisfied:<span class="w"> </span>numpy<span class="w"> </span><span class="k">in</span><span class="w"> </span>/hpc2n/eb/software/SciPy-bundle/2023.07-gfbf-2023a/lib/python3.11/site-packages<span class="w"> </span><span class="o">(</span>from<span class="w"> </span>lightgbm<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>.25.1<span class="o">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>Requirement<span class="w"> </span>already<span class="w"> </span>satisfied:<span class="w"> </span>scipy<span class="w"> </span><span class="k">in</span><span class="w"> </span>/hpc2n/eb/software/SciPy-bundle/2023.07-gfbf-2023a/lib/python3.11/site-packages<span class="w"> </span><span class="o">(</span>from<span class="w"> </span>lightgbm<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">1</span>.11.1<span class="o">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>Installing<span class="w"> </span>collected<span class="w"> </span>packages:<span class="w"> </span>lightgbm
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>Successfully<span class="w"> </span>installed<span class="w"> </span>lightgbm-4.3.0
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span>A<span class="w"> </span>new<span class="w"> </span>release<span class="w"> </span>of<span class="w"> </span>pip<span class="w"> </span>available:<span class="w"> </span><span class="m">22</span>.3.1<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">24</span>.0
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="o">[</span>notice<span class="o">]</span><span class="w"> </span>To<span class="w"> </span>update,<span class="w"> </span>run:<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="o">(</span>myvenv<span class="o">)</span><span class="w"> </span>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>python
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>Python<span class="w"> </span><span class="m">3</span>.11.3<span class="w"> </span><span class="o">(</span>main,<span class="w"> </span>Apr<span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">14</span>:00:42<span class="o">)</span><span class="w"> </span><span class="o">[</span>GCC<span class="w"> </span><span class="m">12</span>.3.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>lightgbm
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>&gt;&gt;&gt;<span class="w"> </span>exit<span class="o">()</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="o">(</span>myvenv<span class="o">)</span><span class="w"> </span>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="o">(</span>myvenv<span class="o">)</span><span class="w"> </span>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>deactivate
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+</div>
+<h3 id="virtualenv">Virtualenv<a class="headerlink" href="#virtualenv" title="Permanent link">&para;</a></h3>
+<p>How to use Virtualenv with HPC2N Python modules: </p>
+<ul>
+<li>
+<p>Virtualenv is installed with each of the loadable Python modules and is accessible after the Python module is loaded. It is highly recommended to use these versions of Virtualenv instead of installing yourself.</p>
+</li>
+<li>
+<p>First load the module containing the Python version that you want to use, see the section on <a href="../../documentation/modules">the module system</a> if you are unfamiliar with it.</p>
+</li>
+<li>
+<p>It is <strong>advisable</strong> to also load any modules that provide any requirements for the python module you are going to install, this includes python-module requirements, like numpy/scipy (from SciPy-bundle) and many others. </p>
+</li>
+<li>
+<p>Using &ldquo;<code>ml spider python-module-name</code>&rdquo; will show if there is one installed at all, if there is one but not for the Python version you want to use, ask <a href="mailto:support@hpc2n.umu.se">support@hpc2n.umu.se</a> to install it, specifying which module and for which Python version. </p>
+</li>
+</ul>
+<h4 id="working__with__virtualenv">Working with Virtualenv<a class="headerlink" href="#working__with__virtualenv" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Now (after loading the Python module) you want to create your first virtual environment. Here I call it &lsquo;vpyenv&rsquo;, and put it in your Public, but you can call it anything, of course. </li>
+<li>Run the following to initialize the environment: <code class="language-bash highlight">virtualenv<span class="w"> </span>--system-site-packages<span class="w"> </span><span class="nv">$HOME</span>/Public/vpyenv</code></li>
+<li>Installing modules in Virtualenv:<ul>
+<li>In order to install Python modules in the environment, you first need to activate it. Change directory to the environment you created before, and run: <code>source bin/activate</code></li>
+<li>You can deactivate it with <code>deactivate</code></li>
+</ul>
+</li>
+<li>It will now look like this (remember I called my environment &lsquo;vpyenv&rsquo;, and put it in my Public directory): <code>(vpyenv)t-mn01 [~/Public/vpyenv]$</code></li>
+<li>Load any modules that contain pre-installed dependencies for your software.<ul>
+<li>You can also save that set of modules as a collection to make it easy to use the virtual environment later. You do that with <code>ml save mymodulecollection</code>. </li>
+</ul>
+</li>
+<li>You can now install python modules like this (example, <code>spacy</code>): <br>
+<code class="language-bash highlight">pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--no-build-isolation<span class="w"> </span>spacy</code></li>
+<li>The package will be downloaded and installed. <ul>
+<li>The <code class="language-bash highlight"><span class="s2">&quot;--no-cache-dir&quot;</span></code> option is required to avoid it from reusing earlier installations from the same user in a different environment. </li>
+<li>The <code class="language-bash highlight"><span class="s2">&quot;--no-build-isolation&quot;</span></code> is to make sure that it uses the loaded modules from the module system when building any Cython libraries.</li>
+</ul>
+</li>
+</ol>
+<h3 id="installing__with__setuppy">Installing with setup.py<a class="headerlink" href="#installing__with__setuppy" title="Permanent link">&para;</a></h3>
+<p>Aside from building and installing, you will usually need to set the correct environment before you can use the python package. There may be specifics to building a certain package (including dependencies or possibly running a configuration script), so you should always check if there is an INSTALL or README file included with the package.</p>
+<h4 id="general__example">General example<a class="headerlink" href="#general__example" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download the python module and untar it.</li>
+<li>Load any site modules needed (OpenMPI, Lapack, BLAS&hellip;). You should use the gcc-versions if such exist.</li>
+<li>Also load any python-module requirements as per point 3 under &ldquo;Accessing Virtualenv&rdquo; above.</li>
+<li>cd into the python package source directory and run: <br>
+<code>python setup.py build</code></li>
+<li>Install the python package. A good choice is to install the python module(s) in <code>/proj/nobackup/YOUR-STORAGE-DIR/python-packages</code>, that way they are easy to keep track of: <br>
+<code class="language-bash highlight">python<span class="w"> </span>setup.py<span class="w"> </span>install<span class="w"> </span>--prefix<span class="o">=</span>PATH/TO/YOUR/INSTALLDIR</code></li>
+<li>Add this line to your <code>~/.bashrc</code> (change as needed - set to where you have installed the module):<br>
+<code>export PYTHONPATH=$PYTHONPATH:PATH/TO/YOUR/INSTALLDIR/lib/python3.11/site-packages</code> <br>
+<strong>NOTE</strong> that the version of Python will change the location, as you see above. </li>
+<li>Check the installation. You need to first open a new shell. Then launch python and type: <br>
+<code>import PYTHONPACKAGE</code>. </li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../advanced_module/" class="btn btn-neutral float-left" title="Advanced module commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Rpack/" class="btn btn-neutral float-right" title="Installing R packages yourself">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../advanced_module/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Rpack/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
