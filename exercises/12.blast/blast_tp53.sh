@@ -8,7 +8,7 @@
 #SBATCH --error=blast_tp53_%j.err
 # Lecture 12: BLAST — local blastp on Kebnekaise
 # Update YOUR_PROJECT_ACCOUNT and module version before submitting
-module load blast+/VERSION
+module load BLAST+/2.17.0
 blastp \
   -query TP53_protein.fasta \
   -db /proj/nobackup/bioinformatics_course/databases/swissprot/swissprot \
