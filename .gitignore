@@ -1,0 +1,41 @@
+# MkDocs build output
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node.js (slide generation scripts — kept locally, not committed)
+node_modules/
+package-lock.json
+
+# PowerPoint source files — instructor keeps these locally
+# Student slide PDFs (without answer slides) are committed instead
+*.pptx
+
+# Slide QA preview images
+slide-*.jpg
+l1slide-*.jpg
+l2s-*.jpg
+l3s-*.jpg
+l4s-*.jpg
+l5s-*.jpg
+l6s-*.jpg
+prog-*.jpg
+term_slide*.jpg
+
+# Slurm run logs
+*.out
+*.err
+*.log
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
