@@ -80,9 +80,8 @@ nav:
     - Compiler toolchains: 7.software-modules-containers/toolchains.md
     - Software module examples: 7.software-modules-containers/programs.md
     - Modules in batch scripts: 7.software-modules-containers/batch.md
-    - Containers: 7.software-modules-containers/containers.md
     - Containers on Kebnekaise: 7.software-modules-containers/kebnekaise-containers.md
-    - Creating containers on your local computer: 7.software-modules-containers/create-containers.md
+    - Creating containers: 7.software-modules-containers/create-containers.md
   - Software from a Git repo: 
     - Introduction: 8.software-git-install-compile/git-software.md
     - Installing: 8.software-git-install-compile/git-install.md
