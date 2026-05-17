@@ -122,8 +122,45 @@ More information in the [Create containers](../create-containers) page.
 
 This section looks at how to run downloaded container images at HPC2N. Of course, those images could also be some that you have created yourself, on your own computer or elsewhere. 
 
-PDC also provides some software as containers, found in  ``/pdc/software/sing_hub`` (or ``$PDC_SHUB``). ``singularity exec -B /cfs/klemming <sandbox folder> <myexe>``
+Note that Apptainer can run Docker containers as well. 
 
+!!! warning 
+
+    If you are running an image that uses more than a small amount of resources then you need to run it as a batch job like in the MPI example above (just like normally). 
+
+    Another option is to run it from inside the Kebnekaise Desktop through OpenOnDemand. 
+
+!!! example "Example: running a downloaded Docker image"
+
+    In this example we will download a docker image from "https://hub.docker.com/u/biocontainers", convert it to apptainer and run it. We will run it under OpenOnDemand, for ease, but you could also do the downloads on a command line in SSH and the commands in 8. and 9. in a regular batch job since they are a bit longer/heavier. 
+
+    1. Download, for instance, Blast, from "https://hub.docker.com/r/biocontainers/blast". You convert the "docker pull url:tag" to "docker://hostname/repository/imagename:tag" so in this example, "docker pull biocontainers/blast:v2.2.31_cv2" becomes "docker://biocontainers/blast:v2.2.31_cv2": 
+    ```bash
+    apptainer build myblast.sif docker://biocontainers/blast:v2.2.31_cv2
+    ```
+    2. You should now have an apptainer image file "myblast.sif" in your directory. 
+    3. Doing "apptainer exec myblast.sif blastp -help" should give you commandline help for blastp 
+    4. Download and prepare some data to start analysis. For instance from "https://www.uniprot.org/uniprot/" 
+    5. Here I pick FASTA sequence for a Rat protein and fetch it with ``wget``: 
+    ```bash
+    wget https://www.uniprot.org/uniprot/F1LNI5.fasta
+    ```
+    6. We also need a reference database to BLAST against and we are going to download from "https://ftp.ncbi.nih.gov/" -> "refseq" -> "R_norvegicus/" -> "mRNA_Prot/": 
+    ```bash
+    wget https://ftp.ncbi.nih.gov/refseq/R_norvegicus/mRNA_Prot/rat.1.protein.faa.gz
+    ```
+    7. We need to extract it: 
+    ```bash
+    gunzip rat.1.protein.faa.gz
+    ```
+    8. We are now ready to prepare the mouse database with ``makeblastdb``: 
+    ```bash
+    apptainer exec -B $PWD:$PWD myblast.sif makeblastdb -in rat.1.protein.faa -dbtype prot
+    ```
+    9. We can now do the analysis on the input files with ``blastp``: 
+    ```bash
+    apptainer exec -B $PWD:$PWD myblast.sif blastp -query F1LNI5.fasta -db rat.1.protein.faa -out results.txt
+    ``` 
 
 ## Specifics of the HPC2N setup
 

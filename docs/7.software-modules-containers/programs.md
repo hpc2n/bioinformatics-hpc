@@ -6,6 +6,7 @@
     - Learn how to load those software modules (and any prerequisites)
     - Be able to find out if **Python packages** are installed as their own modules
     - Learn how to find bundles of **R packages** installed as modules 
+    - Learn where to find installed data sets. 
 
 In the previous section we looked at toolchains, which are often used to install or build your own software. In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed. 
 
@@ -14,6 +15,10 @@ Loading modules works the same whether the modules are toolchains or standalone 
 1. Use `ml spider <package>` to see **whether a module is installed**, and if so, view the available versions. 
 2. Use `ml spider <package>/<version>` to **view prerequisites** for a specific version of the module, if any.
 3. **Load** the modules with `ml <prerequisite>/<version> <package>/<version>`.
+
+!!! hint "Databases"
+
+    HPC2N has a number of downloaded databases. They can be found on the path: ``/pfs/data/databases``. 
 
 ### Outline
 
