@@ -116,7 +116,14 @@ This example uses [this created example image](../create-containers/#example__op
     "
     ```
 
-More detailed examples and information in the [Create containers](../create-containers) page.
+More information in the [Create containers](../create-containers) page.
+
+## Running downloaded container images 
+
+This section looks at how to run downloaded container images at HPC2N. Of course, those images could also be some that you have created yourself, on your own computer or elsewhere. 
+
+PDC also provides some software as containers, found in  ``/pdc/software/sing_hub`` (or ``$PDC_SHUB``). ``singularity exec -B /cfs/klemming <sandbox folder> <myexe>``
+
 
 ## Specifics of the HPC2N setup
 
@@ -173,5 +180,3 @@ You will find more information and examples about using Apptainer and creating i
 
 
 
-
-PDC also provides some software as containers, found in  ``/pdc/software/sing_hub`` (or ``$PDC_SHUB``). ``singularity exec -B /cfs/klemming <sandbox folder> <myexe>``
