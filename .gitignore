@@ -39,3 +39,7 @@ term_slide*.jpg
 .idea/
 *.swp
 *~
+mkdocs.yml.bak
+mkdocs_nav_additions.yml
+update_mkdocs_nav.py
+commit-course-material.sh
