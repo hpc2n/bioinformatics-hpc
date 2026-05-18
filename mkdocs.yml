@@ -33,8 +33,8 @@ extra_css:
 nav:
   - Home: index.md
   - 'Programme introduction':
-    - 'Overview': 00.programme-introduction/index.md
-  - '1. What is Bioinformatics?': 01.what-is-bioinformatics/index.md
+    - 'Overview': 00.programme-introduction/programme-introduction.md
+  - '1. What is Bioinformatics?': 01.what-is-bioinformatics/what-is-bioinformatics.md
   - Introduction: intro.md
   - What is a computer?: 
     - Overview: 1.computer/computer.md
@@ -107,11 +107,11 @@ nav:
     - Installing R packages yourself: 7.software-modules-containers/Rpack.md 
   - 'Bioinformatics content':
     - 'Overview': bioinformatics-overview.md
-    - '11. Biological Database Landscape': 11.database-landscape/index.md
-    - '12. BLAST and Sequence Similarity': 12.blast/index.md
-    - '13. Bioinformatics File Formats': 13.file-formats/index.md
-    - '14. FAIR and Open Science': 14.fair-open-science/index.md
-    - '15. FAIR in Practice': 15.fair-in-practice/index.md
+    - '11. Biological Database Landscape': 11.database-landscape/database-landscape.md
+    - '12. BLAST and Sequence Similarity': 12.blast/blast.md
+    - '13. Bioinformatics File Formats': 13.file-formats/file-formats.md
+    - '14. FAIR and Open Science': 14.fair-open-science/fair-open-science.md
+    - '15. FAIR in Practice': 15.fair-in-practice/fair-in-practice.md
 
 plugins:
   - search
