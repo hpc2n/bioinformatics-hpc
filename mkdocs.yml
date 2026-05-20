@@ -76,6 +76,7 @@ nav:
     - Working with remotes exercises: 6.Git/remotes-exercises.md
     - Teamwork: 6.Git/teamwork.md
     - Teamwork exercises: 6.Git/teamwork-exercises.md
+    - Workflow for Git: 6.Git/workflow.md
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - What are modules?: 7.software-modules-containers/what-modules.md
