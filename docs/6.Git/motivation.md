@@ -163,7 +163,8 @@ graph LR
     - keeps track of your files and other output
     - tracks what is created and modified
     - tracks who made the modifications
-    - tracks why the modifications were made (if you make good commit comments)
+    - tracks why the modifications were made (if you make good commit comments!)
+    - Is important to reproducible research, helping you to explain what was changed, when, and why (for instance, why you filtered out specific data)
 
 ## Practical use cases
 
@@ -202,4 +203,8 @@ What are the practical use cases for VCS?
     - BitKeeper: Initial release May 2000. Distributed version control. Was shortly used for developing the Linux kernel. Proprietary. No longer maintained.
     - **Git**: Started by Linus Torvalds in April 2005, originally for developing the Linux kernel. Distributed version control. Open source. 
     - ...
+
+### References 
+
+- <a href="https://scientistinprogress.com/blog/git-github-bioinformatics/" target="_blank">Git and GitHub for Bioinformatics: A Practical Guide</a>
 
