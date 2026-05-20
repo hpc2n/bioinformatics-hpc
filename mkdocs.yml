@@ -86,8 +86,7 @@ nav:
     - Containers on Kebnekaise: 7.software-modules-containers/containers-kebnekaise.md
     - Creating containers: 7.software-modules-containers/create-containers.md
   - Software from a Git repo: 
-    - Introduction: 8.software-git-install-compile/git-software.md
-    - Installing: 8.software-git-install-compile/git-install.md
+    - Installing from Git: 8.software-git-install-compile/git-software.md
   - The batch system (Slurm): 
     - Introduction: 9.batch-slurm/intro.md
     - Important commands: 9.batch-slurm/commands.md
