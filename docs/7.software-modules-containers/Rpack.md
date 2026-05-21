@@ -80,6 +80,42 @@ library("plyr")
 ```
 </div>
 
+### Packages not on R CRAN 
+
+HPC2N has the vast majority of packages from R CRAN installed, as well as many of the packages from Bioconductor. Asking for one that is not installed will usually mean we install it. 
+
+However, if you want to install a package yourself from Bioconductor you first need to install the BiocManager package. This is done from inside R: 
+
+```R
+# install the BiocManager from CRAN using the base R install.packages() function
+install.packages("BiocManager")
+```
+
+You can check if it works with this command: 
+
+```R
+# to make sure it worked, check the version
+BiocManager::version()
+```
+
+You can now install Bioconductor packages (<R-PACKAGE>) with this command (from inside R): 
+
+```R
+BiocManager::install("<R-PACKAGE>")
+```
+
+Other places that can have useful R packages are GitHub etc. You generally need to install ``devtools`` from CRAN first, and then possibly other dependencies. 
+
+```R
+install.packages("devtools") # if not installed
+```
+
+and then install the package
+
+```R
+devtools::install_github("<repo>/<package>")
+```
+
 ### More information
 
 For more information about installing and using your own packages see the offical <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html" target="_blank">FAQ</a> (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html" target="_blank">http://cran.r-project.org/doc/FAQ/R-FAQ.html</a>), particularly <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#How-can-add_002don-packages-be-installed_003f" target="_blank">How can add-on packages be installed</a> and <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#How-can-add_002don-packages-be-used_003f" target="_blank">How can add-on packages be used?</a>.
