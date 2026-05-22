@@ -102,6 +102,6 @@ Remember, if there are any prerequisites, you need to install those first!
 
 If the package is not on CRAN or you want the development version, or you for other reason want to install a package you downloaded, then this is how to install from the command line:
 
-$ R CMD INSTALL -l <path-to-R-package>/R-package.tar.gz
+``R CMD INSTALL -l <path-to-R-package>/R-package.tar.gz``
 
 NOTE that if you install a package this way, you need to handle any dependencies yourself.
