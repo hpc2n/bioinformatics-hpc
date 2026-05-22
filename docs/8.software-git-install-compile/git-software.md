@@ -23,10 +23,12 @@ If you want to install some software you have found on GitHub, the usual way to 
     1. Go to <a href="https://github.com/primer3-org/primer3" target="_blank">https://github.com/primer3-org/primer3</a>
     2. Click on the green "<> Code" button. Make sure it is set to "HTTPS" and then copy the url (click the small copy-symbol to the right of the url) and then open a terminal on Kebnekaise (or your own Linux computer if you are installing there) and type ``git clone https://github.com/primer3-org/primer3.git`` and press "enter". 
     3. After the repository has been cloned, it is time to follow the install instructions on the README. Do note that if you are on Kebnekaise you CANNOT do ``sudo apt-get install -y build-essential g++ cmake git-all`` as users do not have sudo access. That should not matter as those are already installed - but you need to load some modules. 
-    4. module load GCC/14.3.0 CMake/4.0.3 git/2.50.1
-    5. cd primer3/src
-    6. make
-    7. make test
+    4. ``module load GCC/14.3.0 CMake/4.0.3 git/2.50.1``
+    5. ``cd primer3/src``
+    6. ``make``
+    7. ``make test``
+
+    Then to run it on for instance the included example, from inside ``cd primer3/src`` do: ``./primer3_core ../example``
 
 ## R package from GitHub 
 
