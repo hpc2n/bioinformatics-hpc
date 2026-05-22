@@ -90,10 +90,11 @@ nav:
     - Installing from Git: 8.software-git-install-compile/git-software.md
   - The batch system (Slurm): 
     - Introduction: 9.batch-slurm/intro.md
-    - Important commands: 9.batch-slurm/commands.md
-    - Batch scripts: 9.batch-slurm/commands.md
-    - Monitoring your job: 9.batch-slurm/monitoring.md
-    - Batch script examples: 9.batch-slurm/batch-examples.md
+    - Batch system concepts: 9.batch-slurm/concepts.md
+    - Introduction to Slurm: 9.batch-slurm/slurm.md
+    - Interactive jobs: 9.batch-slurm/interactive.md
+    - Sample job scripts: 9.batch-slurm/jobscripts.md
+    - Monitoring and efficiency: 9.batch-slurm/monitoring.md
   - Accessing databases:
     - Introduction: 10.access-databases/intro.md   
   - Extras:
