@@ -12,7 +12,7 @@ Let us look at some examples.
 
 If you want to install some software you have found on GitHub, the usual way to do so is to clone the repository and then install it, following the description in the README file that is usually there. 
 
-!!! Example "Example: install 
+!!! Example "Example: install" 
 
     We are going to download and install ``primer3`` found on <a href="https://github.com/primer3-org/primer3" target="_blank">https://github.com/primer3-org/primer3</a>. 
 
