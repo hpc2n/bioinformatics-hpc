@@ -2,152 +2,40 @@
 
 ## Basic Serial Job
 
-In this section we discuss the running of a serial Python script using a couple of services as an example.   But first let's spend a few lines on partitions.
+In this section we discuss the running of a serial Python script using a couple of services as an example. But first let's spend a few lines on partitions.
 
 ### Partitions
 
-As discussed, not all compute nodes offered by a service are equal.  Nodes may offer different hardware (e.g. CPU type, amount of memory, number of GPUs or no GPU). There might also be differences on how the nodes are configured. To control that a job is placed on the correct kind of compute nodes, the nodes may be placed in partitions.  Many but not all services have a default partition.    
+As discussed, not all compute nodes offered by a service are equal.  Nodes may offer different hardware (e.g. CPU type, amount of memory, number of GPUs or no GPU). There might also be differences on how the nodes are configured. To control that a job is placed on the correct kind of compute nodes, the nodes may be placed in partitions.
 
 Information about partitions can usually be found with ``sinfo``. 
 
-=== "Tetralith"
+Even if there are several partitions, there is only a single partition, ``batch``, that users can submit jobs to. The system then figures out, based on requested features which actual partition(s) the job should be sent to.
 
-    All nodes are in a single partion. There is no need to specify a partition on Tetralith.
+Since there is only one partition available for users to submit jobs to, you should remove any use of ``#SBATCH -p`` you may have in your scripts. 
 
-=== "Dardel"
+Previously, the most common use of -p was for targeting the LargeMemory nodes, this is now done using a feature request like this: 
 
-    There is no default partition on Dardel.  One **always** has to specify a partion on Dardel.
+```bash
+#SBATCH -C largemem
+``` 
 
-    | Partition name | Node type         | Node sharing     |  Max job time |
-    |----------------|-------------------|------------------|---------------|
-    | **shared**     | Thin              | part of a node   | up to 7 days  |
-    | **main**       | Thin, large, huge | exclusive        | up to 24 h    |
-    | **long**       | Thin              | exclusive        | up to 7 days  |
-    | **memory**     | Large, huge, giant| exclusive        | up to 7 days  |
-    | **gpu**        | AMD GPU           | exclusive        | up to 24 h    |
-    | **gpugh**      | Nvidia Grace Hopper| exclusive       | up to 24 h    |
+In addition you need to have requested the largemem resource in your project. 
 
-    **Explanations**
+### Examples
 
-    - **exclusive** nodes: One gets all the cores, all the memory and all the GPUs of the requested nodes.  The allocation gets charged for all these resources consumed, including the 128 cores of the node.  **Don't use for serial jobs or small parallel jobs**
-    - **part of a node**: One can request any number of cores up to 128 cores using the **-n** and **-c** options of sbatch.  Your allocation gets charged for the number of requested cores.  **Use for serial jobs and small parallel jobs**
-
-
-=== "Cosmos"
-
-    On Cosmos at LUNARC you will be placed in the CPU partition by default.   If you need access to a GPU node, you need to select a partition.  Please visit the [LUNARC documentation on readthedocs.io](https://lunarc-documentation.readthedocs.io/en/latest/manual/submitting_jobs/manual_specifying_requirements/#accessing-gpus) for a detailed discussion.
-
-=== "Kebnekaise" 
-
-    There is only a single partition, ``batch``, that users can submit jobs to. The system then figures out, based on requested features which actual partition(s) the job should be sent to.
-
-    Since there is only one partition available for users to submit jobs to, you should remove any use of ``#SBATCH -p`` you may have in your scripts. 
-
-    Previously, the most common use of -p was for targeting the LargeMemory nodes, this is now done using a feature request like this: 
-
-    ```bash
-    #SBATCH -C largemem
-    ``` 
-
-### Examples by service
-
-Let's say you have a simple Python script called mmmult.py that creates 2 random-valued matrices, multiplies them together, and prints the shape of the result and the computation time. Let's also say that you want to run this code in your current working directory.  Here is how you can run that program utilising 1 core on 1 node on a number of services:
-
-=== "Tetralith"
-
-    ```bash
-    #!/bin/bash
-
-    # Set account 
-    #SBATCH -A <project ID> 
-
-    # Set the time 
-    #SBATCH -t 00:10:00
-
-    # ask for 1 core, serial running 
-    #SBATCH -n 1 # Asking for 1 core
-
-    # name output and error file
-    #SBATCH -o process_%j.out
-    #SBATCH -e process_%j.err
-
-    # write this script to stdout-file - useful for scripting errors
-    cat $0
-
-    # load a modern Python distribution and make NumPy available
-    module load buildenv-gcc/2023b-eb
-    module load Python/3.11.5 SciPy-bundle/2023.11
-
-    # Run your Python script
-    python mmmult.py
-    ```
-
-=== "Dardel"
-    
-    On Dardel you always have to specify a partition.
-
-     ```bash
-     #!/bin/bash
-     #SBATCH -A <project ID>       # Change to your own project
-     #SBATCH --time=00:10:00       # Asking for 10 minutes
-     #SBATCH -n 1                  # Asking for 1 core
-
-     #SBATCH -p shared             # ask to be placed in the shared partition
-
-     #SBATCH -o process_%j.out     # name the output file
-     #SBATCH -e process_%j.err     # name the error file
-
-     cat $0
-
-     # Load any modules you need, here for cray-python/3.11.7.
-     module load cray-python/3.11.7
-
-     # Run your Python script
-     python mmmult.py
-     ```
+Let's say you have a simple Python script called mmmult.py that creates 2 random-valued matrices, multiplies them together, and prints the shape of the result and the computation time. Let's also say that you want to run this code in your current working directory.  Here is how you can run that program utilising 1 core on 1 node: 
 
 === "Kebnekaise"
 
     ```bash
     #!/bin/bash
-    #SBATCH -A hpc2n2025-151 # Change to your own
+    #SBATCH -A <sysop> # Change to your own
     #SBATCH --time=00:10:00 # Asking for 10 minutes
     #SBATCH -n 1 # Asking for 1 core
 
     # Load any modules you need, here for Python/3.11.3 and compatible SciPy-bundle
     module load GCC/12.3.0 Python/3.11.3 SciPy-bundle/2023.07
-
-    # Run your Python script
-    python mmmult.py
-    ```
-
-=== "Cosmos"
-
-    ```bash
-    #!/bin/bash
-    #SBATCH -A luXXXX-Y-ZZ # Change to your own
-    #SBATCH --time=00:10:00 # Asking for 10 minutes
-    #SBATCH -n 1 # Asking for 1 core
-
-    # Load any modules you need, here for Python/3.11.5 and compatible SciPy-bundle
-    module load GCC/13.2.0 Python/3.11.5 SciPy-bundle/2023.11
-
-    # Run your Python script
-    python mmmult.py
-    ```
-
-=== "Pelle"
-
-    ```bash
-    #!/bin/bash -l
-    #SBATCH -A uppmaxXXXX-Y-ZZZ # Change to your own after the course
-    #SBATCH --time=00:20:00 # Asking for 20 minutes
-    #SBATCH -n 1 # Asking for 1 core
-
-    # Load any modules you need, here Python 3.12.3 
-    # and a compatible SciPy-bundle
-    module load Python/3.12.3-GCCcore-13.3.0
-    module load SciPy-bundle/2024.05-gfbf-2024a
 
     # Run your Python script
     python mmmult.py
@@ -182,8 +70,6 @@ Let's say you have a simple Python script called mmmult.py that creates 2 random
     print()
     print("Time elapsed for generating matrices and multiplying them is ", timeit.default_timer() - starttime)
     ```
-
-There is no example for Alvis since you should only use that for running GPU jobs. 
 
 ## OpenMP and shared memory programming
 
