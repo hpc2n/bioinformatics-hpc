@@ -161,13 +161,9 @@ The illustration shows 5 tasks being executed, with the time running from the to
 
     To start multiple copies of the same executable a special program, a so called **job launcher** is required.  Depending on the system and libraries used the name of the jobs launcher differs.
 
-In the following we have sample scripts for a number of services, including NAISS' Tetralith and Dardel services.   The sample script assumes an mpi executable name `integration2D_f90` in the submission directory.   The executable takes the problem size as a number as a command line argument.  In the example the problem size is 10000.
+In the following sample script it is assumed that an mpi executable name `integration2D_f90` in the submission directory.   The executable takes the problem size as a number as a command line argument.  In the example the problem size is 10000.
 
-=== "Tetralith"
-
-    On Tetralith, when using the job launcher `mpprun`, the user does not need to specify the compiler version and the version of the MPI library used to compile the application.  
-
-    Tetralith nodes have 32 cores.   One should aim to use multiples of 32 cores when running MPI workloads.   In this example we ask for 16 cores, which is 1/2 node.
+!!! note "Example MPI job"
 
     ```bash
     #!/bin/bash
@@ -178,8 +174,8 @@ In the following we have sample scripts for a number of services, including NAIS
     # Set the time 
     #SBATCH -t 00:10:00
 
-    # ask for 16 core, experiment for what works best 
-    #SBATCH -n 16
+    # ask for 14 core, experiment for what works best 
+    #SBATCH -n 14
 
     # name output and error file
     #SBATCH -o mpi_process_%j.out
@@ -188,82 +184,12 @@ In the following we have sample scripts for a number of services, including NAIS
     # write this script to stdout-file - useful for scripting errors
     cat $0
 
-    # Run your mpi_executable
-    mpprun ./integration2D_f90 10000
-    ```
-
-
-
-=== "Dardel"
-
-    The following is a script utilising 2 full nodes in the main partition, to run a code compiled by the user utilising the CRAY clang compiler.  
-    
-    This script utilises a total of 256 cores and even modest run times will be expensive by means of CPU hours for your allocation.  Scripts requesting multiple nodes are required by projects which have been allocated significant resourse and need to run large calculations to achieve their project goals.
-
-    ```bash
-    #!/bin/bash
-
-    # Set account 
-    #SBATCH -A <project ID> 
-
-    # Set the time, 
-    #SBATCH -t 00:10:00
-
-    # Using the Dardel's main partition
-    #SBATCH -p main
-
-    # ask for 256 cores located on 2 nodes, modify for your needs.
-
-    #SBATCH -N 2
-    #SBATCH --ntasks-per-node=128
-
-    # name output and error file
-    #SBATCH -o mpi_process_%j.out
-    #SBATCH -e mpi_process_%j.err
-
-    # write this script to stdout-file - useful for scripting errors
-    cat $0
-
-    # Loading a suitable module. Here for Cray programming environment etc.
-    module load PDC/24.11
+    # Load the toolchain you compiled with 
+    module load foss/2023b
 
     # Run your mpi_executable
-    srun ./mpi_hello
+    srun ./integration2D_f90 10000
     ```
-
-
-    The following is a script utilising part of a shared node, to run a code compiled by the user utilising the CRAY clang compiler.
-
-    ```bash        
-    #!/bin/bash
-
-    # Set account 
-    #SBATCH -A <project ID> 
-
-    # Set the time 
-    #SBATCH -t 00:10:00
-
-    # Using the Dardel shared partition
-    #SBATCH -p shared
-
-    # ask for 16 core on one node, modify for your needs.
-    #SBATCH -N 1
-    #SBATCH --ntasks-per-node=16
-
-    # name output and error file
-    #SBATCH -o mpi_process_%j.out
-    #SBATCH -e mpi_process_%j.err
-
-    # write this script to stdout-file - useful for scripting errors
-    cat $0
-
-    # Loading a suitable module. Here for Cray programming environment etc.
-    module load PDC/24.11
-
-    # Run your mpi_executable
-    srun ./integration2D_f90 100000
-    ```
-
 
 - Asking for whole nodes (``- N``) and possibly ``--tasks-per-node``
 - ``srun`` and ``mpirun`` should be interchangeable at many centres. Tetralith uses ``mpprun`` and Dardel uses ``srun``
