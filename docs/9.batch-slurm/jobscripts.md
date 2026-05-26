@@ -192,10 +192,9 @@ In the following sample script it is assumed that an mpi executable name `integr
     ```
 
 - Asking for whole nodes (``- N``) and possibly ``--tasks-per-node``
-- ``srun`` and ``mpirun`` should be interchangeable at many centres. Tetralith uses ``mpprun`` and Dardel uses ``srun``
+- ``srun`` and ``mpirun`` should be interchangeable. 
 - Remember, you need to load modules with MPI
 - At some centres ``mpirun --bind-to-core`` or ``srun --cpu-bind=cores`` is recommended for MPI jobs 
-- NOTE: Alvis is **only** used for GPU jobs
 
 ## Memory-intensive jobs 
 
@@ -256,103 +255,23 @@ module load <modules>
 ./myprogram
 ```
 
-**Remember**: if you are on Dardel, you also need to add a partition. 
-
-
-!!! note 
-
-    At some centres, you can also use ``#SBATCH --mem-per-cpu=<MEMORY>``. If you ask for more memory than is on one core, some cores will have to remain idle while only providing memory. You will also be charged for these cores, of course.
-
-    To see the amount of available memory per core, see the next section. 
-
 ### Memory availability 
 
-Another way of getting extra memory is to use nodes that have more memory. A useful command to identify how much memory is available on different nodes is `sinfo -o "%10P %20l %30N %10z %10c %20m %20f %20G"`. Here is an overview of some of the available nodes at the Swedish HPC centres: 
+Anoter way of getting extra memory is to use nodes that have more memory. A useful command to identify how much memory is available on different nodes is `sinfo -o "%10P %20l %30N %10z %10c %20m %20f %20G"`. Here is an overview of some of the available nodes on Kebnekaise:  
 
-=== "Tetralith"
-
-    | Type | RAM/node | RAM/core | cores/node | Requesting flag | 
-    | ---- | -------- | -------- | ---------- | --------------- |
-    | Intel Xeon Gold <br>6130 thin | 96 GB | 3 GB | 32 | ``-C thin --exclusive`` | 
-    | Intel Xeon Gold <br>6130 fat | 384 GB | 12 GB | 32 | ``-C fat --exclusive`` | 
-
-=== "Dardel"
-
-    | Type | RAM/node | RAM/core | cores/node | Partition | Available | Requesting flag |
-    | ---- | -------- | -------- | ---------- | --------- | --------- | ------------ |
-    | AMD EPYC™ <br>Zen2 Thin | 256 GB | 2 GB | 128 | main, shared, long | 227328 MB | |
-    | AMD EPYC™ <br>Zen2 Large | 512 GB | 4 GB | 128 | main, memory | 456704 MB | ``--mem=440GB`` |
-    | AMD EPYC™ <br>Zen2 Huge | 1 TB | 7.8 GB | 128 | main, memory | 915456 MB | ``--mem=880GB`` |
-    | AMD EPYC™ <br>Zen2 Giant | 2 TB | 15.6 GB | 128 | memory | 1832960 MB | ``--mem=1760GB`` |
-    | 4 x AMD Instinct™ <br>MI250X dual GPUs | 512 GB | 8 GB | 64 | gpu | 456704 MB | ``--mem=440GB`` |
-
-    On shared partitions you need to give number of cores and will get RAM equivalent for that
-
-=== "Alvis" 
-
-    | RAM | GPUs | Requesting flag | 
-    | --- | ---- | ------------ | 
-    | 768 | V100 (2) <br> V100 (4) <br> and a no GPU skylake | ``#SBATCH -C MEM768`` <br> ``#SBATCH --gpus-per-node=V100:[1-4]`` |
-    | 576 | T4 (8) | ``#SBATCH -C MEM576`` <br> ``#SBATCH --gpus-per-node=T4:[1-8]`` |
-    | **1536** | T4 (8) | ``#SBATCH -C MEM1536`` <br> ``#SBATCH --gpus-per-node=A40:[1-4]`` |
-    | **512** | A100 (4) <br> and a no GPU icelake | ``#SBATCH -C mem512`` <br> ``#SBATCH --gpus-per-node=A100:[1-4]`` |
-    | 256 | A40 (4, no IB) <br> A100 (4) | ``#SBATCH -C mem256`` and either <br> ``#SBATCH --gpus-per-node=A40[1-4]`` <br> or ``#SBATCH --gpus-per-node=A100[1-4]`` |
-    | 1024 | A100fat (4) | ``#SBATCH -C mem1024`` <br> ``#SBATCH --gpus-per-node=A100fat:[1-4]`` |
-
-    - **Note** be aware, though that you also need to ask for a GPU, as usual, unless you need the pre/post processing CPU nodes (``-C NOGPU``).
-    - You only really need to give the memory constraint for those bolded as the others follow from the GPU choice
-    - ``sinfo -o "%20N  %9P %4c  %24f  %50G"`` will give you a full list of all nodes and features 
-
-=== "Kebnekaise" 
-
-    | Type | RAM/core | cores/node | requesting flag |
-    | ---- | -------- | ---------- | --------------- |
-    | Intel Skylake | 6785 MB | 28 | ``-C skylake`` |
-    | AMD Zen3 | 8020 MB | 128 | ``-C zen3`` |
-    | AMD Zen4 | 2516 MB | 256 | ``-C zen4`` |
-    | V100 | 6785 MB | 28 | ``--gpus=<#num> -C v100`` |
-    | A100 | 10600 MB | 48 | ``--gpus=<#num> -C a100`` |
-    | MI100 | 10600 MB | 48 | ``--gpus=<#num> -C mi100`` |
-    | A6000 | 6630 MB | 48 | ``--gpus=<#num> -C a6000`` |
-    | H100 | 6630 MB | 96 | ``--gpus=<#num> -C h100`` |
-    | L40s | 11968 MB | 64 | ``--gpus=<#num> -C l40s`` |
-    | A40 | 11968 MB | 64 | ``--gpus=<#num> -C a40`` |
-    | Largemem | 41666 MB | 72 | ``-C largemem`` |
-
-=== "Cosmos" 
-
-    | Type | RAM/core | cores/node | requesting flag | 
-    | ---- | -------- | ---------- | --------------- |
-    | AMD 7413 | 5.3 GB | 48 | |  
-    | Intel / A100 | 12 GB | 32 | ``-p gpua100i``
-    | AMD / A100 | 10.7 GB | 48 | ``-p gpua100`` | 
-
-
-=== "Pelle" 
-
-    | Type | RAM/node | RAM/core | cores/node | requesting flag | 
-    | ---- | -------- | -------- | ---------- | --------------- | 
-    | AMD EPYC <br>9454P (Zen4) | 768 GB | 16 GB | 48 | ``-p pelle``
-    | AMD EPYC <br>9454P (Zen4) | 2 or 3 TB | 41.67 or 62.5 GB | 48 | ``-p fat`` | 
-    | 2xAMD EPYC <br>9124 (Zen4), 10xL40s | 384 GB | 12 GB | 32 | ``-p gpu --gpus=l40s:[1-10]`` | 
-    | 2xAMD EPYC <br>9124 (Zen4), 2xH100 | 384 GB | 12 GB | 32 | ``-p gpu --gpus=h100:[1-2]`` | 
-
-    In addition you can use all the Slurm options for memory: 
-
-    - ``--mem``
-    - ``--mem-per-cpu``
-    - ``--mem-per-gpu`` 
-
-    to specify memory requirements.
-
-
-!!! note "Pelle at UPPMAX" 
-
-    The compute node CPUs have Simultaneous multithreading (SMT) enabled. Each CPU core runs two Threads. In Slurm the Threads are referred to as CPUs. 
-
-    If you suspect SMT degrades the performance of your jobs, you can you can specify ``--threads-per-core=1`` in your job.
-
-    More information here: <a href="https://docs.uppmax.uu.se/cluster_guides/slurm_on_pelle/#smt" target="_blank">Simultaneous multi-threading</a>. 
+| Type | RAM/core | cores/node | requesting flag |
+| ---- | -------- | ---------- | --------------- |
+| Intel Skylake | 6785 MB | 28 | ``-C skylake`` |
+| AMD Zen3 | 8020 MB | 128 | ``-C zen3`` |
+| AMD Zen4 | 2516 MB | 256 | ``-C zen4`` |
+| V100 | 6785 MB | 28 | ``--gpus=<#num> -C v100`` |
+| A100 | 10600 MB | 48 | ``--gpus=<#num> -C a100`` |
+| MI100 | 10600 MB | 48 | ``--gpus=<#num> -C mi100`` |
+| A6000 | 6630 MB | 48 | ``--gpus=<#num> -C a6000`` |
+| H100 | 6630 MB | 96 | ``--gpus=<#num> -C h100`` |
+| L40s | 11968 MB | 64 | ``--gpus=<#num> -C l40s`` |
+| A40 | 11968 MB | 64 | ``--gpus=<#num> -C a40`` |
+| Largemem | 41666 MB | 72 | ``-C largemem`` |
 
 ## I/O intensive jobs 
 
@@ -361,13 +280,11 @@ Another way of getting extra memory is to use nodes that have more memory. A use
     This section comes with many caveats; it depends a lot on the type of job and the system. Often, if you are in the situation where you have an I/O intensive job, you need to talk to support as it will be very individualized. 
 
 - Not all systems offer node local discs
-    - The **Dardel** system does not offer node local discs.   The use of ``$SNIC_TMP``, ``$NAISS_TMP``and ``$TMPDIR`` is discouraged.  ``$SNIC_TMP`` and ``$NAISS_TMP`` do not offer a performance advantage over the project storage.   In addition they are not protected against name space conflicts by jobs submitted by the same user, which are running on different nodes.  ``$TMPDIR`` will utilise the node's RAM, which in most cases defeats the purpose of using ``$TMPDIR``.
 - In most cases, you should use the project storage
 - Centre-dependent. If needed you can use node-local disc for **single-node** jobs
     - Remember you need to copy data to/from the node-local scratch (``$SNIC_TMP``)! 
     - On some systems ``$TMPDIR`` also points to the node local disc
     - The environment variable ``$SLURM_SUBMIT_DIR`` is the directory you submitted from
-- On Tetralith, the data access between /home or /proj and GPU/CPU compute nodes are **not** suitable for I/O intensive jobs => use /scratch/local (``$SNIC_TMP``)
 
 
 ### Example 
@@ -443,7 +360,7 @@ cp -p mynewdata.dat $SLURM_SUBMIT_DIR
 
 !!! hint 
 
-    Try it! You can find the above script under any of the cluster resources folders in the exercise tarball. 
+    Try it! You can find the above script under the folders in the exercise tarball. 
 
 ### Some array comments 
 
