@@ -421,22 +421,13 @@ module load <MODULES>
 
    You can find a few example GPU batch scripts and corresponding programs in the cluster subfolders in the exercises tarball. 
 
-   Some of them requires installing some Python packages in a virtual environment. It is described in the ``.sh`` file for each 
-
-   - alvis, cosmos, kebnekaise, pelle, tetralith
-       - add-list.py, add-list.sh 
-       - pytorch_fitting_gpu.py, pytorch_fitting_gpu.sh
-       - integration2d_gpu.py, integration2d_gpu_shared.py, job-gpu.sh   
-   - dardel
-       - hello_world_gpu.cpp, hello_world_gpu.sh 
+- add-list.py, add-list.sh 
+- pytorch_fitting_gpu.py, pytorch_fitting_gpu.sh
+- integration2d_gpu.py, integration2d_gpu_shared.py, job-gpu.sh   
 
 ## Miscellaneous 
 
 There are many other types of jobs in Slurm. Here are a few more examples. 
-
-!!! note 
-
-    If you are on Dardel, you also need to add a partition. 
 
 ### Multiple serial jobs, simultaneously 
 
