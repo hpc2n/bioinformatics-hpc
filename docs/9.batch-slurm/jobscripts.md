@@ -91,122 +91,61 @@ in the script.  The number of cores to host the threads can be requested by usin
 
     Depending on how the service you are using is configured, you might be requesting logical cores, with multiple logical cores being placed on a single physical core.   This is called hyperthreading.  It is important to experiment whether placing threads on multiple logical cores of a physical core benefits or hinders the performance of your application.
 
-On most services it is not required to set the environment variable `OMP_NUM_THREADS` in your SLURM scripts.   If you are happy with the default of the service this will be picked up from your request with the `-c` option.  It typically uses all the cores you requested.
+    Kebnekaise is not using hyperthreading. 
 
-=== "Tetralith"
+In general, the environment variable `OMP_NUM_THREADS` will be picked up from your request with the `-c` option.  It typically uses all the cores you requested. To ensure that the right value is set, you can include this in your Slurm batch script 
 
-    Hyperthreading is not active on Tetralith.   By default a single thread is placed on each physical core.  In the following we give an example using thread binding, which typically benefits the performance.  When using binding one can easily modify how the theads are mapped onto the hardware.  This can be done by changing the value of the environment variable `OMP_PROC_BIND`.    It is advisable to experiment with the values **close** and **spread** for the binding.  This can be accomplished in the below script by commenting the unwanted option and uncommenting the wanted option.
+```bash
+# Set OMP_NUM_THREADS to the same value as -c
+# with a fallback in case it isn't set.
+# SLURM_CPUS_PER_TASK is set to the value of -c, but only if -c is explicitly set
+if [ -n "$SLURM_CPUS_PER_TASK" ]; then
+   omp_threads=$SLURM_CPUS_PER_TASK
+else
+omp_threads=1
+fi
+export OMP_NUM_THREADS=$omp_threads
+``` 
 
-    ```bash
-    #!/bin/bash
+This is an example of an OpenMP batch script for Kebnekaise, that asks for 28 cores. 
 
-    # Set account 
-    #SBATCH -A <project ID> 
+```bash 
+#!/bin/bash
+# Example with 28 cores for OpenMP
+#
+# Project/Account - change to your own 
+#SBATCH -A hpc2nXXXX-YYY
+#
+# Number of cores
+#SBATCH -c 28
+#
+# Runtime of this jobs is less then 12 hours.
+#SBATCH --time=12:00:00
+#
+# Clear the environment from any previously loaded modules
+module purge > /dev/null 2>&1
 
-    # Set the time, 
-    #SBATCH -t 00:10:00
+# Load the module environment suitable for the job - here foss/2021b 
+module load foss/2021b 
 
-    # ask for 8 core here, modify for your needs.
-    # When running OpenMP code on Tetralith one can ask up to 32 cores
-    #SBATCH -c 8
+# Set OMP_NUM_THREADS to the same value as -c
+# with a fallback in case it isn't set.
+# SLURM_CPUS_PER_TASK is set to the value of -c, but only if -c is explicitly set
+if [ -n "$SLURM_CPUS_PER_TASK" ]; then
+   omp_threads=$SLURM_CPUS_PER_TASK
+else
+omp_threads=1
+fi
+export OMP_NUM_THREADS=$omp_threads
 
-    # name output and error file
-    #SBATCH -o omp_process_%j.out
-    #SBATCH -e omp_process_%j.err
+./openmp_program
+```
 
-    # write this script to stdout-file - useful for scripting errors
-    cat $0
+If you wanted to run the above job, but only use some of the cores for running on (to perhaps use more memory than what is available on 1 core), you can submit with
 
-    # process binding is typically recommended.  Try what works best spread or close
-    #export OMP_PROC_BIND=spread
-    export OMP_PROC_BIND=close
-
-    # we bind to cores
-    export OMP_PLACES=cores
-
-    # Run your OpenMP executable
-    ./openmp_application
-    ```
-
-=== "Dardel"
-
-    On the shared partition of Dardel hyperthreading is engaged.  The shared partions is typically recommended to run application spawning threads, such as those parallelised using OpenMP.  Different compilers react differently to hyperthreading, in particular in combination with thread binding.
-
-    Using the `-c` option of `sbatch` you request a number of logical cores for your run.   There are two logical cores per physical core, which is called hyperthreading.   With this line commented, the script will place two threads on each physical core.  One thread for each logical core.
-
-    We start with a submission script for the **CRAY clang compiler**.  It is advisable to experiment with **close** and **spread** binding, as well as binding to **cores** or **threads**.  Binding to cores will not utilise hyperthreading, while binding to threads does.  For each of the two options we have provided the relevant lines in the script.  Comment of uncomment to explore what give best performance for your application.
-
-    ```bash
-    #!/bin/bash
-
-    # Project id - change to your own!
-    #SBATCH -A <proj-id>
-
-    # Number of cores per tasks
-    # The number of physical cores is half that number
-    #SBATCH -c 8 
-
-    # Asking for a walltime of 5 min on the shared partition
-    #SBATCH --time=00:05:00
-    #SBATCH -p shared 
-
-    #SBATCH -o process_omp_%j.out  
-    #SBATCH -e process_omp_%j.err 
-
-    cat $0
-
-    # Load a compiler toolchain so we can run an OpenMP program
-    module load cpe/24.11
-    
-    # process binding is typically recommended.  Try what works best spread or close
-    # export OMP_PROC_BIND=spread
-    export OMP_PROC_BIND=close
-
-    # we bind to cores - this disengages hyper-threading
-    export OMP_PLACES=cores
-    # we bind to threads - this engages hyper-threading
-    # export OMP_PLACES=threads
-
-    ./openmp_application
-    ```
-
-    If your application has been compiled using GCC 13.2, the following script should work.  Again one should explore the effect of close or spread binding.  If you want to disengage Hyperthreading, uncomment the line setting the **OMP_NUM_THREADS** environment variable.  
-
-    ```bash
-    #!/bin/bash
-
-    # Project id - change to your own!
-    #SBATCH -A <proj-id>
-
-    # Number of cores per tasks
-    #SBATCH -c 8 
-
-    # Asking for a walltime of 5 min
-    #SBATCH --time=00:05:00
-    #SBATCH -p shared 
-    
-    #SBATCH -o process_omp_%j.out  
-    #SBATCH -e process_omp_%j.err 
-
-    cat $0
-
-    # Load a compiler toolchain so we can run an OpenMP program
-    module load gcc-native/13.2
-
-    # process binding is typically recommended.  Try what works best spread or close
-    #export OMP_PROC_BIND=spread
-    export OMP_PROC_BIND=close
-
-    # we bind to cores
-    export OMP_PLACES=cores
-
-    # if we want to have a single thread per core and ignor hyperthreading, un-comment the below
-    # export OMP_NUM_THREADS=$(($SLURM_CPUS_PER_TASK/2))
-
-    ./openmp_application
-    ```
-
-- Remember, Alvis is only for GPU jobs 
+```bash
+sbatch -c 14 MYJOB.sh 
+```
 
 ## Applications using MPI
 
@@ -214,7 +153,7 @@ Some form of message passing is required when utilising multiple nodes for a sim
 
 The illustration shows 5 tasks being executed, with the time running from the top to the bottom.  At the beginning, data (e.g. read from an input file) is distributed from task 0 to the other tasks, indicated by the blue arrows.  Following this, the tasks exchange data at regular intervals.   In a real application the communication patterns are typically more complex than this.
 
-![mpi illustration](./images/mpi_illustration.png){: style="width: 500px;float: right"}
+![mpi illustration](../images/mpi_illustration.png){: style="width: 500px;float: right"}
 
 !!! Important
 
