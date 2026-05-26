@@ -379,162 +379,44 @@ cp -p mynewdata.dat $SLURM_SUBMIT_DIR
 
 ## GPU jobs 
 
-There are some differences between the centres in Sweden what type of GPUs they have. The command `sinfo -o "%10P %20l %30N %10z %10c %20m %20f %20G" | grep gpu` is very useful as well to identify the GPUs available on a cluster. 
+Kebnekaise has many different type of GPUs. The command `sinfo -o "%10P %20l %30N %10z %10c %20m %20f %20G" | grep gpu` is very useful as well to identify the GPUs available on a cluster. 
 
-| Resource | cores/node | RAM/node | GPUs, type (per node) | 
+| cores/node | RAM/node | GPUs, type (per node) | 
 | -------- | ---------- | -------- | ---- |
-| Tetralith | 32 | 96-384 GB | Nvidia T4 GPUs (1) | 
-| Dardel | 128 | 256-2048 GB | 4 AMD Instinct™ MI250X (2) | 
-| Alvis | 16 (skylake 2xV100), <br>32 (skylake 4xV100, 8xT4), <br>64 (icelake 4xA40, <br>4xA100) | 256-1024 GB | Nvidia v100 (2), <br>v100 (4), <br>T4 (8), <br>A40 (4), <br>A100 (4) |
-| Kebnekaise | 28 (skylake), <br>72 (largemem), <br>128/256 (Zen3/Zen4) | 128-3072 GB | NVidia v100 (2), <br>NVidia a100 (2), <br>NVidia a6000 (2), <br>NVidia l40s (2 or 6), <br>NVidia H100 (4), <br>NVidia A40 (8), <br>AMD MI100 (2) |
-| Cosmos | 32 (Intel) or 48 (AMD) | 256-512 GB | A100 |
-| Pelle | 32 | 384 GB | L40s (10), H100 (2) | 
-
-- Alvis also has a small number of nodes without GPUs, for heavy-duty pre- and post-processing that does not require a GPU. To use, specify the constraint ``-C NOGPU`` in your Slurm script.
+| 28 (skylake), <br>72 (largemem), <br>128/256 (Zen3/Zen4) | 128-3072 GB | NVidia v100 (2), <br>NVidia a100 (2), <br>NVidia a6000 (2), <br>NVidia l40s (2 or 6), <br>NVidia H100 (4), <br>NVidia A40 (8), <br>AMD MI100 (2) |
 
 ### Allocating a GPU 
 
-This is the most different of the Slurm settings, between centers.
+This is how you allocate a GPU on Kebnekaise.
 
-| Resource | batch settings | Comments |
-| -------- | -------------- | -------- |
-| Tetralith | ``#SBATCH -n 1``<br>``#SBATCH -c 32``<br>``#SBATCH --gpus-per-task=1`` | |
-| Dardel    | ``#SBATCH -N 1``<br>``#SBATCH --ntasks-per-node=1``<br>``#SBATCH -p gpu`` | |
-| Alvis | ``#SBATCH -p alvis``<br>``#SBATCH -N <nodes>``<br>``#SBATCH --gpus-per-node=<type>:x`` | - no node-sharing on multi-node jobs<br>(``--exclusive`` is automatic)<br>- Requesting -N 1 does not mean 1 full node<br>- type is V100, A40, A100, or A100fat<br>- x is number of GPUs, 1-4 | 
-| Cosmos | ``#SBATCH -p gpua100``<br>``#SBATCH --gres=gpu:1`` | |
-| Kebnekaise | ``#SBATCH --gpus=x``<br>``#SBATCH -C <type>`` | - type is the type of GPU in lower case<br>- x is the number of that type of GPU.<br>See above table for both | 
-| Pelle | ``-p gpu --gpus=<type>:x`` | - type is the type of GPU in lower case<br> - x is the number of that type of GPU.<br>See above table for both | 
+| batch settings | Comments |
+| -------------- | -------- |
+| ``#SBATCH --gpus=x``<br>``#SBATCH -C <type>`` | - type is the type of GPU in lower case<br>- x is the number of that type of GPU.<br>See above table for both | 
 
 ### Example GPU scripts 
 
 This shows a simple GPU script, asking for 1 or 2 cards on a single node. 
 
-=== "Tetralith"
+```bash 
+#!/bin/bash
+#SBATCH -A hpc2nXXXX-YYY # Change to your own project ID
+#Asking for runtime: hours, minutes, seconds. At most 1 week
+#SBATCH -t HHH:MM:SS
+# Ask for GPU resources. You pick type as one of the ones shown above
+# and how many cards you want, at most as many as shown above. Here 2 L40s
+#SBATCH --gpus:2
+#SBATCH -C l40s
+# Writing output and error files
+SBATCH --output=output%J.out
+#SBATCH --error=error%J.error
 
-    ```bash 
-    #!/bin/bash
-    # Remember to change this to your own project ID!
-    #SBATCH -A naissXXXX-YY-ZZZ
-    # Asking for runtime: hours, minutes, seconds. At most 1 week
-    #SBATCH --time=HHH:MM:SS
-    # Ask for resources, including GPU resources
-    #SBATCH -n 1
-    #SBATCH -c 32
-    #SBATCH --gpus-per-task=1
-    # Writing output and error files
-    #SBATCH --output=output%J.out
-    #SBATCH --error=error%J.error
-
-    # Load any needed GPU modules and any prerequisites 
-    module load <MODULES> 
+# Purge unneeded modules. Load any needed GPU modules and any prerequisites
+ml purge > /dev/null 2>&1
+module load <MODULES>
    
-    <run-my-GPU-code> 
-    ```
-
-=== "Dardel" 
-    
-    ```bash 
-    #!/bin/bash -l
-    # Remember to change this to your own project ID!
-    #SBATCH -A naissXXXX-YY-ZZZ
-    # Asking for runtime: hours, minutes, seconds. At most 1 week
-    #SBATCH --time=HHH:MM:SS
-    # Ask for resources, including GPU resources
-    #SBATCH -N 1
-    #SBATCH --ntasks-per-node=1
-    #SBATCH -p gpu
-    # Writing output and error files
-    #SBATCH --output=output%J.out
-    #SBATCH --error=error%J.error
-
-    # Load any needed GPU modules and any prerequisites
-    module load <MODULES>
-
-    <run-my-GPU-code - REMEMBER NOT NVIDIA/CUDA!> 
-    ```
-
-=== "Alvis" 
-
-    ```bash 
-    #!/bin/bash
-    # Remember to change this to your own project ID!
-    #SBATCH -A naissXXXX-YY-ZZZ
-    #SBATCH -t HHH:MM:SS
-    #SBATCH -p alvis
-    #SBATCH -N 1 --gpus-per-node=T4:4
-    # Writing output and error files
-    #SBATCH --output=output%J.out
-    #SBATCH --error=error%J.error
-
-    # Load any needed GPU modules and any prerequisites
-    module load <MODULES>
-   
-    <run-my-GPU-code>
-    ``` 
-
-=== "Kebnekaise" 
-
-    ```bash 
-    #!/bin/bash
-    #SBATCH -A hpc2nXXXX-YYY # Change to your own project ID
-    #Asking for runtime: hours, minutes, seconds. At most 1 week
-    #SBATCH -t HHH:MM:SS
-    # Ask for GPU resources. You pick type as one of the ones shown above
-    # and how many cards you want, at most as many as shown above. Here 2 L40s
-    #SBATCH --gpus:2
-    #SBATCH -C l40s
-    # Writing output and error files
-    #SBATCH --output=output%J.out
-    #SBATCH --error=error%J.error
-
-    # Purge unneeded modules. Load any needed GPU modules and any prerequisites
-    ml purge > /dev/null 2>&1
-    module load <MODULES>
-   
-    <run-my-GPU-code>
-    ```
+<run-my-GPU-code>
+```
                        
-=== "Cosmos" 
- 
-    ```bash 
-    #!/bin/bash
-    # Remember to change this to your own project ID!
-    #SBATCH -A luXXXX-Y-ZZ
-    # Asking for runtime: hours, minutes, seconds. At most 1 week
-    #SBATCH --time=HHH:MM:SS
-    # Ask for GPU resources - x is how many cards, 1 or 2
-    #SBATCH -p gpua100
-    #SBATCH --gres=gpu:1
-    # Writing output and error files
-    #SBATCH --output=output%J.out
-    #SBATCH --error=error%J.error
-
-    # Remove any loaded modules and load the GPU modules and prerequisites ones we need
-    module purge  > /dev/null 2>&1
-    module load <MODULES> 
-
-    <run-my-GPU-code>
-    ```
-
-=== "Pelle" 
-
-    ```bash 
-    #!/bin/bash -l
-    #SBATCH -A uppmaxXXXX-Y-ZZZZ # Change to your own! 
-    #Asking for runtime: hours, minutes, seconds. At most 1 week
-    #SBATCH -t HHH:MM:SS
-    #SBATCH -p gpu
-    #SBATCH --gpus:l40s:1
-    # Writing output and error files
-    #SBATCH --output=output%J.out
-    #SBATCH --error=error%J.error
-
-    # Load the GPU modules we need
-    module load <MODULES>                     
-                        
-    <run-my-GPU-code>
-    ```
-
 !!! hint
 
    You can find a few example GPU batch scripts and corresponding programs in the cluster subfolders in the exercises tarball. 
