@@ -161,6 +161,24 @@ for general-purpose and sequential computing, supported by mature software ecosy
 are especially promising for low-power tasks such as sensory processing, pattern recognition, and real-time edge inference, 
 where conventional clock-driven computing is often inefficient.
 
+### Quantum Computers
+
+Quantum computers are computing systems that use the principles of quantum mechanics to process information differently from 
+classical computers. In a traditional **Von Neumann architecture**, computation relies on bits stored in memory and processed 
+by a central processing unit (CPU). Classical bits can only take the values **0** or **1**. In contrast, quantum computers use 
+**qubits**, which can exist in superpositions of states, enabling them to represent multiple possibilities simultaneously. 
+Quantum computation also relies on **entanglement** and **quantum interference**, allowing qubits to share correlations and 
+enhance correct computational outcomes.
+
+Although quantum computers share some similarities with classical systems—such as storing information, executing operations, 
+and producing outputs—they do not follow the conventional separation between memory and processor found in Von Neumann machines. 
+Instead, computations are performed through quantum gates acting directly on qubit states. Quantum computers are especially 
+powerful because some problems that are extremely difficult for classical computers can be solved more efficiently with quantum 
+algorithms. For example, **Shor’s algorithm** accelerates integer factorization, while **Grover’s algorithm** speeds up search problems. 
+Quantum computing is also highly promising for simulating molecules, materials, and complex optimization problems. While scalable 
+fault-tolerant quantum computers are still under development, their potential impact on science, chemistry, finance, cryptography, 
+and artificial intelligence makes them one of the most important emerging technologies today.
+
 
 # What Is a CPU?
 
