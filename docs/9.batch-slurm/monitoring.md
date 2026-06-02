@@ -4,10 +4,10 @@ This section looks at how to monitor your job(s), including to see if they are e
 
 Many of the relevant commands have already been discussed in previous parts: 
 
-- `squeue`: for viewing the state of the batch queue. More here: <a href="https://uppmax.github.io/NAISS_Slurm/slurm/#squeue" target="_blank">https://uppmax.github.io/NAISS_Slurm/slurm/#squeue</a>
-- `scancel`: to cancel a job. More info here: <a href="https://uppmax.github.io/NAISS_Slurm/slurm/#scancel" target="_blank">https://uppmax.github.io/NAISS_Slurm/slurm/#scancel</a>
-- `sinfo`: information about the partitions/queues. More info here: <a href="https://uppmax.github.io/NAISS_Slurm/slurm/#sinfo" target="_blank">https://uppmax.github.io/NAISS_Slurm/slurm/#sinfo</a>
-- `scontrol show job`: lots of information about a job. More info here: <a href="https://uppmax.github.io/NAISS_Slurm/slurm/#scontrol__show__job" target="_blank">https://uppmax.github.io/NAISS_Slurm/slurm/#scontrol__show__job</a>
+- `squeue`: for viewing the state of the batch queue. More here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#squeue" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#squeue</a>
+- `scancel`: to cancel a job. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scancel" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scancel</a>
+- `sinfo`: information about the partitions/queues. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#sinfo" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#sinfo</a>
+- `scontrol show job`: lots of information about a job. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scontrol__show__job" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scontrol__show__job</a>
 
 But there are several others that have either not been mentioned or only done so briefly, including `sacct`, `projinfo`, `sshare`` and a number of center specific commands. We will look more into all of them here. 
 
@@ -38,20 +38,9 @@ Now let us look at some of the commands that are generally available, as well as
 
 Most up-to-date project usage on a project's SUPR page, linked from here: <a href="https://supr.naiss.se/project/" target="_blank">https://supr.naiss.se/project/</a>
 
-### Site-specific commands 
+### Site-specific (Kebnekaise) commands 
 
-| Command | What | Cluster | 
-| ------- | ---- | ------ |
-| ``jobinfo``| wrapper around ``squeue`` | Bianca, Cosmos, Alvis |
-| ``jobstats -p JOBID`` | CPU and memory use of finished job (> 5 min) in a plot | Bianca |
-| ``job_stats.py`` | link to Grafana dashboard with overview of your running jobs. Add ``JOBID`` for real-time usage of a job | Alvis |
-| ``job-usage JOBID`` | grafana graphics of resource use for job (> few minutes) | Kebnekaise |
-| ``jobload JOBID`` | show cpu and memory usage in a job | Tetralith |
-| ``jobsh NODE`` | login to node, run "top" | Tetralith |
-| ``seff JOBID`` |  displays memory and CPU usage from job run | Tetralith, Dardel | 
-| ``lastjobs`` | lists 10 most recent job in recent 30 days | Tetralith |
-| <a href="https://pdc-web.eecs.kth.se/cluster_usage/" target="_blank">https://pdc-web.eecs.kth.se/cluster_usage/</a> | Information about project usage | Dardel |
-| <a href="https://grafana.c3se.chalmers.se/d/user-jobs/user-jobs" target="_blank">https://grafana.c3se.chalmers.se/d/user-jobs/user-jobs</a> | Grafana dashboard for user jobs | Alvis |
-| <a href="https://www.nsc.liu.se/support/batch-jobs/tetralith/monitoring/" target="_blank">https://www.nsc.liu.se/support/batch-jobs/tetralith/monitoring/</a> | Job monitoring | Tetralith |
-| <a href="https://docs.uppmax.uu.se/software/jobstats/" target="_blank">https://docs.uppmax.uu.se/software/jobstats/</a> | Job efficiency | Bianca |
+| Command | What |  
+| ------- | ---- | 
+| ``job-usage JOBID`` | grafana graphics of resource use for job (> few minutes) | 
 

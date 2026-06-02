@@ -6,7 +6,7 @@ A batch system provides a mechanism register (submit) your computational jobs (p
 
 In the following animation we illustrate how a batch system might execute jobs.   Imagine a system with 4 nodes, 8 cores each.
 
-![queue_animation](./images/queueanimation.gif){: style="width: 947px}
+![queue_animation](../images/queueanimation.gif){: style="width: 947px}
 
 ## Description of the animation
 

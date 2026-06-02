@@ -1,15 +1,10 @@
 # Introduction to Slurm
 
-The batch system used at UPPMAX, HPC2N, LUNARC, NSC, PDC, C3SE (and most other HPC centres in Sweden) is called Slurm.
+The batch system used at HPC2N (and most other HPC centres in Sweden) is called Slurm.
 
 !!! note "Guides and documentation"
 
     - HPC2N: <a href="https://docs.hpc2n.umu.se/documentation/batchsystem/intro/" target="_blank">https://docs.hpc2n.umu.se/documentation/batchsystem/intro/</a>
-    - UPPMAX: <a href="https://docs.uppmax.uu.se/cluster_guides/slurm/" target="_blank">https://docs.uppmax.uu.se/cluster_guides/slurm/</a>
-    - LUNARC: <a href="https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_intro/" target="_blank">https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_intro/</a>
-    - NSC: <a href="https://www.nsc.liu.se/support/batch-jobs/introduction/" target="_blank">https://www.nsc.liu.se/support/batch-jobs/introduction/</a>
-    - PDC: <a href="https://support.pdc.kth.se/doc/run_jobs/job_scheduling/" target="_blank">https://support.pdc.kth.se/doc/run_jobs/job_scheduling/</a>
-    - C3SE: <a href="https://www.c3se.chalmers.se/documentation/submitting_jobs/" target="_blank">https://www.c3se.chalmers.se/documentation/submitting_jobs/</a>
 
 Slurm is an Open Source job scheduler, which provides three key functions:
 
@@ -63,10 +58,10 @@ For any batch submit script ``<batchscript.sh>``.
 
 !!! note
 
-    - At clusters that have OpenOnDemand installed, you do not have to submit a batch job, but can run directly on the already allocated resources (see interactive jobs).
+    - At clusters that have OpenOnDemand installed, like Kebnekaise, you do not have to submit a batch job, but can run directly on the already allocated resources (see interactive jobs).
         - OpenOnDemand is a good option for interactive tasks, graphical applications/visualization, and simpler job submittions. It can also be more user-friendly.
         - Regardless, there are many situations where submitting a batch job is the best option instead, including when you want to run jobs that need many resources (time, memory, multiple cores, multiple GPUs) or when you run multiple jobs concurrently or in a specified succession, without need for manual intervention. Batch jobs are often also preferred for automation (scripts) and reproducibility. Many types of application software fall into this category.
-    - At clusters that have ThinLinc you can usually submit MATLAB jobs to compute resources from within MATLAB.
+    - At clusters that have ThinLinc, like Kebnekaise, you can also submit MATLAB jobs to compute resources from within MATLAB.
 
 We will talk much more about batch scripts in a short while, but for now we can use <a href="../simple.sh" target="_blank">this small batch script</a> for testing the Slurm commands:
 
@@ -90,8 +85,6 @@ echo "What is the hostname? It is this: "
 
     REMEMBER TO CHANGE THE PROJECT ID TO YOUR OWN! 
 
-    - If you are on Dardel, you also need to add a partition in order to make it run. Use the "dardel-simple.sh" from the tarball in that case. 
-
     ??? hint "Checking for Slurm project IDs valid for your user"
         From the terminal, you can ask Slurm for project IDs currently
         associated with your user with the command `projinfo`, on most clusters.
@@ -103,11 +96,11 @@ echo "What is the hostname? It is this: "
 
 **Example**:
 
-Submitting the above batch script on Tetralith (NSC)
+Submitting the above batch script on Kebnekaise
 
 ```bash
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194426
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44976964
 ```
 
 As you can see, you get the job id when submitting the batch script.
@@ -130,7 +123,7 @@ If you just give the command, you will get a long list of all jobs in the queue,
 **Example**:
 
 ```bash
-b-an01 [~]$ squeue --me
+b-cn1613 [~]$ squeue --me
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
           34815904   cpu_sky mpi_gree bbrydsoe  R       0:00      1 b-cn1404
           34815905   cpu_sky mpi_hell bbrydsoe  R       0:00      2 b-cn[1404,1511]
@@ -175,32 +168,26 @@ List above from <a href="https://slurm.schedmd.com/squeue.html" target="_blank">
 Submit the "simple.sh" script several times, then do ``squeue --me`` to see that it is running, pending, or completing.
 
 ```bash
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194596
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194597
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194598
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194599
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194600
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194601
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194602
-[x_birbr@tetralith3 ~]$ sbatch simple.sh
-Submitted batch job 45194603
-[x_birbr@tetralith3 ~]$ squeue --me
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44977154
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44977157
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44977158
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44977159
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44977160
+b-cn1613 [~]$ sbatch simple.sh 
+Submitted batch job 44977164
+b-cn1613 [~]$ squeue --me
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-          45194603 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194602 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194601 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194600 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194599 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194598 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194597 tetralith simple.s  x_birbr PD       0:00      1 (None)
-          45194596 tetralith simple.s  x_birbr PD       0:00      1 (None)
+          44977159  cpu_zen4 simple.s bbrydsoe CG       0:02      1 b-cn1704
+          44977154  cpu_zen4 simple.s bbrydsoe CG       0:02      1 b-cn1704
+          44977157  cpu_zen4 simple.s bbrydsoe CG       0:02      1 b-cn1704
+          44977158  cpu_zen4 simple.s bbrydsoe  R       0:02      1 b-cn1704
+          44977160  cpu_zen4 simple.s bbrydsoe  R       0:02      1 b-cn1703
+          44977164  cpu_zen4 simple.s bbrydsoe PD       0:00      1 (None)
 ```
 
 !!! hint
@@ -244,49 +231,49 @@ scontrol show job <job id>
 **Example**:
 
 ```bash
-b-an01 [~]$ scontrol show job 34815931
-JobId=34815931 JobName=compiler-run
+b-cn1613 [~]$ scontrol show job 44977164
+JobId=44977164 JobName=simple.sh
    UserId=bbrydsoe(2897) GroupId=folk(3001) MCS_label=N/A
-   Priority=2748684 Nice=0 Account=staff QOS=normal
+   Priority=2954545 Nice=0 Account=sysop QOS=normal
    JobState=COMPLETED Reason=None Dependency=(null)
    Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
-   RunTime=00:00:07 TimeLimit=00:10:00 TimeMin=N/A
-   SubmitTime=2025-06-24T11:36:32 EligibleTime=2025-06-24T11:36:32
-   AccrueTime=2025-06-24T11:36:32
-   StartTime=2025-06-24T11:36:32 EndTime=2025-06-24T11:36:39 Deadline=N/A
-   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2025-06-24T11:36:32 Scheduler=Main
-   Partition=cpu_zen4 AllocNode:Sid=b-an01:626814
+   RunTime=00:00:02 TimeLimit=00:01:00 TimeMin=N/A
+   SubmitTime=2026-05-26T11:01:05 EligibleTime=2026-05-26T11:01:05
+   AccrueTime=2026-05-26T11:01:05
+   StartTime=2026-05-26T11:01:05 EndTime=2026-05-26T11:01:07 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-05-26T11:01:05 Scheduler=Main
+   Partition=cpu_zen4 AllocNode:Sid=b-cn1613:996734
    ReqNodeList=(null) ExcNodeList=(null)
-   NodeList=b-cn[1703,1705]
+   NodeList=b-cn1703
    BatchHost=b-cn1703
-   NumNodes=2 NumCPUs=12 NumTasks=12 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
-   ReqTRES=cpu=12,mem=30192M,node=1,billing=12
-   AllocTRES=cpu=12,mem=30192M,node=2,billing=12
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=6785M,node=1,billing=1
+   AllocTRES=cpu=1,mem=2516M,node=1,billing=1
    Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
    MinCPUsNode=1 MinMemoryCPU=2516M MinTmpDiskNode=0
    Features=(null) DelayBoot=00:02:00
    OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
-   Command=/pfs/proj/nobackup/fs/projnb10/support-hpc2n/bbrydsoe/intro-course/hands-ons/3.usage/compile-run.sh
-   WorkDir=/pfs/proj/nobackup/fs/projnb10/support-hpc2n/bbrydsoe/intro-course/hands-ons/3.usage
-   StdErr=/pfs/proj/nobackup/fs/projnb10/support-hpc2n/bbrydsoe/intro-course/hands-ons/3.usage/slurm-34815931.out
+   Command=/pfs/stor10/users/home/b/bbrydsoe/simple.sh
+   WorkDir=/pfs/stor10/users/home/b/bbrydsoe
+   StdErr=/pfs/stor10/users/home/b/bbrydsoe/slurm-44977164.out
    StdIn=/dev/null
-   StdOut=/pfs/proj/nobackup/fs/projnb10/support-hpc2n/bbrydsoe/intro-course/hands-ons/3.usage/slurm-34815931.out
+   StdOut=/pfs/stor10/users/home/b/bbrydsoe/slurm-44977164.out
    Power=
 ```
 
 Here you get much interesting information:
 
 - **JobState=COMPLETED**: the job was completed and was not FAILED. It could also have been PENDING or COMPLETING
-- **RunTime=00:00:07**: the job ran for 7 seconds
-- **TimeLimit=00:10:00**: It could have run for up to 10 min (what you asked for)
-- **SubmitTime=2025-06-24T11:36:32**: when your job was submitted
-- **StartTime=2025-06-24T11:36:32**: when the job started
+- **RunTime=00:00:02**: the job ran for 2 seconds
+- **TimeLimit=00:01:00**: It could have run for up to 1 min (what you asked for)
+- **SubmitTime=2026-05-26T11:01:05**: when your job was submitted
+- **StartTime=2026-05-26T11:01:05**: when the job started
 - **Partition=cpu_zen4**: what partition/type of node it ran on
-- **NodeList=b-cn[1703,1705]**: which specific nodes it ran on
+- **NodeList=b-cn1703**: which specific node(s) it ran on
 - **BatchHost=b-cn1703**: which of the nodes (if several) that was the master
-- **NumNodes=2 NumCPUs=12 NumTasks=12 CPUs/Task=1**: number of nodes, cpus, tasks
-- **WorkDir=/pfs/proj/nobackup/fs/projnb10/support-hpc2n/bbrydsoe/intro-course/hands-ons/3.usage**: which directory your job was submitted from/was running in
-- **StdOut=/pfs/proj/nobackup/fs/projnb10/support-hpc2n/bbrydsoe/intro-course/hands-ons/3.usage/slurm-34815931.out**: which directory the output files will be placed in
+- **NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1**: number of nodes, cpus, tasks
+- **WorkDir=/pfs/stor10/users/home/b/bbrydsoe**: which directory your job was submitted from/was running in
+- **StdOut=/pfs/stor10/users/home/b/bbrydsoe/slurm-44977164.out**: which directory the output files will be placed in and their name(s) 
 
 The command ``scontrol show job <job id>`` can be run also while the job is pending, and can be used to get an estimate of when the job will start. Actual start time depends on the jobs priority, any other (people's) jobs starting and completing and being submitted, etc.
 
@@ -305,7 +292,7 @@ This command is used to get information about a specific node. You can for insta
 This is for one of the AMD Zen4 nodes at Kebnekaise, HPC2N.
 
 ```bash
-b-an01 [~]$ scontrol show node b-cn1703
+b-cn1613 [~]$ scontrol show node b-cn1703
 NodeName=b-cn1703 Arch=x86_64 CoresPerSocket=128 
    CPUAlloc=253 CPUEfctv=256 CPUTot=256 CPULoad=253.38
    AvailableFeatures=rack17,amd_cpu,zen4
@@ -331,18 +318,37 @@ The command ``sinfo`` gives you information about the partitions/queues.
 
 **Example**:
 
-This is for Tetralith, NSC
+This is for Kebnekaise, HPC2N
 
 ```bash
-[x_birbr@tetralith3 ~]$ sinfo
-PARTITION  AVAIL  TIMELIMIT  NODES  STATE NODELIST
-tetralith*    up 7-00:00:00      1   plnd n1541
-tetralith*    up 7-00:00:00     16 drain* n[237,245,439,532,625,646,712,759-760,809,1290,1364,1455,1638,1847,1864]
-tetralith*    up 7-00:00:00      3  drain n[13,66,454]
-tetralith*    up 7-00:00:00     20   resv n[1-4,108,774,777,779-780,784-785,788,1109,1268,1281-1285,1288]
-tetralith*    up 7-00:00:00    327    mix n[7,39-40,46,50,69-70,75,78,85,91-93,97,112,119,121,124,126,128,130-134,137,139,141,149-150,156,159,164,167-168,170,174,184,187-188,190,193,196,203,206,208,212,231,241,244,257,259,262,267,280,287,293-294,310,315,323,327,329,333,340,350,352,371,377,379-381,385,405,420-422,434,441,446,465,467,501,504-505,514,524,529,549,553,558,561,564,573,575,602,610,612,615,617,622-623,626-627,631,637,651,662,671,678,691-692,699,703,709,718,720,723,726,741,745,752,754-755,768,776,781,790,792-793,803-804,808,818,853,855,859,863,867,881,883,915,925,959,966,974,981,984,999,1001-1003,1007-1011,1015,1018,1033,1044-1046,1050-1052,1056-1058,1071,1077,1102,1105-1106,1111-1115,1117,1119,1130,1132,1134-1136,1138-1140,1142-1143,1252,1254,1257,1267,1278-1279,1292,1296,1298,1309,1328,1339,1343,1345,1347,1349,1352,1354-1355,1357,1367,1375-1376,1379,1381,1386-1388,1398,1403,1410,1412,1420-1422,1428,1440,1446,1450,1459,1466,1468-1470,1474,1490-1491,1493,1498,1506,1510,1513,1520,1524,1529,1548-1549,1553,1562,1574-1575,1579,1586,1592,1595,1601,1606,1608,1612,1615,1620-1621,1631,1634,1639,1642,1647,1651-1653,1665,1688,1690,1697,1702,1706,1715-1716,1725,1728,1749,1754,1756,1767,1772,1774-1775,1778,1795-1796,1798-1799,1811,1816,1822,1826,1834,1842,1849,1857-1858,1871,1874,1879,1881,1896,1900,1902,1909,1911-1914,1945,1951,1953,1955-1956,1960,1969,1978,1983,2001,2005-2006,2008]
-tetralith*    up 7-00:00:00   1529  alloc n[5-6,8-12,14-38,41-45,47-49,51-60,65,67-68,71-74,76-77,79-84,86-90,94-96,98-107,109-111,113-118,120,122-123,125,127,129,135-136,138,140,142-148,151-155,157-158,160-163,165-166,169,171-173,175-183,185-186,189,191-192,194-195,197-202,204-205,207,209-211,213-230,232-236,238-240,242-243,246-256,258,260-261,263-266,268-279,281-286,288-292,295-309,311-314,316-322,324-326,328,330-332,334-339,341-349,351,353-370,372-376,378,382-384,386-404,406-419,423-433,435-438,440,442-445,447-453,455-464,466,468-500,502-503,506-513,515-523,525-528,530-531,533-548,550-552,554-557,559-560,562-563,565-572,574,576-601,603-609,611,613-614,616,618-621,624,628-630,632-636,638-645,647-650,652-661,663-670,672-677,679-690,693-698,700-702,704-708,710-711,713-717,719,721-722,724-725,727-740,742-744,746-751,753,756-758,761-767,769-773,775,778,782-783,786-787,789,791,794-802,805-807,810-817,819-852,854,856-858,860-862,864-866,868-880,882,884-889,893,896-914,916-924,926-937,939-940,943,945,948-958,960-965,967-973,975-980,982-983,985-998,1000,1004-1006,1012-1014,1016-1017,1019-1032,1034-1043,1047-1049,1053-1055,1059-1070,1072-1076,1078-1101,1103-1104,1107-1108,1110,1116,1118,1120-1129,1131,1133,1137,1141,1144,1249-1251,1253,1255-1256,1258-1266,1269-1277,1280,1286-1287,1289,1291,1293-1295,1297,1299-1308,1310-1327,1329-1338,1340-1342,1344,1346,1348,1350-1351,1353,1356,1358-1363,1365-1366,1368-1374,1377-1378,1380,1382-1385,1389-1397,1399-1402,1404-1409,1411,1413-1419,1423-1427,1429-1439,1441-1445,1447-1449,1451-1454,1456-1458,1460-1465,1467,1471-1473,1475-1489,1492,1494-1497,1499-1505,1507-1509,1511-1512,1514-1519,1521-1523,1525-1528,1530-1540,1542-1547,1550-1552,1554-1561,1563-1573,1576-1578,1580-1585,1587-1591,1593-1594,1596-1600,1602-1605,1607,1609-1611,1613-1614,1616-1619,1622-1630,1632-1633,1635-1637,1640-1641,1643-1646,1648-1650,1654-1664,1666-1687,1689,1691-1696,1698-1701,1703-1705,1707-1714,1717-1724,1726-1727,1729-1748,1750-1753,1755,1757-1766,1768-1771,1773,1776-1777,1779-1794,1797,1800-1810,1812-1815,1817-1821,1824-1825,1827-1833,1835-1841,1843-1846,1848,1850-1856,1859-1863,1865-1870,1872-1873,1875-1878,1880,1882-1895,1897-1899,1901,1903-1908,1910,1915-1944,1946-1950,1952,1954,1957-1959,1961-1968,1970-1977,1979-1982,1984-2000,2002-2004,2007,2009-2016]
-```
+b-cn1613 [~]$ sinfo
+PARTITION       AVAIL  TIMELIMIT  NODES  STATE NODELIST
+batch              up 7-00:00:00      0    n/a 
+cpu_sky            up 7-00:00:00      1 drain* b-cn1431
+cpu_sky            up 7-00:00:00      2   comp b-cn[1409,1415]
+cpu_sky            up 7-00:00:00      1  drain b-cn1427
+cpu_sky            up 7-00:00:00      8    mix b-cn[1411,1417-1418,1428,1513,1515,1521-1522]
+cpu_sky            up 7-00:00:00     36  alloc b-cn[1401-1404,1406-1407,1410,1412-1414,1419-1426,1429-1430,1432-1434,1436-1440,1511-1512,1514,1516-1520]
+cpu_zen3           up 7-00:00:00      1  alloc b-cn1614
+cpu_zen4           up 7-00:00:00      3   comp b-cn[1704,1706,1708]
+cpu_zen4           up 7-00:00:00      3    mix b-cn[1702-1703,1705]
+cpu_zen4           up 7-00:00:00      2  alloc b-cn[1701,1707]
+cpu_largemem       up 7-00:00:00      1 drain* b-cn0850
+cpu_largemem       up 7-00:00:00      2   resv b-cn[0649-0650]
+cpu_largemem       up 7-00:00:00      3    mix b-cn[0849,0949-0950]
+cpu_largemem       up 7-00:00:00      4  alloc b-cn[1049-1050,1201-1202]
+cpu_bdw            up 7-00:00:00      1  maint b-cn1120
+gpu_sky            up 7-00:00:00      9    mix b-cn[1501-1505,1507-1510]
+gpu_sky            up 7-00:00:00      1  alloc b-cn1506
+gpu_zen3           up 7-00:00:00      2    mix b-cn[1609-1610]
+gpu_zen3           up 7-00:00:00      1   idle b-cn1612
+gpu_zen4           up 7-00:00:00      4    mix b-cn[1601-1602,1604,1712]
+gpu_zen4           up 7-00:00:00      2  alloc b-cn[1603,1605]
+gpu_zen4           up 7-00:00:00      8   idle b-cn[1606-1608,1709-1711,1713,1718]
+gpu_zen4_8xgpu     up 7-00:00:00      2  alloc b-cn[1714-1715]
+gpu_zen4_8xgpu     up 7-00:00:00      1   resv b-cn1716
+gpu_zen4_2xh100    up 7-00:00:00      1    mix b-cn1717
+``
 
 As you can see, it shows partitions, nodes, and states. State can be drain, idle, resv, alloc, mix, plnd (and a few others), where the exact naming varies between centers.
 
@@ -369,32 +375,14 @@ We had a small example further up on the page, which we used to test the command
 
 The simplest possible batch script would look something like this:
 
-=== "Other" 
+```bash
+#!/bin/bash
+#SBATCH -A <proj-id>    ###replace with your project ID
+#SBATCH -t 00:05:00
+#SBATCH -n 1
 
-    This works for most of the clusters, except Dardel which also requires you to give the partition. 
-
-    ```bash
-    #!/bin/bash
-    #SBATCH -A <proj-id>    ###replace with your project ID
-    #SBATCH -t 00:05:00
-    #SBATCH -n 1
-
-    echo $HOSTNAME
-    ```
-
-=== "Dardel" 
-
-    Dardel requires you to give the partition. There are several: "main", "shared", "long", "memory", "gpu". In most cases when you are running a regular CPU job on less than all cores on a node, you should use "shared". 
-
-    ```bash
-    #!/bin/bash
-    #SBATCH -A <proj-id>    ###replace with your project ID
-    #SBATCH -t 00:05:00
-    #SBATCH -n 1
-    #SBATCH -p shared 
-
-    echo $HOSTNAME
-    ```
+echo $HOSTNAME
+```
 
 !!! note
 
@@ -408,12 +396,12 @@ The simplest possible batch script would look something like this:
 
     Some of the most commonly used arguments are:
 
-    - `-A PROJ-ID`: The project that should be accounted. It is a simple conversion from the SUPR project id. You can also find your project account with the command projinfo. The PROJ-ID argument is of the form **naissXXXX-YY-ZZZ** 
+    - `-A PROJ-ID`: The project that should be accounted. It is a simple conversion from the SUPR project id. You can also find your project account with the command projinfo. The PROJ-ID argument is of the form **hpc2nXXXX-YYY** on Kebnekaise  
     - `-N`: number of nodes
     - `-n`, `--ntasks=`: number of tasks. Since cores-per-task is 1 as default, this then translates to number of cores. NOTE that you cannot be sure the cores all end up on the same node. If you have a threaded job or otherwise need to have all the cores on the same node, you should instead use `-c` or a combination of `-N` and `-c`.  
     - `-c`, `--cores-per-task=`: This changes the number of cores each task may use. Can also be used for getting more memory, with some cores only providing memory. (example: **-c 2 -n 4** allocates 4 tasks and 2 cores per task, totally 8 cores). More about this argument later. 
     - `-t`, `--time=`: walltime. How long your job is allowed to run. Given as HHH:MM:SS (example: 4 hours and 20 min is given as 4:20:00). Different clusters have different maximum walltime, but it is usually at least a week. 
-    - `-p`: partition. Only used at some clusters. On Dardel it is required. 
+    - `-p`: partition. Only used at some clusters. Not on Kebnekaise where batch is the only partition.  
 
     In addition, these can be quite useful: 
 
@@ -460,7 +448,7 @@ real arguments; they are just used here to indicate placeholder text).
 Alternatively they can be given as command-line options to `sbatch` but it is
 generally useful to save them in the script.
 
-Depending on cluster, for most compute nodes, unless otherwise specified, a batch script will run on 1 core of 1 node by default. However, at several clusters it is required to always give the number of cores or nodes, so you should make it a habit to include it. 
+On compute nodes, unless otherwise specified, a batch script will run on 1 core of 1 node by default. However, it is generally required to always give the number of cores or nodes, so you should make it a habit to include it. 
 
 !!! Note
 
@@ -519,7 +507,7 @@ jid1=$(sbatch --parsable matrix-gen.sh)
 sbatch --dependency=afterany:${jid1} mmmult-v2.sh
 ```
 
-If you want to test it, the scripts for this can be found in <a href="https://github.com/UPPMAX/NAISS_Slurm/raw/refs/heads/main/exercises.tar.gz" target="_blank">the tarball with the exercises</a> under the cluster name and then "dependency". 
+If you want to test it, the scripts for this can be found in the tarball with the exercises> under the cluster name and then "dependency". 
 
 The first job it runs generates two matrices and then the second job does matrix-matrix multiplication, but not until the first has finished. 
 
@@ -530,7 +518,6 @@ Unless mentioned, these are valid at all clusters.
 Use the following:
 
 - `sacct`: `sacct -l -j JOBID`. Lots of (wide format) info about a job with job-id JOBID
-- `jobinfo` (LUNARC, C3SE): wrapper around `squeue`
 - `scontrol show job JOBID`: info about a job, including estimated start time, assigned nodes, working directory, etc. 
 - `squeue --me --start`: your running and queued jobs with estimated start time
 - `job_usage` (HPC2N): grafana graphics of resource use for job (> few minutes)
