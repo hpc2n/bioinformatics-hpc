@@ -116,14 +116,13 @@ nav:
     - Advanced module commands: 7.software-modules-containers/advanced_module.md
     - Virtual environments and Python: 7.software-modules-containers/virtenv.md
     - Installing R packages yourself: 7.software-modules-containers/Rpack.md 
+plugins:
   - search
   - external-markdown
   - mkdocstrings
   - markdown-exec
   - open-in-new-tab
   - mermaid2:
-
-
       javascript: https://unpkg.com/mermaid/dist/mermaid.min.js
     #      javascript: https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs
       arguments:
