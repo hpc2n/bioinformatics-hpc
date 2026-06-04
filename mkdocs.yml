@@ -97,6 +97,16 @@ nav:
     - Monitoring and efficiency: 9.batch-slurm/monitoring.md
   - Accessing databases:
     - Introduction: 10.access-databases/intro.md   
+  - Bioinformatics content:
+    - Overview: bioinformatics-overview.md
+    - 11. Biological Database Landscape: 11.database-landscape/database-landscape.md
+    - 12. BLAST and Sequence Similarity: 12.blast/blast.md
+    - 13. Bioinformatics File Formats: 13.file-formats/file-formats.md
+    - 14. FAIR and Open Science:
+      - Lecture: 14.fair-open-science/fair-open-science.md
+      - Essay assignment: 14.fair-open-science/fair-essay-assignment.md
+      - Marking rubric: 14.fair-open-science/fair-essay-marking-rubric.md
+    - 15. FAIR in Practice: 15.fair-in-practice/fair-in-practice.md
   - Extras:
     - Install tree: tree.md
     - Linux terminology: 5.linux-intro/linux-terminology.md
@@ -113,16 +123,7 @@ nav:
   - open-in-new-tab
   - mermaid2:
 
-  - 'Bioinformatics content':
-    - 'Overview': bioinformatics-overview.md
-    - '11. Biological Database Landscape': 11.database-landscape/database-landscape.md
-    - '12. BLAST and Sequence Similarity': 12.blast/blast.md
-    - '13. Bioinformatics File Formats': 13.file-formats/file-formats.md
-    - '14. FAIR and Open Science':
-      - 'Lecture': 14.fair-open-science/fair-open-science.md
-      - 'Essay assignment': 14.fair-open-science/fair-essay-assignment.md
-      - 'Marking rubric': 14.fair-open-science/fair-essay-marking-rubric.md
-    - '15. FAIR in Practice': 15.fair-in-practice/fair-in-practice.md
+
       javascript: https://unpkg.com/mermaid/dist/mermaid.min.js
     #      javascript: https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs
       arguments:
