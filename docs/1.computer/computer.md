@@ -252,7 +252,7 @@ PTX/SASS for CUDA workloads, while AMD uses RDNA/CDNA for its GPU lines.
 
 
 <figure>
-  <img src="../../images/intel-cpu.png" style="width: 200px;" alt="CPU caches">
+  <img src="../../images/intel-cpu.jpeg" style="width: 200px;" alt="CPU caches">
   <figcaption> Intel CPU (Image taken from Intel CPU in References).</figcaption>
 </figure>
 
