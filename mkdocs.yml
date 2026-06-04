@@ -32,9 +32,9 @@ extra_css:
 
 nav:
   - Home: index.md
-  - 'Programme introduction':
-    - 'Overview': 00.programme-introduction/programme-introduction.md
-  - '1. What is Bioinformatics?': 01.what-is-bioinformatics/what-is-bioinformatics.md
+  - Programme introduction:
+    - Overview: 00.programme-introduction/programme-introduction.md
+  - 1. What is Bioinformatics?: 01.what-is-bioinformatics/what-is-bioinformatics.md
   - Introduction: intro.md
   - What is a computer?: 
     - Overview: 1.computer/computer.md
