@@ -37,21 +37,6 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 (MSI PRO B850-VC EVO WIFI6E motherboard. Image from https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E)
 
 
-### Intel CPU and AMD CPU 
-
-![Intel CPU](../../images/intel-cpu.jpeg){: style="width: 200px;"}
-![AMD CPU](../../images/amd-cpu.jpg){: style="width: 200px;"}
-
-(Images from https://news.softpedia.com/news/Latest-Core-i7-Extreme-Ivy-Bridge-E-Intel-CPU-Delayed-335790.shtml and https://hothardware.com/reviews/amd-ryzen-9-9950x3d-cpu-review)
-
-### Memory
-
-<figure class="inline end" markdown>
-![RAM/memory](../../images/ram.jpeg){: style="width: 200px;"}
-<figcaption>A couple memory sticks / RAM </figcaption>
-</figure>
-
-(Image from https://medium.com/@sunnybabacom10/ram-a-deep-dive-into-its-importance-types-and-functionality-c042a095ef95)
 
 ### SSD storage 
 
@@ -85,10 +70,10 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 System software is what is required for the computer to run and to let us interact with it. 
 
-![System software](../../images/system-software.png){: style="width: 600px;"}
+![System software](../../images/system-software.png){: style="width: 300px;"}
 
 This picture shows how the different components talk together. 
-=======
+
 A computer is a machine that can be programmed to automatically carry out sequences of 
 arithmetic or logical operations (computation). (Wikipedia) 
 
@@ -126,7 +111,6 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
 
 ### The Von Neumann Bottleneck
  
-
 In the Von Neumann architecture, the transfer of instructions between the CPU and memory and the transfer 
 of data occur through the same bus, and these operations take place one at a time. This creates the so-called 
 Von Neumann bottleneck. Early computers masked this bottleneck because CPU and memory speeds were similar. 
@@ -266,6 +250,19 @@ like Summit), **SPARC** (historically significant in scientific workstations, no
 **IA-64/Itanium** (Intel's discontinued VLIW architecture). GPU ISAs form a separate category: NVIDIA uses 
 PTX/SASS for CUDA workloads, while AMD uses RDNA/CDNA for its GPU lines.
 
+
+<figure>
+  <img src="../../images/intel-cpu.png" style="width: 200px;" alt="CPU caches">
+  <figcaption> Intel CPU (Image taken from Intel CPU in References).</figcaption>
+</figure>
+
+<figure>
+  <img src="../../images/amd-cpu.jpg" style="width: 200px;" alt="CPU caches">
+  <figcaption> AMD CPU (Image taken from AMD CPU in References).</figcaption>
+</figure>
+
+
+
 ## What Are CPU Cores?
 
 A **core** is a complete, independent processing unit within the CPU. Each core contains its own ALU, 
@@ -324,6 +321,11 @@ RAM is much faster than disk storage but slower than cache, and it is volatile, 
 are lost when power is turned off. Cache hierarchies help reduce the performance gap between the CPU 
 and RAM.
 
+
+<figure class="inline end" markdown>
+![RAM/memory](../../images/ram.jpeg){: style="width: 200px;"}
+<figcaption>A couple memory sticks / RAM (Image taken from RAM in References).</figcaption>
+</figure>
 
 ## Why RAM Matters
 
@@ -384,7 +386,9 @@ This fetch-decode-execute-write-back cycle runs continuously and billions of tim
 
 !!! tip "References"
 
-    
+    - <a href="https://news.softpedia.com/news/Latest-Core-i7-Extreme-Ivy-Bridge-E-Intel-CPU-Delayed-335790.shtml" target="_blank">Intel CPU</a>
+    - <a href="https://hothardware.com/reviews/amd-ryzen-9-9950x3d-cpu-review" target="_blank">AMD CPU</a>
+    - <a href="https://medium.com/@sunnybabacom10/ram-a-deep-dive-into-its-importance-types-and-functionality-c042a095ef95" target="_blank">RAM</a>
     - <a href="https://johny4u.com/igcse_theory_2023/07)%20Computer%20Architecture.php" target="_blank">Computer Architecture</a>
     - <a href="https://en.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC" target="_blank">Von Neumann Report</a>
     - <a href="https://www.geeksforgeeks.org/computer-organization-architecture/computer-organization-von-neumann-architecture/" target="_blank">Computer organization</a>
