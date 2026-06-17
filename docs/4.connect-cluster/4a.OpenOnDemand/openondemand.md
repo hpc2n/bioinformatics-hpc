@@ -8,7 +8,7 @@ There is a YouTube video covering parts of this documentation as well. You can f
 
     Anything you run through OpenOnDemand is already running as a batch job, and will be running on the compute nodes you got allocated. 
 
-!!! note "Access"
+!!! example "Access"
 
     1. In order to access the HPC2N OnDemand Web Portal, point your browser to
     ```bash
@@ -20,6 +20,11 @@ There is a YouTube video covering parts of this documentation as well. You can f
     3. You are sent to the login window. Put your HPC2N username and password, then click "Sign In"
     4. You will now be on the HPC2N Open OnDemand dashboard. The top of it looks like this:
     ![Open OnDemand Dashboard](../../../images/open-ondemand-dashboard.png){: style="width: 90%;"}
+
+!!! tip
+
+    - If you need a refresher of your username, login to <a href="https://supr.naiss.se/" target="_blank">https://supr.naiss.se/</a> and look under "Accounts" to find your username.
+    - You should have gotten an email with information about how to create your first password. Otherwise it can be done from <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset" target="_blank">The HPC2N password reset service, using your SUPR credentials</a>.
 
 !!! note "Overview - dashboard"
 
@@ -276,6 +281,10 @@ You can find all the active sessions under "My Interactive Sessions" and you can
 
     ![Open OnDemand Kebnekaise desktop](../../images/open-ondemand-desktop-started.png){: style="width: 90%;"}
 
+!!! tip 
+
+    - After logging in with your first, temporary password, <a href="https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change" target="_blank">change it to something that is easy for you to remember and hard for a hacker to guess</a>.
+
 ## Interactive Apps - Jupyter Notebook
 
 If you choose "Interactive Apps" -> "Jupyter Notebook", you will get an app that can launch a Jupyter Notebook server on one or more nodes.
@@ -366,6 +375,18 @@ You can tick the box “I would like to receive an email when the session starts
         - Pick that and click "Select".
     7. You can now run something which requires, say, pandas and matplotlib.
     8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/pandas-example.ipynb" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
+
+## Exercises 
+
+1. Go to <a href="https://portal.hpc2n.umu.se" target="_blank">https://portal.hpc2n.umu.se</a> and login with your HPC2N/Kebnekaise username and password. 
+    - If you need a refresher of your username, login to <a href="https://supr.naiss.se/" target="_blank">https://supr.naiss.se/</a> and look under "Accounts" to find your username. 
+    - You should have gotten an email with information about how to create your first password. Otherwise it can be done from <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset" target="_blank">The HPC2N password reset service, using your SUPR credentials</a>. 
+2. Start a "Kebnekaise desktop" from the "Interactive Apps". You should have a default project you can use. Start it with 4 cores. 
+3. ONLY IF THIS IS THE FIRST TIME YOU ARE LOGGING IN/IF YOU HAVE NOT YET CHANGED THE PASSWORD: After logging in with the first, temporary password, <a href="https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change" target="_blank">change it to something that is easy for you to remember and hard for a hacker to guess</a>.
+    - Wondering how to start a terminal? It is described in an example in the section <a href="https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/4a.OpenOnDemand/openondemand/#interactive__apps__-__kebnekaise__desktop" target="_blank">Interactive Apps - Kebnekaise desktop</a>.  
+4. Try "srun /bin/hostname" in a terminal to see you have gotten 4 cores
+5. Exit the "Kebnekaise desktop" and "delete" it. 
+6. Start a new interactive session, this time with either Jupyter or Rstudio.  
 
 ## References
 

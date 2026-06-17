@@ -36,19 +36,19 @@ nav:
     - Overview: 00.programme-introduction/programme-introduction.md
   - 1. What is Bioinformatics?: 01.what-is-bioinformatics/what-is-bioinformatics.md
   - Introduction: intro.md
-  - What is a computer?: 
-    - Overview: 1.computer/computer.md
-  - Intro to compute clusters: 
-    - Compute clusters: 2.compute-cluster/compute-cluster.md
-  - Files and file systems: 
-    - Introduction: 3.files-filesystems/files-filesystems.md
-    - File systems: 3.files-filesystems/filesystems.md
-      #    - File system terminology: 3.files-filesystems/3b.files-memory-disks/terminology.md 
   - Connection to a cluster (Kebnekaise):
     - Introduction: 4.connect-cluster/connect-cluster.md
     - OpenOnDemand: 4.connect-cluster/4a.OpenOnDemand/openondemand.md
     - ThinLinc: 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
     - SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh.md
+  - Introduction to computers: 
+    - What is a computer?: 1.computer/computer.md
+  - Files and file systems:
+    - Introduction: 3.files-filesystems/files-filesystems.md
+    - File systems: 3.files-filesystems/filesystems.md
+      #    - File system terminology: 3.files-filesystems/3b.files-memory-disks/terminology.md
+  - Intro to compute clusters: 
+    - Compute clusters: 2.compute-cluster/compute-cluster.md
   - Introduction to Linux:
     - Introduction: 5.linux-intro/linux-intro.md
     - Command Line Interface (CLI): 5.linux-intro/cli.md
