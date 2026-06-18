@@ -35,7 +35,6 @@ nav:
   - Programme introduction:
     - Overview: 00.programme-introduction/programme-introduction.md
   - 1. What is Bioinformatics?: 01.what-is-bioinformatics/what-is-bioinformatics.md
-  - Introduction: intro.md
   - Connection to a cluster (Kebnekaise):
     - Introduction: 4.connect-cluster/connect-cluster.md
     - OpenOnDemand: 4.connect-cluster/4a.OpenOnDemand/openondemand.md
