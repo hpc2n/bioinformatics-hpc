@@ -8,6 +8,7 @@ Welcome to the Master’s Programme in Bioinformatics, Umeå University
 | ---- | ---- | --------------- |
 | 31 Aug. | 09:00-12:00 | [Intro to course](https://hpc2n.github.io/bioinformatics-hpc/00.programme-introduction/programme-introduction/) (Nathaniel) + hello from all teachers + [Connection to cluster](https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/connect-cluster/) (Birgitte) | 
 | 1 Sept. | 09:00-12:00 | [Intro to computers](https://hpc2n.github.io/bioinformatics-hpc/1.computer/computer/) (Pedro) + [Files and filesystems](https://hpc2n.github.io/bioinformatics-hpc/3.files-filesystems/files-filesystems/) (Birgitte?) | 
+| 1 Sept. | 13:00-16:00 | [What is bioinformatics](https://hpc2n.github.io/bioinformatics-hpc/01.what-is-bioinformatics/what-is-bioinformatics/) (Nathaniel) | 
 | 2 Sept. | 13:00-16:00 | [Intro to clusters](https://hpc2n.github.io/bioinformatics-hpc/2.compute-cluster/compute-cluster/) (Birgitte) | 
 | 3 Sept. | 09:00-12:00 | [Intro to Linux](https://hpc2n.github.io/bioinformatics-hpc/5.linux-intro/linux-intro/) (Pedro) | 
 | 8 Sept. | 09:00-16:00 | [Intro to Git](https://hpc2n.github.io/bioinformatics-hpc/6.Git/intro-to-git/) (Birgitte ?) - afternoon is exercises on their own except for the first hour | 
