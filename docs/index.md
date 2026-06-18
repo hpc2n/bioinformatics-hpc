@@ -11,15 +11,15 @@ Welcome to the Master’s Programme in Bioinformatics, Umeå University
 | 1 Sept. | 13:00-16:00 | [What is bioinformatics](https://hpc2n.github.io/bioinformatics-hpc/01.what-is-bioinformatics/what-is-bioinformatics/) (Nathaniel) | 
 | 2 Sept. | 13:00-16:00 | [Intro to clusters](https://hpc2n.github.io/bioinformatics-hpc/2.compute-cluster/compute-cluster/) (Birgitte) | 
 | 3 Sept. | 09:00-12:00 | [Intro to Linux](https://hpc2n.github.io/bioinformatics-hpc/5.linux-intro/linux-intro/) (Pedro) | 
-| 8 Sept. | 09:00-16:00 | [Intro to Git](https://hpc2n.github.io/bioinformatics-hpc/6.Git/intro-to-git/) (Birgitte) - afternoon is exercises on their own except for the first hour | 
-| 9 Sept. | 11:00-16:00 | [Accessing software on Kebnekaise](https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/introduction/) (?) | 
-| 10 Sept. | 09:00-12:00 | Software from Git (?) | 
+| 8 Sept. | 09:00-16:00 | [Intro to Git](https://hpc2n.github.io/bioinformatics-hpc/6.Git/intro-to-git/) (Birgitte and Pedro) - afternoon is exercises on their own except for the first hour | 
+| 9 Sept. | 11:00-16:00 | [Accessing software on Kebnekaise](https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/introduction/) (Birgitte and Pedro) | 
+| 10 Sept. | 09:00-12:00 | [Software from Git](https://hpc2n.github.io/bioinformatics-hpc/8.software-git-install-compile/git-software/) (Birgitte and Pedro) | 
 | 15 Sept. | 09:00-12:00 | Biological databases (Nathaniel) | 
 | 15 Sept. | 13:00-16:00 | Exercises | 
 | 16 Sept. | 09:00-12:00 | File formats (Edoardo) | 
 | 16 Sept. | 13:00-16:00 | Exercises | 
-| 17 Sept. | 09:00-14:00 | SLURM (?) | 
-| 18 Sept. | 13:00-16:00 | exercises + catch up | 
+| 17 Sept. | 09:00-14:00 | [The batch system/Slurm](https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/intro/) (Birgitte and Pedro) | 
+| 18 Sept. | 13:00-16:00 | Exercises + catch up | 
 | 29 Sept. | 13:00-15:00 | Exam (Nathaniel) | 
 
 
