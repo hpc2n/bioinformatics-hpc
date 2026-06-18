@@ -58,6 +58,7 @@ nav:
     - Data handling: 5.linux-intro/data.md
     - Pipes and filters: 5.linux-intro/pipesfilters.md
     - Finding patterns: 5.linux-intro/patterns.md
+    - Awk: 5.linux-intro/awk.md 
     - Scripting: 5.linux-intro/scripting.md
     - Hints and tricks: 5.linux-intro/hints.md 
   - Introduction to Git: 
