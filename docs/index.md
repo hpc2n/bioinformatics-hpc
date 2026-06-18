@@ -13,7 +13,9 @@ Welcome to the Master’s Programme in Bioinformatics, Umeå University
 | 3 Sept. | 09:00-12:00 | [Intro to Linux](https://hpc2n.github.io/bioinformatics-hpc/5.linux-intro/linux-intro/) (Pedro) | 
 | 8 Sept. | 09:00-16:00 | [Intro to Git](https://hpc2n.github.io/bioinformatics-hpc/6.Git/intro-to-git/) (Birgitte and Pedro) - afternoon is exercises on their own except for the first hour | 
 | 9 Sept. | 11:00-16:00 | [Accessing software on Kebnekaise](https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/introduction/) (Birgitte and Pedro) | 
-| 10 Sept. | 09:00-12:00 | [Software from Git](https://hpc2n.github.io/bioinformatics-hpc/8.software-git-install-compile/git-software/) (Birgitte and Pedro) | 
+| 10 Sept. | 09:00-12:00 | [Software from Git](https://hpc2n.github.io/bioinformatics-hpc/8.software-git-install-compile/git-software/) (Birgitte and Pedro) |
+| 10 Sept. | 13:00-16:00 | Open science (Nathaniel) | 
+| 11 Sept. | 09:00-12:00 | Exercises for open science |  
 | 15 Sept. | 09:00-12:00 | Biological databases (Nathaniel) | 
 | 15 Sept. | 13:00-16:00 | Exercises | 
 | 16 Sept. | 09:00-12:00 | File formats (Edoardo) | 
