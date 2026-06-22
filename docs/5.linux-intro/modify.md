@@ -184,12 +184,14 @@ This command is used to copy files or directories.
     4. Copy the new subdirectory ``testdir3`` to the directory ``testdir2``. Remember, "testdir2" is located outside "testdir1" and at the same "level". This can be done in more than one way. Remember you need the option ``-r`` (for recursive) when copying directories:
     
         a) "Go up one" and then copy:
+
            ```bash
            cd ..
            cp -r testdir1/testdir3 testdir2/
            ```
            
         b) Copy from inside ``testdir1``
+        
            ```bash
            cp -r testdir3 ../testdir2
            ```
