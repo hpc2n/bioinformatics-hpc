@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/11.database-landscape/database-landscape/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>11. Biological Database Landscape - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "11. Biological Database Landscape";
+        var mkdocs_page_input_path = "11.database-landscape/database-landscape.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/11.database-landscape/database-landscape/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.access-databases/intro/">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">11. Biological Database Landscape</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#session__aims">Session Aims</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#opening__activity__what__do__you__already__know">Opening Activity — What Do You Already Know?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1__how__does__data__become__knowledge__a__conceptual__framework">1. How Does Data Become Knowledge? A Conceptual Framework</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11__the__four-tier__hierarchy">1.1 The Four-Tier Hierarchy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12__why__the__hierarchy__matters">1.2 Why the Hierarchy Matters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13__cross-referencing__the__connective__tissue">1.3 Cross-Referencing: The Connective Tissue</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2__the__global__archiving__infrastructure">2. The Global Archiving Infrastructure</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21__the__insdc__why__data__is__where__you__find__it">2.1 The INSDC: Why Data Is Where You Find It</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22__primary__archives__sequence__data">2.2 Primary Archives: Sequence Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23__primary__archives__other__data__types">2.3 Primary Archives: Other Data Types</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3__reference__and__curated__databases">3. Reference and Curated Databases</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31__ensembl__and__ucsc__genome__browsers">3.1 Ensembl and UCSC: Genome Browsers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32__uniprot__the__central__protein__resource">3.2 UniProt: The Central Protein Resource</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33__evidence__codes__reading__the__fine__print">3.3 Evidence Codes: Reading the Fine Print</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4__functional__and__interpretive__databases">4. Functional and Interpretive Databases</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41__gene__ontology__go">4.1 Gene Ontology (GO)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42__interpro__protein__domains__and__families">4.2 InterPro: Protein Domains and Families</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43__kegg__and__reactome__pathway__databases">4.3 KEGG and Reactome: Pathway Databases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44__string__protein__interaction__networks">4.4 STRING: Protein Interaction Networks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#45__the__alphafold__database__and__pdb">4.5 The AlphaFold Database and PDB</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5__specialist__and__organism-specific__resources">5. Specialist and Organism-Specific Resources</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51__model__organism__databases">5.1 Model Organism Databases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52__plant__and__tree__resources">5.2 Plant and Tree Resources</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53__environmental__and__biodiversity__resources">5.3 Environmental and Biodiversity Resources</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#54__human__and__clinical__resources">5.4 Human and Clinical Resources</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6__how__to__evaluate__any__unfamiliar__database">6. How to Evaluate Any Unfamiliar Database</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7__hands-on__exercise__your__first__programmatic__database__query">7. Hands-On Exercise: Your First Programmatic Database Query</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#part__a__setting__up__your__workspace">Part A — Setting up your workspace</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__b__fetching__a__sequence__from__ncbi__entrez">Part B — Fetching a sequence from NCBI Entrez</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__c__fetching__a__protein__from__uniprot">Part C — Fetching a protein from UniProt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__d__documenting__and__committing__your__work">Part D — Documenting and committing your work</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extension__tasks__if__time__allows">Extension Tasks (if time allows)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8__in-session__quizzes">8. In-Session Quizzes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mentimeter__quiz__1__prior__knowledge__session__opening">Mentimeter Quiz 1 — Prior knowledge (session opening)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mentimeter__quiz__2__classification__and__evidence__codes__end__of__block__1__before__break">Mentimeter Quiz 2 — Classification and evidence codes (end of Block 1, before break)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9__what__you__should__know__after__this__session">9. What You Should Know After This Session</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10__further__reading__and__resources">10. Further Reading and Resources</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">11. Biological Database Landscape</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="11__the__biological__database__landscape">11. The Biological Database Landscape<a class="headerlink" href="#11__the__biological__database__landscape" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University<br />
+<strong>Slides:</strong> <a href="../../PDFs/lecture-11-database-landscape.pdf">PDF</a><br />
+<strong>Exercises:</strong> See <a href="../../exercises/11.databases/"><code>exercises/</code></a></p>
+<hr />
+<h2 id="session__aims">Session Aims<a class="headerlink" href="#session__aims" title="Permanent link">&para;</a></h2>
+<p>By the end of this session you should be able to:</p>
+<ol>
+<li>Describe the four-tier conceptual hierarchy of biological databases and explain how raw data becomes biological knowledge</li>
+<li>Identify the major primary archives and explain the role of the International Nucleotide Sequence Database Collaboration (INSDC)</li>
+<li>Distinguish between GenBank and RefSeq, and between Swiss-Prot and TrEMBL, and explain why these distinctions matter in practice</li>
+<li>Explain the significance of evidence codes in database annotations</li>
+<li>Navigate and query representative databases from each tier of the hierarchy using both web interfaces and programmatic (command-line) access</li>
+<li>Retrieve sequence data from NCBI and UniProt using the command line, and parse the resulting files with Linux tools</li>
+<li>Commit retrieved data and documented commands to a Git repository</li>
+</ol>
+<p><strong>Links to course ILOs:</strong> This session directly addresses ILOs 1, 4, 5, 7, and 12. It also provides concrete context for ILO 3 (FAIR principles), which is treated in depth in Lecture 13.</p>
+<p><strong>Note on sequencing:</strong> This lecture is designed to follow the HPC2N Linux and command-line training block. The hands-on exercise deliberately applies and reinforces the skills covered there — <code>curl</code>, <code>grep</code>, <code>wc</code>, pipes, and Git — in a bioinformatics context.</p>
+<hr />
+<h2 id="opening__activity__what__do__you__already__know">Opening Activity — What Do You Already Know?<a class="headerlink" href="#opening__activity__what__do__you__already__know" title="Permanent link">&para;</a></h2>
+<p><em>Before the lecture begins, a short Mentimeter poll will ask which databases you have heard of, and invite you to describe in one word what you think a biological database is. There are no right or wrong answers — this is to help calibrate the session for the group.</em></p>
+<hr />
+<h2 id="1__how__does__data__become__knowledge__a__conceptual__framework">1. How Does Data Become Knowledge? A Conceptual Framework<a class="headerlink" href="#1__how__does__data__become__knowledge__a__conceptual__framework" title="Permanent link">&para;</a></h2>
+<p>The biological database landscape can seem overwhelming — there are hundreds of databases, covering different organisms, data types, and levels of biological interpretation. Rather than memorising a list, it is more useful to understand the underlying structure: where does each database sit in the journey from raw experimental data to biological knowledge?</p>
+<h3 id="11__the__four-tier__hierarchy">1.1 The Four-Tier Hierarchy<a class="headerlink" href="#11__the__four-tier__hierarchy" title="Permanent link">&para;</a></h3>
+<p>The following framework is a simplification, but it is a productive one:</p>
+<p><strong>Tier 1 — Primary archives</strong>
+Raw, largely uninterpreted experimental data deposited directly by researchers. The defining characteristics are: submissions-based (any researcher can deposit), high-volume, minimal curation, and structured around data preservation and access rather than biological interpretation. Examples: ENA, NCBI SRA, GenBank, PRIDE, GEO, MetaboLights.</p>
+<p><strong>Tier 2 — Reference databases</strong>
+Curated, versioned, annotated collections built on top of primary data. Curation may be manual (by expert annotators) or automated (by pipelines), or a mixture. The quality and reliability of annotations is generally higher than in primary archives, but varies between databases and between entries within a database. Examples: RefSeq, UniProt/Swiss-Prot, Ensembl, UCSC Genome Browser.</p>
+<p><strong>Tier 3 — Functional and interpretive databases</strong>
+Databases that add biological meaning — functional classification, pathway membership, interaction networks, structural information, domain architecture. These are built on top of Tier 1 and Tier 2 data and involve substantial computational or expert interpretation. Examples: Gene Ontology (GO), InterPro, KEGG, Reactome, STRING, AlphaFold Database, PDB.</p>
+<p><strong>Tier 4 — Specialist and organism-specific resources</strong>
+Resources focused on a particular organism, disease domain, or experimental modality. These often integrate data from all three tiers above and add community-curated knowledge specific to their domain. Examples: FlyBase, TAIR, JGI Phytozome, PlantGenIE, gnomAD, ClinVar, SILVA, GBIF.</p>
+<h3 id="12__why__the__hierarchy__matters">1.2 Why the Hierarchy Matters<a class="headerlink" href="#12__why__the__hierarchy__matters" title="Permanent link">&para;</a></h3>
+<p>Understanding which tier a database belongs to immediately tells you several important things:</p>
+<ul>
+<li><strong>How much to trust an annotation:</strong> a functionally annotated entry in Swiss-Prot has been manually reviewed by an expert; an automatically annotated entry in TrEMBL has not. Both are valuable, but they are not equivalent.</li>
+<li><strong>What kind of question it can answer:</strong> you go to Tier 1 for data; you go to Tier 3 for interpretation.</li>
+<li><strong>What the evidence basis is:</strong> Tier 3 databases often derive their content from Tier 1 and 2, and errors propagate upward — as discussed in Lecture 1.</li>
+<li><strong>How to find things programmatically:</strong> each tier tends to have characteristic APIs and access patterns.</li>
+</ul>
+<h3 id="13__cross-referencing__the__connective__tissue">1.3 Cross-Referencing: The Connective Tissue<a class="headerlink" href="#13__cross-referencing__the__connective__tissue" title="Permanent link">&para;</a></h3>
+<p>One of the most important features of the biological database landscape is that databases are richly cross-referenced. A UniProt entry links to the corresponding Ensembl gene, the PDB structures, the InterPro domains, the GO annotations, the KEGG pathways, and the original GenBank nucleotide records. Learning to navigate these cross-references is as important as knowing what each database contains.</p>
+<hr />
+<h2 id="2__the__global__archiving__infrastructure">2. The Global Archiving Infrastructure<a class="headerlink" href="#2__the__global__archiving__infrastructure" title="Permanent link">&para;</a></h2>
+<h3 id="21__the__insdc__why__data__is__where__you__find__it">2.1 The INSDC: Why Data Is Where You Find It<a class="headerlink" href="#21__the__insdc__why__data__is__where__you__find__it" title="Permanent link">&para;</a></h3>
+<p>The International Nucleotide Sequence Database Collaboration (INSDC) is a long-standing partnership between three databases:</p>
+<ul>
+<li><strong>GenBank</strong> — operated by the National Center for Biotechnology Information (NCBI), USA</li>
+<li><strong>European Nucleotide Archive (ENA)</strong> — operated by the European Bioinformatics Institute (EBI), UK</li>
+<li><strong>DNA Data Bank of Japan (DDBJ)</strong> — operated by the National Institute of Genetics, Japan</li>
+</ul>
+<p>These three databases synchronise their data daily. A sequence deposited in ENA is available in GenBank within 24 hours, and vice versa. This is why you can often find the same accession number via any of the three interfaces.</p>
+<p>The practical implication: you do not need to worry about which of the three primary nucleotide archives to search — they contain the same data. Your choice of interface is a matter of preference, geography (ENA is often faster from Europe), and which programmatic access tools you prefer.</p>
+<h3 id="22__primary__archives__sequence__data">2.2 Primary Archives: Sequence Data<a class="headerlink" href="#22__primary__archives__sequence__data" title="Permanent link">&para;</a></h3>
+<p><strong>GenBank</strong> is the original and largest sequence database, containing all publicly available nucleotide sequences. It is submissions-based — any researcher can deposit — and is largely unfiltered. This means it contains both high-quality and low-quality sequences, sequences from poorly characterised organisms, and sequences with minimal annotation.</p>
+<p><strong>RefSeq</strong> is a curated, non-redundant reference database maintained by NCBI. Unlike GenBank, RefSeq sequences are reviewed and annotated by NCBI staff or trusted submitters. Accession numbers beginning with <code>NM_</code> (mRNA), <code>NR_</code> (non-coding RNA), <code>NP_</code> (protein), or <code>NC_</code> (chromosomes/genomes) indicate RefSeq records. For most analytical purposes — alignment, annotation, comparative genomics — RefSeq is the preferred reference.</p>
+<blockquote>
+<p><strong>Key distinction:</strong> GenBank = everything submitted; RefSeq = curated reference sequences. If you are aligning RNA-seq reads or annotating a genome, use RefSeq. If you are searching for all known sequences of a gene across all species, use GenBank (or a search tool such as BLAST that queries it).</p>
+</blockquote>
+<p><strong>NCBI SRA (Sequence Read Archive)</strong> stores raw sequencing reads — the actual output of sequencing instruments, before any assembly or processing. This is where you find the raw data underlying published studies. Raw reads are in FASTQ format. The SRA is the most important archive for reproducibility: if a study deposited its raw data here, you can in principle reproduce the entire analysis from scratch.</p>
+<p><strong>ENA (European Nucleotide Archive)</strong> provides access to the same nucleotide data as GenBank/SRA but with a different interface and different programmatic access tools. Many European researchers prefer ENA because of lower latency and because the metadata search interface is arguably more flexible. ENA is also a more prominent submission destination for many European research infrastructures.</p>
+<h3 id="23__primary__archives__other__data__types">2.3 Primary Archives: Other Data Types<a class="headerlink" href="#23__primary__archives__other__data__types" title="Permanent link">&para;</a></h3>
+<p><strong>GEO (Gene Expression Omnibus)</strong> and <strong>ArrayExpress</strong> are the primary archives for gene expression data — microarray data historically, but increasingly RNA-seq count matrices, normalised data, and processed results. They are complementary: GEO is operated by NCBI; ArrayExpress by EBI. Many datasets are cross-deposited. GEO entries typically consist of a series (a study), samples (biological specimens), and platforms (the measurement technology).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>** GEO stores both raw data (FASTQ files, linked to SRA) and processed data (count matrices, fold-change tables). For reanalysis, always start from the raw data if possible. For FAIR assessment exercises, GEO/ArrayExpress metadata is particularly revealing of data management quality.</p>
+</div>
+<p><strong>PRIDE (PRoteomics IDEntifications Database)</strong> is the primary archive for mass spectrometry-based proteomics data. It is part of the ProteomeXchange consortium, which coordinates data deposition across proteomics archives. If a paper presents proteomic data, its raw data should be in PRIDE.</p>
+<p><strong>MetaboLights</strong> is the EBI&rsquo;s primary archive for metabolomics studies, covering both raw spectral data and processed metabolite quantification tables. It supports a wide range of metabolomics platforms (NMR, LC-MS, GC-MS).</p>
+<hr />
+<h2 id="3__reference__and__curated__databases">3. Reference and Curated Databases<a class="headerlink" href="#3__reference__and__curated__databases" title="Permanent link">&para;</a></h2>
+<h3 id="31__ensembl__and__ucsc__genome__browsers">3.1 Ensembl and UCSC: Genome Browsers<a class="headerlink" href="#31__ensembl__and__ucsc__genome__browsers" title="Permanent link">&para;</a></h3>
+<p><strong>Ensembl</strong> (https://www.ensembl.org) is the reference genome annotation portal operated by EBI/WTSI. It provides genome assemblies, gene models, regulatory annotations, and comparative genomics data for a large number of animal genomes, with particular depth for vertebrates. The associated <strong>Ensembl Genomes</strong> portal covers plants, fungi, protists, bacteria, and metazoa. Ensembl is the reference annotation system for many bioinformatics tools and pipelines.</p>
+<p><strong>UCSC Genome Browser</strong> (https://genome.ucsc.edu) provides similar functionality for a somewhat different set of genomes, with particularly comprehensive human annotation tracks including ENCODE regulatory data, conservation data, variant annotations, and clinical data. The UCSC Table Browser is an especially powerful tool for programmatic access to genomic features.</p>
+<h3 id="32__uniprot__the__central__protein__resource">3.2 UniProt: The Central Protein Resource<a class="headerlink" href="#32__uniprot__the__central__protein__resource" title="Permanent link">&para;</a></h3>
+<p>UniProt (https://www.uniprot.org) is the most important protein sequence and function database. It has two components:</p>
+<p><strong>Swiss-Prot</strong> is the manually curated, reviewed component. Each Swiss-Prot entry has been assessed by a trained curator who has reviewed the primary literature, evaluated functional evidence, and assigned standardised annotations. Swiss-Prot contains approximately 500,000 entries. When you need high-confidence functional information about a protein, Swiss-Prot is the starting point.</p>
+<p><strong>TrEMBL</strong> (Translated EMBL) is the automatically annotated, unreviewed component. It contains tens of millions of sequences, computationally translated from nucleotide records and automatically annotated using rule-based systems. TrEMBL annotations are often correct, but have not been manually verified.</p>
+<p>Together, Swiss-Prot and TrEMBL constitute <strong>UniProtKB</strong> (the UniProt Knowledge Base). When searching UniProt, you can filter by review status to restrict to Swiss-Prot entries when confidence is a priority.</p>
+<h3 id="33__evidence__codes__reading__the__fine__print">3.3 Evidence Codes: Reading the Fine Print<a class="headerlink" href="#33__evidence__codes__reading__the__fine__print" title="Permanent link">&para;</a></h3>
+<p>Almost all biological databases use some form of evidence code to indicate how an annotation was derived. Understanding these codes is essential for critically evaluating database entries.</p>
+<p>The Gene Ontology Consortium defines the most widely used system, which is also adopted by many other databases:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>Trust level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EXP</td>
+<td>Inferred from Experiment</td>
+<td>High — direct experimental evidence</td>
+</tr>
+<tr>
+<td>IDA</td>
+<td>Inferred from Direct Assay</td>
+<td>High — specific biochemical assay</td>
+</tr>
+<tr>
+<td>IPI</td>
+<td>Inferred from Physical Interaction</td>
+<td>High — protein interaction evidence</td>
+</tr>
+<tr>
+<td>IGI</td>
+<td>Inferred from Genetic Interaction</td>
+<td>High — genetic evidence</td>
+</tr>
+<tr>
+<td>IMP</td>
+<td>Inferred from Mutant Phenotype</td>
+<td>High — mutant phenotype</td>
+</tr>
+<tr>
+<td>IEP</td>
+<td>Inferred from Expression Pattern</td>
+<td>Moderate — co-expression evidence</td>
+</tr>
+<tr>
+<td>ISS</td>
+<td>Inferred from Sequence or Structural Similarity</td>
+<td>Moderate — computational transfer</td>
+</tr>
+<tr>
+<td>ISO</td>
+<td>Inferred from Sequence Orthology</td>
+<td>Moderate — orthology-based transfer</td>
+</tr>
+<tr>
+<td>IBA</td>
+<td>Inferred from Biological aspect of Ancestor</td>
+<td>Moderate — phylogenetic inference</td>
+</tr>
+<tr>
+<td>IEA</td>
+<td>Inferred from Electronic Annotation</td>
+<td>Lower — fully automated, no manual review</td>
+</tr>
+<tr>
+<td>ND</td>
+<td>No biological Data available</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Practical rule:</strong> Before citing a functional annotation in your own work, check its evidence code. A protein described as a &ldquo;transcription factor&rdquo; based on IEA alone has been automatically annotated — the evidence may be indirect, incomplete, or derived from a distant homologue. This is not necessarily wrong, but it should be stated as a computational prediction, not an established fact.</p>
+</blockquote>
+<hr />
+<h2 id="4__functional__and__interpretive__databases">4. Functional and Interpretive Databases<a class="headerlink" href="#4__functional__and__interpretive__databases" title="Permanent link">&para;</a></h2>
+<h3 id="41__gene__ontology__go">4.1 Gene Ontology (GO)<a class="headerlink" href="#41__gene__ontology__go" title="Permanent link">&para;</a></h3>
+<p>The Gene Ontology (http://geneontology.org) is a controlled vocabulary — an ontology — for describing gene and gene product function in a consistent, species-independent way. It is structured around three orthogonal aspects:</p>
+<ul>
+<li><strong>Molecular Function (MF):</strong> what the gene product does at the molecular level (e.g., &ldquo;ATP binding&rdquo;, &ldquo;serine-type endopeptidase activity&rdquo;)</li>
+<li><strong>Biological Process (BP):</strong> the broader biological programme the gene product participates in (e.g., &ldquo;DNA repair&rdquo;, &ldquo;photoperiodism, flowering&rdquo;)</li>
+<li><strong>Cellular Component (CC):</strong> where the gene product is active in the cell (e.g., &ldquo;nucleus&rdquo;, &ldquo;chloroplast stroma&rdquo;)</li>
+</ul>
+<p>GO annotations are associated with evidence codes (see Section 3.3). The GO is used throughout bioinformatics — in differential expression analysis, functional enrichment testing, comparative genomics, and genome annotation pipelines. Understanding what GO terms mean and how they are derived is fundamental.</p>
+<p>An important subtlety: most GO annotations for non-model organisms are transferred computationally from model organisms based on sequence similarity. The accuracy of these transferred annotations depends on the degree of functional conservation between the organisms, which is not always high — particularly for organism-specific biological processes.</p>
+<h3 id="42__interpro__protein__domains__and__families">4.2 InterPro: Protein Domains and Families<a class="headerlink" href="#42__interpro__protein__domains__and__families" title="Permanent link">&para;</a></h3>
+<p>InterPro (https://www.ebi.ac.uk/interpro) integrates protein classification data from multiple member databases, each of which uses different methods to identify protein families and domains:</p>
+<ul>
+<li><strong>Pfam</strong> — profile hidden Markov models for protein families and domains</li>
+<li><strong>PRINTS</strong> — fingerprints (groups of motifs) for protein families</li>
+<li><strong>PROSITE</strong> — patterns and profiles for protein families and functional sites</li>
+<li><strong>HAMAP</strong> — hand-curated profiles for microbial protein families</li>
+<li><strong>CDD</strong> — conserved domain database (NCBI)</li>
+<li><strong>SUPERFAMILY</strong>, <strong>Gene3D</strong>, <strong>PANTHER</strong>, and others</li>
+</ul>
+<p>InterPro provides a unified view: for any protein, you can see its domain architecture — which protein domains are present, in what order, and with what functional assignments. This is one of the most practically useful annotations for understanding what an unknown protein does.</p>
+<h3 id="43__kegg__and__reactome__pathway__databases">4.3 KEGG and Reactome: Pathway Databases<a class="headerlink" href="#43__kegg__and__reactome__pathway__databases" title="Permanent link">&para;</a></h3>
+<p><strong>KEGG (Kyoto Encyclopedia of Genes and Genomes)</strong> (https://www.kegg.jp) provides pathway maps linking genes to biochemical reactions, metabolic networks, and disease associations. KEGG pathways are widely used for functional enrichment analysis (&ldquo;which metabolic pathways are overrepresented in my gene list?&rdquo;). KEGG has a licensing model that restricts some programmatic access.</p>
+<p><strong>Reactome</strong> (https://reactome.org) is a fully open-source, manually curated pathway database with strong programmatic access via a REST API and an R/Bioconductor package. It is more detailed at the molecular level than KEGG and is increasingly the preferred resource for open reproducible analyses.</p>
+<h3 id="44__string__protein__interaction__networks">4.4 STRING: Protein Interaction Networks<a class="headerlink" href="#44__string__protein__interaction__networks" title="Permanent link">&para;</a></h3>
+<p><strong>STRING</strong> (https://string-db.org) integrates known and predicted protein–protein interactions from multiple evidence sources: co-expression, experimental evidence, text-mining, genomic context, and database-curated interactions. It assigns confidence scores to interactions and allows network visualisation and functional enrichment analysis. STRING is widely used to contextualise gene lists from omics experiments.</p>
+<h3 id="45__the__alphafold__database__and__pdb">4.5 The AlphaFold Database and PDB<a class="headerlink" href="#45__the__alphafold__database__and__pdb" title="Permanent link">&para;</a></h3>
+<p><strong>The Protein Data Bank (PDB)</strong> (https://www.rcsb.org) is the primary archive for experimentally determined three-dimensional structures of proteins, nucleic acids, and their complexes. Structures are determined primarily by X-ray crystallography, cryo-electron microscopy, or NMR spectroscopy.</p>
+<p><strong>The AlphaFold Protein Structure Database</strong> (https://alphafold.ebi.ac.uk) provides computational structure predictions for virtually all proteins in UniProt (~200 million entries), generated by the AlphaFold2 algorithm. This represents a paradigm shift: for the first time, structural information is available for almost any protein, not just those that have been experimentally characterised. Understanding the accuracy and limitations of AlphaFold predictions is important — the per-residue confidence score (pLDDT) is a critical indicator of prediction reliability.</p>
+<hr />
+<h2 id="5__specialist__and__organism-specific__resources">5. Specialist and Organism-Specific Resources<a class="headerlink" href="#5__specialist__and__organism-specific__resources" title="Permanent link">&para;</a></h2>
+<h3 id="51__model__organism__databases">5.1 Model Organism Databases<a class="headerlink" href="#51__model__organism__databases" title="Permanent link">&para;</a></h3>
+<p>Model organism databases are Tier 4 resources that integrate genome sequence, gene annotation, experimental data, and community-curated knowledge for specific organisms. They are important because much of the functional annotation in general databases (GO terms, pathway assignments) originates from experimental work in model organisms.</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Organism</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TAIR</td>
+<td><em>Arabidopsis thaliana</em></td>
+<td>https://www.arabidopsis.org</td>
+</tr>
+<tr>
+<td>FlyBase</td>
+<td><em>Drosophila melanogaster</em></td>
+<td>https://flybase.org</td>
+</tr>
+<tr>
+<td>WormBase</td>
+<td><em>Caenorhabditis elegans</em></td>
+<td>https://wormbase.org</td>
+</tr>
+<tr>
+<td>ZFIN</td>
+<td><em>Danio rerio</em> (zebrafish)</td>
+<td>https://zfin.org</td>
+</tr>
+<tr>
+<td>MGI</td>
+<td><em>Mus musculus</em> (mouse)</td>
+<td>https://www.informatics.jax.org</td>
+</tr>
+<tr>
+<td>SGD</td>
+<td><em>Saccharomyces cerevisiae</em></td>
+<td>https://www.yeastgenome.org</td>
+</tr>
+<tr>
+<td>PomBase</td>
+<td><em>Schizosaccharomyces pombe</em></td>
+<td>https://www.pombase.org</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52__plant__and__tree__resources">5.2 Plant and Tree Resources<a class="headerlink" href="#52__plant__and__tree__resources" title="Permanent link">&para;</a></h3>
+<p><strong>JGI Phytozome</strong> (https://phytozome-next.jgi.doe.gov) is the primary portal for plant genome sequences and annotations, hosted by the Joint Genome Institute. It contains genome assemblies and gene annotations for a large number of plant species and provides standardised comparative genomics tools. For tree genomics, Phytozome hosts <em>Populus trichocarpa</em> and other important species.</p>
+<p><strong>JGI MycoCosm</strong> (https://mycocosm.jgi.doe.gov) is the equivalent portal for fungal genomes, also at JGI.</p>
+<p><strong>PlantGenIE</strong> (https://plantgenie.org / https://plantgenie.se) is a specialist resource for conifer and angiosperm genomics developed in part at Umeå University. It integrates genome browsers, co-expression networks, gene family tools, and BLAST search for a curated set of plant species with a particular focus on boreal forest trees including <em>Picea abies</em> (Norway spruce) and <em>Populus tremula</em> (European aspen). A new version is in active development (https://plantgenie.se).</p>
+<p><strong>TAIR (The Arabidopsis Information Resource)</strong> remains the gold standard for plant genomics and is the source of much of the functional annotation propagated to other plant species.</p>
+<h3 id="53__environmental__and__biodiversity__resources">5.3 Environmental and Biodiversity Resources<a class="headerlink" href="#53__environmental__and__biodiversity__resources" title="Permanent link">&para;</a></h3>
+<p><strong>SILVA</strong> (https://www.arb-silva.de) provides high-quality ribosomal RNA (rRNA) reference databases — 16S/18S for small subunit and 23S/28S for large subunit. It is the primary reference for amplicon-based microbial community profiling (metabarcoding) and phylogenetic placement of environmental sequences. SILVA is a key resource for anyone working in microbial ecology, soil biology, or aquatic biology.</p>
+<p><strong>UNITE</strong> (https://unite.ut.ee) is the equivalent resource for fungal ITS (Internal Transcribed Spacer) sequences, the standard barcode marker for environmental fungi. UNITE provides species hypotheses — clusters of ITS sequences that likely represent single fungal species — which are essential for fungal community analysis. It is particularly important for mycology, soil ecology, and studies of mycorrhizal networks.</p>
+<p><strong>GBIF (Global Biodiversity Information Facility)</strong> (https://www.gbif.org) is an open data infrastructure for publishing, accessing, and using biodiversity occurrence data — where and when organisms have been observed or collected. GBIF aggregates records from natural history museums, citizen science platforms, and research databases. It is essential for macroecological analyses, species distribution modelling, and eDNA study design.</p>
+<p><strong>BOLD (Barcode of Life Data System)</strong> (https://www.boldsystems.org) is a database of DNA barcode sequences linked to voucher specimens, used for species identification. BOLD is particularly important for metazoan biodiversity work (COI barcoding) and is the companion resource to GBIF for sequence-based identification.</p>
+<p><strong>IMG/M</strong> (https://img.jgi.doe.gov) at JGI hosts metagenomic datasets and provides comparative analysis tools for environmental genomic data.</p>
+<blockquote>
+<p><strong>SDG connection:</strong> Several of these resources are directly relevant to monitoring progress towards the UN Sustainable Development Goals, particularly SDG 15 (Life on Land) and SDG 14 (Life Below Water). Biodiversity databases such as GBIF and BOLD, and eDNA-based approaches enabled by SILVA and UNITE, are increasingly central tools in global biodiversity assessment frameworks.</p>
+</blockquote>
+<h3 id="54__human__and__clinical__resources">5.4 Human and Clinical Resources<a class="headerlink" href="#54__human__and__clinical__resources" title="Permanent link">&para;</a></h3>
+<p><strong>ENCODE (Encyclopedia of DNA Elements)</strong> (https://www.encodeproject.org) is a large-scale international consortium project that has systematically characterised the functional elements in the human (and mouse) genome — transcription factor binding sites, histone modifications, chromatin accessibility, and RNA expression — across hundreds of cell types and conditions. ENCODE data is essential for understanding gene regulation in human cells.</p>
+<p><strong>GTEx (Genotype-Tissue Expression)</strong> (https://gtexportal.org) provides data on tissue-specific gene expression and its relationship to genetic variation (expression quantitative trait loci, eQTLs) across 54 human tissues. GTEx is the reference resource for understanding how genomic variants affect gene expression in different tissues.</p>
+<p><strong>gnomAD (Genome Aggregation Database)</strong> (https://gnomad.broadinstitute.org) aggregates and harmonises sequencing data from large-scale human genomic studies to provide population-level variant frequency data across diverse human populations. It is the primary reference for assessing whether a variant is rare (potentially disease-causing) or common (likely benign) in clinical genomics contexts.</p>
+<p><strong>ClinVar</strong> (https://www.ncbi.nlm.nih.gov/clinvar/) is NCBI&rsquo;s archive of variant–phenotype relationships — variants that have been submitted with clinical significance interpretations (pathogenic, likely pathogenic, benign, etc.). It is a central resource for clinical variant classification and interpretation.</p>
+<p><strong>OMIM (Online Mendelian Inheritance in Man)</strong> (https://www.omim.org) is a manually curated database of human genes and genetic disorders, with detailed clinical and molecular descriptions and extensive literature references.</p>
+<hr />
+<h2 id="6__how__to__evaluate__any__unfamiliar__database">6. How to Evaluate Any Unfamiliar Database<a class="headerlink" href="#6__how__to__evaluate__any__unfamiliar__database" title="Permanent link">&para;</a></h2>
+<p>You will encounter databases throughout this programme and your career that are not covered in this lecture. The following checklist provides a framework for evaluating any unfamiliar resource:</p>
+<p><strong>1. What is its scope and what questions can it answer?</strong>
+Read the &ldquo;About&rdquo; page. What organism(s), data type(s), and biological level(s) does it cover? Is it a primary archive, a reference database, or a functional/interpretive resource?</p>
+<p><strong>2. Who maintains it and how is it funded?</strong>
+Databases maintained by established institutions (NCBI, EBI, JGI, model organism communities) with long-term funding are more likely to be stable and reliable than those maintained by a single research group. Check when it was last updated.</p>
+<p><strong>3. What is the update cycle?</strong>
+Some databases are updated continuously; others have versioned releases. For reproducibility, knowing which version of a database you used is essential — always record this.</p>
+<p><strong>4. How are annotations derived and what evidence codes are used?</strong>
+Does the database document its curation process? Are evidence codes available? Can you trace an annotation back to its primary source?</p>
+<p><strong>5. Is programmatic access available?</strong>
+Does the database have a REST API, an FTP site, or a command-line client? This matters for scaling your work beyond what is feasible manually.</p>
+<p><strong>6. How should it be cited?</strong>
+Most databases have a primary citation paper. Using a database without citing it is poor scientific practice and fails to support the funding and maintenance of the resource.</p>
+<hr />
+<h2 id="7__hands-on__exercise__your__first__programmatic__database__query">7. Hands-On Exercise: Your First Programmatic Database Query<a class="headerlink" href="#7__hands-on__exercise__your__first__programmatic__database__query" title="Permanent link">&para;</a></h2>
+<p><strong>Objective:</strong> Retrieve biological sequences from NCBI and UniProt using the command line, parse the results with Linux tools, and commit your work to Git. By the end of this exercise, you will have performed a complete data retrieval workflow using real programmatic database access — the same approach used in production bioinformatics pipelines.</p>
+<p><strong>Prerequisites:</strong> You should be logged in to Kebnekaise via OnDemand. All commands below run in a terminal session.</p>
+<hr />
+<h3 id="part__a__setting__up__your__workspace">Part A — Setting up your workspace<a class="headerlink" href="#part__a__setting__up__your__workspace" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Create a directory for this exercise</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/course/lecture11-databases
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>~/course/lecture11-databases
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Initialise a Git repository</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>git<span class="w"> </span>init
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Create a README file</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# Lecture 02: Programmatic Database Access&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>README.md
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;## Date: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;initial commit: lecture11 exercise setup&quot;</span>
+</span></code></pre></div>
+<hr />
+<h3 id="part__b__fetching__a__sequence__from__ncbi__entrez">Part B — Fetching a sequence from NCBI Entrez<a class="headerlink" href="#part__b__fetching__a__sequence__from__ncbi__entrez" title="Permanent link">&para;</a></h3>
+<p>NCBI provides a web API called <strong>Entrez Utilities (E-utilities)</strong> that allows programmatic access to all NCBI databases. The base URL is:</p>
+<p><code>https://eutils.ncbi.nlm.nih.gov/entrez/eutils/</code></p>
+<p>The two most useful endpoints are:
+- <code>efetch.fcgi</code> — retrieve a specific record by accession
+- <code>esearch.fcgi</code> — search a database and return accession numbers</p>
+<p><strong>Step 1:</strong> Fetch the RefSeq mRNA record for human <em>TP53</em> (accession <code>NM_000546.6</code>) in FASTA format:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span><span class="s2">&quot;https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="s2">db=nucleotide&amp;id=NM_000546.6&amp;rettype=fasta&amp;retmode=text&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>&gt;<span class="w"> </span>TP53_mRNA.fasta
+</span></code></pre></div>
+<p><strong>Step 2:</strong> Inspect the file using tools you have already learned:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Look at the header and first few lines</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>head<span class="w"> </span>-5<span class="w"> </span>TP53_mRNA.fasta
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># How many sequences are in the file?</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>TP53_mRNA.fasta
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># How many characters (bytes) is the file?</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>wc<span class="w"> </span>-c<span class="w"> </span>TP53_mRNA.fasta
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># How many lines?</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>wc<span class="w"> </span>-l<span class="w"> </span>TP53_mRNA.fasta
+</span></code></pre></div>
+<p><em>Questions to consider: What information is in the FASTA header line? What does the accession number format tell you about this record?</em></p>
+<p><strong>Step 3:</strong> Now fetch the same record in <strong>GenBank format</strong> — a richer format that includes extensive metadata:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span><span class="s2">&quot;https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s2">db=nucleotide&amp;id=NM_000546.6&amp;rettype=gb&amp;retmode=text&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>&gt;<span class="w"> </span>TP53_mRNA.gb
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Extract key metadata fields</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>grep<span class="w"> </span><span class="s2">&quot;DEFINITION\|SOURCE\|ORGANISM\|KEYWORDS\|COMMENT&quot;</span><span class="w"> </span>TP53_mRNA.gb
+</span></code></pre></div>
+<p><em>Questions: What additional information does the GenBank format provide compared to FASTA? Can you find the gene name, organism, and a description of what this transcript encodes?</em></p>
+<hr />
+<h3 id="part__c__fetching__a__protein__from__uniprot">Part C — Fetching a protein from UniProt<a class="headerlink" href="#part__c__fetching__a__protein__from__uniprot" title="Permanent link">&para;</a></h3>
+<p>UniProt provides a REST API at <code>https://rest.uniprot.org/</code>. UniProt accession numbers are alphanumeric (e.g., <code>P04637</code> for human TP53).</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Fetch the human TP53 protein sequence from UniProt in FASTA format</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>curl<span class="w"> </span><span class="s2">&quot;https://rest.uniprot.org/uniprotkb/P04637.fasta&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>&gt;<span class="w"> </span>TP53_protein.fasta
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Inspect the header</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>head<span class="w"> </span>-3<span class="w"> </span>TP53_protein.fasta
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Count the amino acids (exclude the header line, remove newlines, count characters)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>TP53_protein.fasta<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-c
+</span></code></pre></div>
+<p><em>Questions: How many amino acids does human TP53 have? How does the UniProt FASTA header format differ from the NCBI FASTA header? What information is encoded in each field?</em></p>
+<p><strong>Fetch the full UniProt entry in text format to see the annotation:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span><span class="s2">&quot;https://rest.uniprot.org/uniprotkb/P04637.txt&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>TP53_protein.txt
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Is this a Swiss-Prot (reviewed) or TrEMBL (unreviewed) entry?</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>grep<span class="w"> </span><span class="s2">&quot;^ID&quot;</span><span class="w"> </span>TP53_protein.txt
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># What GO terms are associated with TP53?</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>grep<span class="w"> </span><span class="s2">&quot;^DR   GO;&quot;</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># What evidence codes are used?</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>grep<span class="w"> </span><span class="s2">&quot;^DR   GO;&quot;</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;IDA\|IEA\|IMP\|ISS\|IPI\|EXP&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</span></code></pre></div>
+<hr />
+<h3 id="part__d__documenting__and__committing__your__work">Part D — Documenting and committing your work<a class="headerlink" href="#part__d__documenting__and__committing__your__work" title="Permanent link">&para;</a></h3>
+<p>A core principle of FAIR and reproducible bioinformatics is that <strong>the commands you used are as important as the data you produced</strong>. Document your workflow:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Append your findings to the README</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s">## Data retrieved</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s">- TP53_mRNA.fasta — Human TP53 mRNA (NM_000546.6) from NCBI RefSeq in FASTA format</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s">- TP53_mRNA.gb   — Same record in GenBank format</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s">- TP53_protein.fasta — Human TP53 protein (P04637) from UniProt Swiss-Prot in FASTA format</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s">- TP53_protein.txt   — Full UniProt annotation record for P04637</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s">## Key findings</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="s">&lt;!-- Add your answers to the questions above here --&gt;</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s">## Database versions / access date</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s">- NCBI Entrez accessed: $(date)</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="s">- UniProt release used: check https://www.uniprot.org/help/release-notes</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="s">EOF</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="c1"># Stage all files and commit</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;lecture11: retrieved TP53 records from NCBI and UniProt</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s2">- NM_000546.6 fetched in FASTA and GenBank format via Entrez API</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="s2">- P04637 fetched from UniProt REST API</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="s2">- Documented access date and findings in README&quot;</span>
+</span></code></pre></div>
+<p><em>Note the commit message style: a short summary line, then a blank line, then more detail. This is good practice you should use throughout the programme.</em></p>
+<hr />
+<h3 id="extension__tasks__if__time__allows">Extension Tasks (if time allows)<a class="headerlink" href="#extension__tasks__if__time__allows" title="Permanent link">&para;</a></h3>
+<p><strong>Extension A — A plant gene example:</strong></p>
+<p>Fetch the rbcL gene (<em>ribulose-1,5-bisphosphate carboxylase/oxygenase large subunit</em>) from <em>Arabidopsis thaliana</em>. rbcL is one of the most widely used plant marker genes and is central to eDNA metabarcoding of plant communities.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Search NCBI for Arabidopsis rbcL in the nucleotide database</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>curl<span class="w"> </span><span class="s2">&quot;https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s2">db=nucleotide&amp;term=Arabidopsis+thaliana[orgn]+rbcL[gene]+refseq[filter]\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s2">&amp;retmax=5&amp;retmode=json&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>rbcL_search.json
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Inspect the JSON output — this is a common API response format</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>cat<span class="w"> </span>rbcL_search.json
+</span></code></pre></div>
+<p><em>Question: The output is in JSON format. How is it structured? What information would you need to extract from it to then fetch the actual sequence?</em></p>
+<p><strong>Extension B — Searching ENA programmatically:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Search ENA for RNA-seq datasets from Populus tremula</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>curl<span class="w"> </span><span class="s2">&quot;https://www.ebi.ac.uk/ena/portal/api/search?\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">query=tax_eq(182688)%20AND%20library_strategy=%22RNA-Seq%22\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s2">&amp;result=read_study&amp;fields=study_accession,study_title,scientific_name\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="s2">&amp;format=tsv&amp;limit=5&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>populus_rnaseq.tsv
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>cat<span class="w"> </span>populus_rnaseq.tsv
+</span></code></pre></div>
+<p><em>Question: What does the query structure tell you about how the ENA API works? How might you modify this query to search for a different organism?</em></p>
+<hr />
+<h2 id="8__in-session__quizzes">8. In-Session Quizzes<a class="headerlink" href="#8__in-session__quizzes" title="Permanent link">&para;</a></h2>
+<h3 id="mentimeter__quiz__1__prior__knowledge__session__opening">Mentimeter Quiz 1 — Prior knowledge (session opening)<a class="headerlink" href="#mentimeter__quiz__1__prior__knowledge__session__opening" title="Permanent link">&para;</a></h3>
+<p><em>Displayed on screen at the start of the session:</em></p>
+<ul>
+<li>Q1: &ldquo;Which of these databases have you heard of?&rdquo; (select all that apply): NCBI / ENA / UniProt / Ensembl / GEO / InterPro / KEGG / STRING / AlphaFold / gnomAD / GBIF / None of the above</li>
+<li>Q2 (open word cloud): &ldquo;In one word: what is a biological database?&rdquo;</li>
+</ul>
+<h3 id="mentimeter__quiz__2__classification__and__evidence__codes__end__of__block__1__before__break">Mentimeter Quiz 2 — Classification and evidence codes (end of Block 1, before break)<a class="headerlink" href="#mentimeter__quiz__2__classification__and__evidence__codes__end__of__block__1__before__break" title="Permanent link">&para;</a></h3>
+<p><strong>Q1:</strong> You have just completed an RNA-seq experiment in <em>Populus tremula</em>. Where would you deposit the raw FASTQ reads?
+- A) GEO (Gene Expression Omnibus)
+- B) NCBI SRA (Sequence Read Archive) ✓ — <em>raw reads go to SRA; the processed expression data may additionally go to GEO</em>
+- C) UniProt
+- D) Ensembl</p>
+<p><strong>Q2:</strong> A GO annotation on a gene you are studying is labelled IEA. What does this mean, and should it change how you interpret the annotation?
+- A) Inferred from Experimental Analysis — high confidence
+- B) Inferred from Electronic Annotation — automated, no manual review ✓
+- C) International Expert Assessment — curated by a specialist
+- D) Integrated Evidence Archive — aggregated from multiple sources</p>
+<p><strong>Q3:</strong> Which of the following best describes the relationship between GenBank and RefSeq?
+- A) They contain identical sequences with different accession numbers
+- B) RefSeq is a curated, non-redundant subset; GenBank contains all submissions ✓
+- C) GenBank is European; RefSeq is American
+- D) They are operated by different organisations and do not overlap</p>
+<hr />
+<h2 id="9__what__you__should__know__after__this__session">9. What You Should Know After This Session<a class="headerlink" href="#9__what__you__should__know__after__this__session" title="Permanent link">&para;</a></h2>
+<p>✅ <strong>Describe the four-tier database hierarchy</strong> and give one example from each tier.</p>
+<p>✅ <strong>Explain the INSDC partnership</strong> and why the same nucleotide sequences appear in ENA, GenBank, and DDBJ.</p>
+<p>✅ <strong>Distinguish GenBank from RefSeq</strong> and explain when you would use each.</p>
+<p>✅ <strong>Distinguish Swiss-Prot from TrEMBL</strong> and explain what manually reviewed means in practice.</p>
+<p>✅ <strong>Explain what an evidence code is</strong> and why IEA and EXP annotations are not equivalent.</p>
+<p>✅ <strong>Name at least two databases from each of:</strong> primary archives; functional databases; plant/environmental resources; human/clinical resources.</p>
+<p>✅ <strong>Use <code>curl</code> to retrieve a sequence from NCBI Entrez and from UniProt</strong>, and explain the structure of the URLs used.</p>
+<p>✅ <strong>Use <code>grep</code>, <code>wc</code>, and <code>tr</code></strong> to extract information from FASTA and GenBank format files.</p>
+<p>✅ <strong>Commit your data and documented commands to a Git repository</strong> with a meaningful commit message.</p>
+<p>✅ <strong>Apply the database evaluation checklist</strong> to assess any unfamiliar resource.</p>
+<hr />
+<h2 id="10__further__reading__and__resources">10. Further Reading and Resources<a class="headerlink" href="#10__further__reading__and__resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Cochrane G. et al. (2016). The International Nucleotide Sequence Database Collaboration. <em>Nucleic Acids Research</em>, 44(D1): D48–D50. — Overview of the INSDC partnership.</li>
+<li>The UniProt Consortium (2023). UniProt: the Universal Protein Knowledgebase in 2023. <em>Nucleic Acids Research</em>, 51(D1): D523–D531. — Current reference for UniProt.</li>
+<li>Ashburner M. et al. (2000). Gene Ontology: tool for the unification of biology. <em>Nature Genetics</em>, 25: 25–29. — The foundational GO paper.</li>
+<li>Blum M. et al. (2021). The InterPro protein families and domains database: 20 years on. <em>Nucleic Acids Research</em>, 49(D1): D344–D354. — Current InterPro reference.</li>
+<li>Jumper J. et al. (2021). Highly accurate protein structure prediction with AlphaFold. <em>Nature</em>, 596: 583–589. — The AlphaFold paper; essential reading.</li>
+</ul>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../bioinformatics-overview/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../12.blast/blast/" class="btn btn-neutral float-right" title="12. BLAST and Sequence Similarity">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../bioinformatics-overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../12.blast/blast/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

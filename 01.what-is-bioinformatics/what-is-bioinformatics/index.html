@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/01.what-is-bioinformatics/what-is-bioinformatics/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>1. What is Bioinformatics? - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. What is Bioinformatics?";
+        var mkdocs_page_input_path = "01.what-is-bioinformatics/what-is-bioinformatics.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/01.what-is-bioinformatics/what-is-bioinformatics/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">1. What is Bioinformatics?</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#session__aims">Session Aims</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1__origins__how__did__bioinformatics__come__to__exist">1. Origins: How Did Bioinformatics Come to Exist?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11__the__data__problem__that__created__the__field">1.1 The Data Problem That Created the Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12__what__is__bioinformatics__formally">1.2 What is Bioinformatics, Formally?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13__the__scope__of__application">1.3 The Scope of Application</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2__what__can__and__cannot__bioinformatics__tell__us">2. What Can — and Cannot — Bioinformatics Tell Us?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21__bioinformatics__produces__hypotheses__not__truths">2.1 Bioinformatics Produces Hypotheses, Not Truths</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22__reference__bias">2.2 Reference Bias</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23__the__circularity__problem__in__annotation">2.3 The Circularity Problem in Annotation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24__pipeline__complexity__and__opaque__decisions">2.4 Pipeline Complexity and Opaque Decisions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#25__the__absence__of__signal__is__not__the__absence__of__biology">2.5 The Absence of Signal is Not the Absence of Biology</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3__artificial__intelligence__in__bioinformatics__power__risk__and__responsibility">3. Artificial Intelligence in Bioinformatics: Power, Risk, and Responsibility</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31__the__current__landscape">3.1 The Current Landscape</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32__the__risk__hierarchy">3.2 The Risk Hierarchy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33__why__ai__errors__in__bioinformatics__are__particularly__dangerous">3.3 Why AI Errors in Bioinformatics are Particularly Dangerous</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34__the__analogy__learning__to__walk__before__running">3.4 The Analogy: Learning to Walk Before Running</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35__practical__guidelines__for__ai__use__in__this__programme">3.5 Practical Guidelines for AI Use in This Programme</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4__the__programme__structure__and__your__career__trajectory">4. The Programme Structure and Your Career Trajectory</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41__programme__overview">4.1 Programme Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42__career__trajectories__and__what__the__programme__trains__you__for">4.2 Career Trajectories and What the Programme Trains You For</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43__this__course__5bi00a__in__context">4.3 This Course (5BI00A) in Context</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5__in-session__quiz">5. In-Session Quiz</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6__what__you__should__know__after__this__session">6. What You Should Know After This Session</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7__further__reading__and__resources">7. Further Reading and Resources</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#appendix__course__ilo__summary">Appendix: Course ILO Summary</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.access-databases/intro/">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">1. What is Bioinformatics?</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="01__what__is__bioinformatics">01. What is Bioinformatics?<a class="headerlink" href="#01__what__is__bioinformatics" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University<br />
+<strong>Slides:</strong> <a href="../../PDFs/lecture-01-what-is-bioinformatics.pdf">PDF</a>  </p>
+<hr />
+<h2 id="session__aims">Session Aims<a class="headerlink" href="#session__aims" title="Permanent link">&para;</a></h2>
+<p>By the end of this session you should be able to:</p>
+<ol>
+<li>Describe the origins, scope, and interdisciplinary nature of bioinformatics</li>
+<li>Explain the kinds of biological questions that bioinformatics can and cannot answer</li>
+<li>Articulate why epistemic awareness — understanding <em>what</em> an analysis actually tells you — is as important as technical proficiency</li>
+<li>Describe the potential and risks of AI-assisted coding in the context of bioinformatics research</li>
+<li>Identify the Expected Learning Outcomes (ILOs) of this course and the programme, and explain how they relate to different career trajectories in bioinformatics</li>
+</ol>
+<p><strong>Links to course ILOs:</strong> This session provides foundational conceptual grounding for ILOs 1, 3, 5, and 13. It does not directly assess technical skills, but establishes the intellectual framework within which all technical work in this programme is situated.</p>
+<hr />
+<h2 id="1__origins__how__did__bioinformatics__come__to__exist">1. Origins: How Did Bioinformatics Come to Exist?<a class="headerlink" href="#1__origins__how__did__bioinformatics__come__to__exist" title="Permanent link">&para;</a></h2>
+<p>The term <em>bioinformatics</em> was coined by <strong>Paulien Hogeweg and Ben Hesper</strong> in 1970, originally describing the study of information processes in biotic systems. However, the field as it is practised today emerged from a convergence of pressures that became acute in the 1980s and 1990s.</p>
+<h3 id="11__the__data__problem__that__created__the__field">1.1 The Data Problem That Created the Field<a class="headerlink" href="#11__the__data__problem__that__created__the__field" title="Permanent link">&para;</a></h3>
+<p>For most of the history of molecular biology, data were scarce and hard-won. Sequencing a single gene could represent years of laboratory work. The paradigm was: develop a hypothesis, design an experiment, collect modest amounts of data, interpret.</p>
+<p>Three technological transitions fundamentally disrupted this paradigm:</p>
+<p><strong>1. The Human Genome Project (HGP, 1990–2003)</strong> demonstrated that genome-scale sequencing was possible and scientifically transformative — but also that the resulting datasets were far beyond the capacity of traditional biological analysis. The HGP produced approximately 3.2 billion base pairs; interpreting them required entirely new computational approaches. Crucially, it also established the principle that large-scale biological data should be publicly accessible, laying the groundwork for the database landscape you will use throughout this programme.</p>
+<p><strong>2. The Next-Generation Sequencing (NGS) revolution (~2005–present)</strong> reduced the cost of sequencing by several orders of magnitude — a reduction steeper than Moore&rsquo;s Law for computing. A human genome that cost approximately US<span class="arithmatex">\(100 million to sequence in 2001 can now be sequenced for less than US\)</span>200. The consequence is that data generation has massively outpaced our ability to analyse and interpret it. The bottleneck in modern biology is not generating data — it is making sense of it.</p>
+<p><strong>3. The multi-omics era</strong> introduced the simultaneous measurement of many biological layers — genome, transcriptome, proteome, metabolome, epigenome — generating data of extraordinary complexity that cannot be understood by any single disciplinary tradition. Integration of these data types is one of the defining challenges of contemporary bioinformatics.</p>
+<h3 id="12__what__is__bioinformatics__formally">1.2 What is Bioinformatics, Formally?<a class="headerlink" href="#12__what__is__bioinformatics__formally" title="Permanent link">&para;</a></h3>
+<p>Bioinformatics is an interdisciplinary field at the intersection of:</p>
+<ul>
+<li><strong>Biology</strong> — the domain of application and the source of the questions</li>
+<li><strong>Computer science</strong> — the tools and infrastructure for storing, processing, and analysing data</li>
+<li><strong>Statistics and data science</strong> — the mathematical framework for drawing valid inferences from complex data</li>
+<li><strong>Mathematics</strong> — foundational to algorithm design and modelling</li>
+<li><strong>Biochemistry and molecular biology</strong> — necessary for interpreting molecular-level data</li>
+</ul>
+<p>No practising bioinformatician is an expert in all of these areas. What distinguishes a skilled bioinformatician is the ability to work at the interfaces — to communicate across disciplines, to critically evaluate methods from adjacent fields, and to understand when to seek expertise that they themselves do not possess.</p>
+<h3 id="13__the__scope__of__application">1.3 The Scope of Application<a class="headerlink" href="#13__the__scope__of__application" title="Permanent link">&para;</a></h3>
+<p>Bioinformatics is now integral to virtually every area of the life sciences:</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Representative application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human genomics and medicine</td>
+<td>Variant calling for disease diagnosis; cancer genomics</td>
+</tr>
+<tr>
+<td>Clinical genetics</td>
+<td>Interpretation of diagnostic sequencing; pharmacogenomics</td>
+</tr>
+<tr>
+<td>Plant science and agriculture</td>
+<td>Crop improvement; understanding adaptation to climate</td>
+</tr>
+<tr>
+<td>Microbiology</td>
+<td>Pathogen surveillance; microbiome characterisation</td>
+</tr>
+<tr>
+<td>Ecology and conservation</td>
+<td>Biodiversity monitoring via eDNA metabarcoding</td>
+</tr>
+<tr>
+<td>Evolutionary biology</td>
+<td>Phylogenomics; population genetics</td>
+</tr>
+<tr>
+<td>Drug discovery</td>
+<td>Target identification; protein structure prediction</td>
+</tr>
+</tbody>
+</table>
+<p>This breadth is reflected directly in the design of this programme, which is deliberately pluralistic: you will encounter applications in human health, plant biology, microbiology, and environmental genomics. The underlying computational and statistical skills are transferable across all of them.</p>
+<hr />
+<h2 id="2__what__can__and__cannot__bioinformatics__tell__us">2. What Can — and Cannot — Bioinformatics Tell Us?<a class="headerlink" href="#2__what__can__and__cannot__bioinformatics__tell__us" title="Permanent link">&para;</a></h2>
+<p>This is the most important conceptual section of the session. A remarkable amount of erroneous science in the bioinformatics literature results not from deliberate fraud, but from a failure to understand the limitations of computational analysis. Understanding these limitations is not a sign of scepticism about the field — it is the mark of a rigorous scientist.</p>
+<h3 id="21__bioinformatics__produces__hypotheses__not__truths">2.1 Bioinformatics Produces Hypotheses, Not Truths<a class="headerlink" href="#21__bioinformatics__produces__hypotheses__not__truths" title="Permanent link">&para;</a></h3>
+<p>Computational analysis, however sophisticated, operates on representations of biological reality — not on biological reality itself. A sequence in a database is a record of bases detected by a machine under particular experimental conditions. A gene model is a prediction made by an algorithm trained on prior knowledge. An annotation is a transfer of information from one organism to another, often via automated pipelines.</p>
+<p>This does not mean computational results are unreliable. It means they must be interpreted with appropriate epistemic humility, and wherever possible, validated experimentally.</p>
+<blockquote>
+<p><strong>Key principle:</strong> Bioinformatics analysis generates hypotheses that should be treated as such until supported by independent evidence.</p>
+</blockquote>
+<h3 id="22__reference__bias">2.2 Reference Bias<a class="headerlink" href="#22__reference__bias" title="Permanent link">&para;</a></h3>
+<p>Almost all genomic analyses compare data to a reference genome — a single representative sequence used as a standard. This introduces reference bias: variants, genes, or features that differ substantially from the reference may be missed, misassembled, or incorrectly annotated. </p>
+<p>This has particular implications for:
+- <strong>Population genomics</strong> — reference genomes are typically derived from single individuals, often from historically well-resourced research communities, and may not represent population diversity
+- <strong>Non-model organisms</strong> — reference genomes may be incomplete, fragmented, or simply absent
+- <strong>Structural variants</strong> — large-scale genomic rearrangements are systematically under-detected by short-read approaches aligned to a linear reference</p>
+<h3 id="23__the__circularity__problem__in__annotation">2.3 The Circularity Problem in Annotation<a class="headerlink" href="#23__the__circularity__problem__in__annotation" title="Permanent link">&para;</a></h3>
+<p>Much of the functional annotation in biological databases was derived by computational inference — transferring annotations from well-studied organisms to less-studied ones based on sequence similarity. This is both powerful and dangerous.</p>
+<p>The danger arises because: if an incorrect annotation is propagated to a database, and subsequent analyses use that database to annotate further genomes, the error compounds. Studies have estimated that a substantial fraction of functional annotations in major databases may be propagated errors. This is not a reason to distrust databases — they are indispensable — but it is a reason to understand how an annotation was derived before treating it as ground truth.</p>
+<blockquote>
+<p><strong>Practical rule:</strong> Always check the evidence code for a database annotation. Is it based on experimental evidence, computational prediction, or transferred annotation? These are not equivalent.</p>
+</blockquote>
+<h3 id="24__pipeline__complexity__and__opaque__decisions">2.4 Pipeline Complexity and Opaque Decisions<a class="headerlink" href="#24__pipeline__complexity__and__opaque__decisions" title="Permanent link">&para;</a></h3>
+<p>Modern bioinformatics workflows chain together many tools, each of which makes decisions — which reads to keep, how to define gene models, which statistical threshold to apply, how to handle multimapping reads. The cumulative effect of these decisions can substantially affect the final result, and these decisions are often invisible to someone running an established pipeline without understanding its components.</p>
+<p>A frequently cited principle in reproducible science is that if you cannot explain every step of your analysis and why those parameters were chosen, you do not fully understand your own results. This is not an aspirational standard — it is the minimum required for the work to be scientifically defensible.</p>
+<h3 id="25__the__absence__of__signal__is__not__the__absence__of__biology">2.5 The Absence of Signal is Not the Absence of Biology<a class="headerlink" href="#25__the__absence__of__signal__is__not__the__absence__of__biology" title="Permanent link">&para;</a></h3>
+<p>A gene that is not detected as differentially expressed is not necessarily unchanged biologically. A protein that is absent from a database may simply not have been studied. A variant that does not pass a quality filter may nonetheless be real. Statistical null results are information-poor by nature; the absence of a finding in a computational analysis must always be interpreted in the context of what the analysis was actually capable of detecting.</p>
+<hr />
+<h2 id="3__artificial__intelligence__in__bioinformatics__power__risk__and__responsibility">3. Artificial Intelligence in Bioinformatics: Power, Risk, and Responsibility<a class="headerlink" href="#3__artificial__intelligence__in__bioinformatics__power__risk__and__responsibility" title="Permanent link">&para;</a></h2>
+<h3 id="31__the__current__landscape">3.1 The Current Landscape<a class="headerlink" href="#31__the__current__landscape" title="Permanent link">&para;</a></h3>
+<p>Large language models (LLMs) and AI coding assistants — including tools such as Claude Code, GitHub Copilot, and ChatGPT — have dramatically changed the experience of writing code. These tools can generate syntactically correct code for routine tasks, explain error messages, suggest debugging strategies, and accelerate the implementation of standard analyses. Used appropriately, they are genuinely transformative productivity tools.</p>
+<p>They are already being used in bioinformatics for:
+- Generating boilerplate scripts and pipeline components
+- Interpreting unfamiliar code
+- Drafting documentation and README files
+- Exploring unfamiliar APIs and libraries
+- Accelerating literature synthesis</p>
+<p>This programme actively encourages you to become fluent with AI-assisted coding. Productivity tools that exist should be used. Refusing to engage with AI coding assistants would be professionally unwise.</p>
+<p><strong>However.</strong></p>
+<h3 id="32__the__risk__hierarchy">3.2 The Risk Hierarchy<a class="headerlink" href="#32__the__risk__hierarchy" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Level 1 — Inconvenience:    AI generates incorrect code that fails immediately.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                            You notice. You fix it. Minor time lost.
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Level 2 — Hidden error:     AI generates code that runs but implements the
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                            wrong logic. You do not notice. Your results are
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                            wrong. You may not discover this until peer review,
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                            or a collaborator tries to reproduce your work,
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                            or you publish.
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Level 3 — Compounding:      Wrong results inform downstream analyses, grant
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                            applications, clinical decisions, or further
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                            publications. The error propagates.
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Level 4 — Systemic:         AI-generated scientific content, including
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                            hallucinated citations and fabricated results,
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                            enters the published literature. Other researchers
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                            cite it, train future AI models on it, and build
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                            on it. The scientific record is degraded.
+</span></code></pre></div>
+<p>Levels 1 and 2 are the most common risk for individual researchers. Levels 3 and 4 are the most consequential for science as a whole — and they are already occurring.</p>
+<h3 id="33__why__ai__errors__in__bioinformatics__are__particularly__dangerous">3.3 Why AI Errors in Bioinformatics are Particularly Dangerous<a class="headerlink" href="#33__why__ai__errors__in__bioinformatics__are__particularly__dangerous" title="Permanent link">&para;</a></h3>
+<p>Bioinformatics analyses produce outputs that look authoritative — tables of numbers, figures, statistical values — regardless of whether the underlying analysis is correct. Unlike a wet laboratory experiment where a failed reaction is often visible, a computational error that produces plausible-looking output may pass undetected through code review, peer review, and publication.</p>
+<p>AI tools make this worse in a specific way: they produce code that looks correct to someone who does not know what correct looks like. This is precisely the situation of a beginner. An experienced bioinformatician reviewing AI-generated code immediately notices when a normalisation step is wrong, when a statistical test is being misapplied, or when a genome coordinate system is being confused. A student without that foundational knowledge cannot perform that evaluation.</p>
+<blockquote>
+<p><strong>The core problem is not that AI makes mistakes — it is that you need to be able to detect the mistakes. And you cannot detect what you cannot recognise.</strong></p>
+</blockquote>
+<h3 id="34__the__analogy__learning__to__walk__before__running">3.4 The Analogy: Learning to Walk Before Running<a class="headerlink" href="#34__the__analogy__learning__to__walk__before__running" title="Permanent link">&para;</a></h3>
+<p>Consider the following progression:</p>
+<p>🚶 <strong>Crawl</strong> — understanding the conceptual foundations. What does this analysis actually do? What are its assumptions? What could go wrong?</p>
+<p>🏃 <strong>Walk</strong> — implementing analyses yourself, from components you understand, and being able to explain every decision.</p>
+<p>🚀 <strong>Run</strong> — using AI tools to accelerate work that you already understand deeply enough to verify.</p>
+<p>Using AI tools before reaching the &ldquo;walk&rdquo; stage is, to use an imperfect but memorable analogy, <strong>like being handed the controls of a Formula 1 car when you have never driven</strong>. You may go very fast. Almost certainly in the wrong direction. Possibly through a wall. The AI will not tell you that you are heading towards a wall — it will generate confident, well-formatted code for doing so.</p>
+<p><em>[Lecture slide suggestion: a cartoon F1 car driven by someone in a lab coat, accelerating towards a wall labelled &ldquo;Publication&rdquo;, with &ldquo;AI COPILOT: No issues detected!&rdquo; on the dashboard.]</em></p>
+<p>The aim of this programme is explicitly to build the foundations — the crawl and walk stages — so that when you use AI tools (which we actively encourage), you are doing so as an expert user who can evaluate, verify, and take responsibility for the outputs.</p>
+<h3 id="35__practical__guidelines__for__ai__use__in__this__programme">3.5 Practical Guidelines for AI Use in This Programme<a class="headerlink" href="#35__practical__guidelines__for__ai__use__in__this__programme" title="Permanent link">&para;</a></h3>
+<p>The following principles apply throughout:</p>
+<ul>
+<li><strong>You are responsible for every line of code you submit</strong>, regardless of how it was generated. &ldquo;The AI wrote it&rdquo; is not an acceptable explanation for an error in assessed work.</li>
+<li><strong>Always explain what code does before submitting it.</strong> If you cannot explain it, you do not sufficiently understand it.</li>
+<li><strong>Verify outputs against expected results.</strong> Run analyses on test data with known answers before applying them to real data.</li>
+<li><strong>Document your use of AI tools.</strong> Transparency about AI assistance is an emerging norm in science; practise it from the beginning.</li>
+<li><strong>AI tools hallucinate.</strong> They generate citations that do not exist, describe tools that have never been implemented, and produce plausible-sounding but incorrect biological statements. Verify everything independently.</li>
+</ul>
+<hr />
+<h2 id="4__the__programme__structure__and__your__career__trajectory">4. The Programme Structure and Your Career Trajectory<a class="headerlink" href="#4__the__programme__structure__and__your__career__trajectory" title="Permanent link">&para;</a></h2>
+<h3 id="41__programme__overview">4.1 Programme Overview<a class="headerlink" href="#41__programme__overview" title="Permanent link">&para;</a></h3>
+<p>The Master&rsquo;s Programme in Bioinformatics at Umeå University consists of 120 ECTS across two years. The design is intentional: Year 1 builds foundational skills that are applied and deepened in Year 2.</p>
+<p><strong>Year 1</strong> — Foundational skills:</p>
+<table>
+<thead>
+<tr>
+<th>Course</th>
+<th>Key skills</th>
+<th>ILOs addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Computing for Data-Driven Biology</td>
+<td>Command line, Linux, HPC, Git, databases, FAIR</td>
+<td>1–13</td>
+</tr>
+<tr>
+<td>Statistics and Data Science for Biology</td>
+<td>Statistical foundations for biological data</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Programming in Python for Bioinformatics</td>
+<td>Scripting, automation, data manipulation</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Statistics and Machine Learning in Bioinformatics</td>
+<td>ML approaches in biological contexts</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Quantitative Biology and Integrative Omics</td>
+<td>Multi-omics data integration</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Comparative Genomics</td>
+<td>Genome-scale evolutionary analysis</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Functional Genomics Theory</td>
+<td>Gene regulation, transcriptomics theory</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Applied Functional Genomics</td>
+<td>RNA-seq and functional genomics in practice</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Year 2</strong> — Applied and specialist:</p>
+<p>Clinical Omics and Bioinformatics; Epigenetics and the Non-Coding Genome; Microbial Bioinformatics; Advanced Bioinformatics; Thesis (30 ECTS)</p>
+<h3 id="42__career__trajectories__and__what__the__programme__trains__you__for">4.2 Career Trajectories and What the Programme Trains You For<a class="headerlink" href="#42__career__trajectories__and__what__the__programme__trains__you__for" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Career path</th>
+<th>Key competencies required</th>
+<th>Programme relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service facility bioinformatician (e.g. Clinical Genomics)</td>
+<td>Reproducible pipelines, data standards, variant interpretation, documentation</td>
+<td>Strong — especially HPC, FAIR, clinical omics</td>
+</tr>
+<tr>
+<td>Research bioinformatician (core facility or research group)</td>
+<td>Statistical rigour, domain knowledge, communication</td>
+<td>Strong — all core courses</td>
+</tr>
+<tr>
+<td>Bioinformatics scientist (private sector / biotech)</td>
+<td>Scalable pipelines, software engineering, data science</td>
+<td>Strong — HPC, Python, ML</td>
+</tr>
+<tr>
+<td>PhD student and future academic</td>
+<td>Critical analysis, originality, methods development</td>
+<td>Strong — epistemic training, thesis</td>
+</tr>
+<tr>
+<td>Ecological/environmental bioinformatician</td>
+<td>Metagenomics, biodiversity informatics, eDNA</td>
+<td>Covered — comparative genomics, microbial bioinformatics</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43__this__course__5bi00a__in__context">4.3 This Course (5BI00A) in Context<a class="headerlink" href="#43__this__course__5bi00a__in__context" title="Permanent link">&para;</a></h3>
+<p><em>Computing for Data-Driven Biology</em> is the foundation on which the entire programme is built. Its primary function is to ensure that all students arrive at subsequent courses with a shared operational baseline:</p>
+<ul>
+<li>You can work on the command line and navigate a Linux environment</li>
+<li>You know how to find, access, and critically evaluate biological data</li>
+<li>You understand what FAIR and reproducible science mean in practice</li>
+<li>You can use version control (Git) as a working practice, not an afterthought</li>
+<li>You have begun to build habits of documenting your work</li>
+</ul>
+<p>These are not glamorous skills. They are also not optional. A student who struggles with the command line in month three will struggle with RNA-seq analysis in month six. This course exists precisely to prevent that.</p>
+<hr />
+<h2 id="5__in-session__quiz">5. In-Session Quiz<a class="headerlink" href="#5__in-session__quiz" title="Permanent link">&para;</a></h2>
+<p><em>These questions will be discussed in the room. There are no wrong answers at this stage — the purpose is to surface assumptions and provoke discussion.</em></p>
+<p><strong>Question 1.</strong> A paper reports that Gene X is &ldquo;conserved across vertebrates&rdquo; based on BLAST homology searches. What are three things you would want to know before accepting this conclusion?</p>
+<p><strong>Question 2.</strong> A collaborator sends you a Python script generated by an AI assistant that processes RNA-seq count data. The script runs without errors and produces a results table. What would you do before using those results in a manuscript?</p>
+<p><strong>Question 3.</strong> Consider the following two statements. Which is better supported by a bioinformatics analysis, and why?
+- (a) &ldquo;Gene X is expressed in liver tissue&rdquo;
+- (b) &ldquo;Transcripts mapping to Gene X are detected in a liver RNA-seq dataset with a mean coverage depth of 47×&rdquo;</p>
+<p><strong>Question 4.</strong> <em>Think-pair-share (2 minutes each):</em> What did you most recently read or hear about AI in science? Was the framing mostly positive, mostly negative, or balanced? What was missing from the discussion?</p>
+<p><strong>Question 5.</strong> The FAIR principles state that data should be Findable, Accessible, Interoperable, and Reusable. Without looking anything up — what do you think each of those words means in practice for a bioinformatics dataset? We will return to FAIR in depth later in the course.</p>
+<hr />
+<h2 id="6__what__you__should__know__after__this__session">6. What You Should Know After This Session<a class="headerlink" href="#6__what__you__should__know__after__this__session" title="Permanent link">&para;</a></h2>
+<p>By the end of this lecture, you should be able to do the following. If any of these feel unclear, note them down and bring them to the next session or contact the course leader.</p>
+<p>✅ <strong>Describe the historical context</strong> that gave rise to bioinformatics as a field, including the role of the Human Genome Project and next-generation sequencing.</p>
+<p>✅ <strong>Define bioinformatics</strong> as an interdisciplinary field and name the contributing disciplines.</p>
+<p>✅ <strong>Give at least two examples</strong> of domains where bioinformatics is applied, spanning human health and environmental/ecological contexts.</p>
+<p>✅ <strong>Explain at least two specific ways</strong> in which bioinformatics analyses can mislead, with reference to concepts such as reference bias, annotation circularity, or pipeline opacity.</p>
+<p>✅ <strong>Articulate the epistemic principle</strong> that bioinformatics generates hypotheses requiring independent validation, not definitive biological facts.</p>
+<p>✅ <strong>Describe the risk hierarchy</strong> associated with AI-assisted coding in bioinformatics, and explain why errors are particularly dangerous when the user lacks foundational knowledge.</p>
+<p>✅ <strong>Identify the ILOs</strong> of this course and explain how they contribute to at least one plausible career trajectory.</p>
+<hr />
+<h2 id="7__further__reading__and__resources">7. Further Reading and Resources<a class="headerlink" href="#7__further__reading__and__resources" title="Permanent link">&para;</a></h2>
+<p>The following are provided for interest and supplementary context. None are required reading before the next session.</p>
+<ul>
+<li>Hogeweg P. (2011). The roots of bioinformatics in theoretical biology. <em>PLOS Computational Biology</em>, 7(3): e1002021. — A reflection by one of the field&rsquo;s founders on its origins.</li>
+<li>Leinonen R. et al. (2011). The European Nucleotide Archive. <em>Nucleic Acids Research</em>, 39(suppl_1): D28–D31. — Introduction to one of the primary data archives you will use throughout this programme.</li>
+<li>Wilkinson M.D. et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. <em>Scientific Data</em>, 3: 160018. — The foundational paper on FAIR principles, to which we will return in Lecture 13.</li>
+<li>Baker M. (2016). 1,500 scientists lift the lid on reproducibility. <em>Nature</em>, 533: 452–454. — Readable overview of the reproducibility crisis across sciences, with data from a large survey of researchers.</li>
+<li>Lowe R. et al. (2017). Transcriptomics technologies. <em>PLOS Computational Biology</em>, 13(5): e1005457. — Accessible introduction to the technologies that generate much of the data you will analyse.</li>
+</ul>
+<hr />
+<h2 id="appendix__course__ilo__summary">Appendix: Course ILO Summary<a class="headerlink" href="#appendix__course__ilo__summary" title="Permanent link">&para;</a></h2>
+<p>For reference throughout the course, the full Expected Learning Outcomes are reproduced below.</p>
+<p><strong>Knowledge and understanding</strong> — After completing the course, the student should be able to:
+1. Understand fundamental concepts for working on the command line and be familiar with common command-line tools
+2. Understand file system structures and management
+3. Describe principles of reproducible and FAIR bioinformatics
+4. Explain common bioinformatics file formats and their applications
+5. Identify key biological databases and how to query them
+6. Describe core components of workflows and HPC environments</p>
+<p><strong>Skills and abilities</strong> — The student should be able to:
+7. Select and apply appropriate command-line tools to extract information and perform routine operations on common bioinformatics file formats
+8. Execute file system administration tasks
+9. Conduct routine file parsing and QC in Linux
+10. Run and monitor jobs on HPC systems with schedulers
+11. Build a reproducible workflow using environment managers or containers
+12. Use Git for version control</p>
+<p><strong>Judgement and approach</strong> — The student should be able to:
+13. Evaluate reproducibility and data governance in large-scale analyses</p>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../00.programme-introduction/programme-introduction/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../4.connect-cluster/connect-cluster/" class="btn btn-neutral float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../00.programme-introduction/programme-introduction/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../4.connect-cluster/connect-cluster/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

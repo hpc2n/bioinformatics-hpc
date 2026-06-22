@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/containers-kebnekaise/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Containers on Kebnekaise - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Containers on Kebnekaise";
+        var mkdocs_page_input_path = "7.software-modules-containers/containers-kebnekaise.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/7.software-modules-containers/containers-kebnekaise/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Containers on Kebnekaise</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage__at__hpc2n">Usage at HPC2N</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#examples__simple__usage">Examples: Simple usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running__downloaded__container__images">Running downloaded container images</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specifics__of__the__hpc2n__setup">Specifics of the HPC2N setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparison__apptainer__and__docker">Comparison, Apptainer and Docker</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unsual__error__messages__and__the__solution">Unsual error messages and the solution</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#useful__links">Useful links</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.access-databases/intro/">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Accessing software on Kebnekaise</li>
+      <li class="breadcrumb-item active">Containers on Kebnekaise</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="containers__on__kebnekaise">Containers on Kebnekaise<a class="headerlink" href="#containers__on__kebnekaise" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Containerization_(computing)" target="_blank">Containers</a> are a way to make software applications run in isolated user spaces. These user spaces are called &ldquo;containers&rdquo; in any cloud or non-cloud environment. </p>
+<p>There are different container platforms: </p>
+<ul>
+<li>Docker</li>
+<li>Singularity</li>
+<li>Apptainer</li>
+<li>Kubernetes </li>
+<li>etc. </li>
+</ul>
+<p><a href="http://apptainer.org" target="_blank">Apptainer</a> is a successor of Singularity. Both are better than Docker when you do not have root priviliges. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Apptainer is what is currently used on Kebnekaise. </p>
+</div>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Apptainer is a is a free, cross-platform and open-source computer program that performs operating-system-level virtualization also known as containerization. It is freely available to users at HPC2N.</p>
+<p>Apptainer is a container system for Linux HPC that lets you define your own environment and makes your work portable and reproducible on any system that supports it. A container is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Apptainer enables you to run applications under a different Linux environment than the one you are currently using. This could solve the problem with working with proprietary licensed Linux software that only has support for another Linux distribution.</p>
+</div>
+<p><strong>Other typical examples when to use Apptainer are:</strong></p>
+<ul>
+<li>Reproducibility of software contained in a single file that can be used any many HPC centers!</li>
+<li>Software development performed on RHEL7 (or any Linux distribution that is different from the one in use on HPC2N clusters)</li>
+<li>Working with proprietary licensed Linux software that doesn&rsquo;t have support for the Linux distribution used on the HPC2N clusters</li>
+<li>Need the flexibility to work with software immediately on other HPC hardware that runs with Apptainer</li>
+<li>You want to run software quickly because the software versions are rapidly evolving</li>
+<li>Software metadata files are unmanageable (e.g., installing software with Python, R, conda) – a Apptainer container allows for the use of a single compressed image file.</li>
+</ul>
+<p><strong>But it is also important to know when Apptainer is not the best option. For instance:</strong></p>
+<ul>
+<li>When performance is important. Apptainer generally does not slow down your code but the images are usually not optimized for the HPC2N clusters. </li>
+</ul>
+<h2 id="usage__at__hpc2n">Usage at HPC2N<a class="headerlink" href="#usage__at__hpc2n" title="Permanent link">&para;</a></h2>
+<p>This section will describe how to use Apptainer at HPC2N, and how it might differ from how it is used at other sites. The official Apptainer documentation can be found at <a href="https://apptainer.org/docs/" target="_blank">https://apptainer.org/docs/</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p>This documentation is meant for Apptainer 1.x!</p>
+</div>
+<h2 id="examples__simple__usage">Examples: Simple usage<a class="headerlink" href="#examples__simple__usage" title="Permanent link">&para;</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">Important</p>
+<p>There is nothing you have to do to use Apptainer, it is directly available. I.e. you do not need to load a module first. </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p>On Kebnekaise&rsquo;s terminal, the command <code>singularity</code> is available but it is just a soft-link to <code>apptainer</code>. </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default Apptainer caches data in the folder <code>$HOME/.apptainer</code>. This can easily fill the 25 GB space of your HOME.
+To avoid this, place the Apptainer cache folder in your project space.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Simple example</p>
+<p>This very simple example shows how to run the newer version bash using Apptainer. It involves downloading the bash container image once, and then run bash from the image. It is a trivial example and not especially useful but works as an example. </p>
+<p>In this example we also first place the Apptainer cache in our project space. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Cache folder located in project space</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">APPTAINER_CACHEDIR</span><span class="o">=</span>/your-project-folder/.apptainer
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Download image (once)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>apptainer<span class="w"> </span>pull<span class="w"> </span>docker://bash
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Run the image</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bash_latest.sif<span class="w"> </span>bash
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Alternative way that works for this image</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>./bash_latest.sif
+</span></code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">MPI example</p>
+<p>This example uses <a href="../create-containers/#example__openfoam__image__with__mpi">this created example image</a>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">#SBATCH -n 4</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">#SBATCH -t 00:10:00</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">IMAGE</span><span class="o">=</span>&lt;path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>image&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># apptainer exec openfoam.sif find / -xdev -iname &#39;*bashrc&#39; -ipath &#39;*foam*&#39;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nv">FOAM_BASHRC</span><span class="o">=</span>/opt/OpenFOAM/OpenFOAM-7/etc/bashrc
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># This MPI version should match whatever this command says:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># apptainer exec openfoam.sif mpirun --version</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>ml<span class="w"> </span>GCC/10.2.0<span class="w"> </span>OpenMPI/4.0.5
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># Copied OpenFOAM example</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">cd</span><span class="w"> </span>damBreak
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># Execute the serial stuff in one apptainer instance</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># Could also be done with three separate apptainer</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1"># runs with (very) slight extra overhead</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$IMAGE</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">        source </span><span class="nv">$FOAM_BASHRC</span><span class="s2"> &amp;&amp;</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">        blockMesh -case damBreak &amp;&amp;</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">        setFields -case damBreak &amp;&amp;</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">        decomposePar -case damBreak</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">&quot;</span><span class="w">       </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="c1"># execute interFoam in parallel</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>srun<span class="w"> </span>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$IMAGE</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">        source </span><span class="nv">$FOAM_BASHRC</span><span class="s2"> &amp;&amp;</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">        interFoam -parallel -case damBreak &amp;&gt; result.out</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">&quot;</span>
+</span></code></pre></div>
+</div>
+<p>More information in the <a href="../create-containers">Create containers</a> page.</p>
+<h2 id="running__downloaded__container__images">Running downloaded container images<a class="headerlink" href="#running__downloaded__container__images" title="Permanent link">&para;</a></h2>
+<p>This section looks at how to run downloaded container images at HPC2N. Of course, those images could also be some that you have created yourself, on your own computer or elsewhere. </p>
+<p>Note that Apptainer can run Docker containers as well. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are running an image that uses more than a small amount of resources then you need to run it as a batch job like in the MPI example above (just like normally). </p>
+<p>Another option is to run it from inside the Kebnekaise Desktop through OpenOnDemand. </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example: running a downloaded Docker image</p>
+<p>In this example we will download a docker image from &ldquo;https://hub.docker.com/u/biocontainers&rdquo;, convert it to apptainer and run it. We will run it under OpenOnDemand, for ease, but you could also do the downloads on a command line in SSH and the commands in 8. and 9. in a regular batch job since they are a bit longer/heavier. </p>
+<ol>
+<li>Download, for instance, Blast, from &ldquo;https://hub.docker.com/r/biocontainers/blast&rdquo;. You convert the &ldquo;docker pull url:tag&rdquo; to &ldquo;docker://hostname/repository/imagename:tag&rdquo; so in this example, &ldquo;docker pull biocontainers/blast:v2.2.31_cv2&rdquo; becomes &ldquo;docker://biocontainers/blast:v2.2.31_cv2&rdquo;: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>apptainer<span class="w"> </span>build<span class="w"> </span>myblast.sif<span class="w"> </span>docker://biocontainers/blast:v2.2.31_cv2
+</span></code></pre></div></li>
+<li>You should now have an apptainer image file &ldquo;myblast.sif&rdquo; in your directory. </li>
+<li>Doing &ldquo;apptainer exec myblast.sif blastp -help&rdquo; should give you commandline help for blastp </li>
+<li>Download and prepare some data to start analysis. For instance from &ldquo;https://www.uniprot.org/uniprot/&rdquo; </li>
+<li>Here I pick FASTA sequence for a Rat protein and fetch it with <code>wget</code>: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>wget<span class="w"> </span>https://www.uniprot.org/uniprot/F1LNI5.fasta
+</span></code></pre></div></li>
+<li>We also need a reference database to BLAST against and we are going to download from &ldquo;https://ftp.ncbi.nih.gov/&rdquo; -&gt; &ldquo;refseq&rdquo; -&gt; &ldquo;R_norvegicus/&rdquo; -&gt; &ldquo;mRNA_Prot/&rdquo;: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>wget<span class="w"> </span>https://ftp.ncbi.nih.gov/refseq/R_norvegicus/mRNA_Prot/rat.1.protein.faa.gz
+</span></code></pre></div></li>
+<li>We need to extract it: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gunzip<span class="w"> </span>rat.1.protein.faa.gz
+</span></code></pre></div></li>
+<li>We are now ready to prepare the mouse database with <code>makeblastdb</code>: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-B<span class="w"> </span><span class="nv">$PWD</span>:<span class="nv">$PWD</span><span class="w"> </span>myblast.sif<span class="w"> </span>makeblastdb<span class="w"> </span>-in<span class="w"> </span>rat.1.protein.faa<span class="w"> </span>-dbtype<span class="w"> </span>prot
+</span></code></pre></div></li>
+<li>We can now do the analysis on the input files with <code>blastp</code>: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-B<span class="w"> </span><span class="nv">$PWD</span>:<span class="nv">$PWD</span><span class="w"> </span>myblast.sif<span class="w"> </span>blastp<span class="w"> </span>-query<span class="w"> </span>F1LNI5.fasta<span class="w"> </span>-db<span class="w"> </span>rat.1.protein.faa<span class="w"> </span>-out<span class="w"> </span>results.txt
+</span></code></pre></div></li>
+</ol>
+</div>
+<h2 id="specifics__of__the__hpc2n__setup">Specifics of the HPC2N setup<a class="headerlink" href="#specifics__of__the__hpc2n__setup" title="Permanent link">&para;</a></h2>
+<p>When running a Apptainer image at HPC2N, everything below the following directories from the host environment will be available in the running image:</p>
+<ul>
+<li>$HOME</li>
+<li>/pfs</li>
+<li>/afs</li>
+<li>/scratch</li>
+<li>/tmp</li>
+</ul>
+<p>As usual, when running batch jobs, data will have to be placed in the directory tree of a storage project (recommended) or in your <code>$HOME</code> directory tree.</p>
+<p>The current configuration have not limited the paths where containers can be stored. Both <code>bind control</code> and <code>fusemount</code> are enabled.</p>
+<h2 id="comparison__apptainer__and__docker">Comparison, Apptainer and Docker<a class="headerlink" href="#comparison__apptainer__and__docker" title="Permanent link">&para;</a></h2>
+<p>Apptainer and Docker provides similar functionality, but there are some important differences in the way they work.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Docker</th>
+<th>Apptainer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runs docker containers</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Edits docker containers</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Interacts with host devices (like GPUs)</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Interacts with host filesystems</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Runs without sudo</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Runs as host user</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Can become root in container</td>
+<td>X</td>
+<td>X (using fakeroot, not allowed at HPC2N)</td>
+</tr>
+<tr>
+<td>Control network interfaces</td>
+<td>X</td>
+<td>X (using fakeroot, not allowed at HPC2N)</td>
+</tr>
+<tr>
+<td>Configurable capabilities for enhanced security</td>
+<td></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>Containers were created to isolate applications from the host environment. This means that all necessary dependencies are packaged into the application itself, allowing the application to run anywhere containers are supported. With container technology, administrators are no longer bogged down supporting every tool and library under the sun, and developers have complete control over the environment their tools ship with. You can find more <a href="https://en.wikipedia.org/wiki/OS-level_virtualization" target="_blank">information about containers on this page</a>.</p>
+<h2 id="unsual__error__messages__and__the__solution">Unsual error messages and the solution<a class="headerlink" href="#unsual__error__messages__and__the__solution" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>/opt/wine-devel/bin/wine: error while loading shared libraries: cannot allocate symbol search list: Cannot allocate memory</code><ul>
+<li>If running applications in a 32 bit image (for example wine), this might actually mean that you have too high values for some settings and for the high addresses the application crashes or fails.</li>
+<li>Run <code>ulimit -a</code> in a job using a submit script and on the accessnode to compare the settings between the different environments.</li>
+<li>The solution is to add <code>ulimit -s 8192</code> (if the stack is unlimited or too large) in your submit script before calling apptainer, forcing it to have a lower range of the addresses and thus fits better within the 32 bit environment.</li>
+</ul>
+</li>
+</ul>
+<h2 id="useful__links">Useful links<a class="headerlink" href="#useful__links" title="Permanent link">&para;</a></h2>
+<p>You will find more information and examples about using Apptainer and creating images and about containers/Apptainer on the below links: </p>
+<ul>
+<li><a href="https://uppmax.github.io/Basic_Singularity_Apptainer/">Basic Singularity/Apptainer course from NAISS</a></li>
+<li><a href="https://hub.docker.com/" target="_blank">Docker&rsquo;s library of container images</a></li>
+<li><a href="https://ngc.nvidia.com" target="_blank">Nvidia&rsquo;s NGC catalogue including an up-to-date plethora of HPC/AI/Visualization container images verified by Nvidia</a></li>
+<li><a href="https://github.com/NVIDIA/hpc-container-maker" target="_blank">Nvidia&rsquo;s HPC Container Maker</a></li>
+<li><a href="https://github.com/opencontainers/image-spec" target="_blank">Open Containers Image Specifications</a></li>
+<li><a href="https://docs.docker.com/develop/develop-images/multistage-build/" target="_blank">Docker multi-stage build</a></li>
+<li><a href="https://apptainer.org/docs/user/latest/mpi.html" title="for version 3.8" target="_blank">Official documentation on Apptainer and MPI applications</a></li>
+<li><a href="https://apptainer.org/" target="_blank">The official website</a></li>
+<li><a href="https://apptainer.org/docs/" target="_blank">Documentation, user guides, and examples at the official website</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../batch/" class="btn btn-neutral float-left" title="Modules in batch scripts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../create-containers/" class="btn btn-neutral float-right" title="Creating containers">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../batch/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../create-containers/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

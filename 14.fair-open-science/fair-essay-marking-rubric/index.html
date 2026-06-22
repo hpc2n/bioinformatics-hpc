@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/14.fair-open-science/fair-essay-marking-rubric/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Marking rubric - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Marking rubric";
+        var mkdocs_page_input_path = "14.fair-open-science/fair-essay-marking-rubric.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/14.fair-open-science/fair-essay-marking-rubric/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.access-databases/intro/">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >14. FAIR and Open Science</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Marking rubric</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#computing__for__data-driven__biology__5bi00a">Computing for Data-Driven Biology (5BI00A)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#masters__programme__in__bioinformatics__umea__university">Master&rsquo;s Programme in Bioinformatics — Umeå University</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#assessment__deadline__29__september__2026">Assessment deadline: 29 September 2026</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain__1__findability__f">Domain 1 — Findability (F)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#u__fail">U (Fail)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#g__pass">G (Pass)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vg__distinction__all__g__criteria__plus">VG (Distinction) — all G criteria plus:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain__2__accessibility__a">Domain 2 — Accessibility (A)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#u__fail_1">U (Fail)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#g__pass_1">G (Pass)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vg__distinction__all__g__criteria__plus_1">VG (Distinction) — all G criteria plus:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain__3__interoperability__i">Domain 3 — Interoperability (I)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#u__fail_2">U (Fail)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#g__pass_2">G (Pass)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vg__distinction__all__g__criteria__plus_2">VG (Distinction) — all G criteria plus:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain__4__reusability__r">Domain 4 — Reusability (R)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#u__fail_3">U (Fail)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#g__pass_3">G (Pass)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vg__distinction__all__g__criteria__plus_3">VG (Distinction) — all G criteria plus:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain__5__synthesis__argument__quality__and__recommendations">Domain 5 — Synthesis, Argument Quality, and Recommendations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#u__fail_4">U (Fail)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#g__pass_4">G (Pass)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vg__distinction__all__g__criteria__plus_4">VG (Distinction) — all G criteria plus:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#length__format__and__presentation">Length, Format, and Presentation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#u__criteria">U criteria</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#g__criteria">G criteria</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vg__criteria__all__g__criteria__plus">VG criteria — all G criteria plus:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ai__use__declaration">AI Use Declaration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#resubmission">Resubmission</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quick__reference__summary">Quick Reference Summary</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+          <li class="breadcrumb-item">14. FAIR and Open Science</li>
+      <li class="breadcrumb-item active">Marking rubric</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="marking__rubric__fair__compliance__essay">Marking Rubric: FAIR Compliance Essay<a class="headerlink" href="#marking__rubric__fair__compliance__essay" title="Permanent link">&para;</a></h1>
+<h2 id="computing__for__data-driven__biology__5bi00a">Computing for Data-Driven Biology (5BI00A)<a class="headerlink" href="#computing__for__data-driven__biology__5bi00a" title="Permanent link">&para;</a></h2>
+<h3 id="masters__programme__in__bioinformatics__umea__university">Master&rsquo;s Programme in Bioinformatics — Umeå University<a class="headerlink" href="#masters__programme__in__bioinformatics__umea__university" title="Permanent link">&para;</a></h3>
+<h3 id="assessment__deadline__29__september__2026">Assessment deadline: 29 September 2026<a class="headerlink" href="#assessment__deadline__29__september__2026" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The essay is marked on the Swedish two-grade scale: <strong>G (Godkänd / Pass)</strong> or <strong>VG (Väl Godkänd / Pass with Distinction)</strong>. A response that does not meet the G criteria receives <strong>U (Underkänd / Fail)</strong> and may be resubmitted.</p>
+<p>The essay is assessed across five domains. The overall grade is holistic — a VG requires consistent distinction-level work across most domains, not perfection in one and weakness in others. A response that is strong on description but consistently fails to evaluate consequences or make specific recommendations cannot receive VG regardless of its length or detail.</p>
+<hr />
+<h2 id="domain__1__findability__f">Domain 1 — Findability (F)<a class="headerlink" href="#domain__1__findability__f" title="Permanent link">&para;</a></h2>
+<h3 id="u__fail">U (Fail)<a class="headerlink" href="#u__fail" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Does not locate the dataset&rsquo;s repository entry (GEO/ENA/SRA)</li>
+<li>Incorrectly describes the accession number or its significance</li>
+<li>Conflates having a DOI (for the paper) with having a persistent identifier for the data</li>
+<li>Makes no reference to indexing or discoverability</li>
+</ul>
+<h3 id="g__pass">G (Pass)<a class="headerlink" href="#g__pass" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Correctly identifies the data accession number cited in the paper</li>
+<li>Notes whether the accession is a persistent identifier (ENA/SRA/GEO accession) or merely a URL</li>
+<li>Notes whether the dataset can be found via a database search engine without prior knowledge of the accession</li>
+<li>Notes whether sample metadata is indexed in the database alongside the raw data</li>
+<li>Observations are accurate and relevant to the specific study</li>
+</ul>
+<h3 id="vg__distinction__all__g__criteria__plus">VG (Distinction) — all G criteria plus:<a class="headerlink" href="#vg__distinction__all__g__criteria__plus" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Assesses the <em>quality and completeness</em> of findability, not merely its presence: is the accession present in the methods, abstract, or only buried in supplementary material?</li>
+<li>Notes whether the dataset appears in secondary databases or cross-registry searches (e.g. OmicsDI, FAIRsharing) — and if not, explains why this matters</li>
+<li>Evaluates the persistence risk: a GEO accession is more stable than a lab website, but still dependent on NCBI infrastructure; assesses whether a secondary archive (Zenodo, Figshare) was also used</li>
+<li>Connects findability gaps to specific practical consequences: e.g., &ldquo;A researcher querying GEO for all RNA-seq studies of X tissue in Y organism using semantic metadata search would not retrieve this dataset because&hellip;&rdquo;</li>
+</ul>
+<hr />
+<h2 id="domain__2__accessibility__a">Domain 2 — Accessibility (A)<a class="headerlink" href="#domain__2__accessibility__a" title="Permanent link">&para;</a></h2>
+<h3 id="u__fail_1">U (Fail)<a class="headerlink" href="#u__fail_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Does not attempt to access the data</li>
+<li>Equates &ldquo;open access publication&rdquo; with &ldquo;accessible data&rdquo;</li>
+<li>States data is accessible without verifying this</li>
+</ul>
+<h3 id="g__pass_1">G (Pass)<a class="headerlink" href="#g__pass_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Confirms whether raw data (FASTQ files or equivalent) can be downloaded via a standardised protocol (HTTPS, FTP)</li>
+<li>Distinguishes between raw and processed data accessibility</li>
+<li>Notes whether any data is behind controlled access and, if so, whether the access process is documented</li>
+<li>Acknowledges FAIR principle A2: notes whether metadata would persist if data were withdrawn</li>
+</ul>
+<h3 id="vg__distinction__all__g__criteria__plus_1">VG (Distinction) — all G criteria plus:<a class="headerlink" href="#vg__distinction__all__g__criteria__plus_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Evaluates the <em>mechanism</em> of accessibility, not just the outcome: what protocol is used, is it stable, is it documented, does it require proprietary tools?</li>
+<li>Where access is restricted (e.g. human subjects data), evaluates the quality of the documented access process — is the application route clear, is there a stated timeline, is there a contact?</li>
+<li>Notes whether processed summary files (count matrices, normalised data) are also available, and evaluates whether this is sufficient for independent reanalysis or whether raw data is essential</li>
+<li>Explicitly assesses A2: if the paper were retracted tomorrow, what would a reader citing this dataset find at the accession URL?</li>
+</ul>
+<hr />
+<h2 id="domain__3__interoperability__i">Domain 3 — Interoperability (I)<a class="headerlink" href="#domain__3__interoperability__i" title="Permanent link">&para;</a></h2>
+<h3 id="u__fail_2">U (Fail)<a class="headerlink" href="#u__fail_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Does not address metadata vocabulary or format</li>
+<li>Conflates file format with interoperability</li>
+<li>States data is &ldquo;interoperable&rdquo; because it is in FASTQ format without engaging with metadata</li>
+</ul>
+<h3 id="g__pass_2">G (Pass)<a class="headerlink" href="#g__pass_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Notes whether data are in standard formats (FASTQ, BAM, VCF, etc.)</li>
+<li>Notes whether sample metadata uses ontology terms (EFO, UBERON, CHEBI, NCBI Taxonomy) or free text</li>
+<li>Notes whether the reference genome version is specified with a stable identifier</li>
+<li>Notes whether cross-references to related databases or resources are provided</li>
+</ul>
+<h3 id="vg__distinction__all__g__criteria__plus_2">VG (Distinction) — all G criteria plus:<a class="headerlink" href="#vg__distinction__all__g__criteria__plus_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Distinguishes between <em>format</em> interoperability (FASTQ is readable by any tool) and <em>metadata</em> interoperability (sample annotations are machine-readable and comparable across studies)</li>
+<li>Evaluates specific ontology gaps: not &ldquo;no ontology terms were used&rdquo; but &ldquo;the tissue type was described as &lsquo;leaf tissue&rsquo; rather than using UBERON:0000004 (leaf) or PO:0025034 (plant leaf), preventing automated integration with other plant transcriptomic datasets using standard metadata search&rdquo;</li>
+<li>Evaluates cross-referencing: does the ENA/GEO entry link to the paper DOI? Does it link to related datasets from the same project? Are external tool/workflow references provided?</li>
+<li>Notes where the temporal context matters: for a 2014 study, many ontology annotation practices were not yet standard, and the response acknowledges this appropriately rather than applying 2025 standards anachronistically</li>
+</ul>
+<hr />
+<h2 id="domain__4__reusability__r">Domain 4 — Reusability (R)<a class="headerlink" href="#domain__4__reusability__r" title="Permanent link">&para;</a></h2>
+<p>This is typically the richest domain for assessment and should receive the most analytical attention.</p>
+<h3 id="u__fail_3">U (Fail)<a class="headerlink" href="#u__fail_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Does not attempt to assess whether the analysis could be reproduced</li>
+<li>States code is &ldquo;not available&rdquo; without exploring consequences</li>
+<li>Does not assess metadata sufficiency for reanalysis</li>
+<li>Fails to engage with software versioning</li>
+</ul>
+<h3 id="g__pass_3">G (Pass)<a class="headerlink" href="#g__pass_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Assesses whether sample metadata is sufficient to assign all samples to experimental conditions without contacting the authors</li>
+<li>Notes whether a data licence is provided (or absent)</li>
+<li>Notes which software tools are named in the methods section</li>
+<li>Notes whether software versions are specified for all key tools</li>
+<li>Notes whether analysis code is available and if so, in what form</li>
+<li>Notes whether any community metadata standard is declared (MINSEQE, MIxS, etc.)</li>
+</ul>
+<h3 id="vg__distinction__all__g__criteria__plus_3">VG (Distinction) — all G criteria plus:<a class="headerlink" href="#vg__distinction__all__g__criteria__plus_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Evaluates metadata <em>sufficiency</em> with specificity: for the specific analysis described, identifies the minimum metadata fields required for reproduction and assesses whether each is present. E.g., &ldquo;To reproduce the differential expression analysis, one requires: sample-condition assignments, library type (stranded/unstranded), reference genome version, and DESeq2 normalisation parameters. Of these, [X] is absent, making independent reproduction impossible without author contact.&rdquo;</li>
+<li>Distinguishes between software version specification (good) and default parameter reporting (often absent and consequential): &ldquo;HISAT2 v2.1.0 is specified, but the authors state &lsquo;default parameters were used&rsquo; — defaults change between versions and this statement is insufficient for exact reproduction&rdquo;</li>
+<li>Where code is available, evaluates its quality as a reproducibility tool: is it version-controlled? Does it specify dependencies? Is there a README? Could an independent researcher run it?</li>
+<li>Evaluates the FAIR4RS dimension: is the analysis software itself FAIR — does it have a persistent identifier, a licence, documentation?</li>
+<li>Makes specific, actionable recommendations: not &ldquo;better metadata&rdquo; but naming the specific standard, tool, or practice that would have addressed each gap</li>
+</ul>
+<hr />
+<h2 id="domain__5__synthesis__argument__quality__and__recommendations">Domain 5 — Synthesis, Argument Quality, and Recommendations<a class="headerlink" href="#domain__5__synthesis__argument__quality__and__recommendations" title="Permanent link">&para;</a></h2>
+<h3 id="u__fail_4">U (Fail)<a class="headerlink" href="#u__fail_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No synthesis or overall evaluation</li>
+<li>Merely lists findings from each principle without connecting them</li>
+<li>No recommendations</li>
+<li>Essay is a checklist, not an argument</li>
+</ul>
+<h3 id="g__pass_4">G (Pass)<a class="headerlink" href="#g__pass_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Provides a coherent overall evaluation of FAIR compliance</li>
+<li>Identifies the most significant gaps across the four principles</li>
+<li>Makes recommendations that address the identified gaps</li>
+<li>Essay is written in clear academic prose, not as a bullet-point list</li>
+</ul>
+<h3 id="vg__distinction__all__g__criteria__plus_4">VG (Distinction) — all G criteria plus:<a class="headerlink" href="#vg__distinction__all__g__criteria__plus_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Synthesis prioritises and ranks: identifies which FAIR failures are most consequential for this specific study, rather than treating all gaps as equal</li>
+<li>Recommendations are specific, concrete, and actionable — naming ontologies, standards, tools, or archiving services, not generic exhortations to &ldquo;improve metadata&rdquo;</li>
+<li>Where the study was published before FAIR was formalised (Paper A, 2014), the synthesis explicitly engages with the evolution of standards: what was state-of-the-art at publication time, what has since changed, and what would this study look like if submitted today?</li>
+<li>The essay demonstrates understanding that FAIR is a spectrum and a journey, not a binary — the conclusion evaluates <em>where on the FAIR spectrum</em> this study sits and what the barriers to improvement were (awareness, tooling, journal policy, funder mandate, time constraints)</li>
+<li>The essay is analytical in register throughout: consequences are evaluated, mechanisms are explained, and recommendations are evidenced</li>
+</ul>
+<hr />
+<h2 id="length__format__and__presentation">Length, Format, and Presentation<a class="headerlink" href="#length__format__and__presentation" title="Permanent link">&para;</a></h2>
+<h3 id="u__criteria">U criteria<a class="headerlink" href="#u__criteria" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Substantially below 1,000 words or substantially above 2,000 words</li>
+<li>No references</li>
+<li>Factual errors about the FAIR principles themselves</li>
+</ul>
+<h3 id="g__criteria">G criteria<a class="headerlink" href="#g__criteria" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1,200–1,500 words (excluding references)</li>
+<li>References include at minimum Wilkinson et al. (2016) and cite the assessed paper</li>
+<li>Written in coherent academic prose — not bullet points, not a checklist</li>
+<li>Submitted as PDF</li>
+</ul>
+<h3 id="vg__criteria__all__g__criteria__plus">VG criteria — all G criteria plus:<a class="headerlink" href="#vg__criteria__all__g__criteria__plus" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Appropriate use of specific identifiers (accession numbers, ontology IDs, version numbers) as evidence throughout</li>
+<li>Referencing is accurate, complete, and consistently formatted</li>
+<li>Prose is precise and economical — says what needs to be said without padding</li>
+</ul>
+<hr />
+<h2 id="ai__use__declaration">AI Use Declaration<a class="headerlink" href="#ai__use__declaration" title="Permanent link">&para;</a></h2>
+<p>The assignment requires an AI use declaration. A missing declaration does not automatically fail the essay, but the marker should note it. A submission that consists primarily of AI-generated text without evidence of independent analysis will not demonstrate the evaluative judgement required for G or VG. Markers should look for evidence of specific engagement with the actual dataset (accession visited, sample metadata inspected) as a marker of genuine student work.</p>
+<hr />
+<h2 id="resubmission">Resubmission<a class="headerlink" href="#resubmission" title="Permanent link">&para;</a></h2>
+<p>A U grade may be resubmitted once. The resubmission deadline is [set in Canvas — two weeks after original deadline]. Resubmission feedback should be specific about which domains failed and what the student needs to demonstrate in the resubmission.</p>
+<hr />
+<h2 id="quick__reference__summary">Quick Reference Summary<a class="headerlink" href="#quick__reference__summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>G requires</th>
+<th>VG additionally requires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Findability</td>
+<td>Accession identified; persistence noted; indexing noted</td>
+<td>Consequence of F gaps; secondary archive; temporal context</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>Data confirmed downloadable; protocol noted; A2 noted</td>
+<td>Mechanism evaluated; access process quality assessed; A2 implications</td>
+</tr>
+<tr>
+<td>Interoperability</td>
+<td>Format and vocabulary noted; cross-references noted</td>
+<td>Ontology specifics; metadata vs format distinction; temporal context</td>
+</tr>
+<tr>
+<td>Reusability</td>
+<td>Metadata sufficiency, versions, code, licence, standard all noted</td>
+<td>Sufficiency evaluated for the specific analysis; code quality; FAIR4RS; specific recommendations</td>
+</tr>
+<tr>
+<td>Synthesis</td>
+<td>Overall verdict; significant gaps; recommendations</td>
+<td>Prioritised; actionable; temporal framing; FAIR as spectrum</td>
+</tr>
+</tbody>
+</table>
+<p><em>Prepared for the Master&rsquo;s Programme in Bioinformatics, Department of Plant Physiology, Umeå University. Course code: 5BI00A.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../fair-essay-assignment/" class="btn btn-neutral float-left" title="Essay assignment"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../15.fair-in-practice/fair-in-practice/" class="btn btn-neutral float-right" title="15. FAIR in Practice">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../fair-essay-assignment/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../15.fair-in-practice/fair-in-practice/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

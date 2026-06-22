@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/14.fair-open-science/fair-essay-assignment/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Essay assignment - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Essay assignment";
+        var mkdocs_page_input_path = "14.fair-open-science/fair-essay-assignment.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/14.fair-open-science/fair-essay-assignment/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.access-databases/intro/">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >14. FAIR and Open Science</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Essay assignment</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#computing__for__data-driven__biology__5bi00a">Computing for Data-Driven Biology (5BI00A)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#masters__programme__in__bioinformatics__umea__university">Master&rsquo;s Programme in Bioinformatics — Umeå University</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the__paper__shortlist">The Paper Shortlist</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what__you__are__being__asked__to__do">What You Are Being Asked to Do</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what__distinguishes__g__and__vg__responses">What Distinguishes G and VG Responses</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#practical__steps__before__you__write">Practical Steps Before You Write</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#submission">Submission</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#academic__integrity">Academic Integrity</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+          <li class="breadcrumb-item">14. FAIR and Open Science</li>
+      <li class="breadcrumb-item active">Essay assignment</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="assessment__fair__compliance__essay">Assessment: FAIR Compliance Essay<a class="headerlink" href="#assessment__fair__compliance__essay" title="Permanent link">&para;</a></h1>
+<h2 id="computing__for__data-driven__biology__5bi00a">Computing for Data-Driven Biology (5BI00A)<a class="headerlink" href="#computing__for__data-driven__biology__5bi00a" title="Permanent link">&para;</a></h2>
+<h3 id="masters__programme__in__bioinformatics__umea__university">Master&rsquo;s Programme in Bioinformatics — Umeå University<a class="headerlink" href="#masters__programme__in__bioinformatics__umea__university" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This assignment asks you to critically evaluate the FAIR compliance of a published bioinformatics study and its associated dataset. You will assess the study against the four FAIR principles (Findable, Accessible, Interoperable, Reusable), evaluate the reproducibility of its computational analysis, and make specific, evidenced recommendations for how FAIR compliance could have been improved.</p>
+<hr />
+<h2 id="the__paper__shortlist">The Paper Shortlist<a class="headerlink" href="#the__paper__shortlist" title="Permanent link">&para;</a></h2>
+<p>Choose <strong>one</strong> of the following three papers to assess. Each covers a different biological domain, and the choice is yours — select the paper whose biological topic interests you most.</p>
+<p><strong>Paper A — Human/Clinical</strong>
+Himes B.E. et al. (2014). RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells. <em>PLoS One</em> 9(6): e99625.
+DOI: 10.1371/journal.pone.0099625 · GEO accession: GSE52778</p>
+<p><strong>Paper B — Plant/Conifer</strong>
+Trujillo-Moya C. et al. (2020). RNA-Seq and secondary metabolite analyses reveal a putative defence-transcriptome in Norway spruce (<em>Picea abies</em>) against needle bladder rust infection. <em>BMC Genomics</em> 21: 336.
+DOI: 10.1186/s12864-020-6587-z</p>
+<p><strong>Paper C — Microbial/Environmental</strong>
+Azarbad H. et al. (2022). Relative and Quantitative Rhizosphere Microbiome Profiling Results in Distinct Abundance Patterns. <em>Frontiers in Microbiology</em> 12: 798023.
+DOI: 10.3389/fmicb.2021.798023</p>
+<p>All three papers are open access. You can read them and access their associated datasets freely.</p>
+<hr />
+<h2 id="what__you__are__being__asked__to__do">What You Are Being Asked to Do<a class="headerlink" href="#what__you__are__being__asked__to__do" title="Permanent link">&para;</a></h2>
+<p>Write a structured analytical essay of <strong>1,200–1,500 words</strong> that:</p>
+<ol>
+<li>
+<p><strong>Assesses each of the four FAIR principles</strong> against concrete, specific evidence drawn from the paper and its associated dataset. You should access the paper&rsquo;s data repository (GEO, ENA, or SRA) directly as part of your assessment.</p>
+</li>
+<li>
+<p><strong>Evaluates whether the metadata is sufficient for reuse</strong> — specifically, whether you would have enough information to reproduce a differential expression (or equivalent) analysis from the deposited data alone, without contacting the authors.</p>
+</li>
+<li>
+<p><strong>Assesses the reproducibility of the computational analysis</strong> — are software versions specified? Are analysis parameters documented? Is code available, and if so, is it versioned and documented?</p>
+</li>
+<li>
+<p><strong>Makes specific, concrete, evidenced recommendations</strong> for what could have been done differently to improve FAIR compliance. These should be actionable and specific — not &ldquo;better metadata&rdquo; but &ldquo;the GEO submission should have included EFO ontology terms for tissue type and treatment, specifically UBERON:0002368 for adrenal medulla and CHEBI:41879 for dexamethasone.&rdquo;</p>
+</li>
+</ol>
+<hr />
+<h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h2>
+<p>Your essay does not need section headings, but the following logical structure is expected:</p>
+<ul>
+<li>Brief contextual introduction to the study and its biological question (2–3 sentences only — this is not a paper summary)</li>
+<li>Assessment of Findability</li>
+<li>Assessment of Accessibility</li>
+<li>Assessment of Interoperability</li>
+<li>Assessment of Reusability (including reproducibility of the computational analysis)</li>
+<li>Synthesis: an overall judgement of FAIR compliance, identifying the most significant gaps and their practical consequences</li>
+<li>Specific recommendations</li>
+</ul>
+<hr />
+<h2 id="what__distinguishes__g__and__vg__responses">What Distinguishes G and VG Responses<a class="headerlink" href="#what__distinguishes__g__and__vg__responses" title="Permanent link">&para;</a></h2>
+<p><strong>G (Pass)</strong> — Correctly identifies and describes FAIR issues across all four principles. Applies the principles accurately to the specific study. Notes data deposition, metadata availability, and code availability. Observations are accurate and relevant.</p>
+<p><strong>VG (Distinction)</strong> — Does all of the above, and additionally:
+- Evaluates the <em>consequences</em> of each FAIR issue — not merely that metadata is missing, but what a researcher would be unable to do as a result
+- Demonstrates understanding that FAIR is a spectrum, not a binary — assessing the <em>quality</em> and <em>completeness</em> of compliance, not merely whether a box is ticked
+- Makes recommendations that are specific, concrete, and actionable — naming the ontology, the standard, the tool, or the practice that should have been used
+- Where the paper was published before the FAIR principles were formalised (Paper A, 2014), engages explicitly with how standards have evolved and what this means for the permanent scientific record
+- Is written as a coherent analytical argument, not a checklist</p>
+<hr />
+<h2 id="practical__steps__before__you__write">Practical Steps Before You Write<a class="headerlink" href="#practical__steps__before__you__write" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Read the paper</strong> — the methods section in particular. Note every piece of information about data generation, processing, analysis tools, software versions, and data availability.</p>
+</li>
+<li>
+<p><strong>Access the data repository</strong> — go to the GEO, ENA, or SRA accession linked in the paper. Inspect the sample metadata. Try to download or preview the raw data. Note what is and is not present.</p>
+</li>
+<li>
+<p><strong>Use the FAIR assessment checklist</strong> from the Lecture 14 handout as a guide — work through it systematically for your chosen paper. Your notes from this process form the evidence base for your essay.</p>
+</li>
+<li>
+<p><strong>Do not attempt to re-run the analysis</strong> — this is not required. The assessment is of the FAIRness of the study as published, not of the biological results.</p>
+</li>
+</ol>
+<hr />
+<h2 id="submission">Submission<a class="headerlink" href="#submission" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Word count:</strong> 1,200–1,500 words (excluding references)</li>
+<li><strong>Format:</strong> PDF</li>
+<li><strong>References:</strong> Cite the FAIR paper (Wilkinson et al. 2016) and any other sources used. No specific referencing style is required — be consistent.</li>
+<li><strong>Deadline:</strong> [Set in Canvas]</li>
+<li><strong>Submission method:</strong> Upload to this Canvas assignment</li>
+</ul>
+<hr />
+<h2 id="academic__integrity">Academic Integrity<a class="headerlink" href="#academic__integrity" title="Permanent link">&para;</a></h2>
+<p>You may use AI writing tools to help structure your thinking or check grammar, but the assessment and analysis must be your own. If you use AI tools, declare this at the end of your submission in a brief statement (one sentence is sufficient). A submission that consists primarily of AI-generated text will not demonstrate the analytical engagement that distinguishes G and VG responses.</p>
+<hr />
+<p><em>This assignment assesses ILOs 3 and 13 of the course. Marking is carried out by the course leader against the criteria above.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../fair-open-science/" class="btn btn-neutral float-left" title="Lecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../fair-essay-marking-rubric/" class="btn btn-neutral float-right" title="Marking rubric">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../fair-open-science/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../fair-essay-marking-rubric/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

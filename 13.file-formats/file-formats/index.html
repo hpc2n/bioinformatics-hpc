@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/13.file-formats/file-formats/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>13. Bioinformatics File Formats - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "13. Bioinformatics File Formats";
+        var mkdocs_page_input_path = "13.file-formats/file-formats.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/13.file-formats/file-formats/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/intro-to-git/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/setup/">Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/motivation/">Why use version management?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-commands-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts/">Basic concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/basic-concepts-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits/">Traversing the commit tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/commits-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/branches-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/remotes-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/teamwork-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Accessing databases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.access-databases/intro/">Introduction</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">13. Bioinformatics File Formats</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#session__aims">Session Aims</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#opening__activity">Opening Activity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1__why__file__formats__matter">1. Why File Formats Matter</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11__formats__as__contracts__between__tools">1.1 Formats as Contracts Between Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12__the__pipeline__as__a__series__of__format__conversions">1.2 The Pipeline as a Series of Format Conversions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13__text__vs__binary__formats">1.3 Text vs Binary Formats</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2__fasta">2. FASTA</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21__structure">2.1 Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22__common__gotchas">2.2 Common Gotchas</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23__useful__commands">2.3 Useful Commands</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3__fastq">3. FASTQ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31__structure">3.1 Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32__phred__quality__scores">3.2 Phred Quality Scores</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33__quality__score__encoding">3.3 Quality Score Encoding</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34__parsing__fastq__with__shell__tools">3.4 Parsing FASTQ with Shell Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35__paired-end__reads">3.5 Paired-End Reads</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4__sam__and__bam">4. SAM and BAM</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41__what__sam__represents">4.1 What SAM Represents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42__sam__file__structure">4.2 SAM File Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43__the__flag__field">4.3 The FLAG Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44__the__cigar__string">4.4 The CIGAR String</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#45__working__with__bam__files__using__samtools">4.5 Working with BAM Files using samtools</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5__vcf__variant__call__format">5. VCF — Variant Call Format</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51__purpose__and__structure">5.1 Purpose and Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52__reading__a__vcf__line">5.2 Reading a VCF Line</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53__useful__commands">5.3 Useful Commands</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6__gff__and__gtf__genome__annotation__formats">6. GFF and GTF — Genome Annotation Formats</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#61__purpose">6.1 Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#62__structure">6.2 Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#63__useful__commands">6.3 Useful Commands</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7__bed__browser__extensible__data">7. BED — Browser Extensible Data</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#71__purpose__and__structure">7.1 Purpose and Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#72__useful__commands">7.2 Useful Commands</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8__format__reference__summary">8. Format Reference Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9__hands-on__exercise__parsing__bioinformatics__formats__on__hpc">9. Hands-On Exercise: Parsing Bioinformatics Formats on HPC</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#part__a__set__up">Part A — Set up</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__b__fastq__inspection">Part B — FASTQ inspection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__c__bam__file__operations">Part C — BAM file operations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__d__vcf__inspection">Part D — VCF inspection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__e__gffgtf__annotation">Part E — GFF/GTF annotation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part__f__document__and__commit">Part F — Document and commit</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10__in-session__quizzes">10. In-Session Quizzes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mentimeter__quiz__1__prior__knowledge__session__opening">Mentimeter Quiz 1 — Prior knowledge (session opening)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mentimeter__quiz__2__format__knowledge__check__end__of__block__1">Mentimeter Quiz 2 — Format knowledge check (end of Block 1)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11__what__you__should__know__after__this__session">11. What You Should Know After This Session</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12__further__reading">12. Further Reading</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">13. Bioinformatics File Formats</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="13__bioinformatics__file__formats">13. Bioinformatics File Formats<a class="headerlink" href="#13__bioinformatics__file__formats" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University<br />
+<strong>Slides:</strong> <a href="../../PDFs/lecture-13-file-formats.pdf">PDF</a><br />
+<strong>Exercises:</strong> See <a href="../../exercises/13.file-formats/"><code>exercises/</code></a></p>
+<hr />
+<h2 id="session__aims">Session Aims<a class="headerlink" href="#session__aims" title="Permanent link">&para;</a></h2>
+<p>By the end of this session you should be able to:</p>
+<ol>
+<li>Explain why standardised file formats are essential for bioinformatics pipelines</li>
+<li>Describe the structure and purpose of FASTA, FASTQ, SAM/BAM, VCF, GFF/GTF, and BED formats</li>
+<li>Interpret Phred quality scores and explain their significance for data quality assessment</li>
+<li>Parse and inspect common bioinformatics files using command-line tools</li>
+<li>Use <code>samtools</code> for basic BAM file operations: viewing, sorting, indexing, and flagstat</li>
+<li>Use <code>awk</code> and <code>grep</code> to extract features and information from text-based formats</li>
+<li>Commit file format exercises and documented commands to Git</li>
+</ol>
+<p><strong>Links to course ILOs:</strong> This session directly addresses ILOs 1, 4, 7, and 9. It provides essential practical knowledge for every subsequent course in the programme — you will work with these formats constantly.</p>
+<p><strong>Note on context:</strong> You have already encountered FASTA and FASTQ in Lectures 2 and 3. This session deepens that knowledge and extends it to the full range of formats you will use in the programme. Think of today as building a reference toolkit you will return to throughout your studies.</p>
+<hr />
+<h2 id="opening__activity">Opening Activity<a class="headerlink" href="#opening__activity" title="Permanent link">&para;</a></h2>
+<p><em>A Mentimeter poll will ask which of today&rsquo;s file formats you have previously encountered, and — for any you have used — whether you could describe their structure from memory. This will help calibrate where to focus the session.</em></p>
+<hr />
+<h2 id="1__why__file__formats__matter">1. Why File Formats Matter<a class="headerlink" href="#1__why__file__formats__matter" title="Permanent link">&para;</a></h2>
+<h3 id="11__formats__as__contracts__between__tools">1.1 Formats as Contracts Between Tools<a class="headerlink" href="#11__formats__as__contracts__between__tools" title="Permanent link">&para;</a></h3>
+<p>A bioinformatics analysis is not a single program — it is a pipeline: a sequence of tools, each of which reads the output of the previous tool as its input. For this chain to work, every tool must agree on how data is represented. A file format is the contract that makes this possible.</p>
+<p>When that contract is broken — a file is in the wrong format, uses non-standard encoding, or has been truncated — the pipeline fails, often with cryptic error messages. Understanding file formats well enough to diagnose these failures is one of the most practically important skills in applied bioinformatics.</p>
+<h3 id="12__the__pipeline__as__a__series__of__format__conversions">1.2 The Pipeline as a Series of Format Conversions<a class="headerlink" href="#12__the__pipeline__as__a__series__of__format__conversions" title="Permanent link">&para;</a></h3>
+<p>A typical short-read genomics analysis follows this chain:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Raw sequencer output
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        ↓
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>FASTQ  — quality-trimmed reads
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ↓
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>SAM/BAM — reads aligned to a reference genome
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        ↓
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>BAM (sorted, indexed) — alignments ready for analysis
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        ↓
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>VCF — variants called from the alignment
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        ↓
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>BED/GFF — genomic features and annotations
+</span></code></pre></div>
+<p>Each format in this chain has a specific purpose, and the transitions between them are where most pipeline failures occur. By the end of this session, you will understand what each step produces and why.</p>
+<h3 id="13__text__vs__binary__formats">1.3 Text vs Binary Formats<a class="headerlink" href="#13__text__vs__binary__formats" title="Permanent link">&para;</a></h3>
+<p>Most bioinformatics formats are <strong>plain text</strong> — they can be opened in any text editor, inspected with <code>head</code>, <code>grep</code>, <code>awk</code>, and <code>cat</code>, and debugged without special tools. This is a deliberate design choice that prioritises transparency and debuggability.</p>
+<p>Some formats have <strong>binary counterparts</strong> that are more compact and faster to access — BAM (binary SAM), BCF (binary VCF), and compressed BED files. Binary formats are not human-readable but are indexed for rapid random access, which is essential when working with files of many gigabytes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>** Always keep a plain-text version of at least the header of a binary file accessible (use <code>samtools view -H</code> for BAM, <code>bcftools view -h</code> for BCF) so you can inspect what the file contains without fully decompressing it.</p>
+</div>
+<hr />
+<h2 id="2__fasta">2. FASTA<a class="headerlink" href="#2__fasta" title="Permanent link">&para;</a></h2>
+<p>You have already worked with FASTA in Lectures 2 and 3. Here we cover it more completely.</p>
+<h3 id="21__structure">2.1 Structure<a class="headerlink" href="#21__structure" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;sequence_identifier optional_description
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>SEQUENCE_DATA_ON_ONE_OR_MORE_LINES
+</span></code></pre></div>
+<p>The <code>&gt;</code> character marks the start of a new record. The identifier is the first whitespace-delimited token after <code>&gt;</code>. Everything after the first whitespace on the header line is the description and is ignored by most tools.</p>
+<p>A <strong>multi-FASTA</strong> file contains multiple records, each with its own header. This is the standard format for genome assemblies, proteomes, and reference sequence collections.</p>
+<h3 id="22__common__gotchas">2.2 Common Gotchas<a class="headerlink" href="#22__common__gotchas" title="Permanent link">&para;</a></h3>
+<p><strong>Line length:</strong> FASTA sequences are typically wrapped at 60 or 80 characters per line. Some tools are sensitive to this. The <code>fold</code> command wraps sequences to a specified width.</p>
+<p><strong>Header format inconsistency:</strong> Different databases use different header formats. NCBI headers include the accession, version, and description; UniProt headers include the database, accession, and entry name. Tools that parse headers may fail if the expected format is not present.</p>
+<p><strong>Soft vs hard masking:</strong> Lowercase letters in a FASTA sequence indicate soft-masked repeats (the sequence is still used but treated differently by some aligners). Uppercase <code>N</code> characters indicate hard-masked regions — positions of unknown sequence.</p>
+<h3 id="23__useful__commands">2.3 Useful Commands<a class="headerlink" href="#23__useful__commands" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Count sequences in a FASTA file</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;^&gt;&quot;</span><span class="w"> </span>sequences.fasta
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Extract only header lines</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>grep<span class="w"> </span><span class="s2">&quot;^&gt;&quot;</span><span class="w"> </span>sequences.fasta
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Get length of each sequence (one-liner using awk)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>awk<span class="w"> </span><span class="s1">&#39;/^&gt;/{if(seq) print name&quot;\t&quot;length(seq); name=$0; seq=&quot;&quot;} !/^&gt;/{seq=seq$0} END{if(seq) print name&quot;\t&quot;length(seq)}&#39;</span><span class="w"> </span>sequences.fasta
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># Wrap sequence lines at 60 characters</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>fold<span class="w"> </span>-w<span class="w"> </span><span class="m">60</span><span class="w"> </span>sequences.fasta
+</span></code></pre></div>
+<hr />
+<h2 id="3__fastq">3. FASTQ<a class="headerlink" href="#3__fastq" title="Permanent link">&para;</a></h2>
+<h3 id="31__structure">3.1 Structure<a class="headerlink" href="#31__structure" title="Permanent link">&para;</a></h3>
+<p>FASTQ is the standard format for raw sequencing reads. Each read occupies exactly four lines:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>@read_identifier optional_description
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>SEQUENCE
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>+
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>QUALITY_SCORES
+</span></code></pre></div>
+<p>Line 1: Header — begins with <code>@</code> (not <code>&gt;</code>)
+Line 2: Sequence — the actual nucleotide calls
+Line 3: Separator — always <code>+</code>, optionally followed by the header again
+Line 4: Quality scores — one character per base, encoding the Phred quality score</p>
+<h3 id="32__phred__quality__scores">3.2 Phred Quality Scores<a class="headerlink" href="#32__phred__quality__scores" title="Permanent link">&para;</a></h3>
+<p>The quality score <em>Q</em> is defined as:</p>
+<p><strong>Q = −10 × log₁₀(P)</strong></p>
+<p>where <em>P</em> is the estimated probability that a base call is incorrect.</p>
+<table>
+<thead>
+<tr>
+<th>Q score</th>
+<th>Error probability</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>1 in 10</td>
+<td>90%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1 in 100</td>
+<td>99%</td>
+</tr>
+<tr>
+<td>30</td>
+<td>1 in 1,000</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>40</td>
+<td>1 in 10,000</td>
+<td>99.99%</td>
+</tr>
+</tbody>
+</table>
+<p>A Q30 score — meaning a 1 in 1,000 probability of an error — is the commonly cited threshold for high-quality base calls. Modern Illumina sequencers typically produce average Q scores of 30–40 for most of a read, with quality declining towards the 3&rsquo; end.</p>
+<h3 id="33__quality__score__encoding">3.3 Quality Score Encoding<a class="headerlink" href="#33__quality__score__encoding" title="Permanent link">&para;</a></h3>
+<p>Quality scores are encoded as ASCII characters. The encoding adds an offset to the Q score to produce a printable character:</p>
+<p><strong>Phred+33 (Sanger/Illumina 1.8+):</strong> <code>ASCII character = Q + 33</code></p>
+<p>A Q30 score becomes ASCII character 63, which is <code>?</code>. A Q40 score becomes ASCII character 73, which is <code>I</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>** An older encoding (Phred+64, used by early Illumina pipelines) adds 64 instead of 33. Mixing up encodings is a classic source of pipeline errors. Modern data (post-2011) almost always uses Phred+33.</p>
+</div>
+<h3 id="34__parsing__fastq__with__shell__tools">3.4 Parsing FASTQ with Shell Tools<a class="headerlink" href="#34__parsing__fastq__with__shell__tools" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Count the number of reads (4 lines per read)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>wc<span class="w"> </span>-l<span class="w"> </span>reads.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1/4}&#39;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Extract just the sequence lines</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>awk<span class="w"> </span><span class="s1">&#39;NR%4==2&#39;</span><span class="w"> </span>reads.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Extract just the quality score lines</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>awk<span class="w"> </span><span class="s1">&#39;NR%4==0&#39;</span><span class="w"> </span>reads.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Check the range of quality characters (to infer encoding)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>awk<span class="w"> </span><span class="s1">&#39;NR%4==0&#39;</span><span class="w"> </span>reads.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>fold<span class="w"> </span>-w1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># Get basic statistics with seqkit (if available)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>seqkit<span class="w"> </span>stats<span class="w"> </span>reads.fastq
+</span></code></pre></div>
+<h3 id="35__paired-end__reads">3.5 Paired-End Reads<a class="headerlink" href="#35__paired-end__reads" title="Permanent link">&para;</a></h3>
+<p>Modern sequencing experiments typically produce <strong>paired-end reads</strong>: two FASTQ files (R1 and R2) where each pair of reads comes from opposite ends of the same DNA fragment. The pairing must be maintained throughout the pipeline — if reads are filtered in one file but not the other, the files become out of sync, which will cause alignment tools to fail.</p>
+<hr />
+<h2 id="4__sam__and__bam">4. SAM and BAM<a class="headerlink" href="#4__sam__and__bam" title="Permanent link">&para;</a></h2>
+<h3 id="41__what__sam__represents">4.1 What SAM Represents<a class="headerlink" href="#41__what__sam__represents" title="Permanent link">&para;</a></h3>
+<p>SAM (Sequence Alignment/Map) is the standard format for storing read alignments to a reference genome. After FASTQ files have been quality-trimmed, they are aligned to a reference genome using a tool such as HISAT2, STAR, or BWA-MEM. The output is a SAM file describing where each read maps.</p>
+<p>BAM is the binary, compressed version of SAM. BAM files are typically 5–10× smaller than equivalent SAM files and can be randomly accessed via an index file (<code>.bai</code>). In practice, you will almost always work with BAM files rather than SAM files, but SAM is human-readable and useful for understanding the format.</p>
+<h3 id="42__sam__file__structure">4.2 SAM File Structure<a class="headerlink" href="#42__sam__file__structure" title="Permanent link">&para;</a></h3>
+<p>A SAM file has two sections:</p>
+<p><strong>Header section</strong> — lines beginning with <code>@</code>:
+- <code>@HD</code> — file-level metadata (SAM version, sort order)
+- <code>@SQ</code> — reference sequence dictionary (chromosome names and lengths)
+- <code>@RG</code> — read group information (sample, library, sequencing platform)
+- <code>@PG</code> — programme chain (which tools were used to produce this file)</p>
+<p><strong>Alignment section</strong> — one line per read, with 11 mandatory tab-separated fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>QNAME</td>
+<td>Read name</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FLAG</td>
+<td>Bitwise flag encoding alignment properties</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RNAME</td>
+<td>Reference sequence name (chromosome)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>POS</td>
+<td>1-based leftmost mapping position</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MAPQ</td>
+<td>Mapping quality score</td>
+</tr>
+<tr>
+<td>6</td>
+<td>CIGAR</td>
+<td>String encoding the alignment</td>
+</tr>
+<tr>
+<td>7</td>
+<td>RNEXT</td>
+<td>Reference of the mate read</td>
+</tr>
+<tr>
+<td>8</td>
+<td>PNEXT</td>
+<td>Position of the mate read</td>
+</tr>
+<tr>
+<td>9</td>
+<td>TLEN</td>
+<td>Template length (insert size)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>SEQ</td>
+<td>Read sequence</td>
+</tr>
+<tr>
+<td>11</td>
+<td>QUAL</td>
+<td>Read quality scores</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43__the__flag__field">4.3 The FLAG Field<a class="headerlink" href="#43__the__flag__field" title="Permanent link">&para;</a></h3>
+<p>The FLAG field is a single integer that encodes multiple binary properties of an alignment as a bitwise sum. Common flag values:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x1</td>
+<td>1</td>
+<td>Template has multiple segments (paired-end)</td>
+</tr>
+<tr>
+<td>0x2</td>
+<td>2</td>
+<td>All segments are properly aligned</td>
+</tr>
+<tr>
+<td>0x4</td>
+<td>4</td>
+<td>The read is unmapped</td>
+</tr>
+<tr>
+<td>0x8</td>
+<td>8</td>
+<td>The mate is unmapped</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>16</td>
+<td>Read is on the reverse strand</td>
+</tr>
+<tr>
+<td>0x100</td>
+<td>256</td>
+<td>Not the primary alignment</td>
+</tr>
+<tr>
+<td>0x400</td>
+<td>1024</td>
+<td>PCR or optical duplicate</td>
+</tr>
+</tbody>
+</table>
+<p>A FLAG value of 99 means: paired (1) + properly paired (2) + mate on reverse strand (32) + read is first in pair (64) = 1+2+32+64 = 99.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>** Use the Broad Institute&rsquo;s SAM flag explainer at https://broadinstitute.github.io/picard/explain-flags.html to decode any FLAG value instantly.</p>
+</div>
+<h3 id="44__the__cigar__string">4.4 The CIGAR String<a class="headerlink" href="#44__the__cigar__string" title="Permanent link">&para;</a></h3>
+<p>The CIGAR string encodes how a read aligns to the reference — which bases match, which are insertions, deletions, or clipped:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M</td>
+<td>Match or mismatch (aligned)</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Insertion in the read relative to the reference</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Deletion in the read relative to the reference</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Skipped region — used for introns in RNA-seq</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Soft clip — bases in the read not aligned (at ends)</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Hard clip — bases removed from the sequence</td>
+</tr>
+</tbody>
+</table>
+<p>Example: <code>50M2I30M3D20M</code> means: 50 aligned bases, 2-base insertion, 30 aligned bases, 3-base deletion, 20 aligned bases.</p>
+<h3 id="45__working__with__bam__files__using__samtools">4.5 Working with BAM Files using samtools<a class="headerlink" href="#45__working__with__bam__files__using__samtools" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Load samtools on HPC2N</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module<span class="w"> </span>load<span class="w"> </span>SAMtools/1.22
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># View a BAM file as human-readable SAM</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>samtools<span class="w"> </span>view<span class="w"> </span>-h<span class="w"> </span>alignment.bam<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-50
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># View only the header</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>samtools<span class="w"> </span>view<span class="w"> </span>-H<span class="w"> </span>alignment.bam
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Sort by coordinate (required before indexing)</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>samtools<span class="w"> </span>sort<span class="w"> </span>-o<span class="w"> </span>alignment.sorted.bam<span class="w"> </span>alignment.bam
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># Index a sorted BAM file (creates alignment.sorted.bam.bai)</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>samtools<span class="w"> </span>index<span class="w"> </span>alignment.sorted.bam
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Alignment statistics</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>samtools<span class="w"> </span>flagstat<span class="w"> </span>alignment.sorted.bam
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># Count mapped reads</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>samtools<span class="w"> </span>view<span class="w"> </span>-c<span class="w"> </span>-F<span class="w"> </span><span class="m">4</span><span class="w"> </span>alignment.sorted.bam
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="c1"># View reads mapping to a specific region (requires index)</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>samtools<span class="w"> </span>view<span class="w"> </span>alignment.sorted.bam<span class="w"> </span>chr1:1000000-2000000<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span></code></pre></div>
+<hr />
+<h2 id="5__vcf__variant__call__format">5. VCF — Variant Call Format<a class="headerlink" href="#5__vcf__variant__call__format" title="Permanent link">&para;</a></h2>
+<h3 id="51__purpose__and__structure">5.1 Purpose and Structure<a class="headerlink" href="#51__purpose__and__structure" title="Permanent link">&para;</a></h3>
+<p>VCF is the standard format for recording genomic variants — SNPs, indels, and structural variants — identified by comparing sequencing data to a reference genome. It has two sections:</p>
+<p><strong>Meta-information lines</strong> — beginning with <code>##</code>:
+Describe the file format version, the reference genome used, the variant caller and its parameters, and the meaning of all INFO, FORMAT, and FILTER tags used in the data.</p>
+<p><strong>Header line</strong> — beginning with <code>#CHROM</code>:
+Column names, followed by sample names.</p>
+<p><strong>Data lines</strong> — one line per variant:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHROM</td>
+<td>Chromosome</td>
+</tr>
+<tr>
+<td>POS</td>
+<td>1-based position</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>Variant identifier (e.g. rsID, or <code>.</code> if none)</td>
+</tr>
+<tr>
+<td>REF</td>
+<td>Reference allele</td>
+</tr>
+<tr>
+<td>ALT</td>
+<td>Alternate allele(s)</td>
+</tr>
+<tr>
+<td>QUAL</td>
+<td>Phred-scaled quality score for the variant call</td>
+</tr>
+<tr>
+<td>FILTER</td>
+<td>PASS or the filter(s) the variant failed</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>Semicolon-delimited key=value pairs of variant annotations</td>
+</tr>
+<tr>
+<td>FORMAT</td>
+<td>Colon-delimited keys describing the per-sample fields</td>
+</tr>
+<tr>
+<td>SAMPLE</td>
+<td>Per-sample values in the order specified by FORMAT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52__reading__a__vcf__line">5.2 Reading a VCF Line<a class="headerlink" href="#52__reading__a__vcf__line" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>chr17  7674220  rs28934578  C  T  .  PASS  DP=245;AF=0.45  GT:DP:GQ  0/1:245:99
+</span></code></pre></div>
+<p>This records a heterozygous C→T SNP at position 7,674,220 on chromosome 17 (in TP53, as it happens), with depth 245× and genotype quality 99. The GT field <code>0/1</code> means heterozygous: one copy of the reference allele (0) and one copy of the alternate (1).</p>
+<h3 id="53__useful__commands">5.3 Useful Commands<a class="headerlink" href="#53__useful__commands" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Count variants (excluding header lines)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>variants.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># View only header lines</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>grep<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>variants.vcf
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Filter to PASS variants only</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>variants.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$7==&quot;PASS&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># Extract SNPs only (where REF and ALT are both single bases)</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>variants.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;length($4)==1 &amp;&amp; length($5)==1&#39;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1"># With bcftools (more robust for complex VCFs)</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>module<span class="w"> </span>load<span class="w"> </span>BCFtools/1.19
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>bcftools<span class="w"> </span>stats<span class="w"> </span>variants.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;^SN&quot;</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>bcftools<span class="w"> </span>view<span class="w"> </span>-f<span class="w"> </span>PASS<span class="w"> </span>variants.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<hr />
+<h2 id="6__gff__and__gtf__genome__annotation__formats">6. GFF and GTF — Genome Annotation Formats<a class="headerlink" href="#6__gff__and__gtf__genome__annotation__formats" title="Permanent link">&para;</a></h2>
+<h3 id="61__purpose">6.1 Purpose<a class="headerlink" href="#61__purpose" title="Permanent link">&para;</a></h3>
+<p>GFF (General Feature Format) and GTF (Gene Transfer Format) store genome annotation — the positions and properties of genes, transcripts, exons, UTRs, and other genomic features. They describe what the genome encodes rather than the sequence itself.</p>
+<h3 id="62__structure">6.2 Structure<a class="headerlink" href="#62__structure" title="Permanent link">&para;</a></h3>
+<p>Both formats are nine-column tab-separated text files:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>seqname</td>
+<td>Chromosome or scaffold name</td>
+</tr>
+<tr>
+<td>2</td>
+<td>source</td>
+<td>Annotation source (e.g. Ensembl, AUGUSTUS)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>feature</td>
+<td>Feature type (gene, transcript, exon, CDS, UTR)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>start</td>
+<td>1-based start coordinate</td>
+</tr>
+<tr>
+<td>5</td>
+<td>end</td>
+<td>End coordinate (inclusive)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>score</td>
+<td>Numeric score or <code>.</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>strand</td>
+<td><code>+</code> (forward) or <code>-</code> (reverse)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>frame</td>
+<td>Reading frame (0, 1, 2, or <code>.</code>)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>attributes</td>
+<td>Key-value pairs (syntax differs between GFF2, GFF3, and GTF)</td>
+</tr>
+</tbody>
+</table>
+<p>The key difference between GFF3 and GTF is the attributes field syntax. GFF3 uses <code>key=value;</code> pairs; GTF uses <code>key "value";</code> pairs. GTF is historically the format used by ENSEMBL and UCSC for vertebrate genomes; GFF3 is more commonly used for plant and other genomes.</p>
+<h3 id="63__useful__commands">6.3 Useful Commands<a class="headerlink" href="#63__useful__commands" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Count features by type</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/{print $3}&#39;</span><span class="w"> </span>annotation.gff<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Extract all gene lines</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;gene&quot;&#39;</span><span class="w"> </span>annotation.gff<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Count genes on each chromosome</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;gene&quot;{print $1}&#39;</span><span class="w"> </span>annotation.gff<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Extract gene names from GTF attributes</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;gene&quot;&#39;</span><span class="w"> </span>annotation.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;gene_name &quot;\K[^&quot;]+&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Count exons per gene (more complex — see handout extension)</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;exon&quot;&#39;</span><span class="w"> </span>annotation.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;gene_id &quot;\K[^&quot;]+&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span></code></pre></div>
+<hr />
+<h2 id="7__bed__browser__extensible__data">7. BED — Browser Extensible Data<a class="headerlink" href="#7__bed__browser__extensible__data" title="Permanent link">&para;</a></h2>
+<h3 id="71__purpose__and__structure">7.1 Purpose and Structure<a class="headerlink" href="#71__purpose__and__structure" title="Permanent link">&para;</a></h3>
+<p>BED format stores genomic intervals — regions of the genome defined by a chromosome, start, and end position. It is widely used for:
+- Defining regions of interest (e.g. genes, regulatory elements, capture targets)
+- Storing peak calls from ChIP-seq or ATAC-seq
+- Defining exon coordinates for RNA-seq analysis</p>
+<p>BED uses <strong>0-based, half-open coordinates</strong>: the start position is 0-based (the first base of a chromosome is position 0, not 1) and the end position is exclusive.</p>
+<p>This is one of the most common sources of off-by-one errors in bioinformatics. SAM/VCF/GFF use 1-based coordinates; BED uses 0-based. Always check.</p>
+<p><strong>Mandatory columns (BED3):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>chrom — chromosome name</td>
+</tr>
+<tr>
+<td>2</td>
+<td>chromStart — 0-based start</td>
+</tr>
+<tr>
+<td>3</td>
+<td>chromEnd — end (exclusive)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Optional additional columns (BED6, BED12):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>name</td>
+</tr>
+<tr>
+<td>5</td>
+<td>score (0–1000)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>strand (+ or −)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72__useful__commands">7.2 Useful Commands<a class="headerlink" href="#72__useful__commands" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Count regions in a BED file</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>wc<span class="w"> </span>-l<span class="w"> </span>regions.bed
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Calculate total covered bases</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>awk<span class="w"> </span><span class="s1">&#39;{sum += $3-$2} END {print sum}&#39;</span><span class="w"> </span>regions.bed
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Sort a BED file</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>sort<span class="w"> </span>-k1,1<span class="w"> </span>-k2,2n<span class="w"> </span>regions.bed<span class="w"> </span>&gt;<span class="w"> </span>regions.sorted.bed
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Find regions on a specific chromosome</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>awk<span class="w"> </span><span class="s1">&#39;$1==&quot;chr1&quot;&#39;</span><span class="w"> </span>regions.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># With bedtools (if available)</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>module<span class="w"> </span>load<span class="w"> </span>BEDTools/2.31.1
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>bedtools<span class="w"> </span>intersect<span class="w"> </span>-a<span class="w"> </span>regions_a.bed<span class="w"> </span>-b<span class="w"> </span>regions_b.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<hr />
+<h2 id="8__format__reference__summary">8. Format Reference Summary<a class="headerlink" href="#8__format__reference__summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Type</th>
+<th>Primary use</th>
+<th>Coordinate system</th>
+<th>Key tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FASTA</td>
+<td>Text</td>
+<td>Sequences (DNA, RNA, protein)</td>
+<td>N/A</td>
+<td>seqkit, grep</td>
+</tr>
+<tr>
+<td>FASTQ</td>
+<td>Text</td>
+<td>Raw sequencing reads with quality</td>
+<td>N/A</td>
+<td>seqkit, FastQC</td>
+</tr>
+<tr>
+<td>SAM</td>
+<td>Text</td>
+<td>Read alignments (human-readable)</td>
+<td>1-based</td>
+<td>samtools</td>
+</tr>
+<tr>
+<td>BAM</td>
+<td>Binary</td>
+<td>Read alignments (compressed)</td>
+<td>1-based</td>
+<td>samtools</td>
+</tr>
+<tr>
+<td>VCF</td>
+<td>Text</td>
+<td>Genomic variants</td>
+<td>1-based</td>
+<td>bcftools</td>
+</tr>
+<tr>
+<td>BCF</td>
+<td>Binary</td>
+<td>Genomic variants (compressed)</td>
+<td>1-based</td>
+<td>bcftools</td>
+</tr>
+<tr>
+<td>GFF3</td>
+<td>Text</td>
+<td>Genome annotation (general)</td>
+<td>1-based</td>
+<td>grep, awk</td>
+</tr>
+<tr>
+<td>GTF</td>
+<td>Text</td>
+<td>Genome annotation (Ensembl/UCSC)</td>
+<td>1-based</td>
+<td>grep, awk</td>
+</tr>
+<tr>
+<td>BED</td>
+<td>Text</td>
+<td>Genomic intervals</td>
+<td>0-based</td>
+<td>bedtools</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Coordinate system warning:</strong> BED is 0-based; everything else is 1-based. This is a constant source of off-by-one errors. When converting between formats, always verify the coordinate system.</p>
+</blockquote>
+<hr />
+<h2 id="9__hands-on__exercise__parsing__bioinformatics__formats__on__hpc">9. Hands-On Exercise: Parsing Bioinformatics Formats on HPC<a class="headerlink" href="#9__hands-on__exercise__parsing__bioinformatics__formats__on__hpc" title="Permanent link">&para;</a></h2>
+<p><strong>Objective:</strong> Work with real examples of each major file format using command-line tools on Kebnekaise. Practice extracting meaningful information from each format without specialised software — then use the appropriate specialist tool.</p>
+<p>Your instructor will make example files available at:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/proj/nobackup/bioinformatics_course/data/formats/
+</span></code></pre></div></p>
+<h3 id="part__a__set__up">Part A — Set up<a class="headerlink" href="#part__a__set__up" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>~/course
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>lecture13-formats<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>lecture13-formats
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>git<span class="w"> </span>init
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>cp<span class="w"> </span>/proj/nobackup/bioinformatics_course/data/formats/*<span class="w"> </span>.
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ls<span class="w"> </span>-lh<span class="w">    </span><span class="c1"># What files are here? What are their sizes?</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>git<span class="w"> </span>add<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;initial commit: lecture13 format exercise files&quot;</span>
+</span></code></pre></div>
+<h3 id="part__b__fastq__inspection">Part B — FASTQ inspection<a class="headerlink" href="#part__b__fastq__inspection" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># How many reads are in the file?</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>wc<span class="w"> </span>-l<span class="w"> </span>sample.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1/4}&#39;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Look at the first read — all four lines</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>head<span class="w"> </span>-4<span class="w"> </span>sample.fastq
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># What characters appear in quality scores?</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>awk<span class="w"> </span><span class="s1">&#39;NR%4==0&#39;</span><span class="w"> </span>sample.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>fold<span class="w"> </span>-w1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># What is the minimum and maximum quality character?</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>awk<span class="w"> </span><span class="s1">&#39;NR%4==0&#39;</span><span class="w"> </span>sample.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>fold<span class="w"> </span>-w1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="w">   </span><span class="c1"># min</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>awk<span class="w"> </span><span class="s1">&#39;NR%4==0&#39;</span><span class="w"> </span>sample.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>fold<span class="w"> </span>-w1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w">   </span><span class="c1"># max</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1"># Convert the lowest quality character to a Q score (ASCII value minus 33)</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="c1"># What is the probability of error at this quality?</span>
+</span></code></pre></div>
+<p><em>Questions: Is this Phred+33 encoding? What is the read length? Are all reads the same length?</em></p>
+<h3 id="part__c__bam__file__operations">Part C — BAM file operations<a class="headerlink" href="#part__c__bam__file__operations" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>module<span class="w"> </span>load<span class="w"> </span>SAMtools/1.22
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># View the header</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>samtools<span class="w"> </span>view<span class="w"> </span>-H<span class="w"> </span>sample.bam
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1"># How many reference sequences are in the header?</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>samtools<span class="w"> </span>view<span class="w"> </span>-H<span class="w"> </span>sample.bam<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;^@SQ&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># Alignment statistics</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>samtools<span class="w"> </span>flagstat<span class="w"> </span>sample.bam
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="c1"># How many reads are mapped?</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>samtools<span class="w"> </span>view<span class="w"> </span>-c<span class="w"> </span>-F<span class="w"> </span><span class="m">4</span><span class="w"> </span>sample.bam
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="c1"># Sort and index</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>samtools<span class="w"> </span>sort<span class="w"> </span>-o<span class="w"> </span>sample.sorted.bam<span class="w"> </span>sample.bam
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>samtools<span class="w"> </span>index<span class="w"> </span>sample.sorted.bam
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="c1"># Look at the first few alignments — note the FLAG and CIGAR fields</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>samtools<span class="w"> </span>view<span class="w"> </span>sample.sorted.bam<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="c1"># Decode the FLAG of the first read — what does it tell you?</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="c1"># Look up: https://broadinstitute.github.io/picard/explain-flags.html</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="c1"># Extract reads mapping to a specific region</span>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>samtools<span class="w"> </span>view<span class="w"> </span>sample.sorted.bam<span class="w"> </span>chr1:1-100000<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<h3 id="part__d__vcf__inspection">Part D — VCF inspection<a class="headerlink" href="#part__d__vcf__inspection" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># View the header</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>grep<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># How many variants are in the file?</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># How many passed all filters?</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$7==&quot;PASS&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># What chromosomes have variants?</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1"># Find any variants in TP53 (chr17 ~7,600,000-7,700,000)</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$1==&quot;chr17&quot; &amp;&amp; $2&gt;=7600000 &amp;&amp; $2&lt;=7700000&#39;</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1"># Count SNPs vs indels</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;length($4)==1 &amp;&amp; length($5)==1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">   </span><span class="c1"># SNPs</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>sample.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;length($4)!=1 || length($5)!=1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">   </span><span class="c1"># indels</span>
+</span></code></pre></div>
+<h3 id="part__e__gffgtf__annotation">Part E — GFF/GTF annotation<a class="headerlink" href="#part__e__gffgtf__annotation" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># What feature types are present?</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/{print $3}&#39;</span><span class="w"> </span>sample.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># How many genes are annotated?</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;gene&quot;&#39;</span><span class="w"> </span>sample.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># How many genes on each chromosome?</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;gene&quot;{print $1}&#39;</span><span class="w"> </span>sample.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1"># Extract gene names</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;gene&quot;&#39;</span><span class="w"> </span>sample.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;gene_name &quot;\K[^&quot;]+&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="c1"># Find the gene with the most exons</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; $3==&quot;exon&quot;&#39;</span><span class="w"> </span>sample.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;gene_name &quot;\K[^&quot;]+&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</span></code></pre></div>
+<h3 id="part__f__document__and__commit">Part F — Document and commit<a class="headerlink" href="#part__f__document__and__commit" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="s">## Format exercise findings</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="s">### FASTQ</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="s">- Number of reads:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="s">- Read length:</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="s">- Quality encoding: Phred+33 / Phred+64 (delete as appropriate)</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="s">- Notes:</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="s">### BAM</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="s">- Number of mapped reads:</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="s">- Mapping rate:</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="s">- Reference sequences:</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="s">- Notes on CIGAR/FLAG:</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="s">### VCF</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="s">- Total variants:</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="s">- PASS variants:</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="s">- SNPs / indels:</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="s">- Notes:</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="s">### GTF</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="s">- Number of genes:</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="s">- Most exon-dense gene:</span>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="s">- Notes:</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="s">EOF</span>
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-16-30"><a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;lecture13: format inspection exercise complete</span>
+</span><span id="__span-16-31"><a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>
+</span><span id="__span-16-32"><a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="s2">- Inspected FASTQ, BAM, VCF, and GTF files</span>
+</span><span id="__span-16-33"><a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a><span class="s2">- Used samtools, grep, awk, and wc throughout</span>
+</span><span id="__span-16-34"><a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="s2">- Findings documented in README&quot;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="10__in-session__quizzes">10. In-Session Quizzes<a class="headerlink" href="#10__in-session__quizzes" title="Permanent link">&para;</a></h2>
+<h3 id="mentimeter__quiz__1__prior__knowledge__session__opening">Mentimeter Quiz 1 — Prior knowledge (session opening)<a class="headerlink" href="#mentimeter__quiz__1__prior__knowledge__session__opening" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Q1: &ldquo;Which of these formats have you previously encountered?&rdquo; (multi-select): FASTA / FASTQ / SAM / BAM / VCF / GFF / GTF / BED / None of the above</li>
+<li>Q2 (word cloud): &ldquo;In one word — what is a bioinformatics file format?&rdquo;</li>
+</ul>
+<h3 id="mentimeter__quiz__2__format__knowledge__check__end__of__block__1">Mentimeter Quiz 2 — Format knowledge check (end of Block 1)<a class="headerlink" href="#mentimeter__quiz__2__format__knowledge__check__end__of__block__1" title="Permanent link">&para;</a></h3>
+<p><strong>Q1:</strong> A FASTQ quality score character is <code>I</code>. Using Phred+33 encoding, what is the Q score?
+- A) 9
+- B) 40 ✓ — ASCII value of <code>I</code> is 73; 73−33=40
+- C) 33
+- D) 73</p>
+<p><em>Presenter note: walk through the calculation. ASCII(&lsquo;I&rsquo;) = 73. Q = 73 − 33 = 40. P(error) = 10^(−40/10) = 10^−4 = 0.01%.</em></p>
+<p><strong>Q2:</strong> A read in a SAM file has FLAG = 16. What does this tell you?
+- A) The read is unmapped
+- B) The read is on the reverse strand ✓ (0x10 = 16)
+- C) The read is a PCR duplicate
+- D) The read failed quality filters</p>
+<p><strong>Q3:</strong> You have a BED file with an entry: <code>chr1  1000  2000</code>. What is the length of this region in bases?
+- A) 1,001 bases
+- B) 1,000 bases ✓ — BED is 0-based half-open: 2000−1000=1000
+- C) 999 bases
+- D) Cannot tell without knowing the coordinate system</p>
+<hr />
+<h2 id="11__what__you__should__know__after__this__session">11. What You Should Know After This Session<a class="headerlink" href="#11__what__you__should__know__after__this__session" title="Permanent link">&para;</a></h2>
+<p>✅ <strong>Explain why standardised file formats matter</strong> for bioinformatics pipeline design.</p>
+<p>✅ <strong>Describe the structure of FASTA and FASTQ</strong>, including the four-line FASTQ record and Phred quality score encoding.</p>
+<p>✅ <strong>Convert a quality character to a Q score</strong> using Phred+33 encoding and interpret its error probability.</p>
+<p>✅ <strong>Describe the structure of a SAM file</strong> — header section, mandatory fields, FLAG field, and CIGAR string.</p>
+<p>✅ <strong>Use <code>samtools</code></strong> to view, sort, index, and run flagstat on a BAM file.</p>
+<p>✅ <strong>Describe the structure of VCF, GFF/GTF, and BED</strong> and state the coordinate system each uses.</p>
+<p>✅ <strong>Use <code>grep</code> and <code>awk</code></strong> to extract specific features or variants from text-based format files.</p>
+<p>✅ <strong>Explain the 0-based vs 1-based coordinate distinction</strong> and identify which formats use each.</p>
+<p>✅ <strong>Commit format exercises and findings to Git</strong> with a structured README.</p>
+<hr />
+<h2 id="12__further__reading">12. Further Reading<a class="headerlink" href="#12__further__reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Li H. et al. (2009). The Sequence Alignment/Map format and SAMtools. <em>Bioinformatics</em>, 25(16): 2078–2079. — The original SAM/BAM paper.</li>
+<li>Danecek P. et al. (2011). The variant call format and VCFtools. <em>Bioinformatics</em>, 27(15): 2156–2158. — The original VCF paper.</li>
+<li>Cock P.J.A. et al. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. <em>Nucleic Acids Research</em>, 38(6): 1767–1771. — Definitive reference on FASTQ encoding.</li>
+<li>Quinlan A.R. &amp; Hall I.M. (2010). BEDTools: a flexible suite of utilities for comparing genomic features. <em>Bioinformatics</em>, 26(6): 841–842. — The BEDTools paper; one of the most widely cited bioinformatics tools.</li>
+<li>SAM format specification: https://samtools.github.io/hts-specs/SAMv1.pdf</li>
+<li>VCF format specification: https://samtools.github.io/hts-specs/VCFv4.3.pdf</li>
+</ul>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../12.blast/blast/" class="btn btn-neutral float-left" title="12. BLAST and Sequence Similarity"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../14.fair-open-science/fair-open-science/" class="btn btn-neutral float-right" title="Lecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../12.blast/blast/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../14.fair-open-science/fair-open-science/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
