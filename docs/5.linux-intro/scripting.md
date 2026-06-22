@@ -106,7 +106,7 @@ If you look at the left-most column, you see an example of **permissions**.
 
 The permissions for a file, directory, or symbolic link has 10 "bits" and looks similar to this:
 
-![Permissions](images/permissions.png){: style="width: 400px}
+![Permissions](../images/permissions.png){: style="width: 400px}
 
 As shown, the first bit can be "-" (a file), "d" (a directory), or "l" (a link).
 
