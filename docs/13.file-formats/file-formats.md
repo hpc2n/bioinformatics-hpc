@@ -181,16 +181,111 @@ seqkit stats reads.fastq
 Modern sequencing experiments typically produce **paired-end reads**: two FASTQ files (R1 and R2) where each pair of reads comes from opposite ends of the same DNA fragment. The pairing must be maintained throughout the pipeline — if reads are filtered in one file but not the other, the files become out of sync, which will cause alignment tools to fail.
 
 ---
+## 4. GFF and GTF — Genome Annotation Formats
 
-## 4. SAM and BAM
+### 4.1 Purpose
 
-### 4.1 What SAM Represents
+GFF (General Feature Format) and GTF (Gene Transfer Format) store genome annotation — the positions and properties of genes, transcripts, exons, UTRs, and other genomic features. They describe what the genome encodes rather than the sequence itself.
+
+### 4.2 Structure
+
+Both formats are nine-column tab-separated text files:
+
+| Column | Name | Description |
+|--------|------|-------------|
+| 1 | seqname | Chromosome or scaffold name |
+| 2 | source | Annotation source (e.g. Ensembl, AUGUSTUS) |
+| 3 | feature | Feature type (gene, transcript, exon, CDS, UTR) |
+| 4 | start | 1-based start coordinate |
+| 5 | end | End coordinate (inclusive) |
+| 6 | score | Numeric score or `.` |
+| 7 | strand | `+` (forward) or `-` (reverse) |
+| 8 | frame | Reading frame (0, 1, 2, or `.`) |
+| 9 | attributes | Key-value pairs (syntax differs between GFF2, GFF3, and GTF) |
+
+The key difference between GFF3 and GTF is the attributes field syntax. GFF3 uses `key=value;` pairs; GTF uses `key "value";` pairs. GTF is historically the format used by ENSEMBL and UCSC for vertebrate genomes; GFF3 is more commonly used for plant and other genomes.
+
+### 4.3 Useful Commands
+
+```bash
+# Count features by type
+awk '!/^#/{print $3}' annotation.gff | sort | uniq -c | sort -rn
+
+# Extract all gene lines
+awk '!/^#/ && $3=="gene"' annotation.gff | head -10
+
+# Count genes on each chromosome
+awk '!/^#/ && $3=="gene"{print $1}' annotation.gff | sort | uniq -c | sort -rn
+
+# Extract gene names from GTF attributes
+awk '!/^#/ && $3=="gene"' annotation.gtf | grep -oP 'gene_name "\K[^"]+' | head -20
+
+# Count exons per gene (more complex — see handout extension)
+awk '!/^#/ && $3=="exon"' annotation.gtf | grep -oP 'gene_id "\K[^"]+' | sort | uniq -c | sort -rn | head -20
+```
+
+---
+
+## 5. BED — Browser Extensible Data
+
+### 5.1 Purpose and Structure
+
+BED format stores genomic intervals — regions of the genome defined by a chromosome, start, and end position. It is widely used for:
+- Defining regions of interest (e.g. genes, regulatory elements, capture targets)
+- Storing peak calls from ChIP-seq or ATAC-seq
+- Defining exon coordinates for RNA-seq analysis
+
+BED uses **0-based, half-open coordinates**: the start position is 0-based (the first base of a chromosome is position 0, not 1) and the end position is exclusive.
+
+This is one of the most common sources of off-by-one errors in bioinformatics. SAM/VCF/GFF use 1-based coordinates; BED uses 0-based. Always check.
+
+**Mandatory columns (BED3):**
+
+| Column | Description |
+|--------|-------------|
+| 1 | chrom — chromosome name |
+| 2 | chromStart — 0-based start |
+| 3 | chromEnd — end (exclusive) |
+
+**Optional additional columns (BED6, BED12):**
+
+| Column | Description |
+|--------|-------------|
+| 4 | name |
+| 5 | score (0–1000) |
+| 6 | strand (+ or −) |
+
+### 5.2 Useful Commands
+
+```bash
+# Count regions in a BED file
+wc -l regions.bed
+
+# Calculate total covered bases
+awk '{sum += $3-$2} END {print sum}' regions.bed
+
+# Sort a BED file
+sort -k1,1 -k2,2n regions.bed > regions.sorted.bed
+
+# Find regions on a specific chromosome
+awk '$1=="chr1"' regions.bed | wc -l
+
+# With bedtools (if available)
+module load BEDTools/2.31.1
+bedtools intersect -a regions_a.bed -b regions_b.bed | wc -l
+```
+
+---
+
+## 6. SAM and BAM
+
+### 6.1 What SAM Represents
 
 SAM (Sequence Alignment/Map) is the standard format for storing read alignments to a reference genome. After FASTQ files have been quality-trimmed, they are aligned to a reference genome using a tool such as HISAT2, STAR, or BWA-MEM. The output is a SAM file describing where each read maps.
 
 BAM is the binary, compressed version of SAM. BAM files are typically 5–10× smaller than equivalent SAM files and can be randomly accessed via an index file (`.bai`). In practice, you will almost always work with BAM files rather than SAM files, but SAM is human-readable and useful for understanding the format.
 
-### 4.2 SAM File Structure
+### 6.2 SAM File Structure
 
 A SAM file has two sections:
 
@@ -216,7 +311,7 @@ A SAM file has two sections:
 | 10 | SEQ | Read sequence |
 | 11 | QUAL | Read quality scores |
 
-### 4.3 The FLAG Field
+### 6.3 The FLAG Field
 
 The FLAG field is a single integer that encodes multiple binary properties of an alignment as a bitwise sum. Common flag values:
 
@@ -235,7 +330,7 @@ A FLAG value of 99 means: paired (1) + properly paired (2) + mate on reverse str
 !!! tip
     ** Use the Broad Institute's SAM flag explainer at https://broadinstitute.github.io/picard/explain-flags.html to decode any FLAG value instantly.
 
-### 4.4 The CIGAR String
+### 6.4 The CIGAR String
 
 The CIGAR string encodes how a read aligns to the reference — which bases match, which are insertions, deletions, or clipped:
 
@@ -250,7 +345,7 @@ The CIGAR string encodes how a read aligns to the reference — which bases matc
 
 Example: `50M2I30M3D20M` means: 50 aligned bases, 2-base insertion, 30 aligned bases, 3-base deletion, 20 aligned bases.
 
-### 4.5 Working with BAM Files using samtools
+### 6.5 Working with BAM Files using samtools
 
 ```bash
 # Load samtools on HPC2N
@@ -280,9 +375,9 @@ samtools view alignment.sorted.bam chr1:1000000-2000000 | head -20
 
 ---
 
-## 5. VCF — Variant Call Format
+## 7. VCF — Variant Call Format
 
-### 5.1 Purpose and Structure
+### 7.1 Purpose and Structure
 
 VCF is the standard format for recording genomic variants — SNPs, indels, and structural variants — identified by comparing sequencing data to a reference genome. It has two sections:
 
@@ -307,7 +402,7 @@ Column names, followed by sample names.
 | FORMAT | Colon-delimited keys describing the per-sample fields |
 | SAMPLE | Per-sample values in the order specified by FORMAT |
 
-### 5.2 Reading a VCF Line
+### 7.2 Reading a VCF Line
 
 ```
 chr17  7674220  rs28934578  C  T  .  PASS  DP=245;AF=0.45  GT:DP:GQ  0/1:245:99
@@ -315,7 +410,7 @@ chr17  7674220  rs28934578  C  T  .  PASS  DP=245;AF=0.45  GT:DP:GQ  0/1:245:99
 
 This records a heterozygous C→T SNP at position 7,674,220 on chromosome 17 (in TP53, as it happens), with depth 245× and genotype quality 99. The GT field `0/1` means heterozygous: one copy of the reference allele (0) and one copy of the alternate (1).
 
-### 5.3 Useful Commands
+### 7.3 Useful Commands
 
 ```bash
 # Count variants (excluding header lines)
@@ -338,111 +433,15 @@ bcftools view -f PASS variants.vcf | grep -v "^#" | wc -l
 
 ---
 
-## 6. GFF and GTF — Genome Annotation Formats
-
-### 6.1 Purpose
-
-GFF (General Feature Format) and GTF (Gene Transfer Format) store genome annotation — the positions and properties of genes, transcripts, exons, UTRs, and other genomic features. They describe what the genome encodes rather than the sequence itself.
-
-### 6.2 Structure
-
-Both formats are nine-column tab-separated text files:
-
-| Column | Name | Description |
-|--------|------|-------------|
-| 1 | seqname | Chromosome or scaffold name |
-| 2 | source | Annotation source (e.g. Ensembl, AUGUSTUS) |
-| 3 | feature | Feature type (gene, transcript, exon, CDS, UTR) |
-| 4 | start | 1-based start coordinate |
-| 5 | end | End coordinate (inclusive) |
-| 6 | score | Numeric score or `.` |
-| 7 | strand | `+` (forward) or `-` (reverse) |
-| 8 | frame | Reading frame (0, 1, 2, or `.`) |
-| 9 | attributes | Key-value pairs (syntax differs between GFF2, GFF3, and GTF) |
-
-The key difference between GFF3 and GTF is the attributes field syntax. GFF3 uses `key=value;` pairs; GTF uses `key "value";` pairs. GTF is historically the format used by ENSEMBL and UCSC for vertebrate genomes; GFF3 is more commonly used for plant and other genomes.
-
-### 6.3 Useful Commands
-
-```bash
-# Count features by type
-awk '!/^#/{print $3}' annotation.gff | sort | uniq -c | sort -rn
-
-# Extract all gene lines
-awk '!/^#/ && $3=="gene"' annotation.gff | head -10
-
-# Count genes on each chromosome
-awk '!/^#/ && $3=="gene"{print $1}' annotation.gff | sort | uniq -c | sort -rn
-
-# Extract gene names from GTF attributes
-awk '!/^#/ && $3=="gene"' annotation.gtf | grep -oP 'gene_name "\K[^"]+' | head -20
-
-# Count exons per gene (more complex — see handout extension)
-awk '!/^#/ && $3=="exon"' annotation.gtf | grep -oP 'gene_id "\K[^"]+' | sort | uniq -c | sort -rn | head -20
-```
-
----
-
-## 7. BED — Browser Extensible Data
-
-### 7.1 Purpose and Structure
-
-BED format stores genomic intervals — regions of the genome defined by a chromosome, start, and end position. It is widely used for:
-- Defining regions of interest (e.g. genes, regulatory elements, capture targets)
-- Storing peak calls from ChIP-seq or ATAC-seq
-- Defining exon coordinates for RNA-seq analysis
-
-BED uses **0-based, half-open coordinates**: the start position is 0-based (the first base of a chromosome is position 0, not 1) and the end position is exclusive.
-
-This is one of the most common sources of off-by-one errors in bioinformatics. SAM/VCF/GFF use 1-based coordinates; BED uses 0-based. Always check.
-
-**Mandatory columns (BED3):**
-
-| Column | Description |
-|--------|-------------|
-| 1 | chrom — chromosome name |
-| 2 | chromStart — 0-based start |
-| 3 | chromEnd — end (exclusive) |
-
-**Optional additional columns (BED6, BED12):**
-
-| Column | Description |
-|--------|-------------|
-| 4 | name |
-| 5 | score (0–1000) |
-| 6 | strand (+ or −) |
-
-### 7.2 Useful Commands
-
-```bash
-# Count regions in a BED file
-wc -l regions.bed
-
-# Calculate total covered bases
-awk '{sum += $3-$2} END {print sum}' regions.bed
-
-# Sort a BED file
-sort -k1,1 -k2,2n regions.bed > regions.sorted.bed
-
-# Find regions on a specific chromosome
-awk '$1=="chr1"' regions.bed | wc -l
-
-# With bedtools (if available)
-module load BEDTools/2.31.1
-bedtools intersect -a regions_a.bed -b regions_b.bed | wc -l
-```
-
----
-
 ## 8. Format Reference Summary
 
 | Format | Type | Primary use | Coordinate system | Key tool |
 |--------|------|-------------|------------------|---------|
 | FASTA | Text | Sequences (DNA, RNA, protein) | N/A | seqkit, grep |
-| FASTQ | Text | Raw sequencing reads with quality | N/A | seqkit, FastQC |
+| FASTQ | Text | Raw sequencing reads with quality | N/A | seqkit, BBtools |
 | SAM | Text | Read alignments (human-readable) | 1-based | samtools |
 | BAM | Binary | Read alignments (compressed) | 1-based | samtools |
-| VCF | Text | Genomic variants | 1-based | bcftools |
+| VCF | Text | Genomic variants | 1-based | bcftools/vcftools |
 | BCF | Binary | Genomic variants (compressed) | 1-based | bcftools |
 | GFF3 | Text | Genome annotation (general) | 1-based | grep, awk |
 | GTF | Text | Genome annotation (Ensembl/UCSC) | 1-based | grep, awk |
@@ -476,10 +475,10 @@ git add . && git commit -m "initial commit: lecture13 format exercise files"
 
 ```bash
 # How many reads are in the file?
-wc -l sample.fastq | awk '{print $1/4}'
+zcat sample.fastq.gz | wc -l | awk '{print $1/4}'
 
 # Look at the first read — all four lines
-head -4 sample.fastq
+zcat sample.fastq.gz | head -n 4
 
 # What characters appear in quality scores?
 awk 'NR%4==0' sample.fastq | fold -w1 | sort -u
@@ -494,7 +493,26 @@ awk 'NR%4==0' sample.fastq | fold -w1 | sort -u | tail -1   # max
 
 *Questions: Is this Phred+33 encoding? What is the read length? Are all reads the same length?*
 
-### Part C — BAM file operations
+### Part C — GFF/GTF annotation
+
+```bash
+# What feature types are present?
+awk '!/^#/{print $3}' sample.gtf | sort | uniq -c | sort -rn
+
+# How many genes are annotated?
+awk '!/^#/ && $3=="gene"' sample.gtf | wc -l
+
+# How many genes on each chromosome?
+awk '!/^#/ && $3=="gene"{print $1}' sample.gtf | sort | uniq -c | sort -rn | head -10
+
+# Extract gene names
+awk '!/^#/ && $3=="gene"' sample.gtf | grep -oP 'gene_name "\K[^"]+' | head -20
+
+# Find the gene with the most exons
+awk '!/^#/ && $3=="exon"' sample.gtf | grep -oP 'gene_name "\K[^"]+' | sort | uniq -c | sort -rn | head -5
+```
+
+### Part D — BAM file operations
 
 ```bash
 module load SAMtools/1.22
@@ -525,7 +543,7 @@ samtools view sample.sorted.bam | head -5
 samtools view sample.sorted.bam chr1:1-100000 | wc -l
 ```
 
-### Part D — VCF inspection
+### Part E — VCF inspection
 
 ```bash
 # View the header
@@ -548,24 +566,6 @@ grep -v "^#" sample.vcf | awk 'length($4)==1 && length($5)==1' | wc -l   # SNPs
 grep -v "^#" sample.vcf | awk 'length($4)!=1 || length($5)!=1' | wc -l   # indels
 ```
 
-### Part E — GFF/GTF annotation
-
-```bash
-# What feature types are present?
-awk '!/^#/{print $3}' sample.gtf | sort | uniq -c | sort -rn
-
-# How many genes are annotated?
-awk '!/^#/ && $3=="gene"' sample.gtf | wc -l
-
-# How many genes on each chromosome?
-awk '!/^#/ && $3=="gene"{print $1}' sample.gtf | sort | uniq -c | sort -rn | head -10
-
-# Extract gene names
-awk '!/^#/ && $3=="gene"' sample.gtf | grep -oP 'gene_name "\K[^"]+' | head -20
-
-# Find the gene with the most exons
-awk '!/^#/ && $3=="exon"' sample.gtf | grep -oP 'gene_name "\K[^"]+' | sort | uniq -c | sort -rn | head -5
-```
 
 ### Part F — Document and commit
 
