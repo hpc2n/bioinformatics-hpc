@@ -497,25 +497,28 @@ awk 'NR%4==0' sample.fastq | fold -w1 | sort -u | tail -1   # max
 
 ```bash
 # What feature types are present?
-awk '!/^#/{print $3}' sample.gtf | sort | uniq -c | sort -rn
+awk '!/^#/{print $3}' sample.gff | sort | uniq -c | sort -rn
 
 # How many genes are annotated?
-awk '!/^#/ && $3=="gene"' sample.gtf | wc -l
+awk '!/^#/ && $3=="gene"' sample.gff | wc -l
 
 # How many genes on each chromosome?
-awk '!/^#/ && $3=="gene"{print $1}' sample.gtf | sort | uniq -c | sort -rn | head -10
+awk '!/^#/ && $3=="gene"{print $1}' sample.gff | sort | uniq -c | sort -rn | head -10
 
 # Extract gene names
-awk '!/^#/ && $3=="gene"' sample.gtf | grep -oP 'gene_name "\K[^"]+' | head -20
+awk '!/^#/ && $3=="gene"' sample.gff | grep -oP 'ID=\K[^;]+'  | head -20
 
-# Find the gene with the most exons
-awk '!/^#/ && $3=="exon"' sample.gtf | grep -oP 'gene_name "\K[^"]+' | sort | uniq -c | sort -rn | head -5
+# Find the transcript with the most exons
+awk '!/^#/ && $3=="exon"' sample.gff | grep -oP 'Parent=\K[^.]+' | sort | uniq -c | sort -rn | head -5
+
+# Would the same code work on sample2.gff?
+
 ```
 
 ### Part D — BAM file operations
 
 ```bash
-module load SAMtools/1.22
+module load GCC/14.2.0 SAMtools/1.22
 
 # View the header
 samtools view -H sample.bam
@@ -547,23 +550,20 @@ samtools view sample.sorted.bam chr1:1-100000 | wc -l
 
 ```bash
 # View the header
-grep "^#" sample.vcf | head -20
+grep -P "^#" sample.vcf | head -20
 
 # How many variants are in the file?
-grep -v "^#" sample.vcf | wc -l
-
-# How many passed all filters?
-grep -v "^#" sample.vcf | awk '$7=="PASS"' | wc -l
+grep -Pv "^#" sample.vcf | wc -l
 
 # What chromosomes have variants?
-grep -v "^#" sample.vcf | awk '{print $1}' | sort | uniq -c | sort -rn
+grep -Pv "^#" sample.vcf | awk '{print $1}' | sort | uniq -c | sort -rn
 
-# Find any variants in TP53 (chr17 ~7,600,000-7,700,000)
-grep -v "^#" sample.vcf | awk '$1=="chr17" && $2>=7600000 && $2<=7700000'
+# Find any variants in gene Potra2n1c1 (chr1 ~8,865-11,259)
+grep -Pv "^#" sample.vcf | awk '$1=="chr1" && $2>=8865 && $2<=11259'
 
 # Count SNPs vs indels
-grep -v "^#" sample.vcf | awk 'length($4)==1 && length($5)==1' | wc -l   # SNPs
-grep -v "^#" sample.vcf | awk 'length($4)!=1 || length($5)!=1' | wc -l   # indels
+grep -Pv "^#" sample.vcf | awk 'length($4)==1 && length($5)==1' | wc -l   # SNPs
+grep -Pv "^#" sample.vcf | awk 'length($4)!=1 || length($5)!=1' | wc -l   # indels
 ```
 
 
