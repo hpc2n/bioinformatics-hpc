@@ -48,10 +48,10 @@ In this course we are mainly going to use <b>Open OnDemand</b> and regular <b>SS
 
     You have been added to a course project at HPC2N. 
 
-    Project ID: hpc2ncourses2026-013
-    Storage directory: /proj/nobackup/cddb_course
+    - Project ID: hpc2ncourses2026-013
+    - Storage directory: /proj/nobackup/cddb_course
 
-    You will have been contacted about creating SUPR accounts (https://supr.naiss.se/) and then after being added to the course project, you have created an HPC2N account. 
+    You will have been contacted about creating <a href="https://supr.naiss.se/" target="_blank">SUPR accounts</a> and then after being added to the course project, you have created an HPC2N account. 
 
     You find more information about accounts in HPC2N's documentation about <a href="https://docs.hpc2n.umu.se/documentation/accounts-rules/" target="_blank">User Accounts</a>. 
 

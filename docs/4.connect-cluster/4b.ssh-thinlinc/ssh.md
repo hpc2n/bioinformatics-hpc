@@ -4,7 +4,7 @@ The SSH protocol uses encryption to secure the connection between a client and a
 
 More information here: <a href="https://www.ssh.com/academy/ssh" target="_blank">SSH Academy</a>
 
-An SSH connection can be through a terminal, via an SSH client or through something like ThinLinc (which includes an SSH client as well as a graphical interface). 
+An SSH connection can be made through a terminal, via an SSH client or through something like ThinLinc (which includes an SSH client as well as a graphical interface). 
 
 If you are using a stand-alone SSH client (for instance through a terminal), then you must also install an X11 server if you are working with something (like Matlab perhaps) that you would like to use a graphical interface for. This is usually slower than through ThinLinc or OpenOnDemand, so doing that is recommended if this is your use case.
 
@@ -374,3 +374,11 @@ For more info about <code>sftp</code>, type: <code>man sftp</code> on the comman
 <br><br style="clear: both;">
 - Connect by entering <code>kebnekaise.hpc2n.umu.se</code> in the "Host" field, then put in your HPC2N username under "Username". We strongly recommend **not** saving your password.
 
+## Exercises 
+
+Connect either from Windows, macOS, or Linux, depending on what your computer is running. 
+
+1. Login to ``kebnekaise.hpc2n.umu.se`` with SSH (PuTTY, MobaXterm, other with Windows, built in Terminal from macOS, built in Linux terminal). 
+2. Type ``whoami`` and enter to see your username.
+3. Type ``projinfo`` to see that you are a member of the course project ``hpc2ncourses2026-013``. 
+    
