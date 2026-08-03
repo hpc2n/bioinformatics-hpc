@@ -38,8 +38,8 @@ nav:
   - Connection to a cluster (Kebnekaise):
     - Introduction: 4.connect-cluster/connect-cluster.md
     - OpenOnDemand: 4.connect-cluster/4a.OpenOnDemand/openondemand.md
-    - ThinLinc: 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
     - SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh.md
+    - ThinLinc: 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
   - Introduction to computers: 
     - What is a computer?: 1.computer/computer.md
   - Files and file systems:

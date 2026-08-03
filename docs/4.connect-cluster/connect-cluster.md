@@ -38,7 +38,20 @@ The two former are best if you want a graphical interface, while the latter is b
 
         https://portal.hpc2n.umu.se
 
+In this course we are mainly going to use <b>Open OnDemand</b> and regular <b>SSH connections</b>. 
+
 !!! NOTE
 
     Remember that the accounts at HPC2N and SUPR are separate. In the welcome mail you got when your HPC2N account was created there was a link to create <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset" target="_blank">a first, temporary password</a>. When you have logged in using that, [please change the password](https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change).
+
+!!! warning "Important info"
+
+    You have been added to a course project at HPC2N. 
+
+    Project ID: hpc2ncourses2026-013
+    Storage directory: /proj/nobackup/cddb_course
+
+    You will have been contacted about creating SUPR accounts (https://supr.naiss.se/) and then after being added to the course project, you have created an HPC2N account. 
+
+    You find more information about accounts in HPC2N's documentation about <a href="https://docs.hpc2n.umu.se/documentation/accounts-rules/" target="_blank">User Accounts</a>. 
 
