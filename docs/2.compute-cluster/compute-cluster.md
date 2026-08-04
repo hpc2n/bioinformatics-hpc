@@ -40,7 +40,7 @@ exceptions, nearly all high-performance computer clusters use the Linux operatin
 scheduling of jobs. On Linux systems, that batch or queuing system is most often
 Slurm (the Simple Linux Utility for Resource Management). We will talk much more about Slurm when we come to the session about "the Batch system".  
 
-<br style="clear: both;">
+<br style="clear: both;float: left;">
 
 ## What is a Supercomputer? Is it the same as a Cluster?
 
