@@ -230,23 +230,34 @@ The following group of 3 bits are for the owner, then the next 3 for the group, 
 
 !!! warning "Important"
   
-    You will need to download and extract the tarball with exercises if you have not already done so: 
+    You will need to download and extract the tarball with exercises if you have not already done so. If you want to place it in your project storage on Kebnekaise, you should also create your own space to work in.
+
+    Create your own space on the project storage on Kebnekaise:
+
+    - Login to Kebnekaise with either Open OnDemand or regular SSH. Open a terminal in the first case.
+    - Change to the project storage you share with the group: ``cd /proj/nobackup/cddb_course``
+    - Create a directory for yourself to work in: ``mkdir <MYDIR>`` (change to what you want to call it.) 
+
+    Fetch the exercises tarball: 
 
     1. Login to Kebnekaise (or use your own Linux computer if you have). Open a terminal. 
     2. Create a directory to use for the exercises for this course (for instance ``bioinformatics-hpc`` in either your home directory or on the storage space on Kebnekaise). Do EITHER of: 
         - ``mkdir $HOME/bioinformatics-hpc``
-        - ``mkdir /proj/nobackup/cddb_course/bioinformatics-hpc`` 
+        - ``mkdir /proj/nobackup/cddb_course/<MYDIR>/bioinformatics-hpc`` 
     3. Change to the directory: 
         - ``cd $HOME/bioinformatics-hpc``
         - OR
-        - ``cd /proj/nobackup/cddb_course/bioinformatics-hpc``
-    4. Fetch the tarball: ``wget  
+        - ``cd /proj/nobackup/cddb_course/<MYDIR>/bioinformatics-hpc``
+    4. Fetch the tarball: ``wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises.tar.gz``
+    5. Extract the tarball: ``tar zxvf exercises.tar.gz``
 
 
+You will find a small amount of files to play with under ``/exercises/3.files-filesystems/`` after fetching and extracting the tarball. 
 
-
-find a small amount of files to play with under ``/exercises/3.files-filesystems/``
-
+1. Go to the above mentioned directory. Use ``ls -lh`` to see the permissions for the files. What are they?
+2. There are two batch scripts in the directory. ``program.sh`` is called from ``analysis.sh``. To run them they need to be executable (for the user). Change the permissions so you, the user, can execute ``analysis.sh`` (you execute it with ``./analysis.sh``). 
+3. Make ``file2.dat`` unreadable for yourself. Make it readable again. 
+4. If you placed the exercises in the project storage that you share with your group, you can try if they can read your files. Try make the files/directory readable/unreadable for them. 
 
 !!! Note
 

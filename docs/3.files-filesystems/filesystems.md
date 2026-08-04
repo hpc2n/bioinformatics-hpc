@@ -3,6 +3,8 @@
 This section will be a basic overview of the Linux filesystem concepts, not an in-depth description of filesystem types. 
 When we come to the "Introduction to Linux" session, we will look more at commands to navigate and modify the filesystem. 
 
+In the session "Bioinformatics File Formats" you will learn about file formats and file structure. 
+
 !!! note 
 
     A file system is a hierarchical structure of directories/folders used by the operating system to manage, organize, store, and retrieve data from storage devices (SSG, HDD, USB, ...) 
