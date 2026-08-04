@@ -38,7 +38,7 @@ Nodes in computer clusters are usually arranged in racks at a dedicated climate-
 controlled facility, and are connected via a communication network. With few
 exceptions, nearly all high-performance computer clusters use the Linux operating system. Normally, clusters have some sort of batch or queuing system to handle
 scheduling of jobs. On Linux systems, that batch or queuing system is most often
-Slurm (the Simple Linux Utility for Resource Management). We will talk much more about Slurm when we come to the session about "the Batch system".  
+Slurm (the Simple Linux Utility for Resource Management). We will talk much more about Slurm when we come to the session about "the Batch system".   
 
 <br style="clear: both;float: left;">
 
