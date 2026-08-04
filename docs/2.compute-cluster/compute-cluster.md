@@ -40,8 +40,6 @@ exceptions, nearly all high-performance computer clusters use the Linux operatin
 scheduling of jobs. On Linux systems, that batch or queuing system is most often
 Slurm (the Simple Linux Utility for Resource Management). We will talk much more about Slurm when we come to the session about "the Batch system".   
 
-<clear: both;>
-<display: none;>
 <br><br style="clear: both;">
 
 ## What is a Supercomputer? Is it the same as a Cluster?
@@ -86,20 +84,27 @@ programs to be run as scheduled jobs on some HPC clusters, but it is up to the
 administrators to decide which programs can be run with these tools, how they
 should be configured, and what options regular users will be allowed to set.
 
+### Exercises 
+
+1. Login to Kebnekaise with SSH. 
+2. Type ``sinfo`` to see partitions. On Kebnekaise, users can only submit to the partition batch - the other partitions are used by the batch system depending on which resources the user asks for in the batch script. The command ``sinfo`` shows you which nodes belong to which "batch partition" and their state (idle, draining, maintenance, allocated, reserved, mixed, etc.)
+3. Type ``/bin/hostname`` to see the full name of the login node. 
+4. The command ``lscpu`` gives you (a lot of) info on the hardware of the login node. The command ``free -h`` show you used/free memory of the login node. Not hugely important as you will be running the jobs on the compute nodes, NOT the login node. 
+5. Inside the directory ``exercises/2.compute-cluster/`` from the tarball, you find a batch script for running a Python script that does matrix-matrix multiplication. We will describe what the commands of a batch script does further under the session "The batch system/Slurm", but for now you will just use it to test out a few things on the compute cluster Kebnekaise. 
+    - Type ``sbatch run_mmmult.sh`` to submit the job. 
+    - Type ``squeue --me`` to see that your job is sitting in a queue or running. 
+    - Which node did it get? Write ``scontrol show node <THE NODE NAME>`` to get info on the node. 
+    - When you submit the job you get a job ID. You can do ``scontrol show job <JOB ID>`` for more information about the job. 
+    - It may take time for the job to start running and also to finish running. Test running the short script ``simple.sh`` by submitting it with ``sbatch simple.sh``. See that you get a file called "slurm-<job ID>.out". 
+
 ## Which programs can be run effectively on a computer cluster?
 
 Computer clusters are made up of many interconnected nodes, each with a limited
-number of cores and limited memory capacity. The main way an HPC cluster lets you
-speed up computations is by letting you execute several tasks in parallel. In other
-words, a problem must somehow be split into many tasks to gain any speed-up. 
+number of cores and limited memory capacity. The main way an HPC cluster lets you speed up computations is by letting you execute several tasks in parallel. In other words, a problem must somehow be split into many tasks to gain any speed-up. 
 
 ### Many serial jobs
 
-Running many independent tasks can be done faster on a computer
-cluster. No special programming is needed, but you can only run on one core for
-each task. It is good for long-running single-threaded jobs. This type of workflow
-is good for problems like parameter sweeps, where the same code is run repeatedly
-with different inputs.
+Running many independent tasks can be done faster on a computer cluster. No special programming is needed, but you can only run on one core for each task. It is good for long-running single-threaded jobs. This type of workflow is good for problems like parameter sweeps, where the same code is run repeatedly with different inputs.
 
 A job scheduler is used to control the flow of tasks. Using a small script, many
 instances of the same task (like a program run many times, each with slightly
@@ -110,16 +115,15 @@ at a time, since they are serial, which means each only uses one core.
 !!! Example
 
     You launch 500 tasks (say, run a small program for 500 different temperatures).
+
     There are 50 cores on the machine in our example, that you can access. Fifty
     instances are started and then run, while the remaining 450 tasks wait. When
     the running programs finish, the next 50 will start, and so on.
     
-    It will be is as if you ran on 50 computers instead of one, and you will finish
+    It will be as if you ran on 50 computers instead of one, and you will finish
     in 1/50th of the time.
     
-    Of course, this is an ideal example. In reality there may be overhead, waiting
-    time between batches of jobs, etc. so the speed-up will not be as great, but it
-    will certainly run faster.
+    Of course, this is an ideal example. In reality there may be overhead, waiting time between batches of jobs, etc. so the speed-up will not be as great, but it will certainly run faster.
 
 ## Parallelization
 
@@ -129,8 +133,7 @@ Parallelization can be done in several ways:
 - Across several nodes: distributed parallelism (generally done with MPI or similar.)
 - Some combination of threaded and distributed parallelism (hard)
 
-Which is best depends on the size of each parallel process and whether or to what
-extent the processes have to communicate.
+Which is best depends on the size of each parallel process and whether or to what extent the processes have to communicate.
 
 ### What kinds of programs can be parallelized?
 
