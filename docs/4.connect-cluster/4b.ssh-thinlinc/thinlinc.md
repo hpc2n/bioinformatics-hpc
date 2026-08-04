@@ -1,5 +1,9 @@
 # ThinLinc
 
+!!! info "This section is optional"
+
+    The information here is for optional self-study. 
+
 <a href="http://www.cendio.com/thinlinc/what-is-thinlinc" target="_blank">ThinLinc</a> is a cross-platform remote desktop server developed by Cendio AB. You can access Kebnekaise through ThinLinc.
 
 ThinLinc is especially useful when you need to use software with a graphical interface, like INTEL VTune or MATLAB. Look at [our MATLAB page](https://docs.hpc2n.umu.se/documentation/software/matlab) for information about running MATLAB.

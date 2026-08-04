@@ -39,7 +39,7 @@ nav:
     - Introduction: 4.connect-cluster/connect-cluster.md
     - OpenOnDemand: 4.connect-cluster/4a.OpenOnDemand/openondemand.md
     - SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh.md
-    - ThinLinc: 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
+    - ThinLinc (optional): 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
   - Introduction to computers: 
     - What is a computer?: 1.computer/computer.md
   - Files and file systems:

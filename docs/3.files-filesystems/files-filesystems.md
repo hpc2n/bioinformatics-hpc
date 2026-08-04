@@ -8,7 +8,7 @@ This presentation will look at the following:
     - folders 
 - What are extensions?
 - What are permissions?
-- What is a file system? (next slides)  
+- What is a file system?   
 
 ## What is a file? 
 
@@ -27,7 +27,7 @@ In addition there are:
 
 !!! warning 
 
-    Configuration files in Linux are often prefaced with a dot - and are often hidden unless you use specific options. 
+    Configuration files in Linux are often prefaced with a dot - and are often hidden unless you use specific options, like ``ls -a``. 
 
 !!! note 
 
@@ -42,9 +42,9 @@ If it is important what type of file it is, we will write something like this (a
 
 ![A PDF file](../../images/pdffile.png){: style:"width="200px;"}
 
-!!! tip
-
-    To list files in Linux, you use the command ``ls``. You need the option ``-a`` to see hidden files. 
+!!! tip "Info" 
+ 
+    To list files in Linux, you use the command ``ls``. This command has several options, some of which will be covered in the section "Introduction to Linux". For now it is enough to know that you need the option ``-a`` to see hidden files. 
 
 ### How to create a file and open a file
 
@@ -52,7 +52,7 @@ Files are generally accessed either directly through an editor, or from a progra
 
 !!! note "Editors on Linux"
 
-    Linux editors falls in two categories; graphical and non-graphical. If you are using Linux on your own computer, or connecting to say, Kebnekaise through either ThinLinc or OpenOnDemand, you can use an editor with a graphical user interface GUI). If you are connecting with SSH through a terminal, you are generally restricted to the non-graphical editors (unless you are connecting with X11 forwarding or remote desktop, or something like that - more about this later in the course). 
+    Linux editors falls in two categories; graphical and non-graphical. If you are using Linux on your own computer, or connecting toi, say, Kebnekaise through either ThinLinc or OpenOnDemand, you can use an editor with a graphical user interface GUI). If you are connecting with SSH through a terminal, you are generally restricted to the non-graphical editors (unless you are connecting with X11 forwarding or remote desktop, or something like that). 
 
 ### Editors 
 
@@ -70,7 +70,9 @@ They are all installed on Kebnekaise.
 
 Of these, <code>vi/vim</code> as well as <code>emacs</code> are probably the most powerful, though the latter is better in a GUI environment. The easiest editor to use if you are not familiar with any of them is <code>nano</code>.
 
-!!! Example "Nano"
+##### Exercise
+
+!!! Example "Exercises - Nano"
 
     1. Starting "nano": Type <code>nano</code> FILENAME on the command line and press <code>Enter</code>. FILENAME is whatever you want to call your file.
     2. If FILENAME is a file that already exists, <code>nano</code> will open the file. If it dows not exist, it will be created.
@@ -95,7 +97,9 @@ If you are connecting with [ThinLinc](https://docs.hpc2n.umu.se/tutorials/connec
 
 If you are not familiar with any of these, a good recommendation would be to use <code>Text Editor/gedit</code>.
 
-!!! Example "Text Editor/gedit"
+##### Exercise 
+
+!!! Example "Exercise - Text Editor/gedit"
 
     1. Starting "gedit": From the menu, choose Applications -> Accessories -> Text Editor.
     2. You then get a window that looks like this: <br>
@@ -111,11 +115,15 @@ A folder is a container used to organize files (documents, images, etc.) as well
 
 Think of it the same way as a physical file folder that you can put files (or maybe other folders) into in order to keep things organized and easier to locate. 
 
-COmputer folders can contain many files and other subfolders. This forms a hierarchical structure. A folder is also often called a **directory**. 
+Computer folders can contain many files and other subfolders. This forms a hierarchical structure. A folder is also often called a **directory**. 
 
 We will use this (common) picture to represent a folder: 
 
 ![A folder](../../images/folder.png){: style:"width="200px;"}
+
+Files (and other folders) can go into folders that can go into folders, etc. For example like this: 
+
+![Files and folders](../../images/files-folders.png"){: style:"width="300px;"}
 
 ## What are extensions?
 
