@@ -41,6 +41,8 @@ scheduling of jobs. On Linux systems, that batch or queuing system is most often
 Slurm (the Simple Linux Utility for Resource Management). We will talk much more about Slurm when we come to the session about "the Batch system".   
 
 <clear: both;>
+<display: none;>
+<br><br style="clear: both;">
 
 ## What is a Supercomputer? Is it the same as a Cluster?
 
@@ -72,8 +74,7 @@ telling it things like:
 - the program name,
 - any input data, etc.
 
-When the job has finished running, it should have produced some files, like output
-data, perhaps error messages, etc. The syntax of job scripts depends on the
+When the job has finished running, it should have produced some files, like output data, perhaps error messages, etc. The syntax of job scripts depends on the
 queuing system, but that system is so often Slurm that you may see the terms
 "job script" and "slurm script" used interchangeably.
 
