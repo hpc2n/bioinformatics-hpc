@@ -1,14 +1,19 @@
 # Introduction to files and filesystems
 
-This presentation will look at the following: 
+!!! note "Learning outcome"
 
-- What is a file?
-    - how to open, create, a file
-    - editors
-    - folders 
-- What are extensions?
-- What are permissions?
-- What is a file system?   
+    This presentation will look at the following: 
+
+    - What is a file?
+       - how to open, create, a file
+       - editors
+       - folders 
+    - What are extensions?
+    - What are permissions?
+    - What is a file system?   
+
+- Navigating and modifying the file tree will be covered in the session "Introduction to Linux"
+- File formats and file structure will be covered in the session "Bioinformatics File Formats" 
 
 ## What is a file? 
 
@@ -127,7 +132,7 @@ Files (and other folders) can go into folders that can go into folders, etc. For
 
 ## What are extensions?
 
-File extensions are the suffix (sometimes) at the end of a filename. In Linux they are generally **not needed**, but often a good idea. 
+File extensions are the suffix (sometimes) at the end of a filename. In Linux they are generally **not needed**, but often a good idea - particularly as many applications you may install will need them. 
 
 !!! note "File extension aspects"
 
@@ -143,6 +148,7 @@ Common examples:
 - Documents: .docx (Word), .pdf (Portable Document Format), .txt (Plain text), .tex (Latex file). 
 - Images: .jpg / .jpeg (JPEG image), .png (Portable Network Graphic), .gif (Graphics Interchange Format).
 - Audio/Video: .mp3 (Audio), .mp4 (Video), .wav (Audio).
+- Application specific: .sif, .fasta, .faa, ... 
     
 ## What are permissions?
 
@@ -219,6 +225,28 @@ The following group of 3 bits are for the owner, then the next 3 for the group, 
         - **chmod ugo+rwx FILE/DIR** to add all permissions for all users (owner, group, others) to file named FILE or directory named DIR
         - **chmod a=rwx FILE/DIR** same as above
         - **chmod a=r DIR** give read permissions to all for DIR
+
+### Exercises 
+
+!!! warning "Important"
+  
+    You will need to download and extract the tarball with exercises if you have not already done so: 
+
+    1. Login to Kebnekaise (or use your own Linux computer if you have). Open a terminal. 
+    2. Create a directory to use for the exercises for this course (for instance ``bioinformatics-hpc`` in either your home directory or on the storage space on Kebnekaise). Do EITHER of: 
+        - ``mkdir $HOME/bioinformatics-hpc``
+        - ``mkdir /proj/nobackup/cddb_course/bioinformatics-hpc`` 
+    3. Change to the directory: 
+        - ``cd $HOME/bioinformatics-hpc``
+        - OR
+        - ``cd /proj/nobackup/cddb_course/bioinformatics-hpc``
+    4. Fetch the tarball: ``wget  
+
+
+
+
+find a small amount of files to play with under ``/exercises/3.files-filesystems/``
+
 
 !!! Note
 
