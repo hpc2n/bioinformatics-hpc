@@ -128,7 +128,7 @@ We will use this (common) picture to represent a folder:
 
 Files (and other folders) can go into folders that can go into folders, etc. For example like this: 
 
-![Files and folders](../../images/files-folders.png"){: style:"width="300px;"}
+![Files and folders](../../images/files-folders.png){: style:"width=300px;"}
 
 ## What are extensions?
 
