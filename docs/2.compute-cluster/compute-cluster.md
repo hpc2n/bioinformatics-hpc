@@ -3,7 +3,9 @@
 (Most material taken from the NAISS course "Running jobs on clusters") 
 
 This section is a beginner's guide to clusters, and provides general information
-about computer clusters like Tetralith, Dardel, Alvis, Cosmos, Pelle, Kebnekaise and other HPC systems, but is not directly focused on any of them.
+about computer clusters like Kebnekaise, Arrhenius, Tetralith, Dardel, Alvis, Cosmos, Pelle, Lumi, and other HPC systems, but is not directly focused on any of them.
+
+The exercises will be done on Kebnekaise, though. 
 
 ## What is a cluster
 
@@ -16,7 +18,7 @@ The advantage of computer clusters over single computers, are that they usually
 improves the performance (and availability) greatly, while still being cheaper
 than single computers of comparable speed and size.
 
-![cluster](../../images/clusterlayout.svg){: style="width: 800px}
+![cluster](../../images/clusterlayout.svg){: style="width: 800px";}
 
 ### What are Nodes, Cores, and CPUs?
 
@@ -24,7 +26,7 @@ A node is the name usually used for one unit (usually one computer) in a
 computer cluster. Generally, this computer will have one or two central
 processing units, or CPUs, each normally with (many) more than one core. Each
 core is a single processor able to handle a single programmed task. Memory is
-always shared between cores on the same CPU, but generally not between the CPUs.
+always shared between cores on the same CPU, but generally not (as closely) between the CPUs.
 Computer nodes can also have GPUs (graphical processing units) in addition to
 the CPUs.
 
@@ -36,7 +38,7 @@ Nodes in computer clusters are usually arranged in racks at a dedicated climate-
 controlled facility, and are connected via a communication network. With few
 exceptions, nearly all high-performance computer clusters use the Linux operating system. Normally, clusters have some sort of batch or queuing system to handle
 scheduling of jobs. On Linux systems, that batch or queuing system is most often
-Slurm (the Simple Linux Utility for Resource Management).
+Slurm (the Simple Linux Utility for Resource Management). We will talk much more about Slurm when we come to the session about "the Batch system".  
 
 ## What is a Supercomputer? Is it the same as a Cluster?
 
