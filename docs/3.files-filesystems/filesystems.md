@@ -59,6 +59,14 @@ The `path` to your home directory varies somewhat. Here are some examples for me
 
 - Kebnekaise: `/home/b/bbrydsoe`
 - My laptop, ncc-1701: `/home/bbrydsoe`
-- My home desktop, defiant: `/home/bbrydsoe`
+- My home desktop, enterprise: `/home/bbrydsoe`
 
-We will look more at file systems and how to navigate them in the session "Introduction to Linux". 
+We will look much more at file systems and how to navigate them in the session "Introduction to Linux".
+
+## Exercises 
+
+1. Login with Open OnDemand. In the menu, click "Files" -> "Home Directory". You can see your directories and files. 
+2. In the left hand side your storage spaces are listed, for instance "Home Directory" and any project storage you have. Click on "Project storage: cddb_course". If you created a directory for yourself there during the earlier filesystem exercises, you will see that directory among your fellow students and colleagues. Click the directory you created to enter it. 
+3. Create a new directory under it (buttons along the top). Enter it. Create a file. Upload a file. See that they are now there. 
+4. Optional. Either login with SSH or start an "Interactive Apps" -> "Kebnekaise Desktop" and then open a terminal. Navigate to the project storage and enter your directory to see the directories and files you created and uploaded. 
+ 
