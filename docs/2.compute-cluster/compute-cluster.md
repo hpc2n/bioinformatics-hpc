@@ -284,74 +284,74 @@ Kebnekaise have CPU-only, GPU enabled, and large memory nodes.
 !!! note "The CPU-only nodes are"
 
     - 2 x 14 core Intel skylake
-       - 6785 MB memory / core
-       - 48 nodes
+        - 6785 MB memory / core
+        - 48 nodes
     - 2 x 64 core AMD zen3
-       - 8020 MB / core
-       - 1 node
+        - 8020 MB / core
+        - 1 node
     - 2 x 128 core AMD zen4
-       - 2516 MB / core
-       - 8 nodes
+        - 2516 MB / core
+        - 8 nodes
 
 !!! note "The GPU enabled nodes are"
 
     - 2 x 14 core Intel skylake
-       - 6785 MB memory / core
-       - 2 x Nvidia V100
-       - 10 nodes
+        - 6785 MB memory / core
+        - 2 x Nvidia V100
+        - 10 nodes
     - 2 x 24 core AMD zen3
-       - 10600 MB / core
-       - 2 x Nvidia A100
-       - 2 nodes
+        - 10600 MB / core
+        - 2 x Nvidia A100
+        - 2 nodes
     - 2 x 24 core AMD zen3
-       - 10600 MB / core
-       - 2 x AMD MI100
-       - 1 node
+        - 10600 MB / core
+        - 2 x AMD MI100
+        - 1 node
     - 2 x 24 core AMD zen4
-       - 6630 MB / core
-       - 2 x Nvidia A6000
-       - 1 node
+        - 6630 MB / core
+        - 2 x Nvidia A6000
+        - 1 node
     - 2 x 24 core AMD zen4
-       - 6630 MB / core
-       - 2 x Nvidia L40s
-       - 10 nodes
+        - 6630 MB / core
+        - 2 x Nvidia L40s
+        - 10 nodes
     - 2 x 48 core AMD zen4
-       - 6630 MB / core
-       - 4 x Nvidia H100 SXM5
-       - 2 nodes
+        - 6630 MB / core
+        - 4 x Nvidia H100 SXM5
+        - 2 nodes
     - 2 x 32 core AMD zen4
-       - 11968 MB / core
-       - 6 x Nvidia L40s
-       - 2 nodes
-       - Can only use 10 cores/GPU
+        - 11968 MB / core
+        - 6 x Nvidia L40s
+        - 2 nodes
+        - Can only use 10 cores/GPU
     - 2 x 32 core AMD zen4
-       - 11968 MB / core
-       - 8 x Nvidia A40
-       - 1 nodes
+        - 11968 MB / core
+        - 8 x Nvidia A40
+        - 1 nodes
 
 !!! note "The large memory nodes are"
 
     - 4 x 18 core Intel broadwell
-       - 41666 MB memory / core
-       - 8 nodes
+        - 41666 MB memory / core
+        - 8 nodes
 
 !!! note "Storage resources"
 
     - Kryten
-       - Tape storage
-       - WLCG, Swedish HPC centers
-       - 2500 tape slots
-       - IBM TS4500 3592 "Jaguar" tape library
+        - Tape storage
+        - WLCG, Swedish HPC centers
+        - 2500 tape slots
+        - IBM TS4500 3592 "Jaguar" tape library
     - Center wide storage (Ransarn)
-       - Fast parallel file system
-       - Project storage 
-       - 3 PB fast disk
-       - Uses Lustre 
+        - Fast parallel file system
+        - Project storage 
+        - 3 PB fast disk
+        - Uses Lustre 
     - WLCG storage
-       - dCache
-       - WLCG
-       - Target 50% of the Swedish Tier1 allocation
-       - HPC2N is a Tier-1 node, providing storage and computing services for the Worldwide LHC Computing Grid (WLCG).          
+        - dCache
+        - WLCG
+        - Target 50% of the Swedish Tier1 allocation
+        - HPC2N is a Tier-1 node, providing storage and computing services for the Worldwide LHC Computing Grid (WLCG).          
 
 Other than this, HPC2N is running a cloud system for the Swedish Science Cloud. 
 
