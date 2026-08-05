@@ -204,26 +204,33 @@ and other parallelizable jobs.
 
 #### Difference between CPUs and GPUs
 
-In order to understand the capabilities of a GPU, it is instructive to compare a pure CPU architecture with a GPU based architecture. Here, there is a schematics of the former:
+In order to understand the capabilities of a GPU, it is instructive to compare a pure CPU architecture with a GPU based architecture. 
 
-<figure class="inline end" markdown>
-![cpu](../../images/AMD-Zen4-CPU-b-cn1701.png)
-<figcaption>Pure CPU architecture (single node). In the present case there are 256 cores, each with its own cache memory (LX). There is a shared memory (~378 GB/NUMA node) for all these cores. This is an AMD Zen4 node. The base frequency is 2.25 GHz, but it can boost up to 3.1 GHz.</figcaption>
-</figure> 
+!!! note "A schematics of a CPU node"
 
-As for the GPU architecture, a GPU card of type Ada Lovelace (like the L40s) looks like this:
+    <figure class="inline end" markdown>
+    ![cpu](../../images/AMD-Zen4-CPU-b-cn1701.png)
+    <figcaption>Pure CPU architecture (single node). In the present case there are 256 cores, each with its own cache memory (LX). There is a shared memory (~378 GB/NUMA node) for all these cores. This is an AMD Zen4 node. The base frequency is 2.25 GHz, but it can boost up to 3.1 GHz.</figcaption>
+    </figure> 
 
-<figure class="inline end" markdown>
-![lovelace gpu](../../images/lovelace-diagram.png)
-</figure>
+!!! note "A schematics of a GPU node"
 
-!!! Note
+    A GPU card of type Ada Lovelace (like the L40s) looks like this:
 
-    The AD102 GPU also includes 288 FP64 Cores (2 per SM) which are not depicted in the above diagram. The FP64 TFLOP rate is 1/64th the TFLOP rate of FP32 operations. The small number of FP64 Cores are included to ensure any programs with FP64 code operate correctly, including FP64 Tensor Core code.
+    <figure class="inline end" markdown>
+    ![lovelace gpu](../../images/lovelace-diagram.png)
+    </figure>
 
-   This is a single GPU engine of a L40s card. There are 12 Graphics Processing Clusters (GPCs), 72 Texture Processing Clusters (TPCs), 144 Streaming Multiprocessors (SMs), and a 384-bit memory interface with 12 32-bit memory controllers).
+    The AD102 GPU also includes 288 FP64 Cores (2 per SM) which are not depicted in the above diagram. 
 
-   On the diagram, each green dot represents a CUDA core (single precision), while the yellow are RT cores and the blue Tensor cores. The cores are arranged in the slots called SMs in the figure. Cores in the same SM share some local and fast cache memory.
+    The FP64 TFLOP rate is 1/64th the TFLOP rate of FP32 operations. 
+
+    The small number of FP64 Cores are included to ensure any programs with FP64 code operate correctly, including FP64 Tensor Core code.
+
+   
+This following picture is of a single GPU engine of a L40s card. There are 12 Graphics Processing Clusters (GPCs), 72 Texture Processing Clusters (TPCs), 144 Streaming Multiprocessors (SMs), and a 384-bit memory interface with 12 32-bit memory controllers).
+
+On the diagram, each green dot represents a CUDA core (single precision), while the yellow are RT cores and the blue Tensor cores. The cores are arranged in the slots called SMs in the figure. Cores in the same SM share some local and fast cache memory.
 
 <figure class="inline end" markdown>
 ![gpu raster engine](../../images/GPC-with-raster-engine.png)
@@ -269,4 +276,62 @@ HIP, etc.
 In addition to the above programming frameworks, you often have the option to
 use software that is already prepared for use on GPUs. This includes many types
 of MD software, Python packages, and others.
+
+## Kebnekaise 
+
+Kebnekaise have CPU-only, GPU enabled and large memory nodes.
+
+!!! note "The CPU-only nodes are"
+
+    2 x 14 core Intel skylake
+        6785 MB memory / core
+        48 nodes
+    2 x 64 core AMD zen3
+        8020 MB / core
+        1 node
+    2 x 128 core AMD zen4
+        2516 MB / core
+        8 nodes
+
+!!! note "The GPU enabled nodes are"
+
+    2 x 14 core Intel skylake
+        6785 MB memory / core
+        2 x Nvidia V100
+        10 nodes
+    2 x 24 core AMD zen3
+        10600 MB / core
+        2 x Nvidia A100
+        2 nodes
+    2 x 24 core AMD zen3
+        10600 MB / core
+        2 x AMD MI100
+        1 node
+    2 x 24 core AMD zen4
+        6630 MB / core
+        2 x Nvidia A6000
+        1 node
+    2 x 24 core AMD zen4
+        6630 MB / core
+        2 x Nvidia L40s
+        10 nodes
+    2 x 48 core AMD zen4
+        6630 MB / core
+        4 x Nvidia H100 SXM5
+        2 nodes
+    2 x 32 core AMD zen4
+        11968 MB / core
+        6 x Nvidia L40s
+        2 nodes
+        Can only use 10 cores/GPU
+    2 x 32 core AMD zen4
+        11968 MB / core
+        8 x Nvidia A40
+        1 nodes
+
+!!! note "The large memory nodes are"
+
+    4 x 18 core Intel broadwell
+        41666 MB memory / core
+        8 nodes
 
