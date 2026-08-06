@@ -229,24 +229,24 @@ When this is done, you will clone the course materials for the Git session.
 
     Git is usually already installed on Linux, but if not, this is how you install it. 
 
-Installing Git on Linux depends on which distro you are running. 
+    Installing Git on Linux depends on which distro you are running. 
 
-* `sudo apt-get install git` (Ubuntu, Debian)
-* `sudo dnf install git` (RHEL, CentOS)
-* <a href="https://git-scm.com/download/linux" target="_blank">https://git-scm.com/download/linux</a> (other)
+    * `sudo apt-get install git` (Ubuntu, Debian)
+    * `sudo dnf install git` (RHEL, CentOS)
+    * <a href="https://git-scm.com/download/linux" target="_blank">https://git-scm.com/download/linux</a> (other)
 
-## Git install - primary branch
+!!! warning "Primary branch"
 
-* The primary branch will probably be named "master" when installing Git. 
-* You can choose if you want to instead name it "main" (which is what GitHub uses as default).
-* Regardless of which you pick, stick to one to avoid problems when pushing a repo
-* You can change the naming of the primary branch in GitHub for a repo
-    * Go to repo
-    * Pick "Settings" -> "General"
-    * Change the name in "Default branch"
-* Instructions how to rename the primary branch in a repo from "master" to "main" on the command line: <a href="https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab" target="_blank">https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab</a>
+    * The primary branch will probably be named "master" when installing Git. 
+    * You can choose if you want to instead name it "main" (which is what GitHub uses as default).
+    * Regardless of which you pick, stick to one to avoid problems when pushing a repo
+    * You can change the naming of the primary branch in GitHub for a repo
+        * Go to repo
+        * Pick "Settings" -> "General"
+        * Change the name in "Default branch"
+    * Instructions how to rename the primary branch in a repo from "master" to "main" on the command line: <a href="https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab" target="_blank">https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab</a>
 
-## Configure git (all OS)
+### Configure git (all OS)
 
 First check that you have git installed (in a terminal or in Git Bash):
 
@@ -264,8 +264,6 @@ You should at least set your global name and email (just once):
 $ git config --global user.name "Your Name"
 $ git config --global user.email "yourname@example.com" 
 ```
-
----
 
 Setting the editor (once) is also a good idea: 
 
@@ -289,7 +287,7 @@ GitHub has some documentation on choosing and setting editors for various OS:
 
 See more about configuring and using editors with Git at the end of this document. 
 
-## Test your Git installation
+### Test your Git installation
 
 Create an example folder and change to that, then create a file test.txt. On Linux you would do this: 
 
@@ -333,13 +331,9 @@ When you do `git log`, you should see something like the above, but with name, e
 
 For the individual hands-on part we have created some materials which you will download from the course GitHub repo: <a href="https://github.com/hpc2n/bioinformatics-hpc/" target="_blank">https://github.com/hpc2n/bioinformatics-hpc/</a>. 
 
-You can either just wget the exercises tarball or git clone the entire repository (normally you click the green "Code" button to get the link to clone or download).
-
 * Please go to the terminal window where you have downloaded and set up Git.
-* Change the directory to wherever you wish to have the course material.
-* *Do one of*: 
-    1. `git clone https://github.com/hpc2n/bioinformatics-hpc.git`
-    2. Download the zipfile (directly with `wget FIX THIS` or elsewhere then transfer) and unzip. You can also get the link from the course GitHub repo: <a href="https://github.com/hpc2n/bioinformatics-hpc/" target="_blank">https://github.com/hpc2n/bioinformatics-hpc/</a>. 
+* Change the directory to wherever you wish to have the material.
+* Download the zipfile directly with `wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/6.Git/git_materials.zip) and unzip. If you previously fetched the course tarball, then it is in the directory exercises/6.Git/. 
 
 ## Web based Git repositories
 
@@ -360,56 +354,51 @@ Please go to
 
 and sign up for an account, if you do not already have one. You will need to setup 2FA also. 
 
-## Create a new SSH key for GitHub 
+### Create a new SSH key for GitHub 
 
-### Linux and macOS
+=== "Linux and macOS"
 
-This part will be done before the section "Working with remotes" on day 4, but you can create and add your SSH key to GitHub now if you want to. 
-
-1. Open a terminal. In the command below, "GitHub" is a label added to the key for clarity. You can add any you want: 
-    a. Do this
+    1. Open a terminal. In the command below, "GitHub" is a label added to the key for clarity. You can add any you want: 
+       a. Do this
+       ```
+       $ ssh-keygen -t ed25519 -C "GitHub"
+       ```
+       b. If you have an older system, this may work better
+       ```
+       $ ssh-keygen -t rsa -b 4096 -C "GitHub"
+       ```    
+    2. You will be asked for a file to save the key. Unless you have an existing SSH key, accept the default.
+    3. Enter a passphrase and repeat it.
+    4. Add the key to the ssh-agent. Here we assume the default name for the new systems - change to what your key was called (`.ssh/id_rsa` for the legacy system): 
     ```
-    $ ssh-keygen -t ed25519 -C "GitHub"
+    $ eval "$(ssh-agent -s)"
+
+    $ ssh-add ~/.ssh/id_ed25519
     ```
-    b. If you have an older system, this may work better
+    5. Switch to the `.ssh` folder, open the file `id_ed25519.pub` with some editor and copy it (`id_rsa` for legacy systems). Do NOT add any newlines or whitespace! 
+
+=== "Windows"
+
+    1. Open Git Bash. In the command below, "GitHub" is a label added to the key for clarity. You can add any you want: 
+        a. Do this
+        ```
+        $ ssh-keygen -t ed25519 -C "GitHub"
+        ```
+        b. If you have an older system, this may work better
+        ```
+        $ ssh-keygen -t rsa -b 4096 -C "GitHub"
+        ```    
+    2. You will be asked for a file to save the key. Unless you have an existing SSH key, accept the default.
+    3. Enter a passphrase and repeat it.
+    4. Add the key to the ssh-agent. Here we assume the default name for the new systems - change to what your key was called (`.ssh/id_rsa` for the legacy system): 
     ```
-    $ ssh-keygen -t rsa -b 4096 -C "GitHub"
-    ```    
-2. You will be asked for a file to save the key. Unless you have an existing SSH key, accept the default.
-3. Enter a passphrase and repeat it.
-4. Add the key to the ssh-agent. Here we assume the default name for the new systems - change to what your key was called (`.ssh/id_rsa` for the legacy system): 
-```
-$ eval "$(ssh-agent -s)"
+    $ eval "$(ssh-agent -s)"
 
-$ ssh-add ~/.ssh/id_ed25519
-```
-5. Switch to the `.ssh` folder, open the file `id_ed25519.pub` with some editor and copy it (`id_rsa` for legacy systems). Do NOT add any newlines or whitespace! 
-
-
-### Windows
-
-This part will be done during the exercises on day 5, but you can create and add your SSH key to GitHub now if you want to. 
-
-1. Open Git Bash. In the command below, "GitHub" is a label added to the key for clarity. You can add any you want: 
-    a. Do this
+    $ ssh-add ~/.ssh/id_ed25519
     ```
-    $ ssh-keygen -t ed25519 -C "GitHub"
-    ```
-    b. If you have an older system, this may work better
-    ```
-    $ ssh-keygen -t rsa -b 4096 -C "GitHub"
-    ```    
-2. You will be asked for a file to save the key. Unless you have an existing SSH key, accept the default.
-3. Enter a passphrase and repeat it.
-4. Add the key to the ssh-agent. Here we assume the default name for the new systems - change to what your key was called (`.ssh/id_rsa` for the legacy system): 
-```
-$ eval "$(ssh-agent -s)"
+    5. Switch to the `.ssh` folder, with some editor, open the file `id_ed25519.pub` (or `id_rsa.pub` for the legacy systems) and copy it. Do NOT add any newlines or whitespace! 
 
-$ ssh-add ~/.ssh/id_ed25519
-```
-5. Switch to the `.ssh` folder, with some editor, open the file `id_ed25519.pub` (or `id_rsa.pub` for the legacy systems) and copy it. Do NOT add any newlines or whitespace! 
-
-## Adding the SSH key to GitHub
+### Adding the SSH key to GitHub
 
 1. On GitHub, click your avatar in the top right corner and pick "Settings".
 2. Choose "SSH and GPG keys"
@@ -433,7 +422,11 @@ Hi bbrydsoe! You've successfully authenticated, but GitHub does not provide shel
 ```
 4. Verify that the resulting message contains your username.
 
-## More on editors for Git
+!!! info "Extra/optional"
+
+    The following is only if you need to do something extra to get an editor to work or want a specific one.  
+
+## More on editors for Git 
 
 ### Linux
 
@@ -468,7 +461,7 @@ GitHub has a page for setting some editors for various OS'es:
 
 - <a href="https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git" target="_blank">https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git</a>. 
 
-## GitHub CLI
+### GitHub CLI
 
 GitHub also has a command line interface that you can use if you want to. 
 
