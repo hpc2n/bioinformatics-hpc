@@ -61,9 +61,9 @@ nav:
     - Scripting: 5.linux-intro/scripting.md
     - Hints and tricks: 5.linux-intro/hints.md 
   - Introduction to Git: 
-    - Introduction: 6.Git/intro-to-git.md
-    - Setup: 6.Git/setup.md
-    - Why use version management?: 6.Git/motivation.md
+    - Introduction and setup: 6.Git/intro-motivation-setup.md
+      #    - Setup: 6.Git/setup.md
+      #    - Why use version management?: 6.Git/motivation.md
     - Basic commands: 6.Git/basic-commands.md
     - Basic commands exercises: 6.Git/basic-commands-exercises.md
     - Basic concepts: 6.Git/basic-concepts.md
