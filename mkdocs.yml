@@ -113,6 +113,18 @@ nav:
     - More Linux commands: 5.linux-intro/more-commands.md
     - Linux cheat sheet: 5.linux-intro/cheat.md
     - Git setup on Kebnekaise: 6.Git/kebnekaise.md
+    - Basic commands extended: 6.Git/basic-commands-full.md
+    - Basic commands exercises: 6.Git/basic-commands-full-exercises.md
+    - Basic concepts extended: 6.Git/basic-concepts-full.md
+    - Basic concepts exercises: 6.Git/basic-concepts-full-exercises.md
+    - Traversing the commit tree extended: 6.Git/commits-full.md
+    - Traversing the commit tree exercises: 6.Git/commits-full-exercises.md
+    - Branches, merges, and conflicts extended: 6.Git/branches-full.md
+    - Branches, merges, and conflicts exercises: 6.Git/branches-full-exercises.md
+    - Working with remotes extended: 6.Git/remotes-full.md
+    - Working with remotes exercises: 6.Git/remotes-full-exercises.md
+    - Teamwork extended: 6.Git/teamwork-full.md
+    - Teamwork exercises: 6.Git/teamwork-full-exercises.md
     - Advanced module commands: 7.software-modules-containers/advanced_module.md
     - Virtual environments and Python: 7.software-modules-containers/virtenv.md
     - Installing R packages yourself: 7.software-modules-containers/Rpack.md 

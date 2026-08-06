@@ -1,5 +1,7 @@
 # Basic commands
 
+<!-- Lecture material made by Pedro Ojeda-May for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Pedro Ojeda-May in fall 2020. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course.-->
+
 This section will focus on some of the basic commands of Git and how to use them. 
 
 ## Getting help
@@ -25,32 +27,6 @@ SYNOPSIS
 DESCRIPTION
 ```
 
-## How Git Organizes Your Project
-
-Git views your files through four main areas:
-
-<figure>
-  <img src="../../images/git-folders2.png" style="width: 500px;" alt="Git workflow structure">
-  <figcaption>Overview of the main areas Git uses to manage project files.</figcaption>
-</figure>
-
-* **Working Directory**: the files currently visible and editable on your computer.
-* **Staging Area**: a temporary space where selected changes are prepared before saving.
-* **Local Repository**: the project history stored in the hidden `.git` directory on your machine.
-* **Remote Repository**: an online copy of the project hosted on services such as GitHub or GitLab.
-
-## Common Git Vocabulary
-
-| Term                  | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| **commit**            | A recorded snapshot of your project             |
-| **repository (repo)** | A project managed by Git, including its history |
-| **branch**            | A separate line of development                  |
-| **merge**             | Combining work from different branches          |
-| **HEAD**              | A reference to your current commit              |
-| **remote**            | A repository stored elsewhere online            |
-| **clone**             | A local copy of a remote repository             |
-
 ## Creating a repository from scratch
 
 In case you want to start a project from scratch called **myproject**:
@@ -60,7 +36,7 @@ $ mkdir myproject
 $ cd myproject
 $ git init
 
-Initialized empty Git repository in ../myproject/.git/
+Initialized empty Git repository in .../myproject/.git/
 ```
 
 this will create a folder called *.git* in the current folder which contains the Git-related files. 
@@ -88,18 +64,6 @@ $ git clone repository_location path_where_it_will_be
 
 <span style="color:red">*repository_location* </span> is the path of the Git repository (if it is in your local machine) or a URL if it is on the internet. <span style="color:red">*path_where_it_will_be* </span> is the path for the cloned repository.
 
-## Downloading an Existing Repository
-
-To copy an existing project from a hosting platform:
-
-```bash
-git clone https://github.com/username/my-project.git ./my-project
-
-cd my-project
-```
-
-This downloads the project and its entire history to your machine. Note that since you used ``https://...`` you cannot push to the remote repository. Github only allows that with SSH. 
-
 
 ```console
 $ git clone https://github.com/aliceuser2020/my-first-project.git  ./my-project  
@@ -116,8 +80,6 @@ On branch master
 Your branch is up-to-date with 'origin/master'.
 nothing to commit, working directory clean
 ```
-
-CONTINUE FROM HERE !!!!
 
 ## Stages of files
 
