@@ -1,13 +1,6 @@
 # Working with remotes
 
-<!-- Lecture material made by Pedro Ojeda-May for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Pedro Ojeda-May in fall 2020. Converted to GitHub pages by Birgitte Brydsö in fall 2025 for that version of the course. -->
-
-## Concepts
-
-A remote repository is a reference to another project which can be hosted in your local machine, some network, or over the internet (Pro Git, 2nd. Ed., Scott Chacon and Ben Straub) where you and your collaborators can push or pull code modifications. 
-
-In addition to this, a remote is a way to backup your repository.
-
+Remote repositories allow online backup and team collaboration.
 
 ![Remote participants](../../images/remote-participants.png)
 

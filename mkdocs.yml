@@ -71,7 +71,7 @@ nav:
     #    - Traversing the commit tree: 6.Git/commits.md
     #    - Traversing the commit tree exercises: 6.Git/commits-exercises.md
     - Branches, merges, and conflicts: 6.Git/branches.md
-    - Branches, merges, and conflicts exercises: 6.Git/branches-exercises.md
+      #    - Branches, merges, and conflicts exercises: 6.Git/branches-exercises.md
     - Working with remotes: 6.Git/remotes.md
     - Working with remotes exercises: 6.Git/remotes-exercises.md
     - Teamwork: 6.Git/teamwork.md
