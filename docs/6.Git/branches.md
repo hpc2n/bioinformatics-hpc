@@ -1,8 +1,5 @@
 # Branches
 
-<!-- Lecture material made by Birgitte Brydsö for the version of the "Introduction to Git" course that was given in fall 2020. Lecture was first given by Birgitte Brydsö in fall 2020. 
-Minor modifications done for the fall 2021/2022/2023/2024 versions of the course. Moved to GitHub and some tweaks (mainly to graphs) done by Birgitte Brydsö to get it to work on GitHub pages for the 2025 version of the course. -->
-
 !!! note "Objectives"
 
     - Get some more hands-on working with branches
@@ -18,6 +15,7 @@ Minor modifications done for the fall 2021/2022/2023/2024 versions of the course
         - rebasing: combining a sequence of commits to a new base commit.
         - cherry-picking
 
+Branches allow developers to work independently on features, fixes, or experiments.
 
 ## What is a Git branch?
 
