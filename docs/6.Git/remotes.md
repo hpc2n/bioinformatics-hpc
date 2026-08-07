@@ -2,68 +2,70 @@
 
 Remote repositories allow online backup and team collaboration.
 
-![Remote participants](../../images/remote-participants.png)
-
-
-## Updated scheme for file stages
-
 ![Git folders](../../images/git-folders2.png)
 
+## General Workflow
 
-## Concepts cont.
-The command 
-
-```java
-$ git remote -v
-origin  git@bitbucket.org:arm2011/gitcourse.git (fetch)
-origin  git@bitbucket.org:arm2011/gitcourse.git (push)
+```text
+Edit → git add → git commit → git push
+                          ↑
+                      git pull
 ```
 
-
-displays the remotes that are already set up where you can *fetch* and *pull* changes. In this case there is only a single remoted called **origin** because I cloned the repository from the remote repository *arm2011/gitcourse.git*. If you created your repository from
-scratch (**git init**), you will not see any output from *git remote*. 
-
-
-In a repository containing an *origin* remote, one can see the following output with the 
-*git graph* command (an alias that we created in the **Basic Commands** session):
-
-```java
-$ git graph
-* 2e56d0a (HEAD -> main, origin/main, origin/HEAD) text of exercise git diff usage
-* 22a7316 Adding yet more lectures
-* 0ddb791 Adding some more of the lectures
-* 3ff9f8f Adding some of the lectures
-```
-
-
-## Adding remotes
-
-A remote repository can be added manually with the command
+## Adding a Remote Repository
 
 ```bash
-$ git remote add remote_name location
-
-# Example
-mkdyr my-repo && cd my-repo
-git init
-$ git remote add origin git@github.com:pojeda/my-first-project.git
-
-$ git remote -v
-origin	git@github.com:pojeda/my-first-project.git (fetch)
-origin	git@github.com:pojeda/my-first-project.git (push)
+git remote add origin https://github.com/you/your-project.git
 ```
 
-where the location of the remote can be an URL or the path if that is in your local machine.
+List configured remotes:
+
+```bash
+git remote -v
+```
+
+## Uploading Changes
+
+Send commits to the remote repository:
+
+```bash
+git push origin main
+```
+
+After initial setup:
+
+```bash
+git push
+```
+
+## Downloading Updates
+
+Retrieve and merge remote changes:
+
+```bash
+git pull
+```
+
+Cleaner history using rebase:
+
+```bash
+git pull --rebase
+```
+
+> A good habit is to pull changes before beginning work and before pushing commits.
 
 
-Protocols:
+## Publishing a New Branch
 
-- local ->  git clone /opt/git/project.git
-- SSH   ->  git clone ssh://user@server:project.git
-- HTTP  ->  git clone http://example.com/gitproject.git
-- Git
+```bash
+git switch -c my-new-branch
 
+# Make changes and commit them
 
+git push -u origin my-new-branch
+```
+
+Afterward, standard `git push` and `git pull` commands work automatically for that branch.
 
 ## Working with remotes
 One can push or fetch/pull to or from remotes:
