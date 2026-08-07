@@ -17,15 +17,7 @@
 
 Branches allow developers to work independently on features, fixes, or experiments.
 
-## What is a Git branch?
-
-* A pointer to a commit (ref: named pointer)
-* Defined as all points reachable in the commit graph from the named commit (the "tip" of the branch)
-* The ref HEAD determines what branch you are on. 
-* If HEAD is a symbolic ref for an existing branch, then you are “on” that branch. 
-* If HEAD is a simple ref directly naming a commit by its SHA-1 ID, you are  not “on” any branch - you are in “detached HEAD” mode, which happens when you check  out some earlier commit to examine. 
-
-## Why use branches?
+## Why use branches 
 
 There are many uses for branches:
 
@@ -35,11 +27,14 @@ There are many uses for branches:
 
 ## What is a Git branch?
 
+A branch represents a separate development path.
+Repositories typically begin with a default branch called `main` or `master`.
+
 Until now, we have worked with a repository that only have one branch, with the commits done one at a time: 
 
 ![Git branch](../../images/git-branch.png)
 
-In the above picture, the master branch points to a commit. The current position is HEAD. (Time goes rightwards)
+In the above picture, the master (or main) branch points to a commit. The current position is HEAD. (Time goes rightwards)
 
 ### What is a Git branch - basic concepts
 
@@ -59,6 +54,52 @@ Usually, a branch is created to work on a new feature. Once the feature is compl
 
 
 ![Git several branches and new features](../../images/git-several-branches-new-feature.png)
+
+## Basic Branch Commands
+
+```bash
+# List branches
+git branch
+
+# Create a branch
+git branch cool-feature
+
+# Switch branches
+git switch cool-feature
+
+# Create and switch immediately
+git switch -c cool-feature
+
+# Another way to switch branch
+git checkout cool-feature
+```
+
+## Typical Branch Workflow
+
+```bash
+# Create and enter a branch
+git switch -c my-feature
+
+# Make edits
+echo "Feature content" > feature.txt
+
+git add feature.txt
+git commit -m "Add feature"
+
+# Return to main
+git switch main
+# or 
+git checkout cool-feature
+
+# Merge the branch
+git merge my-feature
+
+# Delete merged branch
+git branch -d my-feature
+```
+
+CONTINUE FROM HERE !!!
+
 
 ## Branches: Creation
 
