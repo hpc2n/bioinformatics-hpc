@@ -372,7 +372,7 @@ Tasks:
    hint: ``git rebase -i HEAD~4``<br>
 5. End of exercise
 
-## git diff usage 
+### git diff usage 
 
 The purpose of this exercise is to show you the usage of the *git diff* command.
 
