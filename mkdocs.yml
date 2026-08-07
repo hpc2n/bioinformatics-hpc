@@ -113,6 +113,7 @@ nav:
     - More Linux commands: 5.linux-intro/more-commands.md
     - Linux cheat sheet: 5.linux-intro/cheat.md
     - Git setup on Kebnekaise: 6.Git/kebnekaise.md
+  - Advanced/self-study: 
     - Basic commands extended: 6.Git/basic-commands-full.md
     - Basic commands exercises: 6.Git/basic-commands-full-exercises.md
     - Basic concepts extended: 6.Git/basic-concepts-full.md
