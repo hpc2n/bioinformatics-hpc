@@ -170,7 +170,7 @@ If you are connecting to HPC2N from a Mac, you have a number of options, aside f
 
 If you want to be able to open graphical displays (say for opening the Matlab graphical interface), you need an X11 server. It may or may not be installed as standard on Mac, depending on your version, but you can get it by installing <a href="https://www.xquartz.org/" target="_blank">XQuartz</a>.
 
-Another option would be to use [ThinLinc](#thinlinc) which exists for all OS and gives you a desktop on Kebnekaise.
+Another option would be to use [ThinLinc](https://hpc2n.github.io/bioinformatics-hpc/02.connect-cluster/4b.ssh-thinlinc/thinlinc)/ which exists for all OS and gives you a desktop on Kebnekaise.
 
 You also need to transfer files between your own home computer and HPC2N's systems. You need to use a secure protocol, so either <code>sftp</code> or <code>scp</code> will work, but not standard <code>ftp</code>. These are some of the options:
 
