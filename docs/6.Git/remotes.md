@@ -55,7 +55,7 @@ git pull --rebase
 > A good habit is to pull changes before beginning work and before pushing commits.
 
 
-## Publishing a New Branch
+## Publishing a New Branch remotely
 
 ```bash
 git switch -c my-new-branch
@@ -101,12 +101,7 @@ The command:
 ```shell
 $ git pull
 ```
-brings all the changes (branches) that are in the remote and tries to merge them with the current branch of the local repo. The default behavior of *git pull* (*fetch* part) is in the *$GIT_DIR/config* file:
-```shell
-[remote "origin"]
-  fetch = +refs/heads/*:refs/remotes/origin/*
-```
-
+brings all the changes (branches) that are in the remote and tries to merge them with the current branch of the local repo. 
 
 In fact, *git pull* is a combination of two commands:
 ```shell
@@ -129,36 +124,7 @@ $ git push
 will send the changes in the current branch to the remote by default.
 
 
-## Advanced
-
-The default behavior can be seen with:
-```shell
-$ git config --get push.default
-```
-This can be changed by applying:
-```shell
-git config --global push.default matching(default), current, ...
-```
-
-
-If you have a brand-new branch called **new**, you can push it the first time with the command:
-
-```shell
-git push -u origin new
-```
-
-which is equivalent to
-
-```shell
-git push origin new
-git branch --set-upstream new origin/new
-```
-
-
-then, you will be able to push/pull the changes in the branch by simply typing **git push/pull**
-
-
-### Displaying remote information
+## Displaying remote information
 
 ```console
 $ git remote show origin
@@ -197,222 +163,98 @@ $ git remote remove remote_name
 
 
 
-## Bare repositories
-
-![Git bare repositories](../../images/git-folders-bare.png)
-
-
-
-A bare repository is a repository with no working directory.
-
-
-### Creating a bare repository
-
-```shell
-$ mkdir bare.git && cd bare.git
-$ git init --bare
-```
-
-### Cloning a bare repository cont.
-
-```shell
-$ git clone --bare location
-```
-
-
-## Using GitHub
-
-![Using GitHub](../../images/github-remote.jpg)
-
-
-
-Upon login into your GitHub account you will see the following option to create a new repository
-
-![GitHub account](../../images/github-account.jpg)
-
-
-Here, you can choose the type of repository that is appropriate to your needs (public/private), if you want to add *README* and *.gitignore* files and also the type of license for your project,
-
-![GitHub type repo](../../images/github-type-repo.jpeg)
-
-
-GitHub will suggest some steps that you can take for your brand-new repository:
-
-![GitHub new repo](../../images/github-new-repo.jpg)
-
-
-![GitHub create new repo](../../images/github-import.jpg)
-
-
-
-## Network visualization
-![Git network visualization](../../images/git-network.jpg)
-
-
-
-## Working with other's repos
-In the following scenario, a developer, Bob, has its repo on GitHub. Another developer, Alice, finds it useful. Alice can clone it but she cannot push changes unless Bob allows it:
-
-```mermaid
-graph LR
-    bob["Bob repo"] --- n1["cloning"]
-    n1 --> alice(["Alice cloned"])
-    alice -.- n2["cannot push"]
-    n2 -.-> bob
-
-    n1@{ shape: text}
-    n2@{ shape: text}
-    style n2 color:#D50000
-    linkStyle 2 stroke:#D50000,fill:none
-    linkStyle 3 stroke:#D50000,fill:none
-```
-
-
-A better approach is to *fork* Bob's repository: 
-
-```mermaid
-graph LR
-  bob["Bob's repo (upstream)"] 
-  alicef(["Alice's repo (origin)"])
-  alicel(["Alice local copy (PC/laptop)"]) 
-  style alicel fill:#ffffff,stroke:#39742b,color:#39742b
-
-  alicef --> |cloning| alicel
-  alicel --> |can push| alicef
-  bob --> |forking| alicef
-  alicel -.- n1["cannot push"]
-  alicel -.- n2["can request pulls"]
-  n1 -.-> bob
-  n2 -.-> bob 
-
-  n1@{ shape: text}
-  n2@{ shape: text}
-  style n1 color:#D50000
-  style n2 color:#4169E1
-  linkStyle 3 stroke:#D50000,fill:none
-  linkStyle 4 stroke:#4169E1,fill:none
-  linkStyle 5 stroke:#D50000,fill:none
-  linkStyle 6 stroke:#4169E1,fill:none
-```
-In this way, Alice can push changes to her repository and eventually make Bob aware of them as well.
-
-
-## Forking a repository
-
-To fork a repository, Alice go to the URL of the target repository and use the option *Fork* in Bob's repository: 
-
-![forking](../../images/git-fork.jpg)
-
-
-## Forking a repository
-
-Then, Alice will see the forked repository on her user space:
-
-![forked](../../images/alice-fork.jpg)
-
-
-Alice can then add the forked repository where she can *push* push changes:
-
-```java
-$ git remote add origin git@github.com:aliceuser2020/my-first-project.git
-
-$ git remote -v
-origin	git@github.com:aliceuser2020/my-first-project.git (fetch)
-origin	git@github.com:aliceuser2020/my-first-project.git (push)
-```
-
-How does she add the upstream remote?
-
-
-```java
-$ git remote add upstream git@github.com:bobuser2020/my-first-project.git
-
-$ git remote -v
-origin	git@github.com:aliceuser2020/my-first-project.git (fetch)
-origin	git@github.com:aliceuser2020/my-first-project.git (push)
-upstream	git@github.com:bobuser2020/my-first-project.git (fetch)
-upstream	git@github.com:bobuser2020/my-first-project.git (push)
-```
-
-
-
-
-```java
-$ git fetch upstream master
-$ git graph
-* 2e56d0a (HEAD -> main, upstream/main, origin/main, origin/HEAD) text of exercise git diff usage
-* 22a7316 Adding yet more lectures
-* 0ddb791 Adding some more of the lectures
-* 3ff9f8f Adding some of the lectures
-```
-
-Alice can used the forked repository as the *origin* where she can put her changes. The *upstream* remote
-will help her to be updated with the latest changes from Bob (Github will show messages) but she won't be 
-able to commit changes to Bob's repo (without permissions).
-
-
-## Synchronizing remotes
-
-After doing some changes, Alice push them to her forked repository but she wants Bob become aware of them (1 commit in this case, click on this commit)
-
-![push repo](../../images/alice-commit.png)
-
-
-
-## Pull request
-
-A **pull request** will be suggested: 
-
-![pull request](../../images/pull-request.png)
-
-
-You can then create a the PR:
-
-![Create a pull request](../../images/create-pr.png)
-
-
-
-Another way to create PR is with "Pull request" option:
-
-
-![Another pull request](../../images/also-pr.jpg)
-
-Then, Bob receives an email with the pull request information about Alice modifications. On the GitHub site he sees the request:
-
-![Get pull request](../../images/get-pr.jpeg)
-
-
-
-Because Bob find the changes from Alice useful and there are no conflicts he can merge them, 
-
-![Pull request is OK - merge](../../images/pr-ok.jpg)
-
-
-
-## Issues
-
-If you find some issues in the files/code you can open an "Issue" on GitHub
-
-![GitHub issue](../../images/GH-issue.jpg)
-
-
-
-![GitHub issue - continued](../../images/GH-issue-cont.jpg)
-
----
-
-You may also assign people to the issues that are more related to that topic. 
-
-In future commits you may refer to this issue by using the issue number, <span style="color:blue">#2</span> in this case. This will allow you to track the evolution of the issue on GitHub.
-
-
-
 ## Best practices
 
 - Communicate with your colleagues.
 - Some commands such as **git rebase** change the history. It wouldn't be a good idea to use them on public branches. 
 - Don't accept pull requests right away.
 
+<span style="color:red">
 
+NOTE ! I JUST ADDED THE EXERCISES THAT WE HAD IN THE GIT COURSE - EITHER WE NEED DIFFERENT EXERCISES OR SOME MATERIAL ON FORKING AND GITHUB HERE INSTEAD OF UNDER TEAMWORK. MAYBE IT FITS BETTER UNDER TEAMWORK? 
+
+</span>
+
+## Exercises 
+
+In order to do these exercises, you need to download the exercises zip file (if you already did so for the previous exercise, you do not need to do so again, of course).
+
+1. `wget `https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/6.Git/git_materials.zip`
+        2. `unzip git_materials.zip`
+        3. `cd git_materials`
+        4. `cd 6.remotes`
+
+You are now in a directory with 2 subdirectories, one for each exercise.
+
+### Adding remotes
+
+Make sure you are in the subdirectory `git_materials/6.remotes/1.adding-remotes`. 
+
+1. Fork the following repository `https://github.com/pojeda/pull-request-course.git`<br>
+2. Clone the forked repository and check the available remotes<br>
+3. Add the upstream repository with the name "upstream"<br>
+4. Using your cloned version of the forked repository, make some modification to the "README.md" file and commit them locally. Then, push the changes to the remote.<br>
+Finally, make a "pull request" from your GitHub account.
+
+
+### Merge conflicts and rebasing 
+
+Make sure you are in the subdirectory `git_materials/6.remotes/2.merge-rebase`. 
+
+!!! note 
+
+    This exercise demonstrates how to solve a merge conflict using rebasing.
+
+    **Note:** for the present example you don't need to add a remote. It has been added for this example already.
+
+Tasks:
+
+1. Enter the `repository` directory and check the current status.
+<br>
+2. Check that the file `file.txt` has been modified since the last commit
+using the *diff* command
+<br>
+3. Try commiting the changes and push them to the remote
+<br>
+4. Why do the push was unsuccesful?
+<br>
+**hint:** the remote contains changes that are missing from your local
+remote. 
+<br>
+5. Pull the changes from the remote
+<br>
+6. When the text editor opens save the commit message. This means that
+Git is able to merge the remote and your local changes.
+<br>
+7. Take a look at the commits' tree graph:
+<br>
+```
+git log --all --decorate --oneline --graph
+```
+and save it into a text file for further investigations.
+<br>
+8. You could simply continue to work normally from here but the merge commit you just created is not actually necessary in this situation. Try falling back to the previous commit:
+<br>
+```
+$ git reset --hard HEAD~
+```
+<br>
+9. Now, pull again but tell Git to rebase your branch:
+<br>
+```
+$ git pull --rebase
+```
+<br>
+10. Take a look at the graph once again with:
+<br>
+```
+git log --all --decorate --oneline --graph
+```
+<br>
+and compare it with the one you saved into a text file. 
+You can now see that the merge commit was not necessary.
+<br>
+11. Finally, you can now push the changes to the remote.
+<br>
 
 
