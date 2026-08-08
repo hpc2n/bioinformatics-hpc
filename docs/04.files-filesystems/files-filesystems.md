@@ -252,7 +252,7 @@ The following group of 3 bits are for the owner, then the next 3 for the group, 
     5. Extract the tarball: ``tar zxvf exercises.tar.gz``
 
 
-You will find a small amount of files to play with under ``/exercises/3.files-filesystems/`` after fetching and extracting the tarball. 
+You will find a small amount of files to play with under ``/exercises/04.files-filesystems/`` after fetching and extracting the tarball. 
 
 1. Go to the above mentioned directory. Use ``ls -lh`` to see the permissions for the files. What are they?
 2. There are two batch scripts in the directory. ``program.sh`` is called from ``analysis.sh``. To run them they need to be executable (for the user). Change the permissions so you, the user, can execute ``analysis.sh`` (you execute it with ``./analysis.sh``). 
