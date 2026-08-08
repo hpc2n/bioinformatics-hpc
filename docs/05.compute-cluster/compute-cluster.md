@@ -90,7 +90,7 @@ should be configured, and what options regular users will be allowed to set.
 2. Type ``sinfo`` to see partitions. On Kebnekaise, users can only submit to the partition batch - the other partitions are used by the batch system depending on which resources the user asks for in the batch script. The command ``sinfo`` shows you which nodes belong to which "batch partition" and their state (idle, draining, maintenance, allocated, reserved, mixed, etc.)
 3. Type ``/bin/hostname`` to see the full name of the login node. 
 4. The command ``lscpu`` gives you (a lot of) info on the hardware of the login node. The command ``free -h`` show you used/free memory of the login node. Not hugely important as you will be running the jobs on the compute nodes, NOT the login node. 
-5. Inside the directory ``exercises/2.compute-cluster/`` from the tarball, you find a batch script for running a Python script that does matrix-matrix multiplication. We will describe what the commands of a batch script does further under the session "The batch system/Slurm", but for now you will just use it to test out a few things on the compute cluster Kebnekaise. 
+5. Inside the directory ``exercises/05.compute-cluster/`` from the tarball, you find a batch script for running a Python script that does matrix-matrix multiplication. We will describe what the commands of a batch script does further under the session "The batch system/Slurm", but for now you will just use it to test out a few things on the compute cluster Kebnekaise. 
     - Type ``sbatch run_mmmult.sh`` to submit the job. 
     - Type ``squeue --me`` to see that your job is sitting in a queue or running. 
     - Which node did it get? Write ``scontrol show node <THE NODE NAME>`` to get info on the node. 

@@ -46,7 +46,7 @@ nav:
     - Introduction: 04.files-filesystems/files-filesystems.md
     - File systems: 04.files-filesystems/filesystems.md
   - Intro to compute clusters: 
-    - Compute clusters: 2.compute-cluster/compute-cluster.md
+    - Compute clusters: 05.compute-cluster/compute-cluster.md
   - Introduction to Linux:
     - Introduction: 5.linux-intro/linux-intro.md
     - Command Line Interface (CLI): 5.linux-intro/cli.md
