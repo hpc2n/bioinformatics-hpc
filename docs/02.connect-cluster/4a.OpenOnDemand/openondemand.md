@@ -140,7 +140,7 @@ You can find all the active sessions under "My Interactive Sessions" and you can
 
     === "Run a small python script on the cores"
 
-        I will run this Python script as a test: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/mmmult.py" target="_blank">mmmult.py</a>.
+        I will run this Python script as a test: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/02.connecting/mmmult.py" target="_blank">mmmult.py</a>.
 
         First I load some modules:
 
@@ -205,7 +205,7 @@ You can find all the active sessions under "My Interactive Sessions" and you can
         b-cn1517 [~]$ module load Tkinter/3.11.3
         ```
 
-        Now let us start Python and plot something, using this dataset (<a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/scottish_hills.csv" target="_blank">scottish_hills.csv</a>:
+        Now let us start Python and plot something, using this dataset (<a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/02.connecting/scottish_hills.csv" target="_blank">scottish_hills.csv</a>:
 
         ```bash
         import pandas as pd
@@ -374,7 +374,7 @@ You can tick the box “I would like to receive an email when the session starts
         - Most likely the one you want is "Start Other Kernel" -> "Python 3 (ipykernel)".
         - Pick that and click "Select".
     7. You can now run something which requires, say, pandas and matplotlib.
-    8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/pandas-example.ipynb" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/4.connecting/exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
+    8. You can find an example to try (from the "Intro to Pandas" part of the course "Using Python in an HPC environment) here: <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/02.connecting/pandas-example.ipynb" target="_blank">pandas-example.ipynb</a>. It needs the file <a href="https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/02.connecting/exoplanets_5250_EarthUnits.csv" target="_blank">exoplanets_5250_EarthUnits.csv</a> in the same directory.
 
 ## Exercises 
 
@@ -383,7 +383,7 @@ You can tick the box “I would like to receive an email when the session starts
     - You should have gotten an email with information about how to create your first password. Otherwise it can be done from <a href="https://www.hpc2n.umu.se/forms/user/suprauth?action=pwreset" target="_blank">The HPC2N password reset service, using your SUPR credentials</a>. 
 2. Start a "Kebnekaise desktop" from the "Interactive Apps". You should have a default project you can use. Start it with 4 cores. 
 3. ONLY IF THIS IS THE FIRST TIME YOU ARE LOGGING IN/IF YOU HAVE NOT YET CHANGED THE PASSWORD: After logging in with the first, temporary password, <a href="https://docs.hpc2n.umu.se/documentation/access/#first__time__login__password__change" target="_blank">change it to something that is easy for you to remember and hard for a hacker to guess</a>.
-    - Wondering how to start a terminal? It is described in an example in the section <a href="https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/4a.OpenOnDemand/openondemand/#interactive__apps__-__kebnekaise__desktop" target="_blank">Interactive Apps - Kebnekaise desktop</a>.  
+    - Wondering how to start a terminal? It is described in an example in the section <a href="https://hpc2n.github.io/bioinformatics-hpc/02.connect-cluster/4a.OpenOnDemand/openondemand/#interactive__apps__-__kebnekaise__desktop" target="_blank">Interactive Apps - Kebnekaise desktop</a>.  
 4. Try "srun /bin/hostname" in a terminal to see you have gotten 4 cores
 5. Exit the "Kebnekaise desktop" and "delete" it. 
 6. Start a new interactive session, this time with either Jupyter or Rstudio.  
