@@ -36,16 +36,15 @@ nav:
     - Overview: 00.programme-introduction/programme-introduction.md
   - 1. What is Bioinformatics?: 01.what-is-bioinformatics/what-is-bioinformatics.md
   - Connection to a cluster (Kebnekaise):
-    - Introduction: 4.connect-cluster/connect-cluster.md
-    - OpenOnDemand: 4.connect-cluster/4a.OpenOnDemand/openondemand.md
-    - SSH: 4.connect-cluster/4b.ssh-thinlinc/ssh.md
-    - ThinLinc (optional): 4.connect-cluster/4b.ssh-thinlinc/thinlinc.md
+    - Introduction: 02.connect-cluster/connect-cluster.md
+    - OpenOnDemand: 02.connect-cluster/4a.OpenOnDemand/openondemand.md
+    - SSH: 02.connect-cluster/4b.ssh-thinlinc/ssh.md
+    - ThinLinc (optional): 02.connect-cluster/4b.ssh-thinlinc/thinlinc.md
   - Introduction to computers: 
-    - What is a computer?: 1.computer/computer.md
+    - What is a computer?: 03.computer/computer.md
   - Files and file systems:
-    - Introduction: 3.files-filesystems/files-filesystems.md
-    - File systems: 3.files-filesystems/filesystems.md
-      #    - File system terminology: 3.files-filesystems/3b.files-memory-disks/terminology.md
+    - Introduction: 04.files-filesystems/files-filesystems.md
+    - File systems: 04.files-filesystems/filesystems.md
   - Intro to compute clusters: 
     - Compute clusters: 2.compute-cluster/compute-cluster.md
   - Introduction to Linux:
@@ -62,16 +61,8 @@ nav:
     - Hints and tricks: 5.linux-intro/hints.md 
   - Introduction to Git: 
     - Introduction and setup: 6.Git/intro-motivation-setup.md
-      #    - Setup: 6.Git/setup.md
-      #    - Why use version management?: 6.Git/motivation.md
     - Basic commands: 6.Git/basic-commands.md
-    #      - Basic commands exercises: 6.Git/basic-commands-exercises.md
-    #    - Basic concepts: 6.Git/basic-concepts.md
-    #    - Basic concepts exercises: 6.Git/basic-concepts-exercises.md
-    #    - Traversing the commit tree: 6.Git/commits.md
-    #    - Traversing the commit tree exercises: 6.Git/commits-exercises.md
     - Branches, merges, and conflicts: 6.Git/branches.md
-      #    - Branches, merges, and conflicts exercises: 6.Git/branches-exercises.md
     - Working with remotes: 6.Git/remotes.md
     - Working with remotes exercises: 6.Git/remotes-exercises.md
     - Teamwork: 6.Git/teamwork.md
