@@ -169,20 +169,18 @@ $ git remote remove remote_name
 - Some commands such as **git rebase** change the history. It wouldn't be a good idea to use them on public branches. 
 - Don't accept pull requests right away.
 
-<span style="color:red">
-
+<p style="color:red">
 NOTE ! I JUST ADDED THE EXERCISES THAT WE HAD IN THE GIT COURSE - EITHER WE NEED DIFFERENT EXERCISES OR SOME MATERIAL ON FORKING AND GITHUB HERE INSTEAD OF UNDER TEAMWORK. MAYBE IT FITS BETTER UNDER TEAMWORK? 
-
-</span>
+</p>
 
 ## Exercises 
 
 In order to do these exercises, you need to download the exercises zip file (if you already did so for the previous exercise, you do not need to do so again, of course).
 
 1. `wget `https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/6.Git/git_materials.zip`
-        2. `unzip git_materials.zip`
-        3. `cd git_materials`
-        4. `cd 6.remotes`
+2. `unzip git_materials.zip`
+3. `cd git_materials`
+4. `cd 6.remotes`
 
 You are now in a directory with 2 subdirectories, one for each exercise.
 
