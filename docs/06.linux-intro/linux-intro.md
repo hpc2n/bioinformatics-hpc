@@ -4,7 +4,7 @@ A brief introduction to Linux and some of the most useful commands.
 
 !!! NOTE
 
-    You can either use your own computer with Linux on, or you can use Kebnekaise (see [Connecting to a cluster](https://hpc2n.github.io/bioinformatics-hpc/02.connect-cluster/connect-cluster.md)). 
+    You can either use your own computer with Linux on, or you can use Kebnekaise (see [Connecting to a cluster](https://hpc2n.github.io/bioinformatics-hpc/02.connect-cluster/connect-cluster)). 
 
 !!! note "Learning outcome"
 
