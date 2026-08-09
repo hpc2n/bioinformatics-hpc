@@ -96,12 +96,12 @@ program compatible with the instructions of the machine.
 
 The Von Neumann model organizes a computer into four main components, all communicating over a shared **bus**:
 
-- **Central Processing Unit (CPU)** — the active core of the machine; fetches instructions from memory, decodes 
+- **Central Processing Unit (CPU):** the active core of the machine; fetches instructions from memory, decodes 
 them, and carries out their execution. Internally, it contains the ALU, the Control Unit, and a set of registers 
 (each described in detail below).
-- **Memory Unit** — a single, unified address space holding both the program instructions and the data those instructions operate on.
-- **Input/Output (I/O)** — the mechanisms through which the computer exchanges information with the outside world, receiving input and delivering output.
-- **Bus** — the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.
+- **Memory Unit:** a single, unified address space holding both the program instructions and the data those instructions operate on.
+- **Input/Output (I/O):**  the mechanisms through which the computer exchanges information with the outside world, receiving input and delivering output.
+- **Bus:** the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.
 
 <figure>
   <img src="../../images/CPU.png" style="width: 200px;" alt="CPU">
@@ -119,13 +119,13 @@ significant, especially in high-performance computing clusters where massive com
 
 Modern hardware addresses this problem through several complementary strategies:
 
-- **Cache hierarchies (L1/L2/L3)** — multiple levels of small, fast memory placed close to the CPU reduce how often the processor needs to 
+- **Cache hierarchies (L1/L2/L3):** multiple levels of small, fast memory placed close to the CPU reduce how often the processor needs to 
 reach out to main memory over the bus.
-- **Harvard-style L1 caches** — the first cache level is split into separate instruction and data caches, allowing
+- **Harvard-style L1 caches:** the first cache level is split into separate instruction and data caches, allowing
 both to be accessed simultaneously and eliminating a key source of contention.
-- **Wide memory buses, DDR channels, and HBM (High Bandwidth Memory)** — these increase the raw throughput of data
+- **Wide memory buses, DDR channels, and HBM (High Bandwidth Memory):** these increase the raw throughput of data
 transfers between memory and the CPU, attacking the bottleneck at its source.
-- **Hardware prefetching** — dedicated units predict which data the CPU will need next and load it into cache ahead 
+- **Hardware prefetching:** dedicated units predict which data the CPU will need next and load it into cache ahead 
 of time, hiding memory latency before it stalls execution.
 
 Despite these improvements, the memory wall remains a major challenge in modern computer architecture, especially 
@@ -154,8 +154,8 @@ by a central processing unit (CPU). Classical bits can only take the values **0*
 Quantum computation also relies on **entanglement** and **quantum interference**, allowing qubits to share correlations and 
 enhance correct computational outcomes.
 
-Although quantum computers share some similarities with classical systems—such as storing information, executing operations, 
-and producing outputs—they do not follow the conventional separation between memory and processor found in Von Neumann machines. 
+Although quantum computers share some similarities with classical systems (such as storing information, executing operations, 
+and producing outputs) they do not follow the conventional separation between memory and processor found in Von Neumann machines. 
 Instead, computations are performed through quantum gates acting directly on qubit states. Quantum computers are especially 
 powerful because some problems that are extremely difficult for classical computers can be solved more efficiently with quantum 
 algorithms. For example, **Shor’s algorithm** accelerates integer factorization, while **Grover’s algorithm** speeds up search problems. 
@@ -208,8 +208,8 @@ sequence of such instructions encoded in **machine code**, binary patterns that 
 
 Each instruction contains two essential pieces of information:
 
-- An **opcode** — a numeric code specifying which operation to perform (e.g., ADD, LOAD, or BRANCH)
-- **Operands** — the inputs to that operation: the registers, memory addresses, or immediate values it should act on
+- An **opcode** is a numeric code specifying which operation to perform (e.g., ADD, LOAD, or BRANCH)
+- **Operands** are the inputs to that operation: the registers, memory addresses, or immediate values it should act on
 
 
 ### The Instruction Set Architecture (ISA)
@@ -337,7 +337,7 @@ which is much slower and can significantly reduce system responsiveness.
 requesting data and receiving it), both of which affect how quickly the CPU can access data that is not already in cache.
 
 
-## NUMA — Non-Uniform Memory Access
+## Non-Uniform Memory Access (NUMA)
 
 Modern servers and workstations often contain multiple CPU **sockets**, each with its own cores and a 
 local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access)**.
@@ -346,7 +346,7 @@ local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access
 
 <figure>
   <img src="../../images/caches.png" style="width: 500px;" alt="CPU caches">
-  <figcaption> CPU cache hierarchy — L1, L2, and L3 levels relative to cores and main memory in a single node.</figcaption>
+  <figcaption> CPU cache hierarchy: L1, L2, and L3 levels relative to cores and main memory in a single node.</figcaption>
 </figure>
 
 - A core can access its **local** RAM quickly (low latency).
