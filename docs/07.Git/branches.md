@@ -718,7 +718,7 @@ Each of the exercises has a README.md file with explanations and descriptions of
  
 In order to do these exercises, you need to download the exercises.zip file if you did not already do so. 
 
-1. ``wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/6.Git/git_materials.zip`` 
+1. ``wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/07.Git/git_materials.zip`` 
 2. ``unzip git_materials.zip``
 3. ``cd git_materials``
 4. ``cd 5.branches``

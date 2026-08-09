@@ -1,6 +1,6 @@
 # Navigating the File System
 
-This section will focus on the file system commands as the file system itself was covered in the session [File systems](https://hpc2n.github.io/bioinformatics-hpc/3.files-filesystems/filesystems/).  
+This section will focus on the file system commands as the file system itself was covered in the session [File systems](https://hpc2n.github.io/bioinformatics-hpc/04.files-filesystems/filesystems/).  
 
 !!! Note "Learning objectives" 
 

@@ -177,7 +177,7 @@ NOTE ! I JUST ADDED THE EXERCISES THAT WE HAD IN THE GIT COURSE - EITHER WE NEED
 
 In order to do these exercises, you need to download the exercises zip file (if you already did so for the previous exercise, you do not need to do so again, of course).
 
-1. `wget `https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/6.Git/git_materials.zip`
+1. `wget `https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/07.Git/git_materials.zip`
 2. `unzip git_materials.zip`
 3. `cd git_materials`
 4. `cd 6.remotes`

@@ -65,7 +65,6 @@ nav:
     - Branches, merges, and conflicts: 07.Git/branches.md
     - Working with remotes: 07.Git/remotes.md
     - Teamwork: 07.Git/teamwork.md
-    - Teamwork exercises: 07.Git/teamwork-exercises.md
     - Workflow for Git: 07.Git/workflow.md
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
