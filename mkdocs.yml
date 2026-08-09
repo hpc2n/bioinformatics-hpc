@@ -48,26 +48,25 @@ nav:
   - Intro to compute clusters: 
     - Compute clusters: 05.compute-cluster/compute-cluster.md
   - Introduction to Linux:
-    - Introduction: 5.linux-intro/linux-intro.md
-    - Command Line Interface (CLI): 5.linux-intro/cli.md
-    - The Linux File System: 5.linux-intro/filesystem.md
-    - Modifying the file tree: 5.linux-intro/modify.md
-    - Editors on Linux: 5.linux-intro/editors.md
-    - Data handling: 5.linux-intro/data.md
-    - Pipes and filters: 5.linux-intro/pipesfilters.md
-    - Finding patterns: 5.linux-intro/patterns.md
-    - Awk: 5.linux-intro/awk.md 
-    - Scripting: 5.linux-intro/scripting.md
-    - Hints and tricks: 5.linux-intro/hints.md 
+    - Introduction: 06.linux-intro/linux-intro.md
+    - Command Line Interface (CLI): 06.linux-intro/cli.md
+    - The Linux File System: 06.linux-intro/filesystem.md
+    - Modifying the file tree: 06.linux-intro/modify.md
+    - Editors on Linux: 06.linux-intro/editors.md
+    - Data handling: 06.linux-intro/data.md
+    - Pipes and filters: 06.linux-intro/pipesfilters.md
+    - Finding patterns: 06.linux-intro/patterns.md
+    - Awk: 06.linux-intro/awk.md 
+    - Scripting: 06.linux-intro/scripting.md
+    - Hints and tricks: 06.linux-intro/hints.md 
   - Introduction to Git: 
-    - Introduction and setup: 6.Git/intro-motivation-setup.md
-    - Basic commands: 6.Git/basic-commands.md
-    - Branches, merges, and conflicts: 6.Git/branches.md
-    - Working with remotes: 6.Git/remotes.md
-    - Working with remotes exercises: 6.Git/remotes-exercises.md
-    - Teamwork: 6.Git/teamwork.md
-    - Teamwork exercises: 6.Git/teamwork-exercises.md
-    - Workflow for Git: 6.Git/workflow.md
+    - Introduction and setup: 07.Git/intro-motivation-setup.md
+    - Basic commands: 07.Git/basic-commands.md
+    - Branches, merges, and conflicts: 07.Git/branches.md
+    - Working with remotes: 07.Git/remotes.md
+    - Teamwork: 07.Git/teamwork.md
+    - Teamwork exercises: 07.Git/teamwork-exercises.md
+    - Workflow for Git: 07.Git/workflow.md
   - Accessing software on Kebnekaise: 
     - Introduction: 7.software-modules-containers/introduction.md
     - What are modules?: 7.software-modules-containers/what-modules.md
@@ -100,23 +99,23 @@ nav:
     - 15. FAIR in Practice: 15.fair-in-practice/fair-in-practice.md
   - Extras:
     - Install tree: tree.md
-    - Linux terminology: 5.linux-intro/linux-terminology.md
-    - More Linux commands: 5.linux-intro/more-commands.md
-    - Linux cheat sheet: 5.linux-intro/cheat.md
-    - Git setup on Kebnekaise: 6.Git/kebnekaise.md
+    - Linux terminology: 06.linux-intro/linux-terminology.md
+    - More Linux commands: 06.linux-intro/more-commands.md
+    - Linux cheat sheet: 06.linux-intro/cheat.md
+    - Git setup on Kebnekaise: 07.Git/kebnekaise.md
   - Advanced/self-study: 
-    - Basic commands extended: 6.Git/basic-commands-full.md
-    - Basic commands exercises: 6.Git/basic-commands-full-exercises.md
-    - Basic concepts extended: 6.Git/basic-concepts-full.md
-    - Basic concepts exercises: 6.Git/basic-concepts-full-exercises.md
-    - Traversing the commit tree extended: 6.Git/commits-full.md
-    - Traversing the commit tree exercises: 6.Git/commits-full-exercises.md
-    - Branches, merges, and conflicts extended: 6.Git/branches-full.md
-    - Branches, merges, and conflicts exercises: 6.Git/branches-full-exercises.md
-    - Working with remotes extended: 6.Git/remotes-full.md
-    - Working with remotes exercises: 6.Git/remotes-full-exercises.md
-    - Teamwork extended: 6.Git/teamwork-full.md
-    - Teamwork exercises: 6.Git/teamwork-full-exercises.md
+    - Basic commands extended: 07.Git/basic-commands-full.md
+    - Basic commands exercises: 07.Git/basic-commands-full-exercises.md
+    - Basic concepts extended: 07.Git/basic-concepts-full.md
+    - Basic concepts exercises: 07.Git/basic-concepts-full-exercises.md
+    - Traversing the commit tree extended: 07.Git/commits-full.md
+    - Traversing the commit tree exercises: 07.Git/commits-full-exercises.md
+    - Branches, merges, and conflicts extended: 07.Git/branches-full.md
+    - Branches, merges, and conflicts exercises: 07.Git/branches-full-exercises.md
+    - Working with remotes extended: 07.Git/remotes-full.md
+    - Working with remotes exercises: 07.Git/remotes-full-exercises.md
+    - Teamwork extended: 07.Git/teamwork-full.md
+    - Teamwork exercises: 07.Git/teamwork-full-exercises.md
     - Advanced module commands: 7.software-modules-containers/advanced_module.md
     - Virtual environments and Python: 7.software-modules-containers/virtenv.md
     - Installing R packages yourself: 7.software-modules-containers/Rpack.md 
