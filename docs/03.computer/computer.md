@@ -67,7 +67,7 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 System software is what is required for the computer to run and to let us interact with it. 
 
-![System software](../../images/system-software.png){: style="width: 600px;"}
+![System software](../../images/system-software.png){: style="width: 700px;"}
 
 This picture shows how the different components talk together. 
 
@@ -78,10 +78,10 @@ arithmetic or logical operations (computation). (Wikipedia)
 
 Computers are built around four fundamental operations:
 
-1. **Input** – Acquiring data from the outside world (e.g., keyboard, mouse, sensors)
-2. **Processing** – Transforming that data through calculations and logical operations
-3. **Storage** – Retaining data and instructions for immediate or future use
-4. **Output** – Delivering results to the user or to other systems (e.g., monitor, printer)
+1. **Input** Acquiring data from the outside world (e.g., keyboard, mouse, sensors)
+2. **Processing** Transforming that data through calculations and logical operations
+3. **Storage** Retaining data and instructions for immediate or future use
+4. **Output** Delivering results to the user or to other systems (e.g., monitor, printer)
 
 
 ## The Von Neumann Architecture
@@ -101,7 +101,7 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
 - **Bus:** the shared communication pathway interconnecting all components, carrying addresses, data, and control signals.
 
 <figure>
-  <img src="../../images/CPU.png" style="width: 200px;" alt="CPU">
+  <img src="../../images/CPU.png" style="width: 400px;" alt="CPU">
   <figcaption> CPU components.</figcaption>
 </figure>
 
