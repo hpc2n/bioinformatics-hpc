@@ -342,7 +342,7 @@ local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access
 
 
 <figure>
-  <img src="../../images/caches.png" style="width: 500px;" alt="CPU caches">
+  <img src="../../images/caches.png" style="width: 700px;" alt="CPU caches">
   <figcaption> CPU cache hierarchy: L1, L2, and L3 levels relative to cores and main memory in a single node.</figcaption>
 </figure>
 
@@ -360,8 +360,8 @@ node as the cores that process it avoids expensive cross-socket traffic. Tools l
 2. The **CPU** fetches instructions from RAM or cache, decodes them, and executes them using the ALU and registers.
 3. The **cache hierarchy** keeps recently used data close to the processor cores, minimizing delays caused by slower 
 RAM accesses.
-4. In multi-socket systems, the **NUMA topology** affects memory access time: accessing local memory is faster 
-than accessing memory attached to another socket.
+4. In multi-socket systems, the **NUMA topology** affects memory access time: transfer data between sockets is less efficient
+than local transfers.
 5. **Results** are then stored back in RAM, written to persistent storage, or sent to output devices.
 
 This fetch-decode-execute-write-back cycle runs continuously and billions of times per second while a program is executing.
