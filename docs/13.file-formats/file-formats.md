@@ -1,8 +1,9 @@
 # 13. Bioinformatics File Formats
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
-**Slides:** [PDF](../../PDFs/lecture-13-file-formats.pdf)  
-**Exercises:** See [`exercises/`](../../exercises/13.file-formats/)
+**Slides:** [PDF](../PDFs/lecture-13-file-formats.pdf)  
+**Exercises:** Find material on HPC2N at /proj/nobackup/cddb_course/Bioinformatics_File_Formats
+**Examples:** You can find examples of each file format at /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats
 
 ---
 
@@ -608,33 +609,10 @@ git commit -m "lecture13: format inspection exercise complete
 
 ---
 
-## 10. In-Session Quizzes
+## 10. Closing Quiz
 
-### Mentimeter Quiz 1 — Prior knowledge (session opening)
-- Q1: "Which of these formats have you previously encountered?" (multi-select): FASTA / FASTQ / SAM / BAM / VCF / GFF / GTF / BED / None of the above
-- Q2 (word cloud): "In one word — what is a bioinformatics file format?"
+*A Mentimeter poll will ask you a few questions related to the lecture, to see if I was clear when explaining or not*
 
-### Mentimeter Quiz 2 — Format knowledge check (end of Block 1)
-
-**Q1:** A FASTQ quality score character is `I`. Using Phred+33 encoding, what is the Q score?
-- A) 9
-- B) 40 ✓ — ASCII value of `I` is 73; 73−33=40
-- C) 33
-- D) 73
-
-*Presenter note: walk through the calculation. ASCII('I') = 73. Q = 73 − 33 = 40. P(error) = 10^(−40/10) = 10^−4 = 0.01%.*
-
-**Q2:** A read in a SAM file has FLAG = 16. What does this tell you?
-- A) The read is unmapped
-- B) The read is on the reverse strand ✓ (0x10 = 16)
-- C) The read is a PCR duplicate
-- D) The read failed quality filters
-
-**Q3:** You have a BED file with an entry: `chr1  1000  2000`. What is the length of this region in bases?
-- A) 1,001 bases
-- B) 1,000 bases ✓ — BED is 0-based half-open: 2000−1000=1000
-- C) 999 bases
-- D) Cannot tell without knowing the coordinate system
 
 ---
 
