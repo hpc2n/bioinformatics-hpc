@@ -23,7 +23,7 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 - CD/DVD are getting increasingly rare
 - If you have spinning disk/HDD installed, it sits in a rack along the side and is connected to the motherboard (power cable and data cable). Used for long term storage. Do not confuse with memory!
 - A motherboard is mounted in the case, and has a socket for a CPU as well as slots for RAM/memory, SSDs/M.2 disk, PCIe etc. 
-- How much RAM usually depends on the motherboard, and they should be of the same size (8GB, 16GB, 32GB, etc.) DRAM (Dynamic Random-Access Memory). Memory is a physical device that can be used to store information temporarily - when the computer is shut down the data disappears from the memory. Do NOT confuse with storage space!
+- How much RAM usually depends on the motherboard, and they should be of the same size (8GB, 16GB, 32GB, etc.) DRAM (Dynamic Random-Access Memory). Memory is a physical device that can be used to store information temporarily; when the computer is shut down the data disappears from the memory. Do NOT confuse with storage space!
 - SSD storage are placed in the suitable slots. Size again depends on the motherboard. New SSDs are typically NVMe/M.2, which has better speed usually. Used for long term storage. Do not confuse with memory!  
 - PCIe are expansion slots, often used for graphics cards/GPUs. These can be large and the case size is important when seeing if there is space for many of the modern types of GPUs.
 - The GPU generally has its own cooling, but the CPU needs cooling. Either fans for air cooling or water cooling 
@@ -32,18 +32,17 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 ### A motherboard
 
-![An example of a motherboard](../../images/motherboard.png){: style="width: 600px;"}
-
-(MSI PRO B850-VC EVO WIFI6E motherboard. Image from https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E)
-
-
+<figure>
+  <img src="../../images/motherboard.png" style="width: 600px;" alt="MB">
+  <figcaption> Example of a motherboard MSI PRO B850-VC EVO WIFI6E. Credits: https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E</figcaption>
+</figure>
 
 ### SSD storage 
 
-![SSD storage](../../images/ssd.jpg){: style="width: 200px;"}
-2TB of SSD storage 
-
-(Image from https://ssd-tester.com/crucial_p310_2tb.html) 
+<figure>
+  <img src="../../images/ssd.jpg" style="width: 200px;" alt="SSD">
+  <figcaption> SSD storage. Credits: https://ssd-tester.com/crucial_p310_2tb.html</figcaption>
+</figure>
 
 ### GPU
 
@@ -51,9 +50,8 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 ![GPU](../../images/GPU.jpg){: style="width: 300px;"}
 <figcaption>GPU (Nvidia)</figcaption>
 ![GPU chip](../../images/GPU-chip.jpg){: style="width: 200px;"}
-<figcaption>GPU chip</figcaption>
+<figcaption>GPU chip. Credits: https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252</figcaption>
 </figure>
-(Images from https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252)
 
 ### Cooling 
 
@@ -61,16 +59,15 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 ![Fan](../../images/fan.jpg){: style="width: 100px;"}
 <figcaption>A fan</figcaption>
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
-<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between) </figcaption>
+<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between). Credits:  https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr</figcaption>
 </figure>
 
-(Images from https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr) 
 
 ## System software 
 
 System software is what is required for the computer to run and to let us interact with it. 
 
-![System software](../../images/system-software.png){: style="width: 300px;"}
+![System software](../../images/system-software.png){: style="width: 600px;"}
 
 This picture shows how the different components talk together. 
 
