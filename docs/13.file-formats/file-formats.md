@@ -1,7 +1,12 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
 # 13. Bioinformatics File Formats
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
-**Slides:** [PDF](../PDFs/lecture-13-file-formats.pdf)  
 **Exercises:** Find material on HPC2N at /proj/nobackup/cddb_course/Bioinformatics_File_Formats
 **Examples:** You can find examples of each file format at /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats
 
@@ -181,7 +186,6 @@ seqkit stats reads.fastq
 
 Modern sequencing experiments typically produce **paired-end reads**: two FASTQ files (R1 and R2) where each pair of reads comes from opposite ends of the same DNA fragment. The pairing must be maintained throughout the pipeline — if reads are filtered in one file but not the other, the files become out of sync, which will cause alignment tools to fail.
 
----
 ## 4. GFF and GTF — Genome Annotation Formats
 
 ### 4.1 Purpose
