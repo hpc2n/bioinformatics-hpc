@@ -1,25 +1,15 @@
-# Slide PDFs
+# Exercises: The Biological Database Landscape (Lecture 11)
 
-Student versions of all lecture slides — **Menti quiz answer slides are not included**.
-Instructor PPTX files (with answers) are kept locally and are not committed to this repository.
+Exercises accompany [Lecture 11](../../docs/11.database-landscape/database-landscape.md).
 
-## Pre-HPC2N sessions
+## Quick start
 
-| File | Lecture |
-|------|---------|
-| [lecture-00-programme-introduction.pdf](lecture-00-programme-introduction.pdf) | 00. Programme Introduction |
-| [lecture-01-what-is-bioinformatics.pdf](lecture-01-what-is-bioinformatics.pdf) | 01. What is Bioinformatics? |
+```bash
+cd ~/course && mkdir -p lecture11-databases && cd lecture11-databases
+git init
+# Fetch TP53 protein from UniProt
+curl "https://rest.uniprot.org/uniprotkb/P04637.fasta" > TP53_protein.fasta
+git add . && git commit -m "lecture11: TP53 sequence retrieved from UniProt"
+```
 
-## Post-HPC2N bioinformatics content
-
-| File | Lecture | Pages removed |
-|------|---------|--------------|
-| [lecture-11-database-landscape.pdf](lecture-11-database-landscape.pdf) | 11. Biological Database Landscape | Quiz answer slide |
-| [lecture-12-blast.pdf](lecture-12-blast.pdf) | 12. BLAST and Sequence Similarity | Quiz answer slide |
-| [lecture-13-file-formats.pdf](lecture-13-file-formats.pdf) | 13. Bioinformatics File Formats | Quiz answer slide |
-| [lecture-14-fair-open-science.pdf](lecture-14-fair-open-science.pdf) | 14. FAIR and Open Science | Quiz answer slide |
-| [lecture-15-fair-in-practice.pdf](lecture-15-fair-in-practice.pdf) | 15. FAIR in Practice | (no answer slides) |
-
-## HPC2N session PDFs
-
-*(To be added by HPC2N team)*
+Full commands in the [lecture handout](../../docs/11.database-landscape/database-landscape.md).

@@ -1,25 +1,14 @@
-# Slide PDFs
+# Exercises: FAIR in Practice (Lecture 15)
 
-Student versions of all lecture slides — **Menti quiz answer slides are not included**.
-Instructor PPTX files (with answers) are kept locally and are not committed to this repository.
+Exercises accompany [Lecture 15](../../docs/15.fair-in-practice/fair-in-practice.md).
 
-## Pre-HPC2N sessions
+| File | Description |
+|------|-------------|
+| [query_plantgenie.sh](query_plantgenie.sh) | PlantGenIE API query script |
 
-| File | Lecture |
-|------|---------|
-| [lecture-00-programme-introduction.pdf](lecture-00-programme-introduction.pdf) | 00. Programme Introduction |
-| [lecture-01-what-is-bioinformatics.pdf](lecture-01-what-is-bioinformatics.pdf) | 01. What is Bioinformatics? |
+## Exercise 2 dataset
 
-## Post-HPC2N bioinformatics content
+**ERP016242** — AspWood (*Populus tremula* wood formation)
+Browse: [ebi.ac.uk/ena/browser/view/ERP016242](https://www.ebi.ac.uk/ena/browser/view/ERP016242)
 
-| File | Lecture | Pages removed |
-|------|---------|--------------|
-| [lecture-11-database-landscape.pdf](lecture-11-database-landscape.pdf) | 11. Biological Database Landscape | Quiz answer slide |
-| [lecture-12-blast.pdf](lecture-12-blast.pdf) | 12. BLAST and Sequence Similarity | Quiz answer slide |
-| [lecture-13-file-formats.pdf](lecture-13-file-formats.pdf) | 13. Bioinformatics File Formats | Quiz answer slide |
-| [lecture-14-fair-open-science.pdf](lecture-14-fair-open-science.pdf) | 14. FAIR and Open Science | Quiz answer slide |
-| [lecture-15-fair-in-practice.pdf](lecture-15-fair-in-practice.pdf) | 15. FAIR in Practice | (no answer slides) |
-
-## HPC2N session PDFs
-
-*(To be added by HPC2N team)*
+Full commands in the [lecture handout](../../docs/15.fair-in-practice/fair-in-practice.md).
