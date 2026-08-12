@@ -289,7 +289,7 @@ cd ~/course/lecture11-databases
 git init
 
 # Create a README file
-echo "# Lecture 02: Programmatic Database Access" > README.md
+echo "# Lecture 11: Programmatic Database Access" > README.md
 echo "## Date: $(date)" >> README.md
 git add README.md
 git commit -m "initial commit: lecture11 exercise setup"
