@@ -426,7 +426,9 @@ Fetch the rbcL gene (*ribulose-1,5-bisphosphate carboxylase/oxygenase large subu
 
 ```bash
 # Search NCBI for Arabidopsis rbcL in the nucleotide database
-curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?\
+# -g disables curl's URL globbing, which otherwise misreads the square
+# brackets in the query below as a range expression and fails
+curl -g "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?\
 db=nucleotide&term=Arabidopsis+thaliana[orgn]+rbcL[gene]+refseq[filter]\
 &retmax=5&retmode=json" > rbcL_search.json
 
@@ -441,7 +443,7 @@ cat rbcL_search.json
 ```bash
 # Search ENA for RNA-seq datasets from Populus tremula
 curl "https://www.ebi.ac.uk/ena/portal/api/search?\
-query=tax_eq(182688)%20AND%20library_strategy=%22RNA-Seq%22\
+query=tax_eq(113636)%20AND%20library_strategy=%22RNA-Seq%22\
 &result=read_study&fields=study_accession,study_title,scientific_name\
 &format=tsv&limit=5" > populus_rnaseq.tsv
 
