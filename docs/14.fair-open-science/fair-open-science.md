@@ -291,40 +291,7 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ---
 
-## 8. In-Session Quizzes
-
-### Mentimeter Quiz 1 — Prior knowledge (session opening)
-
-- Q1 (word cloud): "In four words or fewer — what does FAIR stand for?"
-- Q2 (multiple choice, single select): "Have you ever tried to reanalyse or reproduce published bioinformatics data?" (Yes — successfully / Yes — but encountered problems / No — but I've tried to find data / No — never attempted)
-- Q3 (word cloud): "In one word — why do you think reproducibility matters in science?"
-
-### Mentimeter Quiz 2 — FAIR classification (end of Block 1, before break)
-
-**Q1:** A researcher publishes a paper and describes their data as "available upon reasonable request from the corresponding author." Which FAIR principle does this most directly violate?
-
-- A) Findable — the data has no identifier
-- B) Accessible — there is no standardised retrieval protocol ✓
-- C) Interoperable — the format is not specified
-- D) Reusable — there is no licence
-
-**Q2:** A genomic dataset uses the sample annotation "liver tissue, treated with drug X for 24 hours." A second dataset covers similar samples but uses the ontology terms UBERON:0002107 (liver) and CHEBI:27732 (drug X). Which dataset is more interoperable, and why?
-
-- A) The first — it is more readable to a human
-- B) The second — ontology terms are machine-readable and enable automated integration ✓
-- C) They are equally interoperable — the information is the same
-- D) Neither — interoperability requires a specific file format, not metadata
-
-**Q3:** A researcher archives their analysis code on GitHub. Is this sufficient for FAIR4RS compliance?
-
-- A) Yes — the code is publicly accessible
-- B) No — GitHub repositories can be deleted; a persistent DOI-bearing archive (e.g. via Zenodo) is required ✓
-- C) No — GitHub does not support bioinformatics code
-- D) Yes, as long as the README describes the software
-
----
-
-## 9. What You Should Know After This Session
+## 8. What You Should Know After This Session
 
 ✅ **State and explain all four FAIR principles** and give a concrete bioinformatics example for each.
 
@@ -344,7 +311,7 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ---
 
-## 10. Further Reading and Resources
+## 9. Further Reading and Resources
 
 - Wilkinson M.D. et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. *Scientific Data*, 3: 160018. DOI: 10.1038/sdata.2016.18
 - Chue Hong N.P. et al. (2022). FAIR Principles for Research Software (FAIR4RS Principles). *Research Data Alliance*. DOI: 10.15497/RDA00068
@@ -385,7 +352,7 @@ The three papers below have been selected as candidates for the essay assessment
 **Trujillo-Moya C. et al. (2020).** RNA-Seq and secondary metabolite analyses reveal a putative defence-transcriptome in Norway spruce (*Picea abies*) against needle bladder rust (*Chrysomyxa rhododendri*) infection. *BMC Genomics* 21: 336.
 
 - **DOI:** 10.1186/s12864-020-6587-z
-- **Data:** BMC Genomics requires a data availability statement — verify the ENA/SRA accession in the paper before use. *(Instructor note: open the paper and confirm the accession is present and accessible before assigning.)*
+- **Data:** BMC Genomics requires a data availability statement — check the ENA/SRA accession is present and accessible in the paper before you begin your assessment.
 - **Topic:** Transcriptome response of Norway spruce to fungal infection — directly relevant to forest health, conifer biology, and the kind of tree genomics work central to this programme. Connects to PlantGenIE and the Umeå boreal forest research context.
 - **Why it is useful for FAIR assessment:** Published in 2020, in the period when data deposition was routine but code availability and rich metadata were still inconsistent. Likely has data deposited but limited or no analysis code; ontology use in sample metadata is likely incomplete. Software versions are specified in methods but may be incomplete.
 - **Access:** Open access, BMC Genomics (CC BY).
@@ -397,22 +364,8 @@ The three papers below have been selected as candidates for the essay assessment
 **Azarbad H. et al. (2022).** Relative and Quantitative Rhizosphere Microbiome Profiling Results in Distinct Abundance Patterns. *Frontiers in Microbiology* 12: 798023.
 
 - **DOI:** 10.3389/fmicb.2021.798023
-- **Data:** Frontiers requires data availability — verify the SRA/ENA accession in the paper before use. *(Instructor note: open the paper and confirm the accession is present and accessible before assigning.)*
+- **Data:** Frontiers requires data availability — check the SRA/ENA accession is present and accessible in the paper before you begin your assessment.
 - **Topic:** 16S rRNA and ITS amplicon profiling of the wheat rhizosphere microbiome under drought stress history. Covers microbial ecology and environmental genomics; connects to SILVA (16S reference), UNITE (ITS/fungal), and biodiversity themes (SDG 15).
 - **Why it is useful for FAIR assessment:** Published in 2022; uses standard amplicon methods (QIIME2) but code and parameter availability vary widely in this domain. Rich area for assessing whether the SILVA and UNITE reference database versions used are specified, whether QIIME2 version is recorded, and whether raw reads are deposited with sufficient metadata for reanalysis.
 - **Access:** Open access, Frontiers in Microbiology (CC BY).
-
----
-
-### Instructor verification checklist (before assigning)
-
-For each of Papers B and C, open the paper and confirm the following before assigning it to students. This takes approximately 5 minutes per paper.
-
-- [ ] Data accession number is present in the paper (Methods or Data Availability section)
-- [ ] The accession is live and accessible in ENA, SRA, or GEO (search the accession directly)
-- [ ] Raw data (FASTQ files or equivalent) are available, not only processed results
-- [ ] The GEO/ENA entry has at least some sample metadata (even if minimal)
-- [ ] Analysis code is absent, partial, or available without version pinning (this is the interesting case for FAIR assessment)
-
-Paper A (Himes 2014) does not require this check — its data availability is fully confirmed.
 
