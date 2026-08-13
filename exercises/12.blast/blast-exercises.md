@@ -1,18 +1,5 @@
-# Exercises: BLAST and Sequence Similarity (Lecture 12)
+# Exercises: BLAST and Sequence Similarity
 
-Exercises accompany [Lecture 12](../../docs/12.blast/blast.md).
+BLAST is no longer a standalone teaching slot. [The BLAST background reference](../../docs/12.blast/blast.md) covers what BLAST is and how to interpret its output; the hands-on exercises (running BLAST via the website, the command line, and an API) are taught as part of [Lecture 15: FAIR in Practice](../../docs/15.fair-in-practice/fair-in-practice.md).
 
-| File | Description |
-|------|-------------|
-| [blast_tp53.sh](blast_tp53.sh) | Slurm job script for local blastp |
-
-## Quick start
-
-```bash
-cd ~/course && mkdir -p lecture12-blast && cd lecture12-blast
-cp ../lecture11-databases/TP53_protein.fasta .
-git init && git add . && git commit -m "initial: lecture12 blast, TP53 from lecture11"
-sbatch blast_tp53.sh   # update account name first
-```
-
-Full commands in the [lecture handout](../../docs/12.blast/blast.md).
+See [`exercises/15.fair-in-practice/`](../15.fair-in-practice/) for the exercise files.
