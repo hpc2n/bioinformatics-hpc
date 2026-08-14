@@ -19,9 +19,12 @@ By the end of this session you should be able to:
 2. Distinguish between findability, accessibility, interoperability, and reusability in practice
 3. Describe the open science landscape — open access, open data, open source, and open peer review — and identify key resources and reading for each
 4. Explain why Git is reproducibility infrastructure, not just version control
-5. Describe the FAIR for Research Software (FAIR4RS) principles and explain how they extend FAIR to code
-6. Connect open science practices to the UN Sustainable Development Goals
-7. Identify the key criteria for the FAIR compliance essay assessment and describe the difference between a passing and a distinction-level response
+5. Explain what a reproducible report (R Markdown/knitr, Jupyter notebook) adds beyond a plain script
+6. Write a reproducible Methods section — specifying exact software versions, all parameters, and database/genome release versions, with appropriate citations
+7. Explain the "gold standard" of full reproducibility — deposited data plus deposited code enabling independent regeneration of every result — and why this is becoming easier to verify
+8. Describe the FAIR for Research Software (FAIR4RS) principles and explain how they extend FAIR to code
+9. Connect open science practices to the UN Sustainable Development Goals
+10. Identify the key criteria for the FAIR compliance essay assessment and describe the difference between a passing and a distinction-level response
 
 **Links to course ILOs:** This session directly addresses ILOs 3 and 13. It provides the conceptual foundation for Lecture 15, which is entirely practical. It also introduces the FAIR essay assessment, which is submitted via Canvas.
 
@@ -198,9 +201,72 @@ A Git repository hosted on GitHub or GitLab is not a persistent archive — repo
 
 Code alone is not sufficient for full reproducibility — the software environment matters too. The same script may produce different results with a different version of a library. Containers (Docker, Singularity/Apptainer) package the code together with its complete software environment, producing a portable, reproducible unit. This is what the HPC2N block covered when introducing containers — and it is directly a FAIR4RS practice.
 
+### 4.5 Reproducible Reports: Notebooks and R Markdown
+
+A script produces results; it does not, by itself, explain them. A **reproducible report** — an R Markdown document rendered with `knitr`, or a Jupyter notebook — combines the code that produced a result, the narrative explaining what it shows, and the rendered output (tables, plots) into a single document that is both human-readable and rerunnable from scratch.
+
+- **R Markdown, rendered with `knitr`,** produces an HTML, PDF, or Word report from a single `.Rmd` file that interleaves R code chunks with narrative Markdown text. Rendering the same `.Rmd` file always regenerates the same report from the same code — the report is a reproducible artefact, not a one-off screenshot of a plot.
+- **Jupyter notebooks** do the equivalent for Python: code cells, their live output, and narrative Markdown cells in one `.ipynb` file, which can be re-executed top to bottom to regenerate every output.
+
+Both are available on Kebnekaise via OnDemand — RStudio Server (for R Markdown) and Jupyter Notebook are both listed as interactive apps there.
+
+This is not a cosmetic difference from a plain script. A colleague, a reviewer, or your future self six months on, opening a notebook or an `.Rmd` file, sees the reasoning alongside the code and the actual result it produced — not a script they must run blind, and a set of output files whose provenance they must reconstruct from memory or a README. This is what turns the "gold standard" combination of deposited data and code (Section 6) into something a human can actually follow, not just something a machine can technically re-execute.
+
+You will work with both R Markdown (in *Data Science for Biology with R*) and Jupyter notebooks (in *Python Programming for Bioinformatics*) in depth later in the programme. In Lecture 15 you will build a minimal example using results you already have from this session.
+
 ---
 
-## 5. FAIR for Research Software (FAIR4RS)
+## 5. Writing Reproducible Methods
+
+Every principle above has a direct, practical consequence for how you write the Methods section of your own papers. A Methods section is not a narrative description of what you did in general terms — it is a specification precise enough that someone else could redo the analysis without asking you a single follow-up question.
+
+### 5.1 The Minimum a Reproducible Methods Section Must State
+
+**Software, with exact version numbers.** "We used BLAST" is not reproducible — BLAST 2.2.31 and BLAST+ 2.17.0 can give different results for the same query. State the tool and the exact version: "blastp v2.17.0 (BLAST+)".
+
+**A citation for every tool, not just a version number.** Citing the software is how the people who built and maintain the tool get scientific credit for that work — the same courtesy as citing a paper for a method or a dataset. Most bioinformatics tools have a canonical citation, often given in their documentation or a `--citation` flag; cite it, in addition to stating the version.
+
+> **Example:** "Reads were aligned with minimap2 v2.28 (Li, 2018, *Bioinformatics* 34(18): 3094–3100) using the `-ax splice` preset."
+
+**Every parameter that was set — including when you used defaults.** Default parameters change between software versions. Writing "default parameters were used" is not sufficient on its own; stating the exact version (see above) pins what those defaults actually were, and any parameter changed from the default must be stated explicitly.
+
+**Database and reference genome versions, with citations where the resource has one.** "The human reference genome" is not reproducible — different genome assembly patches, annotation releases, and gene model versions give measurably different results. State the exact assembly and release, e.g. "GRCh38.p14 (Ensembl release 110)". If the database or release has a citable publication or DOI, cite it — again, the same courtesy as citing a tool.
+
+### 5.2 A Worked Example
+
+| Not reproducible | Reproducible |
+|---|---|
+| "Reads were aligned to the reference genome with default parameters." | "Reads were aligned to GRCh38.p14 (Ensembl release 110) with STAR v2.7.11a (Dobin et al., 2013, *Bioinformatics* 29(1): 15–21), using `--outFilterMismatchNmax 2`; all other parameters were left at their v2.7.11a defaults." |
+| "Differential expression was assessed using standard statistical methods." | "Differential expression was assessed with DESeq2 v1.42.0 (Love et al., 2014, *Genome Biology* 15: 550) in R v4.3.2, using the default Wald test and an adjusted p-value threshold of 0.05 (Benjamini-Hochberg correction)." |
+
+This is the same standard the "Things to Look For" checklist in Section 9.3 asks you to apply when assessing someone else's paper for the essay — here you are looking at the same requirements from the other side, as the author.
+
+---
+
+## 6. The Gold Standard: Data, Code, and Full Reproducibility
+
+### 6.1 What "Full Reproducibility" Actually Means
+
+The FAIR principles, Git practices, and Methods-writing guidance above are all components of a single underlying goal: **an independent researcher, with no access to you, should be able to regenerate every reported number, table, and figure from the raw data.**
+
+This is achieved by the combination of two things, both properly deposited and both citable:
+
+1. **The inputs** — the raw data, deposited at a persistent repository such as Zenodo, Figshare, or a domain-specific archive (ENA, GEO, PRIDE — see Lecture 11).
+2. **The producers** — the analysis code, deposited at a version-controlled repository (Git), ideally with a tagged release archived to Zenodo so it has its own DOI (Section 4.3).
+
+Neither is sufficient alone. Data without code tells a reader what went in but not how the reported values came out. Code without data is unusable — a script cannot run against nothing. Together, and only together, they make every table, figure, and stated value in a paper something a reader can regenerate, not merely something they must take on trust.
+
+### 6.2 Why This Is Becoming Easier to Check — and Increasingly Expected
+
+Verifying this used to mean a human reviewer manually attempting to rerun a pipeline, which is slow, expensive, and rarely done in practice. That is changing. AI-assisted and fully autonomous systems are now being used to attempt exactly this: taking a paper's deposited data and code and independently regenerating its reported results. Recent work used a multi-agent large language model system to attempt this directly on a bioinformatics single-cell RNA-seq study, with partial but real success and clearly documented failure modes — including non-determinism in generated code and difficulty procuring the correct data (Bersenev et al., 2024, *bioRxiv*, DOI: 10.1101/2024.04.08.588614). A large controlled study of AI-assisted reproduction of social-science findings found that AI-assisted teams reproduced results about as well as human-only teams, while fully autonomous AI-led reproduction attempts performed markedly worse — useful context for how far this technology has, and has not, come (Brodeur et al., 2026, *PNAS*, DOI: 10.1073/pnas.2524747123).
+
+As these tools improve, "cleanroom" reproduction — an independent party or an automated system regenerating your results from nothing but your deposited data and code — is plausibly becoming something journals and funders can routinely check, rather than something they must take on faith. It is a reasonable expectation that computational biology will move further in this direction during your careers, and that a reviewer or an automated system attempting exactly this kind of cleanroom rerun could become a normal part of submission or review, not a hypothetical.
+
+**The practical implication for you:** treat "could a stranger, or an AI system with no access to me, regenerate this figure from what I have deposited?" as a genuine test to apply to your own work before submission.
+
+---
+
+## 7. FAIR for Research Software (FAIR4RS)
 
 The FAIR4RS principles, published in 2022, extend FAIR to software and code:
 
@@ -219,7 +285,7 @@ The FAIR4RS principles, published in 2022, extend FAIR to software and code:
 
 ---
 
-## 6. Open Science and the UN Sustainable Development Goals
+## 8. Open Science and the UN Sustainable Development Goals
 
 The open science agenda connects directly to several UN Sustainable Development Goals:
 
@@ -231,11 +297,11 @@ The open science agenda connects directly to several UN Sustainable Development 
 
 ---
 
-## 7. Introduction to the FAIR Essay Assessment
+## 9. Introduction to the FAIR Essay Assessment
 
 *This section introduces the Canvas assignment. The full assignment description, marking criteria, submission instructions, and deadline are in Canvas.*
 
-### 7.1 What the Assignment Asks
+### 9.1 What the Assignment Asks
 
 The essay asks you to **critically evaluate the FAIR compliance of a published bioinformatics study** and its associated data.
 
@@ -246,13 +312,13 @@ You will be given a specific published paper and an associated dataset (or you m
 3. Assess the reproducibility of the computational analysis — are software versions specified? Is code available? Could you re-run the analysis?
 4. Make specific, evidenced recommendations for what could have been done differently
 
-### 7.2 What Makes a Good Response
+### 9.2 What Makes a Good Response
 
 **At the G (pass) level:** You correctly identify and describe FAIR issues. You apply the FAIR principles accurately to the specific study. You note whether data is deposited and whether code is available. Your observations are accurate and relevant.
 
 **At the VG (distinction) level:** You do all of the above and additionally evaluate the *consequences* of the FAIR issues you identify. Why does it matter that a particular metadata field is missing? What would a researcher attempting reanalysis be unable to do? You make specific, concrete recommendations that would have improved FAIR compliance. Your argument is structured, evidenced, and analytical rather than descriptive. You demonstrate understanding of the difference between what FAIR *requires* and what it *recommends*, and between the spirit and the letter of each principle.
 
-### 7.3 Things to Look For
+### 9.3 Things to Look For
 
 When assessing a paper and its dataset, ask the following questions:
 
@@ -279,7 +345,7 @@ When assessing a paper and its dataset, ask the following questions:
 - Is analysis code available, and if so, is it documented and versioned?
 - Does the study declare adherence to a community metadata standard (MINSEQE, MIxS, etc.)?
 
-### 7.4 What a Weak and a Strong Response Look Like
+### 9.4 What a Weak and a Strong Response Look Like
 
 **Weak (likely G-level):**
 > "The raw data was deposited in the NCBI SRA with accession SRP123456 (F). The data can be downloaded (A). The authors used standard FASTQ format (I). The methods section describes the analysis (R)."
@@ -291,7 +357,7 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ---
 
-## 8. What You Should Know After This Session
+## 10. What You Should Know After This Session
 
 ✅ **State and explain all four FAIR principles** and give a concrete bioinformatics example for each.
 
@@ -303,6 +369,12 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ✅ **Explain how Git functions as reproducibility infrastructure**, beyond its role as version control.
 
+✅ **Explain what a reproducible report (R Markdown/knitr or a Jupyter notebook) adds** beyond a plain script or terminal transcript.
+
+✅ **Write a reproducible Methods statement** for a given tool or analysis step, including version number, citation, parameters, and database/genome release.
+
+✅ **Explain the "gold standard" of full reproducibility** — deposited data plus deposited code enabling independent regeneration of every result — and why AI-assisted reproduction is making this easier to verify.
+
 ✅ **Describe the FAIR4RS principles** and give one practical example of the difference between FAIR and non-FAIR software.
 
 ✅ **Apply the FAIR framework to assess a bioinformatics study**, identifying specific issues and their consequences.
@@ -311,18 +383,24 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ---
 
-## 9. Further Reading and Resources
+## 11. Further Reading and Resources
 
 - Wilkinson M.D. et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. *Scientific Data*, 3: 160018. DOI: 10.1038/sdata.2016.18
 - Chue Hong N.P. et al. (2022). FAIR Principles for Research Software (FAIR4RS Principles). *Research Data Alliance*. DOI: 10.15497/RDA00068
 - Baker M. (2016). 1,500 scientists lift the lid on reproducibility. *Nature*, 533: 452–454.
 - Wijesooriya K. et al. (2022). Urgent need for consistent standards in functional enrichment analysis. *PLOS Computational Biology*, 18(3): e1009935.
+- Bersenev D., Yachie-Kinoshita A. and Palaniappan S.K. (2024). Replicating a High-Impact Scientific Publication Using Systems of Large Language Models. *bioRxiv*. DOI: 10.1101/2024.04.08.588614
+- Brodeur A., Valenta D. and Marcoci A. (2026). AI-assisted teams outperform AI-led teams but not human-only teams in assessing research reproducibility in quantitative social science. *PNAS*, 123(22). DOI: 10.1073/pnas.2524747123
 - The Turing Way — a community-driven guide to reproducible, ethical, and collaborative data science: https://the-turing-way.netlify.app/
 - FAIRsharing.org — a curated registry of data and metadata standards, databases, and policies: https://fairsharing.org/
 - Plan S — funder mandate for open access: https://www.coalition-s.org/
 - Choose a Licence — guide to software licensing: https://choosealicense.com/
 - Zenodo — open repository for data and software: https://zenodo.org/
 - bio.tools — registry of bioinformatics tools and services: https://bio.tools/
+- R Markdown documentation: https://rmarkdown.rstudio.com/
+- knitr documentation: https://yihui.org/knitr/
+- Jupyter documentation: https://jupyter.org/documentation
+- HPC2N OnDemand interactive apps (Jupyter Notebook, RStudio Server): https://docs.hpc2n.umu.se/tutorials/connections/
 
 ---
 

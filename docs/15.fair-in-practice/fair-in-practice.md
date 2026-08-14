@@ -22,7 +22,8 @@ By the end of this session you should be able to:
 4. Apply a structured metadata sufficiency checklist to a real GEO or ENA dataset
 5. Identify specific metadata fields whose absence would prevent reanalysis of a published RNA-seq study
 6. Assess the computational reproducibility of a published bioinformatics study using a structured framework
-7. Commit all exercise outputs, commands, and findings to Git
+7. Build a minimal reproducible report (Jupyter notebook) that combines code, narrative, and live output
+8. Commit all exercise outputs, commands, and findings to Git
 
 **Links to course ILOs:** This session directly addresses ILOs 1, 3, 7, 9, 12, and 13. It is the practical companion to Lecture 14 and provides direct preparation for the FAIR essay assessment. For background on BLAST itself, see the [BLAST background reference](../12.blast/blast.md).
 
@@ -37,6 +38,7 @@ By the end of this session you should be able to:
 | Block 1 | **I = Interoperable:** Three ways to run BLAST + the PlantGenIE API | ~50 min |
 | Break | | 10 min |
 | Block 2 | **R = Reusable:** GEO/ENA metadata assessment + paper reproducibility exercise | ~40 min |
+| Block 3 | Building a reproducible report (Jupyter notebook) | ~15 min |
 | | Essay briefing and Q&A | ~10 min |
 
 ---
@@ -479,6 +481,80 @@ git commit -m "lecture15: paper reproducibility assessment complete
 
 ---
 
+## Part 4 — Building a Reproducible Report
+
+### 4.1 Why This Exercise
+
+In Part 3 you assessed whether someone else's paper was computationally reproducible. Here, you do the positive version yourself: turn a small piece of today's session into an actual reproducible report — a notebook that combines code, narrative, and live output in one rerunnable file, rather than a terminal transcript and a folder of output files. See [Lecture 14, Section 4.5](../14.fair-open-science/fair-open-science.md) for why this matters.
+
+### 4.2 Build a Minimal Jupyter Notebook
+
+Launch a Jupyter Notebook session via OnDemand (the same launcher you have used elsewhere in this course), open a new Python notebook in your `lecture15-fair-practice` directory, and build three cells:
+
+1. **Markdown cell** — a one-sentence description of what the notebook does, e.g. "Summarises the PlantGenIE expression query for Potra2n4c9093 from Exercise 1B."
+2. **Code cell** — load and summarise a result you already produced this session:
+```python
+import json
+data = json.load(open("expression_data.json"))
+print(f"{len(data['samples'])} samples returned for this gene")
+```
+3. **Markdown cell** — one sentence interpreting the output.
+
+Run all cells top to bottom (`Kernel → Restart & Run All`) to confirm the notebook reproduces its own output from scratch — that is the test that matters, not just that it ran once while you were writing it.
+
+Export the notebook to HTML (`File → Download as → HTML`) and commit both files:
+
+```bash
+git add expression_report.ipynb expression_report.html
+git commit -m "lecture15: minimal reproducible report (Jupyter)
+
+- Notebook reproduces the Exercise 1B expression summary from scratch
+- HTML export committed alongside the source notebook"
+```
+
+### 4.3 The R Equivalent (for reference — you will use this properly in Data Science for Biology with R)
+
+The same idea in R uses R Markdown, rendered with `knitr`, via RStudio Server (also available on OnDemand). A minimal `.Rmd` file looks like this:
+
+````markdown
+---
+title: "Expression query summary"
+output: html_document
+---
+
+Summarises the PlantGenIE expression query for Potra2n4c9093.
+
+```{r}
+data <- jsonlite::fromJSON("expression_data.json")
+cat(length(data$samples), "samples returned for this gene\n")
+```
+````
+
+Rendering this file (`rmarkdown::render("report.Rmd")`) produces an HTML report the same way `knitr` renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself today; it is here so you recognise the pattern when you meet it properly in the next course.
+
+*Questions to answer in your README:*
+- What did the notebook approach make explicit that a bare script or terminal history would not?
+- If you handed only your `.ipynb` file to a labmate with no other context, could they understand what it did and why, and reproduce the output themselves?
+
+```bash
+cat >> README.md << 'EOF'
+
+## Part 4: Reproducible Report (Jupyter)
+
+### What the notebook makes explicit
+<!-- vs a bare script or terminal history -->
+
+### Could a labmate reproduce this from the notebook alone?
+<!-- yes/no and why -->
+
+EOF
+
+git add README.md
+git commit -m "lecture15: reproducible report reflection complete"
+```
+
+---
+
 ## Essay Briefing
 
 *This section is covered in the lecture. Key points:*
@@ -505,6 +581,8 @@ git commit -m "lecture15: paper reproducibility assessment complete
 
 ✅ **Reconstruct the analysis pipeline** from a published methods section, noting which steps have complete version and parameter information and which do not.
 
+✅ **Build a minimal Jupyter notebook that reproduces its own output from scratch**, and explain what it makes explicit that a bare script does not.
+
 ✅ **Commit all exercise outputs and findings to Git** with structured README documentation and meaningful commit messages.
 
 ✅ **Describe what distinguishes a G from a VG essay response** and apply this distinction to your own paper assessment.
@@ -513,11 +591,14 @@ git commit -m "lecture15: paper reproducibility assessment complete
 
 ## Further Reading
 
-- PlantGenIE documentation and API reference: https://plantgenie.se (when available)
+- PlantGenIE documentation and API reference: https://www.plantgenie.se/api/docs (confirmed by Jamie McCann)
 - PlantGenIE GitHub: https://github.com/plantgenie
 - MINSEQE (Minimum Information about a high-throughput Nucleotide SeQuencing Experiment): https://fairsharing.org/FAIRsharing.a55z32
 - MIxS (Minimum Information about any (x) Sequence): https://www.gensc.org/pages/standards-intro.html
 - The Turing Way — Reproducible Research: https://the-turing-way.netlify.app/reproducible-research
+- Jupyter documentation: https://jupyter.org/documentation
+- R Markdown documentation: https://rmarkdown.rstudio.com/
+- HPC2N OnDemand interactive apps (Jupyter Notebook, RStudio Server): https://docs.hpc2n.umu.se/tutorials/connections/
 
 ---
 
