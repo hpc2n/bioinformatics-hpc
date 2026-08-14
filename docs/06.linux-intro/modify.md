@@ -75,7 +75,7 @@ You can remove files with ``rm``. You can use the flag/option ``-i`` to prompt b
     rm -r mynewdir
     ```
 
-### Examples
+### Exercises and Examples
 
 ???+ faq "Reminder"
 
@@ -89,11 +89,11 @@ You can remove files with ``rm``. You can use the flag/option ``-i`` to prompt b
      - **`rm FILE`**: Remove the file with the name FILE
      - **`pwd`**: print the current working directory path in full.
 
-!!! example "Creating directories, changing directories, removing directory and file, removing files by pattern"
+!!! example "Exercise: Creating directories, changing directories, removing directory and file, removing files by pattern"
 
     This example sequence will demonstrate some of the things we just learned, as well as the command `cd` and glob patterns from the previous section. 
 
-    **HINT: Code-along!**
+    **HINT: Code-along! or do on your own!**
 
     Create and remove directories:
     
@@ -157,10 +157,12 @@ This command is used to copy files or directories.
 
     If you do not add the option "-i", you risk overwriting any existing file with the same name. 
 
-!!! example "Code-along"
+### Exercise 
 
-    Go to the directory ``mytestdir`` under ``exercises`` directory that you got from the downloaded tarball. This is how the structure looks:
+!!! example "Subdirectories"
 
+    Go to the directory ``mytestdir`` under ``exercises`` directory that you got from the downloaded tarball. This is how the structure looks if you placed it in your home directory: 
+ 
     ![folders of exercises directory structure](../../images/exercises-folders.png){: style="width: 500px;float: left"}
     <br><br style="clear: both;">
 
@@ -294,20 +296,22 @@ ln -s real-file-or-lib link-name
 ```
 </div>
 
-!!! example "Example (on Kebnekaise)"
+!!! example "Exercise: Example (on Kebnekaise)"
 
     ```bash
-    ln -s /proj/nobackup/bioinf-course/MYUSERNAME $HOME/myproj
+    ln -s /proj/nobackup/cddb_course/MYUSERNAME $HOME/myproj
     ```
 
-    This creates a symbolic link named "myproj" in your home directory, pointing to the location /proj/nobackup/bioinf-course/MYUSERNAME. The directory "bio-inf-course" is the project storage directory for this course project. For user ``bbrydsoe``, it would look like this:
+    This creates a symbolic link named "myproj" in your home directory, pointing to the location /proj/nobackup/cddb_course/MYUSERNAME. The directory "cddb_course" is the project storage directory for this course project. For user ``bbrydsoe``, it would look like this:
 
     ```bash
     b-cn1613 [~]$ ls -l
     total 2
-    lrwxrwxrwx 1 bbrydsoe folk   31 Sep 11 12:01 myproj -> /proj/nobackup/bioinf-course/bbrydsoe
+    lrwxrwxrwx 1 bbrydsoe folk   31 Sep 11 12:01 myproj -> /proj/nobackup/cddb_course/bbrydsoe
     drwxrwxr-x 4 bbrydsoe folk 4096 Sep 11 11:43 mytestdir
     ```
+
+    Try and create this symbolic link in your home directory, pointing to your directory in the project storage.  
 
 !!! summary
 

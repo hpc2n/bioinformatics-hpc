@@ -36,9 +36,7 @@ When you login to the computer (as a non root user), you will end up in your hom
 
 The `path` to your home directory varies somewhat. Here are some examples for me: 
 
-- Tetralith: `/home/x_birbr`
 - Kebnekaise: `/home/b/bbrydsoe`
-- Cosmos: `/home/bbrydsoe`
 - My laptop, ncc-1701: `/home/bbrydsoe`
 - My home desktop, enterprise: `/home/bbrydsoe`
 
@@ -48,7 +46,7 @@ The `path` to your home directory varies somewhat. Here are some examples for me
 
     You can also always return to your home directory by giving the command `cd` and pressing `enter`. 
 
-There are is also an "environment variable" that can be used as shortcut for the path: `$HOME`. We will talk more about (environment) variables later. 
+There is also an "environment variable" that can be used as shortcut for the path: `$HOME`. We will talk more about (environment) variables later. 
 
 ## pwd
 
@@ -244,9 +242,11 @@ Wild cards are also called "glob" or "globbing" patterns.
 
     Many relevant commands, like `ls`, have an `-i` flag to ignore case.
 
-!!! tip "Try some of the commands below" 
+### Exercises
 
-    Useful files for these examples are found in `exercises/patterns`. 
+Try some of the commands below to see what happens.  
+
+Useful files for these examples are found in `exercises/patterns` from the tarball. 
 
 !!! Example "Some examples of the use of wildcards"
 
@@ -301,7 +301,7 @@ The command `cd` is used to change directory.
 - **`cd ..`**: Change directory to the parent directory of the current directory
 - **`cd -`**: go back to the previous working directory
 
-!!! example
+!!! example 
 
     This is the structure of the exercises directory that you got after extracting the tarball: 
 
@@ -310,7 +310,7 @@ The command `cd` is used to change directory.
 
     Remember, `$HOME` is an *environment variable* which gives a shortcut to your home directory.
 
-    **NOTE** if you are on Kebnekaise and placed the exercises under `/proj/nobackup/bioinfo-course/YOURDIR` then `$HOME` would be replaced by that path. 
+    **NOTE** if you are on Kebnekaise and placed the exercises under `/proj/nobackup/cddb_course/YOURDIR` then `$HOME` would be replaced by that path. 
 
     To change to the directory `exercises` when you are in your home directory, you do
     ```bash
