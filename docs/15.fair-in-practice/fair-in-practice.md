@@ -61,7 +61,7 @@ The exercises below walk through all three using the same query sequence, so you
 
 PlantGenIE (plantgenie.se) is a bioinformatics resource for plant and tree genomics developed at Umeå University, with primary development by Jamie McCann and contributions from the research groups of Nathaniel Street and others at UPSC. It integrates genome browsers, gene expression and co-expression data, functional annotations, a BLAST search interface, and REST API endpoints exposing all of the above — for boreal forest tree species including *Picea abies* (Norway spruce) and *Populus tremula* (European aspen).
 
-PlantGenIE is currently undergoing active redevelopment, including a new *Picea abies* genome assembly with a different gene identifier scheme than earlier versions. **The exact API base URL, endpoints, and gene ID format used in this session's exercises will be confirmed by Jamie McCann ahead of the session** — do not rely on the specific values shown as placeholders below being current. If PlantGenIE is unavailable on the day, your instructor will provide example responses to work with.
+PlantGenIE is currently undergoing active redevelopment, including a new *Picea abies* genome assembly with a different gene identifier scheme than earlier versions. The base URL, endpoints, and example gene ID used in this session's exercises have been verified against the live API, and **Jamie McCann is confirming these are final ahead of the session**. If PlantGenIE is unavailable on the day, your instructor will provide example responses to work with.
 
 The PlantGenIE codebase is publicly available on GitHub: https://github.com/plantgenie
 
@@ -90,7 +90,7 @@ The key concept is that each **endpoint** is a URL that returns a specific piece
 
 **JSON** (JavaScript Object Notation) is the standard response format for most REST APIs, structured as key-value pairs, e.g. a gene ID, organism, description, and lists of GO/InterPro cross-references. You can parse JSON responses at the command line using `jq` (if available) or Python, or simply use `grep` for extracting specific fields.
 
-**Exact PlantGenIE endpoint URLs and the current gene ID format will be provided in the session** once confirmed against the new API and genome assembly.
+**PlantGenIE's endpoints take a JSON request body via POST**, unlike the simpler path-based GET requests used for NCBI and UniProt in Lecture 11 — a useful contrast in REST API design. The base URL and gene ID used below are confirmed working; if Jamie McCann updates them ahead of the session, your instructor will let you know.
 
 ### 1.4 Hands-On: Querying the PlantGenIE API
 
@@ -112,52 +112,65 @@ git commit -m "initial commit: lecture15 FAIR practical exercises"
 
 #### Exercise 1A — Retrieve gene information from PlantGenIE
 
-*The exact base URL, endpoint path, and gene ID format below will be confirmed and provided in the session — the new PlantGenIE API uses a different gene identifier scheme than earlier versions.*
+*Confirmed working against the live API — check with your instructor in case Jamie McCann has updated anything since.*
 
 ```bash
-# Your instructor/Jamie McCann will provide the confirmed base URL and an example gene ID
-BASE="PLANTGENIE_BASE_URL"
-GENE_ID="EXAMPLE_GENE_ID"
+BASE="https://www.plantgenie.se/api"
+SPECIES="populus-tremula"
+GENE_ID="Potra2n4c9093"
 
-# Retrieve information for a specific gene
-curl -s "${BASE}/genes/${GENE_ID}" > gene_info.json
+# Retrieve annotation for a specific gene — note this is a POST with a JSON
+# body, not a simple GET-by-path like the NCBI/UniProt calls in Lecture 11
+curl -s -X POST "${BASE}/v1/annotations" \
+  -H "Content-Type: application/json" \
+  -d "{\"species\": \"${SPECIES}\", \"geneIds\": [\"${GENE_ID}\"]}" \
+  > gene_info.json
 
 # Inspect the JSON response
 cat gene_info.json
-
-# Extract specific fields with grep (if jq is not available)
-grep -o '"description": "[^"]*"' gene_info.json
-grep -o '"go_terms": \[[^]]*\]' gene_info.json
 ```
 
 *Questions to answer in your README:*
-- What is the functional annotation of this gene?
-- What GO terms are associated with it?
-- Are there cross-references to other databases (InterPro, NCBI)? Which ones?
-- What does the presence of these cross-references tell you about the Interoperability of this resource?
+- What is the functional annotation of this gene? (If `geneName`/`description` are `null`, what does that tell you about the completeness of this resource's annotation for this gene, versus the resource's design?)
+- Try a different gene ID from the same species — does its annotation differ?
+- What does needing a JSON request body, rather than a simple URL, tell you about this API's design compared to NCBI/UniProt's?
 
 ---
 
 #### Exercise 1B — Query gene expression data
 
-PlantGenIE integrates gene expression data from multiple experiments. The expression endpoint allows retrieval of expression values for a gene across tissues and conditions.
+PlantGenIE integrates gene expression data from multiple experiments. The expression endpoint allows retrieval of expression values for a gene across the samples in a chosen experiment.
 
 ```bash
-# Retrieve expression data for the same gene
-curl -s "${BASE}/expression/${GENE_ID}" > expression_data.json
+# List available experiments and note one for Populus tremula
+curl -s "${BASE}/v1/expression/available-experiments" > experiments.json
+cat experiments.json
+
+EXPERIMENT_ID=15   # "Potra Wood Development" — likely the AspWood dataset (ERP016242) from Part 2
+
+# Retrieve expression data for the same gene across this experiment's samples
+curl -s -X POST "${BASE}/v1/expression" \
+  -H "Content-Type: application/json" \
+  -d "{\"experimentId\": ${EXPERIMENT_ID}, \"geneIds\": [\"${GENE_ID}\"]}" \
+  > expression_data.json
 cat expression_data.json
 
-# How many tissues/conditions are represented?
-grep -o '"tissue": "[^"]*"' expression_data.json | wc -l
+# How many samples are represented?
+python3 -c "import json; d=json.load(open('expression_data.json')); print(len(d['samples']))"
 
-# Which tissues show the highest expression?
-# (Inspect the JSON structure and identify the key for expression value)
-grep -o '"value": [0-9.]*' expression_data.json | sort -t: -k2 -n | tail -5
+# Which sample shows the highest expression?
+python3 -c "
+import json
+d = json.load(open('expression_data.json'))
+pairs = sorted(zip(d['samples'], d['values']), key=lambda x: x[1], reverse=True)
+for sample, value in pairs[:5]:
+    print(sample, value)
+"
 ```
 
 *Questions to answer in your README:*
-- In which tissues is this gene most highly expressed?
-- Are the expression units specified in the API response?
+- In which sample(s) is this gene most highly expressed?
+- What are the expression units (check the `units` field)? Are they specified?
 - What information would you need to reproduce an analysis using this expression data?
 
 ---
@@ -178,27 +191,27 @@ Go to the PlantGenIE website (or NCBI BLAST at https://blast.ncbi.nlm.nih.gov/ f
 Run the same search locally on Kebnekaise, against a local database copy, submitted as a Slurm job:
 
 ```bash
-module load BLAST+/2.17.0
+module load GCC/14.2.0 OpenMPI/5.0.7 BLAST+/2.17.0
 module list   # Verify it loaded correctly
 
 # Check the local database is accessible
-ls /proj/nobackup/bioinformatics_course/databases/swissprot/
+ls /proj/nobackup/cddb_course/databases/swissprot/
 
 cat > blast_tp53.sh << 'EOF'
 #!/bin/bash
 #SBATCH --job-name=blast_tp53
-#SBATCH --account=YOUR_PROJECT_ACCOUNT
+#SBATCH --account=hpc2ncourses2026-013
 #SBATCH --time=00:10:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --output=blast_tp53_%j.out
 #SBATCH --error=blast_tp53_%j.err
 
-module load BLAST+/2.17.0
+module load GCC/14.2.0 OpenMPI/5.0.7 BLAST+/2.17.0
 
 blastp \
   -query TP53_protein.fasta \
-  -db /proj/nobackup/bioinformatics_course/databases/swissprot/swissprot \
+  -db /proj/nobackup/cddb_course/databases/swissprot/swissprot \
   -out TP53_blastp_local.txt \
   -outfmt 6 \
   -evalue 1e-5 \
@@ -237,7 +250,16 @@ RID=$(curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi" \
   | grep -o "RID = [A-Z0-9]*" | awk '{print $3}')
 
 echo "Job submitted. RID: $RID"
-sleep 45
+
+# Poll until the search is ready — a real blastp search against swissprot
+# typically takes 2-3 minutes, not the ~45s you might expect
+while true; do
+  sleep 20
+  STATUS=$(curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&FORMAT_OBJECT=SearchInfo&RID=${RID}" \
+    | grep -o "Status=[A-Z]*")
+  echo "$STATUS"
+  [ "$STATUS" = "Status=READY" ] && break
+done
 
 curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi" \
   --data "CMD=Get&RID=${RID}&FORMAT_TYPE=Text" \
@@ -304,7 +326,7 @@ Work through the following checklist for the dataset provided by your instructor
 
 **The dataset accession for today's exercise:** ERP016242 (European Nucleotide Archive)
 
-**The associated paper:** Sundell D. et al. (2017). AspWood: High-Spatial-Resolution Transcriptome Profiles Reveal Uncharacterized Modularity of Wood Formation in *Populus tremula*. *The Plant Cell* 29(7): 1585–1604. DOI: 10.1105/plcell.17.00153
+**The associated paper:** Sundell D. et al. (2017). AspWood: High-Spatial-Resolution Transcriptome Profiles Reveal Uncharacterized Modularity of Wood Formation in *Populus tremula*. *The Plant Cell* 29(7): 1585–1604. DOI: 10.1105/tpc.17.00153
 
 **Data accessible at:** https://www.ebi.ac.uk/ena/browser/view/ERP016242
 
