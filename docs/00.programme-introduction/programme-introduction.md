@@ -16,6 +16,7 @@ It is the first session students attend, before any technical content begins.
 - Full two-year course structure with timeline
 - Skills map across all courses and career pathways
 - Assessment, grade scale, and AI tools policy
+- Programme council (programråd): nominating two student representatives
 - First week overview
 
 ## Programme leader
