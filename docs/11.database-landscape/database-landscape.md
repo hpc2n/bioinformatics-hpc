@@ -389,7 +389,8 @@ A core principle of FAIR and reproducible bioinformatics is that **the commands 
 
 ```bash
 # Append your findings to the README
-cat >> README.md << 'EOF'
+# Note: EOF is unquoted here so $(date) is expanded to today's date
+cat >> README.md << EOF
 
 ## Data retrieved
 - TP53_mRNA.fasta — Human TP53 mRNA (NM_000546.6) from NCBI RefSeq in FASTA format
