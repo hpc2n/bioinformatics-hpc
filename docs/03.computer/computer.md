@@ -144,10 +144,12 @@ where conventional clock-driven computing is often inefficient.
 
 ### Quantum Computers
 
-Quantum computers are computing systems that use the principles of quantum mechanics to process information differently from 
-classical computers. In a traditional **Von Neumann architecture**, computation relies on bits stored in memory and processed 
+Quantum computers are computing systems that exploit the principles of Quantum Mechanics in their hardware and and use
+Quantum Algorithms to perform computations.
+In a traditional **Von Neumann architecture**, computation relies on bits stored in memory and processed 
 by a central processing unit (CPU). Classical bits can only take the values **0** or **1**. In contrast, quantum computers use 
-**qubits**, which can exist in superpositions of states, enabling them to represent multiple possibilities simultaneously. 
+**qubits**, which can exist in superpositions of states, enabling them to encode a combination of both states until they are 
+measured. 
 Quantum computation also relies on **entanglement** and **quantum interference**, allowing qubits to share correlations and 
 enhance correct computational outcomes.
 

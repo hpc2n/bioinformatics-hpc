@@ -289,7 +289,7 @@ cd ~/course/lecture11-databases
 git init
 
 # Create a README file
-echo "# Lecture 02: Programmatic Database Access" > README.md
+echo "# Lecture 11: Programmatic Database Access" > README.md
 echo "## Date: $(date)" >> README.md
 git add README.md
 git commit -m "initial commit: lecture11 exercise setup"
@@ -426,7 +426,9 @@ Fetch the rbcL gene (*ribulose-1,5-bisphosphate carboxylase/oxygenase large subu
 
 ```bash
 # Search NCBI for Arabidopsis rbcL in the nucleotide database
-curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?\
+# -g disables curl's URL globbing, which otherwise misreads the square
+# brackets in the query below as a range expression and fails
+curl -g "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?\
 db=nucleotide&term=Arabidopsis+thaliana[orgn]+rbcL[gene]+refseq[filter]\
 &retmax=5&retmode=json" > rbcL_search.json
 
@@ -441,7 +443,7 @@ cat rbcL_search.json
 ```bash
 # Search ENA for RNA-seq datasets from Populus tremula
 curl "https://www.ebi.ac.uk/ena/portal/api/search?\
-query=tax_eq(182688)%20AND%20library_strategy=%22RNA-Seq%22\
+query=tax_eq(113636)%20AND%20library_strategy=%22RNA-Seq%22\
 &result=read_study&fields=study_accession,study_title,scientific_name\
 &format=tsv&limit=5" > populus_rnaseq.tsv
 
@@ -452,38 +454,7 @@ cat populus_rnaseq.tsv
 
 ---
 
-## 8. In-Session Quizzes
-
-### Mentimeter Quiz 1 — Prior knowledge (session opening)
-
-*Displayed on screen at the start of the session:*
-
-- Q1: "Which of these databases have you heard of?" (select all that apply): NCBI / ENA / UniProt / Ensembl / GEO / InterPro / KEGG / STRING / AlphaFold / gnomAD / GBIF / None of the above
-- Q2 (open word cloud): "In one word: what is a biological database?"
-
-### Mentimeter Quiz 2 — Classification and evidence codes (end of Block 1, before break)
-
-**Q1:** You have just completed an RNA-seq experiment in *Populus tremula*. Where would you deposit the raw FASTQ reads?
-- A) GEO (Gene Expression Omnibus)
-- B) NCBI SRA (Sequence Read Archive) ✓ — *raw reads go to SRA; the processed expression data may additionally go to GEO*
-- C) UniProt
-- D) Ensembl
-
-**Q2:** A GO annotation on a gene you are studying is labelled IEA. What does this mean, and should it change how you interpret the annotation?
-- A) Inferred from Experimental Analysis — high confidence
-- B) Inferred from Electronic Annotation — automated, no manual review ✓
-- C) International Expert Assessment — curated by a specialist
-- D) Integrated Evidence Archive — aggregated from multiple sources
-
-**Q3:** Which of the following best describes the relationship between GenBank and RefSeq?
-- A) They contain identical sequences with different accession numbers
-- B) RefSeq is a curated, non-redundant subset; GenBank contains all submissions ✓
-- C) GenBank is European; RefSeq is American
-- D) They are operated by different organisations and do not overlap
-
----
-
-## 9. What You Should Know After This Session
+## 8. What You Should Know After This Session
 
 ✅ **Describe the four-tier database hierarchy** and give one example from each tier.
 
@@ -507,7 +478,7 @@ cat populus_rnaseq.tsv
 
 ---
 
-## 10. Further Reading and Resources
+## 9. Further Reading and Resources
 
 - Cochrane G. et al. (2016). The International Nucleotide Sequence Database Collaboration. *Nucleic Acids Research*, 44(D1): D48–D50. — Overview of the INSDC partnership.
 - The UniProt Consortium (2023). UniProt: the Universal Protein Knowledgebase in 2023. *Nucleic Acids Research*, 51(D1): D523–D531. — Current reference for UniProt.

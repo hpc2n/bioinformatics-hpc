@@ -16,14 +16,15 @@
 
 By the end of this session you should be able to:
 
-1. Query a REST API from the command line and parse the response — demonstrating Interoperability in practice
-2. Explain how a well-designed API embodies the Interoperable and Reusable principles of FAIR
-3. Apply a structured metadata sufficiency checklist to a real GEO or ENA dataset
-4. Identify specific metadata fields whose absence would prevent reanalysis of a published RNA-seq study
-5. Assess the computational reproducibility of a published bioinformatics study using a structured framework
-6. Commit all exercise outputs, commands, and findings to Git
+1. Run a BLAST search via a website, from the command line on HPC, and via an API — and explain when and why you would choose each
+2. Query a REST API from the command line and parse the response — demonstrating Interoperability in practice
+3. Explain how a well-designed API embodies the Interoperable and Reusable principles of FAIR
+4. Apply a structured metadata sufficiency checklist to a real GEO or ENA dataset
+5. Identify specific metadata fields whose absence would prevent reanalysis of a published RNA-seq study
+6. Assess the computational reproducibility of a published bioinformatics study using a structured framework
+7. Commit all exercise outputs, commands, and findings to Git
 
-**Links to course ILOs:** This session directly addresses ILOs 1, 3, 7, 12, and 13. It is the practical companion to Lecture 14 and provides direct preparation for the FAIR essay assessment.
+**Links to course ILOs:** This session directly addresses ILOs 1, 3, 7, 9, 12, and 13. It is the practical companion to Lecture 14 and provides direct preparation for the FAIR essay assessment. For background on BLAST itself, see the [BLAST background reference](../12.blast/blast.md).
 
 **Guest contribution:** The PlantGenIE API section (Part 1) is co-delivered by **Jamie McCann**, developer of PlantGenIE (plantgenie.se) at Umeå University. This is an opportunity to hear directly from the person who designed the infrastructure — and to understand how the decisions made when building a database resource either enable or hinder FAIR compliance.
 
@@ -33,30 +34,38 @@ By the end of this session you should be able to:
 
 | Block | Topic | Time |
 |-------|-------|------|
-| Block 1 | **I = Interoperable:** PlantGenIE API — querying from the command line | ~50 min |
+| Block 1 | **I = Interoperable:** Three ways to run BLAST + the PlantGenIE API | ~50 min |
 | Break | | 10 min |
 | Block 2 | **R = Reusable:** GEO/ENA metadata assessment + paper reproducibility exercise | ~40 min |
 | | Essay briefing and Q&A | ~10 min |
 
 ---
 
-## Part 1 — Interoperability: The PlantGenIE API
+## Part 1 — Interoperability: Three Ways to Run BLAST
 
-### 1.1 What is PlantGenIE?
+**Background reading:** If you have not used BLAST before, or want a refresher on what it does and how to interpret its output (E-values, bit scores, the BLOSUM matrix), read the [BLAST background reference](../12.blast/blast.md) before this session. This block assumes you already know what BLAST is — it focuses on *how*, *when*, and *why* you would run it in each of three different ways.
 
-PlantGenIE (plantgenie.se / plantgenie.org) is a bioinformatics resource for plant and tree genomics developed at Umeå University, with primary development by Jamie McCann and contributions from the research groups of Nathaniel Street and others at UPSC. It integrates:
+### 1.1 The Same Search, Three Different Tools
 
-- Genome browsers for boreal forest tree species including *Picea abies* (Norway spruce) and *Populus tremula* (European aspen)
-- Gene expression data and co-expression networks
-- Functional annotations and gene family tools
-- A BLAST search interface
-- **REST API endpoints** providing programmatic access to all of the above
+Running a BLAST search is not just "go to the NCBI website." The same search can be run through a web interface, from the command line against a local database, or programmatically via an API — and which one you should use depends entirely on the task.
 
-PlantGenIE is currently undergoing active redevelopment (plantgenie.se). The exercises in this session use the API endpoints of the current development version. If the site is unavailable on the day of the session, your instructor will provide example responses to work with.
+| Way | How | When to use it | Why |
+|-----|-----|-----------------|-----|
+| **Website** | NCBI BLAST web interface (or a resource's own web BLAST, e.g. PlantGenIE's) | Exploring a single sequence interactively; sharing results with non-CLI collaborators | No setup required; results viewer with alignments, taxonomy, and distance trees built in |
+| **Command line (local/HPC)** | BLAST+ installed on Kebnekaise, run against a local database copy via Slurm | Large-scale or routine searches; integrating BLAST into a documented, reproducible pipeline | No rate limits; fully scriptable; the script itself is your record of exactly what was run |
+| **API** | Submit a query and retrieve results programmatically over HTTP (NCBI's BLAST API, or a resource's own API such as PlantGenIE's) | Automating a small number of searches; integrating BLAST into another tool without a browser | Demonstrates Interoperability directly — the same data a browser shows you, exposed through a documented, machine-readable interface |
+
+The exercises below walk through all three using the same query sequence, so you can compare the experience directly.
+
+### 1.2 What is PlantGenIE?
+
+PlantGenIE (plantgenie.se) is a bioinformatics resource for plant and tree genomics developed at Umeå University, with primary development by Jamie McCann and contributions from the research groups of Nathaniel Street and others at UPSC. It integrates genome browsers, gene expression and co-expression data, functional annotations, a BLAST search interface, and REST API endpoints exposing all of the above — for boreal forest tree species including *Picea abies* (Norway spruce) and *Populus tremula* (European aspen).
+
+PlantGenIE is currently undergoing active redevelopment, including a new *Picea abies* genome assembly with a different gene identifier scheme than earlier versions. **The exact API base URL, endpoints, and gene ID format used in this session's exercises will be confirmed by Jamie McCann ahead of the session** — do not rely on the specific values shown as placeholders below being current. If PlantGenIE is unavailable on the day, your instructor will provide example responses to work with.
 
 The PlantGenIE codebase is publicly available on GitHub: https://github.com/plantgenie
 
-### 1.2 Why PlantGenIE Demonstrates Interoperability
+### 1.3 Why PlantGenIE Demonstrates Interoperability
 
 Recall from Lecture 14 that **Interoperability** requires:
 - Using standard formats and protocols
@@ -73,33 +82,15 @@ PlantGenIE's REST API embodies each of these:
 
 Querying PlantGenIE from the command line — rather than through the web browser — is exactly what Interoperability enables. The same data that is presented visually in the browser is accessible programmatically, in a standard format, to any researcher or tool.
 
-### 1.3 REST APIs: A Brief Technical Overview
+### 1.4 REST APIs: A Brief Technical Overview
 
 A REST (Representational State Transfer) API is an interface to a web service that follows a set of conventions, allowing resources to be retrieved using standard HTTP methods and URLs.
 
-The key concept is that each **endpoint** is a URL that returns a specific piece of data:
+The key concept is that each **endpoint** is a URL that returns a specific piece of data — for example, a gene-information endpoint, an expression-data endpoint, and a BLAST endpoint. You query these endpoints using `curl` or equivalent tools, and the response arrives as JSON or plain text. This is identical in structure to the NCBI and UniProt API calls you made in Lecture 11 — the same concept, a different resource.
 
-```
-https://api.plantgenie.se/blast          ← BLAST search endpoint
-https://api.plantgenie.se/genes/{id}     ← Gene information endpoint
-https://api.plantgenie.se/expression/{id}← Gene expression endpoint
-```
+**JSON** (JavaScript Object Notation) is the standard response format for most REST APIs, structured as key-value pairs, e.g. a gene ID, organism, description, and lists of GO/InterPro cross-references. You can parse JSON responses at the command line using `jq` (if available) or Python, or simply use `grep` for extracting specific fields.
 
-You query these endpoints using `curl` or equivalent tools, and the response arrives as JSON or plain text. This is identical in structure to the NCBI and UniProt API calls you made in Lecture 11 — the same concept, a different resource.
-
-**JSON** (JavaScript Object Notation) is the standard response format for most REST APIs. It is structured as key-value pairs:
-
-```json
-{
-  "gene_id": "MA_10000g0010",
-  "organism": "Picea abies",
-  "description": "predicted protein",
-  "go_terms": ["GO:0005488", "GO:0003676"],
-  "interpro": ["IPR001878"]
-}
-```
-
-You can parse JSON responses at the command line using `jq` (if available) or Python, or simply use `grep` for extracting specific fields.
+**Exact PlantGenIE endpoint URLs and the current gene ID format will be provided in the session** once confirmed against the new API and genome assembly.
 
 ### 1.4 Hands-On: Querying the PlantGenIE API
 
@@ -110,7 +101,7 @@ cd ~/course
 mkdir -p lecture15-fair-practice && cd lecture15-fair-practice
 git init
 cat > README.md << 'EOF'
-# Lecture 06: FAIR in Practice
+# Lecture 15: FAIR in Practice
 ## Exercises in Interoperability and Reusability
 EOF
 git add README.md
@@ -121,15 +112,15 @@ git commit -m "initial commit: lecture15 FAIR practical exercises"
 
 #### Exercise 1A — Retrieve gene information from PlantGenIE
 
-The PlantGenIE API allows retrieval of gene annotations for *Picea abies* and *Populus tremula*. Norway spruce gene identifiers follow the format `MA_[number]g[number]` (e.g. `MA_10000g0010`).
+*The exact base URL, endpoint path, and gene ID format below will be confirmed and provided in the session — the new PlantGenIE API uses a different gene identifier scheme than earlier versions.*
 
 ```bash
-# Query gene information for a Norway spruce gene
-# Replace PLANTGENIE_BASE_URL with the actual base URL provided in the session
-BASE="https://api.plantgenie.se"
+# Your instructor/Jamie McCann will provide the confirmed base URL and an example gene ID
+BASE="PLANTGENIE_BASE_URL"
+GENE_ID="EXAMPLE_GENE_ID"
 
 # Retrieve information for a specific gene
-curl -s "${BASE}/genes/MA_10000g0010" > gene_info.json
+curl -s "${BASE}/genes/${GENE_ID}" > gene_info.json
 
 # Inspect the JSON response
 cat gene_info.json
@@ -153,7 +144,7 @@ PlantGenIE integrates gene expression data from multiple experiments. The expres
 
 ```bash
 # Retrieve expression data for the same gene
-curl -s "${BASE}/expression/MA_10000g0010" > expression_data.json
+curl -s "${BASE}/expression/${GENE_ID}" > expression_data.json
 cat expression_data.json
 
 # How many tissues/conditions are represented?
@@ -171,56 +162,118 @@ grep -o '"value": [0-9.]*' expression_data.json | sort -t: -k2 -n | tail -5
 
 ---
 
-#### Exercise 1C — BLAST via the PlantGenIE API
+#### Exercise 1C — BLAST via the website
 
-PlantGenIE provides a BLAST API endpoint, allowing you to submit a sequence and retrieve hits against the Norway spruce or aspen genome — from the command line, without opening a browser.
+Go to the PlantGenIE website (or NCBI BLAST at https://blast.ncbi.nlm.nih.gov/ for comparison) and run a `blastp` search using the TP53 protein sequence retrieved in Lecture 11.
+
+*Questions to answer in your README:*
+- What parameters did you set (database, programme, E-value threshold)?
+- How long did the search take, and what did the results viewer show you that a plain text file would not?
+- What would make this approach impractical if you needed to search 500 sequences instead of one?
+
+---
+
+#### Exercise 1D — BLAST from the command line (local/HPC)
+
+Run the same search locally on Kebnekaise, against a local database copy, submitted as a Slurm job:
 
 ```bash
-# Fetch the TP53 protein sequence from Lecture 11 (or use the one below)
-# Human TP53 protein, first 50 amino acids as a minimal example
-QUERY=">query_seq
-MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIE"
+module load BLAST+/2.17.0
+module list   # Verify it loaded correctly
 
-# Submit BLAST job to PlantGenIE API
-# Note: the API may return a job ID for asynchronous results (like NCBI API)
-curl -s -X POST "${BASE}/blast" \
-  -H "Content-Type: application/json" \
-  -d "{\"sequence\": \"${QUERY}\", \"database\": \"picea_abies\", \"program\": \"blastp\"}" \
-  > blast_job.json
+# Check the local database is accessible
+ls /proj/nobackup/bioinformatics_course/databases/swissprot/
 
-cat blast_job.json
+cat > blast_tp53.sh << 'EOF'
+#!/bin/bash
+#SBATCH --job-name=blast_tp53
+#SBATCH --account=YOUR_PROJECT_ACCOUNT
+#SBATCH --time=00:10:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --output=blast_tp53_%j.out
+#SBATCH --error=blast_tp53_%j.err
 
-# If a job ID is returned, retrieve results:
-JOB_ID=$(grep -o '"job_id": "[^"]*"' blast_job.json | cut -d'"' -f4)
-echo "Job ID: ${JOB_ID}"
-sleep 30
-curl -s "${BASE}/blast/results/${JOB_ID}" > blast_results.json
-cat blast_results.json
+module load BLAST+/2.17.0
+
+blastp \
+  -query TP53_protein.fasta \
+  -db /proj/nobackup/bioinformatics_course/databases/swissprot/swissprot \
+  -out TP53_blastp_local.txt \
+  -outfmt 6 \
+  -evalue 1e-5 \
+  -num_threads 4 \
+  -max_target_seqs 50
+
+echo "BLAST complete: $(date)"
+EOF
+
+sbatch blast_tp53.sh
+squeue -u $USER
+
+# Once complete, inspect tabular output (format 6)
+# Columns: qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore
+head -20 TP53_blastp_local.txt
+sort -k11 -n TP53_blastp_local.txt | head -20
+awk '$11 < 1e-10' TP53_blastp_local.txt | wc -l
 ```
 
 *Questions to answer in your README:*
-- Does the Norway spruce genome contain any sequences similar to human TP53?
-- How does querying BLAST via an API differ from using the web interface?
+- How does the setup effort compare to the website approach — and how does that change once the database and script already exist?
+- What does the Slurm script itself give you that the website result page does not?
+
+---
+
+#### Exercise 1E — BLAST via an API
+
+Two ways to submit a BLAST search programmatically:
+
+**NCBI's BLAST API** (fully documented, works today):
+
+```bash
+RID=$(curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi" \
+  --data "CMD=Put&PROGRAM=blastp&DATABASE=swissprot&QUERY=P04637\
+&FORMAT_TYPE=Text&email=your@email.se" \
+  | grep -o "RID = [A-Z0-9]*" | awk '{print $3}')
+
+echo "Job submitted. RID: $RID"
+sleep 45
+
+curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi" \
+  --data "CMD=Get&RID=${RID}&FORMAT_TYPE=Text" \
+  > TP53_blastp_swissprot.txt
+
+grep "^>" TP53_blastp_swissprot.txt | head -10
+grep "Score\|Expect\|Identities" TP53_blastp_swissprot.txt | head -20
+```
+
+**PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint, which will be demonstrated live in the session once the new API's endpoint and request format are confirmed.
+
+*Questions to answer in your README:*
+- What makes submitting a BLAST job via API different from the website — in terms of what you get back and how you'd use it in a pipeline?
 - What makes this interaction an example of Interoperability?
 
 ---
 
-#### Exercise 1D — Commit your findings
+#### Exercise 1F — Compare the three approaches and commit your findings
+
+| Approach | Speed | Scalability | Reproducibility | Control |
+|----------|-------|-------------|-----------------|---------|
+| Website | Fast for 1 sequence | Not scalable | Low (no record of parameters) | Limited |
+| API | Moderate | ~10s of sequences | Good (parameters in code) | Moderate |
+| Local HPC | Slow to set up, fast to run | Highly scalable | Excellent (script + Slurm log) | Full |
 
 ```bash
 # Document your findings in the README
 cat >> README.md << 'EOF'
 
-## Part 1: PlantGenIE API (Interoperability)
+## Part 1: Three Ways to Run BLAST + PlantGenIE API (Interoperability)
 
-### Gene information (MA_10000g0010)
+### Gene information and expression (PlantGenIE)
 <!-- Add your findings here -->
 
-### Expression data
-<!-- Add your findings here -->
-
-### BLAST results
-<!-- Add your findings here -->
+### BLAST — website, local/HPC, API
+<!-- Add your findings and the comparison table here -->
 
 ### Interoperability assessment of PlantGenIE
 <!-- In 3-4 sentences: how does the PlantGenIE API demonstrate the I principle of FAIR? -->
@@ -228,9 +281,10 @@ cat >> README.md << 'EOF'
 EOF
 
 git add .
-git commit -m "lecture15: PlantGenIE API exercises complete
+git commit -m "lecture15: three ways to run BLAST + PlantGenIE API exercises complete
 
-- Gene information, expression, and BLAST queries via REST API
+- BLAST via website, local/HPC Slurm job, and API (NCBI + PlantGenIE)
+- Gene information and expression queries via PlantGenIE REST API
 - Findings documented in README"
 ```
 
@@ -416,6 +470,8 @@ git commit -m "lecture15: paper reproducibility assessment complete
 ---
 
 ## What You Should Know After This Session
+
+✅ **Run a BLAST search via a website, from the command line on HPC, and via an API**, and explain when and why you would choose each.
 
 ✅ **Query a REST API from the command line** using `curl` and parse the response with `grep` or `jq`.
 
