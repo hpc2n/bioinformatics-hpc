@@ -76,6 +76,16 @@ Some formats have **binary counterparts** that are more compact and faster to ac
 
 ---
 
+## Set up
+
+```bash
+cd /proj/nobackup/cddb_course/students/YOUR_FOLDER
+mkdir -p lecture13-formats && cd lecture13-formats
+git init
+ln -s /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats/* .
+ls -lh /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats/  # What files are here? What are their sizes?
+```
+
 ## 2. FASTA
 
 You have already worked with FASTA in Lectures 2 and 3. Here we cover it more completely.
@@ -460,20 +470,11 @@ bcftools view -f PASS variants.vcf | grep -v "^#" | wc -l
 
 **Objective:** Work with real examples of each major file format using command-line tools on Kebnekaise. Practice extracting meaningful information from each format without specialised software — then use the appropriate specialist tool.
 
-Your instructor will make example files available at:
-```
-/proj/nobackup/bioinformatics_course/data/formats/
-```
 
 ### Part A — Set up
 
 ```bash
-cd ~/course
-mkdir -p lecture13-formats && cd lecture13-formats
-git init
-cp /proj/nobackup/bioinformatics_course/data/formats/* .
-ls -lh    # What files are here? What are their sizes?
-git add . && git commit -m "initial commit: lecture13 format exercise files"
+cd /proj/nobackup/cddb_course/students/YOUR_FOLDER/lecture13-formats
 ```
 
 ### Part B — FASTQ inspection
@@ -560,7 +561,7 @@ grep -P "^#" sample.vcf | head -20
 # How many variants are in the file?
 grep -Pv "^#" sample.vcf | wc -l
 
-# What chromosomes have variants?
+# What scaffolds have variants?
 grep -Pv "^#" sample.vcf | awk '{print $1}' | sort | uniq -c | sort -rn
 
 # Find any variants in gene Potra2n1c1 (chr1 ~8,865-11,259)
@@ -574,37 +575,39 @@ grep -Pv "^#" sample.vcf | awk 'length($4)!=1 || length($5)!=1' | wc -l   # inde
 
 ### Part F — Document and commit
 
+Write the following as a README file and commit it
+
 ```bash
-cat >> README.md << 'EOF'
 
 ## Format exercise findings
 
 ### FASTQ
 - Number of reads:
-- Read length:
+- Are all reads of the same length?: Yes / No (delete as appropriate)
 - Quality encoding: Phred+33 / Phred+64 (delete as appropriate)
-- Notes:
-
-### BAM
-- Number of mapped reads:
-- Mapping rate:
-- Reference sequences:
-- Notes on CIGAR/FLAG:
-
-### VCF
-- Total variants:
-- PASS variants:
-- SNPs / indels:
 - Notes:
 
 ### GTF
 - Number of genes:
 - Most exon-dense gene:
 - Notes:
+
+### BAM
+- Number of mapped reads:
+- % of properly paired reads:
+- Number of reference sequences:
+- Notes:
+
+### VCF
+- Total variants:
+- Variants in Potra2n1c1:
+- SNPs / indels:
+- Notes:
+
 EOF
 
-git add .
-git commit -m "lecture13: format inspection exercise complete
+git add README
+git commit -m "lecture13: format inspection exercise complete"
 
 - Inspected FASTQ, BAM, VCF, and GTF files
 - Used samtools, grep, awk, and wc throughout
