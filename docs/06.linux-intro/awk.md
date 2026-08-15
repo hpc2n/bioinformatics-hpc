@@ -55,7 +55,8 @@ Aside from the field-variables, ``awk`` also has other built-in variables:
 
 ## Exercises 
 
-1. Try out these examples. Good files for this exercise can be found in the "exercises" -> "awk-qol" directory. 
+1. Try out these examples. Good files for this exercise can be found in the "exercises" -> "awk-qol" directory.
+   <br> 
    A. Search lines for a keyword
    ```bash
    $ awk '/carnivore/ {print}' file.dat
@@ -72,85 +73,59 @@ Aside from the field-variables, ``awk`` also has other built-in variables:
    ```bash
    $ awk '{print $3 "\t" $4}' file.dat
    ``` 
-
-!!! note "Print column 2 and 3 from file 'file.dat', but only those rows that contain the letter ‘r’"
-
-    ```bash
-    $ awk '/r/ {print $2 "\t" $3}' file.dat
-    ```
-
-!!! note "Display line number" 
-
-    ```bash
-    $ awk '{print NR,$0}' file.dat
-    ```
-
-!!! note "Display first and last field, using NF" 
-
-    ```bash
-    $ awk '{print $1,$NF}' file.dat
-    ```
-
-!!! note "Display line from 2 to 5" 
-
-    ```bash
-    $ awk 'NR==3, NR==6 {print NR,$0}' file.dat
-    ```
-
-!!! note "Print the first field and the row number(NR) separated with ' - '" 
-
-    ```bash 
-    $ awk '{print NR " - " $1 }' file.dat
-    ```
-    
-!!! note "Print third column/field" 
-
-    ```bash
-    $ awk '{print $3}' file.dat
-    ```
-
-!!! note "Print any empty line if such exists" 
-
-    ```bash
-    $ awk 'NF == 0 {print NR}' file.dat
-    ```
-
-!!! note "Finding the length of the longest line"   
-
-    ```bash 
-    $ awk '{ if (length($0) > max) max = length($0) } END { print max }' file.dat 
-    ```
-
-!!! note "Count the lines in file.dat" 
-
-    ```bash 
-    $ awk 'END { print NR }' file.dat
-    ``` 
-
-!!! note "Print all lines that has more than 20 characters" 
-
-    ```bash 
-    $ awk 'length($0) > 20' file.dat
-    ``` 
-
-!!! note "Check for a specific string in any specific column"
-
-    ```bash 
-    $ awk '{ if($3 == "fur") print $0;}' file.dat 
-    ```
-
-Some parts of this section was copied from <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">https://www.geeksforgeeks.org/awk-command-unixlinux-examples/</a>. 
-
-2. 
-
-Work with the files in the "exercises" - "awk-qol" directory. 
-
-1. Search "myfile.txt" for the keyword "text". 
-2. Print column 2 only, from "file.dat"
-3. Display line numbers on "myfile.txt" 
-4. Count the lines in "myfile.txt" 
-5. Check for the string "carnivore" in column 1 of "file.dat"
-6. Check for the string "carnivore" in column 2 of "file.dat" 
+   E. Print column 2 and 3 from file 'file.dat', but only those rows that contain the letter ‘r’
+   ```bash
+   $ awk '/r/ {print $2 "\t" $3}' file.dat
+   ```
+   F. Display line number
+   ```bash
+   $ awk '{print NR,$0}' file.dat
+   ```
+   G. Display first and last field, using NF
+   ```bash
+   $ awk '{print $1,$NF}' file.dat
+   ```
+   H. Display line from 2 to 5
+   ```bash
+   $ awk 'NR==3, NR==6 {print NR,$0}' file.dat
+   ```
+   I. Print the first field and the row number(NR) separated with ' - '
+   ```bash 
+   $ awk '{print NR " - " $1 }' file.dat
+   ```
+   J. Print third column/field
+   ```bash
+   $ awk '{print $3}' file.dat
+   ```
+   K. Print any empty line if such exists
+   ```bash
+   $ awk 'NF == 0 {print NR}' file.dat
+   ```
+   L. Finding the length of the longest line
+   ```bash 
+   $ awk '{ if (length($0) > max) max = length($0) } END { print max }' file.dat 
+   ```
+   M. Count the lines in file.dat
+   ```bash 
+   $ awk 'END { print NR }' file.dat
+   ``` 
+   N. Print all lines that has more than 20 characters
+   ```bash 
+   $ awk 'length($0) > 20' file.dat
+   ``` 
+   O. Check for a specific string in any specific column
+   ```bash 
+   $ awk '{ if($3 == "fur") print $0;}' file.dat 
+   ```
+   <br>
+   Some parts of this section was copied from <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">https://www.geeksforgeeks.org/awk-command-unixlinux-examples/</a>. 
+2. Work with the files in the "exercises" - "awk-qol" directory. 
+   A. Search "myfile.txt" for the keyword "text". 
+   B. Print column 2 only, from "file.dat"
+   C. Display line numbers on "myfile.txt" 
+   D. Count the lines in "myfile.txt" 
+   E. Check for the string "carnivore" in column 1 of "file.dat"
+   F. Check for the string "carnivore" in column 2 of "file.dat" 
 
 ## Summary 
 
