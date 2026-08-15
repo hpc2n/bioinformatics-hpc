@@ -333,7 +333,7 @@ For the individual hands-on part we have created some materials which you will d
 
 * Please go to the terminal window where you have downloaded and set up Git.
 * Change the directory to wherever you wish to have the material.
-* Download the zipfile directly with `wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/07.Git/git_materials.zip) and unzip. If you previously fetched the course tarball, then it is in the directory exercises/6.Git/. 
+* Download the zipfile directly with `wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/07.Git/git_materials.zip` and unzip. If you previously fetched the course tarball, then it is in the directory exercises/07.Git/. 
 
 ## Web based Git repositories
 
