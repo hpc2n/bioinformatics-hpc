@@ -26,6 +26,7 @@ Awk is abbreviated from the names of the developers - Aho, Weinberger, and Kerni
 ``awk options 'selection-criteria {action }' input-file > output-file``
 
 Important options: 
+
 - **-F** - Sets a custom field separator
 - **-f** - Reads ``awk`` program from a file
 - **'{}'** - Encloses action to take on match
@@ -52,11 +53,11 @@ Aside from the field-variables, ``awk`` also has other built-in variables:
 - **OFS**: stores the output field separator, which separates the fields when ``awk`` prints them. Default is a blank space. Whenever print has several parameters separated with commas, it will print the value of OFS in between each parameter. 
 - **ORS**: stores the output record separator, which separates the output lines when ``awk`` prints them. The default is a newline character. Print automatically outputs the contents of **ORS** at the end of whatever it is given to print. 
 
-## Examples 
+## Exercises 
 
-!!! hint 
+1. 
 
-    Code along! 
+!!! hint "Try out these examples"
 
     Good files for this exercise can be found in the "exercises" -> "awk-qol" directory. 
 
@@ -152,7 +153,7 @@ Aside from the field-variables, ``awk`` also has other built-in variables:
 
 Some parts of this section was copied from <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">https://www.geeksforgeeks.org/awk-command-unixlinux-examples/</a>. 
 
-## Exercise 
+2. 
 
 Work with the files in the "exercises" - "awk-qol" directory. 
 
