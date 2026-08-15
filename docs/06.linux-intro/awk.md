@@ -119,13 +119,14 @@ Aside from the field-variables, ``awk`` also has other built-in variables:
    ```
    <br>
    Some parts of this section was copied from <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">https://www.geeksforgeeks.org/awk-command-unixlinux-examples/</a>. 
-2. Work with the files in the "exercises" - "awk-qol" directory. 
-   A. Search "myfile.txt" for the keyword "text". 
-   B. Print column 2 only, from "file.dat"
-   C. Display line numbers on "myfile.txt" 
-   D. Count the lines in "myfile.txt" 
-   E. Check for the string "carnivore" in column 1 of "file.dat"
-   F. Check for the string "carnivore" in column 2 of "file.dat" 
+2. Work with the files in the "exercises" - "awk-qol" directory.
+   <br> 
+   A. Search "myfile.txt" for the keyword "text". <br>
+   B. Print column 2 only, from "file.dat"<br>
+   C. Display line numbers on "myfile.txt" <br>
+   D. Count the lines in "myfile.txt" <br>
+   E. Check for the string "carnivore" in column 1 of "file.dat"<br>
+   F. Check for the string "carnivore" in column 2 of "file.dat" <br>
 
 ## Summary 
 
