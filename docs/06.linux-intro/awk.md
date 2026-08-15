@@ -55,35 +55,23 @@ Aside from the field-variables, ``awk`` also has other built-in variables:
 
 ## Exercises 
 
-1. 
-
-!!! hint "Try out these examples"
-
-    Good files for this exercise can be found in the "exercises" -> "awk-qol" directory. 
-
-!!! note "Search lines for a keyword"
-
-    ```bash
-    $ awk '/carnivore/ {print}' file.dat
-    ``` 
-
-!!! note "Print only specific columns" 
-    
-    ```bash
-    $ awk '{print $1,$4}' file.dat
-    ``` 
-
-!!! note "Search for the pattern ‘snow’ in the file 'myfile.txt' and print out the first column" 
-
-    ```bash
-    $ awk '/snow/ {print$1}' myfile.txt
-    ```
-
-!!! note "Print column 3 and 4 from file file.dat"
-
-    ```bash
-    $ awk '{print $3 "\t" $4}' file.dat
-    ``` 
+1. Try out these examples. Good files for this exercise can be found in the "exercises" -> "awk-qol" directory. 
+   A. Search lines for a keyword
+   ```bash
+   $ awk '/carnivore/ {print}' file.dat
+   ``` 
+   B. Print only specific columns
+   ```bash
+   $ awk '{print $1,$4}' file.dat
+   ``` 
+   C. Search for the pattern ‘snow’ in the file 'myfile.txt' and print out the first column
+   ```bash
+   $ awk '/snow/ {print$1}' myfile.txt
+   ```
+   D. Print column 3 and 4 from file file.dat
+   ```bash
+   $ awk '{print $3 "\t" $4}' file.dat
+   ``` 
 
 !!! note "Print column 2 and 3 from file 'file.dat', but only those rows that contain the letter ‘r’"
 
@@ -166,7 +154,7 @@ Work with the files in the "exercises" - "awk-qol" directory.
 
 ## Summary 
 
-!!! note "Keypoints 
+!!! note "Keypoints" 
 
     - We learned about awk
     - We used awk to find a keyword
