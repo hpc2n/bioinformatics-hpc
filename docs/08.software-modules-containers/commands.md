@@ -63,24 +63,22 @@ So how do you find out which versions are available for a specific software?
     ml av MODULE
     ``` 
 
-### Example 
+### Exercises 
 
 Finding available versions of Python. 
 
-!!! tip 
+!!! note "<img src="../../images/shell-logo_small.png"> Exercise"
 
-    Type along!
-
-**module spider**
-
-```bash
-module spider Python
-```
-
-??? note "Click to show" 
+    Try this command using **module spider**
 
     ```bash
-    b-an01 [~]$ module spider Python
+    module spider Python
+    ```
+
+??? note "Click to show output for comparison" 
+
+    ```bash
+    b-cn1613 [~]$ module spider Python
 
     --------------------------------------------------------------------------------------------------------------------
       Python:
@@ -137,7 +135,7 @@ or, in short form
 
 ``ml``
 
-!!! tip 
+!!! tip "Exercise" 
 
     Try it now! 
 
@@ -209,9 +207,11 @@ In order to load modules, we need to know *how*. This differs by center only ina
 
 When you have loaded the module, you can see that your list of loaded modules has changed. This is done with ``module list`` or ``ml``. 
 
+#### Exercise 
+
 !!! hint 
 
-    Type along!  
+    Try the below example. 
 
 !!! note "Example"
 
@@ -281,7 +281,9 @@ When you have loaded the module, you can see that your list of loaded modules ha
 
 There are situations where you need to load several modules, even at centres where there are no prerequisites. 
 
-!!! note "Example" 
+!!! note "Exercise/example" 
+
+    Try this! 
 
     You need some Python packages not included in the base Python you loaded, for instance PyTorch, or TensorFlow, or maybe AlphaFold. 
 
@@ -391,6 +393,10 @@ Unloading one module, with no prerequisites (for clarity, we also do ``module li
 #### Prerequisites
 
 Here we look at what happens when you unload something that has a prerequisite. 
+
+!!! tip
+
+    Type along!
 
 !!! note "Example"
 
@@ -511,6 +517,8 @@ Currently Loaded Modules:
 
 All good! 
 
+### Exercises 
+
 !!! note "<img src="../../images/shell-logo_small.png"> Exercise" 
 
     1. Check how to load R. Pick a version.
@@ -625,7 +633,9 @@ This can be useful if you often need to load the same several modules in specifi
 module save MYMODULES
 ```
 
-**Example** 
+#### Exercise  
+
+Try these commands: 
 
 Assuming we need pandas and matplotlib at HPC2N: 
 
@@ -680,6 +690,8 @@ b-cn1613 [~]$ module describe mypython
 - Possibly add more modules and save them to the collection 
 - Each time you have logged out and are logging in again, you can easily restore the modules you need
     - Much safer than having it in your ``.bashrc`` since that is something easily forgotten about and then when you suddenly need to work with different modules or different versions, maybe months later, you are wondering why it is not working as it should and the reason is that you have auto-loaded things in your ``.bashrc``! 
+
+#### Exercise 
 
 !!! note " <img src="../../images/shell-logo_small.png"> Exercise" 
 
