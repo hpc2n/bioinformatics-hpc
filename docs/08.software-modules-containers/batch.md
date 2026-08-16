@@ -117,3 +117,7 @@ Here there are two things to pay attention to:
     python add-list.py
     ```
 
+!!! hint
+
+    The exercises for this section can also be found in the directory ``exercises/08.access-software/5.modules-in-batch-scripts`` that you got from the tarball.
+

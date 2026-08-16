@@ -807,6 +807,10 @@ Nextflow/25.10.0
 - [Using Python in an HPC environment](https://uppmax.github.io/HPC-python/index.html)
 - [R-MATLAB-Julia](https://uppmax.github.io/R-matlab-julia-HPC/)
 
+!!! hint
+
+    The exercises for this section can also be found in the directory ``exercises/08.access-software/4.software-modules-examples`` that you got from the tarball.
+
 !!! abstract "Summary"
 
     - Many Python and R packages come in bundle modules.

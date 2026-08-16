@@ -158,4 +158,9 @@ supported from intel/2024a and forward.
     | C               | mpicc                     | mpiicc             |
     | C++             | mpicxx                    | mpiicpc            |
     | Fortran         | mpifort                   | mpiifort           |
+
+!!! hint
+
+    The exercises for this section can also be found in the directory ``exercises/08.access-software/3.compiler-toolchains`` that you got from the tarball.
+
  

@@ -2,7 +2,7 @@
 
 In the same folder as this file there are two Python files, "integration2d_mpi.py" and "mmmult.py". 
 
-1. Look at the serial batch script example for your centre at https://hpc2n.github.io/selecting-modules/batch/ 
+1. Look at the serial batch script example at https://hpc2n.github.io/bioinformatics-hpc/08.software-modules-containers/batch/ 
 2. Find out which modules are mentioned as needed for running the Python script.
 3. Try to run the serial R script "mmmult.py" with the command ``python mmmult.py`` and see that it does not run. 
 4. Try load the modules that are required to run the serial R script "mmmult.py"

@@ -762,6 +762,10 @@ gives some conflicting answer, so we try with ``module spider pandas`` and then 
 
     Of course, you can always try doing ``module spider <software or package>`` and ``module avail <software or package>`` directly to see if you are lucky and get the name it is called. 
 
+!!! hint
+
+    The exercises for this section can also be found in the directory ``exercises/08.access-software/2.module-system-commands`` that you got from the tarball.
+
 ## Summary 
 
 !!! note 
