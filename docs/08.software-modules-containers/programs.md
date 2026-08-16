@@ -70,7 +70,7 @@ It varies somewhat between older and newer versions how many packages are instal
 !!! warning
 
     - Make sure to use bundles that are compatible with each-other and with needed Python version.
-    - Otherwise, if none compatible are available, it is better to create isolated environments with virtual environments, see [Virtual environments in Python](../virtenv.md) or HPC2N's documentation about [installing Python packages to virtual environments(https://docs.hpc2n.umu.se/software/userinstalls/#python__packages).
+    - Otherwise, if none compatible are available, it is better to create isolated environments with virtual environments, see [Virtual environments in Python](https://hpc2n.github.io/bioinformatics-hpc/7.software-modules-containers/virtenv.md) or HPC2N's documentation about [installing Python packages to virtual environments](https://docs.hpc2n.umu.se/software/userinstalls/#python__packages).
 
 ??? note "Some well-known bundles"
 
@@ -361,6 +361,8 @@ Biopython/1.85
 Biopython/1.86
 ```
 
+#### Exercise 
+
 !!! exercise "Exercise"
 
     - Check if Biopython has any prerequisites
@@ -382,6 +384,8 @@ Nextflow/23.04.2
 Nextflow/24.04.2
 Nextflow/25.10.0
 ```
+
+#### Exercise 
 
 !!! exercise "Exercise"
 
