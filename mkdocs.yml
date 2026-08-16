@@ -67,14 +67,14 @@ nav:
     - Teamwork: 07.Git/teamwork.md
     - Workflow for Git: 07.Git/workflow.md
   - Accessing software on Kebnekaise: 
-    - Introduction: 7.software-modules-containers/introduction.md
-    - What are modules?: 7.software-modules-containers/what-modules.md
-    - Module system commands: 7.software-modules-containers/commands.md
-    - Compiler toolchains: 7.software-modules-containers/toolchains.md
-    - Software module examples: 7.software-modules-containers/programs.md
-    - Modules in batch scripts: 7.software-modules-containers/batch.md
-    - Containers on Kebnekaise: 7.software-modules-containers/containers-kebnekaise.md
-    - Creating containers: 7.software-modules-containers/create-containers.md
+    - Introduction: 08.software-modules-containers/introduction.md
+    - What are modules?: 08.software-modules-containers/what-modules.md
+    - Module system commands: 08.software-modules-containers/commands.md
+    - Compiler toolchains: 08.software-modules-containers/toolchains.md
+    - Software module examples: 08.software-modules-containers/programs.md
+    - Modules in batch scripts: 08.software-modules-containers/batch.md
+    - Containers on Kebnekaise: 08.software-modules-containers/containers-kebnekaise.md
+    - Creating containers: 08.software-modules-containers/create-containers.md
   - Software from a Git repo: 
     - Installing from Git: 8.software-git-install-compile/git-software.md
   - The batch system (Slurm): 
