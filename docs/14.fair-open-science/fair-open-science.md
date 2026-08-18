@@ -26,7 +26,9 @@ By the end of this session you should be able to:
 9. Connect open science practices to the UN Sustainable Development Goals
 10. Identify the key criteria for the FAIR compliance essay assessment and describe the difference between a passing and a distinction-level response
 
-**Links to course ILOs:** This session directly addresses ILOs 3 and 13. It provides the conceptual foundation for Lecture 15, which is entirely practical. It also introduces the FAIR essay assessment, which is submitted via Canvas.
+**Links to course ILOs:** This session directly addresses ILOs 3 and 13. It provides the conceptual foundation for the self-study practical exercises in Lecture 15. It also introduces the FAIR essay assessment, which is submitted via Canvas.
+
+**Guest contribution:** Jamie McCann, developer of PlantGenIE (plantgenie.se) at Umeå University, joins this session to introduce the platform directly — see Section 9.
 
 ---
 
@@ -239,7 +241,7 @@ Every principle above has a direct, practical consequence for how you write the 
 | "Reads were aligned to the reference genome with default parameters." | "Reads were aligned to GRCh38.p14 (Ensembl release 110) with STAR v2.7.11a (Dobin et al., 2013, *Bioinformatics* 29(1): 15–21), using `--outFilterMismatchNmax 2`; all other parameters were left at their v2.7.11a defaults." |
 | "Differential expression was assessed using standard statistical methods." | "Differential expression was assessed with DESeq2 v1.42.0 (Love et al., 2014, *Genome Biology* 15: 550) in R v4.3.2, using the default Wald test and an adjusted p-value threshold of 0.05 (Benjamini-Hochberg correction)." |
 
-This is the same standard the "Things to Look For" checklist in Section 9.3 asks you to apply when assessing someone else's paper for the essay — here you are looking at the same requirements from the other side, as the author.
+This is the same standard the "Things to Look For" checklist in Section 10.3 asks you to apply when assessing someone else's paper for the essay — here you are looking at the same requirements from the other side, as the author.
 
 ---
 
@@ -297,11 +299,23 @@ The open science agenda connects directly to several UN Sustainable Development 
 
 ---
 
-## 9. Introduction to the FAIR Essay Assessment
+## 9. Guest Contribution: Introducing PlantGenIE
+
+Jamie McCann, developer of PlantGenIE (plantgenie.se) at Umeå University, joins this session to introduce the platform directly — an opportunity to hear from the person who designed the infrastructure, and to see how the choices made when building a database resource either enable or hinder FAIR compliance in practice.
+
+PlantGenIE is a bioinformatics resource for plant and tree genomics developed at Umeå University, with primary development by Jamie McCann. It integrates genome browsers, gene expression and co-expression data, functional annotations, a BLAST search interface, and REST API endpoints exposing all of the above, for boreal forest tree species including *Picea abies* (Norway spruce) and *Populus tremula* (European aspen).
+
+PlantGenIE's REST API is a concrete example of the Interoperable principle already introduced in Section 2.3: standard protocols (HTTP/HTTPS), standard formats (JSON, FASTA), and documented endpoints that any tool or researcher can query directly, without contacting the authors or working through a specific browser interface.
+
+You will work hands-on with these API endpoints — retrieving gene information, expression data, and BLAST results — in the self-study exercises in [Lecture 15: FAIR in Practice](../15.fair-in-practice/fair-in-practice.md).
+
+---
+
+## 10. Introduction to the FAIR Essay Assessment
 
 *This section introduces the Canvas assignment. The full assignment description, marking criteria, submission instructions, and deadline are in Canvas.*
 
-### 9.1 What the Assignment Asks
+### 10.1 What the Assignment Asks
 
 The essay asks you to **critically evaluate the FAIR compliance of a published bioinformatics study** and its associated data.
 
@@ -312,13 +326,13 @@ You will be given a specific published paper and an associated dataset (or you m
 3. Assess the reproducibility of the computational analysis — are software versions specified? Is code available? Could you re-run the analysis?
 4. Make specific, evidenced recommendations for what could have been done differently
 
-### 9.2 What Makes a Good Response
+### 10.2 What Makes a Good Response
 
 **At the G (pass) level:** You correctly identify and describe FAIR issues. You apply the FAIR principles accurately to the specific study. You note whether data is deposited and whether code is available. Your observations are accurate and relevant.
 
 **At the VG (distinction) level:** You do all of the above and additionally evaluate the *consequences* of the FAIR issues you identify. Why does it matter that a particular metadata field is missing? What would a researcher attempting reanalysis be unable to do? You make specific, concrete recommendations that would have improved FAIR compliance. Your argument is structured, evidenced, and analytical rather than descriptive. You demonstrate understanding of the difference between what FAIR *requires* and what it *recommends*, and between the spirit and the letter of each principle.
 
-### 9.3 Things to Look For
+### 10.3 Things to Look For
 
 When assessing a paper and its dataset, ask the following questions:
 
@@ -345,7 +359,7 @@ When assessing a paper and its dataset, ask the following questions:
 - Is analysis code available, and if so, is it documented and versioned?
 - Does the study declare adherence to a community metadata standard (MINSEQE, MIxS, etc.)?
 
-### 9.4 What a Weak and a Strong Response Look Like
+### 10.4 What a Weak and a Strong Response Look Like
 
 **Weak (likely G-level):**
 > "The raw data was deposited in the NCBI SRA with accession SRP123456 (F). The data can be downloaded (A). The authors used standard FASTQ format (I). The methods section describes the analysis (R)."
@@ -357,7 +371,7 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ---
 
-## 10. What You Should Know After This Session
+## 11. What You Should Know After This Session
 
 ✅ **State and explain all four FAIR principles** and give a concrete bioinformatics example for each.
 
@@ -383,7 +397,7 @@ This correctly identifies some FAIR-relevant facts but does not evaluate them cr
 
 ---
 
-## 11. Further Reading and Resources
+## 12. Further Reading and Resources
 
 - Wilkinson M.D. et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. *Scientific Data*, 3: 160018. DOI: 10.1038/sdata.2016.18
 - Chue Hong N.P. et al. (2022). FAIR Principles for Research Software (FAIR4RS Principles). *Research Data Alliance*. DOI: 10.15497/RDA00068

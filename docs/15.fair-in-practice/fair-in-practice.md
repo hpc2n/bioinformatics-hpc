@@ -4,6 +4,8 @@
 **Slides:** [PDF](../../PDFs/lecture-15-fair-in-practice.pdf)  
 **Exercises:** See [`exercises/`](../../exercises/15.fair-in-practice/)
 
+**This is a self-study exercise page, not a taught session.** Work through Parts 1–4 at your own pace, following on from [Lecture 14: FAIR and Open Science](../14.fair-open-science/fair-open-science.md), where Jamie McCann introduced PlantGenIE live. Bring questions to office hours or post on the Canvas discussion board.
+
 ---
 
 ## Hands-On Exercises in Interoperability and Reusability
@@ -14,7 +16,7 @@
 
 ## Session Aims
 
-By the end of this session you should be able to:
+By the end of these exercises you should be able to:
 
 1. Run a BLAST search via a website, from the command line on HPC, and via an API — and explain when and why you would choose each
 2. Query a REST API from the command line and parse the response — demonstrating Interoperability in practice
@@ -25,27 +27,15 @@ By the end of this session you should be able to:
 7. Build a minimal reproducible report (Jupyter notebook) that combines code, narrative, and live output
 8. Commit all exercise outputs, commands, and findings to Git
 
-**Links to course ILOs:** This session directly addresses ILOs 1, 3, 7, 9, 12, and 13. It is the practical companion to Lecture 14 and provides direct preparation for the FAIR essay assessment. For background on BLAST itself, see the [BLAST background reference](../12.blast/blast.md).
+**Links to course ILOs:** These exercises directly address ILOs 1, 3, 7, 9, 12, and 13. They are the practical companion to Lecture 14 and provide direct preparation for the FAIR essay assessment. For background on BLAST itself, see the [BLAST background reference](../12.blast/blast.md).
 
-**Guest contribution:** The PlantGenIE API section (Part 1) is co-delivered by **Jamie McCann**, developer of PlantGenIE (plantgenie.se) at Umeå University. This is an opportunity to hear directly from the person who designed the infrastructure — and to understand how the decisions made when building a database resource either enable or hinder FAIR compliance.
-
----
-
-## Session Structure
-
-| Block | Topic | Time |
-|-------|-------|------|
-| Block 1 | **I = Interoperable:** Three ways to run BLAST + the PlantGenIE API | ~50 min |
-| Break | | 10 min |
-| Block 2 | **R = Reusable:** GEO/ENA metadata assessment + paper reproducibility exercise | ~40 min |
-| Block 3 | Building a reproducible report (Jupyter notebook) | ~15 min |
-| | Essay briefing and Q&A | ~10 min |
+**PlantGenIE guest contribution:** Jamie McCann, developer of PlantGenIE (plantgenie.se) at Umeå University, introduced the platform live in Lecture 14. Part 1 below puts that introduction into practice, working directly with the API he described.
 
 ---
 
 ## Part 1 — Interoperability: Three Ways to Run BLAST
 
-**Background reading:** If you have not used BLAST before, or want a refresher on what it does and how to interpret its output (E-values, bit scores, the BLOSUM matrix), read the [BLAST background reference](../12.blast/blast.md) before this session. This block assumes you already know what BLAST is — it focuses on *how*, *when*, and *why* you would run it in each of three different ways.
+**Background reading:** If you have not used BLAST before, or want a refresher on what it does and how to interpret its output (E-values, bit scores, the BLOSUM matrix), read the [BLAST background reference](../12.blast/blast.md) before starting this part. This part assumes you already know what BLAST is — it focuses on *how*, *when*, and *why* you would run it in each of three different ways.
 
 ### 1.1 The Same Search, Three Different Tools
 
@@ -63,7 +53,7 @@ The exercises below walk through all three using the same query sequence, so you
 
 PlantGenIE (plantgenie.se) is a bioinformatics resource for plant and tree genomics developed at Umeå University, with primary development by Jamie McCann and contributions from the research groups of Nathaniel Street and others at UPSC. It integrates genome browsers, gene expression and co-expression data, functional annotations, a BLAST search interface, and REST API endpoints exposing all of the above — for boreal forest tree species including *Picea abies* (Norway spruce) and *Populus tremula* (European aspen).
 
-PlantGenIE is currently undergoing active redevelopment, including a new *Picea abies* genome assembly with a different gene identifier scheme than earlier versions. The base URL, endpoints, and example gene ID used in this session's exercises have been verified against the live API, and **Jamie McCann is confirming these are final ahead of the session**. If PlantGenIE is unavailable on the day, your instructor will provide example responses to work with.
+PlantGenIE is currently undergoing active redevelopment, including a new *Picea abies* genome assembly with a different gene identifier scheme than earlier versions. The base URL, endpoints, and example gene ID used in these exercises have been verified against the live API. If an endpoint has changed since, check the current API documentation (Section "Further Reading" below) or post on the Canvas discussion board.
 
 The PlantGenIE codebase is publicly available on GitHub: https://github.com/plantgenie
 
@@ -92,7 +82,7 @@ The key concept is that each **endpoint** is a URL that returns a specific piece
 
 **JSON** (JavaScript Object Notation) is the standard response format for most REST APIs, structured as key-value pairs, e.g. a gene ID, organism, description, and lists of GO/InterPro cross-references. You can parse JSON responses at the command line using `jq` (if available) or Python, or simply use `grep` for extracting specific fields.
 
-**PlantGenIE's endpoints take a JSON request body via POST**, unlike the simpler path-based GET requests used for NCBI and UniProt in Lecture 11 — a useful contrast in REST API design. The base URL and gene ID used below are confirmed working; if Jamie McCann updates them ahead of the session, your instructor will let you know.
+**PlantGenIE's endpoints take a JSON request body via POST**, unlike the simpler path-based GET requests used for NCBI and UniProt in Lecture 11 — a useful contrast in REST API design. The base URL and gene ID used below are confirmed working; if the API has changed since, check the current documentation or ask on the Canvas discussion board.
 
 ### 1.4 Hands-On: Querying the PlantGenIE API
 
@@ -114,7 +104,7 @@ git commit -m "initial commit: lecture15 FAIR practical exercises"
 
 #### Exercise 1A — Retrieve gene information from PlantGenIE
 
-*Confirmed working against the live API — check with your instructor in case Jamie McCann has updated anything since.*
+*Confirmed working against the live API — if it has since changed, check the current documentation or ask on the Canvas discussion board.*
 
 ```bash
 BASE="https://www.plantgenie.se/api"
@@ -271,7 +261,7 @@ grep "^>" TP53_blastp_swissprot.txt | head -10
 grep "Score\|Expect\|Identities" TP53_blastp_swissprot.txt | head -20
 ```
 
-**PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint, which will be demonstrated live in the session once the new API's endpoint and request format are confirmed.
+**PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint. Check the current API documentation (Section "Further Reading" below) for its endpoint and request format, and try submitting a query the same way you did for the annotation and expression endpoints in Exercises 1A–1B.
 
 *Questions to answer in your README:*
 - What makes submitting a BLAST job via API different from the website — in terms of what you get back and how you'd use it in a pipeline?
@@ -324,9 +314,9 @@ This exercise asks you to answer that question for a specific, provided dataset.
 
 ### 2.2 The Metadata Sufficiency Checklist
 
-Work through the following checklist for the dataset provided by your instructor. Record your findings — yes/no and supporting evidence — in your README.
+Work through the following checklist for the dataset below. Record your findings — yes/no and supporting evidence — in your README.
 
-**The dataset accession for today's exercise:** ERP016242 (European Nucleotide Archive)
+**The dataset accession for this exercise:** ERP016242 (European Nucleotide Archive)
 
 **The associated paper:** Sundell D. et al. (2017). AspWood: High-Spatial-Resolution Transcriptome Profiles Reveal Uncharacterized Modularity of Wood Formation in *Populus tremula*. *The Plant Cell* 29(7): 1585–1604. DOI: 10.1105/tpc.17.00153
 
@@ -485,14 +475,14 @@ git commit -m "lecture15: paper reproducibility assessment complete
 
 ### 4.1 Why This Exercise
 
-In Part 3 you assessed whether someone else's paper was computationally reproducible. Here, you do the positive version yourself: turn a small piece of today's session into an actual reproducible report — a notebook that combines code, narrative, and live output in one rerunnable file, rather than a terminal transcript and a folder of output files. See [Lecture 14, Section 4.5](../14.fair-open-science/fair-open-science.md) for why this matters.
+In Part 3 you assessed whether someone else's paper was computationally reproducible. Here, you do the positive version yourself: turn a small piece of this exercise into an actual reproducible report — a notebook that combines code, narrative, and live output in one rerunnable file, rather than a terminal transcript and a folder of output files. See [Lecture 14, Section 4.5](../14.fair-open-science/fair-open-science.md) for why this matters.
 
 ### 4.2 Build a Minimal Jupyter Notebook
 
 Launch a Jupyter Notebook session via OnDemand (the same launcher you have used elsewhere in this course), open a new Python notebook in your `lecture15-fair-practice` directory, and build three cells:
 
 1. **Markdown cell** — a one-sentence description of what the notebook does, e.g. "Summarises the PlantGenIE expression query for Potra2n4c9093 from Exercise 1B."
-2. **Code cell** — load and summarise a result you already produced this session:
+2. **Code cell** — load and summarise a result you already produced earlier:
 ```python
 import json
 data = json.load(open("expression_data.json"))
@@ -530,7 +520,7 @@ cat(length(data$samples), "samples returned for this gene\n")
 ```
 ````
 
-Rendering this file (`rmarkdown::render("report.Rmd")`) produces an HTML report the same way `knitr` renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself today; it is here so you recognise the pattern when you meet it properly in the next course.
+Rendering this file (`rmarkdown::render("report.Rmd")`) produces an HTML report the same way `knitr` renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself now; it is here so you recognise the pattern when you meet it properly in the next course.
 
 *Questions to answer in your README:*
 - What did the notebook approach make explicit that a bare script or terminal history would not?
@@ -555,19 +545,13 @@ git commit -m "lecture15: reproducible report reflection complete"
 
 ---
 
-## Essay Briefing
+## Essay Assessment
 
-*This section is covered in the lecture. Key points:*
-
-- The Canvas assignment is now open. The deadline is [set in Canvas].
-- The paper shortlist is in the Lecture 14 handout and in Canvas.
-- The metadata assessment and reproducibility exercises you have just completed are direct practice for the essay — the same frameworks apply.
-- The G/VG distinction comes down to analysis versus description. Noting that code is unavailable is description. Explaining that the absence of code means a reader cannot verify that the normalisation step was applied correctly before the statistical test, and that this makes it impossible to assess whether the reported p-values are valid, is analysis.
-- Bring questions to office hours or post on the Canvas discussion board.
+The full FAIR essay assignment — what it asks, what distinguishes a G from a VG response, and the curated paper shortlist — is covered in [Lecture 14, Section 10](../14.fair-open-science/fair-open-science.md#10-introduction-to-the-fair-essay-assessment). The metadata assessment (Part 2) and paper reproducibility exercise (Part 3) you have just completed are direct practice for the essay — the same frameworks apply. Bring questions to office hours or post on the Canvas discussion board.
 
 ---
 
-## What You Should Know After This Session
+## What You Should Know After These Exercises
 
 ✅ **Run a BLAST search via a website, from the command line on HPC, and via an API**, and explain when and why you would choose each.
 
