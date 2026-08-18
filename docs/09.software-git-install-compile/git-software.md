@@ -115,3 +115,75 @@ If the package is not on CRAN or you want the development version, or you for ot
 ``R CMD INSTALL -l <path-to-R-package>/R-package.tar.gz``
 
 NOTE that if you install a package this way, you need to handle any dependencies yourself.
+
+## Python package from a Git repository 
+
+Many Python packages are already installed on HPC2N, so check first if what you need is already available. You can find many of them listed here: <a href="https://docs.hpc2n.umu.se/software/apps/#python__modules" target="_blank">https://docs.hpc2n.umu.se/software/apps/#python__modules</a>. 
+
+If you need a different package, then there are a number of ways to install it: 
+
+- Download the repository as a zip file and run the included Python scripts
+- Clone the repository from GitHub 
+- Clone/download zip and install
+- Install an installable Python package directly from GitHub with pip
+
+### Download the repo as zip, run included Python scripts 
+
+This is the easiest way, but you have to check yourself if it needs updating/downloading a new version since it is not in any way connected to the Git repository. 
+
+1. Go to the projects GitHub (or other) page.
+2. Click the green "<> Code" button and pick "Download Zip"
+3. Run the script directly without installation. 
+
+### Clone the repository from GitHub 
+
+The difference between this and the previous is that you get a local copy that is connected to the repository on GitHub and so you can update it with got pull (or git fetch).
+
+1. Click the green "<> Code" button and under "Clone" copy the **HTTPS** version of the url. 
+2. Do ``git clone <url you got>``
+3. Run the script, without installation. 
+
+### Clone/download zip and install 
+
+Sometimes you will get a Python package that needs to be downloaded and installed locally. The process can vary from local install with [Python setup](https://docs.hpc2n.umu.se/software/userinstalls/#installing__with__setuppy) to building with ``make``.
+
+!!! note "Example: pybedtools" 
+
+    1. ``git clone https://github.com/daler/pybedtools.git``
+    2. ``cd pybedtools``
+    3. Load modules and prerequisites: ``module load GCC/14.3.0 Cython/3.1.2 git/2.50.1``
+    4. ``python setup.py cythonize``
+
+!!! note "Example: SPAdes" 
+
+    1. Go to: ``https://github.com/ablab/spades/releases/tag/v4.3.0``
+    2. Copy the tarball source code and fetch it: ``wget https://github.com/ablab/spades/archive/refs/tags/v4.3.0.tar.gz``
+    3. Untar it: ``tar zxvf v4.3.0.tar.gz``
+    4. Enter directory: ``cd spades-4.3.0``
+    5. Load some modules: ``module load foss/2026.1 CMake/4.2.1 zlib/2.3.2 Python/3.14.2``
+    6.  Build (default dir is ./bin, remove PREFIZ option if you are happy with that): ``PREFIX=<destination_dir> ./spades_compile.sh``
+ 
+
+### Install an installable Python package directly from GitHub with pip
+
+If the repository you have found on GitHub is structured as an installable Python package, you can install the Python package directly from GitHub, with pip. 
+
+This is very handy, if it is not available on PyPi or similar. 
+
+!!! hint "Syntax"
+
+    The general syntax is: 
+
+    ``pip install git+https://github.com/USERNAME/REPOSITORY.git``
+
+!!! note "Example: BioNumPy"
+
+    1. Load some modules: ``module load GCC/14.3.0 Python/3.13.5 SciPy-bundle/2025.07`` 
+    2. Copy the HTTPS url from the green "<> Code" button.
+    3. Install with pip: ``pip install git+https://github.com/bionumpy/bionumpy.git``
+
+## References 
+
+- https://github.com/danielecook/Awesome-Bioinformatics
+- https://www.fabriziomusacchio.com/blog/2022-10-31-GitHub/ 
+
