@@ -12,7 +12,9 @@ Let us look at some examples.
 
 If you want to install some software you have found on GitHub, the usual way to do so is to clone the repository and then install it, following the description in the README file that is usually there. 
 
-!!! Example "Example: install" 
+!!! Example "Exercise/example: install" 
+
+    Try this example out!
 
     We are going to download and install ``primer3`` found on <a href="https://github.com/primer3-org/primer3" target="_blank">https://github.com/primer3-org/primer3</a>. 
 
@@ -33,6 +35,12 @@ If you want to install some software you have found on GitHub, the usual way to 
 ## R package from GitHub 
 
 There are two main paths here; automatic and manual. 
+
+!!! hint "Installing R packages from CRAN"
+
+    Most CRAN packages are already available in one of the R package modules at Kebnekaise, and you can usually just ask us to install any that are missing. 
+
+    However, if you do want to install an R package from CRAN yourself, then there is [documentation on installing from CRAN here](https://hpc2n.github.io/bioinformatics-hpc/08.software-modules-containers/Rpack/).
 
 ### Automatic download and install from GitHub
 

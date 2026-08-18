@@ -114,9 +114,9 @@ nav:
     - Working with remotes exercises: 07.Git/remotes-full-exercises.md
     - Teamwork extended: 07.Git/teamwork-full.md
     - Teamwork exercises: 07.Git/teamwork-full-exercises.md
-    - Advanced module commands: 7.software-modules-containers/advanced_module.md
-    - Virtual environments and Python: 7.software-modules-containers/virtenv.md
-    - Installing R packages yourself: 7.software-modules-containers/Rpack.md 
+    - Advanced module commands: 08.software-modules-containers/advanced_module.md
+    - Virtual environments and Python: 08.software-modules-containers/virtenv.md
+    - Installing R packages yourself: 08.software-modules-containers/Rpack.md 
 plugins:
   - search
   - external-markdown
