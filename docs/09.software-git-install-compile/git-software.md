@@ -149,12 +149,16 @@ Sometimes you will get a Python package that needs to be downloaded and installe
 
 !!! note "Example: pybedtools" 
 
+    Try it out! 
+
     1. ``git clone https://github.com/daler/pybedtools.git``
     2. ``cd pybedtools``
     3. Load modules and prerequisites: ``module load GCC/14.3.0 Cython/3.1.2 git/2.50.1``
     4. ``python setup.py cythonize``
 
 !!! note "Example: SPAdes" 
+
+    Try it out! 
 
     1. Go to: ``https://github.com/ablab/spades/releases/tag/v4.3.0``
     2. Copy the tarball source code and fetch it: ``wget https://github.com/ablab/spades/archive/refs/tags/v4.3.0.tar.gz``
@@ -178,12 +182,19 @@ This is very handy, if it is not available on PyPi or similar.
 
 !!! note "Example: BioNumPy"
 
+    Try it out! 
+
     1. Load some modules: ``module load GCC/14.3.0 Python/3.13.5 SciPy-bundle/2025.07`` 
     2. Copy the HTTPS url from the green "<> Code" button.
     3. Install with pip: ``pip install git+https://github.com/bionumpy/bionumpy.git``
 
+## Exercises 
+
+Go to <a href="https://github.com/danielecook/Awesome-Bioinformatics" target="_blank">https://github.com/danielecook/Awesome-Bioinformatics</a> and find one or two software and try install them. 
+
 ## References 
 
-- https://github.com/danielecook/Awesome-Bioinformatics
-- https://www.fabriziomusacchio.com/blog/2022-10-31-GitHub/ 
+- <a href="https://github.com/danielecook/Awesome-Bioinformatics" target="_blank">A list of various pieces of Bioinformatics-related software</a>
+- <a href="https://www.fabriziomusacchio.com/blog/2022-10-31-GitHub/" target="_blank">https://www.fabriziomusacchio.com/blog/2022-10-31-GitHub/</a> - I got inspiration from this page for the Python section. 
+
 
