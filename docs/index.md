@@ -20,7 +20,7 @@ Welcome to the Master’s Programme in Bioinformatics, Umeå University
 | 15 Sept. | 13:00-16:00 | [Exercises for biological databases](https://hpc2n.github.io/bioinformatics-hpc/11.database-landscape/database-landscape/) | 
 | 16 Sept. | 09:00-12:00 | [File formats](https://hpc2n.github.io/bioinformatics-hpc/13.file-formats/file-formats/) (Edoardo) | 
 | 16 Sept. | 13:00-16:00 | [Exercises for file formats](https://hpc2n.github.io/bioinformatics-hpc/13.file-formats/file-formats/) | 
-| 17 Sept. | 09:00-14:00 | [The batch system/Slurm](https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/intro/) (Birgitte and Pedro) | 
+| 17 Sept. | 09:00-14:00 | [The batch system/Slurm](https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/intro/) (Birgitte and Pedro) | 
 | 18 Sept. | 13:00-16:00 | [Summary exercises + catch up](https://hpc2n.github.io/bioinformatics-hpc/summary-exercises/) | 
 | 29 Sept. | 13:00-15:00 | Exam (Nathaniel) | 
 
