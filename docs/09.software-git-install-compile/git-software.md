@@ -57,7 +57,9 @@ devtools::install_github("DeveloperName/package")
 
 Remember, if there are any prerequisites, you need to install those first! 
 
-!!! note "Example"
+!!! note "Example/exercise"
+
+    Try this example! 
 
     In this example we want to install the package ``inspectdf``. It is not on CRAN or Bioconductor, so let us get it from the GitHub page for the project: <a href="https://github.com/alastairrushworth/inspectdf" target="_blank">https://github.com/alastairrushworth/inspectdf</a> 
 
