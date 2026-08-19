@@ -83,7 +83,7 @@ echo "What is the hostname? It is this: "
 
     You find the above batch script named "simple.sh" in the exercises tarball, under the folder "introslurm". 
 
-    REMEMBER TO CHANGE THE PROJECT ID TO YOUR OWN! 
+    REMEMBER TO CHANGE THE PROJECT ID TO YOUR OWN! (``hpc2ncourses2026-013``) 
 
     ??? hint "Checking for Slurm project IDs valid for your user"
         From the terminal, you can ask Slurm for project IDs currently
@@ -107,7 +107,7 @@ As you can see, you get the job id when submitting the batch script.
 
 When it has run, you can see with ``ls`` that you got a file called ``slurm-JOBID.out`` in your directory.
 
-!!! hint
+!!! hint "Exercise" 
 
     Try it out! 
 
@@ -190,9 +190,11 @@ b-cn1613 [~]$ squeue --me
           44977164  cpu_zen4 simple.s bbrydsoe PD       0:00      1 (None)
 ```
 
-!!! hint
+!!! hint  "Exercise"
 
     Try it! Remember, "arrow up" lets you quickly access a previous command. 
+
+    The job runs *very* fast, so you may need to resubmit. 
 
 ### scancel
 
@@ -363,7 +365,7 @@ You can see the full list of states and their meaning with ``man sinfo``.
 
 !!! hint
 
-    Try it! Give the command ``sinfo`` and look at the output from your chosen HPC cluster. 
+    Try it! Give the command ``sinfo`` and look at the output. 
 
 ## Slurm job scripts
 
@@ -396,7 +398,7 @@ echo $HOSTNAME
 
     Some of the most commonly used arguments are:
 
-    - `-A PROJ-ID`: The project that should be accounted. It is a simple conversion from the SUPR project id. You can also find your project account with the command projinfo. The PROJ-ID argument is of the form **hpc2nXXXX-YYY** on Kebnekaise  
+    - `-A PROJ-ID`: The project that should be accounted. It is a simple conversion from the SUPR project id. You can also find your project account with the command projinfo. The PROJ-ID argument is of the form **hpc2nXXXX-YYY** (or hpc2ncoursesXXXX-YYY for courses) on Kebnekaise  
     - `-N`: number of nodes
     - `-n`, `--ntasks=`: number of tasks. Since cores-per-task is 1 as default, this then translates to number of cores. NOTE that you cannot be sure the cores all end up on the same node. If you have a threaded job or otherwise need to have all the cores on the same node, you should instead use `-c` or a combination of `-N` and `-c`.  
     - `-c`, `--cores-per-task=`: This changes the number of cores each task may use. Can also be used for getting more memory, with some cores only providing memory. (example: **-c 2 -n 4** allocates 4 tasks and 2 cores per task, totally 8 cores). More about this argument later. 
@@ -430,9 +432,9 @@ The first line is called the “shebang” and it indicates that the script is w
 The second, third, and fourth lines are resource statements to the Slurm batch scheduler. Also called Slurm directives. 
 
 The second line above is where you put your **project ID**. 
-Depending on cluster, this is either always required or not technically required if you only have one project to your name. Regardless, we recommend that you make a habit of including it. 
+Depending on cluster, this is either always required or not technically required if you only have one project to your name. Regardless, we recommend that you make a habit of including it, especially as it is always required on Kebnekaise. **The project ID of this course is hpc2ncourses2026-013**. 
 
-The third line in the example above provides the **walltime**, the maximum amount of time that the program would be allowed to run (5 minutes in this example). If a job does not finish within the specified walltime, the resource management system terminates it and any data that were not already written to a file before time ran out are lost.
+The third line in the example above provides the **walltime**, the maximum amount of time that the program would be allowed to run (5 minutes in this example). If a job does not finish within the specified walltime, the resource management system terminates it and any data that were not already written to a file before time ran out are lost. Maximum walltime is a week on Kebnekaise. 
 
 The fourth line asks for compute resources, here one task (resulting in one core
 as cores-per-task is defaulting to one). You could ask for more cores if it was
@@ -486,11 +488,11 @@ Generally:
 - **`afterok:jobid[:jobid...]`**  begin after specified jobs have run to completion with exit code zero
 - **`singleton`** begin execution after all previously launched jobs with the same name and user have ended 
 
-!!! hint
+### Exercise 
 
-    **Try it!** You can use `matrix-gen.sh` as the first and `mmmult-v2.sh` as the dependent job. You find these batch scripts in the exercises tarball, under your cluster. 
+**Try it!** You can use `matrix-gen.sh` as the first and `mmmult-v2.sh` as the dependent job. You find these batch scripts in the exercises tarball, under 10.batch, in the directory ``dependency``.  
 
-    - Remember to change the project ID of the scripts to be your project ID. 
+    - Remember to change the project ID of the scripts to be your project ID (hpc2ncourses2026-013). 
     - Remember, you can use `squeue --me` to see if your jobs are running - and probably also that one of them is now marked as being dependent on another. 
 
 ### Script example 

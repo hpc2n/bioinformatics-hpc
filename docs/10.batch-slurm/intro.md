@@ -17,7 +17,9 @@
     - job monitoring, job efficiency
     - how to find optimal sbatch options
 
-For most of this section you only need a terminal window on Kebnekaise, so you can either login with regular SSH, with ThinLinc and open a terminal, or even OpenOnDemand's Kebnekaise desktop and open a terminal. Doing the latter one is a bit "overkill" since you are actually running a batch job when you have started a Kebnekaise desktop there. 
+For most of this section you only need a terminal window on Kebnekaise, so you can either login with regular SSH or you could use OpenOnDemand's Kebnekaise desktop and open a terminal. Doing the latter one is a bit "overkill" since you are actually running a batch job when you have started a Kebnekaise desktop there. 
+
+Another option is using ThinLinc if you feel confident with that. 
 
 !!! note "Login info"
 
@@ -42,8 +44,10 @@ It is now time to login and download the exercises.
 
 1. Login to your Kebnekaise, as mentioned above. . 
 2. Create a directory to work in: ``mkdir batch-intro``
-3. Fetch the exercises tarball: ``wget FIX-THIS``
+3. Fetch the exercises tarball: ``wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises.tar.gz``
 4. Unpack the tarball: ``tar zxvf exercises.tar.gz``
 5. You will get a directory ``exercises``. Go into it: ``cd exercises``
-6. There should be various batch script examples (and some .py, .f90 and .c files for the test scripts). 
+6. Go into the subdirectory ``10.batch``.
+7. There will be various directories for the different types of batch scripts. 
+8. Within the directories should be various batch script examples (and some .py, .f90 and .c files for the test scripts). 
 
