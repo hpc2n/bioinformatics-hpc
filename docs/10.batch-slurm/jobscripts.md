@@ -30,7 +30,7 @@ Let's say you have a simple Python script called mmmult.py that creates 2 random
 
     ```bash
     #!/bin/bash
-    #SBATCH -A <sysop> # Change to your own
+    #SBATCH -A hpc2ncourses2026-013 # Change to your own
     #SBATCH --time=00:10:00 # Asking for 10 minutes
     #SBATCH -n 1 # Asking for 1 core
 
@@ -113,8 +113,8 @@ This is an example of an OpenMP batch script for Kebnekaise, that asks for 28 co
 #!/bin/bash
 # Example with 28 cores for OpenMP
 #
-# Project/Account - change to your own 
-#SBATCH -A hpc2nXXXX-YYY
+# Project/Account - change to your own after the course 
+#SBATCH -A hpc2ncourses2026-013
 #
 # Number of cores
 #SBATCH -c 28
@@ -125,8 +125,8 @@ This is an example of an OpenMP batch script for Kebnekaise, that asks for 28 co
 # Clear the environment from any previously loaded modules
 module purge > /dev/null 2>&1
 
-# Load the module environment suitable for the job - here foss/2021b 
-module load foss/2021b 
+# Load the module environment suitable for the job - here foss/2023b 
+module load foss/2023b 
 
 # Set OMP_NUM_THREADS to the same value as -c
 # with a fallback in case it isn't set.
@@ -169,7 +169,7 @@ In the following sample script it is assumed that an mpi executable name `integr
     #!/bin/bash
 
     # Set account 
-    #SBATCH -A <project ID> 
+    #SBATCH -A hpc2ncourses2026-013 
 
     # Set the time 
     #SBATCH -t 00:10:00
@@ -230,7 +230,7 @@ Here asking for 8 tasks, 2 cores per task.
 
 ```bash 
 #!/bin/bash
-#SBATCH -A <account>
+#SBATCH -A hpc2ncourses2026-013
 #SBATCH -t HHH:MM:SS
 #SBATCH -n 8
 #SBATCH -c 2
@@ -246,7 +246,7 @@ Here we have a non-threaded code which needs more memory (up to twice the amount
 
 ```bash 
 #!/bin/bash
-#SBATCH -A <account>
+#SBATCH -A hpc2ncourses2026-013
 #SBATCH -t HHH:MM:SS
 #SBATCH -c 2
 
@@ -343,7 +343,7 @@ cp -p mynewdata.dat $SLURM_SUBMIT_DIR
     ```bash
     #!/bin/bash
     # A very simple example of how to run a Python script with a job array
-    #SBATCH -A <account>
+    #SBATCH -A hpc2ncourses2026-013
     #SBATCH --time=00:05:00 # Asking for 5 minutes
     #SBATCH --array=1-10   # how many tasks in the array
     #SBATCH -c 1 # Asking for 1 core    # one core per task
@@ -351,8 +351,8 @@ cp -p mynewdata.dat $SLURM_SUBMIT_DIR
     # which contains the job id and %a for each step
     #SBATCH -o hello-world-%j-%a.out
 
-    # Load any modules you need
-    module load <module> <python-module> 
+    # Load any modules you need, here for Python 3.13.5 
+    module load GCC/14.3.0 Python/3.13.5 
 
     # Run your Python script
     srun python hello-world-array.py $SLURM_ARRAY_TASK_ID
@@ -360,7 +360,7 @@ cp -p mynewdata.dat $SLURM_SUBMIT_DIR
 
 !!! hint 
 
-    Try it! You can find the above script under the folders in the exercise tarball. 
+    Try it! You can find the above script under the ``10.batch`` -> ``job-array`` folders in the exercise tarball. 
 
 ### Some array comments 
 
@@ -399,7 +399,7 @@ This shows a simple GPU script, asking for 1 or 2 cards on a single node.
 
 ```bash 
 #!/bin/bash
-#SBATCH -A hpc2nXXXX-YYY # Change to your own project ID
+#SBATCH -A hpc2ncourses2026-013 # Change to your own project ID after the course 
 #Asking for runtime: hours, minutes, seconds. At most 1 week
 #SBATCH -t HHH:MM:SS
 # Ask for GPU resources. You pick type as one of the ones shown above
@@ -419,7 +419,7 @@ module load <MODULES>
                        
 !!! hint
 
-   You can find a few example GPU batch scripts and corresponding programs in the cluster subfolders in the exercises tarball. 
+   You can find a few example GPU batch scripts and corresponding programs in the ``GPU-*`` subfolders under ``10.batch`` in the exercises tarball. 
 
 - add-list.py, add-list.sh 
 - pytorch_fitting_gpu.py, pytorch_fitting_gpu.sh
@@ -433,7 +433,7 @@ There are many other types of jobs in Slurm. Here are a few more examples.
 
 ```bash
 #!/bin/bash
-#SBATCH -A <job ID>
+#SBATCH -A hpc2ncourses2026-013
 # Add enough cores that all jobs can run at the same time 
 #SBATCH -n <cores>
 # Make sure the time is long enough that the longest job have time to finish 
@@ -455,7 +455,7 @@ In this example, 3 jobs each with 14 cores
 
 ```bash
 #!/bin/bash
-#SBATCH -A <job ID>
+#SBATCH -A hpc2ncourses2026-013
 # Since the files run simultaneously I need enough cores for all of them to run
 #SBATCH -n 56
 # Remember to ask for enough time for all jobs to complete
@@ -475,7 +475,7 @@ This example is for jobs where some are with 14 tasks with 2 cores per task and 
 
 ```bash
 #!/bin/bash
-#SBATCH -A <job ID>
+#SBATCH -A hpc2ncourses2026-013
 # Since the programs run sequentially I only need enough cores for the largest of them to run
 #SBATCH -c 28
 # Remember to ask for enough time for all jobs to complete
