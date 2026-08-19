@@ -35,19 +35,19 @@ nav:
   - Programme introduction:
     - Overview: 00.programme-introduction/programme-introduction.md
   - 1. What is Bioinformatics?: 01.what-is-bioinformatics/what-is-bioinformatics.md
-  - Connection to a cluster (Kebnekaise):
+  - 2. Connection to a cluster (Kebnekaise):
     - Introduction: 02.connect-cluster/connect-cluster.md
     - OpenOnDemand: 02.connect-cluster/4a.OpenOnDemand/openondemand.md
     - SSH: 02.connect-cluster/4b.ssh-thinlinc/ssh.md
     - ThinLinc (optional): 02.connect-cluster/4b.ssh-thinlinc/thinlinc.md
-  - Introduction to computers: 
+  - 3. Introduction to computers: 
     - What is a computer?: 03.computer/computer.md
-  - Files and file systems:
+  - 4. Files and file systems:
     - Introduction: 04.files-filesystems/files-filesystems.md
     - File systems: 04.files-filesystems/filesystems.md
-  - Intro to compute clusters: 
+  - 5. Intro to compute clusters: 
     - Compute clusters: 05.compute-cluster/compute-cluster.md
-  - Introduction to Linux:
+  - 6. Introduction to Linux:
     - Introduction: 06.linux-intro/linux-intro.md
     - Command Line Interface (CLI): 06.linux-intro/cli.md
     - The Linux File System: 06.linux-intro/filesystem.md
@@ -77,7 +77,7 @@ nav:
     - Creating containers: 08.software-modules-containers/create-containers.md
   - 9. Software from a Git repo: 
     - Installing from Git: 09.software-git-install-compile/git-software.md
-  - The batch system (Slurm): 
+  - 10. The batch system (Slurm): 
     - Introduction: 10.batch-slurm/intro.md
     - Batch system concepts: 10.batch-slurm/concepts.md
     - Introduction to Slurm: 10.batch-slurm/slurm.md

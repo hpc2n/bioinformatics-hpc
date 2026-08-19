@@ -52,3 +52,9 @@ This is the recommended way to do interactive jobs at HPC2N.
         - Regardless, there are many situations where submitting a batch job is the best option instead, including when you want to run jobs that need many resources (time, memory, multiple cores, multiple GPUs) or when you run multiple jobs concurrently or in a specified succession, without need for manual intervention. Batch jobs are often also preferred for automation (scripts) and reproducibility. Many types of application software fall into this category.
     - At centres that have ThinLinc you can usually submit MATLAB jobs to compute resources from within MATLAB.
 
+!!! warning "Note"
+
+    When you are on, say, the Kebnekaise desktop through OpenOnDemand, you already have resources allocated, running an interactive job. Do not also start an interactive job with salloc as it would just be using resouces. 
+
+    Anything you run through OpenOnDemand is already running interactively on the Kebnekaise resources. 
+
