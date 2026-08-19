@@ -4,10 +4,10 @@ This section looks at how to monitor your job(s), including to see if they are e
 
 Many of the relevant commands have already been discussed in previous parts: 
 
-- `squeue`: for viewing the state of the batch queue. More here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#squeue" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#squeue</a>
-- `scancel`: to cancel a job. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scancel" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scancel</a>
-- `sinfo`: information about the partitions/queues. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#sinfo" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#sinfo</a>
-- `scontrol show job`: lots of information about a job. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scontrol__show__job" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/9.batch-slurm/slurm/#scontrol__show__job</a>
+- `squeue`: for viewing the state of the batch queue. More here: <a href="https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#squeue" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#squeue</a>
+- `scancel`: to cancel a job. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#scancel" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#scancel</a>
+- `sinfo`: information about the partitions/queues. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#sinfo" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#sinfo</a>
+- `scontrol show job`: lots of information about a job. More info here: <a href="https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#scontrol__show__job" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/slurm/#scontrol__show__job</a>
 
 But there are several others that have either not been mentioned or only done so briefly, including `sacct`, `projinfo`, `sshare`` and a number of center specific commands. We will look more into all of them here. 
 
