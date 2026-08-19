@@ -15,6 +15,7 @@ Welcome to the Master’s Programme in Bioinformatics, Umeå University
 | 9 Sept. | 11:00-16:00 | [Accessing software on Kebnekaise](https://hpc2n.github.io/bioinformatics-hpc/08.software-modules-containers/introduction/) (Birgitte and Pedro) | 
 | 10 Sept. | 09:00-12:00 | [Software from Git](https://hpc2n.github.io/bioinformatics-hpc/09.software-git-install-compile/git-software/) (Birgitte and Pedro) |
 | 11 Sept. | 09:00-12:00 | [Open science](https://hpc2n.github.io/bioinformatics-hpc/14.fair-open-science/fair-open-science/) (Nathaniel), including a guest introduction to PlantGenIE from Jamie McCann | 
+| 11 Sept. | 13:00-16:00 | [FAIR in Practice](https://hpc2n.github.io/bioinformatics-hpc/15.fair-in-practice/fair-in-practice/) — self-study exercises, work at your own pace | 
 | 15 Sept. | 09:00-12:00 | [Biological databases](https://hpc2n.github.io/bioinformatics-hpc/11.database-landscape/database-landscape/) (Nathaniel) | 
 | 15 Sept. | 13:00-16:00 | [Exercises for biological databases](https://hpc2n.github.io/bioinformatics-hpc/11.database-landscape/database-landscape/) | 
 | 16 Sept. | 09:00-12:00 | [File formats](https://hpc2n.github.io/bioinformatics-hpc/13.file-formats/file-formats/) (Edoardo) | 
