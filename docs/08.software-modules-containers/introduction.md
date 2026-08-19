@@ -1,4 +1,4 @@
-# Accessing software
+# Accessing software on Kebnekaise
 
 A look at the Kebnekaise module system: finding, loading, and using modules.
 
@@ -20,24 +20,17 @@ In addition we will look at how to use containers on Kebnekaise.
      - How to use containers on Kebnekaise
      - Creating containers on your own computer (optional) 
 
-## Preliminary schedule
-
-| Time | Topic | Activity | Teacher |
-| ---- | ----- | -------- | ------- |
-|  |  |  |  |
-
 ## Preparations 
 
-In order to type along and do the exercises, please prepare your course environment now:
+In order to type along and do the exercises, please prepare your course environment now, if you have not done so before:
 
-1) Login to Kebnekaise (see [Connecting to a computer cluster (Kebnekaise)](https://hpc2n.github.io/bioinformatics-hpc/4.connect-cluster/connect-cluster/)
-
-    - You will not need a graphical user interface for this course.
-    - Even so, if you do not have a favourite SSH client, we recomment using <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a>
+1. Login to Kebnekaise (see [Connecting to a computer cluster (Kebnekaise)](https://hpc2n.github.io/bioinformatics-hpc/02.connect-cluster/connect-cluster/)
+    - You will not need a graphical user interface for this course. You can use a regular SSH client. 
     - OpenOnDemand works as well. 
-2) Download the exercises 
-
-    ** FIX THIS **  
+2. Download the exercises 
+    ``wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises.tar.gz``
+3. Extract the exercises
+    ``tar zxvf exercises.tar.gz`` 
 
 ## References
 

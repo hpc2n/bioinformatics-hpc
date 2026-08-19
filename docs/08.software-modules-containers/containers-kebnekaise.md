@@ -130,6 +130,10 @@ Note that Apptainer can run Docker containers as well.
 
     Another option is to run it from inside the Kebnekaise Desktop through OpenOnDemand. 
 
+### Exercise/example 
+
+Try the below example! 
+
 !!! example "Example: running a downloaded Docker image"
 
     In this example we will download a docker image from "https://hub.docker.com/u/biocontainers", convert it to apptainer and run it. We will run it under OpenOnDemand, for ease, but you could also do the downloads on a command line in SSH and the commands in 8. and 9. in a regular batch job since they are a bit longer/heavier. 

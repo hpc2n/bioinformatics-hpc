@@ -1,5 +1,7 @@
 # Editors 
 
+Some of this is a repetition of what was mentioned in the filesystems session on 1. September. 
+
 !!! note "Learning objectives"
 
     **Questions**

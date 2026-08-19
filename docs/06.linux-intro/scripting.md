@@ -146,6 +146,10 @@ Scripting is used to perform complex or repetitive tasks without user interventi
 
     If it is just a one-line command you want to do again and again, then 'alias' is more suited for this. More about that command soon. 
 
+### Exercise 
+
+This exercise is also an example. Please follow it and try the commands. 
+
 We go back to our example script ``my_first.sh``.  There is a second file named ``file2.dat`` which also needs to be processed by the script.   We could open an editor, change the contents of ``my_first.sh`` and re-run it.   This is not really convenient.  To create an improved script copy your script
 
 ```bash

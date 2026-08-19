@@ -70,14 +70,12 @@ Short answer:
     - A **shell** is the main interface seen by the user when they login. It is used to start other programs. It is a command-line shell, and there are many different ones, as mentioned earlier. Command-line shells include flow control constructs to combine commands. In addition to typing commands at an interactive prompt, users can write scripts.
 
 
-## Try it out 
+## Exercise 
 
 !!! question "Exercise: Open a terminal" 
 
-    Do **one** of the following: 
-
     1. Open a terminal on Kebnekaise
-        - Use an SSH client of your choice or [ThinLinc](http://www.cendio.com/thinlinc/what-is-thinlinc).  The server name differs between regular SSH and ThinLinc. 
+        - Use an SSH client of your choice. You can also use Thinlinc if you know how to do this (<a href="https://hpc2n.github.io/bioinformatics-hpc/02.connect-cluster/4b.ssh-thinlinc/thinlinc/" target="_blank">there is optional info here</a>). The server name differs between regular SSH and ThinLinc. 
         - Log in with your USERNAME (SSH): 
         ```bash
         ssh USERNAME@kebnekaise.hpc2n.umu.se
@@ -88,10 +86,10 @@ Short answer:
         ```
         ![ThinLinc logging in to Kebnekaise](../../images/thinlinc-login-kebnekaise.png)
         - If you logged in with ThinLinc, open a terminal.
-    2. Open a terminal on any other HPC system where you have an account.
-    3. Open a terminal on your own computer.
+    2. Open a terminal when connected to Kebnekaise using OpenOnDemand. 
+    3. Open a terminal on your own computer, if it runs Linux, macOS, or Windows Subsystem for Linux.
 
-!!! Exercises "Code-along: try a few commands"
+!!! question "Exercise: try a few commands"
 
     NOTE: These commands will all be described in more depth in the next section on Navigating the File System.  
 

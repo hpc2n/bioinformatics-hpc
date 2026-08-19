@@ -218,6 +218,9 @@ You can write ``module avail`` in short form as ``ml av``.
         - R 
     3. What happens if you change the capitalization when you search for a module? Do you still find it? 
 
+!!! hint 
+
+    The exercises for this section can also be found in the directory ``exercises/08.access-software/1.module-system`` that you got from the tarball. 
 
 ## Summary 
 

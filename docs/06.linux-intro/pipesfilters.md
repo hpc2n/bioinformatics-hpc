@@ -55,9 +55,9 @@ I/O redirection: Usually, standard input comes from the keyboard etc. and the st
 - **2>&1** redirects both standard output and standard error
     - **Example**, redirect output and errors from your program to the same file: <code>./myprogram > logﬁle 2>&1</code>
 
-!!! Example "Some more examples"
+### Exercises 
 
-    **HINT: code-along!** 
+!!! Example "Some more examples - try them!"
 
     ```bash 
     cat file >> file2
@@ -119,7 +119,7 @@ And more text.
 And just a liiiitle more text. 
 ```
 
-!!! tip "Try it"
+!!! tip "Exercise: Try it"
 
      Try the two examples above. You can check with ``cat myfile3.txt`` that it is correct. 
 
@@ -137,13 +137,13 @@ These are some simple and very useful commands.
     - **-m**: list number of characters per file
     - **-w**: list number of words per file
 
-**Examples** 
+#### Exercises 
 
-I ran the examples on my work desktop "defiant". My username is "bbrydsoe". 
+I ran the following examples on my work desktop "defiant". My username is "bbrydsoe". 
 
-!!! try "Code along"
+!!! tip "Exercise: try the examples below"
 
-    Code along for the examples below. We will work with the files in the directory ``exercises/patterns`` that you got from the tarball you downloaded.
+    We will work with the files in the directory ``exercises/patterns`` that you got from the tarball you downloaded.
 
 1. 
  
@@ -238,9 +238,9 @@ The sort command is used in Linux to print the output of a file in given order.
     - **-f**: ignore case
     - **-b**: ignore leading blanks 
 
-**Examples**
+#### Exercises
 
-!!! tip "Code along"
+!!! tip "Try the examples below"
 
     I suggest using the file ``numbers.txt`` in the directory ``exercises/patterns``. 
 
@@ -315,11 +315,11 @@ In many cases it is possible to do the same with an intermediate file (or more),
 
 The pipe is symbolized by a ``|`` between the commands. 
 
-**Examples**
+### Exercises 
 
-!!! tip "Code along!" 
+!!! tip "Try the three examples below!" 
 
-    Try code along for the three examples below. We recommend you use the files in the directory ``exercises/patterns`` to work with. 
+    We recommend you use the files in the directory ``exercises/patterns`` to work with. 
 
 1. Further up on the page, we counted the lines in all the files with extensions ``.txt`` and threw the output to a file. Let us instead *pipe* the output to ``sort -n`` so we can sort it numerically. 
 

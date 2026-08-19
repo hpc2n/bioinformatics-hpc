@@ -229,7 +229,11 @@ Fast-forward
  create mode 100644 newfile.txt
 ```
 
-!!! example "Example: creating a new branch, pushing changes"
+### Exercises 
+
+!!! example "Example/exercise: creating a new branch, pushing changes"
+
+    Try out the command below! 
 
     Here we create a new branch on a remote repository and add a file to it, then push: 
 
@@ -374,7 +378,9 @@ Fast-forward
     bbrydsoe@enterprise-a:~/mytestrepo$ 
     ```
 
-!!! example "Example: Merging branches" 
+!!! example "Example/exercise: Merging branches" 
+
+    Create some branches, both locally and remotely, on Github. Then follow the steps below. 
 
     We will merge the branches from the command line. Let us first see which branches exist in my repo - in this case I will check for both local and remote branches
 
@@ -481,6 +487,8 @@ Fast-forward
 
 
 ## Exercises 
+
+The first three exercises should be done on your own, the rest will be done in teams. 
 
 ### 1. Setting up a repository on GitHub 
 

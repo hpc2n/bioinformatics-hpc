@@ -63,9 +63,11 @@ Basic options:
 ```
 </div> 
 
+### Exercises 
+
 !!! Hint 
 
-    Code-along! You can either download the tarball <code>temp.tar.gz</code> to play with (right-click and save): <a href="../temp.tar.gz">temp.tar.gz</a> or use the exercises.tar.gz tarball. 
+    You can either download and extract the tarball <code>temp.tar.gz</code> to play with (right-click and save): <a href="../temp.tar.gz">temp.tar.gz</a> or use the exercises.tar.gz tarball for some files and directories to work with. 
 
 **Here follows some examples:**  
 
@@ -103,6 +105,8 @@ There are several possible ways to transfer files and data to and from Linux sys
 
     FTP is generally not permitted due to security problems! 
 
+In addition, you can transfer files through the OpenOnDemand file interface, but it is not recommended for many/large files. 
+
 ### SCP
 
 SCP (Secure CoPy) is a simple way of transferring files between two machines that use the SSH (Secure SHell) protocol. 
@@ -118,6 +122,11 @@ SCP (Secure CoPy) is a simple way of transferring files between two machines tha
     ```bash
     $ scp user@hostname:somedir/sourcefilename destfilename
     ```
+
+#### Exercises  
+
+1. Transfer a file from your personal computer to Kebnekaise, using scp. Place it into your home directory or into your space on the course project storage. 
+2. Should you initiate this transfer from your personal computer or from Kebnekaise? Why? 
 
 ### SFTP
 
@@ -169,9 +178,16 @@ rsync is a utility for efficiently transferring and synchronizing files between 
     rsync -a /path/to/localdir/ username@remote_host:destination_directory
     ```
 
+#### Exercises 
+
+1. Use rsync to transfer a file from your home computer to Kebnekaise (or you can transfer between two directories on Kebnekaise if you do not have rsync on your own computer). 
+2. Use rsync to transfer a directory from your home computer to Kebnekaise (or from one directory on Kebnekaise to another), preserving owners, permission, and symbolic links. 
+
 Much more information and examples can be found in the HPC2N documentation's <a href="https://docs.hpc2n.umu.se/documentation/filesystems/#file__transfer" target="_blank">File transfer section</a>. 
 
 ## Connecting with ssh
+
+Reminder! 
 
 The <code>ssh</code> command is used for connecting to a remote computer.
 
@@ -190,10 +206,6 @@ Some useful examples:
     ```
 
     **Note** that you need to have an X11 server like Xming or Cygwin on Windows, XQuartz on macOS (included on Linux) to open a graphical display. 
-
-!!! Tip 
-
-    If you are using a graphical display, then we are **strongly** recommending ThinLinc. There is information about connecting with ThinLinc at most Swedish HPC centres. Here is the <a href="https://docs.hpc2n.umu.se/tutorials/connections/#thinlinc" target="_blank">information from HPC2N</a>.  
 
 !!! note "Keypoints" 
 

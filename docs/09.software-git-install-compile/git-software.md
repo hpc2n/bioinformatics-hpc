@@ -12,7 +12,9 @@ Let us look at some examples.
 
 If you want to install some software you have found on GitHub, the usual way to do so is to clone the repository and then install it, following the description in the README file that is usually there. 
 
-!!! Example "Example: install" 
+!!! Example "Exercise/example: install" 
+
+    Try this example out!
 
     We are going to download and install ``primer3`` found on <a href="https://github.com/primer3-org/primer3" target="_blank">https://github.com/primer3-org/primer3</a>. 
 
@@ -34,6 +36,12 @@ If you want to install some software you have found on GitHub, the usual way to 
 
 There are two main paths here; automatic and manual. 
 
+!!! hint "Installing R packages from CRAN"
+
+    Most CRAN packages are already available in one of the R package modules at Kebnekaise, and you can usually just ask us to install any that are missing. 
+
+    However, if you do want to install an R package from CRAN yourself, then there is [documentation on installing from CRAN here](https://hpc2n.github.io/bioinformatics-hpc/08.software-modules-containers/Rpack/).
+
 ### Automatic download and install from GitHub
 
 If you want to install a package that is not on CRAN, but which do have a GitHub page, then there is an automatic way of installing, but you need to handle prerequsites yourself by installing those first. It can also be that the package is not in as finished a state as those on CRAN, so be careful.
@@ -49,7 +57,9 @@ devtools::install_github("DeveloperName/package")
 
 Remember, if there are any prerequisites, you need to install those first! 
 
-!!! note "Example"
+!!! note "Example/exercise"
+
+    Try this example! 
 
     In this example we want to install the package ``inspectdf``. It is not on CRAN or Bioconductor, so let us get it from the GitHub page for the project: <a href="https://github.com/alastairrushworth/inspectdf" target="_blank">https://github.com/alastairrushworth/inspectdf</a> 
 
@@ -105,3 +115,86 @@ If the package is not on CRAN or you want the development version, or you for ot
 ``R CMD INSTALL -l <path-to-R-package>/R-package.tar.gz``
 
 NOTE that if you install a package this way, you need to handle any dependencies yourself.
+
+## Python package from a Git repository 
+
+Many Python packages are already installed on HPC2N, so check first if what you need is already available. You can find many of them listed here: <a href="https://docs.hpc2n.umu.se/software/apps/#python__modules" target="_blank">https://docs.hpc2n.umu.se/software/apps/#python__modules</a>. 
+
+If you need a different package, then there are a number of ways to install it: 
+
+- Download the repository as a zip file and run the included Python scripts
+- Clone the repository from GitHub 
+- Clone/download zip and install
+- Install an installable Python package directly from GitHub with pip
+
+### Download the repo as zip, run included Python scripts 
+
+This is the easiest way, but you have to check yourself if it needs updating/downloading a new version since it is not in any way connected to the Git repository. 
+
+1. Go to the projects GitHub (or other) page.
+2. Click the green "<> Code" button and pick "Download Zip"
+3. Run the script directly without installation. 
+
+### Clone the repository from GitHub 
+
+The difference between this and the previous is that you get a local copy that is connected to the repository on GitHub and so you can update it with got pull (or git fetch).
+
+1. Click the green "<> Code" button and under "Clone" copy the **HTTPS** version of the url. 
+2. Do ``git clone <url you got>``
+3. Run the script, without installation. 
+
+### Clone/download zip and install 
+
+Sometimes you will get a Python package that needs to be downloaded and installed locally. The process can vary from local install with [Python setup](https://docs.hpc2n.umu.se/software/userinstalls/#installing__with__setuppy) to building with ``make``.
+
+!!! note "Example: pybedtools" 
+
+    Try it out! 
+
+    1. ``git clone https://github.com/daler/pybedtools.git``
+    2. ``cd pybedtools``
+    3. Load modules and prerequisites: ``module load GCC/14.3.0 Cython/3.1.2 git/2.50.1``
+    4. ``python setup.py cythonize``
+
+!!! note "Example: SPAdes" 
+
+    Try it out! 
+
+    1. Go to: ``https://github.com/ablab/spades/releases/tag/v4.3.0``
+    2. Copy the tarball source code and fetch it: ``wget https://github.com/ablab/spades/archive/refs/tags/v4.3.0.tar.gz``
+    3. Untar it: ``tar zxvf v4.3.0.tar.gz``
+    4. Enter directory: ``cd spades-4.3.0``
+    5. Load some modules: ``module load foss/2026.1 CMake/4.2.1 zlib/2.3.2 Python/3.14.2``
+    6.  Build (default dir is ./bin, remove PREFIZ option if you are happy with that): ``PREFIX=<destination_dir> ./spades_compile.sh``
+ 
+
+### Install an installable Python package directly from GitHub with pip
+
+If the repository you have found on GitHub is structured as an installable Python package, you can install the Python package directly from GitHub, with pip. 
+
+This is very handy, if it is not available on PyPi or similar. 
+
+!!! hint "Syntax"
+
+    The general syntax is: 
+
+    ``pip install git+https://github.com/USERNAME/REPOSITORY.git``
+
+!!! note "Example: BioNumPy"
+
+    Try it out! 
+
+    1. Load some modules: ``module load GCC/14.3.0 Python/3.13.5 SciPy-bundle/2025.07`` 
+    2. Copy the HTTPS url from the green "<> Code" button.
+    3. Install with pip: ``pip install git+https://github.com/bionumpy/bionumpy.git``
+
+## Exercises 
+
+Go to <a href="https://github.com/danielecook/Awesome-Bioinformatics" target="_blank">https://github.com/danielecook/Awesome-Bioinformatics</a> and find one or two software and try install them. 
+
+## References 
+
+- <a href="https://github.com/danielecook/Awesome-Bioinformatics" target="_blank">A list of various pieces of Bioinformatics-related software</a>
+- <a href="https://www.fabriziomusacchio.com/blog/2022-10-31-GitHub/" target="_blank">https://www.fabriziomusacchio.com/blog/2022-10-31-GitHub/</a> - I got inspiration from this page for the Python section. 
+
+

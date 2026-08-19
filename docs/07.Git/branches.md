@@ -120,7 +120,7 @@ git merge cool-feature
 $ git branch -d cool-feature
 ```
 
-!!! example "Example - Type along if you wish"
+!!! example "Exercise/example - Type along!"
 
     * Create a directory. Initialize a repository
     * Create a file, stage it, and commit it
@@ -474,7 +474,7 @@ After stashing your uncommitted changes you can continue **working on other thin
 
 The uncommitted changes that are stored in the stash **can be taken out and applied to any branch, including the original branch.**
 
-!!! warning "Optional Stashing example"
+!!! warning "Stashing example - try on your own in the afternoon"
 
     First do a `git status` in the branch where you may have uncommitted changes: 
 
@@ -576,19 +576,19 @@ while standing on the branch you want to merge to.
 The most commonly used 
 
 * Fast Forward Merge 
-  * the commit history is one straight line. 
-  * You create a branch, you make some commits there, but no changes to the 'master'. You then just merge onto the 'master'. This just moves the pointer for the 'master' branch forward in a straight line. 
+    * the commit history is one straight line. 
+    * You create a branch, you make some commits there, but no changes to the 'master'. You then just merge onto the 'master'. This just moves the pointer for the 'master' branch forward in a straight line. 
 * Recursive Merge (until 2.32)
-  * make a branch and make some commits there, but also make new commits that are made on another branch, like the ‘master‘. 
-  * Then, when you want to merge, git will recurse over the branch and create a new merge commit. The merge commit will continue to have two parents. 
+    * make a branch and make some commits there, but also make new commits that are made on another branch, like the ‘master‘. 
+    * Then, when you want to merge, git will recurse over the branch and create a new merge commit. The merge commit will continue to have two parents. 
 * ORT (from git-2.33)
-  * acronym for "Ostensibly Recursive’s Twin"
-  * replacement for the previous default algorithm, recursive.
-  * This is the default merge strategy when pulling or merging one branch. 
-  * Results in fewer merge conflicts without causing mismerges 
+    * acronym for "Ostensibly Recursive’s Twin"
+    * replacement for the previous default algorithm, recursive.
+    * This is the default merge strategy when pulling or merging one branch. 
+    * Results in fewer merge conflicts without causing mismerges 
 
 
-!!! example "Example: A merge conflict" 
+!!! example "Exercise/example: A merge conflict" 
 
     TYPE ALONG! 
 
