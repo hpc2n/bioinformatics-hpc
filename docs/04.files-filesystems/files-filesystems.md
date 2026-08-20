@@ -15,6 +15,14 @@
 - Navigating and modifying the file tree will be covered in the session "Introduction to Linux"
 - File formats and file structure will be covered in the session "Bioinformatics File Formats" 
 
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 9:00 | Intro to computers | lecture | PO |
+| 10:15 | Break | Break | Break |
+| 10:30 | Files and filesystems | lecture + exercises | BB |
+
 ## What is a file? 
 
 Files are containers for data. There are several types. Common ones are: 

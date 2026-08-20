@@ -1,5 +1,13 @@
 # What is a computer?
 
+## Schedule
+
+| Time | Topic | Activity | Teacher | 
+| ---- | ----- | -------- | ------- |
+| 9:00 | Intro to computers | lecture | PO |
+| 10:15 | Break | Break | Break | 
+| 10:30 | Files and filesystems | lecture + exercises | BB |
+
 !!! note 
 
     "A computer is a machine that can be programmed to automatically carry out sequences of arithmetic or logical operations (computation)." 
