@@ -11,9 +11,10 @@ The exercises will be done on Kebnekaise, though.
 
 | Time | Topic | Activity | Teacher |
 | ---- | ----- | -------- | ------- |
-| 9:00 | Intro to clusters | lecture | BB |
-| 10:15 | Break | Break | Break |
-| 10:30 | Kebnekaise | lecture + visit to machine room | BB |
+| 13:00 | Intro to clusters | lecture | BB |
+| 14:15 | Break | Break | Break |
+| 14:30 | Kebnekaise | lecture + visit to machine room | BB |
+| 16:00 | End of day | . | . |
 
 ## What is a cluster
 
