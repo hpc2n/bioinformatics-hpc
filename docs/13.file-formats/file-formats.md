@@ -8,7 +8,7 @@ output:
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
 **Exercises:** Find material on HPC2N at /proj/nobackup/cddb_course/Bioinformatics_File_Formats
-**Examples:** You can find examples of each file format at /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats
+**Examples:** You can find examples of each file format at "/proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats". Do not copy them to your directories, link them with a symbolic link like shown in the Setup section.
 
 ---
 
@@ -76,7 +76,7 @@ Some formats have **binary counterparts** that are more compact and faster to ac
 
 ---
 
-## Set up
+## Setup
 
 ```bash
 cd /proj/nobackup/cddb_course/students/YOUR_FOLDER
@@ -286,7 +286,7 @@ sort -k1,1 -k2,2n regions.bed > regions.sorted.bed
 awk '$1=="chr1"' regions.bed | wc -l
 
 # With bedtools (if available)
-module load BEDTools/2.31.1
+module load GCC/14.3.0 BEDTools/2.31.1
 bedtools intersect -a regions_a.bed -b regions_b.bed | wc -l
 ```
 
@@ -364,7 +364,7 @@ Example: `50M2I30M3D20M` means: 50 aligned bases, 2-base insertion, 30 aligned b
 
 ```bash
 # Load samtools on HPC2N
-module load SAMtools/1.22
+module load GCC/14.2.0 SAMtools/1.22
 
 # View a BAM file as human-readable SAM
 samtools view -h alignment.bam | head -50
@@ -441,7 +441,7 @@ grep -v "^#" variants.vcf | awk '$7=="PASS"' | wc -l
 grep -v "^#" variants.vcf | awk 'length($4)==1 && length($5)==1'
 
 # With bcftools (more robust for complex VCFs)
-module load BCFtools/1.19
+module load GCC/13.2.0 BCFtools/1.19
 bcftools stats variants.vcf | grep "^SN"
 bcftools view -f PASS variants.vcf | grep -v "^#" | wc -l
 ```
@@ -471,7 +471,7 @@ bcftools view -f PASS variants.vcf | grep -v "^#" | wc -l
 **Objective:** Work with real examples of each major file format using command-line tools on Kebnekaise. Practice extracting meaningful information from each format without specialised software — then use the appropriate specialist tool.
 
 
-### Part A — Set up
+### Part A — Setup
 
 ```bash
 cd /proj/nobackup/cddb_course/students/YOUR_FOLDER/lecture13-formats
