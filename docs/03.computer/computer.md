@@ -5,8 +5,8 @@
 | Time | Topic | Activity | Teacher | 
 | ---- | ----- | -------- | ------- |
 | 9:00 | Intro to computers | lecture | PO |
-| 10:15 | Break | Break | Break | 
-| 10:30 | Files and filesystems | lecture + exercises | BB |
+| 10:20 | Break | Break | Break | 
+| 10:35 | Files and filesystems | lecture + exercises | BB |
 | 12:00 | End of lectures | . | . |
 
 !!! note 
