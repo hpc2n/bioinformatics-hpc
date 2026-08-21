@@ -391,6 +391,7 @@ This fetch-decode-execute-write-back cycle runs continuously and billions of tim
 
     ```bash
     $ lscpu 
+
     Architecture:                x86_64
       CPU op-mode(s):            32-bit, 64-bit
       Address sizes:             48 bits physical, 48 bits virtual
@@ -451,7 +452,24 @@ This fetch-decode-execute-write-back cycle runs continuously and billions of tim
       Tsx async abort:           Not affected
       Vmscape:                   Mitigation; IBPB before exit to userspace
     ``` 
+??? note "How to get information about the NUMA node topology?"
 
+    ```bash
+    $ numactl --hardware 
+
+    available: 2 nodes (0-1)
+    node 0 cpus: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+    node 0 size: 128374 MB
+    node 0 free: 121829 MB
+    node 1 cpus: 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+    node 1 size: 128969 MB
+    node 1 free: 122201 MB
+    node distances:
+    node   0   1 
+      0:  10  32 
+      1:  32  10
+    ```
+    
 # Summary
 
 | Component              | Role                                                                                  |
