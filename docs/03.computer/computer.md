@@ -64,7 +64,7 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 ??? note "What type of GPU is available?"
 
-    ```bash
+    ```text
     $ nvidia-smi 
 
     Fri Aug 21 09:57:14 2026       
@@ -389,7 +389,7 @@ This fetch-decode-execute-write-back cycle runs continuously and billions of tim
 
 ??? note "How to get information about the CPU?"
 
-    ```bash
+    ```text
     $ lscpu 
 
     Architecture:                x86_64
