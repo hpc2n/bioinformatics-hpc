@@ -62,7 +62,7 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 <figcaption>GPU chip. Credits: https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252</figcaption>
 </figure>
 
-??? What type of GPU is available?
+??? note "What type of GPU is available?"
 
     ```bash
     $ nvidia-smi 
@@ -387,7 +387,7 @@ than local transfers.
 
 This fetch-decode-execute-write-back cycle runs continuously and billions of times per second while a program is executing.
 
-??? How to get information about the CPU?
+??? note "How to get information about the CPU?"
 
     ```bash
     $ lscpu 
