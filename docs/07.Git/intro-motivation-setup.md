@@ -2,6 +2,23 @@
 
 The purpose of this session is to learn the fundamentals of version control — manage file history, collaborate efficiently, and protect your work from accidental loss. 
 
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 09:00 | Intro to Git, setup, motivation | Lecture + exercises | PO |
+| 09:30 | Basic commands | Lecture + code-along + exercises | PO |
+| 10:30 | BREAK | | | 
+| 10:45 | Branches, merges, and conflicts | Lecture + code-along + exercises | BB |
+| 11:45 | Working with remotes I | Lecture  | PO | 
+| 12:00 | BREAK | | |
+| 13:00 | Working with remotes II | Lecture + code-along + exercises | PO |
+| 13:15 | Teamwork | Lecture + code-along + exercises | BB |
+| 14:00 | Exercises | Exercises on your own/in teams | |
+| 14:30 | BREAK | | | 
+| 14:45 | Exercises | Exercises on your own/in teams | |
+| 16:00 | End of course day | | | 
+
 ## Understanding Git
 
 Git is a **version control tool** designed to keep track of modifications made to files over time. It allows developers to revisit earlier versions of a project, compare changes, and work together without overwriting each other’s progress.
