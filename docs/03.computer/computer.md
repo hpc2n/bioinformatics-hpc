@@ -111,6 +111,16 @@ This picture shows how the different components talk together.
 A computer is a machine that can be programmed to automatically carry out sequences of 
 arithmetic or logical operations (computation). (Wikipedia) 
 
+??? note "What is my Operating System (OS)?"
+
+    ```text
+    $ cat /etc/os-release
+    PRETTY_NAME="Ubuntu 22.04.5 LTS"
+    NAME="Ubuntu"
+    VERSION_ID="22.04"
+    ...
+    ```
+
 # Basic Functions of a Computer
 
 Computers are built around four fundamental operations:
