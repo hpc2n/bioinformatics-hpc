@@ -20,6 +20,23 @@ In addition we will look at how to use containers on Kebnekaise.
      - How to use containers on Kebnekaise
      - Creating containers on your own computer (optional) 
 
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 09:00 | Introduction and preparations | Lecture + code-along | PO |
+| 09:15 | The module system | Lecture + code-along + exercises | PO |
+| 09:25 | Module system commands | | |
+| 10:45 | Branches, merges, and conflicts | Lecture + code-along + exercises | BB |
+| 11:45 | Working with remotes I | Lecture  | PO |
+| 12:00 | BREAK | | |
+| 13:00 | Working with remotes II | Lecture + code-along + exercises | PO |
+| 13:15 | Teamwork | Lecture + code-along + exercises | BB |
+| 14:00 | Exercises | Exercises on your own/in teams | |
+| 14:30 | BREAK | | |
+| 14:45 | Exercises | Exercises on your own/in teams | |
+| 16:00 | End of course day | | |
+
 ## Preparations 
 
 In order to type along and do the exercises, please prepare your course environment now, if you have not done so before:
