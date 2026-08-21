@@ -454,7 +454,7 @@ This fetch-decode-execute-write-back cycle runs continuously and billions of tim
     ``` 
 ??? note "How to get information about the NUMA node topology?"
 
-    ```bash
+    ```text
     $ numactl --hardware 
 
     available: 2 nodes (0-1)
@@ -469,7 +469,7 @@ This fetch-decode-execute-write-back cycle runs continuously and billions of tim
       0:  10  32 
       1:  32  10
     ```
-    
+
 # Summary
 
 | Component              | Role                                                                                  |
