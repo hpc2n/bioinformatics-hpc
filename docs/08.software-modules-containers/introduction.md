@@ -24,17 +24,16 @@ In addition we will look at how to use containers on Kebnekaise.
 
 | Time | Topic | Activity | Teacher |
 | ---- | ----- | -------- | ------- |
-| 09:00 | Introduction and preparations | Lecture + code-along | PO |
-| 09:15 | The module system | Lecture + code-along + exercises | PO |
-| 09:25 | Module system commands | | |
-| 10:45 | Branches, merges, and conflicts | Lecture + code-along + exercises | BB |
-| 11:45 | Working with remotes I | Lecture  | PO |
-| 12:00 | BREAK | | |
-| 13:00 | Working with remotes II | Lecture + code-along + exercises | PO |
-| 13:15 | Teamwork | Lecture + code-along + exercises | BB |
-| 14:00 | Exercises | Exercises on your own/in teams | |
-| 14:30 | BREAK | | |
-| 14:45 | Exercises | Exercises on your own/in teams | |
+| 11:00 | Introduction and preparations | Lecture + code-along | PO |
+| 11:15 | The module system | Lecture + code-along + exercises | PO |
+| 11:25 | Module system commands | Lecture + code-along + exercises | PO |
+| 12:00 | BREAK | | | 
+| 13:00 | Compiler toolchains | Lecture + code-along | PO | 
+| 13:20 | Software module examples | Lecture + code-along + exercises | BB |
+| 14:00 | Modules in batch scripts | Lecture | BB | 
+| 14:15 | BREAK | | | 
+| 14:30 | Containers on Kebnekaise | Lecture + code-along + exercises | BB | 
+| 15:15 | Creating Containers | Lecture + code-along + exercises | BB | 
 | 16:00 | End of course day | | |
 
 ## Preparations 
