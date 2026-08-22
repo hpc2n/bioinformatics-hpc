@@ -1,14 +1,34 @@
 # Installing software from a Git repository
 
-The source code for much bioinformatics software are on Github or other Git repositories. 
+The source code for much bioinformatics software are on Github or other Git repositories. As well, Git is often used for reproducible workflows and ppipelines, and in general for collaboration.  
+
+!!! note "Learning outcome"
+
+     - Installing general software from a Git repository
+     - Installing R packages from a Git repository
+     - Installing Python scripts and packages from a Git repository 
+
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 09:00 | Introduction | Lecture | PO |
+| 09:10 | Installing general software from a Git repository | Lecture + code-along + exercises | PO |
+| 10:00 | Installing R packages from a Git repository | Lecture + code-along + exercises | BB |
+| 10:30 | BREAK | | |
+| 10:15 | Installing R packages from a Git repository - continued | Lecture + code-along + exercises | BB |
+| 10:45 | Installing Python scripts and packages from a Git repository | Lecture + code-along + exercises | BB |
+| 12:00 | End of course day | | |
 
 How to install from such a repository depends on how the authors have it set up. The repository can always just be cloned and then there is usually a description in the README on how to install. In addition, they will sometimes have a tarball that can be downloaded instead. 
 
 Another case is if it is an R package that is on GitHub, but not on R CRAN. 
 
+It is also not unusual to find Python scripts and packages on GitHub. 
+
 Let us look at some examples. 
 
-## Cloning a software repository and installing it 
+## General software: Cloning a software repository and installing it 
 
 If you want to install some software you have found on GitHub, the usual way to do so is to clone the repository and then install it, following the description in the README file that is usually there. 
 
