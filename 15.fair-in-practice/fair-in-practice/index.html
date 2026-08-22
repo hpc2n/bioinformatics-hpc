@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/15.fair-in-practice/fair-in-practice/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>15. FAIR in Practice - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "15. FAIR in Practice";
+        var mkdocs_page_input_path = "15.fair-in-practice/fair-in-practice.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/15.fair-in-practice/fair-in-practice/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">15. FAIR in Practice</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#hands-on__exercises__in__interoperability__and__reusability">Hands-On Exercises in Interoperability and Reusability</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#masters__programme__in__bioinformatics__umea__university">Master&rsquo;s Programme in Bioinformatics — Umeå University</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#computing__for__data-driven__biology__5bi00a">Computing for Data-Driven Biology (5BI00A)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#session__aims">Session Aims</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__1__interoperability__three__ways__to__run__blast">Part 1 — Interoperability: Three Ways to Run BLAST</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11__the__same__search__three__different__tools">1.1 The Same Search, Three Different Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12__what__is__plantgenie">1.2 What is PlantGenIE?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13__why__plantgenie__demonstrates__interoperability">1.3 Why PlantGenIE Demonstrates Interoperability</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14__rest__apis__a__brief__technical__overview">1.4 REST APIs: A Brief Technical Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14__hands-on__querying__the__plantgenie__api">1.4 Hands-On: Querying the PlantGenIE API</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise__1a__retrieve__gene__information__from__plantgenie">Exercise 1A — Retrieve gene information from PlantGenIE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise__1b__query__gene__expression__data">Exercise 1B — Query gene expression data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise__1c__blast__via__the__website">Exercise 1C — BLAST via the website</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise__1d__blast__from__the__command__line__localhpc">Exercise 1D — BLAST from the command line (local/HPC)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise__1e__blast__via__an__api">Exercise 1E — BLAST via an API</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exercise__1f__compare__the__three__approaches__and__commit__your__findings">Exercise 1F — Compare the three approaches and commit your findings</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__2__reusability__geoena__metadata__assessment">Part 2 — Reusability: GEO/ENA Metadata Assessment</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21__the__core__question">2.1 The Core Question</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22__the__metadata__sufficiency__checklist">2.2 The Metadata Sufficiency Checklist</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23__scoring__and__documenting__your__assessment">2.3 Scoring and Documenting Your Assessment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__3__paper__reproducibility__exercise">Part 3 — Paper Reproducibility Exercise</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31__overview">3.1 Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32__the__reproducibility__assessment">3.2 The Reproducibility Assessment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__4__building__a__reproducible__report">Part 4 — Building a Reproducible Report</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41__why__this__exercise">4.1 Why This Exercise</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42__build__a__minimal__jupyter__notebook">4.2 Build a Minimal Jupyter Notebook</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43__the__r__equivalent__for__reference__you__will__use__this__properly__in__data__science__for__biology__with__r">4.3 The R Equivalent (for reference — you will use this properly in Data Science for Biology with R)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#essay__assessment">Essay Assessment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what__you__should__know__after__these__exercises">What You Should Know After These Exercises</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#further__reading">Further Reading</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">15. FAIR in Practice</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="15__fair__in__practice">15. FAIR in Practice<a class="headerlink" href="#15__fair__in__practice" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University<br />
+<strong>Slides:</strong> <a href="../../PDFs/lecture-15-fair-in-practice.pdf">PDF</a><br />
+<strong>Exercises:</strong> See <a href="../../exercises/15.fair-in-practice/"><code>exercises/</code></a></p>
+<p><strong>This is a self-study exercise page, not a taught session.</strong> Work through Parts 1–4 at your own pace, following on from <a href="../../14.fair-open-science/fair-open-science/">Lecture 14: FAIR and Open Science</a>, where Jamie McCann introduced PlantGenIE live. Bring questions to office hours or post on the Canvas discussion board.</p>
+<hr />
+<h2 id="hands-on__exercises__in__interoperability__and__reusability">Hands-On Exercises in Interoperability and Reusability<a class="headerlink" href="#hands-on__exercises__in__interoperability__and__reusability" title="Permanent link">&para;</a></h2>
+<h3 id="masters__programme__in__bioinformatics__umea__university">Master&rsquo;s Programme in Bioinformatics — Umeå University<a class="headerlink" href="#masters__programme__in__bioinformatics__umea__university" title="Permanent link">&para;</a></h3>
+<h3 id="computing__for__data-driven__biology__5bi00a">Computing for Data-Driven Biology (5BI00A)<a class="headerlink" href="#computing__for__data-driven__biology__5bi00a" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="session__aims">Session Aims<a class="headerlink" href="#session__aims" title="Permanent link">&para;</a></h2>
+<p>By the end of these exercises you should be able to:</p>
+<ol>
+<li>Run a BLAST search via a website, from the command line on HPC, and via an API — and explain when and why you would choose each</li>
+<li>Query a REST API from the command line and parse the response — demonstrating Interoperability in practice</li>
+<li>Explain how a well-designed API embodies the Interoperable and Reusable principles of FAIR</li>
+<li>Apply a structured metadata sufficiency checklist to a real GEO or ENA dataset</li>
+<li>Identify specific metadata fields whose absence would prevent reanalysis of a published RNA-seq study</li>
+<li>Assess the computational reproducibility of a published bioinformatics study using a structured framework</li>
+<li>Build a minimal reproducible report (Jupyter notebook) that combines code, narrative, and live output</li>
+<li>Commit all exercise outputs, commands, and findings to Git</li>
+</ol>
+<p><strong>Links to course ILOs:</strong> These exercises directly address ILOs 1, 3, 7, 9, 12, and 13. They are the practical companion to Lecture 14 and provide direct preparation for the FAIR essay assessment. For background on BLAST itself, see the <a href="../../12.blast/blast/">BLAST background reference</a>.</p>
+<p><strong>PlantGenIE guest contribution:</strong> Jamie McCann, developer of PlantGenIE (plantgenie.se) at Umeå University, introduced the platform live in Lecture 14. Part 1 below puts that introduction into practice, working directly with the API he described.</p>
+<hr />
+<h2 id="part__1__interoperability__three__ways__to__run__blast">Part 1 — Interoperability: Three Ways to Run BLAST<a class="headerlink" href="#part__1__interoperability__three__ways__to__run__blast" title="Permanent link">&para;</a></h2>
+<p><strong>Background reading:</strong> If you have not used BLAST before, or want a refresher on what it does and how to interpret its output (E-values, bit scores, the BLOSUM matrix), read the <a href="../../12.blast/blast/">BLAST background reference</a> before starting this part. This part assumes you already know what BLAST is — it focuses on <em>how</em>, <em>when</em>, and <em>why</em> you would run it in each of three different ways.</p>
+<h3 id="11__the__same__search__three__different__tools">1.1 The Same Search, Three Different Tools<a class="headerlink" href="#11__the__same__search__three__different__tools" title="Permanent link">&para;</a></h3>
+<p>Running a BLAST search is not just &ldquo;go to the NCBI website.&rdquo; The same search can be run through a web interface, from the command line against a local database, or programmatically via an API — and which one you should use depends entirely on the task.</p>
+<table>
+<thead>
+<tr>
+<th>Way</th>
+<th>How</th>
+<th>When to use it</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Website</strong></td>
+<td>NCBI BLAST web interface (or a resource&rsquo;s own web BLAST, e.g. PlantGenIE&rsquo;s)</td>
+<td>Exploring a single sequence interactively; sharing results with non-CLI collaborators</td>
+<td>No setup required; results viewer with alignments, taxonomy, and distance trees built in</td>
+</tr>
+<tr>
+<td><strong>Command line (local/HPC)</strong></td>
+<td>BLAST+ installed on Kebnekaise, run against a local database copy via Slurm</td>
+<td>Large-scale or routine searches; integrating BLAST into a documented, reproducible pipeline</td>
+<td>No rate limits; fully scriptable; the script itself is your record of exactly what was run</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>Submit a query and retrieve results programmatically over HTTP (NCBI&rsquo;s BLAST API, or a resource&rsquo;s own API such as PlantGenIE&rsquo;s)</td>
+<td>Automating a small number of searches; integrating BLAST into another tool without a browser</td>
+<td>Demonstrates Interoperability directly — the same data a browser shows you, exposed through a documented, machine-readable interface</td>
+</tr>
+</tbody>
+</table>
+<p>The exercises below walk through all three using the same query sequence, so you can compare the experience directly.</p>
+<h3 id="12__what__is__plantgenie">1.2 What is PlantGenIE?<a class="headerlink" href="#12__what__is__plantgenie" title="Permanent link">&para;</a></h3>
+<p>PlantGenIE (plantgenie.se) is a bioinformatics resource for plant and tree genomics developed at Umeå University, with primary development by Jamie McCann and contributions from the research groups of Nathaniel Street and others at UPSC. It integrates genome browsers, gene expression and co-expression data, functional annotations, a BLAST search interface, and REST API endpoints exposing all of the above — for boreal forest tree species including <em>Picea abies</em> (Norway spruce) and <em>Populus tremula</em> (European aspen).</p>
+<p>PlantGenIE is currently undergoing active redevelopment, including a new <em>Picea abies</em> genome assembly with a different gene identifier scheme than earlier versions. The base URL, endpoints, and example gene ID used in these exercises have been verified against the live API. If an endpoint has changed since, check the current API documentation (Section &ldquo;Further Reading&rdquo; below) or post on the Canvas discussion board.</p>
+<p>The PlantGenIE codebase is publicly available on GitHub: https://github.com/plantgenie</p>
+<h3 id="13__why__plantgenie__demonstrates__interoperability">1.3 Why PlantGenIE Demonstrates Interoperability<a class="headerlink" href="#13__why__plantgenie__demonstrates__interoperability" title="Permanent link">&para;</a></h3>
+<p>Recall from Lecture 14 that <strong>Interoperability</strong> requires:
+- Using standard formats and protocols
+- Using ontologies and controlled vocabularies for metadata
+- Providing cross-references to related databases
+- Making data accessible via documented, machine-readable interfaces</p>
+<p>PlantGenIE&rsquo;s REST API embodies each of these:</p>
+<ul>
+<li><strong>Standard protocol:</strong> HTTP/HTTPS — the same protocol your browser uses; any programming language or command-line tool can query it</li>
+<li><strong>Standard formats:</strong> Responses are returned as JSON (a widely used, machine-readable format) or FASTA (a standard bioinformatics format)</li>
+<li><strong>Ontology cross-references:</strong> Gene entries link to GO terms, InterPro domains, and NCBI taxonomy identifiers</li>
+<li><strong>Documentation:</strong> The API endpoints are documented, which means any researcher can query them programmatically without needing to contact the authors or navigate a specific web interface</li>
+</ul>
+<p>Querying PlantGenIE from the command line — rather than through the web browser — is exactly what Interoperability enables. The same data that is presented visually in the browser is accessible programmatically, in a standard format, to any researcher or tool.</p>
+<h3 id="14__rest__apis__a__brief__technical__overview">1.4 REST APIs: A Brief Technical Overview<a class="headerlink" href="#14__rest__apis__a__brief__technical__overview" title="Permanent link">&para;</a></h3>
+<p>A REST (Representational State Transfer) API is an interface to a web service that follows a set of conventions, allowing resources to be retrieved using standard HTTP methods and URLs.</p>
+<p>The key concept is that each <strong>endpoint</strong> is a URL that returns a specific piece of data — for example, a gene-information endpoint, an expression-data endpoint, and a BLAST endpoint. You query these endpoints using <code>curl</code> or equivalent tools, and the response arrives as JSON or plain text. This is identical in structure to the NCBI and UniProt API calls you made in Lecture 11 — the same concept, a different resource.</p>
+<p><strong>JSON</strong> (JavaScript Object Notation) is the standard response format for most REST APIs, structured as key-value pairs, e.g. a gene ID, organism, description, and lists of GO/InterPro cross-references. You can parse JSON responses at the command line using <code>jq</code> (if available) or Python, or simply use <code>grep</code> for extracting specific fields.</p>
+<p><strong>PlantGenIE&rsquo;s endpoints take a JSON request body via POST</strong>, unlike the simpler path-based GET requests used for NCBI and UniProt in Lecture 11 — a useful contrast in REST API design. The base URL and gene ID used below are confirmed working; if the API has changed since, check the current documentation or ask on the Canvas discussion board.</p>
+<h3 id="14__hands-on__querying__the__plantgenie__api">1.4 Hands-On: Querying the PlantGenIE API<a class="headerlink" href="#14__hands-on__querying__the__plantgenie__api" title="Permanent link">&para;</a></h3>
+<p><strong>Prerequisites:</strong> Login to Kebnekaise via OnDemand. Create a working directory and initialise Git.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>~/course
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>lecture15-fair-practice<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>lecture15-fair-practice
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>init
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s"># Lecture 15: FAIR in Practice</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s">## Exercises in Interoperability and Reusability</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s">EOF</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"initial commit: lecture15 FAIR practical exercises"</span>
+</span></code></pre></div>
+<hr />
+<h4 id="exercise__1a__retrieve__gene__information__from__plantgenie">Exercise 1A — Retrieve gene information from PlantGenIE<a class="headerlink" href="#exercise__1a__retrieve__gene__information__from__plantgenie" title="Permanent link">&para;</a></h4>
+<p><em>Confirmed working against the live API — if it has since changed, check the current documentation or ask on the Canvas discussion board.</em></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">BASE</span><span class="o">=</span><span class="s2">"https://www.plantgenie.se/api"</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">SPECIES</span><span class="o">=</span><span class="s2">"populus-tremula"</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">GENE_ID</span><span class="o">=</span><span class="s2">"Potra2n4c9093"</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Retrieve annotation for a specific gene — note this is a POST with a JSON</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># body, not a simple GET-by-path like the NCBI/UniProt calls in Lecture 11</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE</span><span class="si">}</span><span class="s2">/v1/annotations"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span>-d<span class="w"> </span><span class="s2">"{\"species\": \"</span><span class="si">${</span><span class="nv">SPECIES</span><span class="si">}</span><span class="s2">\", \"geneIds\": [\"</span><span class="si">${</span><span class="nv">GENE_ID</span><span class="si">}</span><span class="s2">\"]}"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>&gt;<span class="w"> </span>gene_info.json
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Inspect the JSON response</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>cat<span class="w"> </span>gene_info.json
+</span></code></pre></div>
+<p><em>Questions to answer in your README:</em>
+- What is the functional annotation of this gene? (If <code>geneName</code>/<code>description</code> are <code>null</code>, what does that tell you about the completeness of this resource&rsquo;s annotation for this gene, versus the resource&rsquo;s design?)
+- Try a different gene ID from the same species — does its annotation differ?
+- What does needing a JSON request body, rather than a simple URL, tell you about this API&rsquo;s design compared to NCBI/UniProt&rsquo;s?</p>
+<hr />
+<h4 id="exercise__1b__query__gene__expression__data">Exercise 1B — Query gene expression data<a class="headerlink" href="#exercise__1b__query__gene__expression__data" title="Permanent link">&para;</a></h4>
+<p>PlantGenIE integrates gene expression data from multiple experiments. The expression endpoint allows retrieval of expression values for a gene across the samples in a chosen experiment.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># List available experiments and note one for Populus tremula</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE</span><span class="si">}</span><span class="s2">/v1/expression/available-experiments"</span><span class="w"> </span>&gt;<span class="w"> </span>experiments.json
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cat<span class="w"> </span>experiments.json
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">EXPERIMENT_ID</span><span class="o">=</span><span class="m">15</span><span class="w">   </span><span class="c1"># "Potra Wood Development" — likely the AspWood dataset (ERP016242) from Part 2</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Retrieve expression data for the same gene across this experiment's samples</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE</span><span class="si">}</span><span class="s2">/v1/expression"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>-d<span class="w"> </span><span class="s2">"{\"experimentId\": </span><span class="si">${</span><span class="nv">EXPERIMENT_ID</span><span class="si">}</span><span class="s2">, \"geneIds\": [\"</span><span class="si">${</span><span class="nv">GENE_ID</span><span class="si">}</span><span class="s2">\"]}"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>&gt;<span class="w"> </span>expression_data.json
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>cat<span class="w"> </span>expression_data.json
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1"># How many samples are represented?</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import json; d=json.load(open('expression_data.json')); print(len(d['samples']))"</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># Which sample shows the highest expression?</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="s2">import json</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="s2">d = json.load(open('expression_data.json'))</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="s2">pairs = sorted(zip(d['samples'], d['values']), key=lambda x: x[1], reverse=True)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="s2">for sample, value in pairs[:5]:</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="s2">    print(sample, value)</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="s2">"</span>
+</span></code></pre></div>
+<p><em>Questions to answer in your README:</em>
+- In which sample(s) is this gene most highly expressed?
+- What are the expression units (check the <code>units</code> field)? Are they specified?
+- What information would you need to reproduce an analysis using this expression data?</p>
+<hr />
+<h4 id="exercise__1c__blast__via__the__website">Exercise 1C — BLAST via the website<a class="headerlink" href="#exercise__1c__blast__via__the__website" title="Permanent link">&para;</a></h4>
+<p>Go to the PlantGenIE website (or NCBI BLAST at https://blast.ncbi.nlm.nih.gov/ for comparison) and run a <code>blastp</code> search using the TP53 protein sequence retrieved in Lecture 11.</p>
+<p><em>Questions to answer in your README:</em>
+- What parameters did you set (database, programme, E-value threshold)?
+- How long did the search take, and what did the results viewer show you that a plain text file would not?
+- What would make this approach impractical if you needed to search 500 sequences instead of one?</p>
+<hr />
+<h4 id="exercise__1d__blast__from__the__command__line__localhpc">Exercise 1D — BLAST from the command line (local/HPC)<a class="headerlink" href="#exercise__1d__blast__from__the__command__line__localhpc" title="Permanent link">&para;</a></h4>
+<p>Run the same search locally on Kebnekaise, against a local database copy, submitted as a Slurm job:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>GCC/14.2.0<span class="w"> </span>OpenMPI/5.0.7<span class="w"> </span>BLAST+/2.17.0
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>module<span class="w"> </span>list<span class="w">   </span><span class="c1"># Verify it loaded correctly</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Check the local database is accessible</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>ls<span class="w"> </span>/proj/nobackup/cddb_course/databases/swissprot/
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>blast_tp53.sh<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s">#!/bin/bash</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s">#SBATCH --job-name=blast_tp53</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s">#SBATCH --account=hpc2ncourses2026-013</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s">#SBATCH --time=00:10:00</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s">#SBATCH --ntasks=1</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s">#SBATCH --cpus-per-task=4</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="s">#SBATCH --output=blast_tp53_%j.out</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="s">#SBATCH --error=blast_tp53_%j.err</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="s">module load GCC/14.2.0 OpenMPI/5.0.7 BLAST+/2.17.0</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="s">blastp \</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="s">  -query TP53_protein.fasta \</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="s">  -db /proj/nobackup/cddb_course/databases/swissprot/swissprot \</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="s">  -out TP53_blastp_local.txt \</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="s">  -outfmt 6 \</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s">  -evalue 1e-5 \</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="s">  -num_threads 4 \</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="s">  -max_target_seqs 50</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="s">echo "BLAST complete: $(date)"</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s">EOF</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>sbatch<span class="w"> </span>blast_tp53.sh
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="c1"># Once complete, inspect tabular output (format 6)</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="c1"># Columns: qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>head<span class="w"> </span>-20<span class="w"> </span>TP53_blastp_local.txt
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>sort<span class="w"> </span>-k11<span class="w"> </span>-n<span class="w"> </span>TP53_blastp_local.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>awk<span class="w"> </span><span class="s1">'$11 &lt; 1e-10'</span><span class="w"> </span>TP53_blastp_local.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<p><em>Questions to answer in your README:</em>
+- How does the setup effort compare to the website approach — and how does that change once the database and script already exist?
+- What does the Slurm script itself give you that the website result page does not?</p>
+<hr />
+<h4 id="exercise__1e__blast__via__an__api">Exercise 1E — BLAST via an API<a class="headerlink" href="#exercise__1e__blast__via__an__api" title="Permanent link">&para;</a></h4>
+<p>Two ways to submit a BLAST search programmatically:</p>
+<p><strong>NCBI&rsquo;s BLAST API</strong> (fully documented, works today):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">RID</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--data<span class="w"> </span><span class="s2">"CMD=Put&amp;PROGRAM=blastp&amp;DATABASE=swissprot&amp;QUERY=P04637\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s2">&amp;FORMAT_TYPE=Text&amp;email=your@email.se"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">"RID = [A-Z0-9]*"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $3}'</span><span class="k">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Job submitted. RID: </span><span class="nv">$RID</span><span class="s2">"</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Poll until the search is ready — a real blastp search against swissprot</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># typically takes 2-3 minutes, not the ~45s you might expect</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span>sleep<span class="w"> </span><span class="m">20</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="nv">STATUS</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&amp;FORMAT_OBJECT=SearchInfo&amp;RID=</span><span class="si">${</span><span class="nv">RID</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">"Status=[A-Z]*"</span><span class="k">)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$STATUS</span><span class="s2">"</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$STATUS</span><span class="s2">"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Status=READY"</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">done</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">  </span>--data<span class="w"> </span><span class="s2">"CMD=Get&amp;RID=</span><span class="si">${</span><span class="nv">RID</span><span class="si">}</span><span class="s2">&amp;FORMAT_TYPE=Text"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">  </span>&gt;<span class="w"> </span>TP53_blastp_swissprot.txt
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>grep<span class="w"> </span><span class="s2">"^&gt;"</span><span class="w"> </span>TP53_blastp_swissprot.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>grep<span class="w"> </span><span class="s2">"Score\|Expect\|Identities"</span><span class="w"> </span>TP53_blastp_swissprot.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+</span></code></pre></div>
+<p><strong>PlantGenIE&rsquo;s BLAST API</strong> — PlantGenIE also exposes a BLAST endpoint. Check the current API documentation (Section &ldquo;Further Reading&rdquo; below) for its endpoint and request format, and try submitting a query the same way you did for the annotation and expression endpoints in Exercises 1A–1B.</p>
+<p><em>Questions to answer in your README:</em>
+- What makes submitting a BLAST job via API different from the website — in terms of what you get back and how you&rsquo;d use it in a pipeline?
+- What makes this interaction an example of Interoperability?</p>
+<hr />
+<h4 id="exercise__1f__compare__the__three__approaches__and__commit__your__findings">Exercise 1F — Compare the three approaches and commit your findings<a class="headerlink" href="#exercise__1f__compare__the__three__approaches__and__commit__your__findings" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Speed</th>
+<th>Scalability</th>
+<th>Reproducibility</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Website</td>
+<td>Fast for 1 sequence</td>
+<td>Not scalable</td>
+<td>Low (no record of parameters)</td>
+<td>Limited</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Moderate</td>
+<td>~10s of sequences</td>
+<td>Good (parameters in code)</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Local HPC</td>
+<td>Slow to set up, fast to run</td>
+<td>Highly scalable</td>
+<td>Excellent (script + Slurm log)</td>
+<td>Full</td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Document your findings in the README</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s">## Part 1: Three Ways to Run BLAST + PlantGenIE API (Interoperability)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s">### Gene information and expression (PlantGenIE)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s">&lt;!-- Add your findings here --&gt;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s">### BLAST — website, local/HPC, API</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s">&lt;!-- Add your findings and the comparison table here --&gt;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s">### Interoperability assessment of PlantGenIE</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s">&lt;!-- In 3-4 sentences: how does the PlantGenIE API demonstrate the I principle of FAIR? --&gt;</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="s">EOF</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"lecture15: three ways to run BLAST + PlantGenIE API exercises complete</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="s2">- BLAST via website, local/HPC Slurm job, and API (NCBI + PlantGenIE)</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="s2">- Gene information and expression queries via PlantGenIE REST API</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="s2">- Findings documented in README"</span>
+</span></code></pre></div>
+<hr />
+<h2 id="part__2__reusability__geoena__metadata__assessment">Part 2 — Reusability: GEO/ENA Metadata Assessment<a class="headerlink" href="#part__2__reusability__geoena__metadata__assessment" title="Permanent link">&para;</a></h2>
+<h3 id="21__the__core__question">2.1 The Core Question<a class="headerlink" href="#21__the__core__question" title="Permanent link">&para;</a></h3>
+<p>The <strong>Reusable</strong> principle of FAIR requires that data has sufficient metadata to enable someone other than the original authors to understand and reuse it for a new analysis. In practice for RNA-seq data, this means: could a researcher who finds this dataset in GEO or ENA run a differential expression analysis without contacting the authors?</p>
+<p>This exercise asks you to answer that question for a specific, provided dataset.</p>
+<h3 id="22__the__metadata__sufficiency__checklist">2.2 The Metadata Sufficiency Checklist<a class="headerlink" href="#22__the__metadata__sufficiency__checklist" title="Permanent link">&para;</a></h3>
+<p>Work through the following checklist for the dataset below. Record your findings — yes/no and supporting evidence — in your README.</p>
+<p><strong>The dataset accession for this exercise:</strong> ERP016242 (European Nucleotide Archive)</p>
+<p><strong>The associated paper:</strong> Sundell D. et al. (2017). AspWood: High-Spatial-Resolution Transcriptome Profiles Reveal Uncharacterized Modularity of Wood Formation in <em>Populus tremula</em>. <em>The Plant Cell</em> 29(7): 1585–1604. DOI: 10.1105/tpc.17.00153</p>
+<p><strong>Data accessible at:</strong> https://www.ebi.ac.uk/ena/browser/view/ERP016242</p>
+<p><strong>Why this dataset:</strong> The data are directly integrated into PlantGenIE, creating strong continuity with Exercise 1 — you can query PlantGenIE for genes identified as differentially expressed in this study. Published in 2017 — one year after the FAIR principles were formalised — it provides an instructive temporal perspective on the evolution of FAIR practices. As data from the course leader&rsquo;s own research group, it can be discussed with complete transparency about what decisions were made at deposition time and what would be done differently under current standards. This framing — that FAIR assessment is about continuous improvement, not fault-finding — is itself an important lesson.</p>
+<p><strong>Finding the dataset:</strong>
+- [ ] Can you locate the dataset by searching the GEO or ENA database without knowing the accession in advance?
+- [ ] Is there a persistent, stable identifier (accession number) for the dataset?
+- [ ] Is the identifier cited in the paper?</p>
+<p><strong>Sample identification:</strong>
+- [ ] Can you tell how many samples are in the dataset?
+- [ ] Can you assign each sample to an experimental condition (control vs treated, genotype A vs B, etc.) from the metadata alone?
+- [ ] Are biological replicates identifiable?</p>
+<p><strong>Biological metadata:</strong>
+- [ ] Is the organism identified with a taxonomy ID (not just a name)?
+- [ ] Is the tissue or cell type specified? Is it annotated with an ontology term (e.g. UBERON, EFO, CL)?
+- [ ] Is the treatment or experimental condition specified? Is it annotated with an ontology term (e.g. EFO, CHEBI)?
+- [ ] Are any other relevant variables specified (age, sex, genotype, growth conditions, time point)?</p>
+<p><strong>Technical metadata:</strong>
+- [ ] Is the sequencing platform specified?
+- [ ] Is the library preparation protocol specified (stranded/unstranded, poly-A/ribo-depleted)?
+- [ ] Is read length and paired/single end specified?</p>
+<p><strong>Data availability:</strong>
+- [ ] Are raw FASTQ files available (not only processed count matrices)?
+- [ ] Are processed results available (count matrix, normalised data)?
+- [ ] Is the reference genome/transcriptome version specified?
+- [ ] Is the alignment tool and version specified?</p>
+<p><strong>Reproducibility:</strong>
+- [ ] Is analysis code available?
+- [ ] Are software versions specified for all tools used?
+- [ ] Is there a workflow definition (Snakemake, Nextflow) or equivalent?
+- [ ] Does the paper declare adherence to a community metadata standard (e.g. MINSEQE)?</p>
+<h3 id="23__scoring__and__documenting__your__assessment">2.3 Scoring and Documenting Your Assessment<a class="headerlink" href="#23__scoring__and__documenting__your__assessment" title="Permanent link">&para;</a></h3>
+<p>For each item in the checklist, record:
+- <strong>Pass</strong> — the information is clearly present
+- <strong>Partial</strong> — the information is present but incomplete (e.g. tissue type is given as text but no ontology term)
+- <strong>Fail</strong> — the information is absent</p>
+<p>Then write a brief paragraph (3–5 sentences) answering: <strong>If you wanted to reproduce the main differential expression analysis from this paper, what specific information is missing that would prevent you from doing so?</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># In your README, add the metadata assessment section</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s">## Part 2: GEO/ENA Metadata Assessment (Reusability)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s">### Dataset assessed</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s">Accession: &lt;!-- add --&gt;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s">Paper: &lt;!-- add --&gt;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s">### Checklist summary</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="s">| Category | Pass | Partial | Fail |</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s">|----------|------|---------|------|</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s">| Sample identification | | | |</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s">| Biological metadata | | | |</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="s">| Technical metadata | | | |</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="s">| Data availability | | | |</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="s">| Reproducibility | | | |</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="s">### Key finding</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="s">&lt;!-- 3-5 sentences: what is missing and what would it prevent? --&gt;</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s">EOF</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"lecture15: GEO metadata assessment complete"</span>
+</span></code></pre></div>
+<hr />
+<h2 id="part__3__paper__reproducibility__exercise">Part 3 — Paper Reproducibility Exercise<a class="headerlink" href="#part__3__paper__reproducibility__exercise" title="Permanent link">&para;</a></h2>
+<h3 id="31__overview">3.1 Overview<a class="headerlink" href="#31__overview" title="Permanent link">&para;</a></h3>
+<p>This exercise uses your chosen essay paper. Working individually, you will systematically assess the computational reproducibility of the published analysis — using the same framework you will apply in the essay itself.</p>
+<p><em>Note: you are not re-running the analysis. You are assessing whether you could re-run it from what the paper reports.</em></p>
+<h3 id="32__the__reproducibility__assessment">3.2 The Reproducibility Assessment<a class="headerlink" href="#32__the__reproducibility__assessment" title="Permanent link">&para;</a></h3>
+<p>Open your chosen paper and work through the following:</p>
+<p><strong>Step 1 — Map the analysis pipeline</strong>
+List every computational step mentioned in the methods section, in order. For each step, record:
+- What tool was used?
+- Was the version specified?
+- Were the key parameters reported?</p>
+<p>Example table structure:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tool</th>
+<th>Version specified?</th>
+<th>Parameters reported?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quality trimming</td>
+<td>Trimmomatic</td>
+<td>v0.39 ✓</td>
+<td>LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 ✓</td>
+</tr>
+<tr>
+<td>Alignment</td>
+<td>HISAT2</td>
+<td>v2.1.0 ✓</td>
+<td>Default ✗ — &ldquo;default parameters&rdquo; is insufficient</td>
+</tr>
+<tr>
+<td>Quantification</td>
+<td>featureCounts</td>
+<td>Not specified ✗</td>
+<td>Not specified ✗</td>
+</tr>
+<tr>
+<td>DE analysis</td>
+<td>DESeq2</td>
+<td>v1.20.0 ✓</td>
+<td>Shrinkage estimator not specified ✗</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2 — Assess code availability</strong>
+- Is analysis code available at all?
+- If yes: is it versioned (Git tag, Zenodo DOI)? Is it documented? Does it specify software dependencies?
+- If no: is there any indication of how the analysis could be reproduced?</p>
+<p><strong>Step 3 — Assess the reference genome situation</strong>
+- Is the reference genome specified?
+- Is a version (assembly accession) given?
+- Is the annotation version (GTF/GFF) specified?
+- Could you identify exactly the same reference genome and annotation to reproduce the alignment?</p>
+<p><strong>Step 4 — Write a reproducibility verdict</strong>
+In 2–3 sentences: based on what the paper reports, could an independent researcher reproduce the main analysis? What would they need to obtain from the authors that is not in the paper?</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s">## Part 3: Paper Reproducibility Assessment</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s">### Paper assessed</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s">&lt;!-- Title, DOI --&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s">### Analysis pipeline reconstruction</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s">| Step | Tool | Version? | Parameters? |</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s">|------|------|----------|-------------|</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s">| | | | |</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="s">### Code availability</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="s">&lt;!-- What is available and what is not --&gt;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="s">### Reference genome situation</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="s">&lt;!-- Is the exact genome/annotation version reproducible? --&gt;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="s">### Reproducibility verdict</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="s">&lt;!-- 2-3 sentences --&gt;</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="s">EOF</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"lecture15: paper reproducibility assessment complete</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="s2">- Pipeline reconstruction table</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="s2">- Code and reference genome assessment</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="s2">- Ready for essay development"</span>
+</span></code></pre></div>
+<hr />
+<h2 id="part__4__building__a__reproducible__report">Part 4 — Building a Reproducible Report<a class="headerlink" href="#part__4__building__a__reproducible__report" title="Permanent link">&para;</a></h2>
+<h3 id="41__why__this__exercise">4.1 Why This Exercise<a class="headerlink" href="#41__why__this__exercise" title="Permanent link">&para;</a></h3>
+<p>In Part 3 you assessed whether someone else&rsquo;s paper was computationally reproducible. Here, you do the positive version yourself: turn a small piece of this exercise into an actual reproducible report — a notebook that combines code, narrative, and live output in one rerunnable file, rather than a terminal transcript and a folder of output files. See <a href="../../14.fair-open-science/fair-open-science/">Lecture 14, Section 4.5</a> for why this matters.</p>
+<h3 id="42__build__a__minimal__jupyter__notebook">4.2 Build a Minimal Jupyter Notebook<a class="headerlink" href="#42__build__a__minimal__jupyter__notebook" title="Permanent link">&para;</a></h3>
+<p>Launch a Jupyter Notebook session via OnDemand (the same launcher you have used elsewhere in this course), open a new Python notebook in your <code>lecture15-fair-practice</code> directory, and build three cells:</p>
+<ol>
+<li><strong>Markdown cell</strong> — a one-sentence description of what the notebook does, e.g. &ldquo;Summarises the PlantGenIE expression query for Potra2n4c9093 from Exercise 1B.&rdquo;</li>
+<li><strong>Code cell</strong> — load and summarise a result you already produced earlier:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">"expression_data.json"</span><span class="p">))</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'samples'</span><span class="p">])</span><span class="si">}</span><span class="s2"> samples returned for this gene"</span><span class="p">)</span>
+</span></code></pre></div></li>
+<li><strong>Markdown cell</strong> — one sentence interpreting the output.</li>
+</ol>
+<p>Run all cells top to bottom (<code>Kernel → Restart &amp; Run All</code>) to confirm the notebook reproduces its own output from scratch — that is the test that matters, not just that it ran once while you were writing it.</p>
+<p>Export the notebook to HTML (<code>File → Download as → HTML</code>) and commit both files:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>add<span class="w"> </span>expression_report.ipynb<span class="w"> </span>expression_report.html
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"lecture15: minimal reproducible report (Jupyter)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="s2">- Notebook reproduces the Exercise 1B expression summary from scratch</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="s2">- HTML export committed alongside the source notebook"</span>
+</span></code></pre></div>
+<h3 id="43__the__r__equivalent__for__reference__you__will__use__this__properly__in__data__science__for__biology__with__r">4.3 The R Equivalent (for reference — you will use this properly in Data Science for Biology with R)<a class="headerlink" href="#43__the__r__equivalent__for__reference__you__will__use__this__properly__in__data__science__for__biology__with__r" title="Permanent link">&para;</a></h3>
+<p>The same idea in R uses R Markdown, rendered with <code>knitr</code>, via RStudio Server (also available on OnDemand). A minimal <code>.Rmd</code> file looks like this:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>---
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>title: "Expression query summary"
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="gu">output: html_document</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="gu">---</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Summarises the PlantGenIE expression query for Potra2n4c9093.
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>```{r}
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>data &lt;- jsonlite::fromJSON("expression_data.json")
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>cat(length(data$samples), "samples returned for this gene\n")
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>```
+</span></code></pre></div>
+<p>Rendering this file (<code>rmarkdown::render("report.Rmd")</code>) produces an HTML report the same way <code>knitr</code> renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself now; it is here so you recognise the pattern when you meet it properly in the next course.</p>
+<p><em>Questions to answer in your README:</em>
+- What did the notebook approach make explicit that a bare script or terminal history would not?
+- If you handed only your <code>.ipynb</code> file to a labmate with no other context, could they understand what it did and why, and reproduce the output themselves?</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="s">## Part 4: Reproducible Report (Jupyter)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="s">### What the notebook makes explicit</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="s">&lt;!-- vs a bare script or terminal history --&gt;</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="s">### Could a labmate reproduce this from the notebook alone?</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="s">&lt;!-- yes/no and why --&gt;</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="s">EOF</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"lecture15: reproducible report reflection complete"</span>
+</span></code></pre></div>
+<hr />
+<h2 id="essay__assessment">Essay Assessment<a class="headerlink" href="#essay__assessment" title="Permanent link">&para;</a></h2>
+<p>The full FAIR essay assignment — what it asks, what distinguishes a G from a VG response, and the curated paper shortlist — is covered in <a href="../../14.fair-open-science/fair-open-science/#10-introduction-to-the-fair-essay-assessment">Lecture 14, Section 10</a>. The metadata assessment (Part 2) and paper reproducibility exercise (Part 3) you have just completed are direct practice for the essay — the same frameworks apply. Bring questions to office hours or post on the Canvas discussion board.</p>
+<hr />
+<h2 id="what__you__should__know__after__these__exercises">What You Should Know After These Exercises<a class="headerlink" href="#what__you__should__know__after__these__exercises" title="Permanent link">&para;</a></h2>
+<p>✅ <strong>Run a BLAST search via a website, from the command line on HPC, and via an API</strong>, and explain when and why you would choose each.</p>
+<p>✅ <strong>Query a REST API from the command line</strong> using <code>curl</code> and parse the response with <code>grep</code> or <code>jq</code>.</p>
+<p>✅ <strong>Explain why APIs embody the Interoperable principle</strong> of FAIR — standardised protocols, standard formats, documented endpoints.</p>
+<p>✅ <strong>Describe PlantGenIE</strong> as an example of a specialist research resource that exposes its data through a documented API, enabling programmatic access from any tool.</p>
+<p>✅ <strong>Apply the metadata sufficiency checklist</strong> to a real GEO or ENA dataset and identify which missing fields would prevent reanalysis.</p>
+<p>✅ <strong>Reconstruct the analysis pipeline</strong> from a published methods section, noting which steps have complete version and parameter information and which do not.</p>
+<p>✅ <strong>Build a minimal Jupyter notebook that reproduces its own output from scratch</strong>, and explain what it makes explicit that a bare script does not.</p>
+<p>✅ <strong>Commit all exercise outputs and findings to Git</strong> with structured README documentation and meaningful commit messages.</p>
+<p>✅ <strong>Describe what distinguishes a G from a VG essay response</strong> and apply this distinction to your own paper assessment.</p>
+<hr />
+<h2 id="further__reading">Further Reading<a class="headerlink" href="#further__reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PlantGenIE documentation and API reference: https://www.plantgenie.se/api/docs (confirmed by Jamie McCann)</li>
+<li>PlantGenIE GitHub: https://github.com/plantgenie</li>
+<li>MINSEQE (Minimum Information about a high-throughput Nucleotide SeQuencing Experiment): https://fairsharing.org/FAIRsharing.a55z32</li>
+<li>MIxS (Minimum Information about any (x) Sequence): https://www.gensc.org/pages/standards-intro.html</li>
+<li>The Turing Way — Reproducible Research: https://the-turing-way.netlify.app/reproducible-research</li>
+<li>Jupyter documentation: https://jupyter.org/documentation</li>
+<li>R Markdown documentation: https://rmarkdown.rstudio.com/</li>
+<li>HPC2N OnDemand interactive apps (Jupyter Notebook, RStudio Server): https://docs.hpc2n.umu.se/tutorials/connections/</li>
+</ul>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../14.fair-open-science/fair-essay-marking-rubric/" class="btn btn-neutral float-left" title="Marking rubric"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../summary-exercises/" class="btn btn-neutral float-right" title="Summary exercises">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../14.fair-open-science/fair-essay-marking-rubric/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../summary-exercises/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

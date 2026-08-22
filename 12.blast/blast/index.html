@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/12.blast/blast/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>12. BLAST and Sequence Similarity - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "12. BLAST and Sequence Similarity";
+        var mkdocs_page_input_path = "12.blast/blast.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/12.blast/blast/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">12. BLAST and Sequence Similarity</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1__sequence__similarity__why__it__matters">1. Sequence Similarity: Why It Matters</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11__the__core__biological__principle">1.1 The Core Biological Principle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12__what__sequence__similarity__can__and__cannot__tell__you">1.2 What Sequence Similarity Can and Cannot Tell You</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2__how__blast__works__a__conceptual__overview">2. How BLAST Works: A Conceptual Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21__the__problem__blast__solves">2.1 The Problem BLAST Solves</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22__the__seed-and-extend__strategy">2.2 The Seed-and-Extend Strategy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23__scoring__matches__mismatches__and__gaps">2.3 Scoring: Matches, Mismatches, and Gaps</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24__substitution__matrices__blosum__and__pam">2.4 Substitution Matrices: BLOSUM and PAM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#25__the__e-value__the__most__important__number__in__your__results">2.5 The E-value: The Most Important Number in Your Results</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#26__the__five__blast__programmes">2.6 The Five BLAST Programmes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3__interpreting__blast__results">3. Interpreting BLAST Results</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31__the__results__table">3.1 The Results Table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32__reading__an__alignment">3.2 Reading an Alignment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33__common__pitfalls__in__interpreting__blast__results">3.3 Common Pitfalls in Interpreting BLAST Results</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#where__to__practise__this">Where to Practise This</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#further__reading">Further Reading</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">12. BLAST and Sequence Similarity</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="blast__and__sequence__similarity__background__reference">BLAST and Sequence Similarity — Background Reference<a class="headerlink" href="#blast__and__sequence__similarity__background__reference" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University</p>
+<p><strong>This is a self-study reference page, not a taught lecture.</strong> It covers what BLAST is and the concepts you need to interpret its output — homology, the seed-and-extend algorithm, scoring, and E-values. Read this before the &ldquo;Three ways to run BLAST&rdquo; session in <a href="../../15.fair-in-practice/fair-in-practice/">Lecture 15: FAIR in Practice</a>, where you will actually run BLAST via the website, the command line, and an API.</p>
+<hr />
+<h2 id="1__sequence__similarity__why__it__matters">1. Sequence Similarity: Why It Matters<a class="headerlink" href="#1__sequence__similarity__why__it__matters" title="Permanent link">&para;</a></h2>
+<h3 id="11__the__core__biological__principle">1.1 The Core Biological Principle<a class="headerlink" href="#11__the__core__biological__principle" title="Permanent link">&para;</a></h3>
+<p>Sequences that are similar are likely to be related by common ancestry — they are <strong>homologous</strong>. Homologous sequences often share biological function because the underlying protein structure, and therefore function, is conserved by natural selection. This is the foundational assumption of comparative genomics and database annotation.</p>
+<p>This assumption is powerful but not unconditional. Two important distinctions:</p>
+<p><strong>Orthologues</strong> — genes in different species that descended from the same gene in a common ancestor, typically through speciation events. Orthologues usually (but not always) retain the same function across species.</p>
+<p><strong>Paralogues</strong> — genes within the same genome that are related by gene duplication. Paralogues often diverge in function after duplication — one copy may retain the ancestral role while the other acquires a new one.</p>
+<p>When you find a database hit for an unknown sequence, knowing whether the hit is likely an orthologue or a paralogue significantly affects how you interpret the functional annotation.</p>
+<h3 id="12__what__sequence__similarity__can__and__cannot__tell__you">1.2 What Sequence Similarity Can and Cannot Tell You<a class="headerlink" href="#12__what__sequence__similarity__can__and__cannot__tell__you" title="Permanent link">&para;</a></h3>
+<p><strong>It can tell you:</strong>
+- Whether two sequences are likely related by common ancestry
+- Which organisms carry a related sequence
+- Which domains or regions are most conserved (and therefore likely functionally important)
+- A starting hypothesis about the function of an unknown sequence</p>
+<p><strong>It cannot, on its own, tell you:</strong>
+- That two sequences have the same function (similar sequence ≠ identical function)
+- The direction of annotation transfer (which organism&rsquo;s annotation is reliable enough to transfer)
+- Whether similarity is due to common ancestry or convergent evolution (though this is rare at the sequence level)
+- Anything about sequences that are so diverged that similarity is no longer detectable (the &ldquo;twilight zone&rdquo; below ~25–30% identity)</p>
+<hr />
+<h2 id="2__how__blast__works__a__conceptual__overview">2. How BLAST Works: A Conceptual Overview<a class="headerlink" href="#2__how__blast__works__a__conceptual__overview" title="Permanent link">&para;</a></h2>
+<p>BLAST — the Basic Local Alignment Search Tool — was published by Altschul et al. in 1990 and remains one of the most widely used tools in all of bioinformatics. Understanding what it does (even without the mathematics) makes you a significantly better interpreter of its results.</p>
+<h3 id="21__the__problem__blast__solves">2.1 The Problem BLAST Solves<a class="headerlink" href="#21__the__problem__blast__solves" title="Permanent link">&para;</a></h3>
+<p>You have a query sequence — perhaps a newly sequenced gene — and you want to find all similar sequences in a database that may contain billions of sequences. Naively comparing your query to every database sequence letter by letter would be computationally prohibitive. BLAST uses a heuristic approach that is fast enough to be practical and sensitive enough to find most biologically meaningful matches.</p>
+<p>The key word is <strong>heuristic</strong>: BLAST does not guarantee finding the optimal alignment. It is designed to find good alignments quickly, and for practical purposes in most biological applications it works extremely well. But it is not mathematically exhaustive.</p>
+<h3 id="22__the__seed-and-extend__strategy">2.2 The Seed-and-Extend Strategy<a class="headerlink" href="#22__the__seed-and-extend__strategy" title="Permanent link">&para;</a></h3>
+<p>BLAST works in two main stages:</p>
+<p><strong>Stage 1 — Seeding:</strong> BLAST breaks your query sequence into short overlapping words of length <em>k</em> (typically 11 nucleotides for DNA, 3 amino acids for protein). It looks for exact or near-exact matches to these short words in the database. These are called <strong>seeds</strong> or <strong>hits</strong>. This step is very fast because it uses a pre-indexed lookup table of the database.</p>
+<p><strong>Stage 2 — Extension:</strong> When a seed is found, BLAST extends the alignment in both directions from the seed, adding one residue at a time, as long as the alignment score continues to improve above a threshold. Extension stops when the score drops too far below the best score seen so far. The final aligned region is called a <strong>High-Scoring Pair (HSP)</strong>.</p>
+<p>This seed-and-extend approach is the key to BLAST&rsquo;s speed: by only extending from promising seeds, it avoids doing full alignments with most database sequences.</p>
+<h3 id="23__scoring__matches__mismatches__and__gaps">2.3 Scoring: Matches, Mismatches, and Gaps<a class="headerlink" href="#23__scoring__matches__mismatches__and__gaps" title="Permanent link">&para;</a></h3>
+<p>Each alignment position is assigned a score:
+- A matched residue receives a positive score
+- A mismatched residue receives a penalty (which may be positive for conservative substitutions)
+- Introducing a gap incurs a gap open penalty
+- Extending a gap incurs a gap extension penalty</p>
+<p>For protein BLAST, scores are not just +1/−1 for match/mismatch. They are taken from a <strong>substitution matrix</strong> — a table that assigns different scores to different amino acid pairs based on how frequently they are observed to substitute for one another in real proteins.</p>
+<h3 id="24__substitution__matrices__blosum__and__pam">2.4 Substitution Matrices: BLOSUM and PAM<a class="headerlink" href="#24__substitution__matrices__blosum__and__pam" title="Permanent link">&para;</a></h3>
+<p><strong>BLOSUM (BLOcks SUbstitution Matrix)</strong> matrices are derived from alignments of conserved blocks in related protein families. The number in the name indicates the maximum percentage identity of the sequences used to build it:
+- <strong>BLOSUM62</strong> — derived from sequences sharing ≤62% identity; the default for most searches, appropriate for moderately diverged sequences
+- <strong>BLOSUM80</strong> — derived from more similar sequences; better for finding close relatives
+- <strong>BLOSUM45</strong> — derived from more diverged sequences; more sensitive for finding distant relatives</p>
+<p><strong>PAM (Point Accepted Mutation)</strong> matrices take a different approach, modelling protein evolution explicitly. PAM1 represents 1 accepted mutation per 100 residues; PAM250 represents 250 mutations (i.e., highly diverged sequences). PAM matrices are older and less commonly used than BLOSUM for database searches.</p>
+<blockquote>
+<p><strong>What you need to know in practice:</strong> The default matrix (BLOSUM62) works well for most searches. If you are looking for distantly related sequences, consider BLOSUM45. If you are looking for very closely related sequences, consider BLOSUM80. The comparative genomics course will explore this in more depth.</p>
+</blockquote>
+<h3 id="25__the__e-value__the__most__important__number__in__your__results">2.5 The E-value: The Most Important Number in Your Results<a class="headerlink" href="#25__the__e-value__the__most__important__number__in__your__results" title="Permanent link">&para;</a></h3>
+<p>The <strong>E-value (Expect value)</strong> answers the question: &ldquo;How many times would I expect to find a match this good (or better) by chance in a database of this size?&rdquo;</p>
+<ul>
+<li><strong>E-value = 0.001</strong> means you would expect to find one match this good by chance once in every 1,000 searches of this database — so this is a strong hit</li>
+<li><strong>E-value = 10</strong> means you would expect ten matches this good by chance — this is almost certainly noise</li>
+<li><strong>E-value = 1e-100</strong> (or reported as 0.0) means this match is astronomically unlikely to be coincidental — you have found a clear homologue</li>
+</ul>
+<p>Commonly used thresholds:
+- <strong>E &lt; 1e-5</strong> — generally considered significant for database annotation
+- <strong>E &lt; 1e-3</strong> — often used as a more permissive threshold when searching for distant homologues
+- <strong>E &gt; 0.01</strong> — treat with scepticism; likely to include false positives</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p><strong>The E-value depends on database size.</strong> The same alignment against a small database will have a lower E-value than against a large database — not because the alignment is better, but because there are fewer sequences to compete with. This is why you should always note which database you searched and its approximate size when reporting BLAST results.</p>
+</div>
+<p>The <strong>bit score</strong> is a database-size-independent measure of alignment quality. When comparing results across different database sizes or different searches, bit scores are more meaningful than E-values.</p>
+<h3 id="26__the__five__blast__programmes">2.6 The Five BLAST Programmes<a class="headerlink" href="#26__the__five__blast__programmes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Programme</th>
+<th>Query</th>
+<th>Database</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>blastn</strong></td>
+<td>Nucleotide</td>
+<td>Nucleotide</td>
+<td>Find similar DNA/RNA sequences; identify species from a sequenced fragment</td>
+</tr>
+<tr>
+<td><strong>blastp</strong></td>
+<td>Protein</td>
+<td>Protein</td>
+<td>Find similar protein sequences; most sensitive for distant homologues</td>
+</tr>
+<tr>
+<td><strong>blastx</strong></td>
+<td>Nucleotide (translated)</td>
+<td>Protein</td>
+<td>Find protein matches for an unannotated nucleotide sequence</td>
+</tr>
+<tr>
+<td><strong>tblastn</strong></td>
+<td>Protein</td>
+<td>Nucleotide (translated)</td>
+<td>Find unannotated genomic regions encoding a protein of interest</td>
+</tr>
+<tr>
+<td><strong>tblastx</strong></td>
+<td>Nucleotide (translated)</td>
+<td>Nucleotide (translated)</td>
+<td>Sensitive search for distant nucleotide homologues via protein comparison</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Rule of thumb:</strong> Protein-level comparisons (blastp, blastx, tblastx) are more sensitive for finding distant evolutionary relationships than nucleotide comparisons (blastn), because protein sequences are more conserved than their underlying DNA sequences. For most functional annotation tasks, blastp or blastx is preferred.</p>
+</blockquote>
+<hr />
+<h2 id="3__interpreting__blast__results">3. Interpreting BLAST Results<a class="headerlink" href="#3__interpreting__blast__results" title="Permanent link">&para;</a></h2>
+<h3 id="31__the__results__table">3.1 The Results Table<a class="headerlink" href="#31__the__results__table" title="Permanent link">&para;</a></h3>
+<p>A typical BLAST results table contains:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description</td>
+<td>Name of the database sequence (subject)</td>
+</tr>
+<tr>
+<td>Scientific name</td>
+<td>Organism the subject sequence comes from</td>
+</tr>
+<tr>
+<td>Max score</td>
+<td>Bit score of the best HSP for this subject sequence</td>
+</tr>
+<tr>
+<td>Total score</td>
+<td>Sum of bit scores for all HSPs</td>
+</tr>
+<tr>
+<td>Query cover</td>
+<td>Percentage of the query sequence covered by the alignment</td>
+</tr>
+<tr>
+<td>E value</td>
+<td>Expect value for the best HSP</td>
+</tr>
+<tr>
+<td>Per. ident</td>
+<td>Percentage of identical residues in the alignment</td>
+</tr>
+<tr>
+<td>Accession</td>
+<td>Database accession number of the subject sequence</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32__reading__an__alignment">3.2 Reading an Alignment<a class="headerlink" href="#32__reading__an__alignment" title="Permanent link">&para;</a></h3>
+<p>Below the table, BLAST shows the actual pairwise alignments. Each alignment block shows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Query  1    MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDP  60
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>            MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDP
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Sbjct  1    MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDP  60
+</span></code></pre></div>
+<p>The middle line shows:
+- <strong>Letters</strong> — identical residues
+- <strong><code>+</code></strong> — similar residues (conservative substitution)
+- <strong><code></code> (space)</strong> — dissimilar residues or gaps</p>
+<p>Regions with no middle characters are the least conserved; regions with solid identity rows are the most constrained — often functionally important domains.</p>
+<h3 id="33__common__pitfalls__in__interpreting__blast__results">3.3 Common Pitfalls in Interpreting BLAST Results<a class="headerlink" href="#33__common__pitfalls__in__interpreting__blast__results" title="Permanent link">&para;</a></h3>
+<p><strong>High identity across a short region is not the same as high identity across the full protein.</strong> A protein may share a conserved domain with a database hit but differ substantially elsewhere. Always check query coverage alongside percentage identity.</p>
+<p><strong>The top hit is not always the most biologically informative hit.</strong> Highly redundant databases (nr/nt) contain many sequences from the same species, so your closest relative by E-value may be another sequence from the same organism rather than a true cross-species comparison.</p>
+<p><strong>Low-complexity regions inflate significance.</strong> Regions rich in a single amino acid (e.g., polyglutamine tracts, coiled-coils) or simple sequence repeats can produce spuriously significant alignments. BLAST&rsquo;s low-complexity filter (enabled by default) helps with this but does not always catch every case.</p>
+<hr />
+<h2 id="where__to__practise__this">Where to Practise This<a class="headerlink" href="#where__to__practise__this" title="Permanent link">&para;</a></h2>
+<p>The hands-on exercise — running the same BLAST search via the website, the command line, and an API — is taught in <a href="../../15.fair-in-practice/fair-in-practice/">Lecture 15: FAIR in Practice</a>.</p>
+<hr />
+<h2 id="further__reading">Further Reading<a class="headerlink" href="#further__reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Altschul S.F. et al. (1990). Basic local alignment search tool. <em>Journal of Molecular Biology</em>, 215(3): 403–410. — The original BLAST paper; a landmark in bioinformatics history.</li>
+<li>Altschul S.F. et al. (1997). Gapped BLAST and PSI-BLAST: a new generation of protein database search programs. <em>Nucleic Acids Research</em>, 25(17): 3389–3402. — Introduction of gapped alignments and the position-specific scoring matrix approach.</li>
+<li>Camacho C. et al. (2009). BLAST+: architecture and applications. <em>BMC Bioinformatics</em>, 10: 421. — The paper describing BLAST+, the command-line implementation you will use throughout this programme.</li>
+<li>NCBI BLAST documentation: https://blast.ncbi.nlm.nih.gov/doc/blast-help/</li>
+</ul>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../11.database-landscape/database-landscape/" class="btn btn-neutral float-left" title="11. Biological Database Landscape"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../13.file-formats/file-formats/" class="btn btn-neutral float-right" title="13. Bioinformatics File Formats">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../11.database-landscape/database-landscape/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../13.file-formats/file-formats/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
