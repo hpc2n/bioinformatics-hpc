@@ -35,8 +35,18 @@ Another option is using ThinLinc if you feel confident with that.
 
 ## Schedule
 
-| Time | Topic | Activity | Teacher | 
+| Time | Topic | Activity | Teacher |
 | ---- | ----- | -------- | ------- |
+| 09:00 | Introduction | Lecture | PO |
+| 09:10 | Batch system concepts | Lecture | PO |
+| 09:30 | Slurm commands | Lecture + code-along + exercises | PO |
+| 10:20 | BREAK | | |
+| 10:35 | Interactive jobs | Lecture + code-along | BB | 
+| 10:50 | Job script examples | Lecture + code-along + exercises | BB |
+| 12:00 | BREAK | | | 
+| 13:00 | Job monitoring and efficiency | Lecture + code-along + exercises | BB | 
+| 13:50 | Summary | Lecture | BB, PO | 
+| 14:00 | End of course day | | |
 
 ## Prepare the exercise environment 
 
