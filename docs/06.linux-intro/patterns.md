@@ -21,7 +21,7 @@ Here you will find descptions on how to search for files with specific patterns.
 
     Try out / code along for some of these examples. 
 
-    You can use the contents of the directory ``/exercises/patterns`` that you got from the downloaded tarball to play with. If you have not done so already, go to the git repo and right-click and save to download, or right-click and copy the url, then do ``wget THE-URL-YOU-COPIED`` in a terminal window to download it there. Then do <code>tar -zxvf patterns.tar.gz</code> to unpack.  
+    You can use the contents of the directory ``/exercises/06.linux-intro/patterns`` that you got from the downloaded tarball to play with. If you have not done so already, go to the git repo and right-click and save to download, or right-click and copy the url, then do ``wget THE-URL-YOU-COPIED`` in a terminal window to download it there. Then do <code>tar -zxvf patterns.tar.gz</code> to unpack.  
 
 ## grep 
 
@@ -50,7 +50,7 @@ See ``man grep`` for more options.
 
 !!! tip "Code along"
 
-    A good file to use here is ``fil.txt`` in the ``exercises/patterns`` directory. You will also use ``newfile.txt`` and ``fil.txt`` in the same directory. 
+    A good file to use here is ``fil.txt`` in the ``exercises/06.linux-intro/patterns`` directory. You will also use ``newfile.txt`` and ``fil.txt`` in the same directory. 
 
     In the following examples/exercises replace the string ``FILE`` with the file name (single search) or the path to the 
     folder (recursive search).
@@ -71,7 +71,7 @@ See ``man grep`` for more options.
 
 !!! Exercise "Try finding the pattern ``string`` in ``newfile.txt``"
 
-    This file is also located in the ``exercises/patterns`` directory. 
+    This file is also located in the ``exercises/06.linux-intro/patterns`` directory. 
 
 ??? Solution "Click to reveal solution"
 
@@ -130,7 +130,7 @@ For more options, check ``man find``
 
 !!! tip "Try yourself"
 
-    You could do the searches inside ``exercises`` directory or inside ``exercises/patterns`` directory. 
+    You could do the searches inside ``exercises`` directory or inside ``exercises/06.linux-intro/patterns`` directory. 
 
 !!! Exercise "Find the file ``fil4.txt`` in the directory you are standing in and below"
 
@@ -140,7 +140,7 @@ For more options, check ``man find``
     find . -type f -name "fil4.txt"
     ```
 
-!!! Exercise "Find the file ``myfile0.txt`` which is part of the name in the directory ``expressions/patterns`` while standing in ``exercises/script``"
+!!! Exercise "Find the file ``myfile0.txt`` which is part of the name in the directory ``expressions/06.linux-intro/patterns`` while standing in ``exercises/06.linux-intro/script``"
 
 ??? Solution "Click to reveal solution"
 

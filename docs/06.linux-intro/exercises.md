@@ -42,12 +42,14 @@ Useful files for these examples are found in `exercises/06.linux-intro/patterns`
 
 ## Linux tools: awk 
 
-The directory `exercises/06.linux-intro/awk-qol` has a file `file.dat` which is useful for these exercises. 
+The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `myfile.txt` which are useful for these exercises. 
 
-1. Print column 4 and 6 from file `file.dat`, but only those rows that contain the letter ‘v’. 
+1. Search for the pattern `omnivore` in the file `file.dat` and print out the line. 
+2. Search for the pattern `is` in the file `myfile.txt` and print out the second column of lines with that pattern. 
+3. Print column 1 and 4 from file `file.dat`, but only those rows that contain the letter ‘v’. 
+4. Print all lines of `file.dat` that has more than 20 characters 
 
-
-
+## Scripting 
 
 
 

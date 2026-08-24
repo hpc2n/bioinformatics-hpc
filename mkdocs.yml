@@ -58,7 +58,8 @@ nav:
     - Finding patterns: 06.linux-intro/patterns.md
     - Awk: 06.linux-intro/awk.md 
     - Scripting: 06.linux-intro/scripting.md
-    - Hints and tricks: 06.linux-intro/hints.md 
+    - Hints and tricks: 06.linux-intro/hints.md
+    - Extra exercises: 06.linux-intro/exercises.md 
   - 7. Introduction to Git: 
     - Introduction and setup: 07.Git/intro-motivation-setup.md
     - Basic commands: 07.Git/basic-commands.md
