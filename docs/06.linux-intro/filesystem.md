@@ -246,7 +246,7 @@ Wild cards are also called "glob" or "globbing" patterns.
 
 Try some of the commands below to see what happens.  
 
-Useful files for these examples are found in `exercises/patterns` from the tarball. 
+Useful files for these examples are found in `exercises/06.linux-intro/patterns` from the tarball. 
 
 !!! Example "Some examples of the use of wildcards"
 
