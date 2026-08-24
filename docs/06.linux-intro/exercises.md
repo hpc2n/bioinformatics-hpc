@@ -2,7 +2,7 @@
 
 These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later. 
 
-Useful files for these examples are found in `exercises/06.linux-intro/patterns` from the tarball.
+Useful files for these examples are found in `exercises/06.linux-intro/patterns` from the tarball, except for the two last sections which mainly uses `exercises/06.linux-intro/awk-qol` and `exercises/06.linux-intro/script`.
  
 ## The Linux File System - Wildcards
 
