@@ -27,6 +27,23 @@ A brief introduction to Linux and some of the most useful commands.
        - scripting
        - some handy hints and tricks 
 
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 09:00 | Intro to Linux, Motivation | Lecture | PO |
+| 09:20 | The Command Line (CLI) | Lecture + code-along | PO |
+| 09:30 | Navigating the File System | Lecture + code-along + exercises | PO |
+| 10:00 | Modifying the File tree | Lecture + code-along + exercises | PO |
+| 10:25 | BREAK | | | 
+| 10:40 | Editors | Lecture + code-along | PO |
+| 10:50 | Piping and filters | Lecture + code-along + exercises | PO |
+| 11:10 | Finding patterns | Lecture + code-along + exercises | PO |
+| 11:25 | Scripting | Lecture + code-along | PO |
+| 11:40 | Hints and tricks | Lecture + code-along | PO | 
+| 11:55 | Summary | | PO |
+| 12:00 | End of course day | | | 
+
 ## What is Linux
 
 !!! note 

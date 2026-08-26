@@ -15,6 +15,15 @@
 - Navigating and modifying the file tree will be covered in the session "Introduction to Linux"
 - File formats and file structure will be covered in the session "Bioinformatics File Formats" 
 
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 9:00 | Intro to computers | lecture | PO |
+| 10:20 | Break | Break | Break |
+| 10:35 | Files and filesystems | lecture + exercises | BB |
+| 12:00 | End of lectures | . | . |
+
 ## What is a file? 
 
 Files are containers for data. There are several types. Common ones are: 
@@ -59,11 +68,11 @@ Files are generally accessed either directly through an editor, or from a progra
 
     Linux editors falls in two categories; graphical and non-graphical. If you are using Linux on your own computer, or connecting toi, say, Kebnekaise through either ThinLinc or OpenOnDemand, you can use an editor with a graphical user interface GUI). If you are connecting with SSH through a terminal, you are generally restricted to the non-graphical editors (unless you are connecting with X11 forwarding or remote desktop, or something like that). 
 
-### Editors 
+## Editors 
 
 Some editors are more suited for a GUI environment and some are more suited for a command line environment.
 
-#### Command line
+### Command line
 
 These are all good editors for using on the command line:
 
@@ -75,7 +84,7 @@ They are all installed on Kebnekaise.
 
 Of these, <code>vi/vim</code> as well as <code>emacs</code> are probably the most powerful, though the latter is better in a GUI environment. The easiest editor to use if you are not familiar with any of them is <code>nano</code>.
 
-##### Exercise
+#### Exercise
 
 !!! Example "Exercises - Nano"
 
@@ -90,7 +99,7 @@ Of these, <code>vi/vim</code> as well as <code>emacs</code> are probably the mos
 
     There is a <a href="https://www.nano-editor.org/dist/latest/nano.html" target="_blank">manual for <code>nano</code> here</a>.
 
-#### GUI 
+### GUI 
 
 If you are connecting with [ThinLinc](https://docs.hpc2n.umu.se/tutorials/connections/#ThinLinc), you will be presented with a graphical user interface (GUI). From there you can either open a terminal window/shell (Applications -> System Tools -> MATE Terminal) or you can choose editors from the menu by going to Applications -> Accessories. This gives several editor options, of which these have a graphical interface:
 
@@ -102,7 +111,7 @@ If you are connecting with [ThinLinc](https://docs.hpc2n.umu.se/tutorials/connec
 
 If you are not familiar with any of these, a good recommendation would be to use <code>Text Editor/gedit</code>.
 
-##### Exercise 
+#### Exercise 
 
 !!! Example "Exercise - Text Editor/gedit"
 
@@ -114,7 +123,7 @@ If you are not familiar with any of these, a good recommendation would be to use
     5. Save by clicking "Save" in the menu.
     6. The menu on the top right (the three horizontal lines) gives you several other options, including "Find" and "Find and Replace".
 
-### What is a folder?
+## What is a folder?
 
 A folder is a container used to organize files (documents, images, etc.) as well as possibly other folders (subfolders). 
 

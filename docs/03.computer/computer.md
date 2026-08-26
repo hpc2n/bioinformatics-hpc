@@ -1,5 +1,14 @@
 # What is a computer?
 
+## Schedule
+
+| Time | Topic | Activity | Teacher | 
+| ---- | ----- | -------- | ------- |
+| 9:00 | Intro to computers | lecture | PO |
+| 10:20 | Break | Break | Break | 
+| 10:35 | Files and filesystems | lecture + exercises | BB |
+| 12:00 | End of lectures | . | . |
+
 !!! note 
 
     "A computer is a machine that can be programmed to automatically carry out sequences of arithmetic or logical operations (computation)." 
@@ -7,7 +16,7 @@
 
 In this session we are going to do a short walk-through of what a computer is, both the hardware parts and the system software. 
 
-Everyone has an idea of what a computer is; usually we are thinking of a screen, a keyboard, and internal components like CPU, GPU, HDD/SSH, and RAM/memory. 
+Everyone has an idea of what a computer is; usually we are thinking of a screen, a keyboard, and internal components like CPU, GPU, HDD/SDD, and RAM/memory. 
 
 Computers are special types of machines. Most machines only do one thing (cars, ovens, sewing machines, coffee machines), but computers are what is called "universal machines". They run programs that means they can do many different tasks. 
 
@@ -53,6 +62,34 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 <figcaption>GPU chip. Credits: https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252</figcaption>
 </figure>
 
+??? note "What type of GPU is available?"
+
+    ```text
+    $ nvidia-smi 
+
+    Fri Aug 21 09:57:14 2026       
+    +-----------------------------------------------------------------------------------------+
+    | NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |
+    +-----------------------------------------+------------------------+----------------------+
+    | GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+    | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+    |                                         |                        |               MIG M. |
+    |=========================================+========================+======================|
+    |   0  NVIDIA A100 80GB PCIe          On  |   00000000:25:00.0 Off |                    0 |
+    | N/A   44C    P0             88W /  300W |   33644MiB /  81920MiB |     43%      Default |
+    |                                         |                        |             Disabled |
+    +-----------------------------------------+------------------------+----------------------+
+
+    +-----------------------------------------------------------------------------------------+
+    | Processes:                                                                              |
+    |  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+    |        ID   ID                                                               Usage      |
+    |=========================================================================================|
+    |    0   N/A  N/A          205769    C+G   MorphoGraphX                          22904MiB |
+    |    0   N/A  N/A          544754    C+G   MorphoDynamX                          10670MiB |
+    +-----------------------------------------------------------------------------------------+
+    ``` 
+
 ### Cooling 
 
 <figure class="inline end" markdown>
@@ -73,6 +110,16 @@ This picture shows how the different components talk together.
 
 A computer is a machine that can be programmed to automatically carry out sequences of 
 arithmetic or logical operations (computation). (Wikipedia) 
+
+??? note "What is my Operating System (OS)?"
+
+    ```text
+    $ cat /etc/os-release
+    PRETTY_NAME="Ubuntu 22.04.5 LTS"
+    NAME="Ubuntu"
+    VERSION_ID="22.04"
+    ...
+    ```
 
 # Basic Functions of a Computer
 
@@ -105,7 +152,6 @@ them, and carries out their execution. Internally, it contains the ALU, the Cont
   <figcaption> CPU components.</figcaption>
 </figure>
 
-
 ### The Von Neumann Bottleneck
  
 In the Von Neumann architecture, the transfer of instructions between the CPU and memory and the transfer 
@@ -116,8 +162,8 @@ significant, especially in high-performance computing clusters where massive com
 
 Modern hardware addresses this problem through several complementary strategies:
 
-- **Cache hierarchies (L1/L2/L3):** multiple levels of small, fast memory placed close to the CPU reduce how often the processor needs to 
-reach out to main memory over the bus.
+- **Cache hierarchies (L1/L2/L3):** multiple levels of small, fast memory placed close to the CPU 
+reduce how often the processor needs to reach out to main memory over the bus.
 - **Harvard-style L1 caches:** the first cache level is split into separate instruction and data caches, allowing
 both to be accessed simultaneously and eliminating a key source of contention.
 - **Wide memory buses, DDR channels, and HBM (High Bandwidth Memory):** these increase the raw throughput of data
@@ -177,20 +223,17 @@ The Control Unit, as its name suggests, manages the operation of the entire proc
 memory in sequence, interprets the required operation, and issues the control signals needed to coordinate the ALU, 
 registers, and other components accordingly.
 
-
 ### Arithmetic Logic Unit (ALU)
 
 The ALU is the part of the CPU that performs computational tasks. This includes arithmetic operations (addition, subtraction, 
 multiplication, and division) and logical operations (comparisons such as equality or greater than, and bitwise operations 
 such as AND, OR, and NOT). 
 
-
 ### Registers
 
 Registers are the closest storage locations in the memory hierarchy to the processor. They are small, extremely fast, and can 
 be accessed in less than one CPU cycle, far faster than external memory. Their role is to hold the values the CPU is actively 
 using: operands for operations, intermediate results, and critical information about the state of execution.
-
 
 Common register types include:
 
@@ -210,7 +253,6 @@ Each instruction contains two essential pieces of information:
 - An **opcode** is a numeric code specifying which operation to perform (e.g., ADD, LOAD, or BRANCH)
 - **Operands** are the inputs to that operation: the registers, memory addresses, or immediate values it should act on
 
-
 ### The Instruction Set Architecture (ISA)
 
 The ISA defines the complete set of instructions a CPU can execute and serves as the interface between software and hardware. It 
@@ -218,16 +260,13 @@ specifies operations, operand encoding, memory addressing, and processor state m
 run on any CPU that implements it, regardless of its internal design. This distinction between the ISA and the processor’s 
 microarchitecture is a fundamental principle of computer architecture.
 
-
 ### The Instruction Pipeline
 
 Modern CPUs do not execute instructions one at a time from start to finish. Instead, they use an instruction pipeline, 
 where execution is divided into stages such as fetch, decode, execute, and write-back. Multiple instructions can then be 
 processed simultaneously at different stages, increasing throughput without making individual stages faster.
 
-
 ### Common ISAs
-
 
 **x86-64** (also called AMD64 or Intel 64) is the dominant ISA for desktops, laptops, and servers. It 
 evolved from Intel’s 8086 through 32-bit x86 before AMD introduced the 64-bit extension in 2003. 
@@ -260,8 +299,6 @@ PTX/SASS for CUDA workloads, while AMD uses RDNA/CDNA for its GPU lines.
   <figcaption> AMD CPU (Image taken from AMD CPU in References).</figcaption>
 </figure>
 
-
-
 ## What Are CPU Cores?
 
 A **core** is a complete, independent processing unit within the CPU. Each core contains its own ALU, 
@@ -282,13 +319,11 @@ be divided into parallel workloads using programming models such as OpenMP for s
 MPI for distributed computing. In HPC, performance depends not only on hardware, but also on software designed 
 to use parallelism effectively.
 
-
 ## What Is Cache Memory?
 
 **CPU cache** is a small, high-speed memory located on or near the processor. It stores frequently 
 used data and instructions so the CPU can access them much faster than from main memory (RAM), 
 reducing delays caused by memory access.
-
 
 Caches are organized in levels, each with a trading size for speed:
 
@@ -298,7 +333,6 @@ Caches are organized in levels, each with a trading size for speed:
 | **L2** | Inside each core (or nearby) | 256 KB – 4 MB | ~400 – 1,000 GB/s |
 | **L3** | Shared across all cores | 8 – 64 MB | ~100 – 400 GB/s |
 | **RAM** | On the motherboard | 8 – 512 GB | ~50 – 100 GB/s (DDR5) / up to ~3,000 GB/s (HBM) |
-
 
 When the CPU requests data, it searches the cache hierarchy in sequence: first L1, then L2, then L3. 
 Only if the data is missing from all cache levels does it access RAM, which is known as a **cache miss**. 
@@ -320,7 +354,6 @@ RAM is much faster than disk storage but slower than cache, and it is volatile, 
 are lost when power is turned off. Cache hierarchies help reduce the performance gap between the CPU 
 and RAM.
 
-
 <figure class="inline end" markdown>
 ![RAM/memory](../../images/ram.jpeg){: style="width: 200px;"}
 <figcaption>A couple memory sticks / RAM (Image taken from RAM in References).</figcaption>
@@ -335,13 +368,10 @@ which is much slower and can significantly reduce system responsiveness.
 - RAM performance also depends on memory speed (measured in MT/s or MHz) and latency (the delay between 
 requesting data and receiving it), both of which affect how quickly the CPU can access data that is not already in cache.
 
-
 ## Non-Uniform Memory Access (NUMA)
 
 Modern servers and workstations often contain multiple CPU **sockets**, each with its own cores and a 
 local bank of RAM. This architecture is called **NUMA (Non-Uniform Memory Access)**.
-
-
 
 <figure>
   <img src="../../images/caches.png" style="width: 700px;" alt="CPU caches">
@@ -355,7 +385,6 @@ In HPC and high-performance workloads, NUMA awareness is critical. Placing data 
 node as the cores that process it avoids expensive cross-socket traffic. Tools like `numactl`, 
 `hwloc`, and SLURM's `--mem-bind` option help manage NUMA placement on Linux clusters.
 
-
 ## How Everything Works Together
 
 1. **Programs and data** are first loaded from persistent storage into RAM, making them accessible to the CPU.
@@ -368,6 +397,88 @@ than local transfers.
 
 This fetch-decode-execute-write-back cycle runs continuously and billions of times per second while a program is executing.
 
+??? note "How to get information about the CPU?"
+
+    ```text
+    $ lscpu 
+
+    Architecture:                x86_64
+      CPU op-mode(s):            32-bit, 64-bit
+      Address sizes:             48 bits physical, 48 bits virtual
+      Byte Order:                Little Endian
+    CPU(s):                      32
+      On-line CPU(s) list:       0-31
+    Vendor ID:                   AuthenticAMD
+      Model name:                AMD EPYC 7313 16-Core Processor
+        CPU family:              25
+        Model:                   1
+        Thread(s) per core:      1
+        Core(s) per socket:      16
+        Socket(s):               2
+        Stepping:                1
+        Frequency boost:         enabled
+        CPU max MHz:             3730.7351
+        CPU min MHz:             1500.0000
+        BogoMIPS:                5988.83
+        Flags:                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr s
+                                se sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop
+                                _tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 ss
+                                e4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_lega
+                                cy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfct
+                                r_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 invpcid_single hw_pstate ssbd mba ibrs ibp
+                                b stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid cqm rdt_a rdseed adx smap clflushopt 
+                                clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_loc
+                                al clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin arat npt lbrv svm_lock nrip_save tsc_s
+                                cale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload vgif v_s
+                                pec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca ibpb_exit_to_user
+    Virtualization features:     
+      Virtualization:            AMD-V
+    Caches (sum of all):         
+      L1d:                       1 MiB (32 instances)
+      L1i:                       1 MiB (32 instances)
+      L2:                        16 MiB (32 instances)
+      L3:                        256 MiB (8 instances)
+    NUMA:                        
+      NUMA node(s):              2
+      NUMA node0 CPU(s):         0-15
+      NUMA node1 CPU(s):         16-31
+    Vulnerabilities:             
+      Gather data sampling:      Not affected
+      Indirect target selection: Not affected
+      Itlb multihit:             Not affected
+      L1tf:                      Not affected
+      Mds:                       Not affected
+      Meltdown:                  Not affected
+      Mmio stale data:           Not affected
+      Reg file data sampling:    Not affected
+      Retbleed:                  Not affected
+      Spec rstack overflow:      Mitigation; safe RET
+      Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+      Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+      Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP disabled; RSB filling; PBRSB-eIBR
+                                S Not affected; BHI Not affected
+      Srbds:                     Not affected
+      Tsa:                       Mitigation; Clear CPU buffers
+      Tsx async abort:           Not affected
+      Vmscape:                   Mitigation; IBPB before exit to userspace
+    ``` 
+??? note "How to get information about the NUMA node topology?"
+
+    ```text
+    $ numactl --hardware 
+
+    available: 2 nodes (0-1)
+    node 0 cpus: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+    node 0 size: 128374 MB
+    node 0 free: 121829 MB
+    node 1 cpus: 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+    node 1 size: 128969 MB
+    node 1 free: 122201 MB
+    node distances:
+    node   0   1 
+      0:  10  32 
+      1:  32  10
+    ```
 
 # Summary
 

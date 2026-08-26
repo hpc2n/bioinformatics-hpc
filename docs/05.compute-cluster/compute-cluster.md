@@ -7,6 +7,15 @@ about computer clusters like Kebnekaise, Arrhenius, Tetralith, Dardel, Alvis, Co
 
 The exercises will be done on Kebnekaise, though. 
 
+## Schedule
+
+| Time | Topic | Activity | Teacher |
+| ---- | ----- | -------- | ------- |
+| 13:00 | Intro to clusters | lecture | BB |
+| 14:15 | Break | Break | Break |
+| 14:30 | Kebnekaise | lecture + visit to machine room | BB |
+| 16:00 | End of day | . | . |
+
 ## What is a cluster
 
 A computer cluster consists of a number of computers (few or many), linked

@@ -1,4 +1,4 @@
-# Branches
+# Branches, merges, and conflicts 
 
 !!! note "Objectives"
 

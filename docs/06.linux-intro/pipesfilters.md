@@ -104,17 +104,17 @@ I/O redirection: Usually, standard input comes from the keyboard etc. and the st
 
 **Examples**
 
-Let us use the files in the directory ``exercises/patterns`` you got from the downloaded tarball. 
+Let us use the files in the directory ``exercises/06.linux-intro/patterns`` you got from the downloaded tarball. 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ head -3 myfile3.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ head -3 myfile3.txt 
 Aaaand some text here as well. 
 Should I have more lines? Probably.
 This is going to be a slightly longer file.
 ```
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ tail -2 myfile3.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ tail -2 myfile3.txt 
 And more text.
 And just a liiiitle more text. 
 ```
@@ -143,19 +143,19 @@ I ran the following examples on my work desktop "defiant". My username is "bbryd
 
 !!! tip "Exercise: try the examples below"
 
-    We will work with the files in the directory ``exercises/patterns`` that you got from the tarball you downloaded.
+    We will work with the files in the directory ``exercises/06.linux-intro/patterns`` that you got from the tarball you downloaded.
 
 1. 
  
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc myfile1.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc myfile1.txt 
  4 15 80 myfile1.txt
 ```
 ``wc`` counted the number of lines, words, and characters in the file ``myfile1.txt``. It says there are **4 lines**, **15 words**, and **80 characters**.<br><br> 
 2. 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc *.txt
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc *.txt
   1   6  34 fil.txt
   0   0   0 myfile0.txt
   4  15  80 myfile1.txt
@@ -180,7 +180,7 @@ All lines, words, characters in the files with the extension ``.txt``. Also sums
 3. 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc -l myfile2.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc -l myfile2.txt 
 2 myfile2.txt
 ```
 
@@ -188,7 +188,7 @@ With ``wc -l`` you only get the number of lines of the file. <br><br>
 4.
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc
 
 ```
 
@@ -199,13 +199,13 @@ If you do not give a file as input, ``wc`` will assume it should wait for input.
 Assume you have a large number of files that you want to run ``wc`` on. Then it will not work well to just get the output thrown to screen. It would be much better to get the output to a file, and you can do that this way: 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc -l *.txt > filelength.txt
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc -l *.txt > filelength.txt
 ```
 
 This will take the number of lines for each file and put to the file ``filelength.txt``:
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ cat filelength.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ cat filelength.txt 
   1 fil.txt
   0 myfile0.txt
   4 myfile1.txt
@@ -242,12 +242,12 @@ The sort command is used in Linux to print the output of a file in given order.
 
 !!! tip "Try the examples below"
 
-    I suggest using the file ``numbers.txt`` in the directory ``exercises/patterns``. 
+    I suggest using the file ``numbers.txt`` in the directory ``exercises/06.linux-intro/patterns``. 
 
 1. Sort the file ``numbers.txt``
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ sort numbers.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ sort numbers.txt 
 1
 15
 2
@@ -264,7 +264,7 @@ bbrydsoe@defiant:~/exercises/patterns$ sort numbers.txt
 2. Let us try sorting with the options ``-n`` instead 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ sort -n numbers.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ sort -n numbers.txt 
 1
 2
 2
@@ -283,7 +283,7 @@ This is the difference between the default (alphanumerical) and numerical sortin
 3. What if we run sort on the output file ``filelength.txt`` we got from the section ``wc - capturing output`` above. 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ sort -n filelength.txt 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ sort -n filelength.txt 
   0 myfile0.txt
   0 myfiles.txt
   0 thisfile0.txt
@@ -319,12 +319,12 @@ The pipe is symbolized by a ``|`` between the commands.
 
 !!! tip "Try the three examples below!" 
 
-    We recommend you use the files in the directory ``exercises/patterns`` to work with. 
+    We recommend you use the files in the directory ``exercises/06.linux-intro/patterns`` to work with. 
 
 1. Further up on the page, we counted the lines in all the files with extensions ``.txt`` and threw the output to a file. Let us instead *pipe* the output to ``sort -n`` so we can sort it numerically. 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc -l *.txt | sort -n
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc -l *.txt | sort -n
   0 myfile0.txt
   0 myfiles.txt
   0 thisfile0.txt
@@ -348,7 +348,7 @@ bbrydsoe@defiant:~/exercises/patterns$ wc -l *.txt | sort -n
 2. We could also use ``tail`` on the output to instead see the end of the output: 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc -l *.txt | tail -3
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc -l *.txt | tail -3
   0 thisfile9.txt
   0 thisfile.txt
  26 total
@@ -356,11 +356,11 @@ bbrydsoe@defiant:~/exercises/patterns$ wc -l *.txt | tail -3
 3. Or we could combine several commands, and sort the output of ``wc`` and then run ``head`` on *that* output: 
 
 ```bash
-bbrydsoe@defiant:~/exercises/patterns$ wc -l *.txt | sort -n | head -3
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ wc -l *.txt | sort -n | head -3
   0 myfile0.txt
   0 myfiles.txt
   0 thisfile0.txt
-bbrydsoe@defiant:~/exercises/patterns$ 
+bbrydsoe@defiant:~/exercises/06.linux-intro/patterns$ 
 ```
 
 ## Exporting variables 
