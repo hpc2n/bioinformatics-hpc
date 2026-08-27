@@ -43,7 +43,9 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 <figure>
   <img src="../../images/motherboard.png" style="width: 600px;" alt="MB">
-  <figcaption> Example of a motherboard MSI PRO B850-VC EVO WIFI6E. Credits: https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E</figcaption>
+  <figcaption> Example of a motherboard MSI PRO B850-VC EVO WIFI6E. Credits: https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E
+  <a href="https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E" target="_blank">Credits: msi.com</a>
+  </figcaption>
 </figure>
 
 ### SSD storage 
