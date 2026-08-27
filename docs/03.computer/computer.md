@@ -102,7 +102,10 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 ![Fan](../../images/fan.jpg){: style="width: 100px;"}
 <figcaption>A fan</figcaption>
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
-<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between). Credits:  https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr</figcaption>
+<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between). Credits: 
+<a href="https://www.noctua.at/en/products/nf-a12x25-pwm" target="_blank"> noctua.at</a>
+<a href="https://www.enermax.com/en/search/label/360mm%20Radiaotr" target="_blank"> enermax.com</a>
+</figcaption>
 </figure>
 
 
