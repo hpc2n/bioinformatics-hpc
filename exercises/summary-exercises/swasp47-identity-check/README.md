@@ -51,7 +51,7 @@ Verified working on Kebnekaise (2026-08-13):
 - The login node and compute nodes can both reach the ENA API, PyPI, and Docker Hub.
 - For script 01, if you have access to the genome/CDS inputs: `module load GCC/13.3.0 Python/3.12.3`, then `python3 -m venv venv && source venv/bin/activate && pip install mappy` — `mappy` 2.31 installs and imports cleanly with that module pair.
 
-**Before script 03 can be run for real**, the reference transcript FASTA needs to be staged on shared storage (it is not included in this repo, as it is an unpublished research input) — ask Nathaniel for the path once it is placed on `/proj/nobackup/cddb_course/`.
+**Script 03 can now be run for real.** The reference transcript FASTA (an unpublished research input, not included in this repo) is staged at `/proj/nobackup/cddb_course/databases/swasp47_reference/Potra2n4c9093_transcript.fa` — uncomment the `cp` line under `# --- reference the reads align to ---` in the script to use it.
 
 ## 4. The result and how to read it
 
