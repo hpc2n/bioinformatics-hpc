@@ -43,14 +43,18 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 <figure>
   <img src="../../images/motherboard.png" style="width: 600px;" alt="MB">
-  <figcaption> Example of a motherboard MSI PRO B850-VC EVO WIFI6E. Credits: https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E</figcaption>
+  <figcaption> Example of a motherboard MSI PRO B850-VC EVO WIFI6E.
+  <a href="https://www.msi.com/Motherboard/PRO-B850-VC-EVO-WIFI6E" target="_blank">Credits: msi.com</a>
+  </figcaption>
 </figure>
 
 ### SSD storage 
 
 <figure>
   <img src="../../images/ssd.jpg" style="width: 200px;" alt="SSD">
-  <figcaption> SSD storage. Credits: https://ssd-tester.com/crucial_p310_2tb.html</figcaption>
+  <figcaption> SSD storage. 
+  <a href="https://ssd-tester.com/crucial_p310_2tb.html" target="_blank">Credits: ssd-tester.com</a>
+  </figcaption>
 </figure>
 
 ### GPU
@@ -59,7 +63,9 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 ![GPU](../../images/GPU.jpg){: style="width: 300px;"}
 <figcaption>GPU (Nvidia)</figcaption>
 ![GPU chip](../../images/GPU-chip.jpg){: style="width: 200px;"}
-<figcaption>GPU chip. Credits: https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252</figcaption>
+<figcaption>GPU chip.
+<a href="https://www.techpowerup.com/gpu-specs/geforce-rtx-2070.c3252" target="_blank">Credits: techpowerup.com</a>
+</figcaption>
 </figure>
 
 ??? note "What type of GPU is available?"
@@ -94,9 +100,15 @@ Let us take a look inside a typical desktop computer. This shows a simplified sk
 
 <figure class="inline end" markdown>
 ![Fan](../../images/fan.jpg){: style="width: 100px;"}
-<figcaption>A fan</figcaption>
+<figcaption>A fan. Credits:
+<a href="https://www.noctua.at/en/products/nf-a12x25-pwm" target="_blank"> noctua.at</a>
+</figcaption>
+</figure>
+<figure class="inline end" markdown>
 ![Watercooling](../../images/water-cooler.jpg){: style="width: 300px;"}
-<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between). Credits:  https://www.noctua.at/en/products/nf-a12x25-pwm and https://www.enermax.com/en/search/label/360mm%20Radiaotr</figcaption>
+<figcaption>Watercooling including heat sink (the heat sink will be attached on top of a CPU with cooling paste in between). Credits: 
+<a href="https://www.enermax.com/en/search/label/360mm%20Radiaotr" target="_blank"> enermax.com</a>
+</figcaption>
 </figure>
 
 

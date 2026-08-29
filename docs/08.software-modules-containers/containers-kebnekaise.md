@@ -218,6 +218,11 @@ You will find more information and examples about using Apptainer and creating i
 - <a href="https://apptainer.org/docs/user/latest/mpi.html" title="for version 3.8" target="_blank">Official documentation on Apptainer and MPI applications</a>
 - <a href="https://apptainer.org/" target="_blank">The official website</a>
 - <a href="https://apptainer.org/docs/" target="_blank">Documentation, user guides, and examples at the official website</a>
+- <a href="https://hub.docker.com/u/biocontainers" target="_blank">Biocontainers  - A community-driven project to create and manage scientific software containers</a> 
+    - <a href="https://github.com/BioContainers" target="_blank">The GitHub of the Biocontainers project</a> 
+- <a href="https://galaxyproject.org/" target="_blank">Open source platform for accessible, reproducible, and transparent computational research.</a> 
+- <a href="https://pawseysc.github.io/bio-intro-containers/11-containers-intro/index.html" target="_blank">Using Containers in Bioinformatics -- An Introduction</a> 
+
 
 
 
