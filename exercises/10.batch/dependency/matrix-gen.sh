@@ -1,7 +1,7 @@
 #!/bin/bash
-# Change to your own project ID! 
-#SBATCH -A <proj ID>
-#SBATCH --time=00:12:00 # Asking for 12 minutes
+# Change to your own project ID after the course! 
+#SBATCH -A hpc2ncourses2026-013
+#SBATCH --time=00:25:00 # Asking for 25 minutes
 #SBATCH -n 1 # Asking for 1 core
 
 # Load any modules you need, here for Python 3.11.3 and compatible SciPy-bundle

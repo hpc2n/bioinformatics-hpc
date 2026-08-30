@@ -28,13 +28,21 @@ These exercises are meant as extra (optional) training and can be done either du
         - Start `R`
         - `install.packages("devtools")`
             - You will be asked to confirm installing to your own R library if you have not set that up. You will also be asked for a mirror to use. Pick Sweden, Umeå. 
-    - Now you can use devtools to install from GitHub, you need to install prerequisites: 
+    - Now you can use devtools to install from GitHub, you need to also install prerequisites: 
         - `devtools::install_github("hadley/stringr")`
         - `devtools::install_github(repo = "hhoeflin/hdf5r")`
         - `devtools::install_github(repo = "mojaveazure/loomR", ref = "develop")`
 
 ## Installing software from a Git repository - Python 
 
-- https://andre-rendeiro.com/2015/04/08/bioinfo_fresh_install_ubuntu
+1. Let us install `nimfa` - Non-negative matrix factorization
+    - Go to your project storage space on Kebnekaise
+    - Load some modules, including Python, SciPy-bundle (numpy, scipy), matplotlib, the Git module, with prerequisites: `module load GCC/13.2.0 Python/3.11.5 SciPy-bundle/2023.11 matplotlib/3.8.2 git/2.42.0`
+        - Scipy, numpy, and matplotlib are prerequisites for nimfa. Also, nimfa does not currently work for Python > 3.11.x. 
+    - Go to `https://github.com/ccshao/nimfa` and clone: `git clone https://github.com/ccshao/nimfa.git`
+    - Enter the `nimfa` directory. 
+    - Install to the path where you want nimfa available, example: `python setup.py install --prefix=/proj/nobackup/cddb_course/<your-dir>/mynimfa`  
+    - Set PYTHONPATH (example): `export PYTHONPATH=$PYTHONPATH:/proj/nobackup/cddb_course/<your-dir>/mynimfa/lib/python3.11/site-packages/`
+    - You can find a test to run and see if it worked on: `https://nimfa.biolab.si/` (Start Python first) 
 
 

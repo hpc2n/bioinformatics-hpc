@@ -80,6 +80,7 @@ nav:
     - Extra exercises: 08.software-modules-containers/exercises.md 
   - 9. Software from a Git repo: 
     - Installing from Git: 09.software-git-install-compile/git-software.md
+    - Extra exercises: 09.software-git-install-compile/exercises.md
   - 10. The batch system (Slurm): 
     - Introduction: 10.batch-slurm/intro.md
     - Batch system concepts: 10.batch-slurm/concepts.md
