@@ -27,7 +27,7 @@ Another option is using ThinLinc if you feel confident with that.
     - ThinLinc:
         - Server: ``kebnekaise-tl.hpc2n.umu.se``
         - Username: ``<your-hpc2n-username>``
-        - Password: ``<yout-hpc2n-password>``
+        - Password: ``<your-hpc2n-password>``
     - ThinLinc Webaccess:
         - Put ``https://kebnekaise-tl.hpc2n.umu.se:300/`` in browser address bar
         - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in th e login box that opens and click ``Login``
