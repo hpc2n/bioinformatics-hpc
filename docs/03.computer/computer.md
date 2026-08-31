@@ -16,7 +16,7 @@
 
 In this session we are going to do a short walk-through of what a computer is, both the hardware parts and the system software. 
 
-Everyone has an idea of what a computer is; usually we are thinking of a screen, a keyboard, and internal components like CPU, GPU, HDD/SDD, and RAM/memory. 
+Everyone has an idea of what a computer is; usually we are thinking of a screen, a keyboard, and internal components like CPU, GPU, HDD/SSD, and RAM/memory. 
 
 Computers are special types of machines. Most machines only do one thing (cars, ovens, sewing machines, coffee machines), but computers are what is called "universal machines". They run programs that means they can do many different tasks. 
 
