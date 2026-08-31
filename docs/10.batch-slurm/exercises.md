@@ -4,7 +4,10 @@ These exercises are meant as extra (optional) training and can be done either du
 
 ## Slurm commands  
 
-1. Installing `bamtools` (it is already on Kebnekaise as a module - this is just as an example)
+These commands are run in a terminal. Either connect to Kebnekaise using an SSH client or use OpenOnDemand and start a terminal. 
+
+1. Type the command `projinfo`. Look at the output. Try adding some options, `projinfo -vd -u <your-username>`. You now get output telling you who are in the same project and how much each has run. However, the output is not always reliable and updated. Go to `https://supr.naiss.se` and click on your project `hpc2ncourses2026-013` in the left side, then scroll down to see usage (click on usage per day and usage per account). 
+2. 
     - Either on your own computer, or in your project storage space on Kebnekaise, create a directory to build in. Enter it.
     - Go to https://github.com/pezmaster31/bamtools
     - Click the green "<> Code" button and then right-click the "Download ZIP"
