@@ -47,10 +47,10 @@ Use the [FAIR and Open Science handout](14.fair-open-science/fair-open-science.m
 
 Work through these in order:
 
-- [ ] [Biological databases](11.database-landscape/database-landscape.md) — INSDC, UniProt, GO, specialist resources
-- [ ] [File formats](13.file-formats/file-formats.md) — FASTA, FASTQ, SAM/BAM, VCF, GTF, BED
-- [ ] [FAIR and open science](14.fair-open-science/fair-open-science.md) — FAIR principles, reproducibility, open science
-- [ ] [FAIR in practice](15.fair-in-practice/fair-in-practice.md) — three ways to run BLAST, PlantGenIE API, GEO metadata, paper reproducibility (background: [BLAST reference](12.blast/blast.md))
+- \[ \] [Biological databases](11.database-landscape/database-landscape.md) — INSDC, UniProt, GO, specialist resources
+- \[ \] [File formats](13.file-formats/file-formats.md) — FASTA, FASTQ, SAM/BAM, VCF, GTF, BED
+- \[ \] [FAIR and open science](14.fair-open-science/fair-open-science.md) — FAIR principles, reproducibility, open science
+- \[ \] [FAIR in practice](15.fair-in-practice/fair-in-practice.md) — three ways to run BLAST, PlantGenIE API, GEO metadata, paper reproducibility (background: [BLAST reference](12.blast/blast.md))
 
 ## Tier 2 — Consolidation and extension
 

@@ -547,7 +547,7 @@ git commit -m "lecture15: reproducible report reflection complete"
 
 ## Essay Assessment
 
-The full FAIR essay assignment — what it asks, what distinguishes a G from a VG response, and the curated paper shortlist — is covered in [Lecture 14, Section 10](../14.fair-open-science/fair-open-science.md#10-introduction-to-the-fair-essay-assessment). The metadata assessment (Part 2) and paper reproducibility exercise (Part 3) you have just completed are direct practice for the essay — the same frameworks apply. Bring questions to office hours or post on the Canvas discussion board.
+The full FAIR essay assignment — what it asks, what distinguishes a G from a VG response, and the curated paper shortlist — is covered in [Lecture 14, Section 10](../14.fair-open-science/fair-open-science.md#10__introduction__to__the__fair__essay__assessment). The metadata assessment (Part 2) and paper reproducibility exercise (Part 3) you have just completed are direct practice for the essay — the same frameworks apply. Bring questions to office hours or post on the Canvas discussion board.
 
 ---
 
