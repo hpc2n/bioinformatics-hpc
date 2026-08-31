@@ -120,9 +120,6 @@ System software is what is required for the computer to run and to let us intera
 
 This picture shows how the different components talk together. 
 
-A computer is a machine that can be programmed to automatically carry out sequences of 
-arithmetic or logical operations (computation). (Wikipedia) 
-
 ??? note "What is my Operating System (OS)?"
 
     ```text
