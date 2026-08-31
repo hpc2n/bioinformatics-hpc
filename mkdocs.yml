@@ -127,6 +127,7 @@ plugins:
   - mkdocstrings
   - markdown-exec
   - open-in-new-tab
+  - toggle-sidebar
   - mermaid2:
       javascript: https://unpkg.com/mermaid/dist/mermaid.min.js
     #      javascript: https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs
