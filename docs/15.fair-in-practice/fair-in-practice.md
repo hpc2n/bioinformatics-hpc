@@ -1,7 +1,7 @@
 # 15. FAIR in Practice
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
-**Slides:** [PDF](../../PDFs/lecture-15-fair-in-practice.pdf)  
+**Slides:** [PDF](../PDFs/lecture-15-fair-in-practice.pdf)  
 **Exercises:** See [`exercises/`](../../exercises/15.fair-in-practice/)
 
 **This is a self-study exercise page, not a taught session.** Work through Parts 1–4 at your own pace, following on from [Lecture 14: FAIR and Open Science](../14.fair-open-science/fair-open-science.md), where Jamie McCann introduced PlantGenIE live. Bring questions to office hours or post on the Canvas discussion board.

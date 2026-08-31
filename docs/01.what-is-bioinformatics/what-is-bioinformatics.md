@@ -1,7 +1,7 @@
 # 01. What is Bioinformatics?
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
-**Slides:** [PDF](../../PDFs/lecture-01-what-is-bioinformatics.pdf)  
+**Slides:** [PDF](../PDFs/lecture-01-what-is-bioinformatics.pdf)  
 
 ---
 

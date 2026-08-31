@@ -1,7 +1,7 @@
 # 00. Programme Introduction
 
 **Course:** Master's Programme in Bioinformatics · Umeå University  
-**Slides:** [PDF](../../PDFs/lecture-00-programme-introduction.pdf)
+**Slides:** [PDF](../PDFs/lecture-00-programme-introduction.pdf)
 
 ---
 

@@ -1,7 +1,7 @@
 # 14. FAIR and Open Science
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
-**Slides:** [PDF](../../PDFs/lecture-14-fair-open-science.pdf)  
+**Slides:** [PDF](../PDFs/lecture-14-fair-open-science.pdf)  
 
 ---
 

@@ -1,7 +1,7 @@
 # 11. The Biological Database Landscape
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
-**Slides:** [PDF](../../PDFs/lecture-11-database-landscape.pdf)  
+**Slides:** [PDF](../PDFs/lecture-11-database-landscape.pdf)  
 **Exercises:** See [`exercises/`](../../exercises/11.databases/)
 
 ---
