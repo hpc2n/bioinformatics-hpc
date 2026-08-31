@@ -1,7 +1,7 @@
 # Advanced case study: checking sample identity from RNA-seq
 
 **Status: advanced and deliberately challenging — beyond what the exam will expect.**
-This is optional, self-paced material for the [Summary Exercises](../../../docs/summary-exercises.md) week. Nobody needs to finish it, and nothing here is examinable.
+This is optional, self-paced material for the [Summary Exercises](../../../summary-exercises.md) week. Nobody needs to finish it, and nothing here is examinable.
 
 A real, currently unpublished example from Nathaniel's own research group, used here as research-led teaching — this is what the day-to-day bioinformatics in an active research project actually looks like, not a case built for a course. It asks a simple but consequential question — *is this sample really what its label says?* — and answers it by genotyping a handful of diagnostic sites from public RNA-seq. Along the way it exercises alignment, variant reading, public-archive retrieval, containers, and disk hygiene on shared HPC.
 

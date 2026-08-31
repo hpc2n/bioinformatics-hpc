@@ -1,6 +1,6 @@
 # Exercises: Bioinformatics File Formats (Lecture 13)
 
-Exercises accompany [Lecture 13](../../docs/13.file-formats/index.md).
+Exercises accompany [Lecture 13](../../13.file-formats/file-formats.md).
 
 Exercise data at: `/proj/nobackup/bioinformatics_course/data/formats/`
 
@@ -14,4 +14,4 @@ samtools flagstat sample.bam
 grep -v "^#" sample.vcf | wc -l
 awk '!/^#/{print $3}' sample.gtf | sort | uniq -c | sort -rn
 ```
-Full commands in the [lecture handout](../../docs/13.file-formats/index.md).
+Full commands in the [lecture handout](../../13.file-formats/file-formats.md).

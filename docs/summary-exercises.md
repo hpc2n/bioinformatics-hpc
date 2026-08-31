@@ -68,9 +68,9 @@ If you are up to date with everything above, these go a step further with the sa
 
 ### Sample identity checking from RNA-seq
 
-[**`exercises/summary-exercises/swasp47-identity-check/`**](../exercises/summary-exercises/swasp47-identity-check/README.md) — a real, currently unpublished case study from Nathaniel's own research group: is a cloned gene's plant-of-origin really what it was labelled as? The case study answers this by genotyping diagnostic SNP positions from public RNA-seq, and touches spliced alignment, the ENA API (as in Lecture 11), containers, node-local scratch (as in the Batch system/Slurm lecture), and the FAIR idea that **reproducibility is not validity** — a pipeline can run perfectly on the wrong sample and still look fine.
+[**`exercises/summary-exercises/swasp47-identity-check/`**](exercises/summary-exercises/swasp47-identity-check/README.md) — a real, currently unpublished case study from Nathaniel's own research group: is a cloned gene's plant-of-origin really what it was labelled as? The case study answers this by genotyping diagnostic SNP positions from public RNA-seq, and touches spliced alignment, the ENA API (as in Lecture 11), containers, node-local scratch (as in the Batch system/Slurm lecture), and the FAIR idea that **reproducibility is not validity** — a pipeline can run perfectly on the wrong sample and still look fine.
 
-Start with the [case study README](../exercises/summary-exercises/swasp47-identity-check/README.md) — it explains the biology, the method, and which parts you can run yourself directly versus which need a reference file Nathaniel has not yet staged on shared storage.
+Start with the [case study README](exercises/summary-exercises/swasp47-identity-check/README.md) — it explains the biology, the method, and which parts you can run yourself directly versus which need a reference file Nathaniel has not yet staged on shared storage.
 
 ---
 

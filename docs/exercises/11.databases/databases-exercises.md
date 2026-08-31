@@ -1,6 +1,6 @@
 # Exercises: The Biological Database Landscape (Lecture 11)
 
-Exercises accompany [Lecture 11](../../docs/11.database-landscape/database-landscape.md).
+Exercises accompany [Lecture 11](../../11.database-landscape/database-landscape.md).
 
 ## Quick start
 
@@ -12,4 +12,4 @@ curl "https://rest.uniprot.org/uniprotkb/P04637.fasta" > TP53_protein.fasta
 git add . && git commit -m "lecture11: TP53 sequence retrieved from UniProt"
 ```
 
-Full commands in the [lecture handout](../../docs/11.database-landscape/database-landscape.md).
+Full commands in the [lecture handout](../../11.database-landscape/database-landscape.md).
