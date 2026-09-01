@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/summary-exercises/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Summary exercises - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Summary exercises";
+        var mkdocs_page_input_path = "summary-exercises.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/summary-exercises/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Summary exercises</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tier__1__catch-up">Tier 1 — Catch-up</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1__biological__databases">1. Biological databases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2__file__formats">2. File formats</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3__fair__and__open__science">3. FAIR and open science</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if__you__missed__a__session__entirely">If you missed a session entirely</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tier__2__consolidation__and__extension">Tier 2 — Consolidation and extension</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tier__3__advanced__optional__beyond__exam__scope">Tier 3 — Advanced (optional, beyond exam scope)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sample__identity__checking__from__rna-seq">Sample identity checking from RNA-seq</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#essay__reminder">Essay reminder</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">Summary exercises</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="summary__exercises__and__catch-up">Summary Exercises and Catch-Up<a class="headerlink" href="#summary__exercises__and__catch-up" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University<br />
+<strong>Session date:</strong> 18 September 2026 · 13:00–16:00</p>
+<hr />
+<p>This session gives you time to consolidate the bioinformatics content covered since 10 September, work through any exercises you have not yet completed, and catch up on anything you found difficult. Nathaniel is available throughout to answer questions.</p>
+<p><strong>None of this is assessed, and none of it needs to be finished during the scheduled session.</strong> Everything below can equally well be done at home, in the week before the exam, at your own pace. The scheduled 18 September session is there so Nathaniel is available in person if you want to work through something together — it is not a deadline for this page.</p>
+<p>The material below is organised in three tiers, roughly in order of increasing difficulty:</p>
+<ol>
+<li><strong>Catch-up</strong> — finish anything from earlier sessions you did not complete.</li>
+<li><strong>Consolidation and extension</strong> — go a bit further than the original exercises, still within what the exam might expect.</li>
+<li><strong>Advanced</strong> (clearly marked below) — genuinely challenging, optional material, beyond anything the exam will ask of you. Skip it entirely if you are short on time.</li>
+</ol>
+<h2 id="tier__1__catch-up">Tier 1 — Catch-up<a class="headerlink" href="#tier__1__catch-up" title="Permanent link">&para;</a></h2>
+<p>Work through the exercises in the order that is most useful to you.</p>
+<h3 id="1__biological__databases">1. Biological databases<a class="headerlink" href="#1__biological__databases" title="Permanent link">&para;</a></h3>
+<p>Use the <a href="../11.database-landscape/database-landscape/">Database Landscape handout</a> to:</p>
+<ul>
+<li>Complete any curl-based exercises you did not finish during the session</li>
+<li>Retrieve a gene of your own choice from UniProt and inspect its GO terms, cross-references, and evidence codes</li>
+<li>Try querying NCBI Entrez for a species or gene relevant to your own research interests</li>
+</ul>
+<h3 id="2__file__formats">2. File formats<a class="headerlink" href="#2__file__formats" title="Permanent link">&para;</a></h3>
+<p>Use the <a href="../13.file-formats/file-formats/">File Formats handout</a> to:</p>
+<ul>
+<li>Complete any FASTQ, BAM, VCF, or GTF exercises not yet finished</li>
+<li>Try the coordinate system exercise — confirm you can correctly convert between 0-based (BED) and 1-based (VCF/GTF) coordinates for a specific variant</li>
+</ul>
+<h3 id="3__fair__and__open__science">3. FAIR and open science<a class="headerlink" href="#3__fair__and__open__science" title="Permanent link">&para;</a></h3>
+<p>Use the <a href="../14.fair-open-science/fair-open-science/">FAIR and Open Science handout</a> and <a href="../15.fair-in-practice/fair-in-practice/">FAIR in Practice handout</a> to:</p>
+<ul>
+<li>Complete the GEO/ENA metadata sufficiency checklist for the AspWood dataset (ERP016242)</li>
+<li>Work through the paper reproducibility assessment exercise using your chosen essay paper</li>
+<li>Make progress on your FAIR essay</li>
+<li>If you did not finish it in session: run a BLAST search via the NCBI web interface, the command line on Kebnekaise, and the PlantGenIE/NCBI API, using the Slurm script in <code>exercises/15.fair-in-practice/</code> — see the <a href="../12.blast/blast/">BLAST background reference</a> if you need a refresher first</li>
+</ul>
+<h3 id="if__you__missed__a__session__entirely">If you missed a session entirely<a class="headerlink" href="#if__you__missed__a__session__entirely" title="Permanent link">&para;</a></h3>
+<p>Work through these in order:</p>
+<ul>
+<li>[ ] <a href="../11.database-landscape/database-landscape/">Biological databases</a> — INSDC, UniProt, GO, specialist resources</li>
+<li>[ ] <a href="../13.file-formats/file-formats/">File formats</a> — FASTA, FASTQ, SAM/BAM, VCF, GTF, BED</li>
+<li>[ ] <a href="../14.fair-open-science/fair-open-science/">FAIR and open science</a> — FAIR principles, reproducibility, open science</li>
+<li>[ ] <a href="../15.fair-in-practice/fair-in-practice/">FAIR in practice</a> — three ways to run BLAST, PlantGenIE API, GEO metadata, paper reproducibility (background: <a href="../12.blast/blast/">BLAST reference</a>)</li>
+</ul>
+<h2 id="tier__2__consolidation__and__extension">Tier 2 — Consolidation and extension<a class="headerlink" href="#tier__2__consolidation__and__extension" title="Permanent link">&para;</a></h2>
+<p>If you are up to date with everything above, these go a step further with the same tools and ideas — still within what the exam might reasonably expect.</p>
+<ul>
+<li><strong>Databases:</strong> the <a href="../11.database-landscape/database-landscape/">Database Landscape handout</a> has an &ldquo;Extension Tasks&rdquo; section at the end (a plant gene example, and searching ENA programmatically) — work through Extension A and Extension B there if you have not already.</li>
+<li><strong>FAIR in practice:</strong> having run BLAST three ways (web, CLI, API) in Lecture 15, try it on a protein of your own choosing rather than TP53 — compare the top hits and E-values you get from each method, and note any differences in what each interface makes easy or hard to see.</li>
+<li><strong>File formats:</strong> pick a variant from the VCF exercise and manually trace it through to a BED-format coordinate, then check your answer with a one-line script — this is the kind of off-by-one bug that causes real problems in genomics pipelines.</li>
+</ul>
+<hr />
+<h2 id="tier__3__advanced__optional__beyond__exam__scope">Tier 3 — Advanced (optional, beyond exam scope)<a class="headerlink" href="#tier__3__advanced__optional__beyond__exam__scope" title="Permanent link">&para;</a></h2>
+<p><strong>Everything from here on is deliberately challenging and will not be examined.</strong> It is here for anyone who wants to see what a piece of real, current research analysis looks like end-to-end, using tools from across the whole course (public archives, containers, HPC scratch, alignment, variant reading).</p>
+<h3 id="sample__identity__checking__from__rna-seq">Sample identity checking from RNA-seq<a class="headerlink" href="#sample__identity__checking__from__rna-seq" title="Permanent link">&para;</a></h3>
+<p><a href="../exercises/summary-exercises/swasp47-identity-check/"><strong><code>exercises/summary-exercises/swasp47-identity-check/</code></strong></a> — a real, currently unpublished case study from Nathaniel&rsquo;s own research group: is a cloned gene&rsquo;s plant-of-origin really what it was labelled as? The case study answers this by genotyping diagnostic SNP positions from public RNA-seq, and touches spliced alignment, the ENA API (as in Lecture 11), containers, node-local scratch (as in the Batch system/Slurm lecture), and the FAIR idea that <strong>reproducibility is not validity</strong> — a pipeline can run perfectly on the wrong sample and still look fine.</p>
+<p>Start with the <a href="../exercises/summary-exercises/swasp47-identity-check/">case study README</a> — it explains the biology, the method, and which parts you can run yourself directly versus which need a reference file Nathaniel has not yet staged on shared storage.</p>
+<hr />
+<h2 id="essay__reminder">Essay reminder<a class="headerlink" href="#essay__reminder" title="Permanent link">&para;</a></h2>
+<p>The FAIR compliance essay deadline is set in Canvas — see the <a href="../14.fair-open-science/fair-essay-assignment/">essay assignment</a> for the full brief, the deadline, and the paper shortlist. Use this week to make progress on your paper assessment if you have not already done so.</p>
+<hr />
+<p><em>5BI00A Computing for Data-Driven Biology · Department of Plant Physiology, Umeå University</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../15.fair-in-practice/fair-in-practice/" class="btn btn-neutral float-left" title="15. FAIR in Practice"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tree/" class="btn btn-neutral float-right" title="Install tree">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../15.fair-in-practice/fair-in-practice/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tree/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

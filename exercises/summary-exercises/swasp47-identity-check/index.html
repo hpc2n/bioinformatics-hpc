@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/exercises/summary-exercises/swasp47-identity-check/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Advanced case study: checking sample identity from RNA-seq - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Advanced case study: checking sample identity from RNA-seq";
+        var mkdocs_page_input_path = "exercises/summary-exercises/swasp47-identity-check/README.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/exercises/summary-exercises/swasp47-identity-check/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../summary-exercises/">Summary exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Advanced case study: checking sample identity from RNA-seq</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="advanced__case__study__checking__sample__identity__from__rna-seq">Advanced case study: checking sample identity from RNA-seq<a class="headerlink" href="#advanced__case__study__checking__sample__identity__from__rna-seq" title="Permanent link">&para;</a></h1>
+<p><strong>Status: advanced and deliberately challenging — beyond what the exam will expect.</strong>
+This is optional, self-paced material for the <a href="../../../summary-exercises/">Summary Exercises</a> week. Nobody needs to finish it, and nothing here is examinable.</p>
+<p>A real, currently unpublished example from Nathaniel&rsquo;s own research group, used here as research-led teaching — this is what the day-to-day bioinformatics in an active research project actually looks like, not a case built for a course. It asks a simple but consequential question — <em>is this sample really what its label says?</em> — and answers it by genotyping a handful of diagnostic sites from public RNA-seq. Along the way it exercises alignment, variant reading, public-archive retrieval, containers, and disk hygiene on shared HPC.</p>
+<h2 id="1__the__problem__why__this__matters">1. The problem (why this matters)<a class="headerlink" href="#1__the__problem__why__this__matters" title="Permanent link">&para;</a></h2>
+<p>A gene had been cloned/synthesised and attributed to a particular plant genotype (&ldquo;SwAsp47&rdquo;). Later, genotype data suggested the <em>sequence</em> did not match that plant. The critical question for the project became: is the plant material genuinely SwAsp47 (so the error is at the lab bench), or was the wrong plant sampled all along?</p>
+<p>Teaching point — <strong>reproducibility is not validity.</strong> A pipeline can run perfectly and give a self-consistent answer from the <em>wrong sample</em>. Identity checks are a routine, under-taught part of real analysis, and this is a direct extension of the reproducibility ideas from Lecture 14/15 (FAIR and Open Science).</p>
+<h2 id="2__the__idea">2. The idea<a class="headerlink" href="#2__the__idea" title="Permanent link">&para;</a></h2>
+<p>If we know positions where the sequence-of-interest differs from a reference allele, and we have <em>independent</em> sequencing of the claimed plant (here, RNA-seq from a public archive, retrieved the same way you retrieved data in Lecture 11), we can genotype those positions from the reads:</p>
+<ul>
+<li>reads show the <strong>reference</strong> allele → the plant is the genuine genotype;</li>
+<li>reads show the <strong>clone/alternate</strong> allele → the plant is a different source.</li>
+</ul>
+<p>The positions that discriminate the two alleles are the <strong>diagnostic SNPs</strong>.</p>
+<h2 id="3__the__workflow__three__small__scripts">3. The workflow (three small scripts)<a class="headerlink" href="#3__the__workflow__three__small__scripts" title="Permanent link">&para;</a></h2>
+<p>All scripts are in <a href="scripts/"><code>scripts/</code></a>.</p>
+<p><strong><a href="scripts/01_make_diagnostic_snps.py"><code>01_make_diagnostic_snps.py</code></a></strong> — align the coding sequence of interest to the reference genome (minimap2 via <code>mappy</code>), read the alignment&rsquo;s <code>cs</code> string, and list every position where it differs (reference allele vs clone allele). These are the sites to test. <em>Concepts: spliced pairwise alignment, CIGAR/<code>cs</code> strings, 0- vs 1-based coordinates, alleles/strand.</em></p>
+<p>This script needs the genome FASTA and the clone CDS as inputs — both unpublished research files not bundled in this repo. <strong>You can read the script to understand the method without running it.</strong> Its output format is shown in <a href="diagnostic_SNPs.example.tsv"><code>diagnostic_SNPs.example.tsv</code></a>, a real (already-generated) example output, so you can go straight to script 03 conceptually even without running script 01 yourself.</p>
+<p><strong><a href="scripts/02_get_ena_accessions.sh"><code>02_get_ena_accessions.sh</code></a></strong> — turn a study accession into run accessions and FASTQ URLs via the ENA portal API, exactly the pattern from Lecture 11. <em>Concepts: BioProject/study vs run accessions, the ENA filereport API, ENA-hosted vs original-filename FASTQs.</em> This one needs no private inputs — run it as-is:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bash<span class="w"> </span>scripts/02_get_ena_accessions.sh<span class="w"> </span>PRJEB73507<span class="w"> </span>&gt;<span class="w"> </span>runs.tsv
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>grep<span class="w"> </span><span class="s1">'Buds_.*_47_'</span><span class="w"> </span>runs.tsv
+</span></code></pre></div>
+<p><strong><a href="scripts/03_align_and_genotype.sh"><code>03_align_and_genotype.sh</code></a></strong> — a Slurm job: for each sample, stream R1 straight from ENA into the aligner, keep only the reads on the gene, and count reference vs alternate reads at the diagnostic positions with <code>samtools mpileup</code>. <em>Concepts: containers for reproducible tools, streaming to avoid disk, MAPQ filtering, pileup interpretation, coverage/depth, node-local scratch.</em></p>
+<p>Two practices in that script are worth paying attention to:</p>
+<ul>
+<li><strong>Streaming, not storing.</strong> <code>curl … | zcat | minimap2 … | samtools …</code> pipes a multi-GB FASTQ through the tools without ever writing it to disk. On a shared filesystem, downloading raw data &ldquo;just to align it&rdquo; is how one user&rsquo;s job fills the storage for a whole department. Peak footprint here is a few hundred MB, on <code>$SNIC_TMP</code> (node-local scratch — see the Batch system/Slurm lecture), wiped when the job ends.</li>
+<li><strong>Containers over the ambient environment.</strong> Pulling <code>samtools</code>/<code>minimap2</code> as <code>.sif</code> images via <code>apptainer</code> makes the analysis reproducible and independent of whatever modules happen to be loaded. <code>apptainer</code> is a system binary on Kebnekaise — no <code>module load</code> needed.</li>
+</ul>
+<h3 id="running__this__on__kebnekaise">Running this on Kebnekaise<a class="headerlink" href="#running__this__on__kebnekaise" title="Permanent link">&para;</a></h3>
+<p>Verified working on Kebnekaise (2026-08-13):</p>
+<ul>
+<li><code>apptainer</code> is at <code>/usr/bin/apptainer</code> (v1.3.5), available with no module load.</li>
+<li><code>$SNIC_TMP</code> is provisioned automatically per job (resolved to <code>/scratch</code>, 13 GB, on a test job).</li>
+<li>The login node and compute nodes can both reach the ENA API, PyPI, and Docker Hub.</li>
+<li>For script 01, if you have access to the genome/CDS inputs: <code>module load GCC/13.3.0 Python/3.12.3</code>, then <code>python3 -m venv venv &amp;&amp; source venv/bin/activate &amp;&amp; pip install mappy</code> — <code>mappy</code> 2.31 installs and imports cleanly with that module pair.</li>
+</ul>
+<p><strong>Script 03 can now be run for real.</strong> The reference transcript FASTA (an unpublished research input, not included in this repo) is staged at <code>/proj/nobackup/cddb_course/databases/swasp47_reference/Potra2n4c9093_transcript.fa</code> — uncomment the <code>cp</code> line under <code># --- reference the reads align to ---</code> in the script to use it.</p>
+<h2 id="4__the__result__and__how__to__read__it">4. The result and how to read it<a class="headerlink" href="#4__the__result__and__how__to__read__it" title="Permanent link">&para;</a></h2>
+<p>Four independent bud samples of the claimed genotype, genotyped at ten diagnostic sites (values = % of reads carrying the reference/expected allele; depth in parentheses):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>                     tissue-culture      field
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> site (transcript)   X61     X130        X268      X282
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> 275                 100%(11) 100%(10)   100%(120) 100%(113)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> 295                   0%(9)   0%(8)       1%(97)    0%(97)   &lt;- see note
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a> 736..1151          100%     100%        100%      100%
+</span></code></pre></div>
+<p>Nine of ten sites are 100% the reference/expected allele in every sample — so the plant <strong>is</strong> the genuine genotype; the sequence discrepancy is a bench/synthesis problem, not a mislabelled plant.</p>
+<p><strong>This result is from Nathaniel&rsquo;s real, currently unpublished analysis and is shown here as an illustration of the method — it is pending final wet-lab confirmation.</strong> Treat the bioinformatics approach as the teaching point, not the specific percentages as a settled published finding.</p>
+<p><strong>The interesting tenth site (295)</strong> is one where the plant is genomically heterozygous, yet every RNA-seq sample expresses <strong>only one</strong> allele. That is <strong>allele-specific expression</strong> — a real biological signal (allelic imbalance / <em>cis</em>-regulation), and a nice teaching aside: a heterozygous <em>genotype</em> can look homozygous in <em>expression</em> data. It also flags a limitation: RNA-seq only genotypes expressed exons, and ASE can mask true heterozygosity — so use many markers and, for whole-individual fingerprinting, genome-wide DNA markers rather than one expressed gene.</p>
+<h2 id="5__good__discussion__questions">5. Good discussion questions<a class="headerlink" href="#5__good__discussion__questions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Why is RNA-seq a <em>biased</em> genotyper (which parts of the genome can it see)?</li>
+<li>Why filter on mapping quality before counting alleles? What goes wrong without it?</li>
+<li>Why can a single gene not identify <em>which</em> individual a sample is, even though it can exclude one? (Shared haplotypes; you need genome-wide markers.)</li>
+<li>How many diagnostic sites / how much depth do you need for a confident call?</li>
+<li>The site-295 result: how would you formally test allele-specific expression across a population, and what confounds it (mapping bias to the reference)?</li>
+<li>Where could the error have entered, and which experiment would localise it?</li>
+</ul>
+<h2 id="6__source">6. Source<a class="headerlink" href="#6__source" title="Permanent link">&para;</a></h2>
+<p>This case study is adapted from Nathaniel&rsquo;s own SPG paper investigation. Public input used: RNA-seq under ENA study <code>PRJEB73507</code>. The genome, annotation, and clone CDS are not public — see the note in Section 3 above.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

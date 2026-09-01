@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://hpc2n.github.io/bioinformatics-hpc/07.Git/intro-motivation-setup/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Introduction and setup - Using HPC in Bioinformatics</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet"/>
+<link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet"/>
+<link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Introduction and setup";
+        var mkdocs_page_input_path = "07.Git/intro-motivation-setup.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/07.Git/intro-motivation-setup/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a href="../..">
+<img alt="Logo" class="logo" src="../../images/logo.png"/>
+</a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Programme introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction and setup</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#schedule">Schedule</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding__git">Understanding Git</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#why__git__and__version__control__matters">Why Git and version control matters</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#practical__use__cases">Practical use cases</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setup__-__installing__and__setting__up__git">Setup - installing and setting up Git</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#git__install">Git install</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configure__git__all__os">Configure git (all OS)</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test__your__git__installation">Test your Git installation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#download__the__materials__for__the__git__part">Download the materials for the Git part</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#web__based__git__repositories">Web based Git repositories</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#github">GitHub</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create__a__new__ssh__key__for__github">Create a new SSH key for GitHub</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding__the__ssh__key__to__github">Adding the SSH key to GitHub</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#more__on__editors__for__git">More on editors for Git</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#various__os">Various OS</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#github__cli">GitHub CLI</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-commands/">Basic commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../branches/">Branches, merges, and conflicts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remotes/">Working with remotes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teamwork/">Teamwork</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/">Workflow for Git</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+</li>
+<li class="toctree-l1"><a class="reference internal">14. FAIR and Open Science</a>
+<ul>
+<li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Extras</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kebnekaise/">Git setup on Kebnekaise</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic-commands-full/">Basic commands extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-commands-full-exercises/">Basic commands exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-concepts-full/">Basic concepts extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-concepts-full-exercises/">Basic concepts exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commits-full/">Traversing the commit tree extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commits-full-exercises/">Traversing the commit tree exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../branches-full/">Branches, merges, and conflicts extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remotes-full/">Working with remotes extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remotes-full-exercises/">Working with remotes exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teamwork-full/">Teamwork extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teamwork-full-exercises/">Teamwork exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">Using HPC in Bioinformatics</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item">7. Introduction to Git</li>
+<li class="breadcrumb-item active">Introduction and setup</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="introduction__to__git__and__setup">Introduction to Git and setup<a class="headerlink" href="#introduction__to__git__and__setup" title="Permanent link">¶</a></h1>
+<p>The purpose of this session is to learn the fundamentals of version control — manage file history, collaborate efficiently, and protect your work from accidental loss. </p>
+<h2 id="schedule">Schedule<a class="headerlink" href="#schedule" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Topic</th>
+<th>Activity</th>
+<th>Teacher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:00</td>
+<td>Intro to Git, setup, motivation</td>
+<td>Lecture + exercises</td>
+<td>PO</td>
+</tr>
+<tr>
+<td>09:30</td>
+<td>Basic commands</td>
+<td>Lecture + code-along + exercises</td>
+<td>PO</td>
+</tr>
+<tr>
+<td>10:30</td>
+<td>BREAK</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10:45</td>
+<td>Branches, merges, and conflicts</td>
+<td>Lecture + code-along + exercises</td>
+<td>BB</td>
+</tr>
+<tr>
+<td>11:45</td>
+<td>Working with remotes I</td>
+<td>Lecture</td>
+<td>PO</td>
+</tr>
+<tr>
+<td>12:00</td>
+<td>BREAK</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13:00</td>
+<td>Working with remotes II</td>
+<td>Lecture + code-along + exercises</td>
+<td>PO</td>
+</tr>
+<tr>
+<td>13:15</td>
+<td>Teamwork</td>
+<td>Lecture + code-along + exercises</td>
+<td>BB</td>
+</tr>
+<tr>
+<td>14:00</td>
+<td>Exercises</td>
+<td>Exercises on your own/in teams</td>
+<td></td>
+</tr>
+<tr>
+<td>14:30</td>
+<td>BREAK</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>14:45</td>
+<td>Exercises</td>
+<td>Exercises on your own/in teams</td>
+<td></td>
+</tr>
+<tr>
+<td>16:00</td>
+<td>End of course day</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="understanding__git">Understanding Git<a class="headerlink" href="#understanding__git" title="Permanent link">¶</a></h2>
+<p>Git is a <strong>version control tool</strong> designed to keep track of modifications made to files over time. It allows developers to revisit earlier versions of a project, compare changes, and work together without overwriting each other’s progress.</p>
+<h3 id="why__git__and__version__control__matters">Why Git and version control matters<a class="headerlink" href="#why__git__and__version__control__matters" title="Permanent link">¶</a></h3>
+<p>In an ideal world, things develop linearly: </p>
+<ul>
+<li>Every new version is an improvement upon the previous version. <ul>
+<li>No need to backtrack. </li>
+</ul>
+</li>
+<li>Everyone knows what everyone else is doing </li>
+<li>In the end, things are simply finished. </li>
+</ul>
+<div class="mermaid">graph LR
+    A@{ shape: stadium, label: "Monday's improvements"} --&gt; B@{ shape: stadium, label: "Tuesday's improvements"}
+    B --&gt; C@{ shape: stadium, label: "Wednesday's improvements"}
+</div>
+<p>In the real world, things develop non-linearly: </p>
+<ul>
+<li>A new version can be anything between <ul>
+<li>a complete catastrophe and </li>
+<li>a major breakthrough.</li>
+</ul>
+</li>
+<li>People do not know what others are doing </li>
+<li>Sometimes we are simply fixing earlier mistakes… </li>
+</ul>
+<div class="mermaid">graph LR
+  Mon@{ shape: stadium, label: "Monday's improvements"}
+  Tue@{ shape: stadium, label: "Tuesday's mistakes"}
+  Wed@{ shape: stadium, label: "Wednesday's corrections"}
+  Mon --&gt; Tue
+  Tue --&gt; Wed
+</div>
+<div class="admonition note">
+<p class="admonition-title">Going back to an earlier version</p>
+<p>Sometimes, it is easier to simply backtrack to an <em>earlier version</em>…</p>
+<div class="mermaid">graph LR
+  Mon@{ shape: stadium, label: "Monday's improvements"}
+  Tue@{ shape: stadium, label: "Tuesday's mistakes"}
+  Wed@{ shape: stadium, label: "Wednesday's improvements"}
+  Mon --&gt; Tue
+  Mon --&gt; Wed
+</div>
+<p>But without using a version control system (VCS), where is this <em>earlier version</em>?</p>
+<ul>
+<li>CTRL + Z </li>
+<li>my_file.txt, my_file.txt.old, … </li>
+<li>My project/ <ul>
+<li>2020-08-12/</li>
+<li>2020-08-13/</li>
+<li>…</li>
+</ul>
+</li>
+<li>Daily home directory backup </li>
+</ul>
+<p>Also, this is: </p>
+<ul>
+<li>Prone to mistakes <ul>
+<li>CTRL + Z has limits, overwritten/deleted files, human/hardware error </li>
+</ul>
+</li>
+<li>How much to save? <ul>
+<li>Individual files? Everything? How much space is required? </li>
+</ul>
+</li>
+<li>How to organize versions? <ul>
+<li>What is the difference between different versions? </li>
+</ul>
+</li>
+</ul>
+<p><em>Overall, difficult to manage!</em> </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">What about the granularity?</p>
+<p>This compounds the problem. </p>
+<div class="mermaid">graph LR
+
+  subgraph cluster1 [Monday's changes]
+    t1a@{ shape: stadium, label: "Component A improvement"}
+    t1b@{ shape: stadium, label: "Component B mistake"}
+    t1c@{ shape: stadium, label: "Component C improvement"}
+  end
+
+  subgraph cluster2 [Tuesday's changes]
+    t2a@{ shape: stadium, label: "Component A improvement"}
+    t2b@{ shape: stadium, label: "Component B correction"}
+    t2c@{ shape: stadium, label: "Component C mistake"}
+  end
+
+  subgraph cluster3 [Wednesday's changes]
+    t3a@{ shape: stadium, label: "Component A mistake"}
+    t3b@{ shape: stadium, label: "Component B improvement"}
+    t3c@{ shape: stadium, label: "Component C correction"}
+  end
+
+  t1a --&gt; t2a
+  t1b --&gt; t2b
+  t1c --&gt; t2c
+
+  t2a --&gt; t3a
+  t2b --&gt; t3b
+  t2c --&gt; t3c
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">How does Git solve this?</p>
+<ul>
+<li>Stores the history using snapshots (commits) <ul>
+<li>Each snapshot represents the project at a given point in time </li>
+</ul>
+</li>
+<li>Manages snapshots and associated metadata <ul>
+<li>Naming (tags), comments, dates, authors, etc </li>
+</ul>
+</li>
+<li>Easy to move between different snapshots </li>
+<li>Can handle different degrees of granularity </li>
+<li>Can handle multiple development paths (branches) </li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Comparing and joining</p>
+<ul>
+<li>Git makes it easy to compare different snapshots <ul>
+<li>Named revisions, comments, time information, author information </li>
+<li>Diff tools </li>
+<li>Search tools </li>
+<li>Bisection search </li>
+</ul>
+</li>
+<li>Git also allows the joining (merging) of different snapshots  <ul>
+<li>Easy to experiment with ideas </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Collaboration</p>
+<ul>
+<li>One of the primary functions of Git is to allow collaboration </li>
+<li>Usual setup: server (remote) + multiple clients <ul>
+<li>People work locally and send (push) the changes to the server </li>
+<li>Git keeps track of what has been done and by whom </li>
+</ul>
+</li>
+<li>Safer since mistakes can be easily remedied </li>
+<li>The contributions of several people can be merged </li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Backup</p>
+<ul>
+<li>Git functions as a backup </li>
+<li>Locally, the system maintains a copy of each file <ul>
+<li>Usually only the changes or the files that have changed are stored </li>
+</ul>
+</li>
+<li>Globally, lost files can be recovered from the server </li>
+</ul>
+</div>
+<p>In addition, Git have been integrated with several services, like HackMD, Overleaf, …</p>
+<div class="admonition note">
+<p class="admonition-title">Summing up</p>
+<p>Git </p>
+<ul>
+<li>keeps track of your files and other output</li>
+<li>tracks what is created and modified</li>
+<li>tracks who made the modifications</li>
+<li>tracks why the modifications were made (if you make good commit comments!)</li>
+<li>Is important to reproducible research, helping you to explain what was changed, when, and why (for instance, why you filtered out specific data)</li>
+</ul>
+</div>
+<h4 id="practical__use__cases">Practical use cases<a class="headerlink" href="#practical__use__cases" title="Permanent link">¶</a></h4>
+<ul>
+<li>Managing source code <ul>
+<li>Manage deployment (production, development, testing, etc) </li>
+<li>Manage published versions (v0.1 etc) </li>
+<li>Manage (experimental) features </li>
+<li>Bug hunting </li>
+<li>But also for: writers, artists, composers… </li>
+</ul>
+</li>
+<li>Track which version of a Latex manuscript has been <ul>
+<li>submitted, </li>
+<li>revised and/or </li>
+<li>accepted</li>
+</ul>
+</li>
+<li>Collaboration between several authors </li>
+<li>batch files and data<ul>
+<li>Track different versions of your batch scripts </li>
+<li>Easy to check the used configuration afterwards</li>
+</ul>
+</li>
+<li>Track input and output files <ul>
+<li>Limited to smallish files</li>
+</ul>
+</li>
+<li>etc etc </li>
+</ul>
+<h2 id="setup__-__installing__and__setting__up__git">Setup - installing and setting up Git<a class="headerlink" href="#setup__-__installing__and__setting__up__git" title="Permanent link">¶</a></h2>
+<p>We will use Git from the command line in this course. This is normally how you will use it on Kebnekaise and other HPC centers, and this way it will also be easier to understand what is going on while you are learning to use Git. On Windows, this means you will be using Git Bash. </p>
+<p>Graphical tools exists for Git, see below list for a few. All entries on the list are free and unless otherwise mentioned, available for Windows, macOS, and Linux: </p>
+<ul>
+<li>git-scm (https://git-scm.com) comes with a basic GUI </li>
+<li>Git Kraken (https://www.gitkraken.com/)</li>
+<li>Github Desktop (https://desktop.github.com/) Windows and macOS only</li>
+<li>Sourcetree (https://www.sourcetreeapp.com/) Windows and macOS only</li>
+<li>TortoiseGit (https://tortoisegit.org/) Windows only</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">NOTE!</p>
+<p>If you have a problem getting this to work on your own computer, then you can use Kebnekaise instead.</p>
+<p>We have some documentation for you for using Git from Kebnekaise: <a href="../kebnekaise">Using Kebnekaise for Git</a></p>
+</div>
+<p>These are the steps we will go through - if you have already installed Git and set it up, you should not do this again. </p>
+<ul>
+<li>Install Git, if you have not already</li>
+<li>Create a repository with <code>git init</code></li>
+<li>Set your name and email with <code>git config</code> (local, global, system). More info in a moment. </li>
+<li>Test by creating a file</li>
+<li>Then adding the file with <code>git add</code></li>
+<li>Then commiting the file with <code>git commit</code></li>
+<li>Check with <code>git log</code> that all looks well. </li>
+</ul>
+<p>When this is done, you will clone the course materials for the Git session.</p>
+<h3 id="git__install">Git install<a class="headerlink" href="#git__install" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"/><input id="__tabbed_1_2" name="__tabbed_1" type="radio"/><input id="__tabbed_1_3" name="__tabbed_1" type="radio"/><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">macOS</label><label for="__tabbed_1_3">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Go to the Git-scm website (<a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>) and click “Windows” to download the Windows version. It should automatically start download of the .exe file.</li>
+<li>The downloaded file can be installed by double-clicking and choosing “Run”. </li>
+<li>Click “Yes” to let it be installed and then “Next” to accept the GNU GPL. </li>
+<li>The default options you are presented with should work, and we recommend using those. </li>
+<li>You will be using Git Bash for this course </li>
+<li>NOTE: when it comes to choosing the default editor, we recommend using either notepad or vim, unless you have a preferred editor. See the section on “Configure git” as well as the section on editors at the end of this document for some help. </li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>If you have installed XCode (or its Command Line Tools), Git may already be installed. To find out, open a terminal and enter <code>git --version</code>.</p>
+<p>If Git is not installed, you have several installation options. Apple maintains their own fork of Git, but it is usually a few versions behind, so we do not recommend installing that. </p>
+<ul>
+<li>SourceForge: <a href="https://sourceforge.net/projects/git-osx-installer/files/" target="_blank">https://sourceforge.net/projects/git-osx-installer/files/</a></li>
+<li>Git-scm.com: <a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a></li>
+<li>If you have Homebrew: <code>brew install git</code></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Git is usually already installed on Linux, but if not, this is how you install it. </p>
+<p>Installing Git on Linux depends on which distro you are running. </p>
+<ul>
+<li><code>sudo apt-get install git</code> (Ubuntu, Debian)</li>
+<li><code>sudo dnf install git</code> (RHEL, CentOS)</li>
+<li><a href="https://git-scm.com/download/linux" target="_blank">https://git-scm.com/download/linux</a> (other)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Primary branch</p>
+<ul>
+<li>The primary branch will probably be named “master” when installing Git. </li>
+<li>You can choose if you want to instead name it “main” (which is what GitHub uses as default).</li>
+<li>Regardless of which you pick, stick to one to avoid problems when pushing a repo</li>
+<li>You can change the naming of the primary branch in GitHub for a repo<ul>
+<li>Go to repo</li>
+<li>Pick “Settings” -&gt; “General”</li>
+<li>Change the name in “Default branch”</li>
+</ul>
+</li>
+<li>Instructions how to rename the primary branch in a repo from “master” to “main” on the command line: <a href="https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab" target="_blank">https://gist.github.com/danieldogeanu/739f88ea5312aaa23180e162e3ae89ab</a></li>
+</ul>
+</div>
+<h3 id="configure__git__all__os">Configure git (all OS)<a class="headerlink" href="#configure__git__all__os" title="Permanent link">¶</a></h3>
+<p>First check that you have git installed (in a terminal or in Git Bash):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>git<span class="w"> </span>--version
+</span></code></pre></div>
+<p>Now configure git with</p>
+<ul>
+<li><code>git config (local, global, system)</code></li>
+</ul>
+<p>You should at least set your global name and email (just once):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">"Your Name"</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">"yourname@example.com"</span><span class="w"> </span>
+</span></code></pre></div>
+<p>Setting the editor (once) is also a good idea: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span>&lt;editor&gt;
+</span></code></pre></div>
+<p>Choices for editor could be (on Linux, though can be installed together with Git for other OS): 
+* nano
+* vim
+* emacs</p>
+<p>You should be able to use notepad on Windows by setting: 
+<code>git config --global core.editor "&lt;path-to&gt;/notepad++.exe"</code></p>
+<p>Another option could be to install VS Code and do this config instead: 
+<code>git config --global core.editor "code --wait"</code> </p>
+<p>GitHub has some documentation on choosing and setting editors for various OS: 
+<a href="https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git" target="_blank">https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git</a></p>
+<p>See more about configuring and using editors with Git at the end of this document. </p>
+<h3 id="test__your__git__installation">Test your Git installation<a class="headerlink" href="#test__your__git__installation" title="Permanent link">¶</a></h3>
+<p>Create an example folder and change to that, then create a file test.txt. On Linux you would do this: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>mkdir<span class="w"> </span>&lt;mydir&gt;<span class="w"> </span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;mydir&gt;
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>$<span class="w"> </span>touch<span class="w"> </span>test.txt
+</span></code></pre></div>
+<p>Now initialize a repository and <em>stage</em> the new file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>init
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>Initialized<span class="w"> </span>empty<span class="w"> </span>Git<span class="w"> </span>repository<span class="w"> </span><span class="k">in</span><span class="w"> </span>/home/bbrydsoe/test-git/.git/
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>test.txt
+</span></code></pre></div>
+<p>Now <em>commit</em> the change. The editor which you configured earlier should open. Add an example <em>commit message</em>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>test.txt<span class="w"> </span>
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="o">[</span>master<span class="w"> </span><span class="o">(</span>root-commit<span class="o">)</span><span class="w"> </span>ff8b6f6<span class="o">]</span><span class="w"> </span>Test<span class="w"> </span>of<span class="w"> </span>git
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">0</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">0</span><span class="w"> </span>deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>test.txt
+</span></code></pre></div>
+<p>Now let us look at the log:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>git<span class="w"> </span>log
+</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>commit<span class="w"> </span>ff8b6f699d98c72d5cffc64d65a1c618b976b45a<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>master<span class="o">)</span>
+</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>Author:<span class="w"> </span>Birgitte<span class="w"> </span>Brydsö<span class="w"> </span>&lt;bbrydsoe@cs.umu.se&gt;
+</span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>Date:<span class="w">   </span>Thu<span class="w"> </span>Sep<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">13</span>:53:59<span class="w"> </span><span class="m">2020</span><span class="w"> </span>+0200
+</span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span>Test<span class="w"> </span>of<span class="w"> </span>git
+</span></code></pre></div>
+<p>When you do <code>git log</code>, you should see something like the above, but with name, email, date, and commit message different. If that is the case, your Git should be configured correctly. </p>
+<h2 id="download__the__materials__for__the__git__part">Download the materials for the Git part<a class="headerlink" href="#download__the__materials__for__the__git__part" title="Permanent link">¶</a></h2>
+<p>For the individual hands-on part we have created some materials which you will download from the course GitHub repo: <a href="https://github.com/hpc2n/bioinformatics-hpc/" target="_blank">https://github.com/hpc2n/bioinformatics-hpc/</a>. </p>
+<ul>
+<li>Please go to the terminal window where you have downloaded and set up Git.</li>
+<li>Change the directory to wherever you wish to have the material.</li>
+<li>Download the zipfile directly with <code>wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/07.Git/git_materials.zip</code> and unzip. If you previously fetched the course tarball, then it is in the directory exercises/07.Git/. </li>
+</ul>
+<h2 id="web__based__git__repositories">Web based Git repositories<a class="headerlink" href="#web__based__git__repositories" title="Permanent link">¶</a></h2>
+<p>There are several web based Git repositories. Some of the more popular ones are: </p>
+<ul>
+<li>GitHub (<a href="https://github.com/" target="_blank">https://github.com/</a>)</li>
+<li>GitLab (<a href="https://www.gitlab.com" target="_blank">https://www.gitlab.com</a>)</li>
+<li>Bitbucket (<a href="https://bitbucket.org" target="_blank">https://bitbucket.org</a>)</li>
+<li>SourceForge (<a href="https://sourceforge.net/" target="_blank">https://sourceforge.net/</a>)</li>
+</ul>
+<h3 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">¶</a></h3>
+<p>We are going to use GitHub for the part of the hands-on where you will be working together in groups. </p>
+<p>Please go to </p>
+<ul>
+<li><a href="https://github.com/" target="_blank">https://github.com/</a></li>
+</ul>
+<p>and sign up for an account, if you do not already have one. You will need to setup 2FA also. </p>
+<h3 id="create__a__new__ssh__key__for__github">Create a new SSH key for GitHub<a class="headerlink" href="#create__a__new__ssh__key__for__github" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"/><input id="__tabbed_2_2" name="__tabbed_2" type="radio"/><div class="tabbed-labels"><label for="__tabbed_2_1">Linux and macOS</label><label for="__tabbed_2_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>Open a terminal. In the command below, “GitHub” is a label added to the key for clarity. You can add any you want: 
+   a. Do this
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>$ ssh-keygen -t ed25519 -C "GitHub"
+</span></code></pre></div>
+   b. If you have an older system, this may work better
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>$ ssh-keygen -t rsa -b 4096 -C "GitHub"
+</span></code></pre></div></li>
+<li>You will be asked for a file to save the key. Unless you have an existing SSH key, accept the default.</li>
+<li>Enter a passphrase and repeat it.</li>
+<li>Add the key to the ssh-agent. Here we assume the default name for the new systems - change to what your key was called (<code>.ssh/id_rsa</code> for the legacy system): 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>$ eval "$(ssh-agent -s)"
+</span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a>$ ssh-add ~/.ssh/id_ed25519
+</span></code></pre></div></li>
+<li>Switch to the <code>.ssh</code> folder, open the file <code>id_ed25519.pub</code> with some editor and copy it (<code>id_rsa</code> for legacy systems). Do NOT add any newlines or whitespace! </li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>Open Git Bash. In the command below, “GitHub” is a label added to the key for clarity. You can add any you want: 
+    a. Do this
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>$ ssh-keygen -t ed25519 -C "GitHub"
+</span></code></pre></div>
+    b. If you have an older system, this may work better
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>$ ssh-keygen -t rsa -b 4096 -C "GitHub"
+</span></code></pre></div></li>
+<li>You will be asked for a file to save the key. Unless you have an existing SSH key, accept the default.</li>
+<li>Enter a passphrase and repeat it.</li>
+<li>Add the key to the ssh-agent. Here we assume the default name for the new systems - change to what your key was called (<code>.ssh/id_rsa</code> for the legacy system): 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>$ eval "$(ssh-agent -s)"
+</span><span id="__span-12-2"><a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a>$ ssh-add ~/.ssh/id_ed25519
+</span></code></pre></div></li>
+<li>Switch to the <code>.ssh</code> folder, with some editor, open the file <code>id_ed25519.pub</code> (or <code>id_rsa.pub</code> for the legacy systems) and copy it. Do NOT add any newlines or whitespace! </li>
+</ol>
+</div>
+</div>
+</div>
+<h3 id="adding__the__ssh__key__to__github">Adding the SSH key to GitHub<a class="headerlink" href="#adding__the__ssh__key__to__github" title="Permanent link">¶</a></h3>
+<ol>
+<li>On GitHub, click your avatar in the top right corner and pick “Settings”.</li>
+<li>Choose “SSH and GPG keys”</li>
+<li>Click the green button labeled “New SSH key”</li>
+<li>Add a descriptive label for the key in the “Title” field. In the key field you paste the content of the key (~/.ssh/id_rsa.pub)
+<img alt="" src="../../images/github.png"/></li>
+<li>Click “Add SSH key”</li>
+<li>
+<p>Confirm your GitHub password if you are prompted for it. </p>
+</li>
+<li>
+<p>Open a terminal / the Git bash </p>
+</li>
+<li><code>$ ssh -T git@github.com</code></li>
+<li>It will look similar to this: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>$ ssh -T git@github.com
+</span><span id="__span-13-2"><a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>The authenticity of host 'github.com (140.82.121.3)' can't be established.
+</span><span id="__span-13-3"><a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a>ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+</span><span id="__span-13-4"><a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a>ECDSA key fingerprint is MD5:7b:99:81:1e:4c:91:a5:0d:5a:2e:2e:80:13:3f:24:ca.
+</span><span id="__span-13-5"><a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a>Are you sure you want to continue connecting (yes/no)? yes
+</span><span id="__span-13-6"><a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a>Warning: Permanently added 'github.com,140.82.121.3' (ECDSA) to the list of known hosts.
+</span><span id="__span-13-7"><a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a>Hi bbrydsoe! You've successfully authenticated, but GitHub does not provide shell access.
+</span></code></pre></div></li>
+<li>Verify that the resulting message contains your username.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Extra/optional</p>
+<p>The following is only if you need to do something extra to get an editor to work or want a specific one.  </p>
+</div>
+<h2 id="more__on__editors__for__git">More on editors for Git<a class="headerlink" href="#more__on__editors__for__git" title="Permanent link">¶</a></h2>
+<h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">¶</a></h3>
+<p><strong>Vim</strong></p>
+<ul>
+<li>You may need to install it first, on your own computer. (<code>sudo apt-get install vim</code>). Not on Kebnekaise - it is already installed! </li>
+<li>Start with <code>vim &lt;filename&gt;</code> to open a file for editing. The file will be created if it does not exist before. </li>
+<li>Type <code>i</code> to enter ‘insert’ mode to be able to write in the editor. </li>
+<li>Use <code>ESC</code> to go to ‘command’ mode and then <code>:wq</code> to save and exit the editor.</li>
+<li>If you decide you do not want to save your changes, instead type <code>:q!</code> while in ‘command mode’. </li>
+<li>When you are in ‘command’ mode, typing <code>dd</code> will delete the whole line your cursor is on. </li>
+</ul>
+<p><strong>Nano</strong></p>
+<ul>
+<li>You may need to install it first, on your own computer. (<code>sudo apt-get install nano</code>). Not on Kebnekaise - it is already installed! </li>
+<li>Start with <code>nano &lt;filename&gt;</code> to open a file for editing. The file will be created if it does not exist before.</li>
+<li>Ctrl-x will exit the editor, asking first if you want to save the file. If you started with just <code>nano</code> and did not give a filename, it will ask you for a name. </li>
+</ul>
+<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">¶</a></h3>
+<ul>
+<li>Using notepad: if you are using a newer version of Git, then you should be able to choose to install/use notepad during the Git install. <ul>
+<li><code>git config --global core.editor notepad</code></li>
+</ul>
+</li>
+<li>Otherwise, you need to give the full path to notepad on your system<ul>
+<li><code>git config --global core.editor "&lt;path-to&gt;\notepad++.exe"</code></li>
+<li>Example: <ul>
+<li><code>git config --global core-editor "C:\Program Files (x86)\Notepad++\notepad++.exe"</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Using vim: this is easy as it can be installed during the Git install and then setting it with <code>git config --global core.editor vim</code></li>
+</ul>
+<h3 id="various__os">Various OS<a class="headerlink" href="#various__os" title="Permanent link">¶</a></h3>
+<p>GitHub has a page for setting some editors for various OS’es: </p>
+<ul>
+<li><a href="https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git" target="_blank">https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git</a>. </li>
+</ul>
+<h3 id="github__cli">GitHub CLI<a class="headerlink" href="#github__cli" title="Permanent link">¶</a></h3>
+<p>GitHub also has a command line interface that you can use if you want to. </p>
+<p>It is available for Windows, macOS, and Linux. </p>
+<p>You can use it if you prefer to do your workflow through a terminal, and you can call the GitHub API to script various actions as well as set a custom alias for any command.</p>
+<p>More information and download here:</p>
+<ul>
+<li><a href="https://cli.github.com/" target="_blank">https://cli.github.com/</a></li>
+<li><a href="https://github.blog/2020-09-17-github-cli-1-0-is-now-available/" target="_blank">https://github.blog/2020-09-17-github-cli-1-0-is-now-available/</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../../06.linux-intro/exercises/" title="Extra exercises"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../basic-commands/" title="Basic commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../../06.linux-intro/exercises/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../basic-commands/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="../../assets/_markdown_exec_pyodide.js"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/open_in_new_tab.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/06.linux-intro/exercises/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Extra exercises - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Extra exercises";
+        var mkdocs_page_input_path = "06.linux-intro/exercises.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/06.linux-intro/exercises/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Extra exercises</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the__linux__file__system__-__wildcards">The Linux File System - Wildcards</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modifying__the__file__tree__-__cp__mv__rm">Modifying the file tree - cp, mv, rm</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modifying__the__file__tree__-__symbolic__links">Modifying the file tree - symbolic links</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data__handling__-__archiving__and__compressing">Data handling - archiving and compressing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pipes__and__filters">Pipes and filters</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finding__patterns">Finding patterns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#linux__tools__awk">Linux tools: awk</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scripting">Scripting</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">6. Introduction to Linux</li>
+      <li class="breadcrumb-item active">Extra exercises</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="extra__exercises">Extra exercises<a class="headerlink" href="#extra__exercises" title="Permanent link">&para;</a></h1>
+<p>These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later. </p>
+<p>Useful files for these examples are found in <code>exercises/06.linux-intro/patterns</code> from the tarball, except for the two last sections which mainly uses <code>exercises/06.linux-intro/awk-qol</code> and <code>exercises/06.linux-intro/script</code>.</p>
+<h2 id="the__linux__file__system__-__wildcards">The Linux File System - Wildcards<a class="headerlink" href="#the__linux__file__system__-__wildcards" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Using wildcards, match all file names that begin with <code>thisfile</code>, followed by one or more numbers, and end with <code>.txt</code> </li>
+<li>Using wildcards, match all file names with a number in them. </li>
+<li>Using wildcards, match all file names that has a <code>0</code> in them. </li>
+</ol>
+<h2 id="modifying__the__file__tree__-__cp__mv__rm">Modifying the file tree - cp, mv, rm<a class="headerlink" href="#modifying__the__file__tree__-__cp__mv__rm" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create a directory named <code>bio</code>. Change to the directory. Create two subdirectories. Enter one of them. Create three files (using either <code>touch</code> or an editor). </li>
+<li>Create another directory, at the same level as the directory named <code>bio</code>. Copy the files and directories form <code>bio</code> into your new directory. </li>
+<li>Enter your new directory. Create four files. Create a subdirectory. Move the files to the new subdirectory.</li>
+<li>Enter the directory <code>bio</code>. Rename one of the subdirectories. Create another subdirectory. Remove a file. Remove one of the subdirectories. Try removing one with files in it and one without. What extra option do you need to remove a directory, a directory with files in, and a regular file? </li>
+</ol>
+<h2 id="modifying__the__file__tree__-__symbolic__links">Modifying the file tree - symbolic links<a class="headerlink" href="#modifying__the__file__tree__-__symbolic__links" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create a symbolic link in your home directory to the <code>patterns</code> subdirectory inside the extracted tarball. </li>
+</ol>
+<h2 id="data__handling__-__archiving__and__compressing">Data handling - archiving and compressing<a class="headerlink" href="#data__handling__-__archiving__and__compressing" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create a tarball containing the <code>exercises/06.linux-intro</code> files and directories, but not the exercises from the other sections. </li>
+<li>Use <code>rsync</code> to transfer files between two of your directories. </li>
+</ol>
+<h2 id="pipes__and__filters">Pipes and filters<a class="headerlink" href="#pipes__and__filters" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Using <code>cat</code> and redirect, create a new file named <code>myfancyfile.txt</code> with several lines of text (at least 10 lines). Save it as in the exercise on https://hpc2n.github.io/bioinformatics-hpc/06.linux-intro/pipesfilters/#exercises </li>
+<li>Use <code>head</code> and <code>tail</code> to see the first and last few lines of text. </li>
+<li>Use <code>wc</code> to count the number of lines, the number of characters, and the number of words in your file. </li>
+<li>Use <code>sort</code> to sort the lines. </li>
+</ol>
+<h2 id="finding__patterns">Finding patterns<a class="headerlink" href="#finding__patterns" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Use pipes to first do <code>wc</code> on a file and then <code>sort</code> the output. </li>
+<li>In the directory <code>exercises/06.linux-intro/patterns</code>, use <code>grep</code> to search for the word <code>string</code> and the word <code>text</code>. Do the same while adding <code>-i</code> to ignore case. </li>
+<li>Standing in the top level directory of exercise directories for the &ldquo;Introduction to Linux&rdquo; section (<code>exercises/06.linux-intro</code>), use find to find all files with the suffix <code>.txt</code>. </li>
+<li>Use regular expressions to find all lines in the file <code>myfile3.txt</code> in the <code>exercises/06.linux-intro/patterns</code> directory that has a word starting with <code>A</code> at the beginning of the line. </li>
+</ol>
+<h2 id="linux__tools__awk">Linux tools: awk<a class="headerlink" href="#linux__tools__awk" title="Permanent link">&para;</a></h2>
+<p>The directory <code>exercises/06.linux-intro/awk-qol</code> has two files <code>file.dat</code> and <code>myfile.txt</code> which are useful for these exercises. </p>
+<ol>
+<li>Search for the pattern <code>omnivore</code> in the file <code>file.dat</code> and print out the line. </li>
+<li>Search for the pattern <code>is</code> in the file <code>myfile.txt</code> and print out the second column of lines with that pattern. </li>
+<li>Print column 1 and 4 from file <code>file.dat</code>, but only those rows that contain the letter ‘v’. </li>
+<li>Print all lines of <code>file.dat</code> that has more than 20 characters </li>
+</ol>
+<h2 id="scripting">Scripting<a class="headerlink" href="#scripting" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create a script that greets you when run. <ul>
+<li>With any editor, open the new file <code>hello.sh</code>. </li>
+<li>Enter the following into the editor: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Let us first declare a variable</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">GREETING</span><span class="o">=</span><span class="s2">"Hello, Linux Learner!"</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Print the content of the variable.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$GREETING</span>
+</span></code></pre></div></li>
+<li>Save </li>
+<li>Set the executable permissions: <code>chmod +x hello.se</code></li>
+<li>Run the script. </li>
+</ul>
+</li>
+<li>Create a script that asks for input and does something with it: <ul>
+<li>With any editor, open the new file <code>addinput.sh</code>.</li>
+<li>Enter the following into the editor:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"This program adds integers."</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"What is the first integer? "</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">read</span><span class="w"> </span>FIRST_INTEGER
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"What is the second integer? "</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">read</span><span class="w"> </span>SECOND_INTEGER
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nv">SUM</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="s2">"</span><span class="nv">$FIRST_INTEGER</span><span class="s2">"</span><span class="w"> </span>+<span class="w"> </span><span class="s2">"</span><span class="nv">$SECOND_INTEGER</span><span class="s2">"</span><span class="k">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"The sum is: </span><span class="nv">$SUM</span><span class="s2">"</span><span class="w"> </span>
+</span></code></pre></div></li>
+<li>Save and set correct permissions, then run it. </li>
+</ul>
+</li>
+<li>Combine the two programs to create a program that asks for your name and then says <code>Hello, &lt;your-name&gt;!</code>. </li>
+<li>Create a script that uses IF-ELSE to say if a number is less or greater that 2026. <ul>
+<li>With any editor, open the new file <code>ifelse.sh</code>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Enter a number:"</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">read</span><span class="w"> </span>NUM
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$NUM</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"This is greater than 2026!"</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">else</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"This number is not greater than 2026."</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">fi</span>
+</span></code></pre></div></li>
+<li>Save. Set executable permissions. Run the script. </li>
+</ul>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../hints/" class="btn btn-neutral float-left" title="Hints and tricks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../07.Git/intro-motivation-setup/" class="btn btn-neutral float-right" title="Introduction and setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../hints/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../07.Git/intro-motivation-setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

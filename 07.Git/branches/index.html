@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://hpc2n.github.io/bioinformatics-hpc/07.Git/branches/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Branches, merges, and conflicts - Using HPC in Bioinformatics</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet"/>
+<link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet"/>
+<link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Branches, merges, and conflicts";
+        var mkdocs_page_input_path = "07.Git/branches.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/07.Git/branches/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a href="../..">
+<img alt="Logo" class="logo" src="../../images/logo.png"/>
+</a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Programme introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro-motivation-setup/">Introduction and setup</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-commands/">Basic commands</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Branches, merges, and conflicts</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#why__use__branches">Why use branches</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what__is__a__git__branch">What is a Git branch?</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#what__is__a__git__branch__-__basic__concepts">What is a Git branch - basic concepts</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#basic__branch__commands">Basic Branch Commands</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#typical__branch__workflow">Typical Branch Workflow</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#branches__merging__deletion">Branches: merging, deletion</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#switching__with__uncommitted__changes">Switching with uncommitted changes</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#handling__uncommitted__changes__that__are__causing__conflicts">Handling uncommitted changes (that are causing conflicts)</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stashing">Stashing</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#discarding__uncommitted__changes">Discarding uncommitted changes</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#handling__uncommitted__changes__-__merging">Handling uncommitted changes - merging</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#merging__and__merge__conflicts">Merging and merge conflicts</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#optionalself__study__-__merge__strategies">OPTIONAL/SELF study - Merge strategies</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resolving__merge__conflicts">Resolving merge conflicts</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#1__merging__two__local__branches">1. Merging two local branches</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2__merging__two__local__branches__recursive">2. Merging two local branches, recursive</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3__merging__two__local__branches__resulting__in__a__merge__conflict">3. Merging two local branches resulting in a merge conflict</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remotes/">Working with remotes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teamwork/">Teamwork</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/">Workflow for Git</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+</li>
+<li class="toctree-l1"><a class="reference internal">14. FAIR and Open Science</a>
+<ul>
+<li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Extras</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kebnekaise/">Git setup on Kebnekaise</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic-commands-full/">Basic commands extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-commands-full-exercises/">Basic commands exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-concepts-full/">Basic concepts extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-concepts-full-exercises/">Basic concepts exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commits-full/">Traversing the commit tree extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commits-full-exercises/">Traversing the commit tree exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../branches-full/">Branches, merges, and conflicts extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remotes-full/">Working with remotes extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remotes-full-exercises/">Working with remotes exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teamwork-full/">Teamwork extended</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teamwork-full-exercises/">Teamwork exercises</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">Using HPC in Bioinformatics</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item">7. Introduction to Git</li>
+<li class="breadcrumb-item active">Branches, merges, and conflicts</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="branches__merges__and__conflicts">Branches, merges, and conflicts<a class="headerlink" href="#branches__merges__and__conflicts" title="Permanent link">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Get some more hands-on working with branches<ul>
+<li>creation</li>
+<li>switching</li>
+<li>merging</li>
+<li>deletion</li>
+<li>handling uncommitted changes<ul>
+<li>stashing</li>
+<li>discarding</li>
+<li>checkout with merge</li>
+</ul>
+</li>
+<li>merging and merge conflicts</li>
+<li>rebasing: combining a sequence of commits to a new base commit.</li>
+<li>cherry-picking</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Branches allow developers to work independently on features, fixes, or experiments.</p>
+<h2 id="why__use__branches">Why use branches<a class="headerlink" href="#why__use__branches" title="Permanent link">¶</a></h2>
+<p>There are many uses for branches:</p>
+<ul>
+<li>Test different directions for a project</li>
+<li>Several projects members would like to work on their own copy of the code</li>
+<li>Bug fixes that are not yet tested, but will later be merged into the main version</li>
+</ul>
+<h2 id="what__is__a__git__branch">What is a Git branch?<a class="headerlink" href="#what__is__a__git__branch" title="Permanent link">¶</a></h2>
+<p>A branch represents a separate development path.
+Repositories typically begin with a default branch called <code>main</code> or <code>master</code>.</p>
+<p>Until now, we have worked with a repository that only have one branch, with the commits done one at a time: </p>
+<p><img alt="Git branch" src="../../images/git-branch.png"/></p>
+<p>In the above picture, the master (or main) branch points to a commit. The current position is HEAD. (Time goes rightwards)</p>
+<h3 id="what__is__a__git__branch__-__basic__concepts">What is a Git branch - basic concepts<a class="headerlink" href="#what__is__a__git__branch__-__basic__concepts" title="Permanent link">¶</a></h3>
+<p>Now we want to look at repositories with several branches: </p>
+<p><img alt="Git several branches" src="../../images/git-several-branches.png"/></p>
+<p>Branches are used to create another line of development.  They are “individual projects” within a git repository.</p>
+<ul>
+<li>The branch is the commit and all its parent commits, not just the one we are currently pointing at. </li>
+<li>The main line of development is usually called the “master” branch.</li>
+<li>Different branches within a repository can have</li>
+<li>completely different files and folders</li>
+<li>almost everything the same except for a few lines of code in a file</li>
+</ul>
+<p>Usually, a branch is created to work on a new feature. Once the feature is completed, it is merged back with the master branch.</p>
+<p><img alt="Git several branches and new features" src="../../images/git-several-branches-new-feature.png"/></p>
+<h2 id="basic__branch__commands">Basic Branch Commands<a class="headerlink" href="#basic__branch__commands" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># List branches and see which branch you are on </span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>git<span class="w"> </span>branch
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># Create a branch</span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>git<span class="w"> </span>branch<span class="w"> </span>cool-feature
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1"># Switch to another branch named cool-feature</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>git<span class="w"> </span>switch<span class="w"> </span>cool-feature
+</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="c1"># Create a branch and switch to it immediately</span>
+</span><span id="__span-0-11"><a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>cool-feature
+</span><span id="__span-0-12"><a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="c1"># Another way to switch branch</span>
+</span><span id="__span-0-14"><a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>git<span class="w"> </span>checkout<span class="w"> </span>cool-feature
+</span><span id="__span-0-15"><a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="c1"># Another way to create a branch and switch to it immediately</span>
+</span><span id="__span-0-17"><a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>fancy-idea
+</span></code></pre></div>
+<h2 id="typical__branch__workflow">Typical Branch Workflow<a class="headerlink" href="#typical__branch__workflow" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># Create and enter a branch</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>my-feature
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># Make edits</span>
+</span><span id="__span-1-5"><a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Feature content"</span><span class="w"> </span>&gt;<span class="w"> </span>feature.txt
+</span><span id="__span-1-6"><a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>git<span class="w"> </span>add<span class="w"> </span>feature.txt
+</span><span id="__span-1-8"><a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add feature"</span>
+</span><span id="__span-1-9"><a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1"># Return to main</span>
+</span><span id="__span-1-11"><a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>git<span class="w"> </span>switch<span class="w"> </span>main
+</span><span id="__span-1-12"><a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1"># or </span>
+</span><span id="__span-1-13"><a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>git<span class="w"> </span>checkout<span class="w"> </span>cool-feature
+</span><span id="__span-1-14"><a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c1"># Merge the branch</span>
+</span><span id="__span-1-16"><a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a>git<span class="w"> </span>merge<span class="w"> </span>my-feature
+</span><span id="__span-1-17"><a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1"># Delete merged branch</span>
+</span><span id="__span-1-19"><a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>my-feature
+</span></code></pre></div>
+<h2 id="branches__merging__deletion">Branches: merging, deletion<a class="headerlink" href="#branches__merging__deletion" title="Permanent link">¶</a></h2>
+<ul>
+<li>When you have decided you are happy with the changes you made to the new branch, merge it back to the master branch (or another branch)</li>
+<li>Note: The branch is always merged to the current HEAD.</li>
+<li>First switch to the branch you are merging it to:</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>master
+</span></code></pre></div>
+<ul>
+<li>Then merge them:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>git<span class="w"> </span>merge<span class="w"> </span>cool-feature
+</span></code></pre></div></li>
+<li>You can now delete the reference to the extra branch, the commits stay:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>cool-feature
+</span></code></pre></div></li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exercise/example - Type along!</p>
+<ul>
+<li>Create a directory. Initialize a repository</li>
+<li>Create a file, stage it, and commit it</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>mkdir<span class="w"> </span>my-project<span class="p">;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-project/
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>$<span class="w"> </span>git<span class="w"> </span>init
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>Initialized<span class="w"> </span>empty<span class="w"> </span>Git<span class="w"> </span>repository<span class="w"> </span><span class="k">in</span><span class="w"> </span>/home/bbrydsoe/my-project/.git/
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>$<span class="w"> </span>touch<span class="w"> </span>file.txt
+</span><span id="__span-5-5"><a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>file.txt<span class="w"> </span>
+</span><span id="__span-5-6"><a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Committing the first file"</span>
+</span><span id="__span-5-7"><a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="o">[</span>master<span class="w"> </span><span class="o">(</span>root-commit<span class="o">)</span><span class="w"> </span>1006b51<span class="o">]</span><span class="w"> </span>Committing<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>file
+</span><span id="__span-5-8"><a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">0</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">0</span><span class="w"> </span>deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-5-9"><a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>file.txt
+</span></code></pre></div>
+<ul>
+<li>Create a new branch, then switch to that branch</li>
+<li>Make some changes - add files and text ( &gt; overwrites or are suitable for new file)</li>
+<li>Stage the file and commit it</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>cool-feature
+</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>cool-feature<span class="w"> </span>
+</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'cool-feature'</span>
+</span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"This is a text"</span><span class="w"> </span>&gt;<span class="w"> </span>file.txt<span class="w"> </span>
+</span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>file.txt<span class="w"> </span>
+</span><span id="__span-6-6"><a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Added text to the first file"</span><span class="w"> </span>
+</span><span id="__span-6-7"><a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="o">[</span>cool-feature<span class="w"> </span>5bad966<span class="o">]</span><span class="w"> </span>Added<span class="w"> </span>text<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>file
+</span><span id="__span-6-8"><a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span></code></pre></div>
+<ul>
+<li>Switch back to the master branch, make some changes </li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+</span><span id="__span-7-2"><a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'master'</span>
+</span><span id="__span-7-3"><a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Text to the second file"</span><span class="w"> </span>&gt;<span class="w"> </span>second-file.txt<span class="w"> </span>
+</span><span id="__span-7-4"><a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>second-file.txt<span class="w"> </span>
+</span><span id="__span-7-5"><a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Added a second file"</span>
+</span><span id="__span-7-6"><a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="o">[</span>master<span class="w"> </span>bdec2cf<span class="o">]</span><span class="w"> </span>Added<span class="w"> </span>a<span class="w"> </span>second<span class="w"> </span>file
+</span><span id="__span-7-7"><a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-7-8"><a href="#__codelineno-7-8" id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>second-file.txt
+</span></code></pre></div>
+<ul>
+<li>We should check the effect of the changes. I will use this command: </li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--graph<span class="w"> </span>--oneline<span class="w"> </span>--decorate<span class="w"> </span>--all
+</span></code></pre></div>
+<ul>
+<li>It can be useful to make this into an alias so we can just say <code>git graph</code>:</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.graph<span class="w"> </span><span class="s2">"log --all --graph --decorate --oneline"</span>
+</span></code></pre></div>
+<p>This is on the master branch </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>$<span class="w"> </span>git<span class="w"> </span>graph
+</span><span id="__span-10-2"><a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>*<span class="w"> </span>bdec2cf<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>master<span class="o">)</span><span class="w"> </span>Added<span class="w"> </span>a<span class="w"> </span>second<span class="w"> </span>file
+</span><span id="__span-10-3"><a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="p">|</span><span class="w"> </span>*<span class="w"> </span>5bad966<span class="w"> </span><span class="o">(</span>cool-feature<span class="o">)</span><span class="w"> </span>Added<span class="w"> </span>text<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>file
+</span><span id="__span-10-4"><a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="p">|</span>/<span class="w">  </span>
+</span><span id="__span-10-5"><a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a>*<span class="w"> </span>1006b51<span class="w"> </span>Committing<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>file
+</span></code></pre></div>
+<p>We now merge the branches and check again </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>cool-feature<span class="w"> </span>
+</span><span id="__span-11-2"><a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>Merge<span class="w"> </span>made<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span><span class="s1">'recursive'</span><span class="w"> </span>strategy.
+</span><span id="__span-11-3"><a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>+
+</span><span id="__span-11-4"><a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span></code></pre></div>
+<ul>
+<li>Note that in recent git versions (&gt;=2.33) the default “recursive” strategy is replaced by the “ort” strategy.</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>$<span class="w"> </span>git<span class="w"> </span>graph
+</span><span id="__span-12-2"><a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a>*<span class="w">   </span>cf3e6b7<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>master<span class="o">)</span><span class="w"> </span>Merge<span class="w"> </span>branch<span class="w"> </span><span class="s1">'cool-feature'</span>
+</span><span id="__span-12-3"><a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="p">|</span><span class="se">\ </span><span class="w"> </span>
+</span><span id="__span-12-4"><a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="p">|</span><span class="w"> </span>*<span class="w"> </span>5bad966<span class="w"> </span><span class="o">(</span>cool-feature<span class="o">)</span><span class="w"> </span>Added<span class="w"> </span>text<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>file
+</span><span id="__span-12-5"><a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a>*<span class="w"> </span><span class="p">|</span><span class="w"> </span>bdec2cf<span class="w"> </span>Added<span class="w"> </span>a<span class="w"> </span>second<span class="w"> </span>file
+</span><span id="__span-12-6"><a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="p">|</span>/<span class="w"> </span>
+</span><span id="__span-12-7"><a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a>*<span class="w"> </span>1006b51<span class="w"> </span>Committing<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>file
+</span></code></pre></div>
+<p>Now we can delete the reference to the new branch we had created, since all the content is now in the master branch. </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>cool-feature<span class="w"> </span>
+</span><span id="__span-13-2"><a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>Deleted<span class="w"> </span>branch<span class="w"> </span>cool-feature<span class="w"> </span><span class="o">(</span>was<span class="w"> </span>5bad966<span class="o">)</span>.
+</span></code></pre></div>
+<p>In a somewhat nicer format, it looks like this: </p>
+<p>We commit stuff to both branches</p>
+<div class="mermaid">graph LR
+
+  master["master"]
+  style master fill:#ffffff,stroke:#ffffff
+  cool-feature["cool-feature"]
+  style cool-feature fill:#ffffff,stroke:#ffffff
+
+  commitX(["commitX"])
+  commit1(["commit1"])
+  commit2(["commit2"])
+  commitY(["commitY"])
+  commit3(["commit3"])
+
+  master -.-&gt; commit3
+  commit3 --&gt; commit2
+  commit2 --&gt; commit1
+  cool-feature -.-&gt; commitY 
+  commitY --&gt; commitX
+  commitX --&gt; commit1
+
+</div>
+<p>(Time goes leftwards)</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Optional/self study</p>
+<p>Merge ‘cool-feature’ to ‘master’ (3-way merge)”</p>
+<p>3-way merges use a dedicated commit for connecting the two merge histories. The name comes from the fact that Git uses three commits to generate the merge commit: the two branch tips and their common ancestor.</p>
+<div class="mermaid">graph LR
+
+  commit4Y(["New merge commit"])
+  master["master"]
+  style master fill:#ffffff,stroke:#ffffff
+  cool-feature["cool-feature"]
+  style cool-feature fill:#ffffff,stroke:#ffffff
+
+  commitX(["commitX"])
+  commit1(["commit1"])
+  commit2(["commit2"])
+  commitY(["commitY"])
+  commit3(["commit3"])
+  commit4(["commit4"])
+
+  master -.-&gt; commit4Y
+  commit4 --&gt; commit3
+  commit4Y --&gt; commit4
+  cool-feature -.-&gt; commitY
+  commit3 --&gt; commit2
+  commit2 --&gt; commit1
+  commitY --&gt; commitX
+  commit4Y --&gt; commitY
+  commitX --&gt; commit1
+</div>
+<p>Delete ‘cool-feature’</p>
+<div class="mermaid">graph LR
+
+  commit4Y(["New merge commit"])
+  master["master"]
+  style master fill:#ffffff,stroke:#ffffff
+
+  commitX(["commitX"])
+  commit1(["commit1"])
+  commit2(["commit2"])
+  commitY(["commitY"])
+  commit3(["commit3"])
+  commit4(["commit4"])
+
+  master -.-&gt; commit4Y
+  commit4 --&gt; commit3
+  commit4Y --&gt; commit4
+  commit3 --&gt; commit2
+  commit2 --&gt; commit1
+  commitY --&gt; commitX
+  commit4Y --&gt; commitY
+  commitX --&gt; commit1
+</div>
+<p>(Time goes leftwards)</p>
+</div>
+<p>If the branches have not diverged, i.e. if there is a linear path from the current branch tip and to the target branch, then it is possible to do a fast-forward merge. Git is not really merging the branches, just integrating the histories, i.e. it moves “fast forward” the current branch tip up to the target branch tip.</p>
+<div class="admonition warning">
+<p class="admonition-title">Optional example, fast-forward merging</p>
+<p>When doing a fast-forward merge, the commit histories are combined and all commit histories can be reached from the current tip. An example would be to do a fast-forward merge of a feature into master/main.</p>
+<p>A fast-forward merge is not possible if the branches have diverged, like in the previous example. This means that there is no linear path to the target branch and Git has to combine them via a 3-way merge.</p>
+<p>This shows an example where a fast-forward merge would work.</p>
+<p>Before FF merge: </p>
+<div class="mermaid">graph LR
+
+  master["master"]
+  style master fill:#ffffff,stroke:#ffffff
+  nice-feature["nice-feature"]
+  style nice-feature fill:#ffffff,stroke:#ffffff
+
+  commit1(["commit1"])
+  commit2(["commit2"])
+  commit3(["commit3"])
+  commitX(["commitX"])
+  commitY(["commitY"])
+
+  master -.-&gt; commit3
+  nice-feature -.-&gt; commitY
+  commit1 --&gt; commit2
+  commit2 --&gt; commit3
+  commit3 --&gt; commitX
+  commitX --&gt; commitY
+</div>
+<p>After FF merge:</p>
+<div class="mermaid">graph LR
+
+  master["master"]
+  style master fill:#ffffff,stroke:#ffffff
+  nice-feature["nice-feature"]
+  style nice-feature fill:#ffffff,stroke:#ffffff
+
+  commit1(["commit1"])
+  commit2(["commit2"])
+  commit3(["commit3"])
+  commitX(["commitX"])
+  commitY(["commitY"])
+
+  master -.-&gt; commitY
+  nice-feature -.-&gt; commitY
+  commit1 --&gt; commit2
+  commit2 --&gt; commit3
+  commit3 --&gt; commitX
+  commitX --&gt; commitY
+</div>
+</div>
+<h2 id="switching__with__uncommitted__changes">Switching with uncommitted changes<a class="headerlink" href="#switching__with__uncommitted__changes" title="Permanent link">¶</a></h2>
+<p>As mentioned above, you switch between branches with: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>&lt;branch&gt;
+</span></code></pre></div>
+<p>What happens if you have uncommitted changes (and/or new files added) when you try to switch?</p>
+<ul>
+<li>
+<p>The uncommitted changes will be carried to the new branch that you switch to, if possible. </p>
+</li>
+<li>
+<p>Changes that you commit will be committed to the newly switched branch.</p>
+</li>
+</ul>
+<p>What if there is a <strong>conflict</strong>? Conflicts can happen when two branches modify the same part of a file.</p>
+<ul>
+<li>You will <strong>not</strong> be allowed to switch to the other branch.</li>
+<li>You must commit or stash any conflicting changes before switching branches.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example - new file</p>
+<p>Here we create a new branch, switch to it, then add a new file. Then we switch back to the master branch without committing the changes: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>cool-feature<span class="w"> </span>
+</span><span id="__span-15-2"><a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span><span class="s1">'cool-feature'</span>
+</span><span id="__span-15-3"><a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a>$<span class="w"> </span>touch<span class="w"> </span>newfile.txt
+</span><span id="__span-15-4"><a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>newfile.txt<span class="w"> </span>
+</span><span id="__span-15-5"><a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+</span><span id="__span-15-6"><a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a>A<span class="w">   </span>newfile.txt
+</span><span id="__span-15-7"><a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'master'</span>
+</span></code></pre></div>
+<p>Git warns that there is a file added (<code>A</code>) in one branch but not the other, but the switch is allowed. </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example - modified file</p>
+<p><strong>We continue in the same repository!</strong></p>
+<p>First commit the <code>newfile.txt</code> in the cool-feature branch to clean the environment.
+If we make changes to the file in one of the branches (go back to <code>cool-feature</code>) but not on the other and do not commit it, then git will again warn: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-16-1"><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>cool-feature
+</span><span id="__span-16-2"><a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"newfile.txt"</span>
+</span><span id="__span-16-3"><a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Adding some text"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>second-file.txt
+</span><span id="__span-16-4"><a href="#__codelineno-16-4" id="__codelineno-16-4" name="__codelineno-16-4"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>second-file.txt<span class="w"> </span>
+</span><span id="__span-16-5"><a href="#__codelineno-16-5" id="__codelineno-16-5" name="__codelineno-16-5"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+</span><span id="__span-16-6"><a href="#__codelineno-16-6" id="__codelineno-16-6" name="__codelineno-16-6"></a>M<span class="w">   </span>second-file.txt
+</span><span id="__span-16-7"><a href="#__codelineno-16-7" id="__codelineno-16-7" name="__codelineno-16-7"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'master'</span>
+</span></code></pre></div>
+<p>Git warns that there is a file that is modified (<code>M</code>) in one branch but not the other, but the switch is allowed. </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example - uncommitted, conflicting change</p>
+<p><strong>We continue in the same repository!</strong></p>
+<p>Assume two branches, “cool-feature” and “morefeatures”</p>
+<p>Create the branch “morefeatures” without switching to it
+Switch to branch “cool-feature”, add some text to a file, stage the file and commit it: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-17-1"><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>morefeatures
+</span><span id="__span-17-2"><a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>cool-feature<span class="w"> </span>
+</span><span id="__span-17-3"><a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'cool-feature'</span>
+</span><span id="__span-17-4"><a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"second-file.txt"</span>
+</span><span id="__span-17-5"><a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"add text"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>morefiles.txt<span class="w"> </span>
+</span><span id="__span-17-6"><a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>morefiles.txt<span class="w"> </span>
+</span><span id="__span-17-7"><a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Some text"</span>
+</span><span id="__span-17-8"><a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="o">[</span>cool-feature<span class="w"> </span>469542b<span class="o">]</span><span class="w"> </span>Some<span class="w"> </span>text
+</span><span id="__span-17-9"><a href="#__codelineno-17-9" id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-17-10"><a href="#__codelineno-17-10" id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>morefiles.txt
+</span></code></pre></div>
+<p>Switch to branch “morefeatures”. Modify the same file, stage the file and commit it. Then try and switch back to the “cool-features” branch: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>morefeatures<span class="w"> </span>
+</span><span id="__span-18-2"><a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">'morefeatures'</span>
+</span><span id="__span-18-3"><a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Adding yet some more text"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>morefiles.txt
+</span><span id="__span-18-4"><a href="#__codelineno-18-4" id="__codelineno-18-4" name="__codelineno-18-4"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>morefiles.txt<span class="w"> </span>
+</span><span id="__span-18-5"><a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>cool-feature<span class="w"> </span>
+</span><span id="__span-18-6"><a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a>error:<span class="w"> </span>Your<span class="w"> </span><span class="nb">local</span><span class="w"> </span>changes<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>files<span class="w"> </span>would<span class="w"> </span>be<span class="w"> </span>overwritten<span class="w"> </span>by<span class="w"> </span>checkout:
+</span><span id="__span-18-7"><a href="#__codelineno-18-7" id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="w">    </span>morefiles.txt
+</span><span id="__span-18-8"><a href="#__codelineno-18-8" id="__codelineno-18-8" name="__codelineno-18-8"></a>Please<span class="w"> </span>commit<span class="w"> </span>your<span class="w"> </span>changes<span class="w"> </span>or<span class="w"> </span>stash<span class="w"> </span>them<span class="w"> </span>before<span class="w"> </span>you<span class="w"> </span>switch<span class="w"> </span>branches.
+</span><span id="__span-18-9"><a href="#__codelineno-18-9" id="__codelineno-18-9" name="__codelineno-18-9"></a>Aborting
+</span></code></pre></div>
+<p>Now Git complains and do not allow the switch. </p>
+</div>
+<h2 id="handling__uncommitted__changes__that__are__causing__conflicts">Handling uncommitted changes (that are causing conflicts)<a class="headerlink" href="#handling__uncommitted__changes__that__are__causing__conflicts" title="Permanent link">¶</a></h2>
+<p>So, what can we do if there is a conflict?</p>
+<ul>
+<li>Commit the changes before switching branch</li>
+<li>Stash the uncommitted changes</li>
+<li>Discard the uncommitted changes</li>
+<li>Checkout with Merge</li>
+</ul>
+<h2 id="stashing">Stashing<a class="headerlink" href="#stashing" title="Permanent link">¶</a></h2>
+<p>The command “stash” can be described as a <strong>drawer</strong> where you store uncommitted changes temporarily. </p>
+<p>After stashing your uncommitted changes you can continue <strong>working on other things</strong>.</p>
+<p>The uncommitted changes that are stored in the stash <strong>can be taken out and applied to any branch, including the original branch.</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Stashing example - try on your own in the afternoon</p>
+<p>First do a <code>git status</code> in the branch where you may have uncommitted changes: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-19-1"><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-19-2"><a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a>On<span class="w"> </span>branch<span class="w"> </span>morefeatures
+</span><span id="__span-19-3"><a href="#__codelineno-19-3" id="__codelineno-19-3" name="__codelineno-19-3"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+</span><span id="__span-19-4"><a href="#__codelineno-19-4" id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git reset HEAD &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+</span><span id="__span-19-5"><a href="#__codelineno-19-5" id="__codelineno-19-5" name="__codelineno-19-5"></a>
+</span><span id="__span-19-6"><a href="#__codelineno-19-6" id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="w">    </span>modified:<span class="w">   </span>file.txt
+</span><span id="__span-19-7"><a href="#__codelineno-19-7" id="__codelineno-19-7" name="__codelineno-19-7"></a>new<span class="w"> </span>file:<span class="w">   </span>morefiles.txt
+</span></code></pre></div>
+<p>You can see the dirty status. </p>
+<p>To fix it, let us use <code>git stash</code>:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-20-1"><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a>$<span class="w"> </span>git<span class="w"> </span>stash
+</span><span id="__span-20-2"><a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a>Saved<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>and<span class="w"> </span>index<span class="w"> </span>state<span class="w"> </span>WIP<span class="w"> </span>on<span class="w"> </span>morefeatures:<span class="w"> </span><span class="m">4922606</span><span class="w"> </span>Some<span class="w"> </span>text
+</span></code></pre></div>
+<p>Checking again with <code>git status</code>: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-21-1"><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-21-2"><a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a>On<span class="w"> </span>branch<span class="w"> </span>morefeatures
+</span><span id="__span-21-3"><a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a>nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
+</span></code></pre></div>
+<p>You can now switch branches and work on something else. </p>
+<p>To later restore the file, check the stashes you have saved with <code>git stash list</code> and restore the the latest stash with <code>git stash apply</code>. </p>
+</div>
+<h2 id="discarding__uncommitted__changes">Discarding uncommitted changes<a class="headerlink" href="#discarding__uncommitted__changes" title="Permanent link">¶</a></h2>
+<p>If you do not want to stash your changes, but just <strong>get rid</strong> of them, you can use <code>git clean</code>.</p>
+<p>WARNING: This command will remove all non-tracked files in your current directory!</p>
+<p>You can safely test which files will be removed by running: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-22-1"><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a>$<span class="w"> </span>git<span class="w"> </span>clean<span class="w"> </span>--dry-run
+</span></code></pre></div>
+<h2 id="handling__uncommitted__changes__-__merging">Handling uncommitted changes - merging<a class="headerlink" href="#handling__uncommitted__changes__-__merging" title="Permanent link">¶</a></h2>
+<ul>
+<li>There is a checkout with merge option. Add the flag <code>--merge</code> (or <code>-m</code>): 
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-23-1"><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>--merge<span class="w"> </span>&lt;branch&gt;
+</span></code></pre></div></li>
+<li>
+<p>This will perform a <strong>three-way merge between your working tree and the new branch, with the current branch as the base.</strong></p>
+</li>
+<li>
+<p>After the merge, you will be on the new  branch and the merged result will be in your working tree. </p>
+</li>
+<li>
+<p>NOTE: As with any merge, <strong>conflicts may result</strong> and you will then have to resolve those. </p>
+</li>
+</ul>
+<h2 id="merging__and__merge__conflicts">Merging and merge conflicts<a class="headerlink" href="#merging__and__merge__conflicts" title="Permanent link">¶</a></h2>
+<p>Conflicts happen when two branches modify the same part(s) of a file/files.</p>
+<ul>
+<li>Merge conflicts will happen now and then when you are working with more than one branch and try to merge them. </li>
+<li>In many cases, Git is actually able to do a merge without problems. However, merge conflicts can happen.</li>
+<li>If Git cannot safely merge something automatically, you will get a message like this:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-24-1"><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a>error:<span class="w"> </span>Entry<span class="w"> </span><span class="s1">'&lt;fileName&gt;'</span><span class="w"> </span>would<span class="w"> </span>be<span class="w"> </span>overwritten<span class="w"> </span>by<span class="w"> </span>merge.<span class="w"> </span>
+</span><span id="__span-24-2"><a href="#__codelineno-24-2" id="__codelineno-24-2" name="__codelineno-24-2"></a>Cannot<span class="w"> </span>merge.<span class="w"> </span><span class="o">(</span>Changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>staging<span class="w"> </span>area<span class="o">)</span>
+</span></code></pre></div></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">NOTE</p>
+<p>Always check that you are on the right branch before merging! You check the branch with <code>git branch</code>.</p>
+</div>
+<p>Git can automatically try to merge when you give the command: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-25-1"><a href="#__codelineno-25-1" id="__codelineno-25-1" name="__codelineno-25-1"></a>$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>&lt;branch-to-merge-into-present-branch&gt;
+</span></code></pre></div>
+<p>while standing on the branch you want to merge to. </p>
+<div class="admonition info">
+<p class="admonition-title">Conflict markers</p>
+<p>If there is a conflict, Git inserts markers like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a href="#__codelineno-26-1" id="__codelineno-26-1" name="__codelineno-26-1"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+</span><span id="__span-26-2"><a href="#__codelineno-26-2" id="__codelineno-26-2" name="__codelineno-26-2"></a>Current branch content
+</span><span id="__span-26-3"><a href="#__codelineno-26-3" id="__codelineno-26-3" name="__codelineno-26-3"></a>=======
+</span><span id="__span-26-4"><a href="#__codelineno-26-4" id="__codelineno-26-4" name="__codelineno-26-4"></a>Incoming branch content
+</span><span id="__span-26-5"><a href="#__codelineno-26-5" id="__codelineno-26-5" name="__codelineno-26-5"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature_1
+</span></code></pre></div>
+</div>
+<h3 id="optionalself__study__-__merge__strategies">OPTIONAL/SELF study - Merge strategies<a class="headerlink" href="#optionalself__study__-__merge__strategies" title="Permanent link">¶</a></h3>
+<p>The most commonly used </p>
+<ul>
+<li>Fast Forward Merge <ul>
+<li>the commit history is one straight line. </li>
+<li>You create a branch, you make some commits there, but no changes to the ‘master’. You then just merge onto the ‘master’. This just moves the pointer for the ‘master’ branch forward in a straight line. </li>
+</ul>
+</li>
+<li>Recursive Merge (until 2.32)<ul>
+<li>make a branch and make some commits there, but also make new commits that are made on another branch, like the ‘master‘. </li>
+<li>Then, when you want to merge, git will recurse over the branch and create a new merge commit. The merge commit will continue to have two parents. </li>
+</ul>
+</li>
+<li>ORT (from git-2.33)<ul>
+<li>acronym for “Ostensibly Recursive’s Twin”</li>
+<li>replacement for the previous default algorithm, recursive.</li>
+<li>This is the default merge strategy when pulling or merging one branch. </li>
+<li>Results in fewer merge conflicts without causing mismerges </li>
+</ul>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Exercise/example: A merge conflict</p>
+<p>TYPE ALONG! </p>
+<p>Let’s create a merge conflict:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-27-1"><a href="#__codelineno-27-1" id="__codelineno-27-1" name="__codelineno-27-1"></a>$<span class="w"> </span>mkdir<span class="w"> </span>merge-test
+</span><span id="__span-27-2"><a href="#__codelineno-27-2" id="__codelineno-27-2" name="__codelineno-27-2"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>merge-test/
+</span><span id="__span-27-3"><a href="#__codelineno-27-3" id="__codelineno-27-3" name="__codelineno-27-3"></a>$<span class="w"> </span>git<span class="w"> </span>init
+</span><span id="__span-27-4"><a href="#__codelineno-27-4" id="__codelineno-27-4" name="__codelineno-27-4"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Initial content"</span><span class="w"> </span>&gt;<span class="w"> </span>myfile.txt
+</span><span id="__span-27-5"><a href="#__codelineno-27-5" id="__codelineno-27-5" name="__codelineno-27-5"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>myfile.txt
+</span><span id="__span-27-6"><a href="#__codelineno-27-6" id="__codelineno-27-6" name="__codelineno-27-6"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"first commit"</span>
+</span><span id="__span-27-7"><a href="#__codelineno-27-7" id="__codelineno-27-7" name="__codelineno-27-7"></a>
+</span><span id="__span-27-8"><a href="#__codelineno-27-8" id="__codelineno-27-8" name="__codelineno-27-8"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature_1
+</span><span id="__span-27-9"><a href="#__codelineno-27-9" id="__codelineno-27-9" name="__codelineno-27-9"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Feature 1 is a good implementation"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>myfile.txt
+</span><span id="__span-27-10"><a href="#__codelineno-27-10" id="__codelineno-27-10" name="__codelineno-27-10"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">"start work on feature 1"</span>
+</span><span id="__span-27-11"><a href="#__codelineno-27-11" id="__codelineno-27-11" name="__codelineno-27-11"></a>
+</span><span id="__span-27-12"><a href="#__codelineno-27-12" id="__codelineno-27-12" name="__codelineno-27-12"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+</span><span id="__span-27-13"><a href="#__codelineno-27-13" id="__codelineno-27-13" name="__codelineno-27-13"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Working on a really cool feature"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>myfile.txt
+</span><span id="__span-27-14"><a href="#__codelineno-27-14" id="__codelineno-27-14" name="__codelineno-27-14"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">"start work on a cool feature"</span><span class="w"> </span>
+</span></code></pre></div>
+<p>We now have two branches, <strong>master</strong> and <strong>feature_1</strong>:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-28-1"><a href="#__codelineno-28-1" id="__codelineno-28-1" name="__codelineno-28-1"></a>$<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--all<span class="w"> </span>--graph<span class="w"> </span>--decorate<span class="w"> </span>--oneline
+</span><span id="__span-28-2"><a href="#__codelineno-28-2" id="__codelineno-28-2" name="__codelineno-28-2"></a>*<span class="w"> </span>d8e6809<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>master<span class="o">)</span><span class="w"> </span>start<span class="w"> </span>work<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>cool<span class="w"> </span>feature
+</span><span id="__span-28-3"><a href="#__codelineno-28-3" id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="p">|</span><span class="w"> </span>*<span class="w"> </span>87934eb<span class="w"> </span><span class="o">(</span>feature_1<span class="o">)</span><span class="w"> </span>start<span class="w"> </span>work<span class="w"> </span>on<span class="w"> </span>feature<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-28-4"><a href="#__codelineno-28-4" id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="p">|</span>/<span class="w">  </span>
+</span><span id="__span-28-5"><a href="#__codelineno-28-5" id="__codelineno-28-5" name="__codelineno-28-5"></a>*<span class="w"> </span>ce7e46c<span class="w"> </span>first<span class="w"> </span>commit
+</span></code></pre></div>
+<p>What are the contents of <strong>myfile.txt</strong> in the two branches?</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-29-1"><a href="#__codelineno-29-1" id="__codelineno-29-1" name="__codelineno-29-1"></a>$<span class="w"> </span>git<span class="w"> </span>diff<span class="w"> </span>master<span class="w"> </span>feature_1<span class="w"> </span>--<span class="w"> </span>myfile.txt
+</span><span id="__span-29-2"><a href="#__codelineno-29-2" id="__codelineno-29-2" name="__codelineno-29-2"></a>diff<span class="w"> </span>--git<span class="w"> </span>a/myfile.txt<span class="w"> </span>b/myfile.txt
+</span><span id="__span-29-3"><a href="#__codelineno-29-3" id="__codelineno-29-3" name="__codelineno-29-3"></a>index<span class="w"> </span>b14ae98..5390ea7<span class="w"> </span><span class="m">100644</span>
+</span><span id="__span-29-4"><a href="#__codelineno-29-4" id="__codelineno-29-4" name="__codelineno-29-4"></a>---<span class="w"> </span>a/myfile.txt
+</span><span id="__span-29-5"><a href="#__codelineno-29-5" id="__codelineno-29-5" name="__codelineno-29-5"></a>+++<span class="w"> </span>b/myfile.txt
+</span><span id="__span-29-6"><a href="#__codelineno-29-6" id="__codelineno-29-6" name="__codelineno-29-6"></a>@@<span class="w"> </span>-1,2<span class="w"> </span>+1,2<span class="w"> </span>@@
+</span><span id="__span-29-7"><a href="#__codelineno-29-7" id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="w"> </span>Initial<span class="w"> </span>content
+</span><span id="__span-29-8"><a href="#__codelineno-29-8" id="__codelineno-29-8" name="__codelineno-29-8"></a>-Working<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>really<span class="w"> </span>cool<span class="w"> </span>feature
+</span><span id="__span-29-9"><a href="#__codelineno-29-9" id="__codelineno-29-9" name="__codelineno-29-9"></a>+Feature<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>good<span class="w"> </span>implementation
+</span></code></pre></div>
+<p>Or use the <strong>git show <ref>:<path></path></ref></strong> command:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a href="#__codelineno-30-1" id="__codelineno-30-1" name="__codelineno-30-1"></a>$ git show master:myfile.txt
+</span><span id="__span-30-2"><a href="#__codelineno-30-2" id="__codelineno-30-2" name="__codelineno-30-2"></a>Initial content
+</span><span id="__span-30-3"><a href="#__codelineno-30-3" id="__codelineno-30-3" name="__codelineno-30-3"></a>Working on a really cool feature
+</span><span id="__span-30-4"><a href="#__codelineno-30-4" id="__codelineno-30-4" name="__codelineno-30-4"></a>$ git show feature_1:myfile.txt
+</span><span id="__span-30-5"><a href="#__codelineno-30-5" id="__codelineno-30-5" name="__codelineno-30-5"></a>Initial content
+</span><span id="__span-30-6"><a href="#__codelineno-30-6" id="__codelineno-30-6" name="__codelineno-30-6"></a>Feature 1 is a good implementation
+</span></code></pre></div>
+<p>Let’s try to merge the <strong>feature_1</strong> branch on to the <strong>master</strong> branch:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-31-1"><a href="#__codelineno-31-1" id="__codelineno-31-1" name="__codelineno-31-1"></a>$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>feature_1
+</span><span id="__span-31-2"><a href="#__codelineno-31-2" id="__codelineno-31-2" name="__codelineno-31-2"></a>Auto-merging<span class="w"> </span>myfile.txt
+</span><span id="__span-31-3"><a href="#__codelineno-31-3" id="__codelineno-31-3" name="__codelineno-31-3"></a>CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>myfile.txt
+</span><span id="__span-31-4"><a href="#__codelineno-31-4" id="__codelineno-31-4" name="__codelineno-31-4"></a>Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
+</span></code></pre></div>
+<p>The merge failed due to a conflict. In this case, the conflict arises because there are changes in the same line on both branches.</p>
+<p>We can get some more information with the <strong>git status</strong> command: </p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-32-1"><a href="#__codelineno-32-1" id="__codelineno-32-1" name="__codelineno-32-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-32-2"><a href="#__codelineno-32-2" id="__codelineno-32-2" name="__codelineno-32-2"></a>On<span class="w"> </span>branch<span class="w"> </span>master
+</span><span id="__span-32-3"><a href="#__codelineno-32-3" id="__codelineno-32-3" name="__codelineno-32-3"></a>You<span class="w"> </span>have<span class="w"> </span>unmerged<span class="w"> </span>paths.
+</span><span id="__span-32-4"><a href="#__codelineno-32-4" id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="w">  </span><span class="o">(</span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span>run<span class="w"> </span><span class="s2">"git commit"</span><span class="o">)</span>
+</span><span id="__span-32-5"><a href="#__codelineno-32-5" id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git merge --abort"</span><span class="w"> </span>to<span class="w"> </span>abort<span class="w"> </span>the<span class="w"> </span>merge<span class="o">)</span>
+</span><span id="__span-32-6"><a href="#__codelineno-32-6" id="__codelineno-32-6" name="__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a href="#__codelineno-32-7" id="__codelineno-32-7" name="__codelineno-32-7"></a>Unmerged<span class="w"> </span>paths:
+</span><span id="__span-32-8"><a href="#__codelineno-32-8" id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add &lt;file&gt;..."</span><span class="w"> </span>to<span class="w"> </span>mark<span class="w"> </span>resolution<span class="o">)</span>
+</span><span id="__span-32-9"><a href="#__codelineno-32-9" id="__codelineno-32-9" name="__codelineno-32-9"></a><span class="w">    </span>both<span class="w"> </span>modified:<span class="w">   </span>myfile.txt
+</span><span id="__span-32-10"><a href="#__codelineno-32-10" id="__codelineno-32-10" name="__codelineno-32-10"></a>
+</span><span id="__span-32-11"><a href="#__codelineno-32-11" id="__codelineno-32-11" name="__codelineno-32-11"></a>no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">"git add"</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">"git commit -a"</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Let’s check the file that lead to the conflict, note the “conflict dividers”:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-33-1"><a href="#__codelineno-33-1" id="__codelineno-33-1" name="__codelineno-33-1"></a>$<span class="w"> </span>cat<span class="w"> </span>myfile.txt<span class="w"> </span>
+</span><span id="__span-33-2"><a href="#__codelineno-33-2" id="__codelineno-33-2" name="__codelineno-33-2"></a>Initial<span class="w"> </span>content
+</span><span id="__span-33-3"><a href="#__codelineno-33-3" id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt;<span class="w"> </span>HEAD
+</span><span id="__span-33-4"><a href="#__codelineno-33-4" id="__codelineno-33-4" name="__codelineno-33-4"></a>Working<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>really<span class="w"> </span>cool<span class="w"> </span><span class="nv">feature</span>
+</span><span id="__span-33-5"><a href="#__codelineno-33-5" id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="o">=======</span>
+</span><span id="__span-33-6"><a href="#__codelineno-33-6" id="__codelineno-33-6" name="__codelineno-33-6"></a>Feature<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>good<span class="w"> </span>implementation
+</span><span id="__span-33-7"><a href="#__codelineno-33-7" id="__codelineno-33-7" name="__codelineno-33-7"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<span class="w"> </span>feature_1
+</span></code></pre></div>
+One can abort the merge with <strong>git merge –abort</strong>.
+Or one may try to solve the conflict..</p>
+</div>
+<h2 id="resolving__merge__conflicts">Resolving merge conflicts<a class="headerlink" href="#resolving__merge__conflicts" title="Permanent link">¶</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Resolving merge conflicts</p>
+<ol>
+<li>The most direct way to resolve the conflict is to edit the file yourself.</li>
+<li>Remember to also remove the conflict markers.</li>
+<li>Stage the corrected file
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a href="#__codelineno-34-1" id="__codelineno-34-1" name="__codelineno-34-1"></a>git<span class="w"> </span>add<span class="w"> </span>FILE
+</span></code></pre></div></li>
+<li>When this has been done, you can attempt the merge again with:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-35-1"><a href="#__codelineno-35-1" id="__codelineno-35-1" name="__codelineno-35-1"></a>$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>--continue
+</span></code></pre></div></li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Helpful commands</p>
+<ul>
+<li>identify conflicting files: <code>git status</code></li>
+<li>list the conflicting commits among the branches: <code>git log --merge</code></li>
+<li>find differences between the commits involved in the merge: <code>git diff</code> </li>
+<li>reset conflicted files to a known good state: <code>git reset</code> </li>
+</ul>
+</div>
+<p>If you made a mistake when you resolved a conflict and have completed the merge before realizing, you can roll back to the commit before the merge was done with the command <code>git reset --hard</code>. </p>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">¶</a></h2>
+<p>Each of the exercises has a README.md file with explanations and descriptions of what to do. You can find all of them in the subdirectory 5.branches. The contents of the README.md files are also listed here. You should do them in the below order: </p>
+<p>In order to do these exercises, you need to download the exercises.zip file if you did not already do so. </p>
+<ol>
+<li><code>wget https://github.com/hpc2n/bioinformatics-hpc/raw/refs/heads/main/exercises/07.Git/git_materials.zip</code> </li>
+<li><code>unzip git_materials.zip</code></li>
+<li><code>cd git_materials</code></li>
+<li><code>cd 5.branches</code></li>
+</ol>
+<p>You are now in a directory with 5 subdirectories, one for each exercise. You will only be doing the first three exercises, as the two last are for more advanced/optional material (You can find the material towards the end of the branches, merges, and conflicts section found under “Advanced/self-study” in the left-hand menu). </p>
+<h3 id="1__merging__two__local__branches">1. Merging two local branches<a class="headerlink" href="#1__merging__two__local__branches" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The purpose of this exercise is to test the command <code>git merge</code> and see that the merge goes well in this case. </p>
+<p><strong>Situation:</strong> The ingredient list in branch “master” has an error in the ingredients which is fixed in the branch “fixed-recipe”.</p>
+</div>
+<p>Start by making sure you are in the directory <code>git_materials/5.branches/1.merge-ok/recipes</code>. </p>
+<ol>
+<li>First do <code>git status</code> to look at the status. You can also run <code>git log</code> so you can compare before and after merging. </li>
+<li>Now try to merge the two branches. You will see that it merges with a “fast-forward” merge. <br/>
+   NOTE: Remember to check that you are on the right branch! Use <code>git branch</code> to check. <br/>
+   Merging the branch “fixed-recipe” to the “master” branch: 
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a href="#__codelineno-36-1" id="__codelineno-36-1" name="__codelineno-36-1"></a>git merge fixed-recipe
+</span></code></pre></div>
+<br/></li>
+<li>See that the merge goes well, and that git reports using “fast-forward” merge. <br/></li>
+<li>Do <code>git log</code> and <code>git status</code> after the merge and compare what you got before.<br/></li>
+<li>Think about why git could merge the two braches automatically and why it used “fast-forward” merge. </li>
+</ol>
+<h3 id="2__merging__two__local__branches__recursive">2. Merging two local branches, recursive<a class="headerlink" href="#2__merging__two__local__branches__recursive" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this exercise you will again try the command <code>git merge</code> and it should again go well. However, this time git will do a recursive merge, or in newer version an “ort” merge.</p>
+<p><strong>Situation:</strong> The ingredient list in branch “master” has an error in the ingredients which is fixed in the branch “fixed-recipes”. After that fix, a small change was made to the recipe in the “master” branch. </p>
+</div>
+<p>Start by making sure you are in the directory <code>git_materials/5.branches/2.merge-ok-recursive/recipes</code>. </p>
+<ol>
+<li>First do <code>git status</code> to look at the status. Also run <code>git log</code> and see the commits that  have been made and to which branches. <br/></li>
+<li>Now try to merge the two branches. You will see that the merge happens with “recursive” merge. <br/>
+   NOTE: Remember to check you are on the right branch before you try to merge!    <br/>
+   Merge the branch “fixed-recipe” to the “master” branch using the <code>git merge</code>command. 
+   <br/></li>
+<li>Notice that the merge goes well and that git reports using “recursive” merge. <br/></li>
+<li>Do <code>git log</code>and <code>git status</code> after the merge and compare with what you got before.<br/> </li>
+<li>Why did git use “recursive” merge? </li>
+</ol>
+<h3 id="3__merging__two__local__branches__resulting__in__a__merge__conflict">3. Merging two local branches resulting in a merge conflict<a class="headerlink" href="#3__merging__two__local__branches__resulting__in__a__merge__conflict" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This exercise will again feature the command <code>git merge</code>, but this time the merge will fail and git will give a merge conflict. </p>
+<p><strong>Situation:</strong> In the branch “metric” we change the recipe to use the metric system for measurements. Then we change back to the “master” branch and <strong>add some coffee</strong> to that version of the recipe.</p>
+</div>
+<p>Start by making sure you are in the directory <code>git_materials/5.branches/3.merge-bad/recipes</code>. </p>
+<ol>
+<li>Do a <code>git status</code>first and note the result. Run <code>git log</code>. You could also look at the output from the longer command: 
+   <br/> <br/>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a href="#__codelineno-37-1" id="__codelineno-37-1" name="__codelineno-37-1"></a>$ git log --oneline --abbrev-commit --all --graph
+</span></code></pre></div>
+   or with the alias command <code>git graph</code>
+<br/>
+   NOTE: Remember to change to the subdirectory “recipes” first!
+   <br/></li>
+<li>Now try to merge the two branches with the <code>git merge</code> command and see that a conflict happens. 
+   <br/>
+   NOTE: Check with <code>git branch</code> to find out if you are on the right branch before trying to merge.
+   <br/>
+   You will get an error similar to this: 
+   <br/>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a href="#__codelineno-38-1" id="__codelineno-38-1" name="__codelineno-38-1"></a>$ git merge metric
+</span><span id="__span-38-2"><a href="#__codelineno-38-2" id="__codelineno-38-2" name="__codelineno-38-2"></a>Auto-merging cakerecipe.txt
+</span><span id="__span-38-3"><a href="#__codelineno-38-3" id="__codelineno-38-3" name="__codelineno-38-3"></a>CONFLICT (content): Merge conflict in cakerecipe.txt
+</span><span id="__span-38-4"><a href="#__codelineno-38-4" id="__codelineno-38-4" name="__codelineno-38-4"></a>Automatic merge failed; fix conflicts and then commit the result.
+</span></code></pre></div>
+<br/></li>
+<li>Use <code>git log</code> (including with the above mentioned flags) and <code>git status</code> to see where the problems are and see if you can fix the conflict and then reattempt the merge.</li>
+</ol>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../basic-commands/" title="Basic commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../remotes/" title="Working with remotes">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../basic-commands/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../remotes/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="../../assets/_markdown_exec_pyodide.js"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/open_in_new_tab.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+</html>
