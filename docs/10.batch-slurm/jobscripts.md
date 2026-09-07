@@ -382,7 +382,7 @@ cp -p mynewdata.dat $SLURM_SUBMIT_DIR
 Kebnekaise has many different type of GPUs. The command `sinfo -o "%10P %20l %30N %10z %10c %20m %20f %20G" | grep gpu` is very useful as well to identify the GPUs available on a cluster. 
 
 | cores/node | RAM/node | GPUs, type (per node) | 
-| -------- | ---------- | -------- | ---- |
+| -------- | ---------- | -------- | 
 | 28 (skylake), <br>72 (largemem), <br>128/256 (Zen3/Zen4) | 128-3072 GB | NVidia v100 (2), <br>NVidia a100 (2), <br>NVidia a6000 (2), <br>NVidia l40s (2 or 6), <br>NVidia H100 (4), <br>NVidia A40 (8), <br>AMD MI100 (2) |
 
 ### Allocating a GPU 
