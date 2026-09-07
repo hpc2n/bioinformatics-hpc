@@ -41,6 +41,10 @@ The directory/folder `exercises` and its subdirectories are located either in yo
 
 - The batch scripts you need to submit all have suffixes `.sh`. 
 - Some, but not all of the batch scripts have the project ID already added. You should always check! Use `nano <the-batchscript>` to see if it is added. If not, do so! You project ID is "hpc2ncourses2026-013". 
+- Remember! To go to a subfolder of `<path-to/>exercises/10.batch/` when you are already in another subfolder, you have to either first do `cd ..` to go up one directory/folder, or give **the full path** from root to the subfolder. 
+    - Example: you are in `<path-to/>exercises/10.batch/serial` and need to go to `<path-to/>exercises/10.batch/MPI`. You can do either of these: 
+        - `cd ..` and then `cd MPI`
+        - `cd <path-to/>exercises/10.batch/MPI` 
 
 1. Go to the subfolder `dependency` under `<path-to/>exercises/10.batch/`
     - Check with `nano mmmult.py` if the project ID is added. Otherwise do so. Then exit (and save). 
@@ -62,6 +66,16 @@ The directory/folder `exercises` and its subdirectories are located either in yo
     - Change `<proj ID>` to "hpc2ncourses2026-013". Quit-save. 
     - Submit the batch script. Check with `squeue --me`. How many cores are allocated? How many output files are created? 
     - Try and change the number of tasks in the array (use `nano`). Quit-save. Submit the batch script again. Check with `squeue --me`. Did the number of allocated cores change? What about the number of output files? 
-5. 
+5. Go to the subfolder `GPU-vector-addition`. Check that the batch submit script `add-list.sh` has the correct project ID or change it to `hpc2ncourses2026-013`. 
+    - Submit the batch script. Which type of GPU is it running on? 
+        - In this case you can see it either by checking inside the batch script or by checking with `squeue --me` or `scontrol show job <job ID>` since we need to ask for an Nvidia GPU node to avoid ending up on an AMD GPU node where CUDA does not work. 
+    - Open the job script again with `nano`. Change the GPU node you ask for to a different Nvidia GPU node. You can find some information about the types of GPU nodes and how to allocate them here: https://docs.hpc2n.umu.se/documentation/batchsystem/resources/#requesting__gpus 
+    - Submit the job again. See that you got the correct type. 
 
+## Monitoring and efficiency 
+
+1. Does using more threads than the allocated number of cores risk making a job ineffective? 
+2. Is it bad for the file system to have to handle very many small files? Does it take longer to open a directory with very many files? What can be done about it? 
+3. How do you find information about usage for your project? There is more than one way, and one is more reliable than the other. Which are they? 
+4. Try submitting a job that takes at least 3-4 minutes to run and then look at the graphical output for resource usage with `job-usage <job ID>`. Good submit job scripts for this is `<path-to/>exercises/10.batch/dependency/mmmult.sh`, `<path-to/>exercises/10.batch/GPU-PyTorch-fitting/pytorch_fitting_gpu.sh` or `<path-to/>exercises/10.batch/MPI/run_integration2D.sh`. 
 
