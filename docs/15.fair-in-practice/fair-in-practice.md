@@ -80,6 +80,13 @@ A REST (Representational State Transfer) API is an interface to a web service th
 
 The key concept is that each **endpoint** is a URL that returns a specific piece of data — for example, a gene-information endpoint, an expression-data endpoint, and a BLAST endpoint. You query these endpoints using `curl` or equivalent tools, and the response arrives as JSON or plain text. This is identical in structure to the NCBI and UniProt API calls you made in Lecture 11 — the same concept, a different resource.
 
+**GET vs. POST — the two HTTP methods you will use here:**
+
+- **GET** requests ask a server to *return* something, with any parameters usually written directly into the URL (e.g. `.../gene/Potra2n4c9093`). This is what the NCBI and UniProt calls in Lecture 11 used, and what `curl -s "${BASE}/v1/expression/available-experiments"` below uses — no `-X` flag is needed because GET is `curl`'s default.
+- **POST** requests send data *to* the server as part of the request — normally used for creating or submitting something (e.g. uploading a file, submitting a form), but PlantGenIE also uses it here to *ask* for data, because the query itself is a structured object (a list of gene IDs, an experiment ID) that does not fit cleanly into a URL. You mark a POST request explicitly with `curl -X POST`, and supply the data with `-d` (as JSON, in PlantGenIE's case).
+
+Both are just conventions built on top of ordinary HTTP — the server ultimately decides what each endpoint does with a given method, which is why you always need to check the documentation for a specific API rather than assume.
+
 **JSON** (JavaScript Object Notation) is the standard response format for most REST APIs, structured as key-value pairs, e.g. a gene ID, organism, description, and lists of GO/InterPro cross-references. You can parse JSON responses at the command line using `jq` (if available) or Python, or simply use `grep` for extracting specific fields.
 
 **PlantGenIE's endpoints take a JSON request body via POST**, unlike the simpler path-based GET requests used for NCBI and UniProt in Lecture 11 — a useful contrast in REST API design. The base URL and gene ID used below are confirmed working; if the API has changed since, check the current documentation or ask on the Canvas discussion board.
@@ -109,7 +116,7 @@ git commit -m "initial commit: lecture15 FAIR practical exercises"
 ```bash
 BASE="https://www.plantgenie.se/api"
 SPECIES="populus-tremula"
-GENE_ID="Potra2n4c9093"
+GENE_ID="Potra2n18c32336"
 
 # Retrieve annotation for a specific gene — note this is a POST with a JSON
 # body, not a simple GET-by-path like the NCBI/UniProt calls in Lecture 11
@@ -123,8 +130,8 @@ cat gene_info.json
 ```
 
 *Questions to answer in your README:*
-- What is the functional annotation of this gene? (If `geneName`/`description` are `null`, what does that tell you about the completeness of this resource's annotation for this gene, versus the resource's design?)
-- Try a different gene ID from the same species — does its annotation differ?
+- What is the functional annotation of this gene? Note that `geneName` is `null` even though `description` is populated — what does a resource choosing to leave one metadata field empty while populating another tell you about how that annotation was assigned (e.g. inferred from sequence similarity vs. a curated, named gene symbol)?
+- Try a gene ID with no description at all (for example `Potra2n4c9093`) — what does the difference tell you about the completeness of this resource's annotation, versus the resource's design?
 - What does needing a JSON request body, rather than a simple URL, tell you about this API's design compared to NCBI/UniProt's?
 
 ---
@@ -162,6 +169,7 @@ for sample, value in pairs[:5]:
 
 *Questions to answer in your README:*
 - In which sample(s) is this gene most highly expressed?
+- Does that pattern match what you would predict from the gene's annotation in Exercise 1A? (Hint: think about which stage of wood formation a "cellulose synthase" family gene should be most active in.)
 - What are the expression units (check the `units` field)? Are they specified?
 - What information would you need to reproduce an analysis using this expression data?
 
@@ -261,11 +269,40 @@ grep "^>" TP53_blastp_swissprot.txt | head -10
 grep "Score\|Expect\|Identities" TP53_blastp_swissprot.txt | head -20
 ```
 
-**PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint. Check the current API documentation (Section "Further Reading" below) for its endpoint and request format, and try submitting a query the same way you did for the annotation and expression endpoints in Exercises 1A–1B.
+**PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint, confirmed working against the live API. Unlike the annotation and expression endpoints, this one needs a sequence as input — and PlantGenIE does not currently expose a sequence-retrieval endpoint of its own (its API returns gene metadata and expression data, but not sequence). A query sequence for `Potra2n18c32336` has therefore been provided for you: [`potra-Potra2n18c32336-1.fasta`](../exercises/15.fair-in-practice/potra-Potra2n18c32336-1.fasta). This gap is itself worth noting for your FAIR assessment — a resource can be Interoperable for some data types and not yet for others.
+
+```bash
+# Submit — species_id and genome_id are 3 for Populus tremula (from the
+# available-experiments response in Exercise 1B); database_type selects
+# which BLAST database to search against (cds, here)
+JOB_ID=$(curl -s -X POST "${BASE}/v1/blast/blastn/submit?database_type=cds" \
+  -F "species_id=3" \
+  -F "genome_id=3" \
+  -F "file=@potra-Potra2n18c32336-1.fasta" \
+  | python3 -c "import json,sys; print(json.load(sys.stdin)['jobId'])")
+
+echo "Job submitted. Job ID: $JOB_ID"
+
+# Poll until the search is ready
+while true; do
+  sleep 5
+  STATUS=$(curl -s "${BASE}/v1/blast/poll/${JOB_ID}" \
+    | python3 -c "import json,sys; print(json.load(sys.stdin)['status'])")
+  echo "$STATUS"
+  [ "$STATUS" = "SUCCESS" ] && break
+done
+
+# Retrieve results (tsv or html — try both)
+curl -s "${BASE}/v1/blast/retrieve/${JOB_ID}/tsv" > blast_result.tsv
+cat blast_result.tsv
+```
+
+**Important:** always use `www.plantgenie.se`, not `dev.plantgenie.se`, for the BLAST endpoint specifically — BLAST is not set up correctly on the development server (submitting there returns a `500 Internal Server Error`). The annotation and expression endpoints work fine on both.
 
 *Questions to answer in your README:*
 - What makes submitting a BLAST job via API different from the website — in terms of what you get back and how you'd use it in a pipeline?
 - What makes this interaction an example of Interoperability?
+- Look at the top hit in your results — is it the query sequence itself? What does that tell you about how BLAST scores a perfect match?
 
 ---
 
