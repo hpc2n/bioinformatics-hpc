@@ -350,7 +350,7 @@ gpu_zen4           up 7-00:00:00      8   idle b-cn[1606-1608,1709-1711,1713,171
 gpu_zen4_8xgpu     up 7-00:00:00      2  alloc b-cn[1714-1715]
 gpu_zen4_8xgpu     up 7-00:00:00      1   resv b-cn1716
 gpu_zen4_2xh100    up 7-00:00:00      1    mix b-cn1717
-``
+```
 
 As you can see, it shows partitions, nodes, and states. State can be drain, idle, resv, alloc, mix, plnd (and a few others), where the exact naming varies between centers.
 
