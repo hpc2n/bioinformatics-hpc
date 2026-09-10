@@ -96,8 +96,11 @@ Both are just conventions built on top of ordinary HTTP — the server ultimatel
 **Prerequisites:** Login to Kebnekaise via OnDemand. Create a working directory and initialise Git.
 
 ```bash
-cd ~/course
-mkdir -p lecture15-fair-practice && cd lecture15-fair-practice
+mkdir -p ~/course/lecture15-fair-practice && cd ~/course/lecture15-fair-practice
+
+# git is not installed on every Kebnekaise node image - load it explicitly
+# rather than relying on it already being on PATH
+module load GCCcore/14.3.0 git/2.50.1
 git init
 cat > README.md << 'EOF'
 # Lecture 15: FAIR in Practice
