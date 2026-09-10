@@ -24,7 +24,7 @@ By the end of these exercises you should be able to:
 4. Apply a structured metadata sufficiency checklist to a real GEO or ENA dataset
 5. Identify specific metadata fields whose absence would prevent reanalysis of a published RNA-seq study
 6. Assess the computational reproducibility of a published bioinformatics study using a structured framework
-7. Build a minimal reproducible report (Jupyter notebook) that combines code, narrative, and live output
+7. *(Optional preview, not covered in the taught session)* Recognise what a minimal reproducible report (Jupyter notebook) looks like, ahead of writing Python and R properly in later courses
 8. Commit all exercise outputs, commands, and findings to Git
 
 **Links to course ILOs:** These exercises directly address ILOs 1, 3, 7, 9, 12, and 13. They are the practical companion to Lecture 14 and provide direct preparation for the FAIR essay assessment. For background on BLAST itself, see the [BLAST background reference](../12.blast/blast.md).
@@ -538,7 +538,9 @@ git commit -m "lecture15: paper reproducibility assessment complete
 
 ---
 
-## Part 4 — Building a Reproducible Report
+## Part 4 — Building a Reproducible Report (Optional)
+
+**This part is optional and not covered in the taught session.** It previews two languages you have not been taught yet — Python and R — which are covered properly in later courses (*Python Programming for Bioinformatics* and *Data Science for Biology with R*). The point here is only to see what the finished result looks like: **copy the code exactly as given** rather than trying to understand or adapt every line of syntax. If you are short on time, skip this part entirely.
 
 ### 4.1 Why This Exercise
 
@@ -546,14 +548,14 @@ In Part 3 you assessed whether someone else's paper was computationally reproduc
 
 ### 4.2 Build a Minimal Jupyter Notebook
 
-Launch a Jupyter Notebook session via OnDemand (the same launcher you have used elsewhere in this course), open a new Python notebook in your `lecture15-fair-practice` directory, and build three cells:
+Launch a Jupyter Notebook session via OnDemand (the same launcher you have used elsewhere in this course), open a new Python notebook in your `lecture15-fair-practice` directory, and build three cells. The code cell goes in the notebook itself, not your terminal — copy it exactly, you do not need to understand the Python syntax yet:
 
 1. **Markdown cell** — a one-sentence description of what the notebook does, e.g. "Summarises the PlantGenIE expression query for Potra2n4c9093 from Exercise 1B."
 2. **Code cell** — load and summarise a result you already produced earlier:
 ```python
 import json
 data = json.load(open("expression_data.json"))
-print(f"{len(data['samples'])} samples returned for this gene")
+print(len(data["samples"]), "samples returned for this gene")
 ```
 3. **Markdown cell** — one sentence interpreting the output.
 
@@ -569,9 +571,9 @@ git commit -m "lecture15: minimal reproducible report (Jupyter)
 - HTML export committed alongside the source notebook"
 ```
 
-### 4.3 The R Equivalent (for reference — you will use this properly in Data Science for Biology with R)
+### 4.3 The R Equivalent (optional preview — you will use this properly in Data Science for Biology with R)
 
-The same idea in R uses R Markdown, rendered with `knitr`, via RStudio Server (also available on OnDemand). A minimal `.Rmd` file looks like this:
+The same idea in R uses R Markdown, rendered with `knitr`, via RStudio Server (also available on OnDemand). As with the Python above, this is only to see the pattern — copy it exactly rather than trying to understand the R syntax yet. A minimal `.Rmd` file looks like this:
 
 ````markdown
 ---
@@ -587,7 +589,7 @@ cat(length(data$samples), "samples returned for this gene\n")
 ```
 ````
 
-Rendering this file (`rmarkdown::render("report.Rmd")`) produces an HTML report the same way `knitr` renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself now; it is here so you recognise the pattern when you meet it properly in the next course.
+Rendering this file (`rmarkdown::render("report.Rmd")`) produces an HTML report the same way `knitr` renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself at all; it is here purely so you recognise the pattern when you meet it properly in the next course.
 
 *Questions to answer in your README:*
 - What did the notebook approach make explicit that a bare script or terminal history would not?
@@ -632,7 +634,7 @@ The full FAIR essay assignment — what it asks, what distinguishes a G from a V
 
 ✅ **Reconstruct the analysis pipeline** from a published methods section, noting which steps have complete version and parameter information and which do not.
 
-✅ **Build a minimal Jupyter notebook that reproduces its own output from scratch**, and explain what it makes explicit that a bare script does not.
+✅ *(Optional)* **Recognise what a minimal Jupyter notebook that reproduces its own output from scratch looks like**, and explain what it makes explicit that a bare script does not — you will write this kind of Python and R yourself in later courses.
 
 ✅ **Commit all exercise outputs and findings to Git** with structured README documentation and meaningful commit messages.
 
