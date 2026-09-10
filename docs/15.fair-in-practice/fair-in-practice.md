@@ -297,6 +297,11 @@ grep "Score\|Expect\|Identities" TP53_blastp_swissprot.txt | head -20
 **PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint, confirmed working against the live API. Unlike the annotation and expression endpoints, this one needs a sequence as input — and PlantGenIE does not currently expose a sequence-retrieval endpoint of its own (its API returns gene metadata and expression data, but not sequence). A query sequence for `Potra2n18c32336` has therefore been provided for you: [`potra-Potra2n18c32336-1.fasta`](../exercises/15.fair-in-practice/potra-Potra2n18c32336-1.fasta). This gap is itself worth noting for your FAIR assessment — a resource can be Interoperable for some data types and not yet for others.
 
 ```bash
+# Download the provided query file onto Kebnekaise - the markdown link
+# above only works from a browser, not from this terminal
+curl -sL "https://raw.githubusercontent.com/hpc2n/bioinformatics-hpc/main/docs/exercises/15.fair-in-practice/potra-Potra2n18c32336-1.fasta" \
+  -o potra-Potra2n18c32336-1.fasta
+
 # Submit — species_id and genome_id are 3 for Populus tremula (from the
 # available-experiments response in Exercise 1B); database_type selects
 # which BLAST database to search against (cds, here)
