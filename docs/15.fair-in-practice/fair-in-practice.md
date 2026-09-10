@@ -548,20 +548,32 @@ In Part 3 you assessed whether someone else's paper was computationally reproduc
 
 ### 4.2 Build a Minimal Jupyter Notebook
 
-Launch a Jupyter Notebook session via OnDemand (the same launcher you have used elsewhere in this course), open a new Python notebook in your `lecture15-fair-practice` directory, and build three cells. The code cell goes in the notebook itself, not your terminal — copy it exactly, you do not need to understand the Python syntax yet:
+This is likely your first time using Jupyter, so here is every click, not just the outline.
 
-1. **Markdown cell** — a one-sentence description of what the notebook does, e.g. "Summarises the PlantGenIE expression query for Potra2n4c9093 from Exercise 1B."
-2. **Code cell** — load and summarise a result you already produced earlier:
+**Launch it:** Via OnDemand, launch a Jupyter Notebook session (if the launcher offers a "Working Directory" field, setting it to `~/course/lecture15-fair-practice` is worth trying, but has been observed not to reliably take effect — the code below is written to work regardless, using a full path rather than depending on it). In the Launcher screen that appears, click the **"Python 3 (ipykernel)"** tile under "Notebook" (ignore any other kernels listed, e.g. "pandastest" — plain Python 3 is all this needs).
+
+**What you'll see:** A new notebook with one empty box, called a **cell**. Every cell has a *type* — Code or Markdown — shown in a dropdown in the toolbar above it. New cells default to Code. To run whichever cell is selected, press **Shift+Enter**: this executes it and creates a new cell below.
+
+Build these three cells in order:
+
+1. Click the toolbar dropdown and switch the first cell to **Markdown**. Type a one-sentence description, e.g. "Summarises the PlantGenIE expression query for Potra2n4c9093 from Exercise 1B." Press **Shift+Enter** — it renders as text, not code.
+2. A new cell appears, already **Code** — leave it as Code. Paste this exactly (you do not need to understand the Python syntax yet). It uses the full path to `expression_data.json` rather than just its filename, so it works regardless of which directory Jupyter happened to start in:
 ```python
-import json
-data = json.load(open("expression_data.json"))
+import json, os
+path = os.path.expanduser("~/course/lecture15-fair-practice/expression_data.json")
+data = json.load(open(path))
 print(len(data["samples"]), "samples returned for this gene")
 ```
-3. **Markdown cell** — one sentence interpreting the output.
+Press **Shift+Enter**. The printed result should appear directly below the cell. If you instead see `FileNotFoundError`, your Jupyter session started somewhere other than that directory — the full path above should fix it regardless.
+3. A new cell appears — switch it to **Markdown** again, type one sentence interpreting the output, press **Shift+Enter**.
 
-Run all cells top to bottom (`Kernel → Restart & Run All`) to confirm the notebook reproduces its own output from scratch — that is the test that matters, not just that it ran once while you were writing it.
+**Save and rename:** `Cmd+S` (or File → Save Notebook), then right-click the tab at the top (or File → Rename) and name it `expression_report.ipynb`.
 
-Export the notebook to HTML (`File → Download as → HTML`) and commit both files:
+**Confirm it actually reproduces:** Kernel menu → "Restart Kernel and Run All Cells". This re-runs every cell from a blank slate — that is the test that matters, not just that it ran once while you were writing it.
+
+**Export to HTML:** File → "Save and Export Notebook As" → HTML.
+
+Then commit both files:
 
 ```bash
 git add expression_report.ipynb expression_report.html
