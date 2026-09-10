@@ -585,7 +585,14 @@ git commit -m "lecture15: minimal reproducible report (Jupyter)
 
 ### 4.3 The R Equivalent (optional preview — you will use this properly in Data Science for Biology with R)
 
-The same idea in R uses R Markdown, rendered with `knitr`, via RStudio Server (also available on OnDemand). As with the Python above, this is only to see the pattern — copy it exactly rather than trying to understand the R syntax yet. A minimal `.Rmd` file looks like this:
+The same idea in R uses R Markdown, rendered with `knitr`, via RStudio Server (also available on OnDemand). As with the Python above, this is only to see the pattern — copy it exactly rather than trying to understand the R syntax yet. If you want to try running it yourself:
+
+1. Launch an **RStudio Server** session via OnDemand.
+2. **File → New File → Text File**, then save it (`Cmd/Ctrl+S`) in `~/course/lecture15-fair-practice`, typing the filename as exactly `report.Rmd`. **Check the tab title or Files pane afterwards to confirm it saved as `report.Rmd` and not something else** (e.g. `report.Rmd.txt` or `report.html`) — some save dialogs silently change or append to the extension you type, and RStudio will not treat the file as R Markdown (or offer a working Knit) if the extension is wrong. Avoid the "New R Markdown..." wizard for this — it pre-fills its own boilerplate content you would otherwise need to delete around.
+3. Paste the entire block below exactly as given, including the `---` header at the top.
+4. Click **Knit** — the blue yarn-ball icon in the toolbar above the file — to render it. This runs the whole document in one go and should open a preview of the rendered HTML: the narrative text, the R code, and its printed output together, the same idea as exporting a Jupyter notebook to HTML. On RStudio Server the preview does not always pop up (likely a browser popup blocker) even though the render succeeded — if nothing appears, check the Files pane for a new `report.html` and open it directly; the absence of a preview does not by itself mean it failed.
+
+A minimal `.Rmd` file looks like this:
 
 ````markdown
 ---
@@ -602,7 +609,7 @@ cat(length(data$samples), "samples returned for this gene\n")
 ```
 ````
 
-Rendering this file (`rmarkdown::render("report.Rmd")`) produces an HTML report the same way `knitr` renders it inside RStudio — the R code, the narrative, and the live output all in one document. You do not need to run this yourself at all; it is here purely so you recognise the pattern when you meet it properly in the next course.
+Running it is entirely optional — the point is only to recognise the pattern before you meet it properly in the next course, not to produce a graded output the way Part 4.2 does. Skip it if you are short on time.
 
 *Questions to answer in your README:*
 - What did the notebook approach make explicit that a bare script or terminal history would not?
