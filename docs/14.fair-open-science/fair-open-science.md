@@ -174,6 +174,12 @@ Licences determine what others can do with your code:
 
 Traditional peer review is anonymous and the reviews are not published. Open peer review makes reviewer identities and/or the content of reviews publicly available. Several journals (eLife, PeerJ, F1000Research) now publish peer review reports alongside accepted papers. This increases accountability and transparency in the evaluation process.
 
+> **A personal example — open methods enabling independent verification:** Jang, Cho, Park et al. (2024) published a haplotype-resolved genome assembly of the Japanese red pine (*Pinus densiflora*) in *Nature Genetics* (DOI: 10.1038/s41588-024-01944-y), with the complete peer review history — every reviewer report, every revision round, every decision letter — published alongside the paper. Their central finding was a large expansion of transcription factor (TF) gene families across *Pinus*, identified with a targeted re-annotation tool (TGFam-Finder) driven by 48 PlantTFDB Pfam domains.
+>
+> Because the tool, the domain set, and the supplementary data were all openly available, it was possible to apply the identical method independently to two other conifer genomes (Norway spruce and Scots pine) and check the result at the genomic-DNA level rather than only in the tool's own predicted-protein output. The tool inflates TF gene counts several-fold over the existing annotation in both species (2.3x in spruce, 3.6x in pine) — and its predicted proteins contain zero internal stop codons in either species, which looks like a clean quality signal but is not: the underlying gene predictor only emits open reading frames by construction, so a stop-free protein tells you nothing about whether the call is real. Reading disabling mutations directly from the genomic locus instead showed that, depending on the TF family, roughly a fifth to over a third of the tool's "novel" calls carry a frameshift or premature stop, against 0-17% among the already-annotated copies of the same families.
+>
+> This is not "the original authors got it wrong" — they discuss the same transposable-element association themselves, and the disagreement is one of interpretation (does an intact, TE-embedded copy count as a functional gene?), not a hidden error. It is a direct demonstration of what open peer review and open methods are for: the ability to independently re-run and check a published result years later, using nothing but what the authors made available.
+
 ---
 
 ## 4. Git as Reproducibility Infrastructure

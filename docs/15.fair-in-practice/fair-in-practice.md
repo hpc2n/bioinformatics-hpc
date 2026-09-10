@@ -45,7 +45,7 @@ Running a BLAST search is not just "go to the NCBI website." The same search can
 |-----|-----|-----------------|-----|
 | **Website** | NCBI BLAST web interface (or a resource's own web BLAST, e.g. PlantGenIE's) | Exploring a single sequence interactively; sharing results with non-CLI collaborators | No setup required; results viewer with alignments, taxonomy, and distance trees built in |
 | **Command line (local/HPC)** | BLAST+ installed on Kebnekaise, run against a local database copy via Slurm | Large-scale or routine searches; integrating BLAST into a documented, reproducible pipeline | No rate limits; fully scriptable; the script itself is your record of exactly what was run |
-| **API** | Submit a query and retrieve results programmatically over HTTP (NCBI's BLAST API, or a resource's own API such as PlantGenIE's) | Automating a small number of searches; integrating BLAST into another tool without a browser | Demonstrates Interoperability directly — the same data a browser shows you, exposed through a documented, machine-readable interface |
+| **API** | Submit a query and retrieve results programmatically over HTTP (EBI's or NCBI's BLAST API, or a resource's own API such as PlantGenIE's) | Automating a small number of searches; integrating BLAST into another tool without a browser | Demonstrates Interoperability directly — the same data a browser shows you, exposed through a documented, machine-readable interface |
 
 The exercises below walk through all three using the same query sequence, so you can compare the experience directly.
 
@@ -241,33 +241,41 @@ awk '$11 < 1e-10' TP53_blastp_local.txt | wc -l
 
 Two ways to submit a BLAST search programmatically:
 
-**NCBI's BLAST API** (fully documented, works today):
+**EBI's Job Dispatcher API** (fully documented, dedicated asynchronous REST API — confirmed working, completed in under 30 seconds during testing):
 
 ```bash
-RID=$(curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi" \
-  --data "CMD=Put&PROGRAM=blastp&DATABASE=swissprot&QUERY=P04637\
-&FORMAT_TYPE=Text&email=your@email.se" \
-  | grep -o "RID = [A-Z0-9]*" | awk '{print $3}')
+# The sequence is sent as a plain-text form field (not a file upload) —
+# reuse the TP53_protein.fasta file you already have from Exercise 1D
+SEQ=$(cat TP53_protein.fasta)
 
-echo "Job submitted. RID: $RID"
+JOB_ID=$(curl -s -X POST "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/run" \
+  --data-urlencode "email=your@email.se" \
+  --data-urlencode "program=blastp" \
+  --data-urlencode "stype=protein" \
+  --data-urlencode "database=uniprotkb_swissprot" \
+  --data-urlencode "sequence=${SEQ}")
 
-# Poll until the search is ready — a real blastp search against swissprot
-# typically takes 2-3 minutes, not the ~45s you might expect
+echo "Job submitted. Job ID: $JOB_ID"
+
+# Poll until the search is ready
 while true; do
-  sleep 20
-  STATUS=$(curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&FORMAT_OBJECT=SearchInfo&RID=${RID}" \
-    | grep -o "Status=[A-Z]*")
+  sleep 5
+  STATUS=$(curl -s "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/status/${JOB_ID}")
   echo "$STATUS"
-  [ "$STATUS" = "Status=READY" ] && break
+  [ "$STATUS" = "FINISHED" ] && break
+  [ "$STATUS" = "FAILURE" ] && { echo "Job failed"; break; }
 done
 
-curl -s "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi" \
-  --data "CMD=Get&RID=${RID}&FORMAT_TYPE=Text" \
+# Retrieve results — "out" is plain text; "json", "ids" and other formats
+# are also available (see .../resulttypes/${JOB_ID} for the full list)
+curl -s "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/result/${JOB_ID}/out" \
   > TP53_blastp_swissprot.txt
 
 grep "^>" TP53_blastp_swissprot.txt | head -10
 grep "Score\|Expect\|Identities" TP53_blastp_swissprot.txt | head -20
 ```
+
+**A note on NCBI's BLAST API:** NCBI (https://blast.ncbi.nlm.nih.gov/) offers a comparable, fully documented API using the same submit/poll/retrieve pattern (`CMD=Put` / `CMD=Get` against `Blast.cgi` — see NCBI's [BLAST URL API documentation](https://blast.ncbi.nlm.nih.gov/doc/blast-help/urlapi.html)). It is a legitimate resource and worth trying in your own time, but it is a shared, best-effort queue layered on the public BLAST website's own CGI script, with no documented turnaround guarantee — the same query used here has been observed to take anywhere from under a minute to well over 30 minutes depending on server load. That variability is exactly why this exercise uses EBI's API instead.
 
 **PlantGenIE's BLAST API** — PlantGenIE also exposes a BLAST endpoint, confirmed working against the live API. Unlike the annotation and expression endpoints, this one needs a sequence as input — and PlantGenIE does not currently expose a sequence-retrieval endpoint of its own (its API returns gene metadata and expression data, but not sequence). A query sequence for `Potra2n18c32336` has therefore been provided for you: [`potra-Potra2n18c32336-1.fasta`](../exercises/15.fair-in-practice/potra-Potra2n18c32336-1.fasta). This gap is itself worth noting for your FAIR assessment — a resource can be Interoperable for some data types and not yet for others.
 
@@ -614,6 +622,8 @@ The full FAIR essay assignment — what it asks, what distinguishes a G from a V
 
 - PlantGenIE documentation and API reference: https://www.plantgenie.se/api/docs (confirmed by Jamie McCann)
 - PlantGenIE GitHub: https://github.com/plantgenie
+- EBI Job Dispatcher REST API (BLAST and other tools): https://www.ebi.ac.uk/jdispatcher/docs/webservices/
+- NCBI BLAST URL API documentation: https://blast.ncbi.nlm.nih.gov/doc/blast-help/urlapi.html
 - MINSEQE (Minimum Information about a high-throughput Nucleotide SeQuencing Experiment): https://fairsharing.org/FAIRsharing.a55z32
 - MIxS (Minimum Information about any (x) Sequence): https://www.gensc.org/pages/standards-intro.html
 - The Turing Way — Reproducible Research: https://the-turing-way.netlify.app/reproducible-research
