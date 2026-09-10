@@ -82,9 +82,9 @@ Some formats have **binary counterparts** that are more compact and faster to ac
 cd /proj/nobackup/cddb_course/students/YOUR_FOLDER
 mkdir -p lecture13-formats && cd lecture13-formats
 
-# git is not installed on every Kebnekaise node image - load it explicitly
-# rather than relying on it already being on PATH
-module load GCCcore/14.3.0 git/2.50.1
+# Neither git nor curl is on PATH by default on every Kebnekaise node -
+# load both explicitly (they share the same GCCcore/14.3.0 toolchain)
+module load GCCcore/14.3.0 git/2.50.1 cURL/8.14.1
 git init
 ln -s /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats/* .
 ls -lh /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats/  # What files are here? What are their sizes?

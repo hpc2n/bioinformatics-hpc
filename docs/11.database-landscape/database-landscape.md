@@ -285,9 +285,9 @@ Most databases have a primary citation paper. Using a database without citing it
 mkdir -p ~/course/lecture11-databases
 cd ~/course/lecture11-databases
 
-# git is not installed on every Kebnekaise node image - load it explicitly
-# rather than relying on it already being on PATH
-module load GCCcore/14.3.0 git/2.50.1
+# Neither git nor curl is on PATH by default on every Kebnekaise node -
+# load both explicitly (they share the same GCCcore/14.3.0 toolchain)
+module load GCCcore/14.3.0 git/2.50.1 cURL/8.14.1
 
 # Initialise a Git repository
 git init

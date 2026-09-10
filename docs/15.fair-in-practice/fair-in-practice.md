@@ -98,9 +98,14 @@ Both are just conventions built on top of ordinary HTTP — the server ultimatel
 ```bash
 mkdir -p ~/course/lecture15-fair-practice && cd ~/course/lecture15-fair-practice
 
-# git is not installed on every Kebnekaise node image - load it explicitly
-# rather than relying on it already being on PATH
-module load GCCcore/14.3.0 git/2.50.1
+# Neither git nor curl is on PATH by default on every Kebnekaise node -
+# load both explicitly. They share the same GCCcore/14.3.0 toolchain, so
+# loading them together here is safe; do NOT later load a *different*
+# GCC/GCCcore version (e.g. for Exercise 1D's BLAST+) in this same
+# terminal - Lmod silently deactivates git/curl when the toolchain
+# changes underneath them, with no warning. Use a separate terminal tab
+# for Exercise 1D instead (see that section).
+module load GCCcore/14.3.0 git/2.50.1 cURL/8.14.1
 git init
 cat > README.md << 'EOF'
 # Lecture 15: FAIR in Practice
@@ -108,6 +113,12 @@ cat > README.md << 'EOF'
 EOF
 git add README.md
 git commit -m "initial commit: lecture15 FAIR practical exercises"
+
+# Exercises 1D and 1E need the TP53 protein sequence as a local file.
+# This is the same accession fetched in Lecture 11, but re-fetch it here
+# rather than relying on that lecture's separate working directory still
+# being around - the same command as Lecture 11, Part C.
+curl "https://rest.uniprot.org/uniprotkb/P04637.fasta" > TP53_protein.fasta
 ```
 
 ---
@@ -191,9 +202,12 @@ Go to the PlantGenIE website (or NCBI BLAST at https://blast.ncbi.nlm.nih.gov/ f
 
 #### Exercise 1D — BLAST from the command line (local/HPC)
 
-Run the same search locally on Kebnekaise, against a local database copy, submitted as a Slurm job:
+Run the same search locally on Kebnekaise, against a local database copy, submitted as a Slurm job.
+
+**Open a second terminal tab for this step** (in OnDemand's desktop: another "MATE Terminal"). BLAST+'s toolchain (`GCC/14.2.0`) is not compatible with the `GCCcore/14.3.0` that `git`/`curl` need above - loading it in the *same* terminal silently breaks `git` and `curl` for the rest of this exercise, with no error message at the point it happens. Keeping this step in its own terminal avoids the conflict entirely; you only need this tab to submit the job and can switch back to your first terminal immediately after `sbatch`.
 
 ```bash
+cd ~/course/lecture15-fair-practice   # a new terminal starts in your home directory
 module load GCC/14.2.0 OpenMPI/5.0.7 BLAST+/2.17.0
 module list   # Verify it loaded correctly
 
