@@ -596,7 +596,8 @@ output: html_document
 Summarises the PlantGenIE expression query for Potra2n4c9093.
 
 ```{r}
-data <- jsonlite::fromJSON("expression_data.json")
+path <- path.expand("~/course/lecture15-fair-practice/expression_data.json")
+data <- jsonlite::fromJSON(path)
 cat(length(data$samples), "samples returned for this gene\n")
 ```
 ````
