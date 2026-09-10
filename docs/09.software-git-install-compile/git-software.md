@@ -52,6 +52,8 @@ If you want to install some software you have found on GitHub, the usual way to 
 
     Then to run it on for instance the included example, from inside ``cd primer3/src`` do: ``./primer3_core ../example``
 
+If you want to read more about `makefiles` and how and why to write them, you can read <a href="https://docs.hpc2n.umu.se/software/compiling/#makefiles" target="_blank">the HPC2N documentation about makefiles</a>. 
+
 ## R package from GitHub 
 
 There are two main paths here; automatic and manual. 
