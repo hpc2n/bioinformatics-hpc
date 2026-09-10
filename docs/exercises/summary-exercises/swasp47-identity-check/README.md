@@ -51,6 +51,8 @@ Verified working on Kebnekaise (2026-08-13):
 - The login node and compute nodes can both reach the ENA API, PyPI, and Docker Hub.
 - For script 01, if you have access to the genome/CDS inputs: `module load GCC/13.3.0 Python/3.12.3`, then `python3 -m venv venv && source venv/bin/activate && pip install mappy` — `mappy` 2.31 installs and imports cleanly with that module pair.
 
+**Update 2026-09-10 — curl fix, not yet re-verified live.** Live-testing Lecture 15 the same day found that `curl` is not a default binary on every Kebnekaise node — it only exists via the `cURL/8.14.1` module (needing the `GCCcore/14.3.0` toolchain), unlike `apptainer` above which genuinely needs no module. Scripts 02 and 03 both call `curl` directly with no module load, so the same failure is plausible here (`curl: command not found`), even though the 2026-08-13 verification above didn't hit it. Both scripts now load `GCCcore/14.3.0 cURL/8.14.1` before using `curl` — confirmed the module combination itself works (same fix as Lecture 15) and confirmed script 02 still runs correctly locally where no `module` command exists at all, but **not** independently re-run end-to-end on Kebnekaise tonight (SSH access was unavailable at the time). Worth an actual live run before relying on the "verified working" claim above as still covering curl.
+
 **Script 03 can now be run for real.** The reference transcript FASTA (an unpublished research input, not included in this repo) is staged at `/proj/nobackup/cddb_course/databases/swasp47_reference/Potra2n4c9093_transcript.fa` — uncomment the `cp` line under `# --- reference the reads align to ---` in the script to use it.
 
 ## 4. The result and how to read it

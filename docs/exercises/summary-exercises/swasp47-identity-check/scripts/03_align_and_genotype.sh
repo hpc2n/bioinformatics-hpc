@@ -19,7 +19,9 @@
 # Concepts illustrated:
 #   - reproducible tools via containers (apptainer) instead of a fragile
 #     module/conda environment — apptainer is a system binary on Kebnekaise
-#     (/usr/bin/apptainer, v1.3.5), no module load needed (verified 2026-08-13)
+#     (/usr/bin/apptainer, v1.3.5), no module load needed (verified 2026-08-13).
+#     curl, however, is NOT a default binary on every node - see the
+#     `module load` line below (confirmed 2026-09-10)
 #   - STREAMING: `curl | zcat | minimap2 ...` so the multi-GB FASTQ is never
 #     written to disk. On shared HPC storage this is the difference between a
 #     harmless job and one that fills a filesystem for everyone.
@@ -47,6 +49,13 @@
 # wiped at job end — everything under $SNIC_TMP disappears once the job exits.
 # =============================================================================
 set -u
+
+# curl is not a default OS binary on every Kebnekaise node (confirmed
+# 2026-09-10, same finding as Lecture 15's exercises) - load it explicitly
+# rather than relying on it already being on PATH. apptainer genuinely needs
+# no module load (verified 2026-08-13); curl does.
+module load GCCcore/14.3.0 cURL/8.14.1
+
 W=$SNIC_TMP
 mkdir -p "$W/cache" "$W/tmp" "$W/work" "$W/results"
 export APPTAINER_CACHEDIR=$W/cache APPTAINER_TMPDIR=$W/tmp

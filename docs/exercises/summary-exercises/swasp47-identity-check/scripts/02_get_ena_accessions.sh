@@ -14,14 +14,17 @@
 #           filenames, which often preserve the lab's sample labels).
 #
 # This script needs no private inputs — it only talks to the public ENA API,
-# so you can run it as-is, on Kebnekaise or your own machine. Verified
-# reachable from both the Kebnekaise login node and a compute node
-# (2026-08-13).
+# so you can run it as-is, on Kebnekaise or your own machine. The ENA API
+# itself was verified reachable from both the Kebnekaise login node and a
+# compute node (2026-08-13) - but curl is NOT a default binary on every
+# Kebnekaise node (confirmed 2026-09-10, same finding as Lecture 15's
+# exercises), so it is loaded explicitly below rather than assumed present.
 #
 # Usage:  bash 02_get_ena_accessions.sh PRJEB73507 > runs.tsv
 #         then grep for the samples you want, e.g.  grep 'Buds_.*_47_' runs.tsv
 # =============================================================================
 set -euo pipefail
+module load GCCcore/14.3.0 cURL/8.14.1 2>/dev/null || true   # no-op if already on PATH (e.g. running locally, not on Kebnekaise)
 STUDY="${1:?give an ENA study/project accession, e.g. PRJEB73507}"
 
 curl -s "https://www.ebi.ac.uk/ena/portal/api/filereport\
