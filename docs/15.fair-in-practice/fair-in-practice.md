@@ -646,12 +646,14 @@ Throughout this lecture you have run `git init`, `git add`, and `git commit` rep
 
 ### Practice: push `lecture15-fair-practice` to your own GitHub
 
+**Use the SSH URL below, not an `https://` one.** GitHub no longer accepts your account password for `git push` over HTTPS — that needs a Personal Access Token instead, which this course does not otherwise set up. What you already have is an SSH key, from [Lecture 7's "Create a new SSH key for GitHub"](../07.Git/intro-motivation-setup.md#create__a__new__ssh__key__for__github) — the SSH URL uses that key instead, with no token needed. If you skipped that step or are unsure, do it now before continuing.
+
 ```bash
 # On github.com: click "New repository", give it a name (e.g. lecture15-fair-practice),
 # leave it empty (no README/license) - you already have a local repo to push.
 
 # Back in your terminal, still in ~/course/lecture15-fair-practice:
-git remote add origin https://github.com/<your-username>/lecture15-fair-practice.git
+git remote add origin git@github.com:<your-username>/lecture15-fair-practice.git
 git branch -M main
 git push -u origin main
 ```
