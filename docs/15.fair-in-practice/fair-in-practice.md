@@ -634,6 +634,32 @@ git commit -m "lecture15: reproducible report reflection complete"
 
 ---
 
+## Exam Preparation: Pushing Your Work to GitHub
+
+Throughout this lecture you have run `git init`, `git add`, and `git commit` repeatedly — but always locally. The exam requires one more step you have not yet practised here: **pushing** that work to a remote repository on GitHub, exactly as [Lecture 7 (Git)](../07.Git/remotes.md) covered. This is a good point to actually do it once, using the `lecture15-fair-practice` repository you already have.
+
+### Before the exam
+
+- **Create a personal GitHub account now if you do not already have one** — it is free, and you will use it throughout the rest of the programme, not just for this exam.
+- **Send your instructor your GitHub username before the exam.** A private repository for the exam is created for you in advance, under the course's GitHub organisation, with you added as a collaborator — this cannot happen without your username on file first.
+- You will receive an announcement closer to the exam date with the deadline for sending your username and any further details. This is just an early heads-up so you have an account ready in time.
+
+### Practice: push `lecture15-fair-practice` to your own GitHub
+
+```bash
+# On github.com: click "New repository", give it a name (e.g. lecture15-fair-practice),
+# leave it empty (no README/license) - you already have a local repo to push.
+
+# Back in your terminal, still in ~/course/lecture15-fair-practice:
+git remote add origin https://github.com/<your-username>/lecture15-fair-practice.git
+git branch -M main
+git push -u origin main
+```
+
+Refresh the repository page on GitHub — your README and everything you have committed throughout this lecture should now be visible there. This is precisely the mechanism the exam relies on: the repository's *push history* is what gets checked, not local commit timestamps. See [Lecture 7, "Adding a Remote Repository" and "Uploading Changes"](../07.Git/remotes.md#adding__a__remote__repository) for the full explanation of remotes if any of this felt unfamiliar.
+
+---
+
 ## Essay Assessment
 
 The full FAIR essay assignment — what it asks, what distinguishes a G from a VG response, and the curated paper shortlist — is covered in [Lecture 14, Section 10](../14.fair-open-science/fair-open-science.md#10__introduction__to__the__fair__essay__assessment). The metadata assessment (Part 2) and paper reproducibility exercise (Part 3) you have just completed are direct practice for the essay — the same frameworks apply. Bring questions to office hours or post on the Canvas discussion board.
