@@ -22,7 +22,7 @@ The positions that discriminate the two alleles are the **diagnostic SNPs**.
 
 ## 3. The workflow (three small scripts)
 
-All scripts are in [`scripts/`](scripts/).
+All scripts are in [`scripts/`](https://github.com/hpc2n/bioinformatics-hpc/tree/main/docs/exercises/summary-exercises/swasp47-identity-check/scripts) (mkdocs cannot serve a folder listing directly; the individual scripts are linked below).
 
 **[`01_make_diagnostic_snps.py`](scripts/01_make_diagnostic_snps.py)** — align the coding sequence of interest to the reference genome (minimap2 via `mappy`), read the alignment's `cs` string, and list every position where it differs (reference allele vs clone allele). These are the sites to test. *Concepts: spliced pairwise alignment, CIGAR/`cs` strings, 0- vs 1-based coordinates, alleles/strand.*
 

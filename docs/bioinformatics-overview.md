@@ -13,8 +13,8 @@ Umeå University).
 
 | # | Title | Description |
 |---|-------|-------------|
-| [00](../00.programme-introduction/programme-introduction/) | Programme Introduction | Programme overview, teaching philosophy, two-year structure, career pathways |
-| [01](../01.what-is-bioinformatics/what-is-bioinformatics/) | What is Bioinformatics? | Origins, interdisciplinarity, epistemic limitations, AI tools, programme ILOs |
+| [00](00.programme-introduction/programme-introduction.md) | Programme Introduction | Programme overview, teaching philosophy, two-year structure, career pathways |
+| [01](01.what-is-bioinformatics/what-is-bioinformatics.md) | What is Bioinformatics? | Origins, interdisciplinarity, epistemic limitations, AI tools, programme ILOs |
 
 These two sessions are delivered before the HPC2N computing environment block.
 
@@ -38,4 +38,4 @@ See [Lecture 14](14.fair-open-science/fair-open-science.md) for the assignment b
 
 ## Slide PDFs
 
-All lecture slides (student versions, with quiz answers removed) are in [`PDFs/`](../PDFs/).
+All lecture slides (student versions, with quiz answers removed) are in [`PDFs/`](https://github.com/hpc2n/bioinformatics-hpc/tree/main/docs/PDFs) on GitHub (mkdocs cannot serve a folder listing directly, so this links to the repository rather than the built site).
