@@ -2,7 +2,7 @@
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University  
 **Slides:** [PDF](../PDFs/lecture-11-database-landscape.pdf)  
-**Exercises:** See [`exercises/`](../../exercises/11.databases/)
+**Exercises:** See [`exercises/`](../exercises/11.databases/databases-exercises.md)
 
 ---
 
