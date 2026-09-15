@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/10.batch-slurm/exercises/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Extra exercises - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Extra exercises";
+        var mkdocs_page_input_path = "10.batch-slurm/exercises.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/10.batch-slurm/exercises/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring and efficiency</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Extra exercises</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#slurm__commands">Slurm commands</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interactive__jobs">Interactive jobs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sample__job__scripts">Sample job scripts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring__and__efficiency">Monitoring and efficiency</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">10. The batch system (Slurm)</li>
+      <li class="breadcrumb-item active">Extra exercises</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="extra__exercises">Extra exercises<a class="headerlink" href="#extra__exercises" title="Permanent link">&para;</a></h1>
+<p>These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later.</p>
+<h2 id="slurm__commands">Slurm commands<a class="headerlink" href="#slurm__commands" title="Permanent link">&para;</a></h2>
+<p>These commands are run in a terminal. Either connect to Kebnekaise using an SSH client or use OpenOnDemand and start a terminal. </p>
+<ol>
+<li>Type the command <code>projinfo</code>. Look at the output. Try adding some options, <code>projinfo -vd -u &lt;your-username&gt;</code>. You now get output telling you who are in the same project and how much each has run. However, the output is not always reliable and updated. Go to <code>https://supr.naiss.se</code> and click on your project <code>hpc2ncourses2026-013</code> in the left side, then scroll down to see usage (click on usage per day and usage per account). </li>
+<li>Go into the <code>exercises/10.batch/MPI</code> and open the file <code>run_integration2D.sh</code> in an editor (<code>nano</code> is recommended). <ul>
+<li>Change the project to <code>hpc2ncourses2026-013</code>. Save the file. </li>
+<li>Submit the script with <code>sbatch run_integration2D.sh</code> </li>
+<li>Do <code>squeue --me</code> to see it is in the queue. What is the status? Submit it a few more times and again check with <code>squeue --me</code>. (Remember you can use &ldquo;arrow up&rdquo; on the keybord to access a previous command). </li>
+<li>You get the job-ID when you submit the job and it is also listed in the furthese-left column when you do <code>squeue --me</code>. Try the command <code>scontrol show job &lt;job-ID&gt;</code> on one of the job-IDs. What node is the job running on (if it is already running). </li>
+<li>Use <code>sinfo</code> to see which partitions there are. </li>
+<li>Try the command <code>job_usage &lt;job-ID&gt;</code> on one of the jobs that have run. Copy the URL and paste it in a browser to see a graphical representation of the job&rsquo;s resources used. </li>
+</ul>
+</li>
+</ol>
+<h2 id="interactive__jobs">Interactive jobs<a class="headerlink" href="#interactive__jobs" title="Permanent link">&para;</a></h2>
+<p>Batch jobs are not normally interactive, and you cannot usually make changes to them after submitting them. If you need to do that, you use <em>interactive</em> jobs. </p>
+<p>Interactive jobs are jobs where you ask for resources, like for a batch job, but you do not send off the commands for computations and such, instead work on the resources in a back and forth, <em>interactive</em> manner. </p>
+<p>On Kebnekaise this can happen in two ways; either with the command <code>salloc</code> or through OpenOnDemand. </p>
+<p>Using <code>salloc</code> is not true interactivity, in that you stay on the login node and have to preface every command with <code>srun</code> in order to run it on the compute node resources you have allocated. </p>
+<p>With OpenOnDemand you work directly on the allocated compute nodes, like on a regular desktop. </p>
+<ol>
+<li>What do you get if you allocate resources with <code>salloc -A hpc2ncourses2026-013 -t 00:10:00 -n 1</code>?<ul>
+<li>In addition, what happens if you run a script or executable directly, without prefacing it with <code>srun</code>? </li>
+</ul>
+</li>
+<li>Go to https://portal.hpc2n.umu.se/ and login.<ul>
+<li>Start a &ldquo;Kebnekaise desktop&rdquo; and ask for 2 cores (Any nodes) for 1 hour. Launch the desktop when the resources have been allocated. Open a terminal (XCFE terminal or MATE terminal depending on what desktop environment you chose). 
+Try with the command <code>srun /bin/hostname</code> to see that you got two cores and on which node(s) they are allocated. </li>
+</ul>
+</li>
+</ol>
+<h2 id="sample__job__scripts">Sample job scripts<a class="headerlink" href="#sample__job__scripts" title="Permanent link">&para;</a></h2>
+<p>The exercises are using files located within the directory you got from unpacking the tarball. They are in subdirectories under <code>exercises/10.batch/</code>. </p>
+<p>The directory/folder <code>exercises</code> and its subdirectories are located either in your home directory (go there with <code>cd</code>) or in your project storage (go there with `cd /proj/nobackup/cddb_course/<the-dir-you-created>) depending on where you placed it.  </p>
+<ul>
+<li>The batch scripts you need to submit all have suffixes <code>.sh</code>. </li>
+<li>Some, but not all of the batch scripts have the project ID already added. You should always check! Use <code>nano &lt;the-batchscript&gt;</code> to see if it is added. If not, do so! You project ID is &ldquo;hpc2ncourses2026-013&rdquo;. </li>
+<li>
+<p>Remember! To go to a subfolder of <code>&lt;path-to/&gt;exercises/10.batch/</code> when you are already in another subfolder, you have to either first do <code>cd ..</code> to go up one directory/folder, or give <strong>the full path</strong> from root to the subfolder. </p>
+<ul>
+<li>Example: you are in <code>&lt;path-to/&gt;exercises/10.batch/serial</code> and need to go to <code>&lt;path-to/&gt;exercises/10.batch/MPI</code>. You can do either of these: <ul>
+<li><code>cd ..</code> and then <code>cd MPI</code></li>
+<li><code>cd &lt;path-to/&gt;exercises/10.batch/MPI</code> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Go to the subfolder <code>dependency</code> under <code>&lt;path-to/&gt;exercises/10.batch/</code></p>
+<ul>
+<li>Check with <code>nano mmmult.py</code> if the project ID is added. Otherwise do so. Then exit (and save). </li>
+<li>Submit it with <code>sbatch mmmult.sh</code></li>
+<li>Check on it with <code>squeue --me</code>. Is it running? Pending? </li>
+<li>What is the job ID? </li>
+<li>If it has started running, check if it has started writing to a file named <code>slurm-&lt;job ID&gt;.out</code> </li>
+</ul>
+</li>
+<li>Go to the subfolder <code>MPI</code> under <code>&lt;path-to/&gt;exercises/10.batch/</code> and use <code>nano</code> to check if the batch script <code>run_integration2D.sh</code> has the correct project ID. Otherwise change it to &ldquo;hpc2ncourses2026-013&rdquo;. <ul>
+<li>Note that <code>srun</code> is used to run the MPI executable. Also note that this executable (Python script) has an input and how it is given in the batch submit script. </li>
+<li>Also note that this batch script has named output and error files. </li>
+<li>Submit the batch script mentioned above. See which output files are created. </li>
+<li>Try and make some changes to the batch script (open with <code>nano</code>, make the changes, quit-save) and submit it to see if the output changes.<ul>
+<li>Change the name of the output/error files (keep the <code>%j</code> as this is the job ID and guarantees unique output files so nothing gets overwritten). </li>
+<li>Change the number of MPI tasks (it is 14 cores in the study material and 16 in the submit script in the exercises - try another number) </li>
+<li>Change the input parameter from 10000 to something else. Note, if you make it larger, the 10 minutes walltime may or may not be enough. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>How would you change the batch script <code>run_integration2D.sh</code> to give each task more memory? There is more than one answer. </li>
+<li>Inside the subfolder <code>job-array</code> there is a job script <code>hello-world-array.sh</code>. Change to the subfolder. <ul>
+<li>Look inside the job script with <code>nano hello-world-array.sh</code>. How many tasks are there in the array here? Also see how many cores for each task. </li>
+<li>Change <code>&lt;proj ID&gt;</code> to &ldquo;hpc2ncourses2026-013&rdquo;. Quit-save. </li>
+<li>Submit the batch script. Check with <code>squeue --me</code>. How many cores are allocated? How many output files are created? </li>
+<li>Try and change the number of tasks in the array (use <code>nano</code>). Quit-save. Submit the batch script again. Check with <code>squeue --me</code>. Did the number of allocated cores change? What about the number of output files? </li>
+</ul>
+</li>
+<li>Go to the subfolder <code>GPU-vector-addition</code>. Check that the batch submit script <code>add-list.sh</code> has the correct project ID or change it to <code>hpc2ncourses2026-013</code>. <ul>
+<li>Submit the batch script. Which type of GPU is it running on? <ul>
+<li>In this case you can see it either by checking inside the batch script or by checking with <code>squeue --me</code> or <code>scontrol show job &lt;job ID&gt;</code> since we need to ask for an Nvidia GPU node to avoid ending up on an AMD GPU node where CUDA does not work. </li>
+</ul>
+</li>
+<li>Open the job script again with <code>nano</code>. Change the GPU node you ask for to a different Nvidia GPU node. You can find some information about the types of GPU nodes and how to allocate them here: https://docs.hpc2n.umu.se/documentation/batchsystem/resources/#requesting__gpus </li>
+<li>Submit the job again. See that you got the correct type. </li>
+</ul>
+</li>
+</ul>
+<h2 id="monitoring__and__efficiency">Monitoring and efficiency<a class="headerlink" href="#monitoring__and__efficiency" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Does using more threads than the allocated number of cores risk making a job ineffective? </li>
+<li>Is it bad for the file system to have to handle very many small files? Does it take longer to open a directory with very many files? What can be done about it? </li>
+<li>How do you find information about usage for your project? There is more than one way, and one is more reliable than the other. Which are they? </li>
+<li>Try submitting a job that takes at least 3-4 minutes to run and then look at the graphical output for resource usage with <code>job-usage &lt;job ID&gt;</code>. Good submit job scripts for this is <code>&lt;path-to/&gt;exercises/10.batch/dependency/mmmult.sh</code>, <code>&lt;path-to/&gt;exercises/10.batch/GPU-PyTorch-fitting/pytorch_fitting_gpu.sh</code> or <code>&lt;path-to/&gt;exercises/10.batch/MPI/run_integration2D.sh</code>. </li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../monitoring/" class="btn btn-neutral float-left" title="Monitoring and efficiency"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../bioinformatics-overview/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../bioinformatics-overview/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
