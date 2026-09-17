@@ -47,14 +47,15 @@ The directory/folder `exercises` and its subdirectories are located either in yo
         - `cd <path-to/>exercises/10.batch/MPI` 
 
 1. Go to the subfolder `dependency` under `<path-to/>exercises/10.batch/`
-    - Check with `nano mmmult.py` if the project ID is added. Otherwise do so. Then exit (and save). 
+    - Check with `nano mmmult.sh` if the project ID is added. Otherwise do so. Then exit (and save). 
     - Submit it with `sbatch mmmult.sh`
     - Check on it with `squeue --me`. Is it running? Pending? 
     - What is the job ID? 
     - If it has started running, check if it has started writing to a file named `slurm-<job ID>.out` 
 2. Go to the subfolder `MPI` under `<path-to/>exercises/10.batch/` and use `nano` to check if the batch script `run_integration2D.sh` has the correct project ID. Otherwise change it to "hpc2ncourses2026-013". 
-    - Note that `srun` is used to run the MPI executable. Also note that this executable (Python script) has an input and how it is given in the batch submit script. 
+    - Note that `srun` is used to run the MPI executable. Also note that this executable (C or Fortran 90 code) has an input and how it is given in the batch submit script. 
     - Also note that this batch script has named output and error files. 
+    - Also note that they need to be COMPILED first. This is done by the build.sh script which loads a module and calls the Makefile. Run it with ``./build.sh``
     - Submit the batch script mentioned above. See which output files are created. 
     - Try and make some changes to the batch script (open with `nano`, make the changes, quit-save) and submit it to see if the output changes.
         - Change the name of the output/error files (keep the `%j` as this is the job ID and guarantees unique output files so nothing gets overwritten). 
