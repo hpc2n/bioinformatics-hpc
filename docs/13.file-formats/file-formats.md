@@ -237,7 +237,7 @@ awk '!/^#/ && $3=="gene"' annotation.gff | head -10
 awk '!/^#/ && $3=="gene"{print $1}' annotation.gff | sort | uniq -c | sort -rn
 
 # Extract gene names from GTF attributes
-awk '!/^#/ && $3=="gene"' annotation.gtf | grep -oP 'gene_name "\K[^"]+' | head -20
+awk '!/^#/ && $3=="transcript"' annotation.gtf | grep -oP 'gene_id "\K[^"]+' | head -20
 
 # Count exons per gene (more complex — see handout extension)
 awk '!/^#/ && $3=="exon"' annotation.gtf | grep -oP 'gene_id "\K[^"]+' | sort | uniq -c | sort -rn | head -20
@@ -291,7 +291,7 @@ awk '$1=="chr1"' regions.bed | wc -l
 
 # With bedtools (if available)
 module load GCC/14.3.0 BEDTools/2.31.1
-bedtools intersect -a regions_a.bed -b regions_b.bed | wc -l
+bedtools intersect -a regions.bed -b regions_b.bed | wc -l
 ```
 
 ---
@@ -416,7 +416,7 @@ Column names, followed by sample names.
 | REF | Reference allele |
 | ALT | Alternate allele(s) |
 | QUAL | Phred-scaled quality score for the variant call |
-| FILTER | PASS or the filter(s) the variant failed |
+| FILTER | PASS or the filter(s) the variant failed. If no filters were applied the value here is ".". Often filtered variants are simply removed from the file  |
 | INFO | Semicolon-delimited key=value pairs of variant annotations |
 | FORMAT | Colon-delimited keys describing the per-sample fields |
 | SAMPLE | Per-sample values in the order specified by FORMAT |
@@ -441,7 +441,7 @@ grep "^#" variants.vcf
 # Filter to PASS variants only
 grep -v "^#" variants.vcf | awk '$7=="PASS"' | wc -l
 
-# Extract SNPs only (where REF and ALT are both single bases)
+# Extract SNPs only where REF and ALT are both single bases
 grep -v "^#" variants.vcf | awk 'length($4)==1 && length($5)==1'
 
 # With bcftools (more robust for complex VCFs)
@@ -485,17 +485,17 @@ cd /proj/nobackup/cddb_course/students/YOUR_FOLDER/lecture13-formats
 
 ```bash
 # How many reads are in the file?
-zcat sample.fastq.gz | wc -l | awk '{print $1/4}'
+zcat reads.fastq.gz | wc -l | awk '{print $1/4}'
 
 # Look at the first read — all four lines
-zcat sample.fastq.gz | head -n 4
+zcat reads.fastq.gz | head -n 4
 
 # What characters appear in quality scores?
-awk 'NR%4==0' sample.fastq | fold -w1 | sort -u
+awk 'NR%4==0' reads.fastq | fold -w1 | sort -u
 
 # What is the minimum and maximum quality character?
-awk 'NR%4==0' sample.fastq | fold -w1 | sort -u | head -1   # min
-awk 'NR%4==0' sample.fastq | fold -w1 | sort -u | tail -1   # max
+awk 'NR%4==0' reads.fastq | fold -w1 | sort -u | head -1   # min
+awk 'NR%4==0' reads.fastq | fold -w1 | sort -u | tail -1   # max
 
 # Convert the lowest quality character to a Q score (ASCII value minus 33)
 # What is the probability of error at this quality?
@@ -507,21 +507,21 @@ awk 'NR%4==0' sample.fastq | fold -w1 | sort -u | tail -1   # max
 
 ```bash
 # What feature types are present?
-awk '!/^#/{print $3}' sample.gff | sort | uniq -c | sort -rn
+awk '!/^#/{print $3}' annotation.gff | sort | uniq -c | sort -rn
 
 # How many genes are annotated?
-awk '!/^#/ && $3=="gene"' sample.gff | wc -l
+awk '!/^#/ && $3=="gene"' annotation.gff | wc -l
 
 # How many genes on each chromosome?
-awk '!/^#/ && $3=="gene"{print $1}' sample.gff | sort | uniq -c | sort -rn | head -10
+awk '!/^#/ && $3=="gene"{print $1}' annotation.gff | sort | uniq -c | sort -rn | head -10
 
 # Extract gene names
-awk '!/^#/ && $3=="gene"' sample.gff | grep -oP 'ID=\K[^;]+'  | head -20
+awk '!/^#/ && $3=="gene"' annotation.gff | grep -oP 'ID=\K[^;]+'  | head -20
 
 # Find the transcript with the most exons
-awk '!/^#/ && $3=="exon"' sample.gff | grep -oP 'Parent=\K[^.]+' | sort | uniq -c | sort -rn | head -5
+awk '!/^#/ && $3=="exon"' annotation.gff | grep -oP 'Parent=\K[^.]+' | sort | uniq -c | sort -rn | head -5
 
-# Would the same code work on sample2.gff?
+# Would the same code work on annotation.gff?
 
 ```
 
@@ -531,49 +531,49 @@ awk '!/^#/ && $3=="exon"' sample.gff | grep -oP 'Parent=\K[^.]+' | sort | uniq -
 module load GCC/14.2.0 SAMtools/1.22
 
 # View the header
-samtools view -H sample.bam
+samtools view -H alignment.bam
 
 # How many reference sequences are in the header?
-samtools view -H sample.bam | grep "^@SQ" | wc -l
+samtools view -H alignment.bam | grep "^@SQ" | wc -l
 
 # Alignment statistics
-samtools flagstat sample.bam
+samtools flagstat alignment.bam
 
 # How many reads are mapped?
-samtools view -c -F 4 sample.bam
+samtools view -c -F 4 alignment.bam
 
 # Sort and index
-samtools sort -o sample.sorted.bam sample.bam
-samtools index sample.sorted.bam
+samtools sort -o alignment.sorted.bam alignment.bam
+samtools index alignment.sorted.bam
 
 # Look at the first few alignments — note the FLAG and CIGAR fields
-samtools view sample.sorted.bam | head -5
+samtools view alignment.sorted.bam | head -5
 
 # Decode the FLAG of the first read — what does it tell you?
 # Look up: https://broadinstitute.github.io/picard/explain-flags.html
 
 # Extract reads mapping to a specific region
-samtools view sample.sorted.bam chr1:1-100000 | wc -l
+samtools view alignment.sorted.bam chr1:1-100000 | wc -l
 ```
 
 ### Part E — VCF inspection
 
 ```bash
 # View the header
-grep -P "^#" sample.vcf | head -20
+grep -P "^#" variants.vcf | head -20
 
 # How many variants are in the file?
-grep -Pv "^#" sample.vcf | wc -l
+grep -Pv "^#" variants.vcf | wc -l
 
 # What scaffolds have variants?
-grep -Pv "^#" sample.vcf | awk '{print $1}' | sort | uniq -c | sort -rn
+grep -Pv "^#" variants.vcf | awk '{print $1}' | sort | uniq -c | sort -rn
 
 # Find any variants in gene Potra2n1c1 (chr1 ~8,865-11,259)
-grep -Pv "^#" sample.vcf | awk '$1=="chr1" && $2>=8865 && $2<=11259'
+grep -Pv "^#" variants.vcf | awk '$1=="chr1" && $2>=8865 && $2<=11259'
 
 # Count SNPs vs indels
-grep -Pv "^#" sample.vcf | awk 'length($4)==1 && length($5)==1' | wc -l   # SNPs
-grep -Pv "^#" sample.vcf | awk 'length($4)!=1 || length($5)!=1' | wc -l   # indels
+grep -Pv "^#" variants.vcf | awk 'length($4)==1 && length($5)==1' | wc -l   # SNPs
+grep -Pv "^#" variants.vcf | awk 'length($4)!=1 || length($5)!=1' | wc -l   # indels
 ```
 
 
@@ -591,7 +591,7 @@ Write the following as a README file and commit it
 - Quality encoding: Phred+33 / Phred+64 (delete as appropriate)
 - Notes:
 
-### GTF
+### GTF/GFF
 - Number of genes:
 - Most exon-dense gene:
 - Notes:
