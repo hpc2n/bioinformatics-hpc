@@ -38,7 +38,7 @@ Use the [File Formats handout](13.file-formats/file-formats.md) to:
 
 Use the [FAIR and Open Science handout](14.fair-open-science/fair-open-science.md) and [FAIR in Practice handout](15.fair-in-practice/fair-in-practice.md) to:
 
-- Complete the GEO/ENA metadata sufficiency checklist for the AspWood dataset (ERP016242)
+- Complete the GEO/ENA metadata sufficiency checklist for the AspWood dataset (ERP016242 — an ENA Study accession; see [Lecture 11](11.database-landscape/database-landscape.md) for the accession-prefix scheme)
 - Work through the paper reproducibility assessment exercise using your chosen essay paper
 - Make progress on your FAIR essay
 - If you did not finish it in session: run a BLAST search via the NCBI web interface, the command line on Kebnekaise, and the PlantGenIE/EBI API, using the Slurm script in `exercises/15.fair-in-practice/` — see the [BLAST background reference](12.blast/blast.md) if you need a refresher first

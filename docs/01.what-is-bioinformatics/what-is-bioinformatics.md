@@ -297,7 +297,7 @@ For reference throughout the course, the full Expected Learning Outcomes are rep
 **Skills and abilities** — The student should be able to:
 7. Select and apply appropriate command-line tools to extract information and perform routine operations on common bioinformatics file formats
 8. Execute file system administration tasks
-9. Conduct routine file parsing and QC in Linux
+9. Conduct routine file parsing and quality control (QC) in Linux
 10. Run and monitor jobs on HPC systems with schedulers
 11. Build a reproducible workflow using environment managers or containers
 12. Use Git for version control

@@ -11,7 +11,7 @@ For BLAST background (what it is, how it works, how to interpret results), see t
 
 ## Exercise 2 dataset
 
-**ERP016242** — AspWood (*Populus tremula* wood formation)
+**ERP016242** (an ENA Study accession — see [Lecture 11](../../11.database-landscape/database-landscape.md) for the SRA/ENA/DDBJ accession-prefix scheme) — AspWood (*Populus tremula* wood formation)
 Browse: [ebi.ac.uk/ena/browser/view/ERP016242](https://www.ebi.ac.uk/ena/browser/view/ERP016242)
 
 Full commands in the [lecture handout](../../15.fair-in-practice/fair-in-practice.md).

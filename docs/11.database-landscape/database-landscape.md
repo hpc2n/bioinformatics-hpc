@@ -58,7 +58,7 @@ Understanding which tier a database belongs to immediately tells you several imp
 - **How much to trust an annotation:** a functionally annotated entry in Swiss-Prot has been manually reviewed by an expert; an automatically annotated entry in TrEMBL has not. Both are valuable, but they are not equivalent.
 - **What kind of question it can answer:** you go to Tier 1 for data; you go to Tier 3 for interpretation.
 - **What the evidence basis is:** Tier 3 databases often derive their content from Tier 1 and 2, and errors propagate upward — as discussed in Lecture 1.
-- **How to find things programmatically:** each tier tends to have characteristic APIs and access patterns.
+- **How to find things programmatically:** each tier tends to have characteristic APIs (Application Programming Interfaces) and access patterns.
 
 ### 1.3 Cross-Referencing: The Connective Tissue
 
@@ -91,6 +91,9 @@ The practical implication: you do not need to worry about which of the three pri
 **NCBI SRA (Sequence Read Archive)** stores raw sequencing reads — the actual output of sequencing instruments, before any assembly or processing. This is where you find the raw data underlying published studies. Raw reads are in FASTQ format. The SRA is the most important archive for reproducibility: if a study deposited its raw data here, you can in principle reproduce the entire analysis from scratch.
 
 **ENA (European Nucleotide Archive)** provides access to the same nucleotide data as GenBank/SRA but with a different interface and different programmatic access tools. Many European researchers prefer ENA because of lower latency and because the metadata search interface is arguably more flexible. ENA is also a more prominent submission destination for many European research infrastructures.
+
+!!! note
+    **Decoding SRA/ENA/DDBJ accession numbers.** Each archive issues its own accessions for the same underlying data, built from a two-letter prefix identifying the archive (`SR` = NCBI's SRA, `ER` = EBI's ENA, `DR` = DDBJ) followed by a letter identifying the record type: **P** = Project/Study, **S** = Sample, **X** = Experiment, **R** = Run. So `SRR`/`ERR`/`DRR` is a Run accession (the raw reads from one sequencing run), `SRS`/`ERS`/`DRS` is a Sample accession, `SRX`/`ERX`/`DRX` is an Experiment accession (the sequencing platform/library setup used for a run), and `SRP`/`ERP`/`DRP` is a Project (Study) accession grouping many samples/runs. A related but distinct series, `PRJNA`/`PRJEB`/`PRJDB` ("BioProject" accessions), also identifies a study and is often used interchangeably with `SRP`/`ERP`/`DRP` in practice. Because the three archives synchronise daily, the same run or study is normally reachable via any of the three prefixes.
 
 ### 2.3 Primary Archives: Other Data Types
 

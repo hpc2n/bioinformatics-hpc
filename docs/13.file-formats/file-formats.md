@@ -302,7 +302,7 @@ bedtools intersect -a regions_a.bed -b regions_b.bed | wc -l
 
 SAM (Sequence Alignment/Map) is the standard format for storing read alignments to a reference genome. After FASTQ files have been quality-trimmed, they are aligned to a reference genome using a tool such as HISAT2, STAR, or BWA-MEM. The output is a SAM file describing where each read maps.
 
-BAM is the binary, compressed version of SAM. BAM files are typically 5–10× smaller than equivalent SAM files and can be randomly accessed via an index file (`.bai`). In practice, you will almost always work with BAM files rather than SAM files, but SAM is human-readable and useful for understanding the format.
+BAM (Binary Alignment/Map) is the binary, compressed version of SAM. BAM files are typically 5–10× smaller than equivalent SAM files and can be randomly accessed via an index file (`.bai`). In practice, you will almost always work with BAM files rather than SAM files, but SAM is human-readable and useful for understanding the format.
 
 ### 6.2 SAM File Structure
 
@@ -351,7 +351,7 @@ A FLAG value of 99 means: paired (1) + properly paired (2) + mate on reverse str
 
 ### 6.4 The CIGAR String
 
-The CIGAR string encodes how a read aligns to the reference — which bases match, which are insertions, deletions, or clipped:
+CIGAR ("Concise Idiosyncratic Gapped Alignment Report" — an informal backronym rather than a term formally defined in the SAM specification) encodes how a read aligns to the reference — which bases match, which are insertions, deletions, or clipped:
 
 | Code | Meaning |
 |------|---------|

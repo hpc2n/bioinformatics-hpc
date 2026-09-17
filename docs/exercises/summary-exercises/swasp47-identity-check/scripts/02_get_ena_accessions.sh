@@ -4,8 +4,10 @@
 # -----------------------------------------------------------------------------
 # Real teaching example (see ../README.md). Public sequence archives (ENA /
 # NCBI SRA) let you retrieve the raw reads for a published study by its
-# project accession. The ENA "portal" API returns a simple TSV linking each
-# run (ERRxxxxxxx) to its FASTQ download URLs and to descriptive fields, so
+# project accession. The ENA "portal" API (Application Programming Interface)
+# returns a simple TSV linking each run (ERRxxxxxxx — an ENA Run accession;
+# see Lecture 11 for how the SRR/ERR/DRR, SRP/ERP/DRP, PRJNA/PRJEB prefixes
+# are decoded) to its FASTQ download URLs and to descriptive fields, so
 # you can pick the exact samples you need. This is the same ENA portal API
 # pattern used in Lecture 11 (Biological Database Landscape).
 #

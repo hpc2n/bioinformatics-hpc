@@ -18,7 +18,7 @@
 
 By the end of these exercises you should be able to:
 
-1. Run a BLAST search via a website, from the command line on HPC, and via an API — and explain when and why you would choose each
+1. Run a BLAST search via a website, from the command line on HPC, and via an API (Application Programming Interface) — and explain when and why you would choose each
 2. Query a REST API from the command line and parse the response — demonstrating Interoperability in practice
 3. Explain how a well-designed API embodies the Interoperable and Reusable principles of FAIR
 4. Apply a structured metadata sufficiency checklist to a real GEO or ENA dataset
@@ -383,7 +383,7 @@ This exercise asks you to answer that question for a specific, provided dataset.
 
 Work through the following checklist for the dataset below. Record your findings — yes/no and supporting evidence — in your README.
 
-**The dataset accession for this exercise:** ERP016242 (European Nucleotide Archive)
+**The dataset accession for this exercise:** ERP016242 (a European Nucleotide Archive Study accession — see Lecture 11 for how the `SRR`/`ERR`, `SRP`/`ERP`, etc. prefixes are decoded)
 
 **The associated paper:** Sundell D. et al. (2017). AspWood: High-Spatial-Resolution Transcriptome Profiles Reveal Uncharacterized Modularity of Wood Formation in *Populus tremula*. *The Plant Cell* 29(7): 1585–1604. DOI: 10.1105/tpc.17.00153
 
@@ -488,7 +488,7 @@ Example table structure:
 | Quality trimming | Trimmomatic | v0.39 ✓ | LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 ✓ |
 | Alignment | HISAT2 | v2.1.0 ✓ | Default ✗ — "default parameters" is insufficient |
 | Quantification | featureCounts | Not specified ✗ | Not specified ✗ |
-| DE analysis | DESeq2 | v1.20.0 ✓ | Shrinkage estimator not specified ✗ |
+| DE (differential expression) analysis | DESeq2 | v1.20.0 ✓ | Shrinkage estimator not specified ✗ |
 
 **Step 2 — Assess code availability**
 - Is analysis code available at all?

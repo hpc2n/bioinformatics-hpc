@@ -84,7 +84,7 @@ Data cannot be used if it cannot be found. Findability requires:
 
 **F4 — Data is registered or indexed in a searchable resource:** Depositing raw reads in the ENA or SRA, expression data in GEO or ArrayExpress, or proteomics data in PRIDE makes them findable by search engines and database query interfaces.
 
-> **Bioinformatics example:** An RNA-seq study that deposits raw reads in the ENA with a study accession (PRJEB12345), annotates samples with EFO ontology terms, and records the NCBI taxonomy identifier for the organism is highly findable. A study that provides data only as a supplementary Excel file attached to the paper is not — the file has no independent identifier, will not be indexed by database search engines, and may become inaccessible if the publisher changes hosting.
+> **Bioinformatics example:** An RNA-seq study that deposits raw reads in the ENA with a study accession (PRJEB12345 — a "BioProject" accession; Lecture 11 explains how SRA/ENA/DDBJ accession prefixes such as `SRR`/`ERR`, `SRP`/`ERP`, and `PRJNA`/`PRJEB` are decoded), annotates samples with EFO ontology terms, and records the NCBI taxonomy identifier for the organism is highly findable. A study that provides data only as a supplementary Excel file attached to the paper is not — the file has no independent identifier, will not be indexed by database search engines, and may become inaccessible if the publisher changes hosting.
 
 ### 2.2 Accessible
 
@@ -102,13 +102,13 @@ Accessible does not mean open. It means that there is a well-defined, open proto
 
 Interoperability is about enabling data to be integrated with other data and analysed by other tools without manual intervention. It requires:
 
-**I1 — Data uses a formal, accessible, shared, and broadly applicable language for knowledge representation:** In bioinformatics, this means using standard file formats (FASTA, FASTQ, BAM, VCF, GFF — which you have already learned) rather than proprietary formats, and using ontologies (GO, EFO, NCBI Taxonomy, OBI) to annotate metadata.
+**I1 — Data uses a formal, accessible, shared, and broadly applicable language for knowledge representation:** In bioinformatics, this means using standard file formats (FASTA, FASTQ, BAM, VCF, GFF — which you have already learned) rather than proprietary formats, and using ontologies (GO, EFO — the Experimental Factor Ontology, NCBI Taxonomy, OBI — the Ontology for Biomedical Investigations) to annotate metadata.
 
 **I2 — Data uses vocabularies that follow FAIR principles:** An ontology term from the Gene Ontology or the Experimental Factor Ontology has a stable, resolvable identifier (e.g. `GO:0006355` for "regulation of DNA-templated transcription"). A free-text annotation such as "liver (adult, treated)" cannot be reliably parsed by a machine or compared across datasets.
 
 **I3 — Data includes qualified references to other data:** A genomic dataset should specify which reference genome assembly it was aligned to, with a versioned identifier. It should cross-reference the ENA study from which raw reads came. These cross-references allow datasets to be integrated without manual disambiguation.
 
-> **Bioinformatics example:** PlantGenIE (plantgenie.se) exposes its data through documented REST API endpoints that return data in standard formats (JSON, FASTA). This means a researcher can query PlantGenIE data programmatically, integrate results with other databases, and build reproducible analysis pipelines. In Lecture 15, you will work directly with these API endpoints. This is interoperability in practice — not a database that requires a specific browser plugin to access its data.
+> **Bioinformatics example:** PlantGenIE (plantgenie.se) exposes its data through documented REST (Representational State Transfer) API (Application Programming Interface) endpoints that return data in standard formats (JSON — JavaScript Object Notation, FASTA). This means a researcher can query PlantGenIE data programmatically, integrate results with other databases, and build reproducible analysis pipelines. In Lecture 15, you will work directly with these API endpoints. This is interoperability in practice — not a database that requires a specific browser plugin to access its data.
 
 ### 2.4 Reusable
 
@@ -120,7 +120,7 @@ Reusable data is data that is sufficiently well described for someone other than
 
 **R1.2 — Data is associated with detailed provenance:** Where did the data come from? What processing steps were applied? Which software versions were used? A fully documented provenance chain allows a new user to understand not just what the data is, but how it became what it is.
 
-**R1.3 — Data meets domain-relevant community standards:** In genomics, this means MINSEQE (Minimum Information about a high-throughput Nucleotide SeQuencing Experiment) for RNA-seq studies; MIxS (Minimum Information about any (x) Sequence) for environmental sequencing; MIAPE for proteomics. These standards define the minimum metadata required for a dataset to be considered adequately described.
+**R1.3 — Data meets domain-relevant community standards:** In genomics, this means MINSEQE (Minimum Information about a high-throughput Nucleotide SeQuencing Experiment) for RNA-seq studies; MIxS (Minimum Information about any (x) Sequence) for environmental sequencing; MIAPE (Minimum Information About a Proteomics Experiment) for proteomics. These standards define the minimum metadata required for a dataset to be considered adequately described.
 
 > **Bioinformatics example:** A GEO dataset with complete sample metadata — organism (NCBI taxonomy ID), tissue (UBERON ontology term), treatment, time point, genotype, and growth conditions — released under CC-BY, with raw reads deposited in SRA and a Snakemake workflow pinned to exact software versions deposited in Zenodo with a DOI, is highly reusable. A GEO dataset with samples labelled "control" and "treated" and no further metadata, with code described as "scripts used in analysis are available upon request," is not.
 

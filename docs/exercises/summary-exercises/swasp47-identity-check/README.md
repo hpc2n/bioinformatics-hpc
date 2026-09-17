@@ -28,18 +28,20 @@ All scripts are in [`scripts/`](https://github.com/hpc2n/bioinformatics-hpc/tree
 
 This script needs the genome FASTA and the clone CDS as inputs — both unpublished research files not bundled in this repo. **You can read the script to understand the method without running it.** Its output format is shown in [`diagnostic_SNPs.example.tsv`](diagnostic_SNPs.example.tsv), a real (already-generated) example output, so you can go straight to script 03 conceptually even without running script 01 yourself.
 
-**[`02_get_ena_accessions.sh`](scripts/02_get_ena_accessions.sh)** — turn a study accession into run accessions and FASTQ URLs via the ENA portal API, exactly the pattern from Lecture 11. *Concepts: BioProject/study vs run accessions, the ENA filereport API, ENA-hosted vs original-filename FASTQs.* This one needs no private inputs — run it as-is:
+**[`02_get_ena_accessions.sh`](scripts/02_get_ena_accessions.sh)** — turn a study accession into run accessions and FASTQ URLs via the ENA portal API (Application Programming Interface), exactly the pattern from Lecture 11. *Concepts: BioProject/study vs run accessions, the ENA filereport API, ENA-hosted vs original-filename FASTQs.* This one needs no private inputs — run it as-is:
 
 ```bash
 bash scripts/02_get_ena_accessions.sh PRJEB73507 > runs.tsv
 grep 'Buds_.*_47_' runs.tsv
 ```
 
+`PRJEB73507` is an ENA/BioProject Study accession — see Lecture 11 for how the `SRR`/`ERR`, `SRP`/`ERP`, `PRJNA`/`PRJEB` prefixes are decoded.
+
 **[`03_align_and_genotype.sh`](scripts/03_align_and_genotype.sh)** — a Slurm job: for each sample, stream R1 straight from ENA into the aligner, keep only the reads on the gene, and count reference vs alternate reads at the diagnostic positions with `samtools mpileup`. *Concepts: containers for reproducible tools, streaming to avoid disk, MAPQ filtering, pileup interpretation, coverage/depth, node-local scratch.*
 
 Two practices in that script are worth paying attention to:
 
-- **Streaming, not storing.** `curl … | zcat | minimap2 … | samtools …` pipes a multi-GB FASTQ through the tools without ever writing it to disk. On a shared filesystem, downloading raw data "just to align it" is how one user's job fills the storage for a whole department. Peak footprint here is a few hundred MB, on `$SNIC_TMP` (node-local scratch — see the Batch system/Slurm lecture), wiped when the job ends.
+- **Streaming, not storing.** `curl … | zcat | minimap2 … | samtools …` pipes a multi-GB FASTQ through the tools without ever writing it to disk. On a shared filesystem, downloading raw data "just to align it" is how one user's job fills the storage for a whole department. Peak footprint here is a few hundred MB, on `$SNIC_TMP` (node-local scratch, named after SNIC — the Swedish National Infrastructure for Computing, NAISS's predecessor organisation — see the Batch system/Slurm lecture), wiped when the job ends.
 - **Containers over the ambient environment.** Pulling `samtools`/`minimap2` as `.sif` images via `apptainer` makes the analysis reproducible and independent of whatever modules happen to be loaded. `apptainer` is a system binary on Kebnekaise — no `module load` needed.
 
 ### Running this on Kebnekaise
