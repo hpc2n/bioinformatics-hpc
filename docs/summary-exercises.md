@@ -43,6 +43,10 @@ Use the [FAIR and Open Science handout](14.fair-open-science/fair-open-science.m
 - Make progress on your FAIR essay
 - If you did not finish it in session: run a BLAST search via the NCBI web interface, the command line on Kebnekaise, and the PlantGenIE/EBI API, using the Slurm script in `exercises/15.fair-in-practice/` — see the [BLAST background reference](12.blast/blast.md) if you need a refresher first
 
+### 4. Pushing to GitHub from Kebnekaise (needed for the exam)
+
+The exam requires you to push work from Kebnekaise to a GitHub repository. This needs an SSH key that has been created **on Kebnekaise** and added to your GitHub account, which is the step most people get stuck on. Work through the [step-by-step guide to pushing to GitHub from Kebnekaise](exercises/git-ssh-setup/git-ssh-setup.md) (about 20 minutes) and finish with a successful `git push` of the practice repository. If it fails, the guide has a troubleshooting section with the exact error messages; ask for help in the session before the exam rather than after.
+
 ### If you missed a session entirely
 
 Work through these in order:
@@ -51,6 +55,7 @@ Work through these in order:
 - \[ \] [File formats](13.file-formats/file-formats.md) — FASTA, FASTQ, SAM/BAM, VCF, GTF, BED
 - \[ \] [FAIR and open science](14.fair-open-science/fair-open-science.md) — FAIR principles, reproducibility, open science
 - \[ \] [FAIR in practice](15.fair-in-practice/fair-in-practice.md) — three ways to run BLAST, PlantGenIE API, GEO metadata, paper reproducibility (background: [BLAST reference](12.blast/blast.md))
+- \[ \] [Pushing to GitHub from Kebnekaise](exercises/git-ssh-setup/git-ssh-setup.md) — SSH key, test connection, practice push (exam requirement)
 
 ## Tier 2 — Consolidation and extension
 

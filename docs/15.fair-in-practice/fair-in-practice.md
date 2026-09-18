@@ -646,7 +646,7 @@ Throughout this lecture you have run `git init`, `git add`, and `git commit` rep
 
 ### Practice: push `lecture15-fair-practice` to your own GitHub
 
-**Use the SSH URL below, not an `https://` one.** GitHub no longer accepts your account password for `git push` over HTTPS — that needs a Personal Access Token instead, which this course does not otherwise set up. What you already have is an SSH key, from [Lecture 7's "Create a new SSH key for GitHub"](../07.Git/intro-motivation-setup.md#create__a__new__ssh__key__for__github) — the SSH URL uses that key instead, with no token needed. If you skipped that step or are unsure, do it now before continuing.
+**Use the SSH URL below, not an `https://` one.** GitHub no longer accepts your account password for `git push` over HTTPS — that needs a Personal Access Token instead, which this course does not otherwise set up. The SSH URL uses an SSH key instead, with no token needed. That key must exist **on Kebnekaise** — a key on your own computer will not work for a push made from Kebnekaise. If you have not set one up there yet, or are unsure, follow the [step-by-step guide to pushing to GitHub from Kebnekaise](../exercises/git-ssh-setup/git-ssh-setup.md) first (about 20 minutes); it covers creating the key, adding it to GitHub, testing the connection, and a practice push.
 
 ```bash
 # On github.com: click "New repository", give it a name (e.g. lecture15-fair-practice),
