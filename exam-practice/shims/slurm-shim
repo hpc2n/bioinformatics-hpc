@@ -1,0 +1,200 @@
+#!/bin/bash
+# Imitation of sbatch, squeue, sacct and scancel for the exam-practice image.
+# Jobs run on this machine in the background. It is not Slurm: there is no queue,
+# no scheduling delay and no resource enforcement other than --time.
+
+STATE="$HOME/.slurm-shim"
+JOBS="$STATE/jobs"
+ACCOUNT_OK="hpc2ncourses2026-013"
+SHIM_ENV="/etc/profile.d/hpc2n-shim.sh"
+mkdir -p "$JOBS"
+prog=$(basename "$0")
+
+# Slurm --time (M, M:S, H:M:S, D-H, D-H:M, D-H:M:S) to seconds
+to_secs() {
+    local t="$1" d=0 h=0 m=0 s=0 a b c
+    case "$t" in
+        *-*) d=${t%%-*}; IFS=: read -r h m s <<<"${t#*-}"
+             echo $(( 10#$d*86400 + 10#${h:-0}*3600 + 10#${m:-0}*60 + 10#${s:-0} ));;
+        *)   IFS=: read -r a b c <<<"$t"
+             if [ -n "$c" ]; then echo $(( 10#$a*3600 + 10#$b*60 + 10#$c ))
+             elif [ -n "$b" ]; then echo $(( 10#$a*60 + 10#$b ))
+             else echo $(( 10#$a*60 )); fi;;
+    esac
+}
+
+fmt_secs() { printf '%d:%02d:%02d' $(( $1/3600 )) $(( ($1%3600)/60 )) $(( $1%60 )); }
+
+set_opt() {
+    case "$1" in
+        --job-name|-J)      NAME="$2";;
+        --account|-A)       ACCOUNT="$2";;
+        --time|-t)          LIMIT="$2";;
+        --cpus-per-task|-c) CPUS="$2";;
+        --ntasks|-n)        NTASKS="$2";;
+        --output|-o)        OUT="$2";;
+        --error|-e)         ERR="$2";;
+    esac
+}
+
+parse_opts() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --parsable|--wait|--exclusive|--requeue|--test-only|--hold|--contiguous) ;;
+            --*=*)  set_opt "${1%%=*}" "${1#*=}";;
+            --*)    set_opt "$1" "${2:-}"; shift;;
+            -[JAtncoepN]) set_opt "$1" "${2:-}"; shift;;
+            -[JAtncoepN]?*) set_opt "${1:0:2}" "${1:2}";;
+            -*)     ;;
+            *)      POS+=("$1");;
+        esac
+        shift
+    done
+}
+
+expand_name() { # %j job id, %x job name, %u user, %% percent
+    local s="$1"
+    s="${s//%%/\\0}"; s="${s//%j/$2}"; s="${s//%x/$3}"; s="${s//%u/$USER}"; s="${s//\\0/%}"
+    echo "$s"
+}
+
+do_sbatch() {
+    NAME=""; ACCOUNT=""; LIMIT=""; CPUS=1; NTASKS=1; OUT=""; ERR=""; POS=()
+    local cli=("$@") script line first=1 tok
+    parse_opts "${cli[@]}"
+    script="${POS[0]:-}"
+    if [ -z "$script" ]; then
+        echo "sbatch: error: Batch script is empty or was not given" >&2; exit 1
+    fi
+    if [ ! -r "$script" ]; then
+        echo "sbatch: error: Unable to open file $script" >&2; exit 1
+    fi
+    if [ "$(head -c 2 "$script")" != "#!" ]; then
+        echo "sbatch: error: This does not look like a batch script.  The first line must start with #! followed by the path to an interpreter." >&2
+        echo "sbatch: error: For instance: #!/bin/sh" >&2
+        exit 1
+    fi
+    # #SBATCH lines are read until the first command; command-line options override them
+    POS=()
+    while IFS= read -r line; do
+        [ $first -eq 1 ] && { first=0; continue; }
+        case "$line" in
+            "#SBATCH "*|"#SBATCH"$'\t'*)
+                line="${line#\#SBATCH}"; line="${line%% #*}"
+                read -ra tok <<<"$line"; parse_opts "${tok[@]}";;
+            ""|"#"*) ;;
+            *) break;;
+        esac
+    done < "$script"
+    POS=(); parse_opts "${cli[@]}"
+
+    if [ -z "$ACCOUNT" ]; then
+        echo "sbatch (practice image): no account given. On Kebnekaise the job script names the course account:" >&2
+        echo "    #SBATCH --account=$ACCOUNT_OK" >&2
+    elif [ "$ACCOUNT" != "$ACCOUNT_OK" ]; then
+        echo "sbatch: error: Batch job submission failed: Invalid account or account/partition combination specified" >&2
+        echo "(practice image: the only account is $ACCOUNT_OK)" >&2
+        exit 1
+    fi
+
+    local id next
+    next=$(( $(cat "$STATE/next_id" 2>/dev/null || echo 4000000) + 1 ))
+    echo "$next" > "$STATE/next_id"; id=$next
+    [ -z "$NAME" ] && NAME=$(basename "$script")
+    [ -z "$OUT" ] && OUT="slurm-%j.out"
+    local outf errf=""
+    outf=$(expand_name "$OUT" "$id" "$NAME")
+    [ -n "$ERR" ] && errf=$(expand_name "$ERR" "$id" "$NAME")
+    {
+        printf 'ID=%q\nNAME=%q\nACCOUNT=%q\nLIMIT=%q\nCPUS=%q\nNTASKS=%q\n' "$id" "$NAME" "$ACCOUNT" "$LIMIT" "$CPUS" "$NTASKS"
+        printf 'OUTF=%q\nERRF=%q\nSCRIPT=%q\nDIR=%q\nSTATE_NOW=PENDING\nSUBMIT=%q\n' "$outf" "$errf" "$(readlink -f "$script")" "$PWD" "$(date +%s)"
+    } > "$JOBS/$id"
+    setsid nohup /usr/local/bin/slurm-shim __run "$id" >/dev/null 2>&1 &
+    if printf '%s' "$*" | grep -q -- '--parsable'; then echo "$id"; else echo "Submitted batch job $id"; fi
+}
+
+set_field() { # set_field id KEY value
+    local f="$JOBS/$1"; grep -v "^$2=" "$f" > "$f.tmp"; printf '%s=%q\n' "$2" "$3" >> "$f.tmp"; mv "$f.tmp" "$f"
+}
+
+do_run() {
+    local id="$1" rc limit_s
+    # shellcheck disable=SC1090
+    . "$JOBS/$id"
+    set_field "$id" STATE_NOW RUNNING; set_field "$id" START "$(date +%s)"; set_field "$id" PID "$$"
+    cd "$DIR" || exit 1
+    export SLURM_JOB_ID="$id" SLURM_JOB_NAME="$NAME" SLURM_SUBMIT_DIR="$DIR" SLURM_CPUS_PER_TASK="$CPUS" \
+           SLURM_NTASKS="$NTASKS" SLURM_JOB_ACCOUNT="$ACCOUNT" SLURM_JOB_USER="$USER" SLURM_JOB_NODELIST=practice
+    export BASH_ENV="$SHIM_ENV"
+    runjob() {
+        if [ -n "$LIMIT" ]; then
+            limit_s=$(to_secs "$LIMIT")
+            timeout --kill-after=5 "$limit_s" bash "$SCRIPT"
+        else
+            bash "$SCRIPT"
+        fi
+    }
+    if [ -n "$ERRF" ]; then runjob >"$OUTF" 2>"$ERRF"; rc=$?; else runjob >"$OUTF" 2>&1; rc=$?; fi
+    local st=COMPLETED
+    if [ -e "$JOBS/$id.cancelled" ]; then st=CANCELLED
+    elif [ $rc -eq 124 ]; then
+        st=TIMEOUT
+        echo "slurmstepd: error: *** JOB $id ON practice CANCELLED DUE TO TIME LIMIT ***" >> "${ERRF:-$OUTF}"
+    elif [ $rc -ne 0 ]; then st=FAILED; fi
+    set_field "$id" STATE_NOW "$st"; set_field "$id" RC "$rc"; set_field "$id" END "$(date +%s)"
+}
+
+job_load() {
+    unset ID NAME ACCOUNT LIMIT CPUS NTASKS OUTF ERRF SCRIPT DIR STATE_NOW SUBMIT START END RC PID
+    . "$JOBS/$1"
+    # a job whose process has gone (for example the container was stopped) is no longer running
+    if [ "$STATE_NOW" = RUNNING ] && ! kill -0 "$PID" 2>/dev/null; then
+        set_field "$1" STATE_NOW FAILED; STATE_NOW=FAILED
+    fi
+}
+
+do_squeue() {
+    local f now a hdr=1; now=$(date +%s)
+    for a in "$@"; do case "$a" in -h|--noheader) hdr=0;; esac; done
+    [ $hdr -eq 1 ] && printf '%18s %9s %8s %8s %2s %10s %6s %s\n' JOBID PARTITION NAME USER ST TIME NODES 'NODELIST(REASON)'
+    for f in $(ls "$JOBS" 2>/dev/null | grep -E '^[0-9]+$' | sort -n); do
+        job_load "$f"
+        [ "$STATE_NOW" = RUNNING ] || [ "$STATE_NOW" = PENDING ] || continue
+        local st=R t=0
+        [ "$STATE_NOW" = PENDING ] && st=PD || t=$(( now - START ))
+        printf '%18s %9s %8.8s %8.8s %2s %10s %6s %s\n' "$ID" practice "$NAME" "$USER" "$st" "$(fmt_secs $t)" 1 practice
+    done
+}
+
+do_sacct() {
+    local want="" a f
+    for a in "$@"; do case "$a" in -j*) want="${a#-j}"; [ -z "$want" ] && want="__next";; *) [ "${want:-}" = "__next" ] && want="$a";; esac; done
+    printf '%-12s %10s %10s %10s %10s %10s %8s\n' JobID JobName Partition Account AllocCPUS State ExitCode
+    printf '%-12s %10s %10s %10s %10s %10s %8s\n' ------------ ---------- ---------- ---------- ---------- ---------- --------
+    for f in $(ls "$JOBS" 2>/dev/null | grep -E '^[0-9]+$' | sort -n); do
+        [ -n "$want" ] && [ "$want" != "$f" ] && continue
+        job_load "$f"
+        printf '%-12s %10.10s %10s %10.10s %10s %10s %8s\n' "$ID" "$NAME" practice "$ACCOUNT" "$CPUS" "$STATE_NOW" "${RC:-0}:0"
+    done
+}
+
+do_scancel() {
+    local id
+    for id in "$@"; do
+        [ -f "$JOBS/$id" ] || { echo "scancel: error: Invalid job id $id" >&2; continue; }
+        job_load "$id"
+        if [ "$STATE_NOW" = RUNNING ]; then
+            touch "$JOBS/$id.cancelled"; set_field "$id" STATE_NOW CANCELLED; set_field "$id" END "$(date +%s)"
+            pkill -TERM -s "$PID" 2>/dev/null
+        fi
+    done
+}
+
+case "$prog" in
+    sbatch)  do_sbatch "$@";;
+    squeue)  do_squeue "$@";;
+    sacct)   do_sacct "$@";;
+    scancel) do_scancel "$@";;
+    slurm-shim) [ "${1:-}" = "__run" ] && do_run "$2";;
+    *) echo "slurm-shim: unknown name $prog" >&2; exit 1;;
+esac

@@ -1,0 +1,48 @@
+#!/bin/bash
+# Runs the checks a student needs before the exam. Prints ok / FAIL for each.
+[ -f /etc/profile.d/hpc2n-shim.sh ] && . /etc/profile.d/hpc2n-shim.sh
+pass=0; fail=0
+ok()   { echo "  ok    $1"; pass=$((pass+1)); }
+bad()  { echo "  FAIL  $1"; fail=$((fail+1)); }
+DB=/proj/nobackup/cddb_course/databases/swissprot/swissprot
+
+echo "Tools"
+git --version >/dev/null 2>&1 && ok "$(git --version)" || bad "git missing"
+command -v ssh >/dev/null && ok "ssh client present" || bad "ssh client missing"
+command -v zip >/dev/null && ok "zip present" || bad "zip missing"
+
+echo "Modules (imitated)"
+if module load BLAST+/2.17.0 >/dev/null 2>&1; then bad "BLAST+ loaded without GCC and OpenMPI (it should not)"; else ok "BLAST+ alone is refused, as on Kebnekaise"; fi
+module purge
+module load GCC/14.2.0 OpenMPI/5.0.7 BLAST+/2.17.0 && ok "$(blastp -version | head -1)" || bad "blast module line"
+module load GCCcore/14.3.0 git/2.50.1 cURL/8.14.1 && ok "git and cURL module line accepted" || bad "git module line"
+blastdbcmd -db "$DB" -info >/dev/null 2>&1 && ok "database: $(blastdbcmd -db "$DB" -info | sed -n '2p' | sed 's/^[ \t]*//')" || bad "Swiss-Prot database not readable"
+
+echo "Web services used in the exam"
+for u in "https://rest.uniprot.org/uniprotkb/P38398.fasta" \
+         "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi" \
+         "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/parameters"; do
+    code=$(curl -s -o /dev/null -m 30 -w '%{http_code}' "$u")
+    [ "$code" = 200 ] && ok "HTTP $code  $u" || bad "HTTP $code  $u"
+done
+
+echo "Git and GitHub"
+[ -n "$(git config --global user.name)" ] && [ -n "$(git config --global user.email)" ] \
+    && ok "git identity set" || bad "git identity not set (git config --global user.name / user.email)"
+[ "$(git config --global init.defaultBranch)" = main ] && ok "init.defaultBranch is main" \
+    || bad "init.defaultBranch is not main (git config --global init.defaultBranch main)"
+if ls ~/.ssh/id_*.pub >/dev/null 2>&1; then
+    ok "SSH key present"
+    res=$(ssh -T -o BatchMode=yes -o ConnectTimeout=15 git@github.com 2>&1)
+    case "$res" in
+        *"successfully authenticated"*) ok "GitHub accepted your key: $res";;
+        *"Host key verification failed"*) bad "run  ssh -T git@github.com  once and answer yes, then re-run";;
+        *) bad "GitHub did not accept the key: $res";;
+    esac
+else
+    bad "no SSH key yet (see the git-ssh-setup guide, steps 2 to 5)"
+fi
+
+echo
+echo "$pass ok, $fail FAIL"
+[ $fail -eq 0 ]
