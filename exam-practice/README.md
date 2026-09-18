@@ -4,7 +4,7 @@ A Docker image for practising the exam workflow on your own computer while Kebne
 
 ## Build and start
 
-You need Docker (Docker Desktop, or any Docker engine). Then, from this folder:
+You need Docker; the [Docker installation instructions](https://docs.docker.com/get-started/get-docker/) cover Docker Desktop for Mac, Windows and Linux. Then, from this folder:
 
 ```bash
 docker build -t exam-practice .
