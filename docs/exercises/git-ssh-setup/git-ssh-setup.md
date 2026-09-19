@@ -290,7 +290,7 @@ For the exam, your instructor creates a **private repository for each student** 
 git@github.com:umu-bioinformatics-msc/exam-<your-github-username>.git
 ```
 
-You will be told the exact name at the start of the exam. The SSH key you made in Step 2 works for it, so no new key is needed. Before the exam:
+The name is always `exam-` followed by your GitHub username, and your instructor tells you when the repositories have been created. The SSH key you made in Step 2 works for it, so no new key is needed. Before the exam:
 
 1. **Send your instructor your GitHub username** in good time. The repository cannot be created without it.
 2. **Accept the invitation** if GitHub sends you one (check your email and your GitHub notifications). Until you have access, GitHub answers `Repository not found`.
@@ -388,6 +388,10 @@ Either the name or username in the address has a typo, or the repository is priv
 ### `Updates were rejected because the remote contains work that you do not have locally.`
 
 The repository on GitHub already has a commit that your local repository does not have. For the exam repository this happens when you created a new local repository with `git init` and added the exam repository as a remote, after your instructor had put a file in it. Your access is fine. Clone the exam repository instead (see "The exam repository" above) and work in the clone.
+
+### `ERROR: Permission to <repository> denied to <your-username>.`
+
+GitHub recognises your SSH key and the repository exists, but your account is not allowed to write to it. This is expected for someone else's public repository. For your own exam repository it means your access is not in place: check that you have accepted the invitation and that the address is exactly `exam-<your-github-username>`, and if it still fails, tell your instructor.
 
 ## All commands in one place
 
