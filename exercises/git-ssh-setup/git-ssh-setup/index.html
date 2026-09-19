@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/exercises/git-ssh-setup/git-ssh-setup/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Exam preparation, pushing to GitHub from Kebnekaise - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exam preparation, pushing to GitHub from Kebnekaise";
+        var mkdocs_page_input_path = "exercises/git-ssh-setup/git-ssh-setup.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/exercises/git-ssh-setup/git-ssh-setup/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../summary-exercises/">Summary exercises</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exam preparation, pushing to GitHub from Kebnekaise</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what__you__need__before__you__start">What you need before you start</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how__the__commands__on__this__page__are__shown">How the commands on this page are shown</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the__idea__in__one__picture">The idea in one picture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__1__tell__git__who__you__are__once">Step 1: Tell Git who you are (once)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__2__create__your__ssh__key__on__kebnekaise">Step 2: Create your SSH key on Kebnekaise</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__3__show__your__public__key__and__copy__it">Step 3: Show your public key and copy it</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__4__add__the__public__key__to__github__in__your__browser">Step 4: Add the public key to GitHub (in your browser)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__5__test__the__connection__before__doing__anything__else">Step 5: Test the connection before doing anything else</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__6__make__a__practice__repository__on__kebnekaise">Step 6: Make a practice repository on Kebnekaise</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__7__create__an__empty__repository__on__github__in__your__browser">Step 7: Create an empty repository on GitHub (in your browser)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__8__connect__the__two__and__push">Step 8: Connect the two and push</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step__9__do__it__once__more__the__everyday__loop">Step 9: Do it once more (the everyday loop)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the__exam__repository">The exam repository</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#checklist__are__you__ready">Checklist: are you ready?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#permission__denied__publickey">Permission denied (publickey).</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error__src__refspec__main__does__not__match__any">error: src refspec main does not match any</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fatal__could__not__read__username__for__httpsgithubcom">fatal: could not read Username for 'https://github.com'</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error__remote__origin__already__exists">error: remote origin already exists.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#host__key__verification__failed">Host key verification failed.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error__repository__not__found">ERROR: Repository not found.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#updates__were__rejected__because__the__remote__contains__work__that__you__do__not__have__locally">Updates were rejected because the remote contains work that you do not have locally.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error__permission__to__repository__denied__to__your__github__username">ERROR: Permission to REPOSITORY denied to YOUR_GITHUB_USERNAME.</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#all__commands__in__one__place">All commands in one place</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">Exam preparation, pushing to GitHub from Kebnekaise</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pushing__to__github__from__kebnekaise__step-by-step__guide">Pushing to GitHub from Kebnekaise: step-by-step guide<a class="headerlink" href="#pushing__to__github__from__kebnekaise__step-by-step__guide" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University</p>
+<p>The exam requires you to <strong>push</strong> your work from Kebnekaise to a repository on GitHub. This page is a short, linear recipe for getting that to work. It replaces nothing in the Git lecture; it just puts the steps that matter for the exam in one place, in the order you need them. Expect it to take about 20 minutes the first time.</p>
+<div class="admonition warning">
+<p class="admonition-title">The one thing that trips most people up</p>
+<p>The SSH key must be created <strong>on Kebnekaise</strong>, not on your own computer. When you type <code>git push</code> on Kebnekaise, it is Kebnekaise that has to prove who you are to GitHub. A key sitting on your laptop is invisible to Git on Kebnekaise.</p>
+</div>
+<h2 id="what__you__need__before__you__start">What you need before you start<a class="headerlink" href="#what__you__need__before__you__start" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A GitHub account (free), with two-factor authentication set up. Sign up at <a href="https://github.com/">github.com</a>.</li>
+<li>Your HPC2N account and a terminal on Kebnekaise (see <a href="../../../02.connect-cluster/connect-cluster/">Connecting to Kebnekaise</a>). <strong>Every command on this page is typed in the Kebnekaise terminal</strong>, except the two steps marked as done in the browser.</li>
+<li>The commands are shown without the <code>$</code> prompt: type or paste only the command itself.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Using the practice container instead of Kebnekaise?</p>
+<p>If you are working in the practice Docker image, do not follow Steps 1 to 5 by hand. Type <code>exam-practice-setup</code> at the <code>[practice container]</code> prompt: it does Steps 1 to 5 for you and asks for your name and e-mail address. The <a href="https://github.com/hpc2n/bioinformatics-hpc/tree/main/exam-practice">practice image guide</a> explains how to start the container. Then continue at Step 6. Every command on this page is typed inside the container, never in your own computer&rsquo;s terminal.</p>
+</div>
+<h2 id="how__the__commands__on__this__page__are__shown">How the commands on this page are shown<a class="headerlink" href="#how__the__commands__on__this__page__are__shown" title="Permanent link">&para;</a></h2>
+<p>Three kinds of block are used, and they always look the same.</p>
+<p>Paste-as-it-is commands are in a plain grey block. Copy the whole block and paste it. Nothing in it needs changing:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>echo "This is a command to paste exactly as it is"
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<p>A command that contains something only you know is in an orange box like this one. The words in CAPITAL LETTERS are placeholders. Replace each one with your own text, and keep everything else, including the quotation marks. The box tells you what each placeholder means.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>echo "Hello, MY NAME"
+</span></code></pre></div>
+<ul>
+<li><code>MY NAME</code>: your own name, for example <code>Maria Svensson</code>.</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>Output that the computer prints back is in a green box like this one. It is there for you to compare with your screen. It is not a command, so do not paste it.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Hello, Maria Svensson
+</span></code></pre></div>
+</div>
+<p>Paste one block at a time, press Enter, and wait for the prompt to come back before you paste the next block.</p>
+<h2 id="the__idea__in__one__picture">The idea in one picture<a class="headerlink" href="#the__idea__in__one__picture" title="Permanent link">&para;</a></h2>
+<p>An SSH key is a <strong>pair</strong> of files. The <em>private</em> key stays on Kebnekaise and is never shared. The <em>public</em> key is a line of text that you give to GitHub once. Afterwards GitHub can check, every time you push, that you hold the matching private key, and no password is needed.</p>
+<p><img alt="Where the private and public keys live" src="../images/fig1-key-overview.png" style="width: 95%;" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This key is only for talking to GitHub. It is not what you use to log in to Kebnekaise (that uses Kerberos or your HPC2N password), and adding it to GitHub does not change how you log in.</p>
+</div>
+<h2 id="step__1__tell__git__who__you__are__once">Step 1: Tell Git who you are (once)<a class="headerlink" href="#step__1__tell__git__who__you__are__once" title="Permanent link">&para;</a></h2>
+<p>The first two commands contain your own details. Change the capital letters before you paste.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git config --global user.name "YOUR FULL NAME"
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git config --global user.email "YOUR GITHUB EMAIL ADDRESS"
+</span></code></pre></div>
+<ul>
+<li><code>YOUR FULL NAME</code>: your own name, for example <code>Maria Svensson</code>.</li>
+<li><code>YOUR GITHUB EMAIL ADDRESS</code>: the e-mail address that belongs to your GitHub account, for example <code>maria.svensson@example.com</code>. If you are not sure which address that is, open <a href="https://github.com/settings/emails">github.com/settings/emails</a>. You can use the private <code>noreply</code> address shown there instead.</li>
+</ul>
+</div>
+<p>The next command needs no changes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git config --global init.defaultBranch main
+</span></code></pre></div>
+<p>Check what you typed:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git config --global --list
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>Your own name and e-mail address, and <code>init.defaultbranch=main</code>. There may be other lines as well.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>user.name=Maria Svensson
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>user.email=maria.svensson@example.com
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>init.defaultbranch=main
+</span></code></pre></div>
+</div>
+<p>The third setting matters. Without it, a new repository on Kebnekaise starts on a branch called <code>master</code>, while GitHub expects <code>main</code>, and your first push fails (see <a href="#troubleshooting">Troubleshooting</a>). If you skip the first two commands, Git still lets you commit, but it invents an identity from your username and the login node&rsquo;s name, which is not what you want on your commits.</p>
+<h2 id="step__2__create__your__ssh__key__on__kebnekaise">Step 2: Create your SSH key on Kebnekaise<a class="headerlink" href="#step__2__create__your__ssh__key__on__kebnekaise" title="Permanent link">&para;</a></h2>
+<p>First check whether you already made a key (for example in the Git lecture):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ls -l ~/.ssh/id_ed25519.pub
+</span></code></pre></div>
+<ul>
+<li>If it prints <code>No such file or directory</code>, you have no key yet: continue below.</li>
+<li>If it lists the file, you already have a key: skip to Step 3.</li>
+</ul>
+<p>Create the folder that holds the key. This is harmless if it already exists:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir -p -m 700 ~/.ssh
+</span></code></pre></div>
+<p>Create the key. The command needs no changes and asks you no questions; you do not have to press Enter or type anything:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ssh-keygen -t ed25519 -N "" -C "$USER@kebnekaise" -f ~/.ssh/id_ed25519
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>The fingerprint and the picture will be different on your screen, and the folder in the first two lines will be your own home directory. The last part of the fingerprint line is your username followed by <code>@kebnekaise</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Generating public/private ed25519 key pair.
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Your identification has been saved in /home/u/username/.ssh/id_ed25519
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Your public key has been saved in /home/u/username/.ssh/id_ed25519.pub
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>The key fingerprint is:
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>SHA256:DmVQ7MdvmOJCVLtwl3UQ0xynlfxHMpah/79lpJoXq0I username@kebnekaise
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>The key's randomart image is:
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>+--[ED25519 256]--+
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>|      .o.   +=+++|
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>|       .o   .oO*.|
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>|       ooo o.o.+.|
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>|      oo+ =  .  o|
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>|     ..oS+ +  . o|
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>|      .oo E o .+ |
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>|     . ..o .  .o+|
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>|      . . .  oo.o|
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>|       .   .+o .o|
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>+----[SHA256]-----+
+</span></code></pre></div>
+</div>
+<p>Two files now exist: <code>id_ed25519</code> (private, never share) and <code>id_ed25519.pub</code> (public). The words after <code>-C</code> are only a label that helps you recognise the key later. <code>-N ""</code> means the key has an empty passphrase.</p>
+<div class="admonition note">
+<p class="admonition-title">About the passphrase</p>
+<p>An empty passphrase is the simplest option and is fine for this course: the key lives only in your private home directory on Kebnekaise, <code>ssh-keygen</code> makes the private key readable by you alone, it only gives access to your GitHub account, and you can delete it from GitHub whenever you like. If you set a passphrase, Git will ask for it at every push, and this guide does not cover the extra setup (<code>ssh-agent</code>) that avoids that.</p>
+</div>
+<h2 id="step__3__show__your__public__key__and__copy__it">Step 3: Show your public key and copy it<a class="headerlink" href="#step__3__show__your__public__key__and__copy__it" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat ~/.ssh/id_ed25519.pub
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>One long line that starts with <code>ssh-ed25519</code> and ends with <code>@kebnekaise</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...(a long string)... username@kebnekaise
+</span></code></pre></div>
+</div>
+<p>Select the whole line with the mouse and copy it. It is this line that you paste into GitHub in Step 4.</p>
+<ul>
+<li>It must be <code>id_ed25519.pub</code> (with <code>.pub</code>). Never copy <code>id_ed25519</code> without <code>.pub</code>; that is the private key.</li>
+<li>It must be one unbroken line. If a line break sneaks in when you paste, GitHub will reject the key.</li>
+</ul>
+<h2 id="step__4__add__the__public__key__to__github__in__your__browser">Step 4: Add the public key to GitHub (in your browser)<a class="headerlink" href="#step__4__add__the__public__key__to__github__in__your__browser" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Go to <a href="https://github.com/settings/ssh/new">github.com/settings/ssh/new</a>. (Or click your profile picture, then <em>Settings</em>, then <em>SSH and GPG keys</em>, then <em>New SSH key</em>.)</li>
+<li>Fill in the form as shown below and click <strong>Add SSH key</strong>. GitHub may ask you to confirm your password.</li>
+</ol>
+<p><img alt="The Add new SSH key form on GitHub" src="../images/fig2-add-ssh-key.png" style="width: 95%;" /></p>
+<p><em>Figure redrawn from the GitHub interface (September 2026); GitHub may change the exact appearance.</em></p>
+<h2 id="step__5__test__the__connection__before__doing__anything__else">Step 5: Test the connection before doing anything else<a class="headerlink" href="#step__5__test__the__connection__before__doing__anything__else" title="Permanent link">&para;</a></h2>
+<p>Read this first, because the command asks you a question the first time. It prints GitHub&rsquo;s fingerprint and asks whether you trust it. Check that the fingerprint on your screen is exactly <code>SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU</code>. This is GitHub&rsquo;s published fingerprint, listed in <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints">GitHub&rsquo;s documentation</a>. If it matches, type <code>yes</code> and press Enter. You are asked only once.</p>
+<p>Now paste the command:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh -T git@github.com
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see the first time (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>The authenticity of host 'github.com (&lt;IP address&gt;)' can't be established.
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>This key is not known by any other names
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</span></code></pre></div>
+<p>Compare the fingerprint, then type <code>yes</code> and press Enter.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Success looks like this (do not paste this)</p>
+<p>Your own GitHub username is in the message (<code>msvensson</code> here).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Hi msvensson! You've successfully authenticated, but GitHub does not provide shell access.
+</span></code></pre></div>
+<p>That message is what we want. GitHub does not give you a shell, so the command ends by itself; ignore the fact that it exits with an error code.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Failure looks like this (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git@github.com: Permission denied (publickey).
+</span></code></pre></div>
+<p>This means GitHub does not recognise your key. Do not go on; see <a href="#troubleshooting">Troubleshooting</a> below.</p>
+</div>
+<h2 id="step__6__make__a__practice__repository__on__kebnekaise">Step 6: Make a practice repository on Kebnekaise<a class="headerlink" href="#step__6__make__a__practice__repository__on__kebnekaise" title="Permanent link">&para;</a></h2>
+<p>Paste these three commands (no changes needed):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>mkdir ~/git-practice
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>cd ~/git-practice
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>git init
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Initialized empty Git repository in /home/u/username/git-practice/.git/
+</span></code></pre></div>
+</div>
+<p>Create a file:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>echo "Hello from Kebnekaise" &gt; hello.txt
+</span></code></pre></div>
+<p>Look at the state of the repository:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>git status
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>On branch main
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>No commits yet
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>Untracked files:
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  (use "git add &lt;file&gt;..." to include in what will be committed)
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    hello.txt
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>nothing added to commit but untracked files present (use "git add" to track)
+</span></code></pre></div>
+</div>
+<p>Add the file and commit it:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>git add hello.txt
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>git commit -m "Add hello.txt"
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>The code after <code>root-commit</code> will be different for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>[main (root-commit) 1ec54ab] Add hello.txt
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a> 1 file changed, 1 insertion(+)
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a> create mode 100644 hello.txt
+</span></code></pre></div>
+</div>
+<p>Confirm that you are on <code>main</code> and that the commit exists:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>git branch --show-current
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>git log --oneline
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>main
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>1ec54ab Add hello.txt
+</span></code></pre></div>
+</div>
+<h2 id="step__7__create__an__empty__repository__on__github__in__your__browser">Step 7: Create an empty repository on GitHub (in your browser)<a class="headerlink" href="#step__7__create__an__empty__repository__on__github__in__your__browser" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Go to <a href="https://github.com/new">github.com/new</a>.</li>
+<li>Fill in the form as shown and click <strong>Create repository</strong>.</li>
+</ol>
+<p><img alt="The Create a new repository form on GitHub" src="../images/fig3-new-repository.png" style="width: 95%;" /></p>
+<p><em>Figure redrawn from the GitHub interface (September 2026); GitHub may change the exact appearance.</em></p>
+<p>Leave the repository <strong>empty</strong>. Do not tick <em>Add README</em>, <em>.gitignore</em> or <em>licence</em>. You already have a repository with a commit on Kebnekaise, and if the GitHub repository also starts with its own first commit, your first push will be rejected.</p>
+<p>You will need your GitHub username in the next step. It is the name in the address of your GitHub page, github.com/YOUR_GITHUB_USERNAME, and it is the name that <code>ssh -T git@github.com</code> greeted you with in Step 5. Examples on this page use <code>msvensson</code>.</p>
+<h2 id="step__8__connect__the__two__and__push">Step 8: Connect the two and push<a class="headerlink" href="#step__8__connect__the__two__and__push" title="Permanent link">&para;</a></h2>
+<p>Back in the Kebnekaise terminal. Make sure you are in the practice repository:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>cd ~/git-practice
+</span></code></pre></div>
+<p>The next command contains your GitHub username. Change the capital letters before you paste.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>git remote add origin git@github.com:YOUR_GITHUB_USERNAME/kebnekaise-git-practice.git
+</span></code></pre></div>
+<ul>
+<li><code>YOUR_GITHUB_USERNAME</code>: your GitHub username, for example <code>msvensson</code>. Keep everything else exactly as it is, including <code>git@github.com:</code> at the start and <code>.git</code> at the end. Do not use an address that starts with <code>https://</code>: GitHub does not accept your account password for pushes over HTTPS, so such an address will not work here.</li>
+</ul>
+</div>
+<p>Check that Git stored it:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>git remote -v
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>Your address twice, once for fetch and once for push.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>origin  git@github.com:msvensson/kebnekaise-git-practice.git (fetch)
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>origin  git@github.com:msvensson/kebnekaise-git-practice.git (push)
+</span></code></pre></div>
+</div>
+<p>Now paste these two commands (no changes needed):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>git branch -M main
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>git push -u origin main
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>A successful push ends with lines like these (some progress lines, such as <code>Enumerating objects</code>, appear above them).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>To github.com:msvensson/kebnekaise-git-practice.git
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a> * [new branch]      main -&gt; main
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>Branch 'main' set up to track remote branch 'main' from 'origin'.
+</span></code></pre></div>
+</div>
+<p>Now reload your repository page on GitHub. You should see <code>hello.txt</code> and your commit message. That is exactly what the exam needs.</p>
+<h2 id="step__9__do__it__once__more__the__everyday__loop">Step 9: Do it once more (the everyday loop)<a class="headerlink" href="#step__9__do__it__once__more__the__everyday__loop" title="Permanent link">&para;</a></h2>
+<p>Once <code>-u</code> has set things up, a normal round trip is just four commands (no changes needed):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>echo "second line" &gt;&gt; hello.txt
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>git add hello.txt
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>git commit -m "Update hello.txt"
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>git push
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>The two codes before <code>main -&gt; main</code> will be different for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>To github.com:msvensson/kebnekaise-git-practice.git
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>   1ec54ab..b175867  main -&gt; main
+</span></code></pre></div>
+</div>
+<p>Check the state:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>git status
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>On branch main
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>Your branch is up to date with 'origin/main'.
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>nothing to commit, working tree clean
+</span></code></pre></div>
+</div>
+<h2 id="the__exam__repository">The exam repository<a class="headerlink" href="#the__exam__repository" title="Permanent link">&para;</a></h2>
+<p>For the exam, your instructor creates a private repository for each student in the course&rsquo;s GitHub organisation, <code>umu-bioinformatics-msc</code>, and adds you to it. It is named <code>exam-</code> followed by your GitHub username. For the user <code>msvensson</code> it is <code>git@github.com:umu-bioinformatics-msc/exam-msvensson.git</code>. Your instructor tells you when the repositories have been created. The SSH key you made in Step 2 works for it, so no new key is needed. Before the exam:</p>
+<ol>
+<li>Send your instructor your GitHub username in good time. The repository cannot be created without it.</li>
+<li>Accept the invitation if GitHub sends you one (check your e-mail and your GitHub notifications). Until you have access, GitHub answers <code>Repository not found</code>.</li>
+<li>Check that you can push to it, without pushing anything. Wait until your instructor tells you the repository has been created. Then go to your practice repository, the one from Steps 6 to 8, which has a commit on <code>main</code>:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>cd ~/git-practice
+</span></code></pre></div>
+<p>The next command contains your GitHub username. Change the capital letters before you paste.</p>
+<p>!!! warning &ldquo;Edit before you paste&rdquo;
+       <div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>git push --dry-run git@github.com:umu-bioinformatics-msc/exam-YOUR_GITHUB_USERNAME.git main
+</span></code></pre></div></p>
+<div class="language-text highlight"><pre><span></span><code>   - `YOUR_GITHUB_USERNAME`: your GitHub username, for example `msvensson`. Keep `exam-` in front of it.
+</code></pre></div>
+<p>The word <code>--dry-run</code> makes Git do all the checks but send nothing, and because the address is typed in full, nothing is added to your repository&rsquo;s remotes.</p>
+<p>!!! tip &ldquo;The result you want (do not paste this)&rdquo;
+       <div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>To github.com:umu-bioinformatics-msc/exam-msvensson.git
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a> * [new branch]      main -&gt; main
+</span></code></pre></div></p>
+<p><code>ERROR: Repository not found.</code> means access is not in place yet (accept the invitation, then try again) and <code>Permission denied (publickey)</code> means the SSH key is the problem (see Step 5). If neither is fixed after a second try, tell your instructor. Run this check before the exam: once the exam starts, the repository may already contain a file from your instructor, and Git then reports the push as rejected even though your access is fine.</p>
+<div class="admonition warning">
+<p class="admonition-title">Do not push to the exam repository before the exam</p>
+<p>Only work pushed during the exam window counts, and the repository&rsquo;s push history is what is checked. Practise on your own <code>kebnekaise-git-practice</code> repository instead.</p>
+</div>
+<p>During the exam, clone the repository and work inside the new directory. These two commands contain your GitHub username in two places. Change the capital letters before you paste.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>git clone git@github.com:umu-bioinformatics-msc/exam-YOUR_GITHUB_USERNAME.git
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>cd exam-YOUR_GITHUB_USERNAME
+</span></code></pre></div>
+<ul>
+<li><code>YOUR_GITHUB_USERNAME</code>: your GitHub username, in both lines.</li>
+</ul>
+</div>
+<p>Cloning sets up <code>origin</code> for you, so <code>git push</code> works without <code>git remote add</code>. Do not run <code>git init</code> in a new directory and add the exam repository as a remote, as in Step 8: your instructor may already have added a file to the repository (for example one with your assigned protein), and Git rejects a push from a history that does not include it. If the repository is still empty, Git prints <code>warning: You appear to have cloned an empty repository.</code> This is normal.</p>
+<h2 id="checklist__are__you__ready">Checklist: are you ready?<a class="headerlink" href="#checklist__are__you__ready" title="Permanent link">&para;</a></h2>
+<p>Each of these commands should give the result shown. <code>msvensson</code> stands for your own GitHub username.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls ~/.ssh/id_ed25519.pub</code></td>
+<td>the file is listed</td>
+</tr>
+<tr>
+<td><code>ssh -T git@github.com</code></td>
+<td><code>Hi msvensson! You've successfully authenticated...</code></td>
+</tr>
+<tr>
+<td><code>git config --global --list</code></td>
+<td>shows your name, e-mail and <code>init.defaultbranch=main</code></td>
+</tr>
+<tr>
+<td><code>git remote -v</code> (in your repository)</td>
+<td>addresses that start with <code>git@github.com:</code></td>
+</tr>
+<tr>
+<td><code>git branch --show-current</code></td>
+<td><code>main</code></td>
+</tr>
+<tr>
+<td><code>git push --dry-run git@github.com:umu-bioinformatics-msc/exam-msvensson.git main</code> (in <code>~/git-practice</code>, once the repository exists, before the exam; use your own username)</td>
+<td><code>* [new branch]      main -&gt; main</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>Each entry below is a real message you may see, with the cause and the fix.</p>
+<h3 id="permission__denied__publickey"><code>Permission denied (publickey).</code><a class="headerlink" href="#permission__denied__publickey" title="Permanent link">&para;</a></h3>
+<p>Often followed by <code>fatal: Could not read from remote repository.</code> GitHub does not recognise the key that Kebnekaise offered. Work through these in order:</p>
+<ol>
+<li>Did you finish Step 4? Open <a href="https://github.com/settings/keys">github.com/settings/keys</a> and check that your key is listed.</li>
+<li>Does the key on GitHub match the one on Kebnekaise? Run <code>ssh-keygen -lf ~/.ssh/id_ed25519.pub</code> on Kebnekaise and compare the <code>SHA256:</code> value with the one GitHub shows next to the key.</li>
+<li>Did you paste the private key by mistake? The line you paste must start with <code>ssh-ed25519</code> and come from the file ending in <code>.pub</code>.</li>
+<li>Are you signed in to the right GitHub account in your browser (the one you gave your instructor)?</li>
+<li>Still stuck? Run <code>ssh -vT git@github.com</code> and read the last lines. It shows which key files SSH tried.</li>
+</ol>
+<h3 id="error__src__refspec__main__does__not__match__any"><code>error: src refspec main does not match any</code><a class="headerlink" href="#error__src__refspec__main__does__not__match__any" title="Permanent link">&para;</a></h3>
+<p>Your local branch is not called <code>main</code>, or you have not made a commit yet. Check with <code>git branch --show-current</code> and <code>git log --oneline</code>. If the branch is <code>master</code>, rename it and push again:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>git branch -M main
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>git push -u origin main
+</span></code></pre></div>
+<p>If <code>git log</code> says there are no commits, run <code>git add</code> and <code>git commit</code> first (Step 6).</p>
+<h3 id="fatal__could__not__read__username__for__httpsgithubcom"><code>fatal: could not read Username for 'https://github.com'</code><a class="headerlink" href="#fatal__could__not__read__username__for__httpsgithubcom" title="Permanent link">&para;</a></h3>
+<p>Your remote address starts with <code>https://</code>. Replace it with the SSH address. Change the capital letters before you paste.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>git remote set-url origin git@github.com:YOUR_GITHUB_USERNAME/kebnekaise-git-practice.git
+</span></code></pre></div>
+<ul>
+<li><code>YOUR_GITHUB_USERNAME</code>: your GitHub username.</li>
+</ul>
+</div>
+<p>Then check it:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>git remote -v
+</span></code></pre></div>
+<h3 id="error__remote__origin__already__exists"><code>error: remote origin already exists.</code><a class="headerlink" href="#error__remote__origin__already__exists" title="Permanent link">&para;</a></h3>
+<p>You have already added a remote called <code>origin</code>. To change where it points, use <code>set-url</code> instead of <code>add</code>. Change the capital letters before you paste.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>git remote set-url origin git@github.com:YOUR_GITHUB_USERNAME/kebnekaise-git-practice.git
+</span></code></pre></div>
+<ul>
+<li><code>YOUR_GITHUB_USERNAME</code>: your GitHub username.</li>
+</ul>
+</div>
+<h3 id="host__key__verification__failed"><code>Host key verification failed.</code><a class="headerlink" href="#host__key__verification__failed" title="Permanent link">&para;</a></h3>
+<p>You answered <code>no</code> to the question in Step 5, or the answer could not be read. Run <code>ssh -T git@github.com</code> again and type <code>yes</code> when asked (after checking the fingerprint).</p>
+<h3 id="error__repository__not__found"><code>ERROR: Repository not found.</code><a class="headerlink" href="#error__repository__not__found" title="Permanent link">&para;</a></h3>
+<p>Either the name or username in the address has a typo, or the repository is private and your account does not have access yet (for the exam repository, accept the invitation). Compare the address with the one on the repository&rsquo;s page on GitHub.</p>
+<h3 id="updates__were__rejected__because__the__remote__contains__work__that__you__do__not__have__locally"><code>Updates were rejected because the remote contains work that you do not have locally.</code><a class="headerlink" href="#updates__were__rejected__because__the__remote__contains__work__that__you__do__not__have__locally" title="Permanent link">&para;</a></h3>
+<p>The repository on GitHub already has a commit that your local repository does not have. For the exam repository this happens when you created a new local repository with <code>git init</code> and added the exam repository as a remote, after your instructor had put a file in it. Your access is fine. Clone the exam repository instead (see &ldquo;The exam repository&rdquo; above) and work in the clone.</p>
+<h3 id="error__permission__to__repository__denied__to__your__github__username"><code>ERROR: Permission to REPOSITORY denied to YOUR_GITHUB_USERNAME.</code><a class="headerlink" href="#error__permission__to__repository__denied__to__your__github__username" title="Permanent link">&para;</a></h3>
+<p>GitHub recognises your SSH key and the repository exists, but your account is not allowed to write to it. This is expected for someone else&rsquo;s public repository. For your own exam repository it means your access is not in place: check that you have accepted the invitation and that the address is exactly <code>exam-</code> followed by your GitHub username, and if it still fails, tell your instructor.</p>
+<h2 id="all__commands__in__one__place">All commands in one place<a class="headerlink" href="#all__commands__in__one__place" title="Permanent link">&para;</a></h2>
+<p>For when you have done it once and just need the sequence again. It is for reference: the steps above explain each command and show what you should see. The capital letters are placeholders: replace <code>YOUR FULL NAME</code>, <code>YOUR GITHUB EMAIL ADDRESS</code> and <code>YOUR_GITHUB_USERNAME</code> with your own details before you paste.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a># once per account
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>git config --global user.name "YOUR FULL NAME"
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>git config --global user.email "YOUR GITHUB EMAIL ADDRESS"
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>git config --global init.defaultBranch main
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>mkdir -p -m 700 ~/.ssh
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>ssh-keygen -t ed25519 -N "" -C "$USER@kebnekaise" -f ~/.ssh/id_ed25519
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>cat ~/.ssh/id_ed25519.pub          # copy the line, add it at github.com/settings/ssh/new
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>ssh -T git@github.com              # type yes when asked; expect "Hi YOUR_GITHUB_USERNAME!"
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a># per repository
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a>mkdir ~/git-practice &amp;&amp; cd ~/git-practice &amp;&amp; git init
+</span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>echo "Hello from Kebnekaise" &gt; hello.txt
+</span><span id="__span-44-13"><a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a>git add hello.txt &amp;&amp; git commit -m "Add hello.txt"
+</span><span id="__span-44-14"><a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a># create an EMPTY repository at github.com/new, then:
+</span><span id="__span-44-15"><a id="__codelineno-44-15" name="__codelineno-44-15" href="#__codelineno-44-15"></a>git remote add origin git@github.com:YOUR_GITHUB_USERNAME/kebnekaise-git-practice.git
+</span><span id="__span-44-16"><a id="__codelineno-44-16" name="__codelineno-44-16" href="#__codelineno-44-16"></a>git branch -M main
+</span><span id="__span-44-17"><a id="__codelineno-44-17" name="__codelineno-44-17" href="#__codelineno-44-17"></a>git push -u origin main
+</span></code></pre></div>
+</div>
+<p>For the background on what remotes, <code>origin</code> and pushing mean, see <a href="../../../07.Git/remotes/">Lecture 7: Working with remotes</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../../summary-exercises/" class="btn btn-neutral float-left" title="Summary exercises"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../tree/" class="btn btn-neutral float-right" title="Install tree">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../../summary-exercises/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../tree/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
