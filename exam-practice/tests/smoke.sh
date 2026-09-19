@@ -32,6 +32,10 @@ check "python3 runs"                            python3 -c "import json; json.du
 check "man git-commit works"                    bash -c 'man git-commit | head -3 | grep -q "GIT-COMMIT"'
 check "srun starts one process per task"        bash -c '[ "$(srun -n 3 hostname | wc -l)" = 3 ]'
 check "gawk is the awk"                         bash -c 'awk --version | grep -q "GNU Awk"'
+check "exam-practice-setup is installed"        bash -c 'command -v exam-practice-setup'
+check "exam-practice-check is installed"        bash -c 'command -v exam-practice-check'
+check "the prompt starts with [practice container]" bash -c 'PROMPT_COMMAND=$(grep -h "^PROMPT_COMMAND" /etc/bash.bashrc | tail -1 | cut -d= -f2- | tr -d "\047"); eval "$PROMPT_COMMAND"; case "$PS1" in "[practice container]"*) true;; *) false;; esac'
+check "the banner names the two commands"       bash -c 'grep -q "exam-practice-setup" /etc/bash.bashrc'
 check "exercises are seeded"                    test -f "$HOME/exercises/06.linux-intro/patterns/myfile1.txt"
 
 echo "File-format example data (dummy files)"

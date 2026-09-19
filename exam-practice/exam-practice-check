@@ -34,9 +34,9 @@ fi
 if [ $SKIP_GITHUB -eq 0 ]; then
   echo "Git and GitHub"
   [ -n "$(git config --global user.name)" ] && [ -n "$(git config --global user.email)" ] \
-      && ok "git identity set" || bad "git identity not set (git config --global user.name / user.email)"
+      && ok "git identity set" || bad "git name and e-mail not set yet (expected at first: run exam-practice-setup)"
   [ "$(git config --global init.defaultBranch)" = main ] && ok "init.defaultBranch is main" \
-      || bad "init.defaultBranch is not main (git config --global init.defaultBranch main)"
+      || bad "Git default branch is not main yet (expected at first: run exam-practice-setup)"
   if ls ~/.ssh/id_*.pub >/dev/null 2>&1; then
       ok "SSH key present"
       res=$(ssh -T -o BatchMode=yes -o ConnectTimeout=15 git@github.com 2>&1)
@@ -46,10 +46,14 @@ if [ $SKIP_GITHUB -eq 0 ]; then
           *) bad "GitHub did not accept the key: $res";;
       esac
   else
-      bad "no SSH key yet (see the git-ssh-setup guide, steps 2 to 5)"
+      bad "no SSH key yet (expected at first: run exam-practice-setup)"
   fi
 fi
 
 echo
 echo "$pass ok, $fail FAIL"
+if [ $SKIP_GITHUB -eq 0 ] && { [ -z "$(git config --global user.name)" ] || [ -z "$(git config --global user.email)" ] || ! ls ~/.ssh/id_*.pub >/dev/null 2>&1; }; then
+    echo "The Git and GitHub lines are expected to fail until you have run exam-practice-setup."
+    echo "Next: type  exam-practice-setup  and follow it, then run  exam-practice-check  again."
+fi
 [ $fail -eq 0 ]

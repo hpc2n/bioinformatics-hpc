@@ -4,3 +4,4 @@ exam-practice-check text eol=lf
 shims/* text eol=lf
 dummy_data/* text eol=lf
 tests/* text eol=lf
+exam-practice-setup text eol=lf

@@ -2,44 +2,186 @@
 
 A Docker image for practising the exam workflow on your own computer while Kebnekaise is unavailable. It is not a copy of Kebnekaise: the `module` command and Slurm (`sbatch`, `srun`, `squeue`, `sacct`, `scancel`) are small imitations, so the commands in the course pages can be typed as written. Everything else (git, ssh, curl, BLAST+ 2.17.0, SAMtools, BCFtools, BEDTools, awk, grep, sort, zip) is the real tool.
 
-## Build and start
+## Read this first: two places, one command at a time
 
-You need Docker; the [Docker installation instructions](https://docs.docker.com/get-started/get-docker/) cover Docker Desktop for Mac, Windows and Linux. Then, from this folder:
+You will type commands in two different places. Each step below says which one.
+
+- **Your computer's terminal.** This is the Terminal app on macOS, PowerShell (or a WSL terminal) on Windows, or a terminal window on Linux. The Docker Desktop app is not a terminal: never type or paste commands into it. Docker Desktop only has to be open and running in the background.
+- **The container.** This is the practice environment that Docker starts for you, inside your terminal window. Its prompt always starts with `[practice container]`, for example `[practice container] student@1a2b3c4d5e6f:~/work$`. If the prompt does not start like that, you are not in the container.
+
+Paste or type one command at a time, press Enter, and wait until the prompt comes back before the next command. Do not paste several commands together: the container start-up and the commands after it will not work when they arrive all at once.
+
+## Step by step
+
+### 1. Install Docker, then open it (once)
+
+Install Docker Desktop from the [Docker installation instructions](https://docs.docker.com/get-started/get-docker/) (macOS and Windows), or Docker Engine on Linux. Then open the Docker Desktop app and wait until it says that Docker is running. Leave it open.
+
+### 2. Open a terminal on your computer
+
+Open Terminal (macOS), PowerShell (Windows) or a terminal window (Linux). Steps 3 to 5 are typed here.
+
+### 3. Check that Docker works (your computer's terminal)
+
+```bash
+docker --version
+```
+
+You should see a line starting `Docker version`. If you see `command not found`, Docker is not installed or Docker Desktop has not finished starting: go back to step 1.
+
+### 4. Get the files and build the image (your computer's terminal; once)
+
+Get a copy of the course repository:
+
+```bash
+git clone https://github.com/hpc2n/bioinformatics-hpc.git
+```
+
+If `git` is not installed, download the repository as a zip file instead (the green Code button at https://github.com/hpc2n/bioinformatics-hpc, then Download ZIP), unzip it, and open your terminal in the unzipped folder.
+
+Go into the exam-practice folder:
+
+```bash
+cd bioinformatics-hpc/exam-practice
+```
+
+Check that you are in the right place:
+
+```bash
+ls
+```
+
+The list must include a file called `Dockerfile`. If it does not, you are in the wrong folder.
+
+Build the image:
 
 ```bash
 docker build -t exam-practice .
 ```
 
-The first build downloads BLAST+, the file-format tools and Swiss-Prot, and builds the BLAST database, so it needs a network connection and several minutes. It needs about 4 GB of disk space. Start it with:
+The image is about 2.6 GB on disk and the build needs about 4 GB of free disk space. It downloads several tools and the Swiss-Prot database, so it needs a network connection and takes several minutes. Wait until your terminal prompt comes back. If the last lines mention `ERROR`, the build failed (see the table at the end).
+
+### 5. Start the container (your computer's terminal)
 
 ```bash
 docker run -it --rm -v exam-practice:/home/student exam-practice
 ```
 
-The named volume `exam-practice` keeps your files and your SSH key between sessions. Work in `~/work`, which is also reachable as `/proj/nobackup/cddb_course/students/student`. The course exercise folders are in `~/exercises`. Start with:
+Your terminal window now shows this, and the prompt has changed. You are inside the container:
+
+```
+You are INSIDE the practice container: the prompt starts with [practice container].
+This is not Kebnekaise: module and Slurm are imitated. Work in ~/work. When you have finished working, type exit to leave.
+Next: 1) exam-practice-check   2) exam-practice-setup (Git and GitHub)   3) exam-practice-check again
+[practice container] student@1a2b3c4d5e6f:~/work$
+```
+
+Steps 6 to 9 are typed at this prompt. The container keeps running only while this window is open. Your files and your SSH key are kept between sessions in the volume called `exam-practice`. Work in `~/work`. The course exercise folders are in `~/exercises`.
+
+### 6. Run the check (in the container)
 
 ```bash
 exam-practice-check
 ```
 
-Docker has to keep running while you work. If you quit Docker or Docker Desktop, the container stops and you are back in your own computer's terminal.
+It tests the tools, the imitated `module` and Slurm, the BLAST database and your Git and GitHub set-up. The first time, the Git and GitHub lines fail. That is expected, because your name, your e-mail address and your SSH key are not set up yet. The check says so at the end:
+
+```
+  FAIL  git name and e-mail not set yet (expected at first: run exam-practice-setup)
+  FAIL  Git default branch is not main yet (expected at first: run exam-practice-setup)
+  FAIL  no SSH key yet (expected at first: run exam-practice-setup)
+```
+
+If lines in the Tools, Modules or Database groups also say FAIL, something is wrong with the image: see the table at the end.
+
+### 7. Set up Git and your SSH key (in the container)
+
+```bash
+exam-practice-setup
+```
+
+It asks four things, one after the other, and waits for you each time:
+
+1. Your name and the e-mail address of your GitHub account.
+2. It creates an SSH key for you.
+3. It shows the public key, one line starting `ssh-ed25519`. Select the line with the mouse and copy it. In your web browser open https://github.com/settings/ssh/new, give the key a title such as `exam practice`, paste the line into the Key box and click Add SSH key. Then return to the container window and press Enter.
+4. It tests the connection to GitHub. If GitHub does not accept the key yet, it says so; check that you pasted the whole line, then press Enter to try again.
+
+At the end it prints `Done. Your GitHub user name is ...`.
+
+### 8. Run the check again (in the container)
+
+```bash
+exam-practice-check
+```
+
+Every line should now say `ok`. (With no web access to UniProt, NCBI or EBI you can run `exam-practice-check --skip-web`.)
+
+### 9. Work in the container, and leave it only when you have finished
+
+Do the exercises or the practice exam in `~/work`, at the `[practice container]` prompt. The exam repository is cloned there with `git clone git@github.com:...`, exactly as on Kebnekaise. Stay in the container while you work: the Git and SSH commands only work there.
+
+Do not type `exit` now. Whenever you have finished working and want to leave the container, type:
+
+```bash
+exit
+```
+
+The prompt then returns to your own computer's terminal, and the commands of steps 6 to 9 no longer work until you start the container again with the step 5 command.
+
+## Coming back later
+
+You do not repeat steps 1 to 4 or 7. Open Docker Desktop and wait until it is running, open a terminal, and type the step 5 command. Your files and SSH key are still there.
+
+## Getting a file out of the container (for example the zip for Canvas)
+
+Canvas accepts only `.zip` files, and your files are inside the container. Two ways of moving a file to your own computer:
+
+1. Start the container with a shared folder. Do this instead of the plain start command in step 5, in a terminal on macOS or Linux:
+
+   ```bash
+   docker run -it --rm -v exam-practice:/home/student -v "$HOME/exam-out:/exam-out" exam-practice
+   ```
+
+   Inside the container, `cp exam.zip /exam-out/`. The file appears in the folder `exam-out` in your home directory on your computer.
+
+2. While the container is running, open a second terminal window on your computer, find the container's name with `docker ps`, and copy the file with `docker cp NAME:/home/student/work/exam.zip .` (your computer's terminal, in the folder where you want the file).
+
+Both were tested on macOS. They have not been tested on Windows.
+
+## If something goes wrong
+
+| What you see | What it means and what to do |
+|---|---|
+| Nothing happens when you paste commands, or the check did not run | The commands were pasted all at once, or into the Docker Desktop app. Type one command at a time in a terminal window. |
+| `command not found: docker` | Docker is not installed, or Docker Desktop is not running. Open Docker Desktop and wait until it says it is running. |
+| `Cannot connect to the Docker daemon` | Docker Desktop is not running yet. Open it and wait. |
+| `open Dockerfile: no such file or directory` | You are in the wrong folder. Type `cd bioinformatics-hpc/exam-practice` and run the build again. |
+| `git: command not found` in step 4 | Git is not installed on your computer. Use Download ZIP instead. |
+| The prompt does not start with `[practice container]`, or `module: not found` | You are in your own computer's terminal, or in a different shell. Run the step 5 command. If you are in `sh` inside the container, type `bash`. |
+| `exam-practice-setup: command not found` | You are typing it in your own computer's terminal. It exists only in the container: run the step 5 command first. |
+| `the input device is not a TTY` (Windows, Git Bash) | Put `winpty` in front of the `docker run` command, or use PowerShell. |
+| `permission denied` on `docker` (Linux) | Put `sudo` in front, or add yourself to the `docker` group. |
+| `GitHub did not accept the key yet` | The whole line starting `ssh-ed25519` has to be pasted at https://github.com/settings/ssh/new and saved with Add SSH key. Then press Enter in the container to test again. |
+| The container exits when you close the window | That is normal. Start it again with the step 5 command. Your files are kept in the volume. |
 
 ## Updating
 
-If you built the image earlier, get the latest files and build again, then start as before. Run these in the `exam-practice` folder of your copy of the course repository, the folder that contains the file called `Dockerfile`:
+If you built the image earlier, get the latest files and build again, then start as before. Run these in the `exam-practice` folder of your copy of the course repository, the folder that contains the file called `Dockerfile`, one at a time in your computer's terminal:
 
 ```bash
 cd bioinformatics-hpc/exam-practice
-git pull
-docker build -t exam-practice .
-docker run -it --rm -v exam-practice:/home/student exam-practice
 ```
 
-If Docker answers `open Dockerfile: no such file or directory`, you are in the wrong folder: `cd` into `exam-practice` and run the build again. `docker run` starts whichever image is currently named `exam-practice`, so without the new build you keep the old one. Your files and SSH key are in the volume and are kept. `docker image prune` removes the old image. `docker volume rm exam-practice` deletes the volume and everything in it.
+```bash
+git pull
+```
 
-## If `module` is not found
+```bash
+docker build -t exam-practice .
+```
 
-The `module` and Slurm commands exist only in the image's `bash` shell. If you see `module: not found` or `command not found: module`, you are in a different shell: your own computer's terminal, or a plain `sh` session opened some other way. Start the image with the `docker run` command above. Inside the image the prompt looks like `student@<id>:~/work$`. If you are in `sh` there, type `bash`.
+Then use the step 5 command. `docker run` starts whichever image is currently named `exam-practice`, so without the new build you keep the old one. Your files and SSH key are in the volume and are kept. `docker image prune` removes the old image. `docker volume rm exam-practice` deletes the volume and everything in it.
 
 ## Notes for your operating system
 
@@ -57,7 +199,7 @@ The image was tested on macOS with an Apple silicon chip, and the x86-64 build u
 | BLAST locally as a Slurm job | `sbatch` runs the job on your computer against `/proj/nobackup/cddb_course/databases/swissprot/swissprot`, using the Lecture 15 job script unchanged |
 | BLAST through the EBI Job Dispatcher API | Real service |
 | Filter results with `grep`, `awk`, `sort`; the Linux exercises | Real tools (GNU awk 5.1, as on the login nodes) and the exercise files in `~/exercises` |
-| Git, SSH key, push to GitHub, zip | Real tools. Create the key inside the image (guide steps 2 to 5). `man git-<command>` works |
+| Git, SSH key, push to GitHub, zip | Real tools. `exam-practice-setup` creates the key inside the image (step 7). `man git-<command>` works |
 | File formats (Lecture 13) | `module load GCC/14.2.0 SAMtools/1.22`, `module load GCC/13.2.0 BCFtools/1.19` and `module load GCC/14.3.0 BEDTools/2.31.1` (or GCC/13.3.0), as on Kebnekaise. `seqkit` is always available. The example files are small dummy stand-ins (see below) |
 | The Python one-liners in the Lecture 15 PlantGenIE exercises | Python 3 (standard library only) |
 

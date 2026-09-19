@@ -1,0 +1,58 @@
+#!/bin/bash
+# Guided set-up of Git and GitHub inside the practice container: your name and e-mail, an SSH key, adding the key to GitHub,
+# and a test of the connection. Run it inside the container: exam-practice-setup
+GH_FP="SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU"   # GitHub's published ED25519 fingerprint
+say() { printf '\n%s\n' "$*"; }
+ask() { read -r -p "$1" REPLY_TEXT || { echo; echo "No input received: stopping. Run exam-practice-setup again when you are ready."; exit 1; }; }
+
+if [ ! -f /etc/profile.d/hpc2n-shim.sh ]; then
+    echo "This command is for the practice container. It does nothing on your own computer." >&2; exit 1
+fi
+
+say "Step 1 of 4: your name and e-mail address for Git"
+cur_name=$(git config --global user.name); cur_mail=$(git config --global user.email)
+ask "Your name [${cur_name:-none}]: ";                                   name=${REPLY_TEXT:-$cur_name}
+ask "The e-mail address of your GitHub account [${cur_mail:-none}]: ";   mail=${REPLY_TEXT:-$cur_mail}
+if [ -z "$name" ] || [ -z "$mail" ]; then echo "Both are needed. Run exam-practice-setup again."; exit 1; fi
+git config --global user.name "$name"; git config --global user.email "$mail"; git config --global init.defaultBranch main
+echo "Saved."
+
+say "Step 2 of 4: your SSH key"
+if [ -f ~/.ssh/id_ed25519 ]; then
+    echo "You already have a key in this container. It will be used."
+else
+    mkdir -p ~/.ssh && chmod 700 ~/.ssh && ssh-keygen -q -t ed25519 -N "" -C "$name@exam-practice" -f ~/.ssh/id_ed25519 && echo "Key created (no passphrase)."
+fi
+
+say "Step 3 of 4: add the key to GitHub, in your web browser"
+echo "1. Copy the whole line below, from 'ssh-ed25519' to the end. Select it with the mouse and copy."
+echo
+cat ~/.ssh/id_ed25519.pub
+echo
+echo "2. In your browser open https://github.com/settings/ssh/new"
+echo "   Give it a title such as 'exam practice', paste the line into the Key box and click Add SSH key."
+echo "3. Come back to this window."
+ask "Press Enter when you have added the key: "
+
+say "Step 4 of 4: testing the connection to GitHub"
+scan=$(ssh-keyscan -t ed25519 github.com 2>/dev/null)
+fp=$(printf '%s\n' "$scan" | ssh-keygen -lf - 2>/dev/null | awk '{print $2}')
+if [ "$fp" != "$GH_FP" ]; then
+    echo "STOP: the fingerprint GitHub presented ($fp) is not the published one ($GH_FP)."
+    echo "Do not continue. Tell your instructor."; exit 1
+fi
+echo "GitHub's fingerprint matches the published one."
+grep -q "^github.com " ~/.ssh/known_hosts 2>/dev/null || printf '%s\n' "$scan" >> ~/.ssh/known_hosts
+while true; do
+    out=$(ssh -T -o BatchMode=yes -o ConnectTimeout=15 git@github.com </dev/null 2>&1)
+    case "$out" in
+        *"successfully authenticated"*) user=$(printf '%s' "$out" | sed -E 's/^Hi ([^!]+)!.*/\1/'); echo "$out"; break;;
+        *"Permission denied"*) echo "GitHub did not accept the key yet."; echo "Check that you pasted the whole line and clicked Add SSH key.";;
+        *) echo "Could not reach GitHub: $out";;
+    esac
+    ask "Press Enter to try again, or type q and Enter to stop: "
+    [ "$REPLY_TEXT" = q ] && exit 1
+done
+
+say "Done. Your GitHub user name is $user."
+echo "Next: run exam-practice-check again. Every line should now say ok."

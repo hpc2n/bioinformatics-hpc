@@ -77,16 +77,19 @@ RUN set -eux; \
 COPY shims/hpc2n-shim.sh /etc/profile.d/hpc2n-shim.sh
 COPY shims/slurm-shim /usr/local/bin/slurm-shim
 COPY exam-practice-check /usr/local/bin/exam-practice-check
+COPY exam-practice-setup /usr/local/bin/exam-practice-setup
 # Strip Windows line endings in case the repository was cloned with CRLF conversion
-RUN sed -i 's/\r$//' /etc/profile.d/hpc2n-shim.sh /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check; \
-    chmod +x /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check; \
+RUN sed -i 's/\r$//' /etc/profile.d/hpc2n-shim.sh /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check /usr/local/bin/exam-practice-setup; \
+    chmod +x /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check /usr/local/bin/exam-practice-setup; \
     for c in sbatch squeue sacct scancel srun; do ln -s slurm-shim /usr/local/bin/$c; done; \
     printf '\n[ -f /etc/profile.d/hpc2n-shim.sh ] && . /etc/profile.d/hpc2n-shim.sh\n' >> /etc/bash.bashrc; \
     printf '%s\n' \
         '[ -d "$HOME/exercises" ] || cp -r /opt/exercises-seed "$HOME/exercises"' \
         'if [ -z "$PRACTICE_MOTD_SHOWN" ]; then export PRACTICE_MOTD_SHOWN=1;' \
-        '  echo "Exam practice image. This is NOT Kebnekaise: module and Slurm are imitated."' \
-        '  echo "Run exam-practice-check to test your setup. Work in ~/work."; fi' >> /etc/bash.bashrc
+        '  echo "You are INSIDE the practice container: the prompt starts with [practice container]."' \
+        '  echo "This is not Kebnekaise: module and Slurm are imitated. Work in ~/work. When you have finished working, type exit to leave."' \
+        '  echo "Next: 1) exam-practice-check   2) exam-practice-setup (Git and GitHub)   3) exam-practice-check again"; fi' >> /etc/bash.bashrc; \
+    printf '%s\n' "PROMPT_COMMAND='PS1=\"[practice container] \\u@\\h:\\w\\\$ \"'" >> /etc/bash.bashrc
 
 # A user with the same layout as on the cluster: the working folder is below the course students/ folder
 RUN useradd -m -s /bin/bash student; \
