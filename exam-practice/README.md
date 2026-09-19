@@ -26,15 +26,16 @@ Docker has to keep running while you work. If you quit Docker or Docker Desktop,
 
 ## Updating
 
-If you built the image earlier, get the latest files and build again, then start as before:
+If you built the image earlier, get the latest files and build again, then start as before. Run these in the `exam-practice` folder of your copy of the course repository, the folder that contains the file called `Dockerfile`:
 
 ```bash
+cd bioinformatics-hpc/exam-practice
 git pull
 docker build -t exam-practice .
 docker run -it --rm -v exam-practice:/home/student exam-practice
 ```
 
-`docker run` starts whichever image is currently named `exam-practice`, so without the new build you keep the old one. Your files and SSH key are in the volume and are kept. `docker image prune` removes the old image. `docker volume rm exam-practice` deletes the volume and everything in it.
+If Docker answers `open Dockerfile: no such file or directory`, you are in the wrong folder: `cd` into `exam-practice` and run the build again. `docker run` starts whichever image is currently named `exam-practice`, so without the new build you keep the old one. Your files and SSH key are in the volume and are kept. `docker image prune` removes the old image. `docker volume rm exam-practice` deletes the volume and everything in it.
 
 ## If `module` is not found
 
@@ -57,7 +58,7 @@ The image was tested on macOS with an Apple silicon chip, and the x86-64 build u
 | BLAST through the EBI Job Dispatcher API | Real service |
 | Filter results with `grep`, `awk`, `sort`; the Linux exercises | Real tools (GNU awk 5.1, as on the login nodes) and the exercise files in `~/exercises` |
 | Git, SSH key, push to GitHub, zip | Real tools. Create the key inside the image (guide steps 2 to 5). `man git-<command>` works |
-| File formats (Lecture 13) | `module load GCC/14.2.0 SAMtools/1.22`, `module load GCC/13.2.0 BCFtools/1.19` and `module load GCC/14.3.0 BEDTools/2.31.1` (or GCC/13.3.0), as on Kebnekaise. `seqkit` is always available |
+| File formats (Lecture 13) | `module load GCC/14.2.0 SAMtools/1.22`, `module load GCC/13.2.0 BCFtools/1.19` and `module load GCC/14.3.0 BEDTools/2.31.1` (or GCC/13.3.0), as on Kebnekaise. `seqkit` is always available. The example files are small dummy stand-ins (see below) |
 | The Python one-liners in the Lecture 15 PlantGenIE exercises | Python 3 (standard library only) |
 
 The imitated commands accept only what the course uses. Modules that need others loaded first are refused without them, as on Kebnekaise: `module load BLAST+/2.17.0` on its own fails, so load `GCC/14.2.0 OpenMPI/5.0.7 BLAST+/2.17.0`. A job script needs `#SBATCH --account=hpc2ncourses2026-013`.
@@ -67,4 +68,5 @@ The imitated commands accept only what the course uses. Modules that need others
 - The database is the current UniProt Swiss-Prot release (see `RELEASE.txt` in the database folder), not the 13 August 2026 course copy. Hits and E-values can differ slightly.
 - Jobs start immediately and run in the background on your computer. Only `--time` is enforced. There is no queue, no memory limit and no node choice. `srun` starts the command once per task on your computer.
 - There is no Open OnDemand and no login. Set up and test your SSH key on Kebnekaise itself once it is back.
-- The example data for the file-format exercises (many gigabytes) stays on Kebnekaise and is not in the image, and neither are the compiled programs used in the Slurm sample scripts.
+- The example files for the file-format lecture (`/proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats`) are small dummy files. They have the same names and formats as the real ones, so the commands in the lecture run as written, but the content is invented and generated when the image is built. Read counts, gene counts and variant counts therefore differ from the real files, which are large (the BAM file is 2.5 GB) and stay on Kebnekaise. The exercise text files in the real folder are not included.
+- The Lecture 10 sample job scripts and exercises are templates for Kebnekaise. They use MPI, OpenMP and GPU programs, job arrays, job dependencies and modules such as `foss`, `Python` and `CUDA` that exist only there. The image runs simple job scripts with `sbatch` and `srun`, but not those.

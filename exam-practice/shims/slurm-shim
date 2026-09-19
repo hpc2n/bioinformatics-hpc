@@ -114,14 +114,14 @@ do_sbatch() {
 }
 
 set_field() { # set_field id KEY value
-    local f="$JOBS/$1"; grep -v "^$2=" "$f" > "$f.tmp"; printf '%s=%q\n' "$2" "$3" >> "$f.tmp"; mv "$f.tmp" "$f"
+    local f="$JOBS/$1" t="$JOBS/$1.$$.tmp"; grep -v "^$2=" "$f" > "$t"; printf '%s=%q\n' "$2" "$3" >> "$t"; mv "$t" "$f"
 }
 
 do_run() {
     local id="$1" rc limit_s
     # shellcheck disable=SC1090
     . "$JOBS/$id"
-    set_field "$id" STATE_NOW RUNNING; set_field "$id" START "$(date +%s)"; set_field "$id" PID "$$"
+    set_field "$id" PID "$$"; set_field "$id" START "$(date +%s)"; set_field "$id" STATE_NOW RUNNING
     cd "$DIR" || exit 1
     export SLURM_JOB_ID="$id" SLURM_JOB_NAME="$NAME" SLURM_SUBMIT_DIR="$DIR" SLURM_CPUS_PER_TASK="$CPUS" \
            SLURM_NTASKS="$NTASKS" SLURM_JOB_ACCOUNT="$ACCOUNT" SLURM_JOB_USER="$USER" SLURM_JOB_NODELIST=practice
@@ -148,7 +148,7 @@ job_load() {
     unset ID NAME ACCOUNT LIMIT CPUS NTASKS OUTF ERRF SCRIPT DIR STATE_NOW SUBMIT START END RC PID
     . "$JOBS/$1"
     # a job whose process has gone (for example the container was stopped) is no longer running
-    if [ "$STATE_NOW" = RUNNING ] && ! kill -0 "$PID" 2>/dev/null; then
+    if [ "$STATE_NOW" = RUNNING ] && [ -n "${PID:-}" ] && ! kill -0 "$PID" 2>/dev/null; then
         set_field "$1" STATE_NOW FAILED; STATE_NOW=FAILED
     fi
 }

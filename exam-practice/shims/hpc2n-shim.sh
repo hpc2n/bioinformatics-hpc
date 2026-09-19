@@ -107,7 +107,8 @@ __mod_show() {
 }
 
 module() {
-    local cmd="${1:-help}" m rc=0 i=1 x
+    local cmd="${1:-help}" m rc=0 i=1 x rx=""
+    if [ "$cmd" = "-r" ]; then rx=1; shift; cmd="${1:-help}"; fi
     [ $# -gt 0 ] && shift
     case "$cmd" in
         load|add)
@@ -125,7 +126,13 @@ module() {
                 for x in ${LOADEDMODULES//:/ }; do printf '  %d) %s\n' "$i" "$x"; i=$((i+1)); done
             fi;;
         spider)
-            if [ $# -gt 0 ]; then __mod_spider "$1"; return $?; fi
+            if [ $# -gt 0 ]; then
+                if [ -n "$rx" ]; then
+                    for m in $__PRACTICE_MODULES; do echo "$m" | grep -Eq "$1" && __mod_spider "$m"; done
+                    return 0
+                fi
+                __mod_spider "$1"; return $?
+            fi
             module avail;;
         show|display)
             for m in "$@"; do __mod_show "$m" || rc=1; done
@@ -141,6 +148,7 @@ module() {
         avail|av)
             echo "Modules known to this practice image:"
             for x in $__PRACTICE_MODULES; do
+                if [ -n "$rx" ] && [ $# -gt 0 ] && ! echo "$x" | grep -Eq "$1"; then continue; fi
                 local n; n=$(__mod_needs "$x")
                 if [ -n "$n" ]; then echo "  $x   (load first: $(echo "$n" | sed 's/|/  or  /g'))"; else echo "  $x"; fi
             done

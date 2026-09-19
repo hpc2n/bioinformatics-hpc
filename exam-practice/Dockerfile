@@ -64,6 +64,15 @@ RUN set -eux; \
     cp -r /tmp/course/docs/exercises/12.blast /tmp/course/docs/exercises/15.fair-in-practice /opt/exercises-seed/; \
     rm -rf /tmp/course
 
+# Small dummy stand-ins for the Lecture 13 example files. The real files are large (up to 2.5 GB) and stay on
+# Kebnekaise; these have the same names and formats but invented content, generated with a fixed random seed.
+COPY dummy_data/make_dummy_data.py /tmp/make_dummy_data.py
+RUN set -eux; \
+    sed -i 's/\r$//' /tmp/make_dummy_data.py; \
+    python3 /tmp/make_dummy_data.py /proj/nobackup/cddb_course/Bioinformatics_File_Formats/example_formats; \
+    chmod -R a+rX /proj/nobackup/cddb_course/Bioinformatics_File_Formats; \
+    rm /tmp/make_dummy_data.py
+
 # Module and Slurm imitations
 COPY shims/hpc2n-shim.sh /etc/profile.d/hpc2n-shim.sh
 COPY shims/slurm-shim /usr/local/bin/slurm-shim

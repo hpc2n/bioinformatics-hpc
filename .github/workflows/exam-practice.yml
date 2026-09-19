@@ -1,0 +1,25 @@
+# Builds the exam practice image on a Linux x86-64 runner and tests it, whenever the image files change.
+name: exam-practice image
+
+on:
+  push:
+    paths:
+      - 'exam-practice/**'
+      - '.github/workflows/exam-practice.yml'
+  pull_request:
+    paths:
+      - 'exam-practice/**'
+      - '.github/workflows/exam-practice.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the image
+        run: docker build -t exam-practice exam-practice
+      - name: Smoke test (modules, tools, dummy data files and a Slurm job)
+        run: docker run --rm -v "$PWD/exam-practice/tests:/tests:ro" exam-practice bash -ic '/tests/smoke.sh'
+      - name: Setup check without the parts that need a student's GitHub key or the internet services
+        run: docker run --rm exam-practice bash -ic 'exam-practice-check --skip-github --skip-web'
