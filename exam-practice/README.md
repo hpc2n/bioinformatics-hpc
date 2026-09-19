@@ -22,6 +22,10 @@ The named volume `exam-practice` keeps your files and your SSH key between sessi
 exam-practice-check
 ```
 
+## If `module` is not found
+
+The `module` and Slurm commands exist only in the image's `bash` shell. If you see `module: not found` or `command not found: module`, you are in a different shell: your own computer's terminal, or a plain `sh` session opened some other way. Start the image with the `docker run` command above. Inside the image the prompt looks like `student@<id>:~/work$`. If you are in `sh` there, type `bash`.
+
 ## What you can practise
 
 | Exam skill | In the image |
