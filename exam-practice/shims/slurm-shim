@@ -190,11 +190,32 @@ do_scancel() {
     done
 }
 
+do_srun() {
+    # Runs the command once per task (-n, default $SLURM_NTASKS or 1) on this machine; other options are ignored
+    local n="${SLURM_NTASKS:-1}" i rc=0 p pids=()
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -n|--ntasks) n="$2"; shift;;
+            --ntasks=*) n="${1#*=}";;
+            -n?*) n="${1#-n}";;
+            -N|-c|-t|-J|-A|-p|-o|-e|--nodes|--cpus-per-task|--time|--job-name|--account|--partition|--output|--error|--mem|--mem-per-cpu|--ntasks-per-node|--gres) shift;;
+            -*) ;;
+            *) break;;
+        esac
+        shift
+    done
+    [ $# -gt 0 ] || { echo "srun: error: no command given" >&2; exit 1; }
+    for ((i = 0; i < n; i++)); do SLURM_PROCID=$i SLURM_LOCALID=$i "$@" & pids+=($!); done
+    for p in "${pids[@]}"; do wait "$p" || rc=$?; done
+    exit $rc
+}
+
 case "$prog" in
     sbatch)  do_sbatch "$@";;
     squeue)  do_squeue "$@";;
     sacct)   do_sacct "$@";;
     scancel) do_scancel "$@";;
+    srun)    do_srun "$@";;
     slurm-shim) [ "${1:-}" = "__run" ] && do_run "$2";;
     *) echo "slurm-shim: unknown name $prog" >&2; exit 1;;
 esac

@@ -8,7 +8,7 @@ ARG BLAST_VERSION=2.17.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        ca-certificates curl wget git openssh-client zip unzip nano vim less jq gawk \
+        ca-certificates curl wget git openssh-client zip unzip nano vim less jq gawk python3 \
         libgomp1 libbz2-1.0 zlib1g procps file bash-completion locales \
     && rm -rf /var/lib/apt/lists/*
 
@@ -35,14 +35,46 @@ RUN set -eux; mkdir -p "$DBDIR"; cd "$DBDIR"; \
     /opt/blast/bin/makeblastdb -in uniprot_sprot.fasta -dbtype prot -parse_seqids -blastdb_version 5 \
         -title "UniProt Swiss-Prot (practice copy)" -out swissprot
 
+# Manual pages: the base image strips them, so restore those the course pages point to (man git-<command>)
+RUN set -eux; \
+    sed -i '/path-exclude=\/usr\/share\/man/d' /etc/dpkg/dpkg.cfg.d/excludes || true; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends man-db bzip2; \
+    apt-get install -y --reinstall git-man coreutils grep gawk sed findutils; \
+    rm -f /usr/bin/man; dpkg-divert --local --remove --rename /usr/bin/man; \
+    rm -rf /var/lib/apt/lists/*
+
+# File-format tools at the versions the Lecture 13 module lines name. SAMtools 1.22 and BCFtools 1.19 need
+# different htslib versions, so each tool gets its own environment and its module adds its own bin directory.
+RUN set -eux; \
+    case "$TARGETARCH" in amd64) M=linux-64;; arm64) M=linux-aarch64;; *) echo "unsupported architecture: $TARGETARCH" >&2; exit 1;; esac; \
+    curl -fsSL "https://micro.mamba.pm/api/micromamba/$M/latest" | tar -xj -C /usr/local/bin --strip-components=1 bin/micromamba; \
+    for spec in samtools==1.22 bcftools==1.19 bedtools==2.31.1 seqkit; do \
+        micromamba create -y -q -p "/opt/tools/${spec%%=*}" -c conda-forge -c bioconda "$spec"; \
+    done; \
+    micromamba clean -a -y -q; rm -f /usr/local/bin/micromamba; \
+    ln -s /opt/tools/seqkit/bin/seqkit /usr/local/bin/seqkit
+
+# Exercise files from the course repository. They are copied to ~/exercises the first time a shell starts,
+# which is where the course pages expect them.
+RUN set -eux; \
+    git clone -q --depth 1 https://github.com/hpc2n/bioinformatics-hpc.git /tmp/course; \
+    mkdir -p /opt/exercises-seed; \
+    cp -r /tmp/course/exercises/. /opt/exercises-seed/; \
+    cp -r /tmp/course/docs/exercises/12.blast /tmp/course/docs/exercises/15.fair-in-practice /opt/exercises-seed/; \
+    rm -rf /tmp/course
+
 # Module and Slurm imitations
 COPY shims/hpc2n-shim.sh /etc/profile.d/hpc2n-shim.sh
 COPY shims/slurm-shim /usr/local/bin/slurm-shim
 COPY exam-practice-check /usr/local/bin/exam-practice-check
-RUN chmod +x /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check; \
-    for c in sbatch squeue sacct scancel; do ln -s slurm-shim /usr/local/bin/$c; done; \
+# Strip Windows line endings in case the repository was cloned with CRLF conversion
+RUN sed -i 's/\r$//' /etc/profile.d/hpc2n-shim.sh /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check; \
+    chmod +x /usr/local/bin/slurm-shim /usr/local/bin/exam-practice-check; \
+    for c in sbatch squeue sacct scancel srun; do ln -s slurm-shim /usr/local/bin/$c; done; \
     printf '\n[ -f /etc/profile.d/hpc2n-shim.sh ] && . /etc/profile.d/hpc2n-shim.sh\n' >> /etc/bash.bashrc; \
     printf '%s\n' \
+        '[ -d "$HOME/exercises" ] || cp -r /opt/exercises-seed "$HOME/exercises"' \
         'if [ -z "$PRACTICE_MOTD_SHOWN" ]; then export PRACTICE_MOTD_SHOWN=1;' \
         '  echo "Exam practice image. This is NOT Kebnekaise: module and Slurm are imitated."' \
         '  echo "Run exam-practice-check to test your setup. Work in ~/work."; fi' >> /etc/bash.bashrc
