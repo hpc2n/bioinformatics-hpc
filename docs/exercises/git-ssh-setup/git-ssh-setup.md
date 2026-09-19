@@ -294,24 +294,33 @@ You will be told the exact name at the start of the exam. The SSH key you made i
 
 1. **Send your instructor your GitHub username** in good time. The repository cannot be created without it.
 2. **Accept the invitation** if GitHub sends you one (check your email and your GitHub notifications). Until you have access, GitHub answers `Repository not found`.
-3. **Check that you can reach it, without pushing anything.** Once your instructor tells you the repository has been created, run this read-only command:
+3. **Check that you can push to it, without pushing anything.** Once your instructor tells you the repository has been created, run this from your practice repository (the one from Steps 6 to 8, which has a commit on `main`):
 
    ```
-   git ls-remote git@github.com:umu-bioinformatics-msc/exam-<your-github-username>.git
+   cd ~/git-practice
+   git push --dry-run git@github.com:umu-bioinformatics-msc/exam-<your-github-username>.git main
    ```
 
-   An empty repository prints nothing and gives no error, which is the result you want. `Repository not found` or `Permission denied` means access is not in place yet: tell your instructor.
+   The word `--dry-run` makes Git do all the checks but send nothing, and because the address is typed in full, nothing is added to your repository's remotes. This is the result you want:
+
+   ```
+   To github.com:umu-bioinformatics-msc/exam-<your-github-username>.git
+    * [new branch]      main -> main
+   ```
+
+   `ERROR: Repository not found.` means access is not in place yet (accept the invitation, then try again) and `Permission denied (publickey)` means the SSH key is the problem (see Step 5). If neither is fixed after a second try, tell your instructor. Run this check before the exam: once the exam starts, the repository may already contain a file from your instructor, and Git then reports the push as rejected even though your access is fine.
 
 !!! warning "Do not push to the exam repository before the exam"
     Only work pushed **during the exam window** counts, and the repository's push history is what is checked. Practise on your own `kebnekaise-git-practice` repository instead.
 
-During the exam, connect to it exactly as in Step 8, or clone it and work inside the new directory:
+During the exam, **clone the repository** and work inside the new directory:
 
 ```
 git clone git@github.com:umu-bioinformatics-msc/exam-<your-github-username>.git
+cd exam-<your-github-username>
 ```
 
-Git then prints `warning: You appear to have cloned an empty repository.` This is normal, because the repository has no commits yet.
+Cloning sets up `origin` for you, so `git push` works without `git remote add`. Do not run `git init` in a new directory and add the exam repository as a remote, as in Step 8: your instructor may already have added a file to the repository (for example one with your assigned protein), and Git rejects a push from a history that does not include it. If the repository is still empty, Git prints `warning: You appear to have cloned an empty repository.` This is normal.
 
 ## Checklist: are you ready?
 
@@ -324,7 +333,7 @@ Each of these should give the result shown.
 | `git config --global --list` | shows your name, email and `init.defaultbranch=main` |
 | `git remote -v` (in your repository) | addresses that start with `git@github.com:` |
 | `git branch --show-current` | `main` |
-| `git ls-remote git@github.com:umu-bioinformatics-msc/exam-<username>.git` (once the repository exists) | no output and no error |
+| `git push --dry-run git@github.com:umu-bioinformatics-msc/exam-<username>.git main` (in `~/git-practice`, once the repository exists, before the exam) | `* [new branch]      main -> main` |
 
 ## Troubleshooting
 
@@ -375,6 +384,10 @@ You answered `no` to the question in Step 5, or the answer could not be read. Ru
 ### `ERROR: Repository not found.`
 
 Either the name or username in the address has a typo, or the repository is private and your account does not have access yet (for the exam repository, accept the invitation). Compare the address with the one on the repository's page on GitHub.
+
+### `Updates were rejected because the remote contains work that you do not have locally.`
+
+The repository on GitHub already has a commit that your local repository does not have. For the exam repository this happens when you created a new local repository with `git init` and added the exam repository as a remote, after your instructor had put a file in it. Your access is fine. Clone the exam repository instead (see "The exam repository" above) and work in the clone.
 
 ## All commands in one place
 
