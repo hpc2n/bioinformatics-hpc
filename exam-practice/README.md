@@ -64,10 +64,10 @@ The image is about 2.6 GB on disk and the build needs about 4 GB of free disk sp
 ### 5. Start the container (your computer's terminal)
 
 ```bash
-docker run -it --rm -v exam-practice:/home/student exam-practice
+docker run -it --rm --name practice -v exam-practice:/home/student exam-practice
 ```
 
-Your terminal window now shows this, and the prompt has changed. You are inside the container:
+The `--name practice` part gives the container a fixed name, which is used later to copy files out of it. Your terminal window now shows this, and the prompt has changed. You are inside the container:
 
 ```
 You are INSIDE the practice container: the prompt starts with [practice container].
@@ -135,19 +135,29 @@ You do not repeat steps 1 to 4 or 7. Open Docker Desktop and wait until it is ru
 
 ## Getting a file out of the container (for example the zip for Canvas)
 
-Canvas accepts only `.zip` files, and your files are inside the container. Two ways of moving a file to your own computer:
+Canvas accepts only `.zip` files, and your files are inside the container. The container is called `practice` (from `--name practice` in step 5), and a file that you make in `~/work` is at `/home/student/work` in it. To copy it to your own computer:
 
-1. Start the container with a shared folder. Do this instead of the plain start command in step 5, in a terminal on macOS or Linux:
+1. Leave the container running in its terminal window. Do not type `exit` yet.
+2. Open a second terminal window on your own computer (not the Docker Desktop app) and go to the folder where you want the file, for example the folder that you will upload from.
+3. Type this, replacing `exam.zip` with the name of your file:
 
    ```bash
-   docker run -it --rm -v exam-practice:/home/student -v "$HOME/exam-out:/exam-out" exam-practice
+   docker cp practice:/home/student/work/exam.zip .
    ```
 
-   Inside the container, `cp exam.zip /exam-out/`. The file appears in the folder `exam-out` in your home directory on your computer.
+   The dot at the end means the folder that the second terminal is in. The file appears there. Write the whole path `/home/student/work/...`: `~/work/...` does not work in this command.
 
-2. While the container is running, open a second terminal window on your computer, find the container's name with `docker ps`, and copy the file with `docker cp NAME:/home/student/work/exam.zip .` (your computer's terminal, in the folder where you want the file).
+This works the same on macOS, Windows and Linux. It was tested on macOS and has not been tested on Windows or Linux.
 
-Both were tested on macOS. They have not been tested on Windows.
+Once the container has ended (after `exit`), `docker cp` no longer finds it (`No such container: practice`). Your files are still in the volume. Start the container again with the step 5 command, and copy the file then.
+
+A second way, without a second window, is to start the container with a shared folder. Use this command instead of the step 5 command:
+
+```bash
+docker run -it --rm --name practice -v exam-practice:/home/student -v "$HOME/exam-out:/exam-out" exam-practice
+```
+
+Inside the container, `cp exam.zip /exam-out/`. The file appears in the folder `exam-out` in your home directory on your computer. This was tested on macOS. On Windows in PowerShell the folder is written `"$HOME\exam-out:/exam-out"`, which follows Docker's documentation for Windows paths (`C:\Users\name\folder:/path`) but has not been tested. If it does not work, use `docker cp`.
 
 ## If something goes wrong
 
@@ -163,6 +173,8 @@ Both were tested on macOS. They have not been tested on Windows.
 | `the input device is not a TTY` (Windows, Git Bash) | Put `winpty` in front of the `docker run` command, or use PowerShell. |
 | `permission denied` on `docker` (Linux) | Put `sudo` in front, or add yourself to the `docker` group. |
 | `GitHub did not accept the key yet` | The whole line starting `ssh-ed25519` has to be pasted at https://github.com/settings/ssh/new and saved with Add SSH key. Then press Enter in the container to test again. |
+| `The container name "/practice" is already in use` | A container called `practice` is still running, probably in another terminal window. Go to that window and type `exit`, or type `docker stop practice`, and then start the container again. |
+| `No such container: practice` when you use `docker cp` | The container has ended. Start it again with the step 5 command and copy the file while it is running. |
 | The container exits when you close the window | That is normal. Start it again with the step 5 command. Your files are kept in the volume. |
 
 ## Updating
