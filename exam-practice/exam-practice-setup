@@ -14,7 +14,7 @@ cur_name=$(git config --global user.name); cur_mail=$(git config --global user.e
 ask "Your name [${cur_name:-none}]: ";                                   name=${REPLY_TEXT:-$cur_name}
 ask "The e-mail address of your GitHub account [${cur_mail:-none}]: ";   mail=${REPLY_TEXT:-$cur_mail}
 if [ -z "$name" ] || [ -z "$mail" ]; then echo "Both are needed. Run exam-practice-setup again."; exit 1; fi
-git config --global user.name "$name"; git config --global user.email "$mail"; git config --global init.defaultBranch main
+git config --global user.name "$name"; git config --global user.email "$mail"; git config --global init.defaultBranch main; git config --global core.editor nano
 echo "Saved."
 
 say "Step 2 of 4: your SSH key"

@@ -66,10 +66,11 @@ The first two commands contain your own details. Change the capital letters befo
     - `YOUR FULL NAME`: your own name, for example `Maria Svensson`.
     - `YOUR GITHUB EMAIL ADDRESS`: the e-mail address that belongs to your GitHub account, for example `maria.svensson@example.com`. If you are not sure which address that is, open [github.com/settings/emails](https://github.com/settings/emails). You can use the private `noreply` address shown there instead.
 
-The next command needs no changes:
+The next two commands need no changes:
 
 ```
 git config --global init.defaultBranch main
+git config --global core.editor nano
 ```
 
 Check what you typed:
@@ -79,15 +80,18 @@ git config --global --list
 ```
 
 !!! tip "What you should see (do not paste this)"
-    Your own name and e-mail address, and `init.defaultbranch=main`. There may be other lines as well.
+    Your own name and e-mail address, `init.defaultbranch=main` and `core.editor=nano`. There may be other lines as well.
 
     ```
     user.name=Maria Svensson
     user.email=maria.svensson@example.com
     init.defaultbranch=main
+    core.editor=nano
     ```
 
 The third setting matters. Without it, a new repository on Kebnekaise starts on a branch called `master`, while GitHub expects `main`, and your first push fails (see [Troubleshooting](#troubleshooting)). If you skip the first two commands, Git still lets you commit, but it invents an identity from your username and the login node's name, which is not what you want on your commits.
+
+The last setting chooses `nano` as the text editor that Git opens, for example when you commit without `-m`. Without it Git may open `vim`, which many people find hard to leave. In `nano` the shortcuts are shown at the bottom of the screen: save with Ctrl+O and then Enter, and leave with Ctrl+X.
 
 ## Step 2: Create your SSH key on Kebnekaise
 
@@ -375,28 +379,28 @@ For the exam, your instructor creates a private repository for each student in t
 2. Accept the invitation if GitHub sends you one (check your e-mail and your GitHub notifications). Until you have access, GitHub answers `Repository not found`.
 3. Check that you can push to it, without pushing anything. Wait until your instructor tells you the repository has been created. Then go to your practice repository, the one from Steps 6 to 8, which has a commit on `main`:
 
-   ```
-   cd ~/git-practice
-   ```
+    ```
+    cd ~/git-practice
+    ```
 
-   The next command contains your GitHub username. Change the capital letters before you paste.
+    The next command contains your GitHub username. Change the capital letters before you paste.
 
-   !!! warning "Edit before you paste"
-       ```
-       git push --dry-run git@github.com:umu-bioinformatics-msc/exam-YOUR_GITHUB_USERNAME.git main
-       ```
+    !!! warning "Edit before you paste"
+        ```
+        git push --dry-run git@github.com:umu-bioinformatics-msc/exam-YOUR_GITHUB_USERNAME.git main
+        ```
 
-       - `YOUR_GITHUB_USERNAME`: your GitHub username, for example `msvensson`. Keep `exam-` in front of it.
+        - `YOUR_GITHUB_USERNAME`: your GitHub username, for example `msvensson`. Keep `exam-` in front of it.
 
-   The word `--dry-run` makes Git do all the checks but send nothing, and because the address is typed in full, nothing is added to your repository's remotes.
+    The word `--dry-run` makes Git do all the checks but send nothing, and because the address is typed in full, nothing is added to your repository's remotes.
 
-   !!! tip "The result you want (do not paste this)"
-       ```
-       To github.com:umu-bioinformatics-msc/exam-msvensson.git
-        * [new branch]      main -> main
-       ```
+    !!! tip "The result you want (do not paste this)"
+        ```
+        To github.com:umu-bioinformatics-msc/exam-msvensson.git
+         * [new branch]      main -> main
+        ```
 
-   `ERROR: Repository not found.` means access is not in place yet (accept the invitation, then try again) and `Permission denied (publickey)` means the SSH key is the problem (see Step 5). If neither is fixed after a second try, tell your instructor. Run this check before the exam: once the exam starts, the repository may already contain a file from your instructor, and Git then reports the push as rejected even though your access is fine.
+    `ERROR: Repository not found.` means access is not in place yet (accept the invitation, then try again) and `Permission denied (publickey)` means the SSH key is the problem (see Step 5). If neither is fixed after a second try, tell your instructor. Run this check before the exam: once the exam starts, the repository may already contain a file from your instructor, and Git then reports the push as rejected even though your access is fine.
 
 !!! warning "Do not push to the exam repository before the exam"
     Only work pushed during the exam window counts, and the repository's push history is what is checked. Practise on your own `kebnekaise-git-practice` repository instead.
@@ -421,7 +425,7 @@ Each of these commands should give the result shown. `msvensson` stands for your
 |---|---|
 | `ls ~/.ssh/id_ed25519.pub` | the file is listed |
 | `ssh -T git@github.com` | `Hi msvensson! You've successfully authenticated...` |
-| `git config --global --list` | shows your name, e-mail and `init.defaultbranch=main` |
+| `git config --global --list` | shows your name, e-mail, `init.defaultbranch=main` and `core.editor=nano` |
 | `git remote -v` (in your repository) | addresses that start with `git@github.com:` |
 | `git branch --show-current` | `main` |
 | `git push --dry-run git@github.com:umu-bioinformatics-msc/exam-msvensson.git main` (in `~/git-practice`, once the repository exists, before the exam; use your own username) | `* [new branch]      main -> main` |
@@ -438,7 +442,36 @@ Often followed by `fatal: Could not read from remote repository.` GitHub does no
 2. Does the key on GitHub match the one on Kebnekaise? Run `ssh-keygen -lf ~/.ssh/id_ed25519.pub` on Kebnekaise and compare the `SHA256:` value with the one GitHub shows next to the key.
 3. Did you paste the private key by mistake? The line you paste must start with `ssh-ed25519` and come from the file ending in `.pub`.
 4. Are you signed in to the right GitHub account in your browser (the one you gave your instructor)?
-5. Still stuck? Run `ssh -vT git@github.com` and read the last lines. It shows which key files SSH tried.
+5. The key is on GitHub and matches, but Git still does not use it? Load it into an SSH agent (see below the list), and try again. One tester needed this on Kebnekaise in some sessions and not in others; the cause is not known.
+6. Still stuck? Run `ssh -vT git@github.com` and read the last lines. It shows which key files SSH tried.
+
+To load the key into an SSH agent, first start the agent:
+
+```
+eval "$(ssh-agent -s)"
+```
+
+!!! tip "What you should see (do not paste this)"
+    The number will be different.
+
+    ```
+    Agent pid 12345
+    ```
+
+Then add the key. This command uses the key file made in Step 2. If your key file has a different name, use that name:
+
+```
+ssh-add ~/.ssh/id_ed25519
+```
+
+!!! tip "What you should see (do not paste this)"
+    The folder is your own home directory, and the last part is the label of your key.
+
+    ```
+    Identity added: /home/u/username/.ssh/id_ed25519 (username@kebnekaise)
+    ```
+
+The settings that point Git and SSH to the agent exist only in the terminal where you ran the first command. In a new terminal, or after logging in again, run both commands again.
 
 ### `error: src refspec main does not match any`
 
@@ -505,6 +538,7 @@ For when you have done it once and just need the sequence again. It is for refer
     git config --global user.name "YOUR FULL NAME"
     git config --global user.email "YOUR GITHUB EMAIL ADDRESS"
     git config --global init.defaultBranch main
+    git config --global core.editor nano
     mkdir -p -m 700 ~/.ssh
     ssh-keygen -t ed25519 -N "" -C "$USER@kebnekaise" -f ~/.ssh/id_ed25519
     cat ~/.ssh/id_ed25519.pub          # copy the line, add it at github.com/settings/ssh/new
