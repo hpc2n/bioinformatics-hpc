@@ -281,6 +281,28 @@ git init
     Initialized empty Git repository in /home/u/username/git-practice/.git/
     ```
 
+Check that the repository is in the right folder. This matters: if one of the three commands above failed, for example if `cd` did not work, `git init` makes a repository in the folder you were in, which can be your whole home folder.
+
+```
+git rev-parse --show-toplevel
+```
+
+!!! tip "What you should see (do not paste this)"
+    The path of the folder that the repository is in. It must end with `git-practice`.
+
+    ```
+    /home/u/username/git-practice
+    ```
+
+!!! danger "What you see if it went wrong (do not paste this)"
+    A path that does not end with `git-practice`, for example your home folder:
+
+    ```
+    /home/u/username
+    ```
+
+    Do not go on. Your home folder has become a repository. Follow the entry [`git rev-parse` shows your home folder](#git-rev-parse-shows-your-home-folder-or-another-wrong-folder) in the troubleshooting section, and then do Step 6 again.
+
 Create a file:
 
 ```
@@ -531,6 +553,49 @@ ssh-add ~/.ssh/id_ed25519
     ```
 
 The settings that point Git and SSH to the agent exist only in the terminal where you ran the first command. In a new terminal, or after logging in again, run both commands again.
+
+### `git rev-parse` shows your home folder, or another wrong folder
+
+The repository was made in the wrong folder, usually because `git init` ran when `cd ~/git-practice` had not worked. A repository is a hidden folder called `.git`. Your files are separate from it, so removing it does not delete your files. Type these commands one at a time.
+
+First go to the folder that was wrongly made a repository, and check it. For your home folder:
+
+```
+cd ~
+```
+
+```
+git rev-parse --show-toplevel
+```
+
+Then check whether anything private was added. If a file that starts with `.ssh/` and does not end with `.pub` is listed, your private key was added to this repository:
+
+```
+git ls-files | grep -i ssh
+```
+
+That matters only if you also pushed the repository to GitHub. If you did, delete that key in your GitHub settings (Settings, then SSH keys), delete the GitHub repository, and make a new key (Step 2). Then move the repository data out of the way. This does not delete anything:
+
+```
+mv ~/.git ~/git-backup-delete-later
+```
+
+Check that it is no longer a repository:
+
+```
+git status
+```
+
+!!! tip "What you should see (do not paste this)"
+    ```
+    fatal: not a git repository (or any of the parent directories): .git
+    ```
+
+Then do Step 6 again. If you already made a GitHub repository for it, create a fresh empty one (Step 7) and use that. When you are sure that you do not need it, you can remove the backup. Do not put a space after `~`:
+
+```
+rm -rf ~/git-backup-delete-later
+```
 
 ### `error: src refspec main does not match any`
 
