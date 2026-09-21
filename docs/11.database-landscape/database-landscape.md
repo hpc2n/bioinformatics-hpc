@@ -317,10 +317,10 @@ The two most useful endpoints are:
 **Step 1:** Fetch the RefSeq mRNA record for human *TP53* (accession `NM_000546.6`) in FASTA format:
 
 ```bash
-curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?\
-db=nucleotide&id=NM_000546.6&rettype=fasta&retmode=text" \
-> TP53_mRNA.fasta
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NM_000546.6&rettype=fasta&retmode=text" > TP53_mRNA.fasta
 ```
+
+The command is a single long line. Use the copy button, or scroll sideways to see all of it. Keep the whole address inside one pair of straight quotation marks and do not put a line break inside them.
 
 **Step 2:** Inspect the file using tools you have already learned:
 
@@ -343,9 +343,7 @@ wc -l TP53_mRNA.fasta
 **Step 3:** Now fetch the same record in **GenBank format** — a richer format that includes extensive metadata:
 
 ```bash
-curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?\
-db=nucleotide&id=NM_000546.6&rettype=gb&retmode=text" \
-> TP53_mRNA.gb
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NM_000546.6&rettype=gb&retmode=text" > TP53_mRNA.gb
 
 # Extract key metadata fields
 grep "DEFINITION\|SOURCE\|ORGANISM\|KEYWORDS\|COMMENT" TP53_mRNA.gb
@@ -436,9 +434,7 @@ Fetch the rbcL gene (*ribulose-1,5-bisphosphate carboxylase/oxygenase large subu
 # Search NCBI for Arabidopsis rbcL in the nucleotide database
 # -g disables curl's URL globbing, which otherwise misreads the square
 # brackets in the query below as a range expression and fails
-curl -g "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?\
-db=nucleotide&term=Arabidopsis+thaliana[orgn]+rbcL[gene]+refseq[filter]\
-&retmax=5&retmode=json" > rbcL_search.json
+curl -g "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Arabidopsis+thaliana[orgn]+rbcL[gene]+refseq[filter]&retmax=5&retmode=json" > rbcL_search.json
 
 # Inspect the JSON output — this is a common API response format
 cat rbcL_search.json
@@ -450,10 +446,7 @@ cat rbcL_search.json
 
 ```bash
 # Search ENA for RNA-seq datasets from Populus tremula
-curl "https://www.ebi.ac.uk/ena/portal/api/search?\
-query=tax_eq(113636)%20AND%20library_strategy=%22RNA-Seq%22\
-&result=read_study&fields=study_accession,study_title,scientific_name\
-&format=tsv&limit=5" > populus_rnaseq.tsv
+curl "https://www.ebi.ac.uk/ena/portal/api/search?query=tax_eq(113636)%20AND%20library_strategy=%22RNA-Seq%22&result=read_study&fields=study_accession,study_title,scientific_name&format=tsv&limit=5" > populus_rnaseq.tsv
 
 cat populus_rnaseq.tsv
 ```
