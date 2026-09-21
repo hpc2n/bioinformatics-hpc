@@ -26,8 +26,10 @@ if [ $SKIP_WEB -eq 0 ]; then
   for u in "https://rest.uniprot.org/uniprotkb/P38398.fasta" \
            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi" \
            "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/parameters"; do
-      code=$(curl -s -o /dev/null -m 30 -w '%{http_code}' "$u")
-      [ "$code" = 200 ] && ok "HTTP $code  $u" || bad "HTTP $code  $u"
+      errf=$(mktemp); code=$(curl -sS -o /dev/null -m 30 -w '%{http_code}' "$u" 2>"$errf"); why=$(head -c 200 "$errf" | tr '\n' ' '); rm -f "$errf"
+      if [ "$code" = 200 ]; then ok "HTTP $code  $u"
+      else bad "HTTP $code  $u${why:+  ($why)}"
+           [ "$code" = 000 ] && echo "        HTTP 000 means that no answer came back: a network, firewall, VPN or DNS problem on your side or the service is down."; fi
   done
 fi
 
