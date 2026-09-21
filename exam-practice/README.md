@@ -24,10 +24,12 @@ Open Terminal (macOS), PowerShell (Windows) or a terminal window (Linux). Steps 
 ### 3. Check that Docker works (your computer's terminal)
 
 ```bash
-docker --version
+docker version
 ```
 
-You should see a line starting `Docker version`. If you see `command not found`, Docker is not installed or Docker Desktop has not finished starting: go back to step 1.
+You should see two parts, `Client:` and `Server:`. On Windows and macOS the `Server:` line starts with `Docker Desktop`. If there is only a `Client:` part, followed by an error message, the Docker engine is not running yet: go back to step 1, open the Docker Desktop app and wait until it has started, then run the command again. If you see `command not found`, Docker is not installed.
+
+`docker --version` is not enough for this check: it passes when the `docker` program is installed, even when the engine is not running.
 
 ### 4. Get the files and build the image (your computer's terminal; once)
 
@@ -165,7 +167,7 @@ Inside the container, `cp exam.zip /exam-out/`. The file appears in the folder `
 |---|---|
 | Nothing happens when you paste commands, or the check did not run | The commands were pasted all at once, or into the Docker Desktop app. Type one command at a time in a terminal window. |
 | `command not found: docker` | Docker is not installed, or Docker Desktop is not running. Open Docker Desktop and wait until it says it is running. |
-| `Cannot connect to the Docker daemon` | Docker Desktop is not running yet. Open it and wait. |
+| `Cannot connect to the Docker daemon`, `failed to connect to the docker API`, or `ERROR: request returned 500 Internal Server Error for API route and version ... dockerDesktopLinuxEngine ... _ping` | The `docker` program is installed, but the Docker engine is not running. Open the Docker Desktop app, wait until it has finished starting, and run `docker version` until it shows a `Server:` part. If Docker Desktop shows an error itself, or never finishes starting, Docker's documentation lists these causes on Windows: virtualization is switched off in the computer's BIOS/UEFI; the Windows features that WSL 2 needs (Virtual Machine Platform and Windows Subsystem for Linux) are not turned on; anti-virus software conflicts with virtualization; the computer is itself a virtual machine without nested virtualization; or Windows or WSL is too old (Docker asks for Windows 10 22H2 build 19045, Windows 11 23H2 build 22631 or newer, and WSL 2.1.5 or later). See the [Docker Desktop installation page for Windows](https://docs.docker.com/desktop/setup/install/windows-install/). Restarting the computer sometimes helps. If it still fails, send your instructor a screenshot of the Docker Desktop window and the output of `docker version`. |
 | `open Dockerfile: no such file or directory` | You are in the wrong folder. Type `cd bioinformatics-hpc/exam-practice` and run the build again. |
 | `git: command not found` in step 4 | Git is not installed on your computer. Use Download ZIP instead. |
 | The prompt does not start with `[practice container]`, or `module: not found` | You are in your own computer's terminal, in a different shell, or in an old image. If you are inside a container whose prompt is `student@...` without the label, the image is out of date: `exit`, then follow "Updating". Otherwise run the step 5 command. If you are in `sh` inside the container, type `bash`. |
