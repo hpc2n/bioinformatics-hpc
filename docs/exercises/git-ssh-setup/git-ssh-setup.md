@@ -10,7 +10,7 @@ The exam requires you to **push** your work from Kebnekaise to a repository on G
 ## What you need before you start
 
 - A GitHub account (free), with two-factor authentication set up. Sign up at [github.com](https://github.com/).
-- Your HPC2N account and a terminal on Kebnekaise (see [Connecting to Kebnekaise](../../02.connect-cluster/connect-cluster.md)). **Every command on this page is typed in the Kebnekaise terminal**, except the two steps marked as done in the browser.
+- Your HPC2N account and a terminal on a Kebnekaise login node (see [Connecting to Kebnekaise](../../02.connect-cluster/connect-cluster.md)): an SSH terminal on your own computer, for example PuTTY, or ThinLinc. The terminal inside Open OnDemand runs on a compute node, and some compute nodes lack tools that this guide uses, such as `git` and `ssh-keygen`. **Every command on this page is typed in the Kebnekaise terminal**, except the two steps marked as done in the browser.
 - The commands are shown without the `$` prompt: type or paste only the command itself.
 
 !!! note "Using the practice container instead of Kebnekaise?"
@@ -91,6 +91,26 @@ git --version
 It should now print a line that starts with `git version`. If `module` says that it cannot find that module, type `module spider git` to list the versions that are installed, and load one of them together with the modules that the list says it needs.
 
 The module is loaded only in the terminal where you typed the command. In a new terminal, or after logging in again, load it again before you use Git. You do not need this step in the practice container, which has Git.
+
+Now check that the tool that makes SSH keys is available:
+
+```
+command -v ssh-keygen
+```
+
+!!! tip "What you should see if it is available (do not paste this)"
+    A line with the location of the tool, starting with `/`. The exact location can differ.
+
+!!! danger "What you see if it is missing (do not paste this)"
+    Nothing at all is printed, and the prompt comes back. If you type `ssh-keygen` directly, you get `command not found`.
+
+If it is missing, you are most likely in a terminal on a compute node, for example the terminal in Open OnDemand, and not on a login node. Type this to see where you are:
+
+```
+hostname
+```
+
+A name that starts with `b-cn` is a compute node. There is no module that provides the missing tool. Log in to a login node instead, with an SSH terminal such as PuTTY (see the [SSH page](../../02.connect-cluster/4b.ssh-thinlinc/ssh.md)) or with ThinLinc, and check again there.
 
 ## Step 1: Tell Git who you are (once)
 
