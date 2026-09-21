@@ -137,19 +137,46 @@ You do not repeat steps 1 to 4 or 7. Open Docker Desktop and wait until it is ru
 
 ## Getting a file out of the container (for example the zip for Canvas)
 
-Canvas accepts only `.zip` files, and your files are inside the container. The container is called `practice` (from `--name practice` in step 5), and a file that you make in `~/work` is at `/home/student/work` in it. For example, a zip made inside the exam repository `exam-msvensson` is at `/home/student/work/exam-msvensson/exam.zip`. To copy it to your own computer:
+Canvas accepts only `.zip` files. A file that you make in the container stays inside the container until you copy it out. The container is called `practice` (from `--name practice` in step 5). Type the commands one at a time.
 
-1. Leave the container running in its terminal window. Do not type `exit` yet.
-2. Open a second terminal window on your own computer (not the Docker Desktop app) and go to the folder where you want the file, for example the folder that you will upload from.
-3. Type this, replacing `exam.zip` with the name of your file:
+### Step by step, with a practice file
+
+1. In the container, in the window whose prompt begins `[practice container]`, make a small file:
 
    ```bash
-   docker cp practice:/home/student/work/exam.zip .
+   echo "Practice upload from the container" > practice.txt
    ```
 
-   The dot at the end means the folder that the second terminal is in. The file appears there. Write the whole path `/home/student/work/...`: `~/work/...` does not work in this command. `docker cp` copies a file or a whole folder, but Canvas needs a zip file, so make the zip first. If the container was not started with `--name practice`, use its ID in place of `practice`: it is the letters and numbers after `student@` in the container's prompt, or you can list it with `docker ps`.
+2. Make a zip file from it. `zip` prints `adding: practice.txt`:
 
-This works the same on macOS, Windows and Linux. It was tested on macOS and has not been tested on Windows or Linux.
+   ```bash
+   zip practice.zip practice.txt
+   ```
+
+3. Leave the container running in that window. Do not type `exit` yet.
+4. Open a second terminal window on your own computer, not the Docker Desktop app. Its prompt does not begin with `[practice container]`. Go to the folder where you want the file.
+5. In the second window, type this:
+
+   ```bash
+   docker cp practice:/home/student/work/practice.zip .
+   ```
+
+   The dot at the end means the folder that the second window is in. The file `practice.zip` now appears there, and you can upload it to Canvas.
+6. When you have finished, type `exit` in the first window.
+
+### For your real zip file in the exam
+
+The exam repository is not in the container until you have put it there. In the exam you clone your exam repository into `~/work`. That creates a folder called `exam-` followed by your GitHub username, for example `exam-msvensson`. The folder does not exist in a fresh container. Once you have cloned the repository and made your zip file inside that folder (see the [zip guide](https://hpc2n.github.io/bioinformatics-hpc/exercises/zip-guide/zip-guide/)), the zip file would be at `/home/student/work/exam-msvensson/exam.zip`. The command in step 5 then becomes the one below. Change the capital letters to your GitHub username, and keep the rest.
+
+```bash
+docker cp practice:/home/student/work/exam-YOUR_GITHUB_USERNAME/exam.zip .
+```
+
+Notes:
+- Write the whole path `/home/student/work/...`. `~/work/...` does not work in this command.
+- `docker cp` copies a file or a whole folder, but Canvas needs a zip file, so make the zip first.
+- If the container was not started with `--name practice`, use its ID in place of `practice`. It is the letters and numbers after `student@` in the container's prompt, or you can list it with `docker ps`.
+- This works the same on macOS, Windows and Linux. It was tested on macOS and has not been tested on Windows or Linux.
 
 Once the container has ended (after `exit`), `docker cp` no longer finds it (`No such container: practice`). Your files are still in the volume. Start the container again with the step 5 command, and copy the file then.
 
