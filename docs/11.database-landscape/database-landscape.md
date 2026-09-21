@@ -428,10 +428,10 @@ git commit -m "lecture11: retrieved TP53 records from NCBI and UniProt
 
 **Extension A — A plant gene example:**
 
-Fetch the rbcL gene (*ribulose-1,5-bisphosphate carboxylase/oxygenase large subunit*) from *Arabidopsis thaliana*. rbcL is one of the most widely used plant marker genes and is central to eDNA metabarcoding of plant communities.
+Find the record that contains the rbcL gene (*ribulose-1,5-bisphosphate carboxylase/oxygenase large subunit*) of *Arabidopsis thaliana*. rbcL is one of the most widely used plant marker genes and is central to eDNA metabarcoding of plant communities.
 
 ```bash
-# Search NCBI for Arabidopsis rbcL in the nucleotide database
+# Search NCBI for the record that contains Arabidopsis rbcL in the nucleotide database
 # -g disables curl's URL globbing, which otherwise misreads the square
 # brackets in the query below as a range expression and fails
 curl -g "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Arabidopsis+thaliana[orgn]+rbcL[gene]+refseq[filter]&retmax=5&retmode=json" > rbcL_search.json
