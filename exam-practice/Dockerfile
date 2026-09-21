@@ -29,9 +29,19 @@ RUN set -eux; \
 # Swiss-Prot BLAST database at the same path as on Kebnekaise, so job scripts work unchanged.
 # This is the current UniProt release, not the 13 Aug 2026 course copy, so hits and E-values can differ slightly.
 ENV DBDIR=/proj/nobackup/cddb_course/databases/swissprot
+# The EBI copy of the UniProt FTP site is tried first and the UniProt site second: the UniProt site can be unreachable
+# from some networks (a student's build failed with "SSL connection timeout"). Each download is retried, and the file is
+# checked with gzip -t before it is unpacked, so that a partial download stops the build with a clear error.
 RUN set -eux; mkdir -p "$DBDIR"; cd "$DBDIR"; \
-    curl -fsSL https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz | gunzip > uniprot_sprot.fasta; \
-    curl -fsSL https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/reldate.txt > RELEASE.txt; \
+    for base in https://ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/complete \
+                https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete; do \
+        if curl -fsSL --connect-timeout 30 --max-time 900 --retry 3 --retry-delay 5 -o uniprot_sprot.fasta.gz "$base/uniprot_sprot.fasta.gz" \
+           && gzip -t uniprot_sprot.fasta.gz \
+           && curl -fsSL --connect-timeout 30 --max-time 60 --retry 3 --retry-delay 5 -o RELEASE.txt "$base/reldate.txt"; then break; fi; \
+        echo "download from $base failed, trying the next site" >&2; rm -f uniprot_sprot.fasta.gz RELEASE.txt; \
+    done; \
+    test -s uniprot_sprot.fasta.gz && test -s RELEASE.txt; \
+    gunzip uniprot_sprot.fasta.gz; \
     /opt/blast/bin/makeblastdb -in uniprot_sprot.fasta -dbtype prot -parse_seqids -blastdb_version 5 \
         -title "UniProt Swiss-Prot (practice copy)" -out swissprot
 
