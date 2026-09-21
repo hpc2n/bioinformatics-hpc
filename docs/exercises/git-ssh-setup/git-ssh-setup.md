@@ -56,6 +56,42 @@ An SSH key is a **pair** of files. The *private* key stays on Kebnekaise and is 
 !!! note
     This key is only for talking to GitHub. It is not what you use to log in to Kebnekaise (that uses Kerberos or your HPC2N password), and adding it to GitHub does not change how you log in.
 
+## Before Step 1: check that Git is available on Kebnekaise
+
+Git is not installed on every Kebnekaise node. Whether it is there depends on the node you land on, so check it first. Type this in the Kebnekaise terminal:
+
+```
+git --version
+```
+
+!!! tip "What you should see if Git is available (do not paste this)"
+    A line that starts with `git version`. The number can differ.
+
+    ```
+    git version 2.34.1
+    ```
+
+!!! danger "What you see if Git is missing (do not paste this)"
+    ```
+    bash: git: command not found
+    ```
+
+If Git is missing, load it with the module system. The command needs no changes:
+
+```
+module load GCCcore/14.3.0 git/2.50.1
+```
+
+Then check again:
+
+```
+git --version
+```
+
+It should now print a line that starts with `git version`. If `module` says that it cannot find that module, type `module spider git` to list the versions that are installed, and load one of them together with the modules that the list says it needs.
+
+The module is loaded only in the terminal where you typed the command. In a new terminal, or after logging in again, load it again before you use Git. You do not need this step in the practice container, which has Git.
+
 ## Step 1: Tell Git who you are (once)
 
 The first two commands contain your own details. Change the capital letters before you paste.
