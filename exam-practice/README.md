@@ -76,7 +76,7 @@ Next: 1) exam-practice-check   2) exam-practice-setup (Git and GitHub)   3) exam
 [practice container] student@1a2b3c4d5e6f:~/work$
 ```
 
-Steps 6 to 9 are typed at this prompt. The container keeps running only while this window is open. Your files and your SSH key are kept between sessions in the volume called `exam-practice`. Work in `~/work`. The course exercise folders are in `~/exercises`.
+If your prompt does not begin with `[practice container]`, your image was built before that label was added and is out of date: type `exit` and follow "Updating" below before you go on. Steps 6 to 9 are typed at this prompt. The container keeps running only while this window is open. Your files and your SSH key are kept between sessions in the volume called `exam-practice`. Work in `~/work`. The course exercise folders are in `~/exercises`.
 
 ### 6. Run the check (in the container)
 
@@ -135,7 +135,7 @@ You do not repeat steps 1 to 4 or 7. Open Docker Desktop and wait until it is ru
 
 ## Getting a file out of the container (for example the zip for Canvas)
 
-Canvas accepts only `.zip` files, and your files are inside the container. The container is called `practice` (from `--name practice` in step 5), and a file that you make in `~/work` is at `/home/student/work` in it. To copy it to your own computer:
+Canvas accepts only `.zip` files, and your files are inside the container. The container is called `practice` (from `--name practice` in step 5), and a file that you make in `~/work` is at `/home/student/work` in it. For example, a zip made inside the exam repository `exam-msvensson` is at `/home/student/work/exam-msvensson/exam.zip`. To copy it to your own computer:
 
 1. Leave the container running in its terminal window. Do not type `exit` yet.
 2. Open a second terminal window on your own computer (not the Docker Desktop app) and go to the folder where you want the file, for example the folder that you will upload from.
@@ -145,7 +145,7 @@ Canvas accepts only `.zip` files, and your files are inside the container. The c
    docker cp practice:/home/student/work/exam.zip .
    ```
 
-   The dot at the end means the folder that the second terminal is in. The file appears there. Write the whole path `/home/student/work/...`: `~/work/...` does not work in this command.
+   The dot at the end means the folder that the second terminal is in. The file appears there. Write the whole path `/home/student/work/...`: `~/work/...` does not work in this command. `docker cp` copies a file or a whole folder, but Canvas needs a zip file, so make the zip first. If the container was not started with `--name practice`, use its ID in place of `practice`: it is the letters and numbers after `student@` in the container's prompt, or you can list it with `docker ps`.
 
 This works the same on macOS, Windows and Linux. It was tested on macOS and has not been tested on Windows or Linux.
 
@@ -168,7 +168,7 @@ Inside the container, `cp exam.zip /exam-out/`. The file appears in the folder `
 | `Cannot connect to the Docker daemon` | Docker Desktop is not running yet. Open it and wait. |
 | `open Dockerfile: no such file or directory` | You are in the wrong folder. Type `cd bioinformatics-hpc/exam-practice` and run the build again. |
 | `git: command not found` in step 4 | Git is not installed on your computer. Use Download ZIP instead. |
-| The prompt does not start with `[practice container]`, or `module: not found` | You are in your own computer's terminal, or in a different shell. Run the step 5 command. If you are in `sh` inside the container, type `bash`. |
+| The prompt does not start with `[practice container]`, or `module: not found` | You are in your own computer's terminal, in a different shell, or in an old image. If you are inside a container whose prompt is `student@...` without the label, the image is out of date: `exit`, then follow "Updating". Otherwise run the step 5 command. If you are in `sh` inside the container, type `bash`. |
 | `exam-practice-setup: command not found` | You are typing it in your own computer's terminal. It exists only in the container: run the step 5 command first. |
 | `the input device is not a TTY` (Windows, Git Bash) | Put `winpty` in front of the `docker run` command, or use PowerShell. |
 | `permission denied` on `docker` (Linux) | Put `sudo` in front, or add yourself to the `docker` group. |
@@ -179,7 +179,7 @@ Inside the container, `cp exam.zip /exam-out/`. The file appears in the folder `
 
 ## Updating
 
-If you built the image earlier, get the latest files and build again, then start as before. Run these in the `exam-practice` folder of your copy of the course repository, the folder that contains the file called `Dockerfile`, one at a time in your computer's terminal:
+If you built the image earlier, get the latest files and build again, then start as before. You need to update if the prompt of the container does not begin with `[practice container]`. Run these in the `exam-practice` folder of your copy of the course repository, the folder that contains the file called `Dockerfile`, one at a time in your computer's terminal:
 
 ```bash
 cd bioinformatics-hpc/exam-practice

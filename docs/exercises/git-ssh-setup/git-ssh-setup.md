@@ -44,6 +44,9 @@ echo "This is a command to paste exactly as it is"
 
 Paste one block at a time, press Enter, and wait for the prompt to come back before you paste the next block.
 
+!!! warning "Use straight quotation marks"
+    Commands use straight quotation marks, `"` and `'`. If you copy a command from a Word document, an email or a chat window, they can turn into curly ones, `“ ”` and `‘ ’`, and the command then fails with errors that seem unrelated. Copy commands from the boxes on the course pages instead of retyping them, and check any quotation marks that you type yourself. Do not swap one kind for the other: `$` and `\` mean something different inside double quotes than inside single quotes.
+
 ## The idea in one picture
 
 An SSH key is a **pair** of files. The *private* key stays on Kebnekaise and is never shared. The *public* key is a line of text that you give to GitHub once. Afterwards GitHub can check, every time you push, that you hold the matching private key, and no password is needed.

@@ -37,12 +37,15 @@ echo "This is a command to paste exactly as it is"
 
 Paste one block at a time, press Enter, and wait for the prompt to come back before you paste the next block.
 
+!!! warning "Use straight quotation marks"
+    Commands use straight quotation marks, `"` and `'`. If you copy a command from a Word document, an email or a chat window, they can turn into curly ones, `“ ”` and `‘ ’`, and the command then fails with errors that seem unrelated. Copy commands from the boxes on the course pages instead of retyping them, and check any quotation marks that you type yourself. Do not swap one kind for the other: `$` and `\` mean something different inside double quotes than inside single quotes.
+
 !!! warning "Where you type matters"
     Each step says where to type: on Kebnekaise, on your own computer, or in the practice container. Steps 1 to 3 are done where your files are. Step 4 has three routes; use the one that matches where your files are. In the practice container the prompt starts with `[practice container]`.
 
 ## Step 1: Go to the folder with your files (on Kebnekaise or in the container)
 
-For the exam this is your cloned exam repository. The next command contains your GitHub username, so change the capital letters before you paste. It assumes that you cloned the repository into the folder you are in now.
+For the exam this is your cloned exam repository. Do the rest of Steps 1 to 3 inside that folder, not in the folder above it. The next command contains your GitHub username, so change the capital letters before you paste. It assumes that you cloned the repository into the folder you are in now. In the practice container you can check where you are from the end of your prompt, which should be `exam-` followed by your GitHub username.
 
 !!! warning "Edit before you paste"
     ```
@@ -61,7 +64,23 @@ You should see your `README.md` and your output files or folders.
 
 ## Step 2: Make the zip file (on Kebnekaise or in the container)
 
-The exam asks for the README and the output files. Name them after `exam.zip`, separated by spaces. Use `-r` so that a folder is included with everything in it.
+The exam asks for your README and your output files. Make sure you are inside your exam repository folder (Step 1). The next command needs no changes. It puts everything in the folder into `exam.zip`, except the hidden `.git` folder, which holds your Git history (that is on GitHub already). The dot means "this folder", `-r` includes folders and what is inside them, and `-x ".git/*"` leaves `.git` out.
+
+```
+zip -r exam.zip . -x ".git/*"
+```
+
+!!! tip "What you should see (do not paste this)"
+    One line for each file or folder that was added, in any order. Your file names and the percentages will differ.
+
+    ```
+      adding: README.md (stored 0%)
+      adding: results/ (stored 0%)
+      adding: results/hits.txt (deflated 43%)
+      adding: blast_job.sh (stored 0%)
+    ```
+
+Only if you want some of the files, and not everything, use this command instead of the one above. Name the files after `exam.zip`, separated by spaces.
 
 !!! warning "Edit before you paste"
     ```
@@ -69,15 +88,6 @@ The exam asks for the README and the output files. Name them after `exam.zip`, s
     ```
 
     - `NAME_OF_AN_OUTPUT_FILE_OR_FOLDER`: the name of a file or folder to include, for example `results`. To include more, add their names after it, separated by spaces.
-
-!!! tip "What you should see (do not paste this)"
-    One line for each file or folder that was added. The percentages will differ.
-
-    ```
-      adding: README.md (stored 0%)
-      adding: results/ (stored 0%)
-      adding: results/hits.txt (deflated 43%)
-    ```
 
 Now check what is inside the zip file:
 
@@ -92,11 +102,12 @@ unzip -l exam.zip
     Archive:  exam.zip
       Length      Date    Time    Name
     ---------  ---------- -----   ----
-           17  09-20-2026 14:04   README.md
-            0  09-20-2026 14:04   results/
-          111  09-20-2026 14:04   results/hits.txt
+           17  09-21-2026 07:08   README.md
+            0  09-21-2026 07:08   results/
+          111  09-21-2026 07:08   results/hits.txt
+           20  09-21-2026 07:08   blast_job.sh
     ---------                     -------
-          128                     3 files
+          148                     4 files
     ```
 
 ## Step 3: Find the full path of the zip file (on Kebnekaise or in the container)
@@ -140,14 +151,18 @@ Open a terminal window on your own computer. This is not the Kebnekaise window: 
 
 ### Route C: from the practice container with `docker cp` (in a second terminal window)
 
-Leave the container running, in its own terminal window. Do not type `exit` yet. Open a second terminal window on your own computer (not the Docker Desktop app), and go to the folder where you want the file. Then paste the command below. It assumes that the container was started with the name `practice`, as in the [practice image guide](https://github.com/hpc2n/bioinformatics-hpc/tree/main/exam-practice), and that your zip file is in `/home/student/work`. The dot at the end means the folder that this second terminal is in.
+Leave the container running, in its own terminal window. Do not type `exit` yet. Open a second terminal window on your own computer (not the Docker Desktop app), and go to the folder where you want the file. Then paste the command below. It assumes that the container was started with the name `practice`, as in the [practice image guide](https://github.com/hpc2n/bioinformatics-hpc/tree/main/exam-practice), and that you cloned your exam repository in the container's default folder, `~/work`, and made the zip in it (Steps 1 and 2). The dot at the end means the folder that this second terminal is in.
 
 !!! warning "Edit before you paste"
     ```
-    docker cp practice:/home/student/work/exam.zip .
+    docker cp practice:/home/student/work/exam-YOUR_GITHUB_USERNAME/exam.zip .
     ```
 
-    - If your zip file is in a folder inside `/home/student/work`, add the folder name after `work/`, for example `/home/student/work/exam-msvensson/exam.zip`. Write out the whole path: `~/work` does not work in this command.
+    - `YOUR_GITHUB_USERNAME`: your GitHub username, for example `msvensson`. Write out the whole path: `~/work` does not work in this command.
+
+`docker cp` copies a single file or a whole folder, but Canvas accepts only a zip file, so make the zip first (Step 2).
+
+If the container was not started with the name `practice` (older versions of the guide did not use it), replace `practice` in the command with the container's ID. The ID is the letters and numbers after `student@` in the prompt of the container window, for example `1a2b3c4d5e6f`. You can also find the name or the ID by typing `docker ps` in the second terminal window.
 
 ## Step 5: Upload the zip file to Canvas (in your web browser)
 
