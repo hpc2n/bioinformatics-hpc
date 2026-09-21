@@ -23,3 +23,26 @@ jobs:
         run: docker run --rm -v "$PWD/exam-practice/tests:/tests:ro" exam-practice bash -ic '/tests/smoke.sh'
       - name: Setup check without the parts that need a student's GitHub key or the internet services
         run: docker run --rm exam-practice bash -ic 'exam-practice-check --skip-github --skip-web'
+
+  # The exam room will not allow Docker, so the same image is converted to an Apptainer file and tested as an ordinary user.
+  apptainer:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: docker build -t exam-practice exam-practice
+      - name: Install Apptainer
+        run: |
+          curl -fsSL -o apptainer.deb https://github.com/apptainer/apptainer/releases/download/v1.5.3/apptainer_1.5.3_amd64.deb
+          sudo apt-get update -qq
+          sudo apt-get install -y ./apptainer.deb
+          apptainer --version
+      - name: Convert the Docker image to an Apptainer file
+        run: |
+          docker save exam-practice -o exam-practice.tar
+          apptainer build exam-practice.sif docker-archive://exam-practice.tar
+          ls -l exam-practice.sif
+      - name: Smoke test under Apptainer (ordinary user, default mount)
+        run: apptainer exec -B "$PWD/exam-practice/tests:/tests:ro" exam-practice.sif bash -ic '/tests/smoke.sh'
+      - name: Setup check under Apptainer
+        run: apptainer exec exam-practice.sif bash -ic 'exam-practice-check --skip-github --skip-web'
