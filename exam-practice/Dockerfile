@@ -21,7 +21,7 @@ RUN set -eux; \
     esac; \
     T="ncbi-blast-${BLAST_VERSION}+-${A}.tar.gz"; \
     U="https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${BLAST_VERSION}"; \
-    cd /tmp; curl -fsSLO "$U/$T"; curl -fsSLO "$U/$T.md5"; \
+    cd /tmp; curl -fsSLO --retry 3 --retry-delay 5 --connect-timeout 30 "$U/$T"; curl -fsSLO --retry 3 --retry-delay 5 --connect-timeout 30 "$U/$T.md5"; \
     md5sum -c "$T.md5"; \
     tar xzf "$T" -C /opt; mv "/opt/ncbi-blast-${BLAST_VERSION}+" /opt/blast; \
     rm -f "$T" "$T.md5"
@@ -29,15 +29,17 @@ RUN set -eux; \
 # Swiss-Prot BLAST database at the same path as on Kebnekaise, so job scripts work unchanged.
 # This is the current UniProt release, not the 13 Aug 2026 course copy, so hits and E-values can differ slightly.
 ENV DBDIR=/proj/nobackup/cddb_course/databases/swissprot
-# The EBI copy of the UniProt FTP site is tried first and the UniProt site second: the UniProt site can be unreachable
-# from some networks (a student's build failed with "SSL connection timeout"). Each download is retried, and the file is
-# checked with gzip -t before it is unpacked, so that a partial download stops the build with a clear error.
+# Three copies of the UniProt FTP site are tried in turn: the Expasy (SIB) mirror, the EBI copy and the UniProt site. Each of
+# them has been unreachable at times (a student's build failed with "SSL connection timeout", and the build on GitHub failed
+# when both the EBI and the UniProt sites timed out). The timeouts are short so that a dead site costs seconds, each download
+# is retried, and the file is checked with gzip -t before it is unpacked, so that a partial download stops the build with a clear error.
 RUN set -eux; mkdir -p "$DBDIR"; cd "$DBDIR"; \
-    for base in https://ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/complete \
+    for base in https://ftp.expasy.org/databases/uniprot/current_release/knowledgebase/complete \
+                https://ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/complete \
                 https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete; do \
-        if curl -fsSL --connect-timeout 30 --max-time 900 --retry 3 --retry-delay 5 -o uniprot_sprot.fasta.gz "$base/uniprot_sprot.fasta.gz" \
+        if curl -fsSL --connect-timeout 15 --max-time 900 --retry 2 --retry-delay 5 -o uniprot_sprot.fasta.gz "$base/uniprot_sprot.fasta.gz" \
            && gzip -t uniprot_sprot.fasta.gz \
-           && curl -fsSL --connect-timeout 30 --max-time 60 --retry 3 --retry-delay 5 -o RELEASE.txt "$base/reldate.txt"; then break; fi; \
+           && curl -fsSL --connect-timeout 15 --max-time 60 --retry 2 --retry-delay 5 -o RELEASE.txt "$base/reldate.txt"; then echo "used $base" >&2; break; fi; \
         echo "download from $base failed, trying the next site" >&2; rm -f uniprot_sprot.fasta.gz RELEASE.txt; \
     done; \
     test -s uniprot_sprot.fasta.gz && test -s RELEASE.txt; \
