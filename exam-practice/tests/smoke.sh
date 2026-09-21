@@ -36,6 +36,8 @@ check "exam-practice-setup is installed"        bash -c 'command -v exam-practic
 check "exam-practice-check is installed"        bash -c 'command -v exam-practice-check'
 check "the prompt starts with [practice container]" bash -c 'PROMPT_COMMAND=$(grep -h "^PROMPT_COMMAND" /etc/bash.bashrc | tail -1 | cut -d= -f2- | tr -d "\047"); eval "$PROMPT_COMMAND"; case "$PS1" in "[practice container]"*) true;; *) false;; esac'
 check "the banner names the two commands"       bash -c 'grep -q "exam-practice-setup" /etc/bash.bashrc'
+check "~/work exists"                           test -d "$HOME/work"
+check "a shell started in the home folder moves to ~/work" bash -c 'cd "$HOME" && [ "$(bash -ic pwd 2>/dev/null | tail -1)" = "$HOME/work" ]'
 check "exercises are seeded"                    test -f "$HOME/exercises/06.linux-intro/patterns/myfile1.txt"
 
 echo "File-format example data (dummy files)"

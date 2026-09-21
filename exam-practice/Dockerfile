@@ -95,12 +95,16 @@ RUN sed -i 's/\r$//' /etc/profile.d/hpc2n-shim.sh /usr/local/bin/slurm-shim /usr
     printf '\n[ -f /etc/profile.d/hpc2n-shim.sh ] && . /etc/profile.d/hpc2n-shim.sh\n' >> /etc/bash.bashrc; \
     printf '%s\n' \
         '[ -d "$HOME/exercises" ] || cp -r /opt/exercises-seed "$HOME/exercises"' \
+        '[ -d "$HOME/work" ] || mkdir -p "$HOME/work"' \
+        'if [ "$PWD" = "$HOME" ]; then cd "$HOME/work"; fi' \
         'if [ -z "$PRACTICE_MOTD_SHOWN" ]; then export PRACTICE_MOTD_SHOWN=1;' \
         '  echo "You are INSIDE the practice container: the prompt starts with [practice container]."' \
         '  echo "This is not Kebnekaise: module and Slurm are imitated. Work in ~/work. When you have finished working, type exit to leave."' \
         '  echo "Next: 1) exam-practice-check   2) exam-practice-setup (Git and GitHub)   3) exam-practice-check again"; fi' >> /etc/bash.bashrc; \
     printf '%s\n' "PROMPT_COMMAND='PS1=\"[practice container] \\u@\\h:\\w\\\$ \"'" >> /etc/bash.bashrc
 
+# Under Apptainer the home folder is the user's own and not /home/student, so ~/work is created on the first shell and a
+# shell that starts in the home folder moves into it (under Docker the container already starts in ~/work).
 # A user with the same layout as on the cluster: the working folder is below the course students/ folder
 RUN useradd -m -s /bin/bash student; \
     mkdir -p /proj/nobackup/cddb_course/students /home/student/work; \
