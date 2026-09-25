@@ -274,9 +274,10 @@ JOB_ID=$(curl -s -X POST "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/ru
 
 echo "Job submitted. Job ID: $JOB_ID"
 
-# Poll until the search is ready
+# Poll until the search is ready. Check every 30 seconds, not more often:
+# EBI asks users to avoid unnecessary polling, which adds load to the shared service
 while true; do
-  sleep 5
+  sleep 30
   STATUS=$(curl -s "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/status/${JOB_ID}")
   echo "$STATUS"
   [ "$STATUS" = "FINISHED" ] && break
