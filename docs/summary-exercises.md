@@ -32,7 +32,7 @@ Use the [Database Landscape handout](11.database-landscape/database-landscape.md
 Use the [File Formats handout](13.file-formats/file-formats.md) to:
 
 - Complete any FASTQ, BAM, VCF, or GTF exercises not yet finished
-- Try the coordinate system exercise — confirm you can correctly convert between 0-based (BED) and 1-based (VCF/GTF) coordinates for a specific variant
+- Check that you can convert between coordinate systems. Take the first variant in `variants.vcf` (in the Lecture 13 example files folder) and write down the BED line for that single base. VCF `POS` is 1-based; in BED, `chromStart` is `POS` − 1 and `chromEnd` is `POS`. Then check your answer by running this in the same folder: `awk -v OFS='\t' '!/^#/ {print $1, $2-1, $2}' variants.vcf | head -1`
 
 ### 3. FAIR and open science
 
