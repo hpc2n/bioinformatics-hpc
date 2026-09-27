@@ -1,4 +1,4 @@
-# Extra exercises 
+# Model solutions for Extra exercises 
 
 These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later.
 
