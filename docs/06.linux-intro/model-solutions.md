@@ -7,13 +7,43 @@ Note that many of the exercises have several correct answers.
 ## The Linux File System - Wildcards
 
 1. Using wildcards, match all file names that begin with `thisfile`, followed by one or more numbers, and end with `.txt` 
-Answer: 
+- Answer: 
 ```bash
 thisfile?*.txt
 ```
 - NOTE: You can test with `ls thisfile?*.txt`
+```bash
+$ ls thisfile?*.txt
+thisfile0.txt   thisfile1.txt  thisfile3.txt  thisfile5.txt  thisfile7.txt  thisfile9.txt
+thisfile10.txt  thisfile2.txt  thisfile4.txt  thisfile6.txt  thisfile8.txt
+```
 2. Using wildcards, match all file names with a number in them. 
+- Answer:
+```bash
+*[0-9]*
+```
+- NOTE: You can test with `ls *[0-9]*`
+```bash
+$ ls *[0-9]* 
+1file.c      myfile1.txt  thisfile0.txt   thisfile2.txt  thisfile5.txt  thisfile8.txt
+file.c1      myfile2.txt  thisfile10.txt  thisfile3.txt  thisfile6.txt  thisfile9.txt
+myfile0.txt  myfile3.txt  thisfile1.txt   thisfile4.txt  thisfile7.txt
+
+dir1:
+dir3  fil3.txt  fil4.txt
+
+dir2:
+```
 3. Using wildcards, match all file names that has a `0` in them. 
+- Answer:
+```bash
+*0*
+```
+- NOTE: You can test with `ls *0*`
+```bash
+$ ls *0* 
+myfile0.txt  thisfile0.txt  thisfile10.txt
+```
 
 More about wildcards here: <a href="https://hpc2n.github.io/bioinformatics-hpc/06.linux-intro/filesystem/#wild__cards" target="_blank">https://hpc2n.github.io/bioinformatics-hpc/06.linux-intro/filesystem/#wild__cards</a>
 
