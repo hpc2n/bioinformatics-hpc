@@ -189,12 +189,8 @@ More about wildcards here: <a href="https://hpc2n.github.io/bioinformatics-hpc/0
     - Answer: 
     ```bash
     $ grep string *
-    grep: dir1: Is a directory
-    grep: dir2: Is a directory
-    newfile.txt:This is a file with some <font color=red>string</font>s. How many instances of string are there?
-    newfile.txt:So many times string!
-    newfile.txt:String string string!
     ```
+    <img src="../images/grepstring.png">
     ```bash
     $ grep text *
     grep: dir1: Is a directory
