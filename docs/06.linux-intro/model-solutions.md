@@ -198,20 +198,11 @@ More about wildcards here: <a href="https://hpc2n.github.io/bioinformatics-hpc/0
     ```bash
     $ grep -i string *
     ```
-    <img src="../../images/grepistring.png">
+    <img src="../../images/grepistrings.png">
     ```bash
     $ grep -i text *
-    grep: dir1: Is a directory
-    grep: dir2: Is a directory
-    myfile1.txt:I am adding some text here
-    myfile1.txt:Just to have some text
-    myfile2.txt:I also need some text here. 
-    myfile2.txt:Nice to have text.
-    myfile3.txt:Aaaand some text here as well. 
-    myfile3.txt:Just adding some text.
-    myfile3.txt:And more text.
-    myfile3.txt:And just a liiiitle more text. 
     ```
+    <img src="../../images/grepitext.png">
 3. Standing in the top level directory of exercise directories for the "Introduction to Linux" section (`exercises/06.linux-intro`), use find to find all files with the suffix `.txt`. 
     - Answer: 
     ```bash
@@ -251,22 +242,48 @@ More about wildcards here: <a href="https://hpc2n.github.io/bioinformatics-hpc/0
     - Answer: 
     ```bash
     $ grep A* myfile3.txt 
-Aaaand some text here as well. 
-Should I have more lines? Probably.
-This is going to be a slightly longer file.
-But not hugely long.
-Just adding some text.
-And more text.
-And just a liiiitle more text. 
+    ```
+    <img src="../../images/grepA.png"> 
 
 ## Linux tools: awk 
 
 The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `myfile.txt` which are useful for these exercises. 
 
 1. Search for the pattern `omnivore` in the file `file.dat` and print out the line. 
+    - Answer: 
+    ```bash
+    $ awk '/omnivore/ {print$1}' file.dat 
+    dog
+    magpie
+    ```
 2. Search for the pattern `is` in the file `myfile.txt` and print out the second column of lines with that pattern. 
+    - Answer: 
+    ```bash
+    $ awk '/is/ {print $2}' myfile.txt
+    it
+    is
+    file
+    file
+    ```
+    - Note: Look at the file <a href="https://raw.githubusercontent.com/hpc2n/bioinformatics-hpc/refs/heads/main/exercises/06.linux-intro/awk-qol/myfile.txt" target="_blank">`myfile.txt`</a>; you can see that the *'pattern* `is` exists in the last few lines, namely in the word `this`. 
 3. Print column 1 and 4 from file `file.dat`, but only those rows that contain the letter ‘v’. 
+    - Answer
+    ```bash
+    $ awk '/v/ {print $1 "\t" $4}' file.dat
+    cat	3
+    dog	2
+    wolf	4
+    rabbit	1
+    magpie	3
+    gecko	4
+    cow	3
+    python	5
+    ```
 4. Print all lines of `file.dat` that has more than 20 characters 
+    - Answer: 
+    ```bash
+    $ awk 'length($0) > 20' file.dat
+    ```
 
 ## Scripting 
 
@@ -282,9 +299,14 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
 
       echo $GREETING
       ```
+      <img src=../../images/script.png">
     - Save 
-    - Set the executable permissions: ``chmod +x hello.se``
-    - Run the script. 
+    - Set the executable permissions: ``chmod +x hello.sh``
+    - Run the script.
+      ```bash
+      $ ./hello.sh 
+      Hello, Linux Learner!
+      ```   
 2. Create a script that asks for input and does something with it: 
     - With any editor, open the new file `addinput.sh`.
     - Enter the following into the editor:
@@ -303,8 +325,21 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
 
       echo "The sum is: $SUM" 
       ```
+      <img src=../../images/script.png">
     - Save and set correct permissions, then run it. 
+      ```bash
+      $ chmod +x addinput.sh 
+      $ ./addinput.sh 
+      This program adds integers.
+      What is the first integer? 
+      23
+      What is the second integer? 
+      32
+      The sum is: 55
+      ```
 3. Combine the two programs to create a program that asks for your name and then says ``Hello, <your-name>!``. 
+    - Answer: 
+      <img src=../../images/helloname.png">
 4. Create a script that uses IF-ELSE to say if a number is less or greater that 2026. 
     - With any editor, open the new file `ifelse.sh`
       ```bash
@@ -323,4 +358,17 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
       fi
       ```
     - Save. Set executable permissions. Run the script. 
-
+    - Answer: 
+      <img src=../../images/ifelse.png">
+      ```bash
+      $ ./ifelse.sh 
+      Enter a number:
+      4
+      This number is not greater than 2026.
+      ```
+      ```bash
+      $ ./ifelse.sh 
+      Enter a number:
+      14567
+      This is greater than 2026!
+      ```
