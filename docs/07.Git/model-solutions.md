@@ -81,7 +81,7 @@ These exercises can be done on your own.
     - Solve the problem with `git pull --rebase` and `git push`
     - Answer: 
       <img src="../../images/create-file-repo.png">
-      Click the "Create new file" imder "Add file"
+      Click the "Create new file" under "Add file"
       <img src="../../images/created-on-repo.png">
       Click "Commit changes ..." 
       Go to command line: 
