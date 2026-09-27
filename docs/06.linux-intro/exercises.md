@@ -4,7 +4,7 @@ These exercises are meant as extra (optional) training and can be done either du
 
 Useful files for these examples are found in `exercises/06.linux-intro/patterns` from the tarball, except for the two last sections which mainly uses `exercises/06.linux-intro/awk-qol` and `exercises/06.linux-intro/script`.
 
-Model solutions to these exercises can be found in [model solutions](model-solutions). 
+Model solutions to these exercises can be found in [model solutions](../model-solutions). 
  
 ## The Linux File System - Wildcards
 
