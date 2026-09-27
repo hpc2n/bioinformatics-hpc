@@ -2,6 +2,8 @@
 
 These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later.
 
+You find the [module solutions for these exercises here](../module-solutions]
+
 ## Finding existing modules  
 
 1. Finding versions
