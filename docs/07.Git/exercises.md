@@ -2,6 +2,8 @@
 
 These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later.
 
+You can find [model solutions to the exercises here](../model-solutions). 
+
 ## On your own 
 
 These exercises can be done on your own. 
