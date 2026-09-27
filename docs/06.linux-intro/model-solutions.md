@@ -190,28 +190,15 @@ More about wildcards here: <a href="https://hpc2n.github.io/bioinformatics-hpc/0
     ```bash
     $ grep string *
     ```
-    <img src="../images/grepstring.png">
+    <img src="../../images/grepstring.png">
     ```bash
     $ grep text *
-    grep: dir1: Is a directory
-    grep: dir2: Is a directory
-    myfile1.txt:I am adding some text here
-    myfile1.txt:Just to have some text
-    myfile2.txt:I also need some text here. 
-    myfile2.txt:Nice to have text.
-    myfile3.txt:Aaaand some text here as well. 
-    myfile3.txt:Just adding some text.
-    myfile3.txt:And more text.
-    myfile3.txt:And just a liiiitle more text. 
     ```
+    <img src="../../images/greptext.png">
     ```bash
     $ grep -i string *
-    grep: dir1: Is a directory
-    grep: dir2: Is a directory
-    newfile.txt:This is a file with some strings. How many instances of string are there?
-    newfile.txt:So many times string!
-    newfile.txt:String string string! 
     ```
+    <img src="../../images/grepistring.png">
     ```bash
     $ grep -i text *
     grep: dir1: Is a directory
