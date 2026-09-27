@@ -299,7 +299,7 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
 
       echo $GREETING
       ```
-      <img src=../../images/script.png">
+      <img src="../../images/script.png">
     - Save 
     - Set the executable permissions: ``chmod +x hello.sh``
     - Run the script.
@@ -325,7 +325,7 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
 
       echo "The sum is: $SUM" 
       ```
-      <img src=../../images/script.png">
+      <img src="../../images/script.png">
     - Save and set correct permissions, then run it. 
       ```bash
       $ chmod +x addinput.sh 
@@ -339,7 +339,7 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
       ```
 3. Combine the two programs to create a program that asks for your name and then says ``Hello, <your-name>!``. 
     - Answer: 
-      <img src=../../images/helloname.png">
+      <img src="../../images/helloname.png">
 4. Create a script that uses IF-ELSE to say if a number is less or greater that 2026. 
     - With any editor, open the new file `ifelse.sh`
       ```bash
@@ -359,7 +359,7 @@ The directory `exercises/06.linux-intro/awk-qol` has two files `file.dat` and `m
       ```
     - Save. Set executable permissions. Run the script. 
     - Answer: 
-      <img src=../../images/ifelse.png">
+      <img src="../../images/ifelse.png">
       ```bash
       $ ./ifelse.sh 
       Enter a number:
