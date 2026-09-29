@@ -300,7 +300,7 @@ SEQ=$(cat TP53_protein.fasta)
 
 # Check what is in the variable. Use echo for a variable; cat is for files
 echo "$SEQ" | head -3    # the header and the start of the sequence
-echo ${#SEQ}             # its length in characters; 0 means it is empty
+printf '%s' "$SEQ" | wc -c    # its length in characters; 0 means it is empty
 
 JOB_ID=$(curl -s -X POST "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/run" \
   --data-urlencode "email=your@email.se" \
