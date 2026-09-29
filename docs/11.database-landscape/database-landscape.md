@@ -275,7 +275,7 @@ Most databases have a primary citation paper. Using a database without citing it
 
 ## 7. Hands-On Exercise: Your First Programmatic Database Query
 
-**Objective:** Retrieve biological sequences from NCBI and UniProt using the command line, parse the results with Linux tools, and commit your work to Git. By the end of this exercise, you will have performed a complete data retrieval workflow using real programmatic database access — the same approach used in production bioinformatics pipelines.
+**Objective:** Retrieve a protein from UniProt, follow its cross-reference to the matching mRNA record in NCBI, and retrieve that record, all from the command line; then parse the results with Linux tools and commit your work to Git. This protein-to-mRNA order is how you will usually work when you start from a protein of interest. By the end of this exercise, you will have performed a complete data retrieval workflow using real programmatic database access — the same approach used in production bioinformatics pipelines.
 
 **Prerequisites:** You should be logged in to Kebnekaise via OnDemand. All commands below run in a terminal session.
 
@@ -304,7 +304,55 @@ git commit -m "initial commit: lecture11 exercise setup"
 
 ---
 
-### Part B — Fetching a sequence from NCBI Entrez
+### Part B — Fetching a protein from UniProt
+
+UniProt provides a REST API at `https://rest.uniprot.org/`. UniProt accession numbers are alphanumeric (e.g., `P04637` for human TP53).
+
+```bash
+# Fetch the human TP53 protein sequence from UniProt in FASTA format
+curl "https://rest.uniprot.org/uniprotkb/P04637.fasta" \
+> TP53_protein.fasta
+
+# Inspect the header
+head -3 TP53_protein.fasta
+
+# Count the amino acids (exclude the header line, remove newlines, count characters)
+grep -v ">" TP53_protein.fasta | tr -d '\n' | wc -c
+```
+
+*Questions: How many amino acids does human TP53 have? What information is encoded in each field of the UniProt FASTA header?*
+
+**Fetch the full UniProt entry in text format to see the annotation:**
+
+```bash
+curl "https://rest.uniprot.org/uniprotkb/P04637.txt" > TP53_protein.txt
+
+# Is this a Swiss-Prot (reviewed) or TrEMBL (unreviewed) entry?
+grep "^ID" TP53_protein.txt
+
+# What GO terms are associated with TP53?
+grep "^DR   GO;" TP53_protein.txt | head -10
+
+# What evidence codes are used?
+grep "^DR   GO;" TP53_protein.txt | grep -o "IDA\|IEA\|IMP\|ISS\|IPI\|EXP" | sort | uniq -c
+```
+
+**Find the RefSeq mRNA records for this protein.** A UniProt entry is cross-referenced to other databases in its `DR` lines. The `DR   RefSeq` lines link the protein to NCBI's RefSeq records:
+
+```bash
+# Which RefSeq records does UniProt link to this protein?
+grep "^DR   RefSeq" TP53_protein.txt
+```
+
+Each line gives a RefSeq protein accession (starting `NP_`) and the mRNA that encodes it (starting `NM_`). The part in square brackets is the UniProt isoform that the record encodes. The first line lists `NM_000546.6`, the accession you fetch from NCBI in Part C. When you copy an `NM_` accession, keep its version number (for example `.6`) but leave out the full stop that ends the line.
+
+*Question: How many RefSeq mRNA records does UniProt list for TP53, and why might one protein have several?*
+
+> NCBI's commands in Part C need an NCBI accession such as `NM_000546.6`. They do not accept a UniProt accession such as `P04637`: to go from a protein in UniProt to its mRNA in NCBI, you look up the cross-reference as above.
+
+---
+
+### Part C — Fetching the mRNA record from NCBI Entrez
 
 NCBI provides a web API called **Entrez Utilities (E-utilities)** that allows programmatic access to all NCBI databases. The base URL is:
 
@@ -314,7 +362,7 @@ The two most useful endpoints are:
 - `efetch.fcgi` — retrieve a specific record by accession
 - `esearch.fcgi` — search a database and return accession numbers
 
-**Step 1:** Fetch the RefSeq mRNA record for human *TP53* (accession `NM_000546.6`) in FASTA format:
+**Step 1:** Fetch the RefSeq mRNA record for human *TP53* that you found in the UniProt cross-references in Part B (accession `NM_000546.6`), in FASTA format:
 
 ```bash
 curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NM_000546.6&rettype=fasta&retmode=text" > TP53_mRNA.fasta
@@ -338,7 +386,7 @@ wc -c TP53_mRNA.fasta
 wc -l TP53_mRNA.fasta
 ```
 
-*Questions to consider: What information is in the FASTA header line? What does the accession number format tell you about this record?*
+*Questions to consider: What information is in the FASTA header line, and how does it differ from the UniProt FASTA header in Part B? What does the accession number format tell you about this record?*
 
 **Step 3:** Now fetch the same record in **GenBank format** — a richer format that includes extensive metadata:
 
@@ -350,41 +398,6 @@ grep "DEFINITION\|SOURCE\|ORGANISM\|KEYWORDS\|COMMENT" TP53_mRNA.gb
 ```
 
 *Questions: What additional information does the GenBank format provide compared to FASTA? Can you find the gene name, organism, and a description of what this transcript encodes?*
-
----
-
-### Part C — Fetching a protein from UniProt
-
-UniProt provides a REST API at `https://rest.uniprot.org/`. UniProt accession numbers are alphanumeric (e.g., `P04637` for human TP53).
-
-```bash
-# Fetch the human TP53 protein sequence from UniProt in FASTA format
-curl "https://rest.uniprot.org/uniprotkb/P04637.fasta" \
-> TP53_protein.fasta
-
-# Inspect the header
-head -3 TP53_protein.fasta
-
-# Count the amino acids (exclude the header line, remove newlines, count characters)
-grep -v ">" TP53_protein.fasta | tr -d '\n' | wc -c
-```
-
-*Questions: How many amino acids does human TP53 have? How does the UniProt FASTA header format differ from the NCBI FASTA header? What information is encoded in each field?*
-
-**Fetch the full UniProt entry in text format to see the annotation:**
-
-```bash
-curl "https://rest.uniprot.org/uniprotkb/P04637.txt" > TP53_protein.txt
-
-# Is this a Swiss-Prot (reviewed) or TrEMBL (unreviewed) entry?
-grep "^ID" TP53_protein.txt
-
-# What GO terms are associated with TP53?
-grep "^DR   GO;" TP53_protein.txt | head -10
-
-# What evidence codes are used?
-grep "^DR   GO;" TP53_protein.txt | grep -o "IDA\|IEA\|IMP\|ISS\|IPI\|EXP" | sort | uniq -c
-```
 
 ---
 

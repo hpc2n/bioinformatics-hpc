@@ -14,4 +14,5 @@ blastp \
   -out TP53_blastp_local.txt \
   -outfmt 6 -evalue 1e-5 -num_threads 4 -max_target_seqs 50
 echo "BLAST complete: $(date)"
-sort -k11 -n TP53_blastp_local.txt | head -10
+# BLAST lists the hits best first, so the first lines are the top hits
+head -10 TP53_blastp_local.txt

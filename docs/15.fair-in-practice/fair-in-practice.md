@@ -117,7 +117,7 @@ git commit -m "initial commit: lecture15 FAIR practical exercises"
 # Exercises 1D and 1E need the TP53 protein sequence as a local file.
 # This is the same accession fetched in Lecture 11, but re-fetch it here
 # rather than relying on that lecture's separate working directory still
-# being around - the same command as Lecture 11, Part C.
+# being around - the same command as Lecture 11, Part B.
 curl "https://rest.uniprot.org/uniprotkb/P04637.fasta" > TP53_protein.fasta
 ```
 
@@ -241,12 +241,45 @@ EOF
 sbatch blast_tp53.sh
 squeue -u $USER
 
-# Once complete, inspect tabular output (format 6)
-# Columns: qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore
-head -20 TP53_blastp_local.txt
-sort -k11 -n TP53_blastp_local.txt | head -20
-awk '$11 < 1e-10' TP53_blastp_local.txt | wc -l
+# Once complete, inspect the tabular output (format 6)
+head -5 TP53_blastp_local.txt
 ```
+
+**Reading the tabular output.** Format 6 has one line per hit and 12 columns, separated by tabs. The columns have no header, so you refer to them by number:
+
+| Column | Name | Meaning | Column | Name | Meaning |
+|---|---|---|---|---|---|
+| 1 | qseqid | your query | 7 | qstart | start of the match in the query |
+| 2 | sseqid | the hit (subject) | 8 | qend | end of the match in the query |
+| 3 | pident | percent identity | 9 | sstart | start of the match in the hit |
+| 4 | length | alignment length | 10 | send | end of the match in the hit |
+| 5 | mismatch | number of mismatches | 11 | evalue | E-value |
+| 6 | gapopen | number of gap openings | 12 | bitscore | bit score |
+
+```bash
+# Show only the columns you need: hit, percent identity, E-value, bit score
+cut -f2,3,11,12 TP53_blastp_local.txt | head -5
+
+# BLAST already lists the hits best first, so the top 3 hits are simply
+# the first three lines - no sorting needed
+head -3 TP53_blastp_local.txt
+
+# How many hits have an E-value below 1e-10?
+awk -F'\t' '$11 < 1e-10' TP53_blastp_local.txt | wc -l
+
+# Sort by E-value, smallest first. -t$'\t' splits on tabs, -k11,11 uses
+# column 11 only, and g ("general numeric") understands e-notation
+sort -t$'\t' -k11,11g TP53_blastp_local.txt | head -5
+
+# Sort by percent identity, largest first (r = reverse)
+sort -t$'\t' -k3,3gr TP53_blastp_local.txt | head -5
+```
+
+Three things to watch for when sorting:
+
+- `sort -n` does not understand e-notation. It reads `2.1e-150` as 2.1 and `1.1e-90` as 1.1, so it puts `1.1e-90` first. Use `g` for E-values.
+- `sort` puts the smallest values first. For percent identity or bit score, where larger is better, add `r`.
+- For a well-conserved protein many hits have an E-value of exactly `0.0`. Sorting by E-value then puts those hits in alphabetical order, not in order of quality. BLAST's own order, from the bit score, is the one to use for "top hits": that is why `head -3` of the unsorted file is the answer.
 
 *Questions to answer in your README:*
 - How does the setup effort compare to the website approach — and how does that change once the database and script already exist?
@@ -265,6 +298,10 @@ Two ways to submit a BLAST search programmatically:
 # reuse the TP53_protein.fasta file you already have from Exercise 1D
 SEQ=$(cat TP53_protein.fasta)
 
+# Check what is in the variable. Use echo for a variable; cat is for files
+echo "$SEQ" | head -3    # the header and the start of the sequence
+echo ${#SEQ}             # its length in characters; 0 means it is empty
+
 JOB_ID=$(curl -s -X POST "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/run" \
   --data-urlencode "email=your@email.se" \
   --data-urlencode "program=blastp" \
@@ -273,6 +310,15 @@ JOB_ID=$(curl -s -X POST "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/ru
   --data-urlencode "sequence=${SEQ}")
 
 echo "Job submitted. Job ID: $JOB_ID"
+```
+
+Do not use `cat $SEQ` to check the variable: `cat` opens files, so it treats every word of the sequence as a file name and prints `No such file or directory` for each one. If the variable is wrong, run the `SEQ=$(cat ...)` line again; it replaces the old value.
+
+In each `--data-urlencode` line, the field name ends in `=`, as in `email=...` and `sequence=...`. The form `name@file` means "read the value from this file", so a typo in a file name, or `email@` instead of `email=`, gives the error `option --data-urlencode: error encountered when reading a file`. The error does not say which line caused it.
+
+A job ID looks like `ncbiblast-R20260924-204334-0606-96444088-p1m`. If `echo` shows an HTML page or an error message instead, the service did not accept the job: note the message and try once more after a few minutes.
+
+```bash
 
 # Poll until the search is ready. Check every 30 seconds, not more often:
 # EBI asks users to avoid unnecessary polling, which adds load to the shared service
@@ -284,14 +330,21 @@ while true; do
   [ "$STATUS" = "FAILURE" ] && { echo "Job failed"; break; }
 done
 
-# Retrieve results — "out" is plain text; "json", "ids" and other formats
-# are also available (see .../resulttypes/${JOB_ID} for the full list)
+# Retrieve the results as a table: "tsv" gives one line per hit, best
+# first, with a header line that names the columns
+curl -s "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/result/${JOB_ID}/tsv" \
+  > TP53_blastp_swissprot.tsv
+head -4 TP53_blastp_swissprot.tsv    # the header and the top 3 hits
+
+# The same results as BLAST's full text report, with the alignments;
+# "json", "ids" and other formats are also available
+# (see .../resulttypes/${JOB_ID} for the full list)
 curl -s "https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/result/${JOB_ID}/out" \
   > TP53_blastp_swissprot.txt
-
-grep "^>" TP53_blastp_swissprot.txt | head -10
 grep "Score\|Expect\|Identities" TP53_blastp_swissprot.txt | head -20
 ```
+
+The `tsv` result names its columns in the first line (`Hit`, `Accession`, `Description`, `Identities(%)`, `E()` and others), and its columns are not the same as those of the local format-6 output. The `Description` column contains spaces, so use `cut -f` or `awk -F'\t'`, which split on tabs, to pick columns from it. The text report (`out`) is not a table at all: column numbers do not apply to it.
 
 **A note on NCBI's BLAST API:** NCBI (https://blast.ncbi.nlm.nih.gov/) offers a comparable, fully documented API using the same submit/poll/retrieve pattern (`CMD=Put` / `CMD=Get` against `Blast.cgi` — see NCBI's [BLAST URL API documentation](https://blast.ncbi.nlm.nih.gov/doc/blast-help/urlapi.html)). It is a legitimate resource and worth trying in your own time, but it is a shared, best-effort queue layered on the public BLAST website's own CGI script, with no documented turnaround guarantee — the same query used here has been observed to take anywhere from under a minute to well over 30 minutes depending on server load. That variability is exactly why this exercise uses EBI's API instead.
 
