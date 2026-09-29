@@ -281,6 +281,8 @@ Three things to watch for when sorting:
 - `sort` puts the smallest values first. For percent identity or bit score, where larger is better, add `r`.
 - For a well-conserved protein many hits have an E-value of exactly `0.0`. Sorting by E-value then puts those hits in alphabetical order, not in order of quality. BLAST's own order, from the bit score, is the one to use for "top hits": that is why `head -3` of the unsorted file is the answer.
 
+For more practice with `cut`, `sort` and `awk` on this BLAST table, including finding the best non-self hit, see the self-study page [Reading and querying bioinformatics text files](../text-processing/text-processing.md).
+
 *Questions to answer in your README:*
 - How does the setup effort compare to the website approach — and how does that change once the database and script already exist?
 - What does the Slurm script itself give you that the website result page does not?

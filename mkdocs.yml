@@ -109,6 +109,7 @@ nav:
     - Linux cheat sheet: 06.linux-intro/cheat.md
     - Git setup on Kebnekaise: 07.Git/kebnekaise.md
   - Advanced/self-study: 
+    - Reading and querying bioinformatics text files: text-processing/text-processing.md
     - Basic commands extended: 07.Git/basic-commands-full.md
     - Basic commands exercises: 07.Git/basic-commands-full-exercises.md
     - Basic concepts extended: 07.Git/basic-concepts-full.md

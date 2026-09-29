@@ -279,6 +279,8 @@ Most databases have a primary citation paper. Using a database without citing it
 
 **Prerequisites:** You should be logged in to Kebnekaise via OnDemand. All commands below run in a terminal session.
 
+This exercise uses `grep`, `cut`, `sort` and `uniq` on a UniProt entry. If these commands are new to you, or you are not sure what each part of them does, work through the self-study page [Reading and querying bioinformatics text files](../text-processing/text-processing.md). It takes the commands from this exercise apart step by step and asks how you would adapt them.
+
 ---
 
 ### Part A — Setting up your workspace
