@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/text-processing/text-processing/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Reading and querying bioinformatics text files - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Reading and querying bioinformatics text files";
+        var mkdocs_page_input_path = "text-processing/text-processing.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/text-processing/text-processing/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercises/git-ssh-setup/git-ssh-setup/">Exam preparation, pushing to GitHub from Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercises/zip-guide/zip-guide/">Copying files from Kebnekaise, and zip and gzip archives</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Reading and querying bioinformatics text files</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#setting__up">Setting up</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__1__look__at__a__file__before__you__query__it">Part 1 — Look at a file before you query it</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the__uniprot__text__entry">The UniProt text entry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the__blast__table">The BLAST table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the__genbank__record">The GenBank record</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__2__taking__a__grep__command__apart">Part 2 — Taking a grep command apart</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__3__fields__and__separators__cut__and__awk">Part 3 — Fields and separators: cut and awk</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cut__pick__columns__by__number">cut: pick columns by number</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#awk__choose__lines__by__the__value__in__a__column">awk: choose lines by the value in a column</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__4__sorting__and__counting__sort__and__uniq">Part 4 — Sorting and counting: sort and uniq</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#taking__sort__apart">Taking sort apart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uniq__needs__sorted__input">uniq needs sorted input</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__5__building__a__pipeline__one__step__at__a__time">Part 5 — Building a pipeline one step at a time</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#try__it__on__a__different__protein">Try it on a different protein</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__6__when__a__command__does__not__do__what__you__expect">Part 6 — When a command does not do what you expect</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#habits__that__help">Habits that help</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how__this__connects__to__the__rest__of__the__course">How this connects to the rest of the course</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Advanced/self-study</li>
+      <li class="breadcrumb-item active">Reading and querying bioinformatics text files</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="reading__and__querying__bioinformatics__text__files">Reading and querying bioinformatics text files<a class="headerlink" href="#reading__and__querying__bioinformatics__text__files" title="Permanent link">&para;</a></h1>
+<p><em>Guided self-study. About 3 hours in total; you can do it in several sittings.</em></p>
+<p>Most of what you do at the command line in this course, and in the exam, is asking questions of text files: a UniProt entry, a FASTA file, a GenBank record, a table of BLAST hits. The commands for this (<code>grep</code>, <code>cut</code>, <code>sort</code>, <code>uniq</code>, <code>awk</code> and the pipe <code>|</code>) were introduced in the Linux introduction (<a href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>, <a href="../../06.linux-intro/patterns/">Finding patterns</a> and <a href="../../06.linux-intro/awk/">Awk</a>). This page is about using them on biological files with understanding, so that you can change a command to answer a new question rather than copy it.</p>
+<p><strong>How to use this page.</strong> Each part takes one command apart, piece by piece, and then asks: <em>how would you change this to…?</em> Before you open an answer, write down the command you would try, and what you expect it to print. Then run it. If the result surprises you, work out why before moving on: that is where most of the learning happens. The answers are hidden in boxes that open when you click them.</p>
+<p>The example outputs were produced on Kebnekaise on 29 September 2026. UniProt and NCBI update their entries regularly, so some of your counts may differ slightly. The structure of the files, and the commands, stay the same.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Topic</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Look at a file before you query it</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Taking a <code>grep</code> command apart</td>
+<td>40 min</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Fields and separators: <code>cut</code> and <code>awk</code></td>
+<td>40 min</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sorting and counting: <code>sort</code> and <code>uniq</code></td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Building a pipeline one step at a time</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>6</td>
+<td>When a command does not do what you expect</td>
+<td>20 min</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="setting__up">Setting up<a class="headerlink" href="#setting__up" title="Permanent link">&para;</a></h2>
+<p>Log in to Kebnekaise, make a folder for this page and fetch the files. They are the human TP53 files that you also meet in Lectures 11 and 15.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/course/text-processing
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>~/course/text-processing
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># The UniProt entry for human TP53, in full text and FASTA format (Lecture 11, Part B)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://rest.uniprot.org/uniprotkb/P04637.txt"</span><span class="w"> </span>&gt;<span class="w"> </span>TP53_protein.txt
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://rest.uniprot.org/uniprotkb/P04637.fasta"</span><span class="w"> </span>&gt;<span class="w"> </span>TP53_protein.fasta
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># The RefSeq mRNA record in GenBank format (Lecture 11, Part C)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&amp;id=NM_000546.6&amp;rettype=gb&amp;retmode=text"</span><span class="w"> </span>&gt;<span class="w"> </span>TP53_mRNA.gb
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># A local BLAST result for TP53 against the course Swiss-Prot database</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>curl<span class="w"> </span>-sL<span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/hpc2n/bioinformatics-hpc/main/docs/exercises/text-processing/TP53_blastp_local.tsv"</span><span class="w"> </span>&gt;<span class="w"> </span>TP53_blastp_local.tsv
+</span></code></pre></div>
+<p>The BLAST file was made with the job script from Lecture 15, Exercise 1D, with <code>-max_target_seqs 1000</code>. You can also make it yourself with that script; you will then have the same 40 hits.</p>
+<hr />
+<h2 id="part__1__look__at__a__file__before__you__query__it">Part 1 — Look at a file before you query it<a class="headerlink" href="#part__1__look__at__a__file__before__you__query__it" title="Permanent link">&para;</a></h2>
+<p>Every command you write depends on how the file is laid out. So the first step is always to look.</p>
+<h3 id="the__uniprot__text__entry">The UniProt text entry<a class="headerlink" href="#the__uniprot__text__entry" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>head<span class="w"> </span>-5<span class="w"> </span>TP53_protein.txt
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ID   P53_HUMAN               Reviewed;         393 AA.
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>AC   P04637; Q15086; Q15087; Q15088; Q16535; Q16807; Q16808; Q16809; Q16810;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>AC   Q16811; Q16848; Q2XN98; Q3LRW1; Q3LRW2; Q3LRW3; Q3LRW4; Q3LRW5; Q86UG1;
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>AC   Q8J016; Q99659; Q9BTM4; Q9HAQ8; Q9NP68; Q9NPJ2; Q9NZD0; Q9UBI2; Q9UQ61;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>DT   13-AUG-1987, integrated into UniProtKB/Swiss-Prot.
+</span></code></pre></div>
+<p>Every line starts with a two-letter code, then three spaces, then the content. <code>ID</code> is the identifier line, <code>AC</code> the accession numbers, <code>DT</code> the dates. The codes are what make this file easy to search: to find a kind of information, you search for its code at the start of the line.</p>
+<p>Which codes are there, and how many lines of each? This command answers that:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cut<span class="w"> </span>-c1-2<span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-k1,1nr
+</span></code></pre></div>
+<p>Taking it apart:</p>
+<ul>
+<li><code>cut -c1-2 TP53_protein.txt</code> keeps characters 1 to 2 of every line, which is the line code.</li>
+<li><code>|</code> sends that output on to the next command, instead of to the screen.</li>
+<li><code>sort</code> puts identical codes next to each other.</li>
+<li><code>uniq -c</code> collapses each run of identical lines into one, with a count in front.</li>
+<li><code>sort -k1,1nr</code> sorts by the first field (<code>-k1,1</code>, the count), as a number (<code>n</code>), largest first (<code>r</code>).</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>   5408 FT
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   1120 DR
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    737 CC
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    448 RA
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    ...
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>      1 OS
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>      1 OX
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>      1 PE
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>      1 SQ
+</span></code></pre></div>
+<p><code>FT</code> lines describe features along the sequence, <code>DR</code> lines are cross-references to other databases, <code>CC</code> lines are comments, and the <code>R</code> lines are the literature references. <code>SQ</code> starts the sequence.</p>
+<details class="question">
+<summary>How would you find the line that gives the sequence length and molecular weight, and its line number in the file?</summary>
+<p>Search for the <code>SQ</code> code at the start of the line; <code>-n</code> adds the line number.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">"^SQ"</span><span class="w"> </span>TP53_protein.txt
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>9152:SQ   SEQUENCE   393 AA;  43653 MW;  AD5C149FD8106131 CRC64;
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>The <code>DR</code> lines each point to another database. How would you count how many lines point to each database?</summary>
+<p>A <code>DR</code> line looks like <code>DR   GO; GO:0005813; C:centrosome; IDA:UniProtKB.</code>: the database name comes after <code>DR</code> and three spaces, and ends at the first <code>;</code>. So keep the part before the first <code>;</code>, remove the first five characters (<code>DR</code> and the three spaces), and count.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>grep<span class="w"> </span><span class="s2">"^DR   "</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c6-<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-k1,1nr<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-8
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    311 PDB
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    311 PDBsum
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    119 GO
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>     85 EMBL
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>     46 Reactome
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>     25 RefSeq
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>     22 Ensembl
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>     22 Orphanet
+</span></code></pre></div>
+<p><code>cut -d";" -f1</code> splits each line at <code>;</code> and keeps field 1; <code>cut -c6-</code> keeps characters 6 to the end. There are 311 structures in the Protein Data Bank for TP53, and 25 RefSeq lines: that is where you find the RefSeq mRNA accessions (Part 2).</p>
+</details>
+<h3 id="the__blast__table">The BLAST table<a class="headerlink" href="#the__blast__table" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>head<span class="w"> </span>-3<span class="w"> </span>TP53_blastp_local.tsv
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sp|P04637|P53_HUMAN P04637  100.000 393 0   0   1   393 1   393 0.0 813
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sp|P04637|P53_HUMAN P56424  95.674  393 17  0   1   393 1   393 0.0 782
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>sp|P04637|P53_HUMAN P61260  95.674  393 17  0   1   393 1   393 0.0 782
+</span></code></pre></div>
+<p>This is BLAST&rsquo;s tabular format (<code>-outfmt 6</code>): one line per hit, 12 columns, no header. The columns are separated by tab characters, which look like spaces on screen. <code>cat -A</code> shows them as <code>^I</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>head<span class="w"> </span>-1<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat<span class="w"> </span>-A
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sp|P04637|P53_HUMAN^IP04637^I100.000^I393^I0^I0^I1^I393^I1^I393^I0.0^I813$
+</span></code></pre></div>
+<p>(<code>$</code> marks the end of the line.) To see which value is in which column, turn the tabs of one line into line breaks and number the lines:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>head<span class="w"> </span>-1<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">'\t'</span><span class="w"> </span><span class="s1">'\n'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cat<span class="w"> </span>-n
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>     1  sp|P04637|P53_HUMAN
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>     2  P04637
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>     3  100.000
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>     4  393
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>     5  0
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>     6  0
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>     7  1
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>     8  393
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>     9  1
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    10  393
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    11  0.0
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    12  813
+</span></code></pre></div>
+<ul>
+<li><code>tr '\t' '\n'</code> translates every tab (<code>\t</code>) into a line break (<code>\n</code>).</li>
+<li><code>cat -n</code> prints its input with line numbers.</li>
+</ul>
+<p>Compare with the column table in <a href="../../15.fair-in-practice/fair-in-practice/">Lecture 15, Exercise 1D</a>: column 2 is the hit, 3 the percent identity, 11 the E-value and 12 the bit score. The first line is your own protein, found in the database: the <em>self hit</em>.</p>
+<details class="question">
+<summary>How would you look at the columns of the second hit instead of the first?</summary>
+<p>Take line 2 instead of line 1. <code>sed -n 2p</code> prints only line 2:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sed<span class="w"> </span>-n<span class="w"> </span>2p<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">'\t'</span><span class="w"> </span><span class="s1">'\n'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cat<span class="w"> </span>-n
+</span></code></pre></div>
+<p>Column 2 is now <code>P56424</code> (TP53 of the rhesus macaque), with 95.674 % identity (column 3) and 17 mismatches (column 5).</p>
+</details>
+<h3 id="the__genbank__record">The GenBank record<a class="headerlink" href="#the__genbank__record" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">"^FEATURES\|^ORIGIN\|^//"</span><span class="w"> </span>TP53_mRNA.gb
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>229:FEATURES             Location/Qualifiers
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>657:ORIGIN
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>700://
+</span></code></pre></div>
+<p>A GenBank record has a header (from <code>LOCUS</code> to the references), a <code>FEATURES</code> table, and the sequence after <code>ORIGIN</code>, ending with <code>//</code>. <code>\|</code> inside the pattern means <em>or</em>.</p>
+<details class="question">
+<summary>How would you print the record&rsquo;s description and its accession with version number?</summary>
+<p>These are the <code>DEFINITION</code> and <code>VERSION</code> lines:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>grep<span class="w"> </span><span class="s2">"^DEFINITION\|^VERSION"</span><span class="w"> </span>TP53_mRNA.gb
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>DEFINITION  Homo sapiens tumor protein p53 (TP53), transcript variant 1, mRNA.
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>VERSION     NM_000546.6
+</span></code></pre></div>
+</details>
+<hr />
+<h2 id="part__2__taking__a__grep__command__apart">Part 2 — Taking a <code>grep</code> command apart<a class="headerlink" href="#part__2__taking__a__grep__command__apart" title="Permanent link">&para;</a></h2>
+<p>Lecture 11 uses this command to show the GO annotations of TP53:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>DR   GO; GO:0005813; C:centrosome; IDA:UniProtKB.
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>DR   GO; GO:0000785; C:chromatin; IDA:BHF-UCL.
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>DR   GO; GO:0005737; C:cytoplasm; IDA:UniProtKB.
+</span></code></pre></div>
+<p>Every character in it has a job:</p>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>grep</code></td>
+<td>prints the lines of a file that match a pattern</td>
+</tr>
+<tr>
+<td><code>"..."</code></td>
+<td>the quotes keep the pattern together as one argument, spaces and <code>;</code> included</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>the match must start at the beginning of the line</td>
+</tr>
+<tr>
+<td><code>DR</code></td>
+<td>the line code for cross-references</td>
+</tr>
+<tr>
+<td>three spaces</td>
+<td>exactly as in the file: the code is always followed by three spaces</td>
+</tr>
+<tr>
+<td><code>GO;</code></td>
+<td>the database name, with the <code>;</code> that ends it</td>
+</tr>
+<tr>
+<td><code>TP53_protein.txt</code></td>
+<td>the file to search</td>
+</tr>
+<tr>
+<td><code>\| head -3</code></td>
+<td>show only the first 3 matching lines</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why the quotes matter.</strong> Without them, the shell splits the command at every space and at the <code>;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>grep<span class="w"> </span>^DR<span class="w">   </span>GO<span class="p">;</span><span class="w"> </span>TP53_protein.txt
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>grep: GO: No such file or directory
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>bash: line 1: TP53_protein.txt: command not found
+</span></code></pre></div>
+<p><code>grep</code> searched for <code>^DR</code> in a file called <code>GO</code>, and the <code>;</code> ended the command, so the shell then tried to run <code>TP53_protein.txt</code> as a command.</p>
+<p><strong>Why the <code>^</code> matters.</strong> Count the lines with and without it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w">     </span><span class="c1"># 119</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">"GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w">           </span><span class="c1"># 122</span>
+</span></code></pre></div>
+<p>The three extra lines are not GO annotations at all:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>DR   PDB; 4AGO; X-ray; 1.45 A; A/B=94-312.
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>DR   PAN-GO; P04637; 8 GO annotations based on evolutionary models.
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>DR   PDBsum; 4AGO; -.
+</span></code></pre></div>
+<p>A protein structure with the identifier <code>4AGO</code> contains <code>GO;</code>, and so does <code>PAN-GO;</code>. The anchor <code>^DR   GO;</code> avoids them. For PDB the difference is larger: <code>grep -c "PDB"</code> finds 668 lines, but only 311 are <code>DR   PDB;</code> lines; the rest are <code>PDBsum</code> cross-references and literature lines that mention a structure.</p>
+<p><strong>Why the exact spacing matters.</strong> With one space instead of three there are no matches at all:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">"^DR GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w">       </span><span class="c1"># 0</span>
+</span></code></pre></div>
+<p><code>grep</code> is also case-sensitive: <code>"^DR   go;"</code> finds 0 lines, while <code>grep -i "^DR   go;"</code> (ignore case) finds 119.</p>
+<p>A few options you will use often: <code>-c</code> counts the matching lines instead of printing them, <code>-v</code> prints the lines that do <em>not</em> match, <code>-n</code> adds line numbers, <code>-i</code> ignores case, and <code>-o</code> prints only the part of the line that matched.</p>
+<details class="question">
+<summary>How would you change the command to show the RefSeq cross-references instead of the GO annotations?</summary>
+<p>Change the database name, and keep everything else:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>grep<span class="w"> </span><span class="s2">"^DR   RefSeq;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>DR   RefSeq; NP_000537.3; NM_000546.6. [P04637-1]
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>DR   RefSeq; NP_001119584.1; NM_001126112.3. [P04637-1]
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>DR   RefSeq; NP_001119585.1; NM_001126113.3. [P04637-3]
+</span></code></pre></div>
+<p>Each line gives a RefSeq protein (<code>NP_</code>) and the mRNA that encodes it (<code>NM_</code>); the part in square brackets is the UniProt isoform. <code>NM_000546.6</code> is the record you fetched from NCBI in the set-up: this is how you get from a UniProt accession to an NCBI mRNA accession. It is the first step of Part 1 of the exam.</p>
+</details>
+<details class="question">
+<summary>How would you count the protein structures of TP53 in the Protein Data Bank?</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">"^DR   PDB;"</span><span class="w"> </span>TP53_protein.txt
+</span></code></pre></div>
+<p>This gives 311. Without the <code>^DR</code> and the <code>;</code> you would count the <code>PDBsum</code> lines too.</p>
+</details>
+<details class="question">
+<summary>How would you print only the NM_ accessions, without the rest of the line?</summary>
+<p><code>-o</code> prints only the part that matched. A first try:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>grep<span class="w"> </span><span class="s2">"^DR   RefSeq;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">"NM_[0-9.]*"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>NM_000546.6.
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>NM_001126112.3.
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>NM_001126113.3.
+</span></code></pre></div>
+<p><code>[0-9.]*</code> means &ldquo;any number of digits or full stops&rdquo;, so it also took the full stop that ends the UniProt field. That full stop is not part of the accession, and NCBI rejects the ID with it. A more precise pattern: digits, one full stop (<code>\.</code>, where <code>\</code> makes the full stop literal), then digits.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>grep<span class="w"> </span><span class="s2">"^DR   RefSeq;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">"NM_[0-9]*\.[0-9]*"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>NM_000546.6
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>NM_001126112.3
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>NM_001126113.3
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>And the RefSeq protein accessions (NP_)?</summary>
+<p>Change only the prefix:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>grep<span class="w"> </span><span class="s2">"^DR   RefSeq;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">"NP_[0-9]*\.[0-9]*"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>NP_000537.3
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>NP_001119584.1
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>NP_001119585.1
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>How would you show the InterPro domains, or the Pfam families, of TP53?</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>grep<span class="w"> </span><span class="s2">"^DR   InterPro;"</span><span class="w"> </span>TP53_protein.txt
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>grep<span class="w"> </span><span class="s2">"^DR   Pfam;"</span><span class="w"> </span>TP53_protein.txt
+</span></code></pre></div>
+<p>TP53 has 9 InterPro lines and 4 Pfam lines, for example <code>DR   Pfam; PF00870; P53; 1.</code></p>
+</details>
+<hr />
+<h2 id="part__3__fields__and__separators__cut__and__awk">Part 3 — Fields and separators: <code>cut</code> and <code>awk</code><a class="headerlink" href="#part__3__fields__and__separators__cut__and__awk" title="Permanent link">&para;</a></h2>
+<p>Many biological files are tables, even when they do not look like one. What separates the columns is what decides which command, and which option, you need.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Columns separated by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLAST <code>-outfmt 6</code></td>
+<td>a tab</td>
+</tr>
+<tr>
+<td>UniProt <code>DR</code> lines</td>
+<td><code>;</code> (a semicolon and a space)</td>
+</tr>
+<tr>
+<td>FASTA</td>
+<td>not a table: a header line starting with <code>&gt;</code>, then sequence lines</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cut__pick__columns__by__number"><code>cut</code>: pick columns by number<a class="headerlink" href="#cut__pick__columns__by__number" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>cut<span class="w"> </span>-f2,3,11,12<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-5
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>P04637  100.000 0.0 813
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>P56424  95.674  0.0 782
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>P61260  95.674  0.0 782
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>P56423  95.674  0.0 782
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>P13481  95.674  0.0 780
+</span></code></pre></div>
+<p><code>-f2,3,11,12</code> keeps fields 2, 3, 11 and 12. By default <code>cut</code> splits at tabs, which is exactly what the BLAST table uses. For another separator, give it with <code>-d</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>grep<span class="w"> </span><span class="s2">"^DR   PDB;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>DR   PDB; 1A1U; NMR; -; A/C=324-358.
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>DR   PDB; 1AIE; X-ray; 1.50 A; A=326-356.
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>DR   PDB; 1C26; X-ray; 1.70 A; A=325-356.
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>grep<span class="w"> </span><span class="s2">"^DR   PDB;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f3<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>     15  EM
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>     30  NMR
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>    266  X-ray
+</span></code></pre></div>
+<p><code>cut -d";" -f3</code> splits each line at <code>;</code> and keeps field 3, the method used to solve the structure. Field 1 is <code>DR   PDB</code>, field 2 the PDB identifier. The space in front of each method is the space that followed the <code>;</code> in the file; it is still there because <code>cut</code> splits only at the <code>;</code>.</p>
+<details class="question">
+<summary>Each GO line ends with an evidence code, such as IDA or IEA. How would you count how many GO annotations there are for each evidence code?</summary>
+<p>In <code>DR   GO; GO:0005813; C:centrosome; IDA:UniProtKB.</code> the evidence code is at the start of field 4, before the <code>:</code>. So take field 4, then the part before the <code>:</code>, then count:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-k1,1nr
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>     57  IDA
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>     21  IMP
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>     17  IPI
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>      8  IEA
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>      4  IEP
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>      4  ISS
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>      3  EXP
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>      3  TAS
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>      2  IGI
+</span></code></pre></div>
+<p>This is the &ldquo;number of GO annotations for each evidence code&rdquo; asked for in Part 1 of the exam. Lecture 11 counts with <code>grep -o "IDA\|IEA\|IMP\|ISS\|IPI\|EXP"</code>, which only looks for those six codes: for TP53 it misses IEP, TAS and IGI. This version counts every code that is there.</p>
+</details>
+<details class="question">
+<summary>The third field of a GO line starts with C, F or P: the GO aspect (cellular component, molecular function or biological process). How would you count the annotations in each aspect?</summary>
+<p>Field 3 is <code>C:centrosome</code> (with a leading space), so the aspect letter is character 2 of the field:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f3<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c2<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>     17 C
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>     35 F
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>     67 P
+</span></code></pre></div>
+</details>
+<h3 id="awk__choose__lines__by__the__value__in__a__column"><code>awk</code>: choose lines by the value in a column<a class="headerlink" href="#awk__choose__lines__by__the__value__in__a__column" title="Permanent link">&para;</a></h3>
+<p><code>cut</code> picks columns; <code>awk</code> can also test the values in them. Here is a command that lists the hits with at least 90 % identity:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>awk<span class="w"> </span>-F<span class="s1">'\t'</span><span class="w"> </span><span class="s1">'$3 &gt;= 90 {print $2, $3}'</span><span class="w"> </span>TP53_blastp_local.tsv
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>P04637 100.000
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>P56424 95.674
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>P61260 95.674
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>P56423 95.674
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>P13481 95.674
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>...
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-F'\t'</code></td>
+<td>fields are separated by tabs (without it, <code>awk</code> splits at any run of spaces or tabs)</td>
+</tr>
+<tr>
+<td><code>'...'</code></td>
+<td>single quotes around the <code>awk</code> program, so the shell does not touch <code>$3</code></td>
+</tr>
+<tr>
+<td><code>$3</code></td>
+<td>the value in column 3, the percent identity</td>
+</tr>
+<tr>
+<td><code>$3 &gt;= 90</code></td>
+<td>the condition: only lines where it is true are used</td>
+</tr>
+<tr>
+<td><code>{print $2, $3}</code></td>
+<td>the action: print columns 2 and 3</td>
+</tr>
+</tbody>
+</table>
+<p>Without an action, <code>awk</code> prints the whole line; without a condition, it uses every line. So <code>awk -F'\t' '$3 &gt;= 90' TP53_blastp_local.tsv | wc -l</code> counts the hits with at least 90 % identity: 6.</p>
+<details class="question">
+<summary>How would you count the hits with an E-value below 1e-10? And below 1e-100?</summary>
+<p>The E-value is column 11. <code>awk</code> understands numbers written like <code>1e-10</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>awk<span class="w"> </span>-F<span class="s1">'\t'</span><span class="w"> </span><span class="s1">'$11 &lt; 1e-10'</span><span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">     </span><span class="c1"># 40</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>awk<span class="w"> </span>-F<span class="s1">'\t'</span><span class="w"> </span><span class="s1">'$11 &lt; 1e-100'</span><span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">    </span><span class="c1"># 29</span>
+</span></code></pre></div>
+<p>All 40 hits are below 1e-10; 29 are below 1e-100. The first command is Part 3 of the exam.</p>
+</details>
+<details class="question">
+<summary>How would you find the best hit that is not your own protein (the best non-self hit), with its percent identity?</summary>
+<p>The self hit has your own accession, <code>P04637</code>, in column 2. Leave that line out, and take the first line that remains; BLAST lists hits best first:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>awk<span class="w"> </span>-F<span class="s1">'\t'</span><span class="w"> </span><span class="s1">'$2 != "P04637"'</span><span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>P56424  95.674
+</span></code></pre></div>
+<p><code>!=</code> means &ldquo;is not equal to&rdquo;, and the accession is in double quotes because it is text. A tempting shortcut, <code>$1 != $2</code>, does not work: column 1 is <code>sp|P04637|P53_HUMAN</code> and column 2 is <code>P04637</code>, which are never equal, so the self hit stays in.</p>
+</details>
+<details class="question">
+<summary>How would you list the hits with less than 50 % identity, with their E-values?</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>awk<span class="w"> </span>-F<span class="s1">'\t'</span><span class="w"> </span><span class="s1">'$3 &lt; 50 {print $2, $3, $11}'</span><span class="w"> </span>TP53_blastp_local.tsv
+</span></code></pre></div>
+<p>There are 12, from <code>P25035 49.876 5.64e-124</code> to <code>O12946 48.561 1.31e-79</code>: more distant relatives of p53, still with very low E-values.</p>
+</details>
+<hr />
+<h2 id="part__4__sorting__and__counting__sort__and__uniq">Part 4 — Sorting and counting: <code>sort</code> and <code>uniq</code><a class="headerlink" href="#part__4__sorting__and__counting__sort__and__uniq" title="Permanent link">&para;</a></h2>
+<h3 id="taking__sort__apart">Taking <code>sort</code> apart<a class="headerlink" href="#taking__sort__apart" title="Permanent link">&para;</a></h3>
+<p>Here is a command that sorts the BLAST hits by E-value, smallest first:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>sort<span class="w"> </span>-t<span class="s1">$'\t'</span><span class="w"> </span>-k11,11g<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,11<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-t$'\t'</code></td>
+<td>fields are separated by tabs; <code>$'\t'</code> is how you type a tab in the shell</td>
+</tr>
+<tr>
+<td><code>-k11,11</code></td>
+<td>sort on field 11, and only field 11 (<code>-k11</code> alone would mean &ldquo;from field 11 to the end of the line&rdquo;)</td>
+</tr>
+<tr>
+<td><code>g</code></td>
+<td>compare as <em>general</em> numbers, which understands notation such as <code>2.1e-150</code></td>
+</tr>
+<tr>
+<td><code>r</code> (when you add it)</td>
+<td>reverse: largest first</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why <code>g</code> and not <code>n</code>.</strong> <code>-n</code> reads a number only up to the <code>e</code>, so <code>1.18e-118</code> counts as 1.18 and <code>3.57e-125</code> as 3.57. Compare hits 20 to 25 of the two sorts:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>sort<span class="w"> </span>-k11<span class="w"> </span>-n<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,11<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span>,25p
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>sort<span class="w"> </span>-t<span class="s1">$'\t'</span><span class="w"> </span>-k11,11g<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,11<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span>,25p
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>with -n                  with -g
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>Q9TUB2  0.0              Q9TUB2  0.0
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>Q9WUR6  0.0              Q9WUR6  0.0
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>P79892  1.02e-153        P79892  1.02e-153
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>P07193  1.18e-118        Q29480  3.57e-125
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>O12946  1.31e-79         P25035  5.64e-124
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a>Q9JJP2  1.38e-84         P07193  1.18e-118
+</span></code></pre></div>
+<p>With <code>-n</code>, <code>1.31e-79</code> comes before <code>1.38e-84</code>, which is smaller: the order is wrong.</p>
+<p><strong>Smallest first, unless you add <code>r</code>.</strong> For E-values, smallest is best. For percent identity or bit score, largest is best, so you need <code>r</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>sort<span class="w"> </span>-t<span class="s1">$'\t'</span><span class="w"> </span>-k3,3g<span class="w">  </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,3<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3<span class="w">   </span><span class="c1"># lowest identity first: Q9JJP2 42.975</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>sort<span class="w"> </span>-t<span class="s1">$'\t'</span><span class="w"> </span>-k3,3gr<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,3<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3<span class="w">   </span><span class="c1"># highest identity first: P04637 100.000</span>
+</span></code></pre></div>
+<p>And without any number option, <code>sort</code> compares text character by character, so <code>100.000</code> comes before <code>42.975</code> (because <code>1</code> comes before <code>4</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>sort<span class="w"> </span>-k3<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,3<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>P04637  100.000
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>Q9JJP2  42.975
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>Q9W679  43.944
+</span></code></pre></div>
+<p><strong>Ties.</strong> 21 of the 40 hits have an E-value of exactly <code>0.0</code>. Sorting by E-value cannot rank them, and <code>sort</code> then orders tied lines by the rest of the line, which puts them in alphabetical order. BLAST&rsquo;s own order breaks ties by bit score, so for &ldquo;the top hits&rdquo; the simplest and safest command is no sort at all:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>head<span class="w"> </span>-3<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,3,11
+</span></code></pre></div>
+<details class="question">
+<summary>How would you sort the hits by bit score, highest first?</summary>
+<p>Bit score is column 12, and larger is better:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>sort<span class="w"> </span>-t<span class="s1">$'\t'</span><span class="w"> </span>-k12,12gr<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2,12<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>P04637  813
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>P56423  782
+</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>P56424  782
+</span></code></pre></div>
+<p>Notice the tie at 782: <code>sort</code> put P56423 before P56424 alphabetically, while BLAST&rsquo;s own file lists P56424, P61260 and then P56423.</p>
+</details>
+<h3 id="uniq__needs__sorted__input"><code>uniq</code> needs sorted input<a class="headerlink" href="#uniq__needs__sorted__input" title="Permanent link">&para;</a></h3>
+<p><code>uniq -c</code> only merges identical lines that are <em>next to each other</em>. On unsorted input it gives a misleading count:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-4
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>      4  IDA
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>      2  EXP
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>      7  IDA
+</span><span id="__span-63-4"><a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>      2  IEA
+</span></code></pre></div>
+<p>IDA appears in several separate runs. With <code>sort</code> first, each code appears once, with its total (57 IDA; see Part 3).</p>
+<details class="question">
+<summary>How would you count how many different percent-identity values there are among the hits?</summary>
+<p><code>sort -u</code> sorts and keeps one copy of each value:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>cut<span class="w"> </span>-f3<span class="w"> </span>TP53_blastp_local.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<p>This gives 34: some hits share the same identity, such as the four at 95.674 %.</p>
+</details>
+<hr />
+<h2 id="part__5__building__a__pipeline__one__step__at__a__time">Part 5 — Building a pipeline one step at a time<a class="headerlink" href="#part__5__building__a__pipeline__one__step__at__a__time" title="Permanent link">&para;</a></h2>
+<p>Long pipelines are built, and checked, one step at a time. After each <code>|</code>, look at a few lines of output with <code>head -3</code> before adding the next step. Here is how the evidence-code count from Part 3 is built.</p>
+<p><strong>Question: which evidence codes support TP53&rsquo;s GO annotations, most common first?</strong></p>
+<p>Step 1. Find the GO lines:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>DR   GO; GO:0005813; C:centrosome; IDA:UniProtKB.
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>DR   GO; GO:0000785; C:chromatin; IDA:BHF-UCL.
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>DR   GO; GO:0005737; C:cytoplasm; IDA:UniProtKB.
+</span></code></pre></div>
+<p>Step 2. Keep field 4, split at <code>;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a> IDA:UniProtKB.
+</span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a> IDA:BHF-UCL.
+</span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a> IDA:UniProtKB.
+</span></code></pre></div>
+<p>Step 3. Keep the part before the <code>:</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-3
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a> IDA
+</span><span id="__span-70-2"><a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a> IDA
+</span><span id="__span-70-3"><a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a> IDA
+</span></code></pre></div>
+<p>Step 4. Sort, count, and put the most common first (and now remove the <code>head</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>TP53_protein.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-k1,1nr
+</span></code></pre></div>
+<p>A good check at the end: does the total add up? <code>grep -c "^DR   GO;"</code> gives 119, and 57 + 21 + 17 + 8 + 4 + 4 + 3 + 3 + 2 is also 119.</p>
+<h3 id="try__it__on__a__different__protein">Try it on a different protein<a class="headerlink" href="#try__it__on__a__different__protein" title="Permanent link">&para;</a></h3>
+<p>Your exam protein will not be TP53. Here is a plant protein for practice: the large subunit of Rubisco (rbcL) from <em>Arabidopsis thaliana</em>, UniProt accession O03042.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://rest.uniprot.org/uniprotkb/O03042.txt"</span><span class="w"> </span>&gt;<span class="w"> </span>RBL_ARATH.txt
+</span></code></pre></div>
+<details class="question">
+<summary>How long is the protein, and is the entry Swiss-Prot or TrEMBL?</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>grep<span class="w"> </span><span class="s2">"^ID\|^SQ"</span><span class="w"> </span>RBL_ARATH.txt
+</span></code></pre></div>
+<p>The <code>ID</code> line says <code>Reviewed; 479 AA.</code>, so it is a Swiss-Prot entry with 479 amino acids; the <code>SQ</code> line agrees.</p>
+</details>
+<details class="question">
+<summary>How many GO annotations are there for each evidence code?</summary>
+<p>The same pipeline, with the new file name:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>grep<span class="w"> </span><span class="s2">"^DR   GO;"</span><span class="w"> </span>RBL_ARATH.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-k1,1nr
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>      9  HDA
+</span><span id="__span-75-2"><a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>      3  IEA
+</span><span id="__span-75-3"><a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a>      2  IEP
+</span><span id="__span-75-4"><a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a>      1  IDA
+</span></code></pre></div>
+<p>Most are HDA (inferred from a high-throughput direct assay), a code that Lecture 11&rsquo;s six-code count would not see at all.</p>
+</details>
+<details class="question">
+<summary>Find the RefSeq cross-references. Is there an NM_ accession, and if not, why might that be?</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-76-1"><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>grep<span class="w"> </span><span class="s2">"^DR   RefSeq;"</span><span class="w"> </span>RBL_ARATH.txt
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-77-1"><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>DR   RefSeq; NP_051067.1; NC_000932.1.
+</span></code></pre></div>
+<p>There is a RefSeq protein (<code>NP_</code>), but the nucleotide record is <code>NC_000932.1</code>, a complete genome rather than an mRNA. The <code>OG</code> line explains why:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-78-1"><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>grep<span class="w"> </span><span class="s2">"^OG"</span><span class="w"> </span>RBL_ARATH.txt
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-79-1"><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>OG   Plastid; Chloroplast.
+</span></code></pre></div>
+<p>rbcL is encoded in the chloroplast genome, not in the nucleus, so RefSeq links it to the chloroplast genome. Not every protein has an <code>NM_</code> record: always look at what the cross-references actually say.</p>
+</details>
+<details class="question">
+<summary>How many structures of rbcL are in the Protein Data Bank, and by which methods?</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-80-1"><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>grep<span class="w"> </span><span class="s2">"^DR   PDB;"</span><span class="w"> </span>RBL_ARATH.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s2">";"</span><span class="w"> </span>-f3<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>      2  EM
+</span><span id="__span-81-2"><a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a>      1  X-ray
+</span></code></pre></div>
+</details>
+<hr />
+<h2 id="part__6__when__a__command__does__not__do__what__you__expect">Part 6 — When a command does not do what you expect<a class="headerlink" href="#part__6__when__a__command__does__not__do__what__you__expect" title="Permanent link">&para;</a></h2>
+<p>These are common mistakes, and several of them happened in this year&rsquo;s exam. For each, work out what happened, and how you would fix it, before opening the answer.</p>
+<details class="question">
+<summary><code>grep ^DR   GO; TP53_protein.txt</code> prints <code>grep: GO: No such file or directory</code> and <code>TP53_protein.txt: command not found</code>.</summary>
+<p>The pattern is not in quotes, so the shell split it at the spaces and ended the command at the <code>;</code>. Put the pattern in double quotes: <code>grep "^DR   GO;" TP53_protein.txt</code>.</p>
+</details>
+<details class="question">
+<summary><code>grep -c '^DR GO;' TP53_protein.txt</code> gives 0, although there are GO lines.</summary>
+<p>The file has three spaces after <code>DR</code>; the pattern has one. Copy the spacing exactly from the file, or look at a line with <code>head</code> first.</p>
+</details>
+<details class="question">
+<summary><code>head -3 TP53_blastp_locl.tsv</code> prints <code>No such file or directory</code>.</summary>
+<p>The file name is misspelt (<code>locl</code>). <code>ls</code> shows the files in the current folder. Use the Tab key to complete file names, and you will not mistype them.</p>
+</details>
+<details class="question">
+<summary>You stored a sequence with <code>SEQ=$(cat TP53_protein.fasta)</code> and checked it with <code>cat $SEQ</code>. It prints <code>No such file or directory</code> for every word.</summary>
+<p><code>cat</code> opens files. It treated each word of the sequence as a file name. To look at a variable, use <code>echo</code>: <code>echo "$SEQ" | head -3</code>. To check its length: <code>printf '%s' "$SEQ" | wc -c</code> (0 means the variable is empty).</p>
+</details>
+<details class="question">
+<summary>Sorting BLAST hits with <code>sort -k11 -n</code> puts <code>1.31e-79</code> above <code>1.38e-84</code>.</summary>
+<p><code>-n</code> does not understand the <code>e</code> notation. Use <code>sort -t$'\t' -k11,11g</code>. And for the top hits, you usually do not need to sort at all: see Part 4.</p>
+</details>
+<details class="question">
+<summary><code>awk '$11 &lt; 1e-10' hits.tsv | wc -l</code> gives 44, but the file only has 40 hits.</summary>
+<p>The file was made with <code>-outfmt 7</code>, which adds comment lines starting with <code>#</code>. <code>awk</code> compared those lines too, and four of them passed the test. Remove the comment lines first:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-82-1"><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">"^#"</span><span class="w"> </span>hits.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">'\t'</span><span class="w"> </span><span class="s1">'$11 &lt; 1e-10'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary><code>grep -o 'NM_[0-9.]*'</code> gives <code>NM_000546.6.</code>, and NCBI says it cannot understand the ID.</summary>
+<p>The pattern also took the full stop that ends the UniProt field. Use <code>grep -o "NM_[0-9]*\.[0-9]*"</code> (Part 2).</p>
+</details>
+<details class="question">
+<summary><code>awk -F'\t' '$1 != $2'</code> was meant to remove the self hit, but P04637 is still the first line.</summary>
+<p>Column 1 is <code>sp|P04637|P53_HUMAN</code> and column 2 is <code>P04637</code>: they are never equal, so every line passes. Compare column 2 with your accession: <code>awk -F'\t' '$2 != "P04637"'</code> (Part 3).</p>
+</details>
+<h3 id="habits__that__help">Habits that help<a class="headerlink" href="#habits__that__help" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Look before you query.</strong> <code>head</code> the file, and find out what separates its columns.</li>
+<li><strong>Build step by step.</strong> Add one command at a time, with <code>| head -3</code> to see what it does.</li>
+<li><strong>Check with a second method.</strong> Does the total add up? Does <code>wc -l</code> give the number you expect?</li>
+<li><strong>Read the help.</strong> <code>man sort</code> and <code>sort --help</code> list every option; search inside <code>man</code> with <code>/</code> followed by a word, for example <code>/general</code>.</li>
+</ul>
+<hr />
+<h2 id="how__this__connects__to__the__rest__of__the__course">How this connects to the rest of the course<a class="headerlink" href="#how__this__connects__to__the__rest__of__the__course" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>What you need from this page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lecture 11 and exam Part 1</td>
+<td>Find the <code>NM_</code> accession in the <code>DR   RefSeq</code> lines (Part 2); count GO annotations per evidence code (Part 3)</td>
+</tr>
+<tr>
+<td>Lecture 15 and exam Part 2</td>
+<td>Read the BLAST table by column number (Part 1); take the top hits with <code>head</code> (Part 4)</td>
+</tr>
+<tr>
+<td>Exam Part 3</td>
+<td>Count hits below an E-value (Part 3); find the best non-self hit (Part 3)</td>
+</tr>
+<tr>
+<td>Lecture 13, file formats</td>
+<td>The same approach works for any tabular format: look first, then pick the separator</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../07.Git/kebnekaise/" class="btn btn-neutral float-left" title="Git setup on Kebnekaise"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../07.Git/basic-commands-full/" class="btn btn-neutral float-right" title="Basic commands extended">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../07.Git/kebnekaise/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../07.Git/basic-commands-full/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

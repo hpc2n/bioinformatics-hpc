@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/exercises/zip-guide/zip-guide/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Copying files from Kebnekaise, and zip and gzip archives - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Copying files from Kebnekaise, and zip and gzip archives";
+        var mkdocs_page_input_path = "exercises/zip-guide/zip-guide.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/exercises/zip-guide/zip-guide/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../10.batch-slurm/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../summary-exercises/">Summary exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../git-ssh-setup/git-ssh-setup/">Exam preparation, pushing to GitHub from Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Copying files from Kebnekaise, and zip and gzip archives</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how__the__commands__on__this__page__are__shown">How the commands on this page are shown</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__1__pack__files__into__an__archive__on__kebnekaise">Part 1: Pack files into an archive (on Kebnekaise)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#a__zip__file">A zip file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a__targz__file">A tar.gz file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#a__single__file__with__gzip">A single file with gzip</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__2__find__the__full__path__of__the__file__on__kebnekaise">Part 2: Find the full path of the file (on Kebnekaise)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__3__copy__files__between__kebnekaise__and__your__own__computer">Part 3: Copy files between Kebnekaise and your own computer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#route__a__with__scp__in__a__terminal__on__your__own__computer">Route A: with scp (in a terminal on your own computer)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#route__b__with__the__open__ondemand__file__browser__in__a__web__browser">Route B: with the Open OnDemand file browser (in a web browser)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part__4__unpack__on__your__own__computer">Part 4: Unpack on your own computer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../text-processing/text-processing/">Reading and querying bioinformatics text files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Bioinformatics content</li>
+      <li class="breadcrumb-item active">Copying files from Kebnekaise, and zip and gzip archives</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="copying__files__from__kebnekaise__and__making__zip__and__gzip__archives">Copying files from Kebnekaise, and making zip and gzip archives<a class="headerlink" href="#copying__files__from__kebnekaise__and__making__zip__and__gzip__archives" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> 5BI00A Computing for Data-Driven Biology · Umeå University</p>
+<p>You do most of your work on Kebnekaise, but sometimes you need a file on your own computer: to open a table in a spreadsheet, to look at a figure, to keep a copy of your results, or to send them to someone. This page shows how to pack files into one archive (zip, tar.gz or gzip), how to copy files and archives from Kebnekaise to your own computer, and back again, and how to unpack them.</p>
+<h2 id="how__the__commands__on__this__page__are__shown">How the commands on this page are shown<a class="headerlink" href="#how__the__commands__on__this__page__are__shown" title="Permanent link">&para;</a></h2>
+<p>The blocks look the same as on the <a href="../../git-ssh-setup/git-ssh-setup/">pushing to GitHub guide</a>.</p>
+<p>A plain grey block is a command to paste as it is. Nothing in it needs changing:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>echo "This is a command to paste exactly as it is"
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<p>A command that contains something only you know is in an orange box like this one. The words in CAPITAL LETTERS are placeholders. Replace each one with your own text, and keep everything else. The box tells you what each placeholder means.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>echo "Hello, MY NAME"
+</span></code></pre></div>
+<ul>
+<li><code>MY NAME</code>: your own name, for example <code>Maria Svensson</code>.</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>Output that the computer prints back is in a green box like this one. It is there for you to compare with your screen. It is not a command, so do not paste it.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Hello, Maria Svensson
+</span></code></pre></div>
+</div>
+<p>Paste one block at a time, press Enter, and wait for the prompt to come back before you paste the next block.</p>
+<div class="admonition warning">
+<p class="admonition-title">Use straight quotation marks</p>
+<p>Commands use straight quotation marks, <code>"</code> and <code>'</code>. If you copy a command from a Word document, an email or a chat window, they can turn into curly ones, <code>“ ”</code> and <code>‘ ’</code>, and the command then fails with errors that seem unrelated. Copy commands from the boxes on the course pages instead of retyping them.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Where you type matters</p>
+<p>Each section says where to type: <strong>on Kebnekaise</strong> (in a terminal where you have logged in with <code>ssh</code>) or <strong>on your own computer</strong> (in a terminal window that is <em>not</em> logged in to Kebnekaise). Archives are made where the files are; copying is started from your own computer.</p>
+</div>
+<p>The examples use a folder called <code>myproject</code> that holds a <code>README.md</code> and a <code>results</code> folder. Use your own folder and file names.</p>
+<hr />
+<h2 id="part__1__pack__files__into__an__archive__on__kebnekaise">Part 1: Pack files into an archive (on Kebnekaise)<a class="headerlink" href="#part__1__pack__files__into__an__archive__on__kebnekaise" title="Permanent link">&para;</a></h2>
+<p>An archive packs many files, or a whole folder, into one file, usually compressed so that it is smaller. One file is easier to copy, to keep and to send than many.</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Made with</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.zip</code></td>
+<td><code>zip</code></td>
+<td>A folder that you want to open on almost any computer</td>
+</tr>
+<tr>
+<td><code>.tar.gz</code></td>
+<td><code>tar</code></td>
+<td>A folder; the usual format on Linux</td>
+</tr>
+<tr>
+<td><code>.gz</code></td>
+<td><code>gzip</code></td>
+<td>A single large file, such as a FASTQ or a big table; many biological data files are shared this way</td>
+</tr>
+</tbody>
+</table>
+<p>First go to the folder that holds the folder you want to pack, and look at what is there:</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cd PATH_TO_THE_FOLDER
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ls
+</span></code></pre></div>
+<ul>
+<li><code>PATH_TO_THE_FOLDER</code>: the folder that contains the folder you want to pack, for example <code>/proj/nobackup/cddb_course/students/msvensson</code>.</li>
+</ul>
+</div>
+<h3 id="a__zip__file">A zip file<a class="headerlink" href="#a__zip__file" title="Permanent link">&para;</a></h3>
+<p>This packs the folder <code>myproject</code>, and everything in it, into <code>myproject.zip</code>. <code>-r</code> includes folders and what is inside them. If the folder is a Git repository, <code>-x "myproject/.git/*"</code> leaves out the hidden <code>.git</code> folder, which holds the Git history (that is on GitHub already).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>zip -r myproject.zip myproject -x "myproject/.git/*"
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>One line for each file or folder that was added. Your names and percentages will differ.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>  adding: myproject/ (stored 0%)
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  adding: myproject/results/ (stored 0%)
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  adding: myproject/results/TP53_protein.fasta (deflated 29%)
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  adding: myproject/results/TP53_blastp_local.tsv (deflated 69%)
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  adding: myproject/README.md (stored 0%)
+</span></code></pre></div>
+</div>
+<p>Check what is inside the zip file, without unpacking it:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>unzip -l myproject.zip
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Archive:  myproject.zip
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  Length      Date    Time    Name
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>---------  ---------- -----   ----
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        0  2026-09-30 09:32   myproject/
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        0  2026-09-30 09:32   myproject/results/
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>      490  2026-09-30 09:32   myproject/results/TP53_protein.fasta
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>     2674  2026-09-30 09:32   myproject/results/TP53_blastp_local.tsv
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>       13  2026-09-30 09:32   myproject/README.md
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>---------                     -------
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>     3177                     5 files
+</span></code></pre></div>
+</div>
+<p>To pack only some files, name them after the zip file, separated by spaces. Here the command is run from <em>inside</em> <code>myproject</code>, and the zip file is written to the folder above it (<code>..</code>):</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>zip -r ../SOME_NAME.zip FILE_OR_FOLDER FILE_OR_FOLDER
+</span></code></pre></div>
+<ul>
+<li><code>SOME_NAME</code>: a name for the zip file, for example <code>results_only</code>.</li>
+<li><code>FILE_OR_FOLDER</code>: a file or folder to include, for example <code>README.md results</code>. Add as many as you need.</li>
+</ul>
+</div>
+<p>To unpack a zip file: <code>unzip myproject.zip</code>. It recreates the folder <code>myproject</code> in the folder you are in.</p>
+<h3 id="a__targz__file">A tar.gz file<a class="headerlink" href="#a__targz__file" title="Permanent link">&para;</a></h3>
+<p><code>tar</code> is the standard archiving tool on Linux. The letters after <code>-</code> say what to do: <code>c</code> create, <code>z</code> compress with gzip, <code>f</code> the name of the archive follows. <code>--exclude=.git</code> leaves out the Git history.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tar -czf myproject.tar.gz --exclude=.git myproject
+</span></code></pre></div>
+<p>List what is inside (<code>t</code> for &ldquo;table of contents&rdquo;):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>tar -tzf myproject.tar.gz
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>myproject/
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>myproject/results/
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>myproject/results/TP53_protein.fasta
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>myproject/results/TP53_blastp_local.tsv
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>myproject/README.md
+</span></code></pre></div>
+</div>
+<p>To unpack it (<code>x</code> for &ldquo;extract&rdquo;): <code>tar -xzf myproject.tar.gz</code>. It recreates the folder <code>myproject</code> in the folder you are in.</p>
+<h3 id="a__single__file__with__gzip">A single file with gzip<a class="headerlink" href="#a__single__file__with__gzip" title="Permanent link">&para;</a></h3>
+<p><code>gzip</code> compresses one file. By itself it <strong>replaces</strong> the file with a compressed <code>.gz</code> version; <code>-k</code> (keep) leaves the original as well.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gzip -k FILE_NAME
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ls -l FILE_NAME*
+</span></code></pre></div>
+<ul>
+<li><code>FILE_NAME</code>: the file to compress, for example <code>TP53_blastp_local.tsv</code>.</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>The original and the compressed file. This BLAST table went from 2674 to 864 bytes.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>-rw-rw----+ 1 msvensson ps30756 2674 Sep 30 09:32 TP53_blastp_local.tsv
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>-rw-rw----+ 1 msvensson ps30756  864 Sep 30 09:32 TP53_blastp_local.tsv.gz
+</span></code></pre></div>
+</div>
+<p>You do not have to unpack a <code>.gz</code> file to look inside it: <code>zcat</code> prints the uncompressed text, so you can use it in a pipe like any other file:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>zcat TP53_blastp_local.tsv.gz | head -2
+</span></code></pre></div>
+<p>To unpack it: <code>gunzip TP53_blastp_local.tsv.gz</code>, which turns it back into <code>TP53_blastp_local.tsv</code>.</p>
+<hr />
+<h2 id="part__2__find__the__full__path__of__the__file__on__kebnekaise">Part 2: Find the full path of the file (on Kebnekaise)<a class="headerlink" href="#part__2__find__the__full__path__of__the__file__on__kebnekaise" title="Permanent link">&para;</a></h2>
+<p>To copy a file you need its full path on Kebnekaise. In the folder that holds the file, type:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pwd
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">What you should see (do not paste this)</p>
+<p>The full path of the folder you are in. Yours will be different. Add <code>/</code> and the file name to the end to get the full path of the file, for example <code>/proj/nobackup/cddb_course/students/msvensson/myproject.zip</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>/proj/nobackup/cddb_course/students/msvensson
+</span></code></pre></div>
+</div>
+<hr />
+<h2 id="part__3__copy__files__between__kebnekaise__and__your__own__computer">Part 3: Copy files between Kebnekaise and your own computer<a class="headerlink" href="#part__3__copy__files__between__kebnekaise__and__your__own__computer" title="Permanent link">&para;</a></h2>
+<h3 id="route__a__with__scp__in__a__terminal__on__your__own__computer">Route A: with <code>scp</code> (in a terminal on your own computer)<a class="headerlink" href="#route__a__with__scp__in__a__terminal__on__your__own__computer" title="Permanent link">&para;</a></h3>
+<p>Open a terminal window on your own computer. This is not the Kebnekaise window: do not log in to Kebnekaise for this step. Go to the folder where you want the file, then paste the command below. The dot at the end means &ldquo;here&rdquo;, the folder your terminal is in.</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>scp YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH .
+</span></code></pre></div>
+<ul>
+<li><code>YOUR_HPC2N_USERNAME</code>: your HPC2N username, the one you use to log in to Kebnekaise.</li>
+<li><code>FULL_PATH</code>: the full path of the file from Part 2, for example <code>/proj/nobackup/cddb_course/students/msvensson/myproject.zip</code>.</li>
+</ul>
+</div>
+<p><code>scp</code> asks for the same login details as <code>ssh</code>. When it has finished, the file is in the folder your terminal is in.</p>
+<p>To copy a whole folder instead of one file, add <code>-r</code>: <code>scp -r YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH_OF_THE_FOLDER .</code> For many files it is usually quicker and tidier to pack them first (Part 1) and copy the one archive.</p>
+<p>To copy the other way, from your own computer to Kebnekaise, swap the two parts. The file comes first, and the Kebnekaise folder second, ending in <code>/</code>:</p>
+<div class="admonition warning">
+<p class="admonition-title">Edit before you paste</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>scp FILE_NAME YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH_OF_A_FOLDER/
+</span></code></pre></div>
+<ul>
+<li><code>FILE_NAME</code>: the file on your own computer, for example <code>notes.txt</code>.</li>
+<li><code>YOUR_HPC2N_USERNAME</code>: your HPC2N username.</li>
+<li><code>FULL_PATH_OF_A_FOLDER</code>: the folder on Kebnekaise to copy it into, for example <code>/proj/nobackup/cddb_course/students/msvensson</code>.</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Optional, for larger folders: rsync</p>
+<p>If <code>rsync</code> is installed on your computer, it copies only what has changed, and can be run again to finish an interrupted copy. The <code>/</code> at the end of the source means &ldquo;the contents of this folder&rdquo;:</p>
+<p><code>rsync -av YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH_OF_THE_FOLDER/ LOCAL_FOLDER/</code></p>
+</div>
+<h3 id="route__b__with__the__open__ondemand__file__browser__in__a__web__browser">Route B: with the Open OnDemand file browser (in a web browser)<a class="headerlink" href="#route__b__with__the__open__ondemand__file__browser__in__a__web__browser" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to <a href="https://portal.hpc2n.umu.se">portal.hpc2n.umu.se</a> and log in.</li>
+<li>Open the <em>Files</em> app and go to the folder that holds the file.</li>
+<li>Select the file and choose <em>Download</em>. Your browser saves it in its download folder.</li>
+</ol>
+<hr />
+<h2 id="part__4__unpack__on__your__own__computer">Part 4: Unpack on your own computer<a class="headerlink" href="#part__4__unpack__on__your__own__computer" title="Permanent link">&para;</a></h2>
+<p>Most computers open a <code>.zip</code> file with a double-click. In a terminal on your own computer you can also use the same commands as on Kebnekaise:</p>
+<table>
+<thead>
+<tr>
+<th>Archive</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>myproject.zip</code></td>
+<td><code>unzip myproject.zip</code></td>
+</tr>
+<tr>
+<td><code>myproject.tar.gz</code></td>
+<td><code>tar -xzf myproject.tar.gz</code></td>
+</tr>
+<tr>
+<td><code>TP53_blastp_local.tsv.gz</code></td>
+<td><code>gunzip TP53_blastp_local.tsv.gz</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What it means and what to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scp: ...: No such file or directory</code></td>
+<td>The path is wrong. Run <code>pwd</code> in the folder with the file on Kebnekaise (Part 2), check that the file is there with <code>ls</code>, and use that path.</td>
+</tr>
+<tr>
+<td><code>scp</code> says <code>Permission denied</code></td>
+<td>The username or the password is wrong, or you cannot log in to Kebnekaise. Try logging in with <code>ssh</code> first.</td>
+</tr>
+<tr>
+<td><code>zip warning: name not matched</code> and <code>zip error: Nothing to do!</code></td>
+<td>The file or folder name after the zip file does not exist in the folder you are in. Check the names with <code>ls</code>.</td>
+</tr>
+<tr>
+<td><code>tar: ...: Cannot stat: No such file or directory</code></td>
+<td>The same for <code>tar</code>: check the folder name with <code>ls</code>.</td>
+</tr>
+<tr>
+<td><code>gzip: ... already exists; not overwritten</code></td>
+<td>There is already a <code>.gz</code> file with that name. Remove or rename it, or use the one you have.</td>
+</tr>
+<tr>
+<td>Your original file is gone after <code>gzip</code></td>
+<td><code>gzip</code> without <code>-k</code> replaces the file with the <code>.gz</code> file. <code>gunzip</code> brings it back.</td>
+</tr>
+<tr>
+<td>The zip file looks too small, or is empty</td>
+<td>Check its contents with <code>unzip -l</code>. Only the files and folders you name are included.</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../git-ssh-setup/git-ssh-setup/" class="btn btn-neutral float-left" title="Exam preparation, pushing to GitHub from Kebnekaise"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../tree/" class="btn btn-neutral float-right" title="Install tree">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../git-ssh-setup/git-ssh-setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../tree/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

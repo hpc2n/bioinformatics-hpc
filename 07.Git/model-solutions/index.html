@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/07.Git/model-solutions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Model solutions for Extra exercises - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Model solutions for Extra exercises";
+        var mkdocs_page_input_path = "07.Git/model-solutions.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/07.Git/model-solutions/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercises/git-ssh-setup/git-ssh-setup/">Exam preparation, pushing to GitHub from Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercises/zip-guide/zip-guide/">Copying files from Kebnekaise, and zip and gzip archives</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../text-processing/text-processing/">Reading and querying bioinformatics text files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08.software-modules-containers/Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Model solutions for Extra exercises</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="model__solutions__for__extra__exercises">Model solutions for Extra exercises<a class="headerlink" href="#model__solutions__for__extra__exercises" title="Permanent link">&para;</a></h1>
+<p>These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later.</p>
+<h2 id="on__your__own">On your own<a class="headerlink" href="#on__your__own" title="Permanent link">&para;</a></h2>
+<p>These exercises can be done on your own. </p>
+<ol>
+<li>Create a repository from the command line: <ul>
+<li>Initialize a repository from the command line. </li>
+<li>Create a file or two. </li>
+<li>Add the file(s) and commit them. </li>
+<li>Use <code>git log</code> and <code>git status</code> to see what has happened. </li>
+<li>Answer: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>init<span class="w"> </span>myrepo
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>hint:<span class="w"> </span>Using<span class="w"> </span><span class="s1">'master'</span><span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>initial<span class="w"> </span>branch.<span class="w"> </span>This<span class="w"> </span>default<span class="w"> </span>branch<span class="w"> </span>name
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>hint:<span class="w"> </span>is<span class="w"> </span>subject<span class="w"> </span>to<span class="w"> </span>change.<span class="w"> </span>To<span class="w"> </span>configure<span class="w"> </span>the<span class="w"> </span>initial<span class="w"> </span>branch<span class="w"> </span>name<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="k">in</span><span class="w"> </span>all
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>hint:<span class="w"> </span>of<span class="w"> </span>your<span class="w"> </span>new<span class="w"> </span>repositories,<span class="w"> </span>which<span class="w"> </span>will<span class="w"> </span>suppress<span class="w"> </span>this<span class="w"> </span>warning,<span class="w"> </span>call:
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>hint:<span class="w"> </span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>hint:<span class="w">     </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>&lt;name&gt;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>hint:<span class="w"> </span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>hint:<span class="w"> </span>Names<span class="w"> </span>commonly<span class="w"> </span>chosen<span class="w"> </span>instead<span class="w"> </span>of<span class="w"> </span><span class="s1">'master'</span><span class="w"> </span>are<span class="w"> </span><span class="s1">'main'</span>,<span class="w"> </span><span class="s1">'trunk'</span><span class="w"> </span>and
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>hint:<span class="w"> </span><span class="s1">'development'</span>.<span class="w"> </span>The<span class="w"> </span>just-created<span class="w"> </span>branch<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>renamed<span class="w"> </span>via<span class="w"> </span>this<span class="w"> </span>command:
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>hint:<span class="w"> </span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>hint:<span class="w">     </span>git<span class="w"> </span>branch<span class="w"> </span>-m<span class="w"> </span>&lt;name&gt;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Initialized<span class="w"> </span>empty<span class="w"> </span>Git<span class="w"> </span>repository<span class="w"> </span><span class="k">in</span><span class="w"> </span>/home/bbrydsoe/myrepo/.git/
+</span></code></pre></div>
+  Since GitHub uses <code>main</code> instead of <code>master</code> you have to either rename the repo here or in GitHub. Let us do it here: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>myrepo/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-m<span class="w"> </span>main
+</span></code></pre></div>
+  Create files. Add the files, commit them. Check with <code>git log</code> and <code>git status</code>: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>touch<span class="w"> </span>afile
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span>touch<span class="w"> </span>bfile
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>$<span class="w"> </span>touch<span class="w"> </span>cfile
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>afile<span class="w"> </span>bfile<span class="w"> </span>cfile
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Added some new files"</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="o">[</span>main<span class="w"> </span><span class="o">(</span>root-commit<span class="o">)</span><span class="w"> </span>ec46f5b<span class="o">]</span><span class="w"> </span>Added<span class="w"> </span>some<span class="w"> </span>new<span class="w"> </span>files
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w"> </span><span class="m">3</span><span class="w"> </span>files<span class="w"> </span>changed,<span class="w"> </span><span class="m">0</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">0</span><span class="w"> </span>deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>afile
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>bfile
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>cfile
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>$<span class="w"> </span>git<span class="w"> </span>log
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>commit<span class="w"> </span>ec46f5b152cbf5059a73bf7554db235b50290c09<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>main<span class="o">)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>Author:<span class="w"> </span>Birgitte<span class="w"> </span>Brydsö<span class="w"> </span>&lt;bbrydsoe@hpc2n.umu.se&gt;
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>Date:<span class="w">   </span>Sun<span class="w"> </span>Sep<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">16</span>:03:16<span class="w"> </span><span class="m">2026</span><span class="w"> </span>+0200
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span>Added<span class="w"> </span>some<span class="w"> </span>new<span class="w"> </span>files
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>Create a new, empty repository on GitHub with the same name (do not add README or .gitignore). Instead, on the new page of creation, connect to the local repo (&hellip; or push an existing repository from the command lines). Just copy the commands from there to your command line. 
+<strong>NOTE</strong> You need to have setup SSH keys on GitHub first. If not, do so as described here: https://hpc2n.github.io/bioinformatics-hpc/07.Git/teamwork/#2__creating__and__using__ssh-keys <ul>
+<li>Answer: 
+  <img src="../../images/myrepo.png"> 
+  Click &ldquo;Create repository&rdquo; (green button at bottom) 
+  Now pick the option &ldquo;…or push an existing repository from the command line&rdquo;.
+  For my example, I would do (line 2 is already done): 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:bbrydsoe/myrepo.git
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>See on GitHub that your repository now contains what you had in your local repository. Do <code>git status</code> on the command line and compare what it says now. <ul>
+<li>Answer: 
+  <img src="../../images/updated-repo.png">
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Your<span class="w"> </span>branch<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date<span class="w"> </span>with<span class="w"> </span><span class="s1">'origin/main'</span>.
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>Create a minor conflict and resolve it with <code>git pull --rebase</code><ul>
+<li>Create a new file on GitHub. Save/commit. </li>
+<li>On the command line, create a new file. Stage, commit, and push. Git complains! </li>
+<li>Solve the problem with <code>git pull --rebase</code> and <code>git push</code></li>
+<li>Answer: 
+  <img src="../../images/create-file-repo.png">
+  Click the &ldquo;Create new file&rdquo; under &ldquo;Add file&rdquo;
+  <img src="../../images/created-on-repo.png">
+  Click &ldquo;Commit changes &hellip;&rdquo; 
+  Go to command line: 
+  <code>bash
+  $ touch efile
+  bbrydsoe@enterprise:~/myrepo$ git add efile 
+  bbrydsoe@enterprise:~/myrepo$ git commit -m "Creating one more file"
+  [main 0b8008e] Creating one more file
+   1 file changed, 0 insertions(+), 0 deletions(-)
+   create mode 100644 efile
+  bbrydsoe@enterprise:~/myrepo$ git push
+  To github.com:bbrydsoe/myrepo.git
+   ! [rejected]        main -&gt; main (fetch first)
+  error: failed to push some refs to 'github.com:bbrydsoe/myrepo.git'
+  hint: Updates were rejected because the remote contains work that you do
+  hint: not have locally. This is usually caused by another repository pushing
+  hint: to the same ref. You may want to first integrate the remote changes
+  hint: (e.g., 'git pull ...') before pushing again.
+                            hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+  $ git pull --rebase
+  remote: Enumerating objects: 4, done.
+  remote: Counting objects: 100% (4/4), done.
+  remote: Compressing objects: 100% (3/3), done.
+  remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+  Unpacking objects: 100% (3/3), 979 bytes | 979.00 KiB/s, done.
+  From github.com:bbrydsoe/myrepo
+     ec46f5b..1b84667  main       -&gt; origin/main
+  Successfully rebased and updated refs/heads/main.
+  bbrydsoe@enterprise:~/myrepo$ git push
+  Enumerating objects: 3, done.
+  Counting objects: 100% (3/3), done.
+  Delta compression using up to 4 threads
+  Compressing objects: 100% (2/2), done.
+  Writing objects: 100% (2/2), 279 bytes | 279.00 KiB/s, done.
+  Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+  remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+  To github.com:bbrydsoe/myrepo.git
+     1b84667..f1861ee  main -&gt; main</code></li>
+</ul>
+</li>
+<li>Create a conflict and try to resolve it: <ul>
+<li>Either make changes to the same file in the same place on both GitHub and your repo on the command line or clone the repo somewhere else and make the changes in both local copies of the repo (this imitates the situation where you work on the files from home/your laptop and from your office desktop/laptop. Do not pull the new changes in either place before making new changes (bad idea!) </li>
+<li>Now try and push in both places. Git will complain when you try to push in the second location. Git will say there are diverging branches. </li>
+<li>Can it be resolved with <code>git pull --rebase</code>? Probably not. Try it anyway. There is now a conflict. Find the conflict markers in the file you changed in both locations, decide how it should look and edit to suit. Remove conflict markers. Save. Add, commit, push. </li>
+<li>Did Git allow you to push? Did it say you are not currently on a branch? (Detached head). You must then do <code>git push origin HEAD:main</code> </li>
+<li>Answer: <ul>
+<li>Here making changes to the same file in the same place on command line and on gitHub: </li>
+<li>First edit the file (here <code>efile</code>) on GitHub: Click the file. Chose the pen to edit. Commit changes &hellip; (green button) afterwards. I added four lines. 
+  <img src="../../images/edit-file-repo.png"></li>
+<li>Now edit the same file on the command line, without pulling first. 
+  <img src="../../images/edit-file-CLI.png">
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>efile
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Adding some lines to efile"</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">[</span>main<span class="w"> </span>ed78236<span class="o">]</span><span class="w"> </span>Adding<span class="w"> </span>some<span class="w"> </span>lines<span class="w"> </span>to<span class="w"> </span>efile
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">4</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>$<span class="w"> </span>git<span class="w"> </span>push
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>To<span class="w"> </span>github.com:bbrydsoe/myrepo.git
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w"> </span>!<span class="w"> </span><span class="o">[</span>rejected<span class="o">]</span><span class="w">        </span>main<span class="w"> </span>-&gt;<span class="w"> </span>main<span class="w"> </span><span class="o">(</span>fetch<span class="w"> </span>first<span class="o">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>error:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>push<span class="w"> </span>some<span class="w"> </span>refs<span class="w"> </span>to<span class="w"> </span><span class="s1">'github.com:bbrydsoe/myrepo.git'</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>hint:<span class="w"> </span>Updates<span class="w"> </span>were<span class="w"> </span>rejected<span class="w"> </span>because<span class="w"> </span>the<span class="w"> </span>remote<span class="w"> </span>contains<span class="w"> </span>work<span class="w"> </span>that<span class="w"> </span>you<span class="w"> </span><span class="k">do</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>hint:<span class="w"> </span>not<span class="w"> </span>have<span class="w"> </span>locally.<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>usually<span class="w"> </span>caused<span class="w"> </span>by<span class="w"> </span>another<span class="w"> </span>repository<span class="w"> </span>pushing
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>hint:<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>ref.<span class="w"> </span>You<span class="w"> </span>may<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>first<span class="w"> </span>integrate<span class="w"> </span>the<span class="w"> </span>remote<span class="w"> </span>changes
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>hint:<span class="w"> </span><span class="o">(</span>e.g.,<span class="w"> </span><span class="s1">'git pull ...'</span><span class="o">)</span><span class="w"> </span>before<span class="w"> </span>pushing<span class="w"> </span>again.
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>hint:<span class="w"> </span>See<span class="w"> </span>the<span class="w"> </span><span class="s1">'Note about fast-forwards'</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">'git push --help'</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+</span></code></pre></div>
+  This means we now have to try and resolve the conflict. Let us first pull: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>git<span class="w"> </span>pull
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Unpacking<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">1013</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1013</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>From<span class="w"> </span>github.com:bbrydsoe/myrepo
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">   </span>f1861ee..bb236f3<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>origin/main
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>hint:<span class="w"> </span>You<span class="w"> </span>have<span class="w"> </span>divergent<span class="w"> </span>branches<span class="w"> </span>and<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>reconcile<span class="w"> </span>them.
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>hint:<span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span><span class="k">do</span><span class="w"> </span>so<span class="w"> </span>by<span class="w"> </span>running<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>commands<span class="w"> </span>sometime<span class="w"> </span>before
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>hint:<span class="w"> </span>your<span class="w"> </span>next<span class="w"> </span>pull:
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>hint:<span class="w"> </span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>hint:<span class="w">   </span>git<span class="w"> </span>config<span class="w"> </span>pull.rebase<span class="w"> </span><span class="nb">false</span><span class="w">  </span><span class="c1"># merge (the default strategy)</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>hint:<span class="w">   </span>git<span class="w"> </span>config<span class="w"> </span>pull.rebase<span class="w"> </span><span class="nb">true</span><span class="w">   </span><span class="c1"># rebase</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>hint:<span class="w">   </span>git<span class="w"> </span>config<span class="w"> </span>pull.ff<span class="w"> </span>only<span class="w">       </span><span class="c1"># fast-forward only</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>hint:<span class="w"> </span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>hint:<span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span>replace<span class="w"> </span><span class="s2">"git config"</span><span class="w"> </span>with<span class="w"> </span><span class="s2">"git config --global"</span><span class="w"> </span>to<span class="w"> </span><span class="nb">set</span><span class="w"> </span>a<span class="w"> </span>default
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>hint:<span class="w"> </span>preference<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>repositories.<span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span>also<span class="w"> </span>pass<span class="w"> </span>--rebase,<span class="w"> </span>--no-rebase,
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>hint:<span class="w"> </span>or<span class="w"> </span>--ff-only<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>to<span class="w"> </span>override<span class="w"> </span>the<span class="w"> </span>configured<span class="w"> </span>default<span class="w"> </span>per
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>hint:<span class="w"> </span>invocation.
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>fatal:<span class="w"> </span>Need<span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>reconcile<span class="w"> </span>divergent<span class="w"> </span>branches.
+</span></code></pre></div>
+  Let us try the rebase then:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--rebase
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Auto-merging<span class="w"> </span>efile
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>efile
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>error:<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>apply<span class="w"> </span>ed78236...<span class="w"> </span>Adding<span class="w"> </span>some<span class="w"> </span>lines<span class="w"> </span>to<span class="w"> </span>efile
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>hint:<span class="w"> </span>Resolve<span class="w"> </span>all<span class="w"> </span>conflicts<span class="w"> </span>manually,<span class="w"> </span>mark<span class="w"> </span>them<span class="w"> </span>as<span class="w"> </span>resolved<span class="w"> </span>with
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>hint:<span class="w"> </span><span class="s2">"git add/rm &lt;conflicted_files&gt;"</span>,<span class="w"> </span><span class="k">then</span><span class="w"> </span>run<span class="w"> </span><span class="s2">"git rebase --continue"</span>.
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>hint:<span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span>instead<span class="w"> </span>skip<span class="w"> </span>this<span class="w"> </span>commit:<span class="w"> </span>run<span class="w"> </span><span class="s2">"git rebase --skip"</span>.
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>hint:<span class="w"> </span>To<span class="w"> </span>abort<span class="w"> </span>and<span class="w"> </span>get<span class="w"> </span>back<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>state<span class="w"> </span>before<span class="w"> </span><span class="s2">"git rebase"</span>,<span class="w"> </span>run<span class="w"> </span><span class="s2">"git rebase --abort"</span>.
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Could<span class="w"> </span>not<span class="w"> </span>apply<span class="w"> </span>ed78236...<span class="w"> </span>Adding<span class="w"> </span>some<span class="w"> </span>lines<span class="w"> </span>to<span class="w"> </span>efile
+</span></code></pre></div>
+  Let us look at the file: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>cat<span class="w"> </span>efile
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt;<span class="w"> </span>HEAD
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>I<span class="w"> </span>am<span class="w"> </span>adding<span class="w"> </span>a<span class="w"> </span>few<span class="w"> </span>lines<span class="w"> </span>here
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Just<span class="w"> </span>so<span class="w"> </span>I<span class="w"> </span>can<span class="w"> </span>perhaps<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>conflict
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>How<span class="w"> </span>will<span class="w"> </span>Git<span class="w"> </span>react
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>We<span class="w"> </span>shall<span class="w"> </span>see!
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="o">=======</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>We<span class="w"> </span>are<span class="w"> </span>trying<span class="w"> </span>to<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>conflict.
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>So<span class="w"> </span>I<span class="w"> </span>must<span class="w"> </span>add<span class="w"> </span>some<span class="w"> </span>lines
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>In<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>locations
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>Will<span class="w"> </span>be<span class="w"> </span>interesting!
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<span class="w"> </span>ed78236<span class="w"> </span><span class="o">(</span>Adding<span class="w"> </span>some<span class="w"> </span>lines<span class="w"> </span>to<span class="w"> </span>efile<span class="o">)</span>
+</span></code></pre></div>
+  Now we need to edit the file. I am doing so with <code>nano</code>: 
+  <img src="../../images/edit-conflict.png">
+  We edit the file to have the content we want (I decide I want to keep the content and just remove the conflict markers). It looks like this: 
+  <img src="../../images/corrected-edit"><br />
+  We now add, commit, and push 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>efile<span class="w"> </span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>bbrydsoe@enterprise:~/myrepo$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Fixing the conflict"</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">[</span>detached<span class="w"> </span>HEAD<span class="w"> </span>6adbfea<span class="o">]</span><span class="w"> </span>Fixing<span class="w"> </span>the<span class="w"> </span>conflict
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">8</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">4</span><span class="w"> </span>deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>bbrydsoe@enterprise:~/myrepo$<span class="w"> </span>git<span class="w"> </span>push
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>fatal:<span class="w"> </span>You<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>currently<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>branch.
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>To<span class="w"> </span>push<span class="w"> </span>the<span class="w"> </span><span class="nb">history</span><span class="w"> </span>leading<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span><span class="o">(</span>detached<span class="w"> </span>HEAD<span class="o">)</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>state<span class="w"> </span>now,<span class="w"> </span>use
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>HEAD:&lt;name-of-remote-branch&gt;
+</span></code></pre></div>
+  Did you notice the comment about &ldquo;detached head&rdquo;? We must fix that: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>HEAD:main
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">4</span><span class="w"> </span>threads
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">406</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">406</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>remote:<span class="w"> </span>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span>completed<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span>object.
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>To<span class="w"> </span>github.com:bbrydsoe/myrepo.git
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">   </span>bb236f3..6adbfea<span class="w">  </span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>main
+</span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="teamwork">Teamwork<a class="headerlink" href="#teamwork" title="Permanent link">&para;</a></h2>
+<p>Together in a team. </p>
+<ol>
+<li>Setup: <ul>
+<li>One of you create a repository. Either as in the section &ldquo;On your own&rdquo; or directly on GitHub. </li>
+<li>That person also adds some files. </li>
+<li>In &ldquo;Settings&rdquo; along the top in the repository on GitHub, the owner of the repository goes to &ldquo;Collaborators&rdquo; and there add the team members as maintainers or developers. What is the difference? Do they need the right to create branches? </li>
+<li>The members accept the invite. </li>
+</ul>
+</li>
+<li>Each of the other team members now clone this repository. (Green code button -&gt; under SSH, copy the url, do <code>git clone repo-url</code>) </li>
+<li>All members (including the owner) now make some changes. To begin with, make sure to do <code>git pull --rebase</code> first to get any changes the orhers have made. Regularly see the changes that happens locally and in the GitHub remote repository. Check with <code>git status</code> and <code>git log</code>.</li>
+<li>Some/all create their own branch. Make some directories and files. Add some content to the files. Stage/commit/push. Check how it looks. </li>
+<li>Fetch each others branches.</li>
+<li>Try and merge some branches to main. Try and merge after having created a file and not having added/committed it. What happens? How do you resolve it? </li>
+<li>Create more branches. Make sure you have some files that are named the same and in the same location in the branches. Two should then make changes to the same file in the same location in it. Try and merge the branches. Will Git complain?</li>
+<li>If you got a conflict, try and resolve it and then continue the merge. </li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

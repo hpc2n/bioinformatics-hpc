@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/bioinformatics-hpc/08.software-modules-containers/model-solutions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Model solutions for Extra exercises - Using HPC in Bioinformatics</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Model solutions for Extra exercises";
+        var mkdocs_page_input_path = "08.software-modules-containers/model-solutions.md";
+        var mkdocs_page_url = "/bioinformatics-hpc/08.software-modules-containers/model-solutions/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+<script src="../../assets/javascripts/toggle-sidebar.js"></script></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../images/logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Programme introduction</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../00.programme-introduction/programme-introduction/">Overview</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../01.what-is-bioinformatics/what-is-bioinformatics/">1. What is Bioinformatics?</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. Connection to a cluster (Kebnekaise)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/connect-cluster/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4a.OpenOnDemand/openondemand/">OpenOnDemand</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/ssh/">SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02.connect-cluster/4b.ssh-thinlinc/thinlinc/">ThinLinc (optional)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. Introduction to computers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03.computer/computer/">What is a computer?</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Files and file systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/files-filesystems/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04.files-filesystems/filesystems/">File systems</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5. Intro to compute clusters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05.compute-cluster/compute-cluster/">Compute clusters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6. Introduction to Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cli/">Command Line Interface (CLI)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/filesystem/">The Linux File System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/modify/">Modifying the file tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/editors/">Editors on Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/data/">Data handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/pipesfilters/">Pipes and filters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/patterns/">Finding patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/awk/">Awk</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/scripting/">Scripting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/hints/">Hints and tricks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7. Introduction to Git</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/intro-motivation-setup/">Introduction and setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands/">Basic commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches/">Branches, merges, and conflicts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes/">Working with remotes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork/">Teamwork</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/workflow/">Workflow for Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8. Accessing software on Kebnekaise</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../what-modules/">What are modules?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../containers-kebnekaise/">Containers on Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../create-containers/">Creating containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9. Software from a Git repo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/git-software/">Installing from Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09.software-git-install-compile/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">10. The batch system (Slurm)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/intro/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/concepts/">Batch system concepts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/slurm/">Introduction to Slurm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/interactive/">Interactive jobs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/jobscripts/">Sample job scripts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/monitoring/">Monitoring and efficiency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10.batch-slurm/exercises/">Extra exercises</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Bioinformatics content</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../bioinformatics-overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11.database-landscape/database-landscape/">11. Biological Database Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12.blast/blast/">12. BLAST and Sequence Similarity</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13.file-formats/file-formats/">13. Bioinformatics File Formats</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >14. FAIR and Open Science</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-open-science/">Lecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-assignment/">Essay assignment</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../14.fair-open-science/fair-essay-marking-rubric/">Marking rubric</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../15.fair-in-practice/fair-in-practice/">15. FAIR in Practice</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../summary-exercises/">Summary exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercises/git-ssh-setup/git-ssh-setup/">Exam preparation, pushing to GitHub from Kebnekaise</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercises/zip-guide/zip-guide/">Copying files from Kebnekaise, and zip and gzip archives</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extras</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tree/">Install tree</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/linux-terminology/">Linux terminology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/more-commands/">More Linux commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06.linux-intro/cheat/">Linux cheat sheet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/kebnekaise/">Git setup on Kebnekaise</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced/self-study</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../text-processing/text-processing/">Reading and querying bioinformatics text files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full/">Basic commands extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-commands-full-exercises/">Basic commands exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full/">Basic concepts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/basic-concepts-full-exercises/">Basic concepts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full/">Traversing the commit tree extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/commits-full-exercises/">Traversing the commit tree exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full/">Branches, merges, and conflicts extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/branches-full-exercises/">Branches, merges, and conflicts exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full/">Working with remotes extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/remotes-full-exercises/">Working with remotes exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full/">Teamwork extended</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07.Git/teamwork-full-exercises/">Teamwork exercises</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../virtenv/">Virtual environments and Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Rpack/">Installing R packages yourself</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Using HPC in Bioinformatics</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Model solutions for Extra exercises</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="model__solutions__for__extra__exercises">Model solutions for Extra exercises<a class="headerlink" href="#model__solutions__for__extra__exercises" title="Permanent link">&para;</a></h1>
+<p>These exercises are meant as extra (optional) training and can be done either during classes if there is time, or later.</p>
+<h2 id="finding__existing__modules">Finding existing modules<a class="headerlink" href="#finding__existing__modules" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Finding versions<ul>
+<li>Find which R versions exist<ul>
+<li>Answer: use <code>module spider R</code> to get 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>R/4.3.2
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>R/4.4.1
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>R/4.4.2
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>R/4.5.1
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>R/4.5.2
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>What are the prerequisites for R/4.5.2?<ul>
+<li>Answer: use <code>module spider R/4.5.2</code> to get <code>GCC/14.3.0</code></li>
+</ul>
+</li>
+<li>Which versions of Python exist?<ul>
+<li>Answer: use <code>module spider Python</code> to get 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Python/2.7.18
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Python/3.8.6
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Python/3.11.3
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Python/3.11.5
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Python/3.12.3
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Python/3.13.1
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Python/3.13.5
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Python/3.14.2
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>What are the prerequisites for Python/3.13.5?<ul>
+<li>Answer: use <code>module spider Python/3.13.5</code> to get <code>GCCcore/14.3.0</code>     </li>
+</ul>
+</li>
+<li>Find the versions of the module R-bundle-Bioconductor<ul>
+<li>Answer: use <code>module spider R-bundle-Bioconductor</code> to get
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>R-bundle-Bioconductor/3.18-R-4.3.2
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>R-bundle-Bioconductor/3.19-R-4.4.1
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>R-bundle-Bioconductor/3.20-R-4.4.2
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>R-bundle-Bioconductor/3.22-R-4.5.1
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>R-bundle-Bioconductor/3.22-R-4.5.2
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>What are the prerequisites for R-bundle-Bioconductor/3.22-R-4.5.2?<ul>
+<li>Answer: use <code>module spider R-bundle-Bioconductor/3.22-R-4.5.2</code> to get <code>GCC/14.3.0  OpenMPI/5.0.8</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="loading__modules">Loading modules<a class="headerlink" href="#loading__modules" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Loading modules<ul>
+<li>Load R-bundle-Bioconductor/3.22-R-4.5.2 (after first loading any prerequisites).
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/14.3.0<span class="w">  </span>OpenMPI/5.0.8<span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>R-bundle-Bioconductor/3.22-R-4.5.2
+</span></code></pre></div></li>
+<li>List the modules that are loaded. 
+  ??? info &ldquo;Click to expand&rdquo; 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~/bbafs<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w">     </span><span class="o">(</span>S<span class="o">)</span><span class="w">  </span><span class="m">48</span><span class="o">)</span><span class="w"> </span>elfutils/0.193<span class="w">          </span><span class="m">95</span><span class="o">)</span><span class="w"> </span>JasPer/4.2.8
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">       </span><span class="o">(</span>S<span class="o">)</span><span class="w">  </span><span class="m">49</span><span class="o">)</span><span class="w"> </span>libdrm/2.4.125<span class="w">          </span><span class="m">96</span><span class="o">)</span><span class="w"> </span>LittleCMS/2.17
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/14.3.0<span class="w">           </span><span class="m">50</span><span class="o">)</span><span class="w"> </span>libunwind/1.8.2<span class="w">         </span><span class="m">97</span><span class="o">)</span><span class="w"> </span>Pango/1.57.0
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1<span class="w">               </span><span class="m">51</span><span class="o">)</span><span class="w"> </span>nettle/3.10.2<span class="w">           </span><span class="m">98</span><span class="o">)</span><span class="w"> </span>ImageMagick/7.1.2-7
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.44<span class="w">            </span><span class="m">52</span><span class="o">)</span><span class="w"> </span>OpenGL/2025.09<span class="w">          </span><span class="m">99</span><span class="o">)</span><span class="w"> </span>GLPK/5.0
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/14.3.0<span class="w">               </span><span class="m">53</span><span class="o">)</span><span class="w"> </span>pixman/0.46.4<span class="w">          </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>nodejs/22.17.1
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>numactl/2.0.19<span class="w">           </span><span class="m">54</span><span class="o">)</span><span class="w"> </span>libiconv/1.18<span class="w">          </span><span class="m">101</span><span class="o">)</span><span class="w"> </span>cffi/1.17.1
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>XZ/5.8.1<span class="w">                 </span><span class="m">55</span><span class="o">)</span><span class="w"> </span>gettext/0.25<span class="w">           </span><span class="m">102</span><span class="o">)</span><span class="w"> </span>cryptography/45.0.5
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libxml2/2.14.3<span class="w">           </span><span class="m">56</span><span class="o">)</span><span class="w"> </span>PCRE2/10.45<span class="w">            </span><span class="m">103</span><span class="o">)</span><span class="w"> </span>virtualenv/20.32.0
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>libpciaccess/0.18.1<span class="w">      </span><span class="m">57</span><span class="o">)</span><span class="w"> </span>GLib/2.85.3<span class="w">            </span><span class="m">104</span><span class="o">)</span><span class="w"> </span>Python-bundle-PyPI/2025.07
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w"> </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>hwloc/2.12.1<span class="w">             </span><span class="m">58</span><span class="o">)</span><span class="w"> </span>cairo/1.18.4<span class="w">           </span><span class="m">105</span><span class="o">)</span><span class="w"> </span>SciPy-bundle/2025.07
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w"> </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>OpenSSL/3<span class="w">                </span><span class="m">59</span><span class="o">)</span><span class="w"> </span>libjpeg-turbo/3.1.1<span class="w">    </span><span class="m">106</span><span class="o">)</span><span class="w"> </span>GEOS/3.13.1
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w"> </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libevent/2.1.12<span class="w">          </span><span class="m">60</span><span class="o">)</span><span class="w"> </span>jbigkit/2.1<span class="w">            </span><span class="m">107</span><span class="o">)</span><span class="w"> </span>PCRE/8.45
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w"> </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>UCX/1.19.0<span class="w">               </span><span class="m">61</span><span class="o">)</span><span class="w"> </span>libdeflate/1.24<span class="w">        </span><span class="m">108</span><span class="o">)</span><span class="w"> </span>nlohmann_json/3.12.0
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w"> </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>PMIx/5.0.8<span class="w">               </span><span class="m">62</span><span class="o">)</span><span class="w"> </span>LibTIFF/4.7.0<span class="w">          </span><span class="m">109</span><span class="o">)</span><span class="w"> </span>PROJ/9.6.2
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w"> </span><span class="m">16</span><span class="o">)</span><span class="w"> </span>PRRTE/3.0.11<span class="w">             </span><span class="m">63</span><span class="o">)</span><span class="w"> </span>giflib/5.2.2<span class="w">           </span><span class="m">110</span><span class="o">)</span><span class="w"> </span>libgeotiff/1.7.4
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w"> </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>UCC/1.4.4<span class="w">                </span><span class="m">64</span><span class="o">)</span><span class="w"> </span>libwebp/1.5.0<span class="w">          </span><span class="m">111</span><span class="o">)</span><span class="w"> </span>Szip/2.1.1
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w"> </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>OpenMPI/5.0.8<span class="w">            </span><span class="m">65</span><span class="o">)</span><span class="w"> </span>Java/21<span class="w"> </span>-&gt;<span class="w"> </span>Java/21.0.8<span class="w"> </span><span class="m">112</span><span class="o">)</span><span class="w"> </span>libtirpc/1.3.6
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w"> </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>OpenBLAS/0.3.30<span class="w">          </span><span class="m">66</span><span class="o">)</span><span class="w"> </span>libgit2/1.9.1<span class="w">          </span><span class="m">113</span><span class="o">)</span><span class="w"> </span>HDF/4.3.1
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w"> </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>FlexiBLAS/3.4.5<span class="w">          </span><span class="m">67</span><span class="o">)</span><span class="w"> </span>libidn2/2.3.8<span class="w">          </span><span class="m">114</span><span class="o">)</span><span class="w"> </span>Eigen/3.4.0
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w"> </span><span class="m">21</span><span class="o">)</span><span class="w"> </span>FFTW/3.3.10<span class="w">              </span><span class="m">68</span><span class="o">)</span><span class="w"> </span>libunistring/1.3<span class="w">       </span><span class="m">115</span><span class="o">)</span><span class="w"> </span>arpack-ng/3.9.1
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w"> </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>FFTW.MPI/3.3.10<span class="w">          </span><span class="m">69</span><span class="o">)</span><span class="w"> </span>libpsl/0.21.5<span class="w">          </span><span class="m">116</span><span class="o">)</span><span class="w"> </span>Armadillo/15.0.1
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w"> </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>ScaLAPACK/2.2.2-fb<span class="w">       </span><span class="m">70</span><span class="o">)</span><span class="w"> </span>cURL/8.14.1<span class="w">            </span><span class="m">117</span><span class="o">)</span><span class="w"> </span>CFITSIO/4.6.2
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w"> </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">              </span><span class="m">71</span><span class="o">)</span><span class="w"> </span>Tk/9.0.1<span class="w">               </span><span class="m">118</span><span class="o">)</span><span class="w"> </span>json-c/0.18
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w"> </span><span class="m">25</span><span class="o">)</span><span class="w"> </span>expat/2.7.1<span class="w">              </span><span class="m">72</span><span class="o">)</span><span class="w"> </span>ICU/77.1<span class="w">               </span><span class="m">119</span><span class="o">)</span><span class="w"> </span>Xerces-C++/3.3.0
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w"> </span><span class="m">26</span><span class="o">)</span><span class="w"> </span>libpng/1.6.50<span class="w">            </span><span class="m">73</span><span class="o">)</span><span class="w"> </span>HarfBuzz/11.4.1<span class="w">        </span><span class="m">120</span><span class="o">)</span><span class="w"> </span>Imath/3.1.12
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w"> </span><span class="m">27</span><span class="o">)</span><span class="w"> </span>Brotli/1.1.0<span class="w">             </span><span class="m">74</span><span class="o">)</span><span class="w"> </span>FriBidi/1.0.16<span class="w">         </span><span class="m">121</span><span class="o">)</span><span class="w"> </span>OpenEXR/3.3.4
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w"> </span><span class="m">28</span><span class="o">)</span><span class="w"> </span>freetype/2.13.3<span class="w">          </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>R/4.5.2<span class="w">                </span><span class="m">122</span><span class="o">)</span><span class="w"> </span>Brunsli/0.1
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w"> </span><span class="m">29</span><span class="o">)</span><span class="w"> </span>ncurses/6.5<span class="w">              </span><span class="m">76</span><span class="o">)</span><span class="w"> </span>Boost/1.88.0<span class="w">           </span><span class="m">123</span><span class="o">)</span><span class="w"> </span>Qhull/2020.2
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w"> </span><span class="m">30</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">          </span><span class="m">77</span><span class="o">)</span><span class="w"> </span>GSL/2.8<span class="w">                </span><span class="m">124</span><span class="o">)</span><span class="w"> </span>LERC/4.0.0
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w"> </span><span class="m">31</span><span class="o">)</span><span class="w"> </span>libtommath/1.3.0<span class="w">         </span><span class="m">78</span><span class="o">)</span><span class="w"> </span>NLopt/2.10.0<span class="w">           </span><span class="m">125</span><span class="o">)</span><span class="w"> </span>OpenJPEG/2.5.3
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w"> </span><span class="m">32</span><span class="o">)</span><span class="w"> </span>Tcl/9.0.1<span class="w">                </span><span class="m">79</span><span class="o">)</span><span class="w"> </span>libogg/1.3.6<span class="w">           </span><span class="m">126</span><span class="o">)</span><span class="w"> </span>SWIG/4.3.1
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w"> </span><span class="m">33</span><span class="o">)</span><span class="w"> </span>SQLite/3.50.1<span class="w">            </span><span class="m">80</span><span class="o">)</span><span class="w"> </span>FLAC/1.5.0<span class="w">             </span><span class="m">127</span><span class="o">)</span><span class="w"> </span>netCDF/4.9.3
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w"> </span><span class="m">34</span><span class="o">)</span><span class="w"> </span>util-linux/2.41<span class="w">          </span><span class="m">81</span><span class="o">)</span><span class="w"> </span>libvorbis/1.3.7<span class="w">        </span><span class="m">128</span><span class="o">)</span><span class="w"> </span>snappy/1.2.2
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w"> </span><span class="m">35</span><span class="o">)</span><span class="w"> </span>fontconfig/2.17.0<span class="w">        </span><span class="m">82</span><span class="o">)</span><span class="w"> </span>libopus/1.5.2<span class="w">          </span><span class="m">129</span><span class="o">)</span><span class="w"> </span>RapidJSON/1.1.0-20250205
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w"> </span><span class="m">36</span><span class="o">)</span><span class="w"> </span>xorg-macros/1.20.2<span class="w">       </span><span class="m">83</span><span class="o">)</span><span class="w"> </span>LAME/3.100<span class="w">             </span><span class="m">130</span><span class="o">)</span><span class="w"> </span>Abseil/20250512.1
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w"> </span><span class="m">37</span><span class="o">)</span><span class="w"> </span>X11/20250608<span class="w">             </span><span class="m">84</span><span class="o">)</span><span class="w"> </span>libsndfile/1.2.2<span class="w">       </span><span class="m">131</span><span class="o">)</span><span class="w"> </span>RE2/2025-07-22
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w"> </span><span class="m">38</span><span class="o">)</span><span class="w"> </span>libffi/3.5.1<span class="w">             </span><span class="m">85</span><span class="o">)</span><span class="w"> </span>libaec/1.1.4<span class="w">           </span><span class="m">132</span><span class="o">)</span><span class="w"> </span>utf8proc/2.10.0
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w"> </span><span class="m">39</span><span class="o">)</span><span class="w"> </span>Python/3.13.5<span class="w">            </span><span class="m">86</span><span class="o">)</span><span class="w"> </span>Perl/5.40.2<span class="w">            </span><span class="m">133</span><span class="o">)</span><span class="w"> </span>Arrow/22.0.0
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w"> </span><span class="m">40</span><span class="o">)</span><span class="w"> </span>GMP/6.3.0<span class="w">                </span><span class="m">87</span><span class="o">)</span><span class="w"> </span>HDF5/1.14.6<span class="w">            </span><span class="m">134</span><span class="o">)</span><span class="w"> </span>GDAL/3.11.3
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w"> </span><span class="m">41</span><span class="o">)</span><span class="w"> </span>Z3/4.15.1<span class="w">                </span><span class="m">88</span><span class="o">)</span><span class="w"> </span>UDUNITS/2.2.28<span class="w">         </span><span class="m">135</span><span class="o">)</span><span class="w"> </span>MPFR/4.2.2
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w"> </span><span class="m">42</span><span class="o">)</span><span class="w"> </span>gzip/1.14<span class="w">                </span><span class="m">89</span><span class="o">)</span><span class="w"> </span>Ghostscript/10.05.1<span class="w">    </span><span class="m">136</span><span class="o">)</span><span class="w"> </span>PostgreSQL/17.5
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w"> </span><span class="m">43</span><span class="o">)</span><span class="w"> </span>lz4/1.10.0<span class="w">               </span><span class="m">90</span><span class="o">)</span><span class="w"> </span>freeglut/3.6.0<span class="w">         </span><span class="m">137</span><span class="o">)</span><span class="w"> </span>R-bundle-CRAN/2025.11
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w"> </span><span class="m">44</span><span class="o">)</span><span class="w"> </span>zstd/1.5.7<span class="w">               </span><span class="m">91</span><span class="o">)</span><span class="w"> </span>libde265/1.0.16<span class="w">        </span><span class="m">138</span><span class="o">)</span><span class="w"> </span>arrow-R/22.0.0-R-4.5.2
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w"> </span><span class="m">45</span><span class="o">)</span><span class="w"> </span>LLVM/20.1.8<span class="w">              </span><span class="m">92</span><span class="o">)</span><span class="w"> </span>x265/4.1<span class="w">               </span><span class="m">139</span><span class="o">)</span><span class="w"> </span>R-bundle-Bioconductor/3.22-R-4.5.2
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w"> </span><span class="m">46</span><span class="o">)</span><span class="w"> </span>Wayland/1.24.0<span class="w">           </span><span class="m">93</span><span class="o">)</span><span class="w"> </span>Gdk-Pixbuf/2.42.12
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="w"> </span><span class="m">47</span><span class="o">)</span><span class="w"> </span>libarchive/3.8.1<span class="w">         </span><span class="m">94</span><span class="o">)</span><span class="w"> </span>libheif/1.20.2
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="w">   </span>Where:
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">      </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div></li>
+<li>What got loaded? Was it more than you expected? </li>
+<li>Answer: so many modules. Both for R and the various R packages prerequisite for the packages in the bundle. </li>
+</ul>
+</li>
+<li>Unloading modules<ul>
+<li>Try and unload one of the modules. What happens if it is a prerequisite? 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>GDAL/3.11.3
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Lmod<span class="w"> </span>Warning:<span class="w"> </span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>----------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>The<span class="w"> </span>following<span class="w"> </span>dependent<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>currently<span class="w"> </span>loaded:<span class="w"> </span>GDAL/3.11.3<span class="w"> </span><span class="o">(</span>required<span class="w"> </span>by:<span class="w"> </span>R-bundle-CRAN/2025.11<span class="o">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>----------------------------------------------------------------------------------------------------------------------
+</span></code></pre></div>
+  or
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>GCC/14.3.0
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Inactive<span class="w"> </span>Modules:
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>Abseil/20250512.1<span class="w">      </span><span class="m">29</span><span class="o">)</span><span class="w"> </span>OpenMPI/5.0.8<span class="w">                         </span><span class="m">57</span><span class="o">)</span><span class="w"> </span>binutils/2.44<span class="w">          </span><span class="m">85</span><span class="o">)</span><span class="w"> </span>libopus/1.5.2
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Arrow/22.0.0<span class="w">           </span><span class="m">30</span><span class="o">)</span><span class="w"> </span>OpenSSL/3<span class="w">                             </span><span class="m">58</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">            </span><span class="m">86</span><span class="o">)</span><span class="w"> </span>libpciaccess/0.18.1
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>Boost/1.88.0<span class="w">           </span><span class="m">31</span><span class="o">)</span><span class="w"> </span>PCRE2/10.45<span class="w">                           </span><span class="m">59</span><span class="o">)</span><span class="w"> </span>cURL/8.14.1<span class="w">            </span><span class="m">87</span><span class="o">)</span><span class="w"> </span>libpng/1.6.50
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Brotli/1.1.0<span class="w">           </span><span class="m">32</span><span class="o">)</span><span class="w"> </span>PMIx/5.0.8<span class="w">                            </span><span class="m">60</span><span class="o">)</span><span class="w"> </span>cairo/1.18.4<span class="w">           </span><span class="m">88</span><span class="o">)</span><span class="w"> </span>libpsl/0.21.5
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>FFTW.MPI/3.3.10<span class="w">        </span><span class="m">33</span><span class="o">)</span><span class="w"> </span>PRRTE/3.0.11<span class="w">                          </span><span class="m">61</span><span class="o">)</span><span class="w"> </span>cffi/1.17.1<span class="w">            </span><span class="m">89</span><span class="o">)</span><span class="w"> </span>libreadline/8.2
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>FFTW/3.3.10<span class="w">            </span><span class="m">34</span><span class="o">)</span><span class="w"> </span>Pango/1.57.0<span class="w">                          </span><span class="m">62</span><span class="o">)</span><span class="w"> </span>cryptography/45.0.5<span class="w">    </span><span class="m">90</span><span class="o">)</span><span class="w"> </span>libsndfile/1.2.2
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>FLAC/1.5.0<span class="w">             </span><span class="m">35</span><span class="o">)</span><span class="w"> </span>Perl/5.40.2<span class="w">                           </span><span class="m">63</span><span class="o">)</span><span class="w"> </span>elfutils/0.193<span class="w">         </span><span class="m">91</span><span class="o">)</span><span class="w"> </span>libtommath/1.3.0
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>FlexiBLAS/3.4.5<span class="w">        </span><span class="m">36</span><span class="o">)</span><span class="w"> </span>PostgreSQL/17.5<span class="w">                       </span><span class="m">64</span><span class="o">)</span><span class="w"> </span>expat/2.7.1<span class="w">            </span><span class="m">92</span><span class="o">)</span><span class="w"> </span>libunistring/1.3
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>FriBidi/1.0.16<span class="w">         </span><span class="m">37</span><span class="o">)</span><span class="w"> </span>Python-bundle-PyPI/2025.07<span class="w">            </span><span class="m">65</span><span class="o">)</span><span class="w"> </span>fontconfig/2.17.0<span class="w">      </span><span class="m">93</span><span class="o">)</span><span class="w"> </span>libunwind/1.8.2
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>GLPK/5.0<span class="w">               </span><span class="m">38</span><span class="o">)</span><span class="w"> </span>Python/3.13.5<span class="w">                         </span><span class="m">66</span><span class="o">)</span><span class="w"> </span>freeglut/3.6.0<span class="w">         </span><span class="m">94</span><span class="o">)</span><span class="w"> </span>libvorbis/1.3.7
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w"> </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>GLib/2.85.3<span class="w">            </span><span class="m">39</span><span class="o">)</span><span class="w"> </span>R-bundle-Bioconductor/3.22-R-4.5.2<span class="w">    </span><span class="m">67</span><span class="o">)</span><span class="w"> </span>freetype/2.13.3<span class="w">        </span><span class="m">95</span><span class="o">)</span><span class="w"> </span>libwebp/1.5.0
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w"> </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>GMP/6.3.0<span class="w">              </span><span class="m">40</span><span class="o">)</span><span class="w"> </span>R-bundle-CRAN/2025.11<span class="w">                 </span><span class="m">68</span><span class="o">)</span><span class="w"> </span>giflib/5.2.2<span class="w">           </span><span class="m">96</span><span class="o">)</span><span class="w"> </span>libxml2/2.14.3
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w"> </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>GSL/2.8<span class="w">                </span><span class="m">41</span><span class="o">)</span><span class="w"> </span>R/4.5.2<span class="w">                               </span><span class="m">69</span><span class="o">)</span><span class="w"> </span>gzip/1.14<span class="w">              </span><span class="m">97</span><span class="o">)</span><span class="w"> </span>lz4/1.10.0
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w"> </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>Gdk-Pixbuf/2.42.12<span class="w">     </span><span class="m">42</span><span class="o">)</span><span class="w"> </span>RE2/2025-07-22<span class="w">                        </span><span class="m">70</span><span class="o">)</span><span class="w"> </span>hwloc/2.12.1<span class="w">           </span><span class="m">98</span><span class="o">)</span><span class="w"> </span>nettle/3.10.2
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w"> </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Ghostscript/10.05.1<span class="w">    </span><span class="m">43</span><span class="o">)</span><span class="w"> </span>RapidJSON/1.1.0-20250205<span class="w">              </span><span class="m">71</span><span class="o">)</span><span class="w"> </span>jbigkit/2.1<span class="w">            </span><span class="m">99</span><span class="o">)</span><span class="w"> </span>nodejs/22.17.1
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w"> </span><span class="m">16</span><span class="o">)</span><span class="w"> </span>HDF5/1.14.6<span class="w">            </span><span class="m">44</span><span class="o">)</span><span class="w"> </span>SQLite/3.50.1<span class="w">                         </span><span class="m">72</span><span class="o">)</span><span class="w"> </span>libaec/1.1.4<span class="w">          </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>numactl/2.0.19
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w"> </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>HarfBuzz/11.4.1<span class="w">        </span><span class="m">45</span><span class="o">)</span><span class="w"> </span>ScaLAPACK/2.2.2-fb<span class="w">                    </span><span class="m">73</span><span class="o">)</span><span class="w"> </span>libarchive/3.8.1<span class="w">      </span><span class="m">101</span><span class="o">)</span><span class="w"> </span>pixman/0.46.4
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w"> </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>ICU/77.1<span class="w">               </span><span class="m">46</span><span class="o">)</span><span class="w"> </span>SciPy-bundle/2025.07<span class="w">                  </span><span class="m">74</span><span class="o">)</span><span class="w"> </span>libde265/1.0.16<span class="w">       </span><span class="m">102</span><span class="o">)</span><span class="w"> </span>snappy/1.2.2
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w"> </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>ImageMagick/7.1.2-7<span class="w">    </span><span class="m">47</span><span class="o">)</span><span class="w"> </span>Tcl/9.0.1<span class="w">                             </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>libdeflate/1.24<span class="w">       </span><span class="m">103</span><span class="o">)</span><span class="w"> </span>utf8proc/2.10.0
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w"> </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>JasPer/4.2.8<span class="w">           </span><span class="m">48</span><span class="o">)</span><span class="w"> </span>Tk/9.0.1<span class="w">                              </span><span class="m">76</span><span class="o">)</span><span class="w"> </span>libdrm/2.4.125<span class="w">        </span><span class="m">104</span><span class="o">)</span><span class="w"> </span>util-linux/2.41
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w"> </span><span class="m">21</span><span class="o">)</span><span class="w"> </span>LAME/3.100<span class="w">             </span><span class="m">49</span><span class="o">)</span><span class="w"> </span>UCC/1.4.4<span class="w">                             </span><span class="m">77</span><span class="o">)</span><span class="w"> </span>libevent/2.1.12<span class="w">       </span><span class="m">105</span><span class="o">)</span><span class="w"> </span>virtualenv/20.32.0
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w"> </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>LLVM/20.1.8<span class="w">            </span><span class="m">50</span><span class="o">)</span><span class="w"> </span>UCX/1.19.0<span class="w">                            </span><span class="m">78</span><span class="o">)</span><span class="w"> </span>libffi/3.5.1<span class="w">          </span><span class="m">106</span><span class="o">)</span><span class="w"> </span>x265/4.1
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w"> </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>LibTIFF/4.7.0<span class="w">          </span><span class="m">51</span><span class="o">)</span><span class="w"> </span>UDUNITS/2.2.28<span class="w">                        </span><span class="m">79</span><span class="o">)</span><span class="w"> </span>libgit2/1.9.1<span class="w">         </span><span class="m">107</span><span class="o">)</span><span class="w"> </span>xorg-macros/1.20.2
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w"> </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>LittleCMS/2.17<span class="w">         </span><span class="m">52</span><span class="o">)</span><span class="w"> </span>Wayland/1.24.0<span class="w">                        </span><span class="m">80</span><span class="o">)</span><span class="w"> </span>libheif/1.20.2<span class="w">        </span><span class="m">108</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w"> </span><span class="m">25</span><span class="o">)</span><span class="w"> </span>MPFR/4.2.2<span class="w">             </span><span class="m">53</span><span class="o">)</span><span class="w"> </span>X11/20250608<span class="w">                          </span><span class="m">81</span><span class="o">)</span><span class="w"> </span>libiconv/1.18<span class="w">         </span><span class="m">109</span><span class="o">)</span><span class="w"> </span>zstd/1.5.7
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w"> </span><span class="m">26</span><span class="o">)</span><span class="w"> </span>NLopt/2.10.0<span class="w">           </span><span class="m">54</span><span class="o">)</span><span class="w"> </span>XZ/5.8.1<span class="w">                              </span><span class="m">82</span><span class="o">)</span><span class="w"> </span>libidn2/2.3.8
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w"> </span><span class="m">27</span><span class="o">)</span><span class="w"> </span>OpenBLAS/0.3.30<span class="w">        </span><span class="m">55</span><span class="o">)</span><span class="w"> </span>Z3/4.15.1<span class="w">                             </span><span class="m">83</span><span class="o">)</span><span class="w"> </span>libjpeg-turbo/3.1.1
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="w"> </span><span class="m">28</span><span class="o">)</span><span class="w"> </span>OpenGL/2025.09<span class="w">         </span><span class="m">56</span><span class="o">)</span><span class="w"> </span>arrow-R/22.0.0-R-4.5.2<span class="w">                </span><span class="m">84</span><span class="o">)</span><span class="w"> </span>libogg/1.3.6
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>Due<span class="w"> </span>to<span class="w"> </span>MODULEPATH<span class="w"> </span>changes,<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>reloaded:
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>gettext/0.25<span class="w">     </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>ncurses/6.5
+</span></code></pre></div>
+  or
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>R-bundle-Bioconductor/3.22-R-4.5.2
+</span></code></pre></div></li>
+<li>Do <code>module purge</code>. Did everything get unloaded? What did not? 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>module<span class="w"> </span>purge
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">"module --force purge"</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault
+</span></code></pre></div>
+  The environment variables and some other system settings did not get unloaded. That is as it should be. </li>
+</ul>
+</li>
+</ol>
+<h2 id="toolchains">Toolchains<a class="headerlink" href="#toolchains" title="Permanent link">&para;</a></h2>
+<ol>
+<li>What are compiler toolchains?<ul>
+<li>Answer: they are compatible groups of C and Fortran compilers, MPI libraries, linear algebra libraries, and other fundamental programs used internally by more familiar packages that users work with directly (e.g., Python, R, GROMACS, etc.).</li>
+</ul>
+</li>
+<li>How come you can see the compiler toolchains with <code>ml avail</code>?<ul>
+<li>Answer: they do not have prerequisites that must be loaded first. </li>
+</ul>
+</li>
+<li>What is included in <code>foss/2023b</code>? <ul>
+<li>Answer: use <code>module show foss/2023b</code> to see that it contains <code>GCC/13.2.0</code>, <code>OpenMPI/4.1.6</code>, <code>FlexiBLAS/3.3.1</code>, <code>FFTW/3.3.10</code>, <code>FFTW.MPI/3.3.10</code>, <code>ScaLAPACK/2.2.0-fb</code> </li>
+</ul>
+</li>
+<li>List all <code>foss</code> and <code>ìntel</code> compiler toolchains. <ul>
+<li>Answer: 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>ml<span class="w"> </span>avail<span class="w"> </span>foss
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>---------------------------------------------<span class="w"> </span>/hpc2n/eb/modules/all/Core<span class="w"> </span>---------------------------------------------
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">   </span>foss/2023a<span class="w">    </span>foss/2023b<span class="w">    </span>foss/2024a<span class="w">    </span>foss/2025a<span class="w">    </span>foss/2025b<span class="w">    </span>foss/2026.1<span class="w"> </span><span class="o">(</span>D<span class="o">)</span><span class="w">    </span>lfoss/2025b
+</span></code></pre></div>
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>ml<span class="w"> </span>avail<span class="w"> </span>intel
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>---------------------------------------------<span class="w"> </span>/hpc2n/eb/modules/all/Core<span class="w"> </span>---------------------------------------------
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">   </span>intel-compilers/2023.1.0<span class="w">    </span>intel-compilers/2025.1.1<span class="w">        </span>intel/2023a<span class="w">    </span>intel/2025a
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">   </span>intel-compilers/2023.2.1<span class="w">    </span>intel-compilers/2025.2.0<span class="w">        </span>intel/2023b<span class="w">    </span>intel/2025b
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">   </span>intel-compilers/2024.2.0<span class="w">    </span>intel-compilers/2025.3.3<span class="w"> </span><span class="o">(</span>D<span class="o">)</span><span class="w">    </span>intel/2024a<span class="w">    </span>intel/2026.1<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
+</span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="software__module__examples">Software module examples<a class="headerlink" href="#software__module__examples" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Which prerequisites does <code>mpi4py</code> have?</li>
+<li>Answer: use <code>ml spider mpi4py</code> to find the available versions and then pick one and do <code>ml spider mpi4py/4.1.0</code> to get <code>GCC/14.2.0 OpenMPI/5.0.7</code> or <code>GCC/14.3.0 OpenMPI/5.0.8</code></li>
+<li>How many version of SciPy-bundle are there?</li>
+<li>Answer: use <code>ml spider SciPy-bundle</code> to find 
+     <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>SciPy-bundle/2023.07
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>SciPy-bundle/2023.11
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>SciPy-bundle/2024.05
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>SciPy-bundle/2024.06-Python-2.7.18
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>SciPy-bundle/2025.06
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>SciPy-bundle/2025.07
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>SciPy-bundle/2026.05
+</span></code></pre></div></li>
+<li>Is OpenMPI included when you load SciPy-bundle or is it a prerequisite?<ul>
+<li>Answer: pick one of the above versions and use <code>module spider SciPy-bundle/2026.05</code> to check. The answer is that only <code>GCC/15.2.0</code> is a prerequisite. Load <code>GCC/15.2.0</code> and then load <code>SciPy-bundle/2026.05</code>. Use <code>ml</code> or <code>module list</code> to find that OpenMPI is neither a prerequisite nor is it loaded with the SciPy-bundle. Previously, <code>mpi4py</code> was loaded with SciPy-bundle and so had <code>OPenMPI</code> as a prerequisite. </li>
+</ul>
+</li>
+<li>What are the prerequisites of <code>R-bundle-CRAN</code>? <ul>
+<li>Answer: use <code>ml spider R-bundle-CRAN</code> to find the versions. Pick one of them and use <code>module spider R-bundle-CRAN/2025.11</code> to find its prerequisites, which are <code>GCC/14.3.0 OpenMPI/5.0.8</code></li>
+</ul>
+</li>
+<li>Find out the installed versions of Nextflow and how to load the newest one. <ul>
+<li>Answer: Use <code>ml spider nextflow</code> to find 
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Nextflow/23.04.2
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Nextflow/24.04.2
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Nextflow/25.10.0
+</span></code></pre></div>
+  Then use <code>ml spider Nextflow/25.10.0</code> to find that you can load it directly. </li>
+</ul>
+</li>
+<li>Does BioPython load Python? <ul>
+<li>Answer: Using <code>ml spider biopython</code> we find that there is only one version installed, <code>Biopython/1.87</code> and that it has <code>GCC/15.2.0</code> as a prerequisite. 
+  Loading it (<code>module load GCC/15.2.0 Biopython/1.87</code>) and then doing <code>module list</code> or <code>ml</code> shows that it indeed loads Python, namely <code>Python/3.14.2</code>. </li>
+</ul>
+</li>
+</ol>
+<h2 id="modules__in__batch__scripts">Modules in batch scripts<a class="headerlink" href="#modules__in__batch__scripts" title="Permanent link">&para;</a></h2>
+<ul>
+<li>How do you load a module in a batch script? Do you need to load any prerequisites? <ul>
+<li>Answer: You load it the same way as you load them on the command line. If the module has prerequisites on the command line, then it also has in the batch script and you must load them first.    </li>
+</ul>
+</li>
+</ul>
+<h2 id="containers__on__kebnekaise">Containers on Kebnekaise<a class="headerlink" href="#containers__on__kebnekaise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Which container platform is used on Kebnekaise? <ul>
+<li>Answer: Apptainer (Singularity is a symbolic link to Apptainer) </li>
+</ul>
+</li>
+<li>Do you need to load a module to make containers available on Kebnekaise? <ul>
+<li>Answer: No, apptainer is directly available on Kebnekaise without loading anything. </li>
+</ul>
+</li>
+<li>Can you run a downloaded Docker image at Kebnekaise? <ul>
+<li>Answer: Yes, but it must first be converted to apptainer before you can run it. This is done like this: <code>apptainer build &lt;myapptainerimage&gt;.sif docker://hostname/repository/imagename:tag</code> See <a href="https://hpc2n.github.io/bioinformatics-hpc/08.software-modules-containers/containers-kebnekaise/#exerciseexample">the example in the material</a> for how to do this. </li>
+</ul>
+</li>
+<li>Download a docker image from <code>https://hub.docker.com/u/biocontainers</code> to your project directory space on Kebnekaise and convert it to an apptainer image file. Example: <code>beast2</code> - or pick an image yourself. <ul>
+<li>Answer: You also need to convert to apptainer, aside from download. This does both and is for <code>beast2</code> (see https://hub.docker.com/r/biocontainers/beast2-mcmc): <code>apptainer build mybeast2.sif docker://biocontainers/beast2-mcmc:v2.5.1dfsg-2-deb_cv1</code></li>
+</ul>
+</li>
+<li>Execute your apptainer image with apptainer. If it is a graphical tool you need to use OpenOnDemand (or SSH with x11 forwarding). <ul>
+<li>Answer: You need the <code>.sif</code> apptainer image you downloaded/created and then you execute the program this way, using the regular commands and input files: <code>apptainer exec -B $PWD:$PWD &lt;myapptainerimage&gt;.sif PROGRAM-COMMAND [OPTIONS] [input and output files]</code> </li>
+</ul>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
