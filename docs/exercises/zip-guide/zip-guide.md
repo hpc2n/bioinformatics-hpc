@@ -1,13 +1,8 @@
-# Making a zip file and getting it to your own computer: step-by-step guide
+# Copying files from Kebnekaise, and making zip and gzip archives
 
 **Course:** 5BI00A Computing for Data-Driven Biology · Umeå University
 
-At the end of the exam you upload your README and output files to Canvas as one **zip file**. Canvas accepts only `.zip` files for the exam: a `.tar.gz` file is refused with the message "filetype not allowed". This page shows how to make the zip on Kebnekaise (or in the practice container), how to move it to your own computer, and how to upload it.
-
-The zip has to be made where your files are, and uploaded from your own computer. That is why the file has to travel: Kebnekaise (or the container) to your own computer to Canvas.
-
-!!! note "Practise before the exam"
-    There is a practice assignment in Canvas, "Practice: make a zip file and upload it (no marks)", due Monday 28 September at 17:00. It lets you do this whole page with a tiny file, so that nothing is new on the day of the exam.
+You do most of your work on Kebnekaise, but sometimes you need a file on your own computer: to open a table in a spreadsheet, to look at a figure, to keep a copy of your results, or to send them to someone. This page shows how to pack files into one archive (zip, tar.gz or gzip), how to copy files and archives from Kebnekaise to your own computer, and back again, and how to unpack them.
 
 ## How the commands on this page are shown
 
@@ -38,144 +33,221 @@ echo "This is a command to paste exactly as it is"
 Paste one block at a time, press Enter, and wait for the prompt to come back before you paste the next block.
 
 !!! warning "Use straight quotation marks"
-    Commands use straight quotation marks, `"` and `'`. If you copy a command from a Word document, an email or a chat window, they can turn into curly ones, `“ ”` and `‘ ’`, and the command then fails with errors that seem unrelated. Copy commands from the boxes on the course pages instead of retyping them, and check any quotation marks that you type yourself. Do not swap one kind for the other: `$` and `\` mean something different inside double quotes than inside single quotes.
+    Commands use straight quotation marks, `"` and `'`. If you copy a command from a Word document, an email or a chat window, they can turn into curly ones, `“ ”` and `‘ ’`, and the command then fails with errors that seem unrelated. Copy commands from the boxes on the course pages instead of retyping them.
 
 !!! warning "Where you type matters"
-    Each step says where to type: on Kebnekaise, on your own computer, or in the practice container. Steps 1 to 3 are done where your files are. Step 4 has three routes; use the one that matches where your files are. In the practice container the prompt starts with `[practice container]`.
+    Each section says where to type: **on Kebnekaise** (in a terminal where you have logged in with `ssh`) or **on your own computer** (in a terminal window that is *not* logged in to Kebnekaise). Archives are made where the files are; copying is started from your own computer.
 
-## Step 1: Go to the folder with your files (on Kebnekaise or in the container)
+The examples use a folder called `myproject` that holds a `README.md` and a `results` folder. Use your own folder and file names.
 
-For the exam this is your cloned exam repository. Do the rest of Steps 1 to 3 inside that folder, not in the folder above it. The next command contains your GitHub username, so change the capital letters before you paste. It assumes that you cloned the repository into the folder you are in now. In the practice container you can check where you are from the end of your prompt, which should be `exam-` followed by your GitHub username.
+---
 
-!!! warning "Edit before you paste"
-    ```
-    cd exam-YOUR_GITHUB_USERNAME
-    ```
+## Part 1: Pack files into an archive (on Kebnekaise)
 
-    - `YOUR_GITHUB_USERNAME`: your GitHub username, for example `msvensson`. Keep `exam-` in front of it.
+An archive packs many files, or a whole folder, into one file, usually compressed so that it is smaller. One file is easier to copy, to keep and to send than many.
 
-Look at what is there:
+| Format | Made with | Good for |
+|---|---|---|
+| `.zip` | `zip` | A folder that you want to open on almost any computer |
+| `.tar.gz` | `tar` | A folder; the usual format on Linux |
+| `.gz` | `gzip` | A single large file, such as a FASTQ or a big table; many biological data files are shared this way |
 
-```
-ls
-```
-
-You should see your `README.md` and your output files or folders.
-
-## Step 2: Make the zip file (on Kebnekaise or in the container)
-
-The exam asks for your README and your output files. Make sure you are inside your exam repository folder (Step 1). The next command needs no changes. It puts everything in the folder into `exam.zip`, except the hidden `.git` folder, which holds your Git history (that is on GitHub already). The dot means "this folder", `-r` includes folders and what is inside them, and `-x ".git/*"` leaves `.git` out.
-
-```
-zip -r exam.zip . -x ".git/*"
-```
-
-!!! tip "What you should see (do not paste this)"
-    One line for each file or folder that was added, in any order. Your file names and the percentages will differ.
-
-    ```
-      adding: README.md (stored 0%)
-      adding: results/ (stored 0%)
-      adding: results/hits.txt (deflated 43%)
-      adding: blast_job.sh (stored 0%)
-    ```
-
-Only if you want some of the files, and not everything, use this command instead of the one above. Name the files after `exam.zip`, separated by spaces.
+First go to the folder that holds the folder you want to pack, and look at what is there:
 
 !!! warning "Edit before you paste"
     ```
-    zip -r exam.zip README.md NAME_OF_AN_OUTPUT_FILE_OR_FOLDER
+    cd PATH_TO_THE_FOLDER
+    ls
     ```
 
-    - `NAME_OF_AN_OUTPUT_FILE_OR_FOLDER`: the name of a file or folder to include, for example `results`. To include more, add their names after it, separated by spaces.
+    - `PATH_TO_THE_FOLDER`: the folder that contains the folder you want to pack, for example `/proj/nobackup/cddb_course/students/msvensson`.
 
-Now check what is inside the zip file:
+### A zip file
+
+This packs the folder `myproject`, and everything in it, into `myproject.zip`. `-r` includes folders and what is inside them. If the folder is a Git repository, `-x "myproject/.git/*"` leaves out the hidden `.git` folder, which holds the Git history (that is on GitHub already).
 
 ```
-unzip -l exam.zip
+zip -r myproject.zip myproject -x "myproject/.git/*"
 ```
 
 !!! tip "What you should see (do not paste this)"
-    The names of your files, with their sizes. Check that your README and your output files are listed.
+    One line for each file or folder that was added. Your names and percentages will differ.
 
     ```
-    Archive:  exam.zip
+      adding: myproject/ (stored 0%)
+      adding: myproject/results/ (stored 0%)
+      adding: myproject/results/TP53_protein.fasta (deflated 29%)
+      adding: myproject/results/TP53_blastp_local.tsv (deflated 69%)
+      adding: myproject/README.md (stored 0%)
+    ```
+
+Check what is inside the zip file, without unpacking it:
+
+```
+unzip -l myproject.zip
+```
+
+!!! tip "What you should see (do not paste this)"
+    ```
+    Archive:  myproject.zip
       Length      Date    Time    Name
     ---------  ---------- -----   ----
-           17  09-21-2026 07:08   README.md
-            0  09-21-2026 07:08   results/
-          111  09-21-2026 07:08   results/hits.txt
-           20  09-21-2026 07:08   blast_job.sh
+            0  2026-09-30 09:32   myproject/
+            0  2026-09-30 09:32   myproject/results/
+          490  2026-09-30 09:32   myproject/results/TP53_protein.fasta
+         2674  2026-09-30 09:32   myproject/results/TP53_blastp_local.tsv
+           13  2026-09-30 09:32   myproject/README.md
     ---------                     -------
-          148                     4 files
+         3177                     5 files
     ```
 
-## Step 3: Find the full path of the zip file (on Kebnekaise or in the container)
+To pack only some files, name them after the zip file, separated by spaces. Here the command is run from *inside* `myproject`, and the zip file is written to the folder above it (`..`):
 
-You need the full path to move the file in Step 4.
+!!! warning "Edit before you paste"
+    ```
+    zip -r ../SOME_NAME.zip FILE_OR_FOLDER FILE_OR_FOLDER
+    ```
+
+    - `SOME_NAME`: a name for the zip file, for example `results_only`.
+    - `FILE_OR_FOLDER`: a file or folder to include, for example `README.md results`. Add as many as you need.
+
+To unpack a zip file: `unzip myproject.zip`. It recreates the folder `myproject` in the folder you are in.
+
+### A tar.gz file
+
+`tar` is the standard archiving tool on Linux. The letters after `-` say what to do: `c` create, `z` compress with gzip, `f` the name of the archive follows. `--exclude=.git` leaves out the Git history.
+
+```
+tar -czf myproject.tar.gz --exclude=.git myproject
+```
+
+List what is inside (`t` for "table of contents"):
+
+```
+tar -tzf myproject.tar.gz
+```
+
+!!! tip "What you should see (do not paste this)"
+    ```
+    myproject/
+    myproject/results/
+    myproject/results/TP53_protein.fasta
+    myproject/results/TP53_blastp_local.tsv
+    myproject/README.md
+    ```
+
+To unpack it (`x` for "extract"): `tar -xzf myproject.tar.gz`. It recreates the folder `myproject` in the folder you are in.
+
+### A single file with gzip
+
+`gzip` compresses one file. By itself it **replaces** the file with a compressed `.gz` version; `-k` (keep) leaves the original as well.
+
+!!! warning "Edit before you paste"
+    ```
+    gzip -k FILE_NAME
+    ls -l FILE_NAME*
+    ```
+
+    - `FILE_NAME`: the file to compress, for example `TP53_blastp_local.tsv`.
+
+!!! tip "What you should see (do not paste this)"
+    The original and the compressed file. This BLAST table went from 2674 to 864 bytes.
+
+    ```
+    -rw-rw----+ 1 msvensson ps30756 2674 Sep 30 09:32 TP53_blastp_local.tsv
+    -rw-rw----+ 1 msvensson ps30756  864 Sep 30 09:32 TP53_blastp_local.tsv.gz
+    ```
+
+You do not have to unpack a `.gz` file to look inside it: `zcat` prints the uncompressed text, so you can use it in a pipe like any other file:
+
+```
+zcat TP53_blastp_local.tsv.gz | head -2
+```
+
+To unpack it: `gunzip TP53_blastp_local.tsv.gz`, which turns it back into `TP53_blastp_local.tsv`.
+
+---
+
+## Part 2: Find the full path of the file (on Kebnekaise)
+
+To copy a file you need its full path on Kebnekaise. In the folder that holds the file, type:
 
 ```
 pwd
 ```
 
 !!! tip "What you should see (do not paste this)"
-    The full path of the folder that you are in. Yours will be different. Add `/exam.zip` to the end to get the full path of the zip file.
+    The full path of the folder you are in. Yours will be different. Add `/` and the file name to the end to get the full path of the file, for example `/proj/nobackup/cddb_course/students/msvensson/myproject.zip`.
 
     ```
-    /proj/nobackup/cddb_course/students/msvensson/exam-msvensson
+    /proj/nobackup/cddb_course/students/msvensson
     ```
 
-## Step 4: Move the zip file to your own computer
+---
 
-Use the route that matches where your files are.
+## Part 3: Copy files between Kebnekaise and your own computer
 
-### Route A: from Kebnekaise with `scp` (in a terminal on your own computer)
+### Route A: with `scp` (in a terminal on your own computer)
 
-Open a terminal window on your own computer. This is not the Kebnekaise window: do not log in to Kebnekaise for this step. Go to the folder where you want the file, and paste the command below. The dot at the end means "here", the folder that your terminal is in.
+Open a terminal window on your own computer. This is not the Kebnekaise window: do not log in to Kebnekaise for this step. Go to the folder where you want the file, then paste the command below. The dot at the end means "here", the folder your terminal is in.
 
 !!! warning "Edit before you paste"
     ```
-    scp YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH/exam.zip .
+    scp YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH .
     ```
 
     - `YOUR_HPC2N_USERNAME`: your HPC2N username, the one you use to log in to Kebnekaise.
-    - `FULL_PATH`: the path that `pwd` printed in Step 3, for example `/proj/nobackup/cddb_course/students/msvensson/exam-msvensson`. Keep `/exam.zip` after it.
+    - `FULL_PATH`: the full path of the file from Part 2, for example `/proj/nobackup/cddb_course/students/msvensson/myproject.zip`.
 
-`scp` asks for the same login details as `ssh` does. When it has finished, `exam.zip` is in the folder that your terminal is in.
+`scp` asks for the same login details as `ssh`. When it has finished, the file is in the folder your terminal is in.
 
-### Route B: from Kebnekaise with the Open OnDemand file browser (in a web browser)
+To copy a whole folder instead of one file, add `-r`: `scp -r YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH_OF_THE_FOLDER .` For many files it is usually quicker and tidier to pack them first (Part 1) and copy the one archive.
 
-1. Go to [portal.hpc2n.umu.se](https://portal.hpc2n.umu.se) and log in.
-2. Open the *Files* app and go to the folder that holds `exam.zip`.
-3. Select `exam.zip` and choose *Download*. Your browser saves it in its download folder.
-
-### Route C: from the practice container with `docker cp` (in a second terminal window)
-
-Leave the container running, in its own terminal window. Do not type `exit` yet. Open a second terminal window on your own computer (not the Docker Desktop app), and go to the folder where you want the file. Then paste the command below. It assumes that the container was started with the name `practice`, as in the [practice image guide](https://github.com/hpc2n/bioinformatics-hpc/tree/main/exam-practice), and that you cloned your exam repository in the container's default folder, `~/work`, and made the zip in it (Steps 1 and 2). The dot at the end means the folder that this second terminal is in.
+To copy the other way, from your own computer to Kebnekaise, swap the two parts. The file comes first, and the Kebnekaise folder second, ending in `/`:
 
 !!! warning "Edit before you paste"
     ```
-    docker cp practice:/home/student/work/exam-YOUR_GITHUB_USERNAME/exam.zip .
+    scp FILE_NAME YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH_OF_A_FOLDER/
     ```
 
-    - `YOUR_GITHUB_USERNAME`: your GitHub username, for example `msvensson`. Write out the whole path: `~/work` does not work in this command.
+    - `FILE_NAME`: the file on your own computer, for example `notes.txt`.
+    - `YOUR_HPC2N_USERNAME`: your HPC2N username.
+    - `FULL_PATH_OF_A_FOLDER`: the folder on Kebnekaise to copy it into, for example `/proj/nobackup/cddb_course/students/msvensson`.
 
-`docker cp` copies a single file or a whole folder, but Canvas accepts only a zip file, so make the zip first (Step 2).
+!!! tip "Optional, for larger folders: rsync"
+    If `rsync` is installed on your computer, it copies only what has changed, and can be run again to finish an interrupted copy. The `/` at the end of the source means "the contents of this folder":
 
-If the container was not started with the name `practice` (older versions of the guide did not use it), replace `practice` in the command with the container's ID. The ID is the letters and numbers after `student@` in the prompt of the container window, for example `1a2b3c4d5e6f`. You can also find the name or the ID by typing `docker ps` in the second terminal window.
+    `rsync -av YOUR_HPC2N_USERNAME@kebnekaise.hpc2n.umu.se:FULL_PATH_OF_THE_FOLDER/ LOCAL_FOLDER/`
 
-## Step 5: Upload the zip file to Canvas (in your web browser)
+### Route B: with the Open OnDemand file browser (in a web browser)
 
-1. Open the exam assignment in Canvas and choose *Submit Assignment*.
-2. Choose `exam.zip` from the folder where you saved it in Step 4.
-3. Submit, and check that the file name is shown on the submission page.
+1. Go to [portal.hpc2n.umu.se](https://portal.hpc2n.umu.se) and log in.
+2. Open the *Files* app and go to the folder that holds the file.
+3. Select the file and choose *Download*. Your browser saves it in its download folder.
+
+
+---
+
+## Part 4: Unpack on your own computer
+
+Most computers open a `.zip` file with a double-click. In a terminal on your own computer you can also use the same commands as on Kebnekaise:
+
+| Archive | Command |
+|---|---|
+| `myproject.zip` | `unzip myproject.zip` |
+| `myproject.tar.gz` | `tar -xzf myproject.tar.gz` |
+| `TP53_blastp_local.tsv.gz` | `gunzip TP53_blastp_local.tsv.gz` |
+
+---
 
 ## Troubleshooting
 
 | What you see | What it means and what to do |
 |---|---|
-| Canvas says "filetype not allowed" | The file is not a `.zip` file, for example a `.tar.gz` file. Make the zip with `zip -r` (Step 2). |
-| `scp` says `No such file or directory` | The path is wrong. Run `pwd` in the folder with the zip on Kebnekaise (Step 3), check that `exam.zip` is there with `ls`, and use that path. |
-| `scp` says `Permission denied` | The username or the password is wrong, or you are not able to log in to Kebnekaise. Try logging in with `ssh` first. |
-| `docker cp` says `No such container: practice` | The container has ended, or it was started without `--name practice`. Start it again as in the practice image guide, and copy the file while it is running. |
-| The zip file looks too small, or is empty | Check its contents with `unzip -l exam.zip`. Files that are not named on the `zip` command are not included. Make the zip again, and name your README and output files. |
+| `scp: ...: No such file or directory` | The path is wrong. Run `pwd` in the folder with the file on Kebnekaise (Part 2), check that the file is there with `ls`, and use that path. |
+| `scp` says `Permission denied` | The username or the password is wrong, or you cannot log in to Kebnekaise. Try logging in with `ssh` first. |
+| `zip warning: name not matched` and `zip error: Nothing to do!` | The file or folder name after the zip file does not exist in the folder you are in. Check the names with `ls`. |
+| `tar: ...: Cannot stat: No such file or directory` | The same for `tar`: check the folder name with `ls`. |
+| `gzip: ... already exists; not overwritten` | There is already a `.gz` file with that name. Remove or rename it, or use the one you have. |
+| Your original file is gone after `gzip` | `gzip` without `-k` replaces the file with the `.gz` file. `gunzip` brings it back. |
+| The zip file looks too small, or is empty | Check its contents with `unzip -l`. Only the files and folders you name are included. |

@@ -13,9 +13,6 @@ The exam requires you to **push** your work from Kebnekaise to a repository on G
 - Your HPC2N account and a terminal on a Kebnekaise login node (see [Connecting to Kebnekaise](../../02.connect-cluster/connect-cluster.md)): an SSH terminal on your own computer, for example PuTTY, or ThinLinc. The terminal inside Open OnDemand runs on a compute node, and some compute nodes lack tools that this guide uses, such as `git` and `ssh-keygen`. **Every command on this page is typed in the Kebnekaise terminal**, except the two steps marked as done in the browser.
 - The commands are shown without the `$` prompt: type or paste only the command itself.
 
-!!! note "Using the practice container instead of Kebnekaise?"
-    If you are working in the practice Docker image, do not follow Steps 1 to 5 by hand. Type `exam-practice-setup` at the `[practice container]` prompt: it does Steps 1 to 5 for you and asks for your name and e-mail address. The [practice image guide](https://github.com/hpc2n/bioinformatics-hpc/tree/main/exam-practice) explains how to start the container. Then continue at Step 6. Every command on this page is typed inside the container, never in your own computer's terminal.
-
 ## How the commands on this page are shown
 
 Three kinds of block are used, and they always look the same.
@@ -90,7 +87,7 @@ git --version
 
 It should now print a line that starts with `git version`. If `module` says that it cannot find that module, type `module spider git` to list the versions that are installed, and load one of them together with the modules that the list says it needs.
 
-The module is loaded only in the terminal where you typed the command. In a new terminal, or after logging in again, load it again before you use Git. You do not need this step in the practice container, which has Git.
+The module is loaded only in the terminal where you typed the command. In a new terminal, or after logging in again, load it again before you use Git.
 
 Now check that the tool that makes SSH keys is available:
 
